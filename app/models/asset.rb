@@ -8,6 +8,6 @@ class Asset
   key :size, Array
   key :tags, Array
   
-  one :conversation, :class_name => "Discussion", :foreign_key => "focus_id"
-  many :discussions, :foreign_key => "focus_id"
+  one :conversation, :class_name => "Discussion", :foreign_key => "focus_id" # this is the primary thread for a target
+  many :discussions, :foreign_key => "focus_id" # other discussions where the Asset is the focus
 end

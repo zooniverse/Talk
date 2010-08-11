@@ -1,7 +1,7 @@
 class Tag
   include MongoMapper::Document
   
-  key :tags, Array, :required => true
+  key :tags, Array, :required => true # for our meta discussion about tags or collections of tags
   key :asset_ids, Array  # for caching?
   
   many :assets, :in => :asset_ids

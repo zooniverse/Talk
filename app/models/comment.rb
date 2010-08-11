@@ -8,7 +8,7 @@ class Comment
   key :upvotes, Integer
   key :body, String, :required => true
   key :tags, Array
-  key :assets, Array # mentioned Assets
+  key :assets, Array # mentioned Assets, whether these make their way up to the discussion level is TBD
   timestamps!
   
   belongs_to :discussion

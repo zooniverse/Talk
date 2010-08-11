@@ -4,7 +4,7 @@ class User
   
   key :zooniverse_user_id, Integer, :required => true
   key :name, String, :required => true
-  key :publishable_name, String
+  key :publishable_name, String # do we need this in here.  If so, how do we keep these up to date
   timestamps!
   
   attachment :avatar
