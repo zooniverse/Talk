@@ -8,7 +8,6 @@ gem 'rails', '3.0.0.rc'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'bson_ext'
 gem 'mongo_mapper'
-gem 'joint'
 
 group :development do
   gem 'mysql'

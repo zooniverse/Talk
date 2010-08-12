@@ -38,10 +38,6 @@ GEM
     i18n (0.4.1)
     jnunemaker-validatable (1.8.4)
       activesupport (>= 2.3.4)
-    joint (0.3.2)
-      mime-types
-      mongo_mapper (>= 0.7.4)
-      wand (>= 0.2.1)
     mail (2.2.5)
       activesupport (>= 2.3.6)
       mime-types
@@ -81,15 +77,12 @@ GEM
     treetop (1.4.8)
       polyglot (>= 0.3.1)
     tzinfo (0.3.22)
-    wand (0.2.1)
-      mime-types
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   bson_ext
-  joint
   mongo_mapper
   mysql
   rails (= 3.0.0.rc)

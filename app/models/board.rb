@@ -1,3 +1,4 @@
+# A collection of Discussion which may or may not have a Focus
 class Board
   include MongoMapper::Document
   

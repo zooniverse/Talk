@@ -1,11 +1,14 @@
+# Kind of a meta thing right now.  
+# Pretty sure we're going to use this for discussion of Tags or groups of Tags
 class Tag
   include MongoMapper::Document
+  include Focus
   
-  key :tags, Array, :required => true # for our meta discussion about tags or collections of tags
-  key :asset_ids, Array  # for caching?
+  # for our meta discussion about tags or collections of tags
+  key :tags, Array, :required => true
+  
+  # for caching?
+  key :asset_ids, Array
   
   many :assets, :in => :asset_ids
-  
-  one :conversation, :class_name => "Discussion", :foreign_key => "focus_id"
-  many :discussions, :foreign_key => "focus_id"
 end
