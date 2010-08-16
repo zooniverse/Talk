@@ -21,7 +21,9 @@ task :ensure_indexes => :environment do
   
   puts "Building indexes for Comment"
   drop_indexes_on(Comment)
+  Comment.ensure_index [['response_to_id', 1]]
   Comment.ensure_index [['discussion_id', 1], ['created_at', -1]]
+  Comment.ensure_index [['user_id', 1], ['created_at', -1]]
   Comment.ensure_index [['tags', 1]]
   Comment.ensure_index [['assets', 1]]
   

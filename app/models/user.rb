@@ -7,5 +7,6 @@ class User
   timestamps!
   
   many :collections
+  many :comments
   many :messages, :class_name => "Discussion", :foreign_key => "focus_id"
 end
