@@ -1,7 +1,9 @@
 # A collection of Comment about a Focus
 class Discussion
   include MongoMapper::Document
+  include ZooniverseId
   
+  zoo_id :prefix => "D"
   key :subject, String, :required => true
   key :tags, Array
   key :assets, Array # mentioned Assets, i.e. not the focus and also not a collection
