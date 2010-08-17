@@ -44,3 +44,10 @@ module Sellers
     config.filter_parameters += [:password]
   end
 end
+
+require 'casclient'
+require 'casclient/frameworks/rails/filter'
+
+CASClient::Frameworks::Rails::Filter.configure(
+  :cas_base_url => "https://example.com"
+)

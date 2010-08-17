@@ -14,6 +14,7 @@ Sellers::Application.routes.draw do
     resources :discussions
   end
 
+  match '/cas_test' => 'home#cas_test'
   root :to => "home#index"
   
   # The priority is based upon order of creation:
