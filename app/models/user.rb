@@ -7,6 +7,8 @@ class User
   timestamps!
   
   many :collections
+  many :live_collections
   many :comments
-  many :messages, :class_name => "Discussion", :foreign_key => "focus_id"
+  many :messages, :foreign_key => :recipient_id
+  many :sent_messages, :class_name => "Message", :foreign_key => :sender_id
 end
