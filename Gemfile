@@ -15,6 +15,7 @@ group :development do
 end
 
 group :test do
+	gem 'mocha'
   gem 'shoulda'
  	gem 'factory_girl_rails'
 end

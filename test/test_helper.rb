@@ -3,10 +3,17 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
-  #
-  # Note: You'll currently still have to declare fixtures explicitly in integration tests
-  # -- they do not yet inherit this setting
-
-  # Add more helper methods to be used by all tests here...
+  def standard_cas_login
+    @user = Factory :user
+    @request.session[:cas_user] = @user.name
+    @request.session[:cas_extra_attributes] = {}
+    @request.session[:cas_extra_attributes]['id'] = @user.zooniverse_user_id
+    CASClient::Frameworks::Rails::Filter.stubs(:filter).returns(true)
+  end
+  
+  def clear_cas
+    @user = Factory :user
+    @request.session[:cas_user] = {}
+    @request.session[:cas_extra_attributes] = {}
+  end
 end
