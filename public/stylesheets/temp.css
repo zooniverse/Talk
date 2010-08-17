@@ -82,6 +82,10 @@ a img {
 	color: #fba21c;
 }
 
+#top_bar img {
+	margin: 0 0 5px 0px;
+}
+
 /**/
 #header {
 	clear:both;
@@ -119,4 +123,9 @@ a img {
 	margin: 0 auto;
 	font-family: verdana, sans-serif;
 	font-size: 80%;
+}
+
+.focus-main-image {
+	margin-right: 5px;
+	float: left;
 }
