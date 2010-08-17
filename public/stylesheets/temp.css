@@ -112,8 +112,8 @@ a img {
   margin-top:18px;
 	margin-left: 210px;
   padding:10px;
-	border: solid #afafaf 1px;
-	border-style: none none solid none;
+/*	border: solid #afafaf 1px;*/
+/*	border-style: none none solid none;*/
 	height: 400px;
 }
 
@@ -126,18 +126,4 @@ a img {
 	margin: 0 auto;
 	font-family: verdana, sans-serif;
 	font-size: 80%;
-}
-
-/* Monkey Page */
-
-.main-image {
-	float: left;
-}
-
-.asset-meta {
-	float: left;
-}
-
-.asset-meta li {
-	list-style-type:none;
 }
