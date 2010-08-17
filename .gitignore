@@ -4,3 +4,5 @@ log/*.log
 tmp/**/*
 doc/
 *.DS_Store
+ids.yaml
+sellers.rb

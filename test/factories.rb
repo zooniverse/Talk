@@ -24,3 +24,8 @@ Factory.define :user do |u|
   u.zooniverse_user_id  { "#{Factory.next(:name)}" }
   u.name                { "User #{Factory.next(:name)}"}
 end
+
+Factory.define :collection do |c|
+  c.name {"#{Factory.next(:name)}"}
+  c.description {"This is collection"}
+end
