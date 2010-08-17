@@ -4,6 +4,15 @@ Factory.sequence :name do |n|
   "#{n}" 
 end
 
+Factory.define :comment do |c|
+  c.body                "Monkey AMZ1monkey Monkey #cute #awesome Monkey!"
+  c.tags                ["cute", "awesome"]
+end
+
+Factory.define :discussion do |d|
+  d.subject             "Monkey is an OIII emission"
+end
+
 Factory.define :asset do |a|
   a.zooniverse_id       { "AHZ#{Factory.next(:name)}" }
   a.location            "http://imageserver.org/assets/1"
