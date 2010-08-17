@@ -1,5 +1,5 @@
 body {
-	margin: 0px 0px 10px 0px;
+	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
 	background-color: #fff;
 }
@@ -14,6 +14,12 @@ body {
 
 a img {
 	border:none;
+}
+
+#logo {
+	font-size: 36px;
+	text-transform: uppercase;
+	margin: 0 0 0 -10px;
 }
 
 #top_bar {
@@ -108,7 +114,7 @@ a img {
   width:180px;
 	padding-left:10px;
 	border-right: solid #000 1px;
-	height: 333px;
+	height: 500px;
 	padding-top:20px;
 }
 
