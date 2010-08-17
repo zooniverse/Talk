@@ -29,7 +29,8 @@ class CommentTest < ActiveSupport::TestCase
     
     should "Only score once" do
       no_votes_before = @comment.upvotes.count
-      @comment.cast_vote_by(@user1)
+      @comment.cast_vote_by(@user2)
+      @comment.reload
       assert  no_votes_before == @comment.upvotes.count
     end
     
