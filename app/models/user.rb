@@ -8,7 +8,7 @@ class User
   
   many :collections
   many :live_collections
-  many :comments
+  many :comments, :foreign_key => :author_id
   many :messages, :foreign_key => :recipient_id
   many :sent_messages, :class_name => "Message", :foreign_key => :sender_id
 end

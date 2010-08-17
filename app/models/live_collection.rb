@@ -2,7 +2,9 @@
 class LiveCollection
   include MongoMapper::Document
   include Focus
+  include ZooniverseId
   
+  zoo_id :prefix => "C", :sub_id => "S"
   key :name, String, :required => true
   key :description, String
   

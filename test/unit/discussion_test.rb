@@ -16,7 +16,8 @@ class DiscussionTest < ActiveSupport::TestCase
   context "A Discussion" do
     setup do
       @discussion = Factory :discussion
-      @comment = Comment.new(:body => "Hell yeah, he's a great looking monkey")
+      @user = Factory :user
+      @comment = Comment.new(:body => "Hell yeah, he's a great looking monkey", :author => @user)
       @discussion.comments << @comment
     end
 

@@ -3,6 +3,7 @@ class Comment
   include MongoMapper::Document
   
   key :discussion_id, ObjectId, :required => true
+  key :author_id, ObjectId, :required => true
   key :upvotes, Array
   key :body, String, :required => true
   key :tags, Array
@@ -10,7 +11,7 @@ class Comment
   timestamps!
   
   belongs_to :discussion
-  belongs_to :author, :class_name => "User", :foreign_key => "user_id"
+  belongs_to :author, :class_name => "User"
   one :response_to, :class_name => "Comment", :foreign_key => "response_to_id"
   
   # Atomic operation to let a User vote for a Comment
