@@ -9,10 +9,10 @@ class BoardTest < ActiveSupport::TestCase
     end
 
     should "have #science, #chat and #help boards" do
-      assert !Board.find_by_title('science').nil?
-      assert !Board.find_by_title('chat').nil?
-      assert !Board.find_by_title('help').nil?
-      assert Board.find_by_title('board_that_doesnt_exist').nil?
+      assert_not_nil Board.find_by_title('science')
+      assert_not_nil Board.find_by_title('chat')
+      assert_not_nil Board.find_by_title('help')
+      assert Board.find_by_title('board_that_doesnt_exist')
     end
   end
   
