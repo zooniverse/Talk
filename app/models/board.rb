@@ -7,4 +7,16 @@ class Board
   key :discussion_ids, Array
   
   many :discussions, :in => :discussion_ids
+  
+  def self.science
+    find_by_title("science")
+  end
+  
+  def self.help
+    find_by_title("help")
+  end
+  
+  def self.chat
+    find_by_title("chat")
+  end
 end
