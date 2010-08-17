@@ -8,14 +8,17 @@ class Board
   
   many :discussions, :in => :discussion_ids
   
+  # the science Board
   def self.science
     find_by_title("science")
   end
   
+  # the help Board
   def self.help
     find_by_title("help")
   end
   
+  # the chat Board
   def self.chat
     find_by_title("chat")
   end
