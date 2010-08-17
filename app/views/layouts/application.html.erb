@@ -7,8 +7,19 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-
-<%= yield %>
-
+	<%= render :partial=> "shared/top_bar.html.erb" %>
+	<div id="header">
+		<div id="logo">
+			LOGO
+		</div>
+	</div>
+	<div class="wrapper">
+		<div id="lcol">
+			SIDEBAR
+		</div>
+		<div id="rcol">
+			<%= yield %>
+		</div>
+	</div>
 </body>
 </html>
