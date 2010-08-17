@@ -1,6 +1,35 @@
 require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
+  
+  context "Single Comment" do
+    setup do 
+      @discussion = Factory :discussion
+      @discussion.save
+
+      @user1 = Factory :user
+      @comment = Comment.new({:body=>"baskfojsdj"})
+      # @parent = Factory :comment
+     
+      @discussion.comments<< @comment
+
+      @user1.save
+      @comment.save
+      @discussion.save
+    end
+    
+    should "have keys" do
+      [ :discussion_id, :tags, :assets].each do |key|
+        assert @comment.respond_to?(key)
+      end
+    end
+      
+    should "create associations" do
+      assert @comment.associations.keys.include?("user")
+      assert @comment.associations.keys.include?("discussion")
+    end
+  end
+  
   context "Two Comments" do
     setup do
       @discussion = Factory :discussion
@@ -37,10 +66,7 @@ class CommentTest < ActiveSupport::TestCase
     should "Reject Scorring on own comment" do
       assert !@comment.cast_vote_by(@user2)
     end
-    
-    
-    
-    
+  
   end
   
 end
