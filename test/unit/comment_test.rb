@@ -25,9 +25,11 @@ class CommentTest < ActiveSupport::TestCase
     end
       
     should "create associations" do
-      assert @comment.associations.keys.include?("user")
+      assert @comment.associations.keys.include?("author")
       assert @comment.associations.keys.include?("discussion")
     end
+    
+    
   end
   
   context "Two Comments" do
@@ -67,6 +69,11 @@ class CommentTest < ActiveSupport::TestCase
       assert !@comment.cast_vote_by(@user2)
     end
   
+    should "add vote" do
+      @comment.cast_vote_by @user1
+      @comment.reload
+      assert @comment.upvotes.include?(@user1.id)
+    end
   end
   
 end
