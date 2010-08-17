@@ -1,9 +1,15 @@
 /* Communication Tool resets*/
+#rcol {
+  margin-top: 18px;
+	margin-left: 210px;
+	padding: 5px;
+}
+
 .ct h1, .ct h2, .ct h3, .ct h4 {
 	font-weight: normal;
 	margin: 0;
 	padding: 0;
-	font-size: 1.1em;
+	font-size: 1.0em;
 } 
 
 .ct ul, .ct ul li {
@@ -17,10 +23,10 @@
 }
 
 /* Object Page */
-.upperRow {
+.upper-row {
 }
 
-.lowerRow {
+.lower-row {
 	padding-top: 20px;
 }
 
@@ -39,20 +45,19 @@
 }
 
 /* Lower Row */
-.lowerRow .lhc {
+.lower-row .lhc {
 	border: solid #afafaf 1px;
 	border-style: solid none none none;
 	float: left;
 	width: 480px;
-	padding-top: 10px;
+	padding-top: 5px;
 }
 
-.lowerRow .rhc {
+.lower-row .rhc {
 	border: solid #afafaf 1px;
 	border-style: solid none none none;
 	float: right;
-	width: 200px;
-	padding-top: 10px;
+	width: 210px;
 }
 
 /* Tags */
@@ -69,36 +74,36 @@
 }
 
 /* Comments */
-.shortComment {
+.short-comment {
 	border-bottom: solid #afafaf 1px;
 	margin-bottom: 5px;
 	font-size: 80%;
 }
 
-img.shortCommentUser {
+img.short-comment-user {
 	float: left;
 }
 
-.commentContainer {
+.comment-container {
 	margin-left: 50px;
-	padding-bottom: 10px;
+	padding-bottom: 5px;
 }
 
-.commentContainer .date {
+.comment-container .date {
 	color: #afafaf;
 	margin-bottom: 3px;
 }
 
-.commentContainer .commentBody {
-	
+.comment-container .comment-body {
+
 }
 
 .last {
 	border-bottom: none;
 }
 
-/**/
-.collectionList {
+/*  */
+.collection-list {
 	padding: 5px;
 	margin-bottom: 10px;
 	font-size: 85%;

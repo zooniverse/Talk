@@ -1,19 +1,21 @@
 
 
-<div class="upperRow">
+<div class="upper-row">
 	<%= render :partial => "shared/tags_for_focus" %>
 	<%= render :partial => "shared/asset_as_focus" %>
 
 </div>
 
-<div class="lowerRow">
+<div class="lower-row">
 	<div class="lhc">		
-		<div class="commentsList">
-			<%= render :partial => "shared/stream" %>					
+		<div class="comments-list">
+			<%= render :partial => "shared/comment_short" %>	
+			<%= render :partial => "shared/comment_short" %>					
 		</div>
 	</div>
 	<div class="rhc">
 		<%= render :partial => "shared/list_of_collections" %>			
-		<%= render :partial => "shared/list_of_discussions" %>							
+		<%= render :partial => "shared/list_of_discussions" %>	
+		<%= render :partial => "shared/list_of_mentions" %>									
 	</div>
 </dov>
