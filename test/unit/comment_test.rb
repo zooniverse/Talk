@@ -35,21 +35,13 @@ class CommentTest < ActiveSupport::TestCase
   context "Two Comments" do
     setup do
       @discussion = Factory :discussion
-      @discussion.save
       
       @user1 = Factory :user
-      @parent = Comment.new({:body=>"baskfojsdj"})
-      # @parent = Factory :comment
-      @user1.comments << @parent 
-      @discussion.comments<< @parent
+      @parent = Comment.new(:body=>"baskfojsdj", :author => @user1, :discussion => @discussion)
       
       @user2 = Factory :user
-      # @comment = Factory :comment
-      @comment = Comment.new({:body=>"sdfsdfggsd"})
-      @user2.comments << @comment 
-      @discussion.comments<< @comment
-      @comment.response_to = @parent
-      
+      @comment = Comment.new(:body=>"sdfsdfggsd", :author => @user2, :response_to => @parent, :discussion => @discussion)
+
       @user1.save
       @user2.save
       @comment.save
@@ -62,7 +54,7 @@ class CommentTest < ActiveSupport::TestCase
       no_votes_before = @comment.upvotes.count
       @comment.cast_vote_by(@user2)
       @comment.reload
-      assert  no_votes_before == @comment.upvotes.count
+      assert no_votes_before == @comment.upvotes.count
     end
     
     should "Reject Scorring on own comment" do
