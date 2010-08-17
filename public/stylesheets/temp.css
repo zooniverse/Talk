@@ -117,12 +117,27 @@ a img {
 	height: 400px;
 }
 
-#header{
+#header {
 	border-bottom: solid #000 1px;
 }
-.wrapper{
+
+.wrapper {
 	width: 930px;
 	margin: 0 auto;
 	font-family: verdana, sans-serif;
 	font-size: 80%;
+}
+
+/* Monkey Page */
+
+.main-image {
+	float: left;
+}
+
+.asset-meta {
+	float: left;
+}
+
+.asset-meta li {
+	list-style-type:none;
 }
