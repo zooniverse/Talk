@@ -21,4 +21,8 @@ class LiveCollection
     
     Asset.where(:tags.all => self.tags).skip(options[:page] * options[:per_page]).limit(options[:per_page]).all
   end
+  
+  def tags
+    self[:tags]
+  end
 end

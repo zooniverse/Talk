@@ -51,5 +51,19 @@ module Focus
         discussion.save if discussion.changed?
       end
     end
+    
+    # A way to aggregate tags up to a focus.  Take this with a grain of salt.
+    def tags
+      ids = self.discussion_ids + [self.conversation_id]
+      tags = Discussion.collection.find({ :_id => { '$in' => ids } }, { :fields => [ :tags ] }).to_a
+      
+      tags = tags.collect{ |doc| doc['tags'] }.flatten
+
+      counted_tags = Hash.new(0)
+      tags.each{ |tag| counted_tags[tag] += 1 }
+      self.tags = counted_tags.sort{ |a, b| b[1] <=> a[1] }.collect{ |tag| tag.first }
+      self.save if changed?
+      self[:tags]
+    end
   end
 end
