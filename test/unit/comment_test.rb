@@ -49,23 +49,31 @@ class CommentTest < ActiveSupport::TestCase
       @discussion.save
       
     end
-    
-    should "Only score once" do
-      no_votes_before = @comment.upvotes.count
-      @comment.cast_vote_by(@user2)
-      @comment.reload
-      assert no_votes_before == @comment.upvotes.count
+
+    context "when scoring twice" do
+      setup do
+        @comment.cast_vote_by(@user1)
+        @comment.reload
+        @no_votes_before = @comment.upvotes.count
+        @comment.cast_vote_by(@user1)
+        @comment.reload
+      end
+      
+      should "should only score once " do
+        assert_equal @no_votes_before, @comment.upvotes.count
+      end
     end
     
-    should "Reject Scorring on own comment" do
-      assert !@comment.cast_vote_by(@user2)
-    end
-  
-    should "add vote" do
-      @comment.cast_vote_by @user1
-      @comment.reload
-      assert @comment.upvotes.include?(@user1.id)
+
+    context "when voting" do 
+      setup do
+         @comment.cast_vote_by @user1
+         @comment.reload
+      end
+      
+      should "should add vote" do
+         assert @comment.upvotes.include?(@user1.id)
+      end
     end
   end
-  
 end
