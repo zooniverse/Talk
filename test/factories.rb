@@ -29,3 +29,9 @@ Factory.define :collection do |c|
   c.name {"#{Factory.next(:name)}"}
   c.description {"This is collection"}
 end
+
+Factory.define :message do |m|
+  m.title {"#{Factory.next(:name)}"}
+  m.body {"Body of the message"}
+  
+end
