@@ -8,7 +8,7 @@ class UserTest < ActiveSupport::TestCase
     
     should "have keys" do
       [:zooniverse_user_id, :name, :collections,:live_collections,:comments,:messages, :sent_messages].each do |key|
-        assert @message.respond_to?(key)
+        assert @user.respond_to?(key)
       end
     end
     
