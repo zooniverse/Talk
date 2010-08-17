@@ -35,10 +35,15 @@ task :ensure_indexes => :environment do
   Discussion.ensure_index [['tags', 1]]
   Discussion.ensure_index [['assets', 1]]
   
-  puts "Building indexes for Tag"
+  puts "Building indexes for LiveCollection"
   drop_indexes_on(LiveCollection)
   LiveCollection.ensure_index [['zooniverse_id', 1]], :unique => true
   LiveCollection.ensure_index [['tags', 1]]
+  
+  puts "Building indexes for Message"
+  drop_indexes_on(Message)
+  Message.ensure_index [['sender_id', 1], ['created_at', -1]]
+  Message.ensure_index [['recipient_id', 1], ['created_at', -1]]
   
   puts "Building indexes for User"
   drop_indexes_on(User)

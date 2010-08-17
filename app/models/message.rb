@@ -4,6 +4,7 @@ class Message
   
   key :title, String
   key :body, String
+  timestamps!
   
   key :sender_id, ObjectId
   key :recipient_id, ObjectId
