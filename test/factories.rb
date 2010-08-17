@@ -11,6 +11,7 @@ end
 
 Factory.define :discussion do |d|
   d.subject             "Monkey is an OIII emission"
+  d.slug                "monkey-is-an-oiii-emission"
 end
 
 Factory.define :asset do |a|
