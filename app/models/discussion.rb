@@ -7,9 +7,17 @@ class Discussion
   key :assets, Array # mentioned Assets, i.e. not the focus and also not a collection
   key :focus_id, ObjectId
   key :focus_type, String
+  key :slug, String
   timestamps!
   
   many :comments
+  
+  before_create :set_slug
+  
+  # Creates a prettyfied slug for the URL
+  def set_slug
+    self.slug = self.subject.parameterize
+  end
   
   # Fetches the Focus of this Discussion if it exists
   def focus
