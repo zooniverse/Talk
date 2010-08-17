@@ -9,6 +9,7 @@
 .ct ul, .ct ul li {
 	margin: 0;
 	padding: 0;
+	list-style: none;
 }
 
 .ct h2 {
@@ -68,11 +69,37 @@
 }
 
 /* Comments */
-.liveComment {
-	border-bottom: solid #fff 1px;
+.shortComment {
+	border-bottom: solid #afafaf 1px;
+	margin-bottom: 5px;
+	font-size: 80%;
 }
 
 img.shortCommentUser {
-	margin-right: 5px;
 	float: left;
+}
+
+.commentContainer {
+	margin-left: 50px;
+	padding-bottom: 10px;
+}
+
+.commentContainer .date {
+	color: #afafaf;
+	margin-bottom: 3px;
+}
+
+.commentContainer .commentBody {
+	
+}
+
+.last {
+	border-bottom: none;
+}
+
+/**/
+.collectionList {
+	padding: 5px;
+	margin-bottom: 10px;
+	font-size: 85%;
 }
