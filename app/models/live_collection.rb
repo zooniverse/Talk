@@ -14,4 +14,11 @@ class LiveCollection
   
   key :user_id, ObjectId, :required => true
   belongs_to :user
+  
+  def assets(*args)
+    options = { :page => 0, :per_page => 10 }
+    options = options.update(args.first) unless args.first.nil?
+    
+    Asset.where(:tags.all => self.tags).skip(options[:page] * options[:per_page]).limit(options[:per_page]).all
+  end
 end

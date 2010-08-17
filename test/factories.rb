@@ -18,6 +18,7 @@ Factory.define :asset do |a|
   a.zooniverse_id       { "AHZ#{Factory.next(:name)}" }
   a.location            "http://imageserver.org/assets/1"
   a.thumbnail_location  "http://imageserver.org/assets/thumbs/1"
+  a.tags                [ "monkey" ]
 end
 
 Factory.define :user do |u|
@@ -26,8 +27,16 @@ Factory.define :user do |u|
 end
 
 Factory.define :collection do |c|
-  c.name {"#{Factory.next(:name)}"}
-  c.description {"This is collection"}
+  c.name                { "#{ Factory.next(:name) }" }
+  c.description         { "This is collection" }
+  c.user                { |user| user.association(:user) }
+end
+
+Factory.define :live_collection do |c|
+  c.name                { "#{ Factory.next(:name) }" }
+  c.description         { "This is a live collection" }
+  c.tags                [ "monkey", "awesome" ]
+  c.user                { |user| user.association(:user) }
 end
 
 Factory.define :message do |m|

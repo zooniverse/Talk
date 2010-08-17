@@ -3,6 +3,12 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
+  def setup
+    MongoMapper.database.collections.reject{ |c| c.name == 'system.indexes' }.each do |collection|
+      collection.remove
+    end
+  end
+  
   def standard_cas_login
     @user = Factory :user
     @request.session[:cas_user] = @user.name

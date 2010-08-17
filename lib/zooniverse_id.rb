@@ -15,6 +15,7 @@ module ZooniverseId
   end
   
   module InstanceMethods
+    private
     def set_zoo_id
       last_one = self.class.limit(1).sort(['zooniverse_id', -1]).all(:zooniverse_id => /^#{zoo_id_prefix}/).first
       last_id = last_one.nil? ? "#{zoo_id_prefix}000000" : last_one.zooniverse_id

@@ -20,7 +20,11 @@ class CollectionTest < ActiveSupport::TestCase
     
     should "include a working focus" do
       assert Collection.include?(Focus)      
-    end 
+    end
+    
+    should "include the zooniverse_id generator" do
+      assert LiveCollection.include?(ZooniverseId)
+    end
   end
   
 end
