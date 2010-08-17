@@ -1,0 +1,78 @@
+/* Communication Tool resets*/
+.ct h1, .ct h2, .ct h3, .ct h4 {
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+	font-size: 1.1em;
+} 
+
+.ct ul, .ct ul li {
+	margin: 0;
+	padding: 0;
+}
+
+.ct h2 {
+	margin: 0 0 5px 0;
+}
+
+/* Object Page */
+.upperRow {
+}
+
+.lowerRow {
+	padding-top: 20px;
+}
+
+/* Upper Row*/
+.main-image {
+	float: left;
+}
+
+.asset-meta {
+	margin-left: 210px;
+	height: 300px;
+}
+
+.asset-meta li {
+	list-style-type:none;
+}
+
+/* Lower Row */
+.lowerRow .lhc {
+	border: solid #afafaf 1px;
+	border-style: solid none none none;
+	float: left;
+	width: 480px;
+	padding-top: 10px;
+}
+
+.lowerRow .rhc {
+	border: solid #afafaf 1px;
+	border-style: solid none none none;
+	float: right;
+	width: 200px;
+	padding-top: 10px;
+}
+
+/* Tags */
+.tags {
+	width: 100px;
+	border-left: solid #afafaf 1px;
+	padding-left: 10px;
+}
+
+.tags ul {
+	list-style-type:none;
+	font-size: 60%;
+	font-weight: normal;
+}
+
+/* Comments */
+.liveComment {
+	border-bottom: solid #fff 1px;
+}
+
+img.shortCommentUser {
+	margin-right: 5px;
+	float: left;
+}
