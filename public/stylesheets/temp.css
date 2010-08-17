@@ -84,3 +84,48 @@ a img {
 #top_bar ul li.highlight {
 	color: #fba21c;
 }
+
+/**/
+#header {
+	clear:both;
+/*	float:left;*/
+	width:100%;
+	background-image: url(/images/header_bg.gif);
+	background-repeat: repeat-x;
+	height: 95px; 
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #494747;
+}
+
+#header #logo {
+	padding: 30px 10px;
+}
+
+#lcol {
+  float:left;
+  width:180px;
+	padding-left:10px;
+	border-right: solid #000 1px;
+	height: 333px;
+	padding-top:20px;
+}
+
+#rcol {
+  margin-top:18px;
+	margin-left: 210px;
+  padding:10px;
+	border: solid #afafaf 1px;
+	border-style: none none solid none;
+	height: 400px;
+}
+
+#header{
+	border-bottom: solid #000 1px;
+}
+.wrapper{
+	width: 930px;
+	margin: 0 auto;
+	font-family: verdana, sans-serif;
+	font-size: 80%;
+}
