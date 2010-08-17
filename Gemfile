@@ -13,6 +13,11 @@ group :development do
   gem 'mysql'
 end
 
+group :test do
+  gem 'shoulda'
+ 	gem 'factory_girl_rails'
+end
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
