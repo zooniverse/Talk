@@ -4,7 +4,13 @@ class AssetsController < ApplicationController
     @asset = Asset.find_by_zooniverse_id(params[:id])
     @tags = ["Tag1", "Tag2", "Tag3"]
     
-    @comments = @asset.conversation.comments
+    if @asset.conversation.nil?
+      @comments = []
+    else
+      @comments = @asset.conversation.comments
+    end
+  
+    
   end
   
 end
