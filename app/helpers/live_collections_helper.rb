@@ -1,0 +1,2 @@
+module LiveCollectionsHelper
+end

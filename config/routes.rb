@@ -1,4 +1,21 @@
 Sellers::Application.routes.draw do
+
+  resources :collections do 
+    resource :discussions
+  end
+  
+  resources :live_collections do
+    resources :discussions
+  end
+  
+  resources :discussions
+  
+  resources :objects, :controller => :assets do 
+    resources :discussions
+  end
+
+  root :to => "home#index"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
