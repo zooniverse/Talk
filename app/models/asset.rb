@@ -15,7 +15,7 @@ class Asset
    end
    
   def self.most_recently_discussed(no=10)
-    Comment.most_recent(5*no).collect{|c| c.assets}.flatten[0..no]
+    Asset.all(:zooniverse_id.in => Comment.most_recent(5*no).collect{|c| c.assets}.flatten[0..no-1])
   end
   
 end

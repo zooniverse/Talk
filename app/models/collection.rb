@@ -27,4 +27,9 @@ class Collection
     
     Collection.limit(opts[:limit]).sort(opts[:order]).all(:asset_ids => asset.id)
   end
+  
+  def most_recent_comments(no=10)
+    discussionIds=Collection.first.discussions.collect{|d| d.id}
+    
+  end
 end
