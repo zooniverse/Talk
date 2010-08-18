@@ -18,7 +18,7 @@ class Discussion
   
   # Creates a prettyfied slug for the URL
   def set_slug
-    self.slug = self.subject.parameterize
+    self.slug = self.subject.parameterize('_')
   end
   
   # Fetches the Focus of this Discussion if it exists
