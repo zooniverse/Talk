@@ -5,6 +5,11 @@
 	margin: 0 0 0 -10px;
 }
 
+#logo a {
+	color: #000000;
+	text-decoration: none;
+}
+
 #rcol {
   margin-top: 18px;
 	margin-left: 210px;
