@@ -15,4 +15,6 @@ class Collection
   
   key :user_id, ObjectId, :required => true
   belongs_to :user
+
+  
 end

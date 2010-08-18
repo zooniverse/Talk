@@ -19,4 +19,9 @@ class Comment
     return if author.id == user.id
     Comment.collection.update({ '_id' => self.id }, {'$addToSet' => { 'upvotes' => user.id } })
   end
+  
+  
+  def self.most_recent_comments(no)
+    Comment.limit(no).sort(['created_at', -1]).all(:created_at.gt => Time.now - 1.day)
+  end
 end
