@@ -37,4 +37,9 @@ class LiveCollection
      LiveCollection.limit(no).sort(['created_at', -1]).all
    end
   
+   def self.trending (no=10)
+    result= Discussion.collection.group( [:focus_id], {:focus_type=>"LiveCollection"}, {:count=>0},"function(obj, prev){ prev.count += obj.no_of_comments*obj.no_of_users; }")
+    result[0..no-1].collect{|r| LiveCollection.find(r['focus_id'])}
+
+   end
 end

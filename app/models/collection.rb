@@ -38,8 +38,5 @@ class Collection
     Collection.limit(opts[:limit]).sort(opts[:order]).all(:asset_ids => asset.id)
   end
   
-  def trending (no=10)
-    []
-  end
-
+ 
 end
