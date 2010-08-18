@@ -4,9 +4,7 @@ class MessageTest < ActiveSupport::TestCase
   context "A message" do 
     
     setup do
-      @sender =Factory :user
-      @recipient = Factory :user
-      @message = Factory :message , :sender=>@sender, :recipient=>@recipient 
+      @message = Factory :message
     end
     
     should "have keys" do
@@ -18,8 +16,6 @@ class MessageTest < ActiveSupport::TestCase
     should "have correct associations" do
       assert @message.associations.keys.include?("sender")
       assert @message.associations.keys.include?("recipient")
-      
     end
-  
   end
 end

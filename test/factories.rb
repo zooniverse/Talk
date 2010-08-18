@@ -40,7 +40,8 @@ Factory.define :live_collection do |c|
 end
 
 Factory.define :message do |m|
-  m.title {"#{Factory.next(:name)}"}
-  m.body {"Body of the message"}
-  
+  m.title               { "#{ Factory.next(:name) }" }
+  m.body                { "Body of the message" }
+  m.sender              { |sender| sender.association(:user) }
+  m.recipient           { |recipient| recipient.association(:user) }
 end
