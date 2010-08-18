@@ -1,16 +1,33 @@
 <div class="home-lhc">		
 	<div class="comments-list">
 		<h2>TRENDING</h2>
-		<%= render :partial => "shared/list_of_assets", :locals => { :assets_list => @trending_assets } %>
-		<%= render :partial => "shared/list_of_collections_main", :locals => { :collections_list => @trending_collections } %>
-		<%= render :partial => "shared/list_of_discussions_main", :locals => { :discussions_list => @trending_discussions } %>
-		<%= render :partial => "shared/list_of_tags", :locals => { :tags_list => @trending_tags } %>
+		<div id="trends-tabs">
+			<ul>
+				<li><a href="#trending-assets">Assets</a></li>
+				<li><a href="#trending-collections">Collections</a></li>
+				<li><a href="#trending-discussions">Discussions</a></li>
+				<li><a href="#trending-tags">Tags</a></li>
+			</ul>
+		<%= render :partial => "shared/list_of_assets", :locals => { :assets_list => @trending_assets, :id_of_box => "trending-assets" } %>
+		<%= render :partial => "shared/list_of_collections_main", :locals => { :collections_list => @trending_collections, :id_of_box => "trending-collections" } %>
+		<%= render :partial => "shared/list_of_discussions_main", :locals => { :discussions_list => @trending_discussions, :id_of_box => "trending-discussions" } %>
+		<%= render :partial => "shared/list_of_tags", :locals => { :tags_list => @trending_tags, :id_of_box => "trending-tags" } %>
+		</div>
+		
 		<br/>
+		
 		<h2>RECENTS</h2>
-		<%= render :partial => "shared/list_of_assets", :locals => { :assets_list => @recent_assets } %>
-		<%= render :partial => "shared/list_of_collections_main", :locals => { :collections_list => @recent_collections } %>
-		<%= render :partial => "shared/list_of_discussions_main", :locals => { :discussions_list => @recent_discussions } %>
-		<%= render :partial => "shared/list_of_comments", :locals => { :comments_list => @recent_comments } %>
+		<div id="recents-tabs">
+			<ul>
+				<li><a href="#recent-assets">Assets</a></li>
+				<li><a href="#recent-collections">Collections</a></li>
+				<li><a href="#recent-discussions">Discussions</a></li>
+				<li><a href="#recent-comments">Comments</a></li>
+			</ul>
+		<%= render :partial => "shared/list_of_assets", :locals => { :assets_list => @recent_assets, :id_of_box => "recent-assets" } %>
+		<%= render :partial => "shared/list_of_collections_main", :locals => { :collections_list => @recent_collections, :id_of_box => "recent-collections" } %>
+		<%= render :partial => "shared/list_of_discussions_main", :locals => { :discussions_list => @recent_discussions, :id_of_box => "recent-discussions" } %>
+		<%= render :partial => "shared/list_of_comments", :locals => { :comments_list => @recent_comments, :id_of_box => "recent-comments" } %>
 		<br/>
 		<h2>BOARDS</h2>
 		<%= render :partial => "shared/threads_front_page", :locals => { :title => "HELP" } %>

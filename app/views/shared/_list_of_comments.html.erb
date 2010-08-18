@@ -1,6 +1,5 @@
 <!-- Box for front page recent comments -->
-<div id="recent-comments" class="panel">
-	<h3>COMMENTS</h3>
+<div id="<%= id_of_box %>" class="panel">
 	<% comments_list.each do |c| %>
 		<div class="recent-comment">
 			<%= image_tag('default_user.png', :class => "recent-comment-user", :height => 40) %>

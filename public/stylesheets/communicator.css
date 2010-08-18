@@ -190,3 +190,24 @@ h2.asset-name {
 	font-weight: bold;
 	font-size: 1.2em;
 }
+
+/* jQuery */
+
+.ui-tabs .ui-tabs-hide {
+     display: none;
+}
+
+#trends-tabs ul, #recents-tabs ul {
+
+	padding: 0 0 10px 0;
+}
+
+
+#trends-tabs ul li, #recents-tabs ul li {
+	display: inline;
+	text-transform: uppercase;
+}
+
+#trends-tabs ul li a, #recents-tabs ul li a {
+	text-decoration: none;
+}

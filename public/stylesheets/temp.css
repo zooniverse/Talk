@@ -91,7 +91,7 @@ a img {
 	clear:both;
 /*	float:left;*/
 	width:100%;
-	background-image: url(/images/header_bg.gif);
+/*	background-image: url(/images/header_bg.gif);*/
 	background-repeat: repeat-x;
 	height: 95px; 
 	border-bottom-width: 1px;

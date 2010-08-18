@@ -1,6 +1,5 @@
 <!-- Box for front page trending tags -->
-<div id="trending-tags" class="panel">
-	<h3>TAGS</h3>
+<div id="<%= id_of_box %>" class="panel">
 	<ul id="tag-cloud">
 		<% tags_list.each do |tag| %>
 		<li><a href="#" class="level<%= tag[1] %>"><%= tag[0] %></a></li>

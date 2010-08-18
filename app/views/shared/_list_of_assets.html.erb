@@ -1,6 +1,5 @@
 <!-- Box for front page recent assets -->
-<div id="recent-assets" class="panel">
-	<h3>ASSETS</h3>
+<div id="<%= id_of_box %>" class="panel">
 	<% assets_list.each do |a| %>
 		<div class="recent-comment">
 			<%= image_tag(a.thumbnail_location, :class => "recent-comment-user", :height => 40) %>
