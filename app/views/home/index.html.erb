@@ -1,10 +1,21 @@
 <div class="lhc">		
 	<div class="comments-list">
-		<%= render :partial => "shared/stream" %>
+		<%= render :partial => "shared/trending_assets" %>
+		<%= render :partial => "shared/trending_collections" %>
+		<%= render :partial => "shared/trending_discussions" %>
+		<%= render :partial => "shared/trending_tags" %>
+		<br/>
+		<%= render :partial => "shared/recent_assets" %>
+		<%= render :partial => "shared/recent_collections" %>
+		<%= render :partial => "shared/recent_discussions" %>
+		<%= render :partial => "shared/recent_comments" %>
+		<br/>
+		<%= render :partial => "shared/threads_front_page", :locals => { :title => "Help" } %>
+		<%= render :partial => "shared/threads_front_page", :locals => { :title => "Science" } %>
+		<%= render :partial => "shared/threads_front_page", :locals => { :title => "Chat" } %>
 	</div>
 </div>
 <div class="rhc">
-	<%= render :partial => "shared/list_of_collections" %>			
-	<%= render :partial => "shared/list_of_discussions" %>	
-	<%= render :partial => "shared/list_of_mentions" %>									
+	<%= render :partial => "shared/about_box" %>
+	<%= render :partial => "shared/help_wanted" %>										
 </div>
