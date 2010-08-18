@@ -16,12 +16,6 @@ a img {
 	border:none;
 }
 
-#logo {
-	font-size: 36px;
-	text-transform: uppercase;
-	margin: 0 0 0 -10px;
-}
-
 #top_bar {
 	height: 36px; 
 	width:100%;
@@ -118,8 +112,6 @@ a img {
 	padding-top:20px;
 }
 
-
-
 #header {
 	border-bottom: solid #000 1px;
 }
@@ -129,9 +121,4 @@ a img {
 	margin: 0 auto;
 	font-family: verdana, sans-serif;
 	font-size: 80%;
-}
-
-.focus-main-image {
-	margin-right: 5px;
-	float: left;
 }

@@ -109,3 +109,14 @@ img.short-comment-user {
 	margin-bottom: 10px;
 	font-size: 85%;
 }
+
+.focus-main-image {
+	margin-right: 5px;
+	float: left;
+}
+
+#logo {
+	font-size: 36px;
+	text-transform: uppercase;
+	margin: 0 0 0 -10px;
+}
