@@ -1,5 +1,13 @@
 <!-- Box for front page recent collections -->
 <div id="recent-collections" class="panel">
 	<h3>COLLECTIONS</h3>
-
+	<% collections_list.each do |c| %>
+		<div class="recent-comment">
+			<div class="comment-container">
+				<div class="name"><%= c.name %></div>
+				<div class="date">12 Users</div>
+				<div class="comment-body"><%= c.description %></div>
+			</div>
+		</div>
+	<% end %>
 </div>
