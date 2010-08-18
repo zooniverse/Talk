@@ -33,7 +33,7 @@ class DiscussionTest < ActiveSupport::TestCase
     end
 
     should "#set_slug correctly" do
-      assert_equal @discussion.slug, "arfon-s-great-discussion"
+      assert_equal @discussion.slug, "arfon_s_great_discussion"
     end
   end
 end
