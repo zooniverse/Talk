@@ -3,7 +3,7 @@
 	<h3>TAGS</h3>
 	<ul id="tag-cloud">
 		<%= tags_list.each do |tag| %>
-		<li><a href="#" class="level1"><%= tag.name %></a></li>
+		<li><a href="#" class="level"<%= tag[1] %>><%= tag[0] %></a></li>
 		<% end %>
 	</ul>
 </div>
