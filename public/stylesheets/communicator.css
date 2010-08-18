@@ -75,13 +75,13 @@
 }
 
 /* Comments */
-.short-comment {
+.short-comment, .recent-comment {
 	border-bottom: solid #afafaf 1px;
 	margin-bottom: 5px;
 	font-size: 80%;
 }
 
-img.short-comment-user {
+img.short-comment-user, img.recent-comment-user {
 	float: left;
 }
 
@@ -119,4 +119,14 @@ img.short-comment-user {
 	font-size: 36px;
 	text-transform: uppercase;
 	margin: 0 0 0 -10px;
+}
+
+.home-lhc {
+	float: left;
+	width: 60%;
+}
+
+.home-rhc {
+	float: left;
+	width: 40%;
 }

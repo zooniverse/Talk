@@ -1,21 +1,24 @@
-<div class="lhc">		
+<div class="home-lhc">		
 	<div class="comments-list">
+		<h2>TRENDING</h2>
 		<%= render :partial => "shared/trending_assets" %>
 		<%= render :partial => "shared/trending_collections" %>
 		<%= render :partial => "shared/trending_discussions" %>
 		<%= render :partial => "shared/trending_tags" %>
 		<br/>
+		<h2>RECENTS</h2>
 		<%= render :partial => "shared/recent_assets" %>
 		<%= render :partial => "shared/recent_collections" %>
 		<%= render :partial => "shared/recent_discussions" %>
 		<%= render :partial => "shared/recent_comments", :locals => { :recent_comments => @recent_comments } %>
 		<br/>
-		<%= render :partial => "shared/threads_front_page", :locals => { :title => "Help" } %>
-		<%= render :partial => "shared/threads_front_page", :locals => { :title => "Science" } %>
-		<%= render :partial => "shared/threads_front_page", :locals => { :title => "Chat" } %>
+		<h2>BOARDS</h2>
+		<%= render :partial => "shared/threads_front_page", :locals => { :title => "HELP" } %>
+		<%= render :partial => "shared/threads_front_page", :locals => { :title => "SCIENCE" } %>
+		<%= render :partial => "shared/threads_front_page", :locals => { :title => "CHAT" } %>
 	</div>
 </div>
-<div class="rhc">
+<div class="home-rhc">
 	<%= render :partial => "shared/about_box" %>
 	<%= render :partial => "shared/help_wanted" %>										
 </div>
