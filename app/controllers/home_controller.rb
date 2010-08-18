@@ -7,7 +7,7 @@ class HomeController < ApplicationController
     @recent_collections = Collection.most_recent 5
     @recent_discussions = Discussion.most_recent 5
     
-    @trending_assets = Asset.most_recently_commented_on 5
+    @trending_assets = Asset.trending 5
     @trending_collections = Collection.most_recent 5
     @trending_discussions = Discussion.most_recent 5
     
