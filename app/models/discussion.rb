@@ -52,7 +52,9 @@ class Discussion
     Comment.where(:discussion_id => self.id).limit(no).all
   end
   
-  
+  def self.trending (no=10)
+    Discussion.limit(no).sort(['no_of_comments',-1]).all
+  end
   
   # Finds discussions mentioning an asset
   def self.mentioning(asset)

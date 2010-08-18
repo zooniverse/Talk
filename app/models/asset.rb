@@ -27,4 +27,10 @@ class Asset
     Asset.most_recently_mentioned no
   end
   
+  def self.trending (no=10)
+   result= Discussion.collection.group( [:focus_id], {:focus_type=>"Asset"}, {:count=>0},"function(obj, prev){ prev.count += obj.no_of_comments*obj.no_of_users; }")
+   
+   result[0..no-1]
+  end
+  
 end
