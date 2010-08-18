@@ -35,7 +35,7 @@ class Comment
   end
   
   # Gets the top most used tags
-  def self.trending_tags
+  def self.trending_tags(no=10)
      map = <<-MAP
      function() {
        this.tags.forEach( function(tag) {
@@ -55,7 +55,7 @@ class Comment
      }
      REDUCE
      
-     tags = Comment.collection.map_reduce(map, reduce).find().sort(['value.count', -1]).limit(10).to_a
+     tags = Comment.collection.map_reduce(map, reduce).find().sort(['value.count', -1]).limit(no).to_a
      
      collected = {}
      tags.each{ |tag| collected[tag['_id']] = tag['value']['count'].to_i }
