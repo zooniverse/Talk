@@ -30,7 +30,7 @@ module Taggable
     def rank_tags (no=8)
         result = {}
         
-        unless this.tags.empty?  
+        unless self.tags.empty?  
           tags=self.tags
           sorted = tags.sort { |a,b| a[1] <=> b[1]}
           high = sorted.last[1]
