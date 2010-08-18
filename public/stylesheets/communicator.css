@@ -239,6 +239,10 @@ h2.asset-name {
 	text-transform: uppercase;
 }
 
+#trends-tabs ul li.title, #recents-tabs ul li.title {
+	font-weight: bold;
+}
+
 #trends-tabs ul li a, #recents-tabs ul li a {
 	text-decoration: none;
 }
