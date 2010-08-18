@@ -125,12 +125,18 @@ img.short-comment-user, img.recent-comment-user {
 
 .home-lhc {
 	float: left;
-	width: 60%;
+	width: 70%;
 }
 
 .home-rhc {
 	float: left;
-	width: 40%;
+	width: 28%;
+	margin: 0 0 0 2%;
+}
+
+.boards-list {
+	width: 33%;
+	float: left;
 }
 
 /* Tag Cloud */

@@ -12,7 +12,7 @@ class HomeController < ApplicationController
     @trending_discussions = Discussion.most_recent 5
     
     @trending_tags = Comment.trending_tags 10
-    @trending_tags = Comment.rank(@trending_tags)
+    @trending_tags = Comment.rank_tags(@trending_tags,8)
     
   end
   
