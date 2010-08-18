@@ -38,4 +38,10 @@ class Discussion
     self.save if changed?
     self[:tags]
   end
+  
+  def self.most_recent_discussions (no=10)
+    Discussion.limit(no).sort(['created_at', -1]).all(:created_at.gt => Time.now - 1.day)
+  end
+  
+  
 end

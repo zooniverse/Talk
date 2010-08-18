@@ -21,7 +21,7 @@ class Comment
   end
   
   
-  def self.most_recent_comments(no)
+  def self.most_recent_comments(no=10)
     Comment.limit(no).sort(['created_at', -1]).all(:created_at.gt => Time.now - 1.day)
   end
 end
