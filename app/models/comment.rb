@@ -30,4 +30,9 @@ class Comment
     opts = opts.update(args.first) unless args.first.nil?
     Comment.limit(opts[:limit]).sort(opts[:order]).all(:assets => asset.zooniverse_id)
   end
+  
+  #Gets the top trending tags (placeholder just now)
+  def self.trending_tags(no=1)
+     {"njdfk"=>2,"fmsfsd"=>4,"addd"=>10,"cccda"=>1,"dsljnfne"=>99,"nfjdsfj"=>33,"djbf"=>3,"nfsdjf"=>8,"fff"=>20,"fffff"=>55}
+  end
 end

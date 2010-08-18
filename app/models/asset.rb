@@ -14,9 +14,15 @@ class Asset
      Asset.limit(no).sort(['created_at', -1]).all
    end
    
-  def self.most_recently_discussed(no=10)
+  #selects the most recently mentioned (ie AM0000BLAH was mentioned in a comment) assets
+  
+  def self.most_recently_mentioned(no=10)
     Asset.all(:zooniverse_id.in => Comment.most_recent(5*no).collect{|c| c.assets}.flatten[0..no-1])
   end
   
+  #selects the most recently discussed assets (ie the assets with the newest comments )
+  def self.most_recently_(no=10)
+    
+  end
   
 end

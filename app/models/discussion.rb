@@ -10,6 +10,9 @@ class Discussion
   key :focus_id, ObjectId
   key :focus_type, String
   key :slug, String
+  key :no_of_users, Integer
+  key :no_of_comments, Integer
+  
   timestamps!
   
   many :comments
