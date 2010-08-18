@@ -39,7 +39,7 @@ class Collection
   end
   
   def trending (no=10)
-    Discussion.where(:)
+    []
   end
 
 end
