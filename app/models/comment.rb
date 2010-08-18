@@ -1,6 +1,9 @@
 # A Comment on a Discussion by a User
 class Comment
   include MongoMapper::Document
+  include ZooniverseId
+  include Taggable
+  
   
   key :discussion_id, ObjectId, :required => true
   key :author_id, ObjectId, :required => true

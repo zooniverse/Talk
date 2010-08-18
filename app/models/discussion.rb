@@ -2,6 +2,8 @@
 class Discussion
   include MongoMapper::Document
   include ZooniverseId
+  include Taggable
+  
   
   zoo_id :prefix => "D"
   key :subject, String, :required => true

@@ -2,6 +2,8 @@
 class Asset
   include MongoMapper::Document
   include Focus
+  include Taggable
+  
   
   key :zooniverse_id, String, :required => true
   key :location, String, :required => true
