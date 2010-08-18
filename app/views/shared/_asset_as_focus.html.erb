@@ -4,7 +4,6 @@
 	<div class="asset-meta">
 			<h2 class="asset-name"><%= @asset.name.to_s %></h2>
 		<ul>
-			<!-- <li><h1 class="asset-name"><%= @asset.name.to_s %></h1></li> -->
 			<li><strong>ID: </strong><%= @asset.zooniverse_id.to_s %></li>			
 			<li><strong>Coordinates: </strong><%= @asset.coords.first.to_s %>, <%= @asset.coords.last.to_s %></li>
 		</ul>
