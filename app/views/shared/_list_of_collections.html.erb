@@ -2,8 +2,8 @@
 <div class="panel collection-list">
 	<h2>COLLECTIONS</h2>
 	<ul>
-		<li><a href="#">Bob's collection of stuff</a></li>
-		<li><a href="#">Another Collection</a></li>
-		<li><a href="#">Yet Another Collection</a></li>		
+  	<%- @collections.each do |collection| %>
+  	  <li><%= link_to collection.name, "#" %>
+  	<% end -%>
 	</ul>		
 </div>

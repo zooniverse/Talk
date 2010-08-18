@@ -1,10 +1,8 @@
 <!-- Displays tags for a focus -->
 <div id="tags-for-focus" class="panel tags right">
-	<ul>
-		<li>#Tag1</li>
-		<li>#Tag2</li>
-		<li>#Tag3</li>
-		<li>#Tag4</li>
-		<li>#Tag5</li>
+  <ul>
+    <%- @focus.tags.each do |tag| %>
+  		<li><%= link_to tag, "#" %></li>
+  	<% end -%>
 	</ul>
 </div>

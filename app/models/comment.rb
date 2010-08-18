@@ -20,8 +20,14 @@ class Comment
     Comment.collection.update({ '_id' => self.id }, {'$addToSet' => { 'upvotes' => user.id } })
   end
   
-  
   def self.most_recent(no=10)
     Comment.limit(no).sort(['created_at', -1]).all(:created_at.gt => Time.now - 1.day)
+  end
+  
+  # Finds comments mentioning an asset
+  def self.mentioning(asset, *args)
+    opts = { :limit => 10, :order => ['created_at', -1] }
+    opts = opts.update(args.first) unless args.first.nil?
+    Comment.limit(opts[:limit]).sort(opts[:order]).all(:assets => asset.zooniverse_id)
   end
 end

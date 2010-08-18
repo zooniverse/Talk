@@ -43,5 +43,12 @@ class Discussion
     Discussion.limit(no).sort(['created_at', -1]).all(:created_at.gt => Time.now - 1.day)
   end
   
-  
+  # Finds discussions mentioning an asset
+  def self.mentioning(asset)
+    comments = Comment.mentioning(asset, :limit => 0)
+    counted_comments = Hash.new(0)
+    comments.each{ |comment| counted_comments[comment] += 1 }
+    comments = counted_comments.sort{ |a, b| b[1] <=> a[1] }.collect{ |comment| comment.first }
+    comments.collect{ |comment| comment.discussion }
+  end
 end
