@@ -1,9 +1,11 @@
 <!-- Displays tags for a focus -->
-<div id="tags-for-focus" class="panel tags right">
-	<h2>TAGS</h2>
-  <ul>
-    <%- @focus.tags.each do |tag| %>
-  		<li><%= link_to tag, "#" %></li>
-  	<% end -%>
-	</ul>
-</div>
+<% unless @focus.tags.empty? %>
+	<div id="tags-for-focus" class="panel tags right">
+		<h2>TAGS</h2>
+	  <ul>
+	    <%- @focus.tags.each do |tag| %>
+	  		<li><%= link_to tag, "#" %></li>
+	  	<% end -%>
+		</ul>
+	</div>
+<% end %>

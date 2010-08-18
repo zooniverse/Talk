@@ -1,9 +1,11 @@
 <!-- Displays list of discussions about a focus -->
-<div class="panel collection-list">
-	<h2>DISCUSSIONS</h2>
-	<ul>
-	  <%- @focus.discussions.each do |discussion| %>
-	    <li><%= link_to discussion.subject, "#" %></li>
-	  <% end -%>
-	</ul>		
-</div>
+<% unless @focus.discussions.empty? %>
+	<div class="panel collection-list">
+			<h2>DISCUSSIONS</h2>
+			<ul>
+			  <%- @focus.discussions.each do |discussion| %>
+			    <li><%= link_to discussion.subject, "#" %></li>
+			  <% end -%>
+			</ul>		
+	</div>
+<% end %>

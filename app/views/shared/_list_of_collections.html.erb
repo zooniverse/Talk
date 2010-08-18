@@ -1,5 +1,6 @@
 <!-- Displays list of collections containing a focus -->
-<div class="panel">
+<% unless @collections.empty? %>
+<div class="panel">	
 	<h2>COLLECTIONS</h2>
 	<ul>
   	<%- @collections.each do |collection| %>
@@ -7,3 +8,4 @@
   	<% end -%>
 	</ul>		
 </div>
+<% end %>
