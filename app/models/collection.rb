@@ -20,16 +20,20 @@ class Collection
     Collection.limit(no).sort(['created_at', -1]).all
   end
   
+  def most_recent_assets(no=10)
+    self.assets[0..no-1]
+  end
+  
+  def most_recent_comments(no=10)
+    discussionIds=self.discussions.collect{|d| d.id}
+    Comment.where(:discussion_id.in => discussionIds).limit(no).sort(['created_at',-1]).all
+  end
+  
   # Finds collections containing an asset
   def self.with_asset(asset, *args)
     opts = { :limit => 10, :order => ['created_at', -1] }
     opts = opts.update(args.first) unless args.first.nil?
     
     Collection.limit(opts[:limit]).sort(opts[:order]).all(:asset_ids => asset.id)
-  end
-  
-  def most_recent_comments(no=10)
-    discussionIds=Collection.first.discussions.collect{|d| d.id}
-    
   end
 end
