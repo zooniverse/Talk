@@ -15,6 +15,9 @@ class Collection
   
   key :user_id, ObjectId, :required => true
   belongs_to :user
-
+  
+  def self.most_recent_collections (no=10)
+    Collection.limit(no).sort(['created_at', -1]).all(:created_at.gt => Time.now - 1.day)
+  end
   
 end
