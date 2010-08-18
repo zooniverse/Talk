@@ -11,7 +11,7 @@ class Asset
   key :tags, Array
   
   def self.most_recent(no=10)
-     Asset.limit(no).sort(['created_at', -1]).all(:created_at.gt => Time.now - 1.day)
+     Asset.limit(no).sort(['created_at', -1]).all
    end
   
 end

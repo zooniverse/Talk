@@ -17,7 +17,7 @@ class Collection
   belongs_to :user
   
   def self.most_recent (no=10)
-    Collection.limit(no).sort(['created_at', -1]).all(:created_at.gt => Time.now - 1.day)
+    Collection.limit(no).sort(['created_at', -1]).all
   end
   
   # Finds collections containing an asset

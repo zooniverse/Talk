@@ -33,7 +33,7 @@ class LiveCollection
   end
   
   def self.most_recent (no=10)
-     LiveCollection.limit(no).sort(['created_at', -1]).all(:created_at.gt => Time.now - 1.day)
+     LiveCollection.limit(no).sort(['created_at', -1]).all
    end
   
 end
