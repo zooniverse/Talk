@@ -9,4 +9,9 @@ class Asset
   key :coords, Array
   key :size, Array
   key :tags, Array
+  
+  def self.most_recent(no=10)
+     Asset.limit(no).sort(['created_at', -1]).all(:created_at.gt => Time.now - 1.day)
+   end
+  
 end
