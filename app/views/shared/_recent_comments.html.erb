@@ -1,4 +1,13 @@
 <!-- Box for front page recent comments -->
 <div id="recent-comments" class="panel">
-	
+	<% recent_comments.each do |c| %>
+		<div class="recent-comment">
+			<%= image_tag('default_user.png', :class => "recent-comment-user", :height => 40) %>
+			<div class="comment-container">
+				<div class="name">Name</div>
+				<div class="date">14 January 2010, 10.37 AM</div>
+				<div class="comment-body"><%= c.body %></div>
+			</div>
+		</div>
+	<% end %>
 </div>
