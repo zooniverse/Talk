@@ -8,8 +8,8 @@ class HomeController < ApplicationController
     @recent_discussions = Discussion.most_recent 5
     
     @trending_assets = Asset.trending 5
-    @trending_collections = Collection.most_recent 5
-    @trending_discussions = Discussion.most_recent 5
+    @trending_collections = Collection.trending 5
+    @trending_discussions = Discussion.trending 5
     
     @trending_tags = Comment.trending_tags 10
     @trending_tags = Comment.rank_tags(@trending_tags,8)

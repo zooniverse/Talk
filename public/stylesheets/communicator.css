@@ -102,6 +102,35 @@
 	margin-right: 5px;
 }
 
+/* Recent Items (Collections, Discussions) */
+.recent-item {
+	border-bottom: solid #afafaf 1px;
+	margin-bottom: 5px;
+	font-size: 80%;
+}
+
+.item-container {
+	margin-left: 0px;
+	padding-bottom: 7px;
+}
+
+.item-container .date {
+	color: #afafaf;
+	margin-bottom: 3px;
+}
+
+.item-container .body {
+
+}
+
+.item-container .name {
+	font-weight: bold;
+}
+
+.last {
+	border-bottom: none;
+}
+
 /* Comments */
 .short-comment, .recent-comment {
 	border-bottom: solid #afafaf 1px;

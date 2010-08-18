@@ -1,11 +1,11 @@
 <!-- Box for front page recent discussions -->
 <div id="<%= id_of_box %>" class="panel">
 	<% discussions_list.each do |d| %>
-		<div class="recent-comment">
-			<div class="comment-container">
+		<div class="recent-item">
+			<div class="item-container">
 				<div class="name"><%= d.subject %></div>
 				<div class="date">14 January 2010, 10.37 AM</div>
-				<div class="comment-body"><%= d.focus_type %></div>
+				<div class="body"><%= d.focus_type %></div>
 			</div>
 		</div>
 	<% end %>
