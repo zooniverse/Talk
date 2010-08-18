@@ -18,4 +18,5 @@ class Asset
     Asset.all(:zooniverse_id.in => Comment.most_recent(5*no).collect{|c| c.assets}.flatten[0..no-1])
   end
   
+  
 end

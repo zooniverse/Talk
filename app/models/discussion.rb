@@ -43,6 +43,12 @@ class Discussion
     Discussion.limit(no).sort(['created_at', -1]).all(:created_at.gt => Time.now - 1.day)
   end
   
+  def most_recent_comments(no=10)
+    Comment.where(:discussion_id => self.id).limit(no).all
+  end
+  
+  
+  
   # Finds discussions mentioning an asset
   def self.mentioning(asset)
     comments = Comment.mentioning(asset, :limit => 0)
