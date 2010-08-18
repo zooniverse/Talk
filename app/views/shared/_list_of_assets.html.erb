@@ -7,7 +7,7 @@
 			<div class="comment-container">
 				<div class="name"><%= a.name %></div>
 				<div class="date">14 January 2010, 10.37 AM</div>
-				<div class="comment-body"><%= a.zooniverse_id %></div>
+				<div class="comment-body"><%= link_to a.zooniverse_id, :controller => :assets, :action => :show, :id => a.zooniverse_id %></div>
 			</div>
 		</div>
 	<% end %>
