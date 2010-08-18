@@ -34,8 +34,31 @@ class Comment
     Comment.limit(opts[:limit]).sort(opts[:order]).all(:assets => asset.zooniverse_id)
   end
   
-  #Gets the top trending tags (placeholder just now)
-  def self.trending_tags(no=1)
-     {"njdfk"=>2,"fmsfsd"=>4,"addd"=>10,"cccda"=>1,"dsljnfne"=>99,"nfjdsfj"=>33,"djbf"=>3,"nfsdjf"=>8,"fff"=>20,"fffff"=>55}
+  # Gets the top most used tags
+  def self.trending_tags
+     map = <<-MAP
+     function() {
+       this.tags.forEach( function(tag) {
+         emit(tag, { count: 1 });
+       });
+     }
+     MAP
+
+     reduce = <<-REDUCE
+     function(key, values) {
+       var total = 0;
+       for(var i = 0; i < values.length; i++) {
+         total += values[i].count;
+       }
+
+       return { count: total };
+     }
+     REDUCE
+     
+     tags = Comment.collection.map_reduce(map, reduce).find().sort(['value.count', -1]).limit(10).to_a
+     
+     collected = {}
+     tags.each{ |tag| collected[tag['_id']] = tag['value']['count'].to_i }
+     collected
   end
 end
