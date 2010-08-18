@@ -13,5 +13,9 @@ class Asset
   def self.most_recent(no=10)
      Asset.limit(no).sort(['created_at', -1]).all
    end
+   
+  def self.most_recently_discussed(no=10)
+    Comment.most_recent(5*no).collect{|c| c.assets}.flatten[0..no]
+  end
   
 end
