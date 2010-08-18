@@ -38,5 +38,11 @@ class Collection
     Collection.limit(opts[:limit]).sort(opts[:order]).all(:asset_ids => asset.id)
   end
   
+  def self.trending (no=10)
+   result= Discussion.collection.group( [:focus_id], {:focus_type=>"Collection"}, {:count=>0},"function(obj, prev){ prev.count += obj.no_of_comments*obj.no_of_users; }")
+   result[0..no-1].collect{|r| Collection.find(r['focus_id'])}
+
+  end
+  
  
 end
