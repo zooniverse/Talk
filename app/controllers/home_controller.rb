@@ -7,10 +7,14 @@ class HomeController < ApplicationController
     @recent_collections = Collection.most_recent 5
     @recent_discussions = Discussion.most_recent 5
     
-    @trending_tags = [""]
     @trending_assets = Asset.most_recently_discussed 5
     @trending_collections = Collection.most_recent 5
     @trending_discussions = Discussion.most_recent 5
+    
+    @trending_tags = Comment.trending_tags 10
+    
+    most_uses = @trending_tags
+    
   end
   
   def cas_test
