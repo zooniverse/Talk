@@ -1,4 +1,10 @@
 /* Communication Tool resets*/
+#logo {
+	font-size: 36px;
+	text-transform: uppercase;
+	margin: 0 0 0 -10px;
+}
+
 #rcol {
   margin-top: 18px;
 	margin-left: 210px;
@@ -32,6 +38,11 @@
 
 /* Upper Row*/
 .main-image {
+	float: left;
+}
+
+.focus-main-image {
+	margin-right: 5px;
 	float: left;
 }
 
@@ -110,16 +121,7 @@ img.short-comment-user, img.recent-comment-user {
 	font-size: 85%;
 }
 
-.focus-main-image {
-	margin-right: 5px;
-	float: left;
-}
-
-#logo {
-	font-size: 36px;
-	text-transform: uppercase;
-	margin: 0 0 0 -10px;
-}
+/* Front Page */
 
 .home-lhc {
 	float: left;

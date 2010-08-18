@@ -2,7 +2,15 @@ class HomeController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter, :only => [:cas_test]
   
   def index
-    @recent_comments = Comment.most_recent 10
+    @recent_comments = Comment.most_recent 5
+    @recent_assets = Asset.most_recently_discussed 5
+    @recent_collections = Collection.most_recent 5
+    @recent_discussions = Discussion.most_recent 5
+    
+    @trending_tags = [""]
+    @trending_assets = Asset.most_recently_discussed 5
+    @trending_collections = Collection.most_recent 5
+    @trending_discussions = Discussion.most_recent 5
   end
   
   def cas_test
