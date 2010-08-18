@@ -29,7 +29,8 @@ class Asset
   
   def self.trending (no=10)
    result= Discussion.collection.group( [:focus_id], {:focus_type=>"Asset"}, {:count=>0},"function(obj, prev){ prev.count += obj.no_of_comments*obj.no_of_users; }")
-   result[0..no-1]
+   result[0..no-1].collect{|r| Asset.find(r['focus_id'])}
+   
   end
   
 end
