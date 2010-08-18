@@ -1,1 +1,6 @@
 <!-- Box for adding a new short comment -->
+<% form_for @comment do |f| %>
+	<p>Add a comment</p>
+	<%= f.text_area :body, :rows => 2, :cols => 60 %>
+	<%= submit_tag 'Submit' %>	
+<% end %>

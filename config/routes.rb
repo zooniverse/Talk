@@ -9,6 +9,7 @@ Sellers::Application.routes.draw do
   end
   
   resources :discussions
+  resources :comments
   
   resources :objects, :controller => :assets do 
     resources :discussions

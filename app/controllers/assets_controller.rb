@@ -5,6 +5,7 @@ class AssetsController < ApplicationController
     @focus = @asset
     @mentions = Discussion.mentioning(@asset)
     @collections = Collection.with_asset(@asset)
+    @comment = Comment.new
     
     if @asset.conversation.nil?
       @comments = []
