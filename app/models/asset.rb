@@ -24,7 +24,7 @@ class Asset
   
   #selects the most recently discussed assets (ie the assets with the newest comments )
   def self.most_recently_(no=10)
-    
+    Asset.most_recently_mentioned no
   end
   
 end
