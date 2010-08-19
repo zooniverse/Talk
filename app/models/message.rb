@@ -18,6 +18,14 @@ class Message
     Message.collection.update({ :_id => id }, { '$set' => { :unread => false } })
   end
   
+  def recipient_name
+    recipient.name
+  end
+  
+  def recipient_name=(name)
+    recipient = User.find_by_name(name)
+  end
+  
   private
   def not_blocked
     if recipient.nil?

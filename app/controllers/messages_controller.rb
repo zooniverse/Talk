@@ -16,11 +16,16 @@ class MessagesController < ApplicationController
   end
   
   def new
-    @message = Message.new(:sender => current_zooniverse_user)
+    @message = Message.new
   end
   
   def create
-    @message = Message.new(params[:message])
+    @recipient = User.find_by_name(params["message"][:recipient_name])
+    options = { :sender_id => current_zooniverse_user.id, :recipient_id => @recipient.id } unless @recipient.nil?
+    params["message"].delete(:recipient_name)
+    logger.debug "PARAMS:@"
+    logger.debug params.inspect
+    @message = Message.new(params[:message].merge(options))
     
     if @message.save
       flash[:notice] = I18n.t 'messages.created'
@@ -31,7 +36,6 @@ class MessagesController < ApplicationController
   end
   
   private
-  # FIXME - I am bad codes
   def get_meta
     @unread = current_zooniverse_user.messages.select{ |message| message.unread }
     @conversations = current_zooniverse_user.messages.collect{ |message| message.sender }.uniq

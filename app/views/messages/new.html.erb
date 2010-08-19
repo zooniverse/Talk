@@ -1,0 +1,7 @@
+<%= form_for @message do |f| %>
+  <span><label>To:</label><%= f.text_field :recipient_name %></span><br />
+	<span><label>Title:</label><%= f.text_field :title %></span>
+	<p>Message:</p>
+	<%= f.text_area :body, :rows => 4, :cols => 61 %>
+	<%= submit_tag 'Send' %>
+<%- end %>
