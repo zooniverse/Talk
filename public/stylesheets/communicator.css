@@ -53,7 +53,7 @@
 /* Object Page */
 
 .upper-row {
-	
+
 }
 
 .lower-row {
@@ -84,7 +84,7 @@
 	list-style-type:none;
 }
 
-.upper-row {
+.discussion  {
 	height:200px;
 }
 
@@ -97,8 +97,11 @@
 	border: solid #afafaf 1px;
 	border-style: solid none none none;
 	float: left;
-	width: 450px;
 	padding-top: 5px;
+}
+
+.lhc {
+	width: 450px;	
 }
 
 .rhc {
@@ -107,16 +110,8 @@
 }
 
 /* Tags */
-.tags {
-	width: 115px;
-	border-left: dotted #afafaf 1px;
-/*	height: 200px;*/
-	padding-left: 10px;
-}
-
 .tags ul {
 	list-style-type:none;
-	font-size: 60%;
 	font-weight: normal;
 }
 
@@ -179,6 +174,10 @@ img.short-comment-user, img.recent-comment-user {
 
 }
 
+.comment-container .name {
+	font-weight:bold;
+}
+
 .last {
 	border-bottom: none;
 }
@@ -194,6 +193,10 @@ img.short-comment-user, img.recent-comment-user {
 	font-size: 85%;
 	border-left: dotted #afafaf 1px;
 	padding-left: 10px;
+}
+
+.subtext {
+	font-size: 85%;
 }
 
 /* Front Page */
@@ -280,4 +283,20 @@ h2.asset-name {
 
 .collection-thumbnail {
 	cursor: pointer;
+}
+.red-add {
+	color: red;
+}
+.comment-link {
+	float:right;
+	text-decoration:none;
+	font-size:60%;
+	color: #000;
+	top:-17px;
+	position:relative;
+	text-transform: uppercase;
+}
+
+.comment-form {
+	margin: 20px 0 20px 0;
 }

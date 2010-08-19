@@ -1,7 +1,8 @@
 <!-- Box for adding a new full discussion comment -->
 <%= form_for @comment do |f| %>
-	<p>Add a comment</p>
-	<%= f.text_area :body, :rows => 4, :cols => 61 %>
-
-	<%= submit_tag 'Submit' %>	
+	<div class="comment-form">
+		Add a comment<br/>
+		<%= f.text_area :body, :rows => 4, :cols => 61 %>
+		<%= submit_tag 'Submit' %>	
+	</div>
 <%- end %>
