@@ -10,7 +10,10 @@
 	<div class="lhc">		
 		<div class="discussions-list">
 			<%= render :partial => "shared/list_of_discussions_board", :locals => { :id_of_box => "discussions-list" } %>
-		</div>			
+		</div>		
+		
+		<%= page_bar @page,@number_of_pages%>
+			
 	</div>
 	<div class="rhc">
 		<%= render :partial => "shared/zooniverse_extras" %>			

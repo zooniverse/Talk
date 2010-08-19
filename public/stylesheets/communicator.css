@@ -285,48 +285,12 @@ h2.asset-name {
 	cursor: pointer;
 }
 
-/* Messages */
 
-.message-preview {
-	border-bottom: solid #afafaf 1px;
-	margin-bottom: 5px;
-	font-size: 80%;
+/* pagination stuff */
+
+.pagination{
+	
+	display:inline;
 }
 
-.message-preview-container {
-	margin-left: 0px;
-	padding-bottom: 7px;
-}
 
-.message-preview-container .date {
-	color: #afafaf;
-	margin-bottom: 3px;
-}
-
-.message-preview-container .summary {
-
-}
-
-.message {
-	border-bottom: solid #afafaf 1px;
-	margin-bottom: 5px;
-	font-size: 80%;
-}
-
-.message-container {
-	margin-left: 0px;
-	padding-bottom: 7px;
-}
-
-.message-container .subject {
-	font-size: 1.5em;
-}
-
-.message-container .date {
-	color: #afafaf;
-	margin-bottom: 3px;
-}
-
-.message-container .body {
-
-}
