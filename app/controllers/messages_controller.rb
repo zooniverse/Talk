@@ -11,6 +11,7 @@ class MessagesController < ApplicationController
   
   def show
     @message = Message.find(params[:id])
+    @message.mark_as_read unless @message.nil?
   end
   
   private

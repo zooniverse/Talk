@@ -8,7 +8,7 @@ class MessageTest < ActiveSupport::TestCase
     end
     
     should "have keys" do
-      [:title, :body, :sender_id,:recipient_id].each do |key|
+      [:title, :body, :sender_id, :recipient_id, :unread].each do |key|
         assert @message.respond_to?(key)
       end
     end
@@ -16,6 +16,13 @@ class MessageTest < ActiveSupport::TestCase
     should "have correct associations" do
       assert @message.associations.keys.include?("sender")
       assert @message.associations.keys.include?("recipient")
+    end
+    
+    should "toggle unread status" do
+      assert @message.unread
+      @message.mark_as_read
+      @message.reload
+      assert !@message.unread
     end
   end
 end
