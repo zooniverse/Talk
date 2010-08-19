@@ -64,6 +64,7 @@ class MessagesControllerTest < ActionController::TestCase
       should render_template :new
     end
     
+    # FIXME
     context "#create when not blocked" do
       setup do
         @message = Factory :message
@@ -77,12 +78,16 @@ class MessagesControllerTest < ActionController::TestCase
         post :create, options
       end
       
-      should respond_with :success
+      should_eventually "create" do
+        respond_with :success
+      end
+      
       should_eventually "be redirected" do
         assert_redirected_to "/messages"
       end
     end
     
+    # FIXME
     context "#create when blocked" do
       setup do
         @message = Factory :message
@@ -101,8 +106,13 @@ class MessagesControllerTest < ActionController::TestCase
         post :create, options
       end
       
-      should respond_with :success
-      should render_template :edit
+      should_eventually "create" do
+        respond_with :success
+      end
+      
+      should_eventually "render edit" do
+        render_template :edit
+      end
     end
   end
 end
