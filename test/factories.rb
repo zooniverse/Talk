@@ -45,3 +45,10 @@ Factory.define :message do |m|
   m.sender              { |sender| sender.association(:user) }
   m.recipient           { |recipient| recipient.association(:user) }
 end
+
+Factory.define :board do |m|
+  m.title               { "#{ Factory.next(:name) }" }
+  m.description         { "Board description" }
+end
+
+
