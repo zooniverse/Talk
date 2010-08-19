@@ -1,7 +1,7 @@
 Sellers::Application.routes.draw do
 
   resources :collections do 
-    resource :discussions
+    resources :discussions
   end
   
   resources :live_collections do
