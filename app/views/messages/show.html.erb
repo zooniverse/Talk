@@ -1,8 +1,10 @@
 <!-- Show an individual message  -->
 <div class="message">
-	<div class="message-container">
-		<div class="subject"><%= @message.title %></div>
-		<div class="date"><%= long_date(@message.created_at) %></div>
-		<div class="body"><%= @message.body %></div>
-	</div>
+  <%- @messages.each do |message| %>
+  	<div class="message-container">
+  		<div class="subject"><%= message.title %></div>
+  		<div class="date"><%= long_date(message.created_at) %></div>
+  		<div class="body"><%= message.body %></div>
+  	</div>
+	<% end -%>
 </div>
