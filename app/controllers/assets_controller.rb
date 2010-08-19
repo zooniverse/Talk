@@ -1,5 +1,4 @@
 class AssetsController < ApplicationController
-  before_filter CASClient::Frameworks::Rails::Filter, :only => [:show]
   before_filter :check_or_create_zooniverse_user
   
   def show

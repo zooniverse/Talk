@@ -14,8 +14,8 @@ class CollectionsControllerTest < ActionController::TestCase
         get :show, { :id => @collection.zooniverse_id }
       end
 
-      should_respond_with :success
-      should_render_template :show
+      should respond_with :success
+      should render_template :show
       
       should_eventually "Display the collection zooniverse_id" do
         assert_select 'h2.collection-name', :text => @collection.zooniverse_id

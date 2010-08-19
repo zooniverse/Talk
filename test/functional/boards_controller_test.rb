@@ -14,8 +14,8 @@ class BoardsControllerTest < ActionController::TestCase
         get 'science'
       end
 
-      should_respond_with :success
-      should_render_template :show
+      should respond_with :success
+      should render_template :show
       
       should_eventually "show the science board" do
         assert_select 'h2.board-name', :text => @board.name
@@ -28,8 +28,8 @@ class BoardsControllerTest < ActionController::TestCase
         get 'chat'
       end
 
-      should_respond_with :success
-      should_render_template :show
+      should respond_with :success
+      should render_template :show
       
       should_eventually "show the chat board" do
         assert_select 'h2.board-name', :text => @board.name
@@ -42,8 +42,8 @@ class BoardsControllerTest < ActionController::TestCase
         get 'help'
       end
 
-      should_respond_with :success
-      should_render_template :show
+      should respond_with :success
+      should render_template :show
       
       should_eventually "show the help board" do
         assert_select 'h2.board-name', :text => @board.name
