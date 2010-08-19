@@ -4,9 +4,9 @@
 		<div class="recent-comment">
 			<%= link_to image_tag(a.thumbnail_location, :class => "recent-comment-user", :height => 40), :controller => :assets, :action => :show, :id => a.zooniverse_id %>
 			<div class="comment-container">
-				<div class="name"><%= a.name %></div>
+				<div class="name"><%= link_to a.zooniverse_id, :controller => :assets, :action => :show, :id => a.zooniverse_id %></div>
 				<div class="date">14 January 2010, 10.37 AM</div>
-				<div class="comment-body"><%= link_to a.zooniverse_id, :controller => :assets, :action => :show, :id => a.zooniverse_id %></div>
+				<div class="comment-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
 			</div>
 		</div>
 	<% end %>
