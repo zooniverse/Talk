@@ -2,11 +2,11 @@
 	<div class="comments-list">
 		<div id="trends-tabs">
 			<ul>
-				<li class="title">Trending:</li>
-				<li><a href="#trending-assets">Assets</a></li>
-				<li><a href="#trending-collections">Collections</a></li>
-				<li><a href="#trending-discussions">Discussions</a></li>
-				<li><a href="#trending-tags">Tags</a></li>
+				<li class="title"><%= t 'homepage.trends' %>:</li>
+				<li><a href="#trending-assets"><%= t 'homepage.assets' %></a></li>
+				<li><a href="#trending-collections"><%= t 'homepage.collections' %></a></li>
+				<li><a href="#trending-discussions"><%= t 'homepage.discussions' %></a></li>
+				<li><a href="#trending-tags"><%= t 'homepage.tags' %></a></li>
 			</ul>
 		<%= render :partial => "shared/list_of_assets", :locals => { :assets_list => @trending_assets, :id_of_box => "trending-assets" } %>
 		<%= render :partial => "shared/list_of_collections_main", :locals => { :collections_list => @trending_collections, :id_of_box => "trending-collections" } %>
@@ -18,11 +18,11 @@
 
 		<div id="recents-tabs">
 			<ul>
-				<li class="title">Recents:</li>
-				<li><a href="#recent-assets">Assets</a></li>
-				<li><a href="#recent-collections">Collections</a></li>
-				<li><a href="#recent-discussions">Discussions</a></li>
-				<li><a href="#recent-comments">Comments</a></li>
+				<li class="title"><%= t 'homepage.recent' %>:</li>
+				<li><a href="#recent-assets"><%= t 'homepage.assets' %></a></li>
+				<li><a href="#recent-collections"><%= t 'homepage.collections' %></a></li>
+				<li><a href="#recent-discussions"><%= t 'homepage.discussions' %></a></li>
+				<li><a href="#recent-comments"><%= t 'homepage.comments' %></a></li>
 			</ul>
 		<%= render :partial => "shared/list_of_assets", :locals => { :assets_list => @recent_assets, :id_of_box => "recent-assets" } %>
 		<%= render :partial => "shared/list_of_collections_main", :locals => { :collections_list => @recent_collections, :id_of_box => "recent-collections" } %>
@@ -32,9 +32,9 @@
 		
 		<br/>
 
-		<%= render :partial => "shared/boards_front_page", :locals => { :title => "HELP", :this_list => @help_list } %>
-		<%= render :partial => "shared/boards_front_page", :locals => { :title => "SCIENCE", :this_list => @science_list } %>
-		<%= render :partial => "shared/boards_front_page", :locals => { :title => "CHAT", :this_list => @chat_list } %>
+		<%= render :partial => "shared/boards_front_page", :locals => { :title => t('homepage.help'), :this_list => @help_list } %>
+		<%= render :partial => "shared/boards_front_page", :locals => { :title => t('homepage.science'), :this_list => @science_list } %>
+		<%= render :partial => "shared/boards_front_page", :locals => { :title => t('homepage.chat'), :this_list => @chat_list } %>
 	</div>
 </div>
 <div class="home-rhc">

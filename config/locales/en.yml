@@ -3,6 +3,14 @@ en:
     left1: "Sellers is a"
     left2: "application"
     right1: "We're talking about"
-  controllers:
-    comments:
-      flash_create: "Comment created"
+  homepage:
+    trends: "Trending"
+    recent: "Recent"
+    tags: "Tags"
+    assets: "Assets"
+    collections: "Collections"
+    discussions: "Discussions"
+    comments: "Comments"
+    help: "Help"
+    science: "Science"
+    chat: "Chat"
