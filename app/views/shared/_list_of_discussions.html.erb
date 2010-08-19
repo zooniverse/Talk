@@ -4,7 +4,7 @@
 			<h2>DISCUSSIONS</h2>
 			<ul>
 			  <%- @focus.discussions.each do |discussion| %>
-			    <li><%= link_to discussion.subject, "#" %></li>
+			    <li><%= link_to discussion.subject, discussion_path(discussion.zooniverse_id) %></li>
 			  <% end -%>
 			</ul>		
 	</div>

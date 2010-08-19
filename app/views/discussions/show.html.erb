@@ -1,4 +1,4 @@
-<div class="upper-row">
+<div class="upper-row discussion">
 	<div class="rhc">
 		<div class="panel discussion-items">
 		<% if (@discussion.asset?) %>									
@@ -8,11 +8,9 @@
 		<% if (@discussion.collection? || @discussion.live_collection?) %>		
 			<% unless @discussion.focus.assets.empty?%>
 				<%= image_tag(@discussion.focus.assets.first.location, :class => "collection-large", :id => "asset-image", :height => 215) %>		
-				<% (1..3).each do %>
-					<% @discussion.focus.assets.each do |item| %>												
-						<%= image_tag(item.location, :class => "collection-thumbnail", :height => 50) %>
-					<% end %>
-				<% end %>																		
+				<% @discussion.focus.assets.each do |item| %>												
+					<%= image_tag(item.location, :class => "collection-thumbnail", :height => 50) %>
+				<% end %>																	
 			<% else %>
 				EMPTY COLLECTION				
 			<% end %>									
