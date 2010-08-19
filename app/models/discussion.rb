@@ -20,7 +20,7 @@ class Discussion
   many :comments
   
   before_create :set_slug
-  # before_save :update_tags
+  before_save :update_tags
   before_save :update_counts
   
   # Creates a prettyfied slug for the URL
