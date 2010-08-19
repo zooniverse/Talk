@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class AssetsControllerTest < ActionController::TestCase
-  context "An Asset" do
+  context "Assets Controller" do
     setup do
       @controller = AssetsController.new
       @request    = ActionController::TestRequest.new
