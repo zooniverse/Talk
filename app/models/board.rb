@@ -23,4 +23,13 @@ class Board
     find_by_title("Chat")
   end
   
+  # FIXME
+  def number_of_users
+    2
+  end
+  
+  # FIXME
+  def number_of_comments
+    3
+  end
 end
