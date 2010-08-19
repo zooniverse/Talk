@@ -7,7 +7,7 @@ class DiscussionTest < ActiveSupport::TestCase
     end
     
     should "have keys" do
-      [:subject, :tags, :assets, :focus_id, :focus_type, :slug, :created_at, :updated_at].each do |key|
+      [:subject, :tags, :mentions, :focus_id, :focus_type, :slug, :created_at, :updated_at].each do |key|
         assert @discussion.respond_to?(key)
       end
     end

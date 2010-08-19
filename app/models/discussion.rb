@@ -8,7 +8,7 @@ class Discussion
   zoo_id :prefix => "D"
   key :subject, String, :required => true
   key :tags, Array
-  key :assets, Array # mentioned Assets, i.e. not the focus and also not a collection
+  key :mentions, Array # mentioned Focii, i.e. not the focus
   key :focus_id, ObjectId
   key :focus_type, String
   key :slug, String
@@ -21,13 +21,8 @@ class Discussion
   many :comments
   
   before_create :set_slug
-  before_save :update_tags
-  before_save :update_counts
-  
-  # Creates a prettyfied slug for the URL
-  def set_slug
-    self.slug = self.subject.parameterize('_')
-  end
+  before_save :aggregate_comments
+  after_save :update_counts
   
   # Fetches the Focus of this Discussion if it exists
   def focus
@@ -64,21 +59,36 @@ class Discussion
     return (focus_type == "Collection")
   end
   
-  private
-  # A way to aggregate tags up to a discussion.  Take this with a grain of salt.
-  def update_tags
-    tags = Comment.collection.find({:discussion_id => id}, {:fields => [:tags]}).to_a
-    tags = tags.collect{ |doc| doc['tags'] }.flatten
-    
-    counted_tags = Hash.new(0)
-    tags.each{ |tag| counted_tags[tag] += 1 }
-    self.tags = counted_tags.sort{ |a, b| b[1] <=> a[1] }.collect{ |tag| tag.first }
+  # private
+  # Creates a prettyfied slug for the URL
+  def set_slug
+    self.slug = self.subject.parameterize('_')
   end
   
-  # KLUDGE: Must explicitly save discussions after adding comments
+  # Aggregate tags and mentions from comments
+  def aggregate_comments
+    self.tags = collect_comment_attribute 'tags'
+    self.mentions = collect_comment_attribute 'mentions'
+  end
+  
+  # Updates the denormalized counts
   def update_counts
     fresh_comments = Comment.collection.find(:discussion_id => id).to_a
-    self.number_of_comments = fresh_comments.length
-    self.number_of_users = fresh_comments.collect{ |c| c["author_id"] }.uniq.length
+    n_comments = fresh_comments.length
+    n_users = fresh_comments.collect{ |c| c["author_id"] }.uniq.length
+    
+    Discussion.collection.update({:_id => id}, {
+      '$set' => { :number_of_comments => n_comments, :number_of_users => n_users }
+    })
+  end
+  
+  # Aggregates and sorts an attribute on associated comments
+  def collect_comment_attribute(attribute)
+    raw = Comment.collection.find({:discussion_id => id}, {:fields => [attribute]}).to_a
+    raw = raw.collect{ |doc| doc[attribute] }.flatten
+    
+    counted = Hash.new(0)
+    raw.each{ |attrib| counted[attrib] += 1 }
+    counted = counted.sort{ |a, b| b[1] <=> a[1] }.collect{ |attrib| attrib.first }
   end
 end

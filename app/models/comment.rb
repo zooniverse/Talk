@@ -8,7 +8,7 @@ class Comment
   key :upvotes, Array
   key :body, String, :required => true
   key :tags, Array
-  key :assets, Array # mentioned Assets, whether these make their way up to the discussion level is TBD
+  key :mentions, Array # mentioned Focii, whether these make their way up to the discussion level is TBD
   timestamps!
   
   belongs_to :discussion
@@ -25,11 +25,11 @@ class Comment
     Comment.limit(no).sort(['created_at', -1]).all(:created_at.gt => Time.now - 1.day)
   end
   
-  # Finds comments mentioning an asset
-  def self.mentioning(asset, *args)
+  # Finds comments mentioning a focus
+  def self.mentioning(focus, *args)
     opts = { :limit => 10, :order => ['created_at', -1] }
     opts = opts.update(args.first) unless args.first.nil?
-    Comment.limit(opts[:limit]).sort(opts[:order]).all(:assets => asset.zooniverse_id)
+    Comment.limit(opts[:limit]).sort(opts[:order]).all(:mentions => focus.zooniverse_id)
   end
   
   # Gets the top most used tags
