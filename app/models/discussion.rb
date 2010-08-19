@@ -12,6 +12,7 @@ class Discussion
   key :focus_id, ObjectId
   key :focus_type, String
   key :slug, String
+
   key :number_of_users, Integer, :default => 0
   key :number_of_comments, Integer, :default => 0
   
