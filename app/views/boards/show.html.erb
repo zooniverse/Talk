@@ -1,17 +1,17 @@
 <div class="upper-row">
-	TITLE OF BOARD
+	<h2><%= @board.name %></h2>
+	<p><%= @board.description %></p>
 </div>
 
 <div class="lower-row">
 	<div class="lhc">		
-		<div class="comments-list">
-			<%= render :partial => "shared/stream" %>
-		</div>
-		<%= render :partial => "shared/comment_short_new" %>			
+		<div class="discussions-list">
+			<%= render :partial => "shared/list_of_discussions_board", :locals => { :id_of_box => "discussions-list" } %>
+		</div>			
 	</div>
 	<div class="rhc">
-		<%= render :partial => "shared/list_of_collections" %>			
-		<%= render :partial => "shared/list_of_discussions" %>	
-		<%= render :partial => "shared/list_of_mentions" %>									
+		<%= render :partial => "shared/zooniverse_extras" %>			
+		<%= render :partial => "shared/project_link" %>	
+		<%= render :partial => "shared/help_wanted" %>									
 	</div>
 </div>
