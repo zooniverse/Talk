@@ -1,6 +1,8 @@
 <div class="upper-row">
-	<h2><%= @board.title %></h2>
-	<p><%= @board.description %></p>
+	<div id="board-heading" class="panel">
+		<h1><%= @board.title %></h1>
+		<p><%= @board.description %></p>
+	</div>
 	<%= render :partial => "shared/meta_for_discussion" %>
 </div>
 
