@@ -12,7 +12,7 @@ class Discussion
   key :focus_id, ObjectId
   key :focus_type, String
   key :slug, String
-  key :users_commenting, Array
+  key :number_of_users, Integer, :default => 0
   key :number_of_comments, Integer, :default => 0
   
   timestamps!
@@ -21,6 +21,7 @@ class Discussion
   
   before_create :set_slug
   # before_save :update_tags
+  before_save :update_counts
   
   # Creates a prettyfied slug for the URL
   def set_slug
@@ -73,4 +74,10 @@ class Discussion
     self.tags = counted_tags.sort{ |a, b| b[1] <=> a[1] }.collect{ |tag| tag.first }
   end
   
+  # KLUDGE: Must explicitly save discussions after adding comments
+  def update_counts
+    fresh_comments = Comment.collection.find(:discussion_id => id).to_a
+    self.number_of_comments = fresh_comments.length
+    self.number_of_users = fresh_comments.collect{ |c| c["author_id"] }.uniq.length
+  end
 end

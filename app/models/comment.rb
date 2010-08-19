@@ -1,11 +1,9 @@
 # A Comment on a Discussion by a User
 class Comment
   include MongoMapper::Document
-  include ZooniverseId
   include Taggable
   
-  
-  key :discussion_id, ObjectId, :required => true
+  key :discussion_id, ObjectId
   key :author_id, ObjectId, :required => true
   key :upvotes, Array
   key :body, String, :required => true
@@ -16,8 +14,6 @@ class Comment
   belongs_to :discussion
   belongs_to :author, :class_name => "User"
   one :response_to, :class_name => "Comment", :foreign_key => "response_to_id"
-  
-  after_create :update_discussion
   
   # Atomic operation to let a User vote for a Comment
   def cast_vote_by(user)
@@ -62,11 +58,5 @@ class Comment
      collected = {}
      tags.each{ |tag| collected[tag['_id']] = tag['value']['count'].to_i }
      collected
-  end
-  
-  private
-  def update_discussion
-    Discussion.collection.update({ '_id' => self.discussion_id }, { '$inc' => { 'number_of_comments' => 1 } })
-    Discussion.collection.update({ '_id' => self.discussion_id }, { '$addToSet' => { 'users_commenting' => self.author_id } })
   end
 end
