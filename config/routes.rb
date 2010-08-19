@@ -18,6 +18,12 @@ Sellers::Application.routes.draw do
   match '/cas_test' => 'home#cas_test'
   root :to => "home#index"
   
+  
+  # mapping for boards 
+  match '/science' => 'boards#science'
+  match '/help' => 'boards#help'
+  match '/chat' => 'boards#chat'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
