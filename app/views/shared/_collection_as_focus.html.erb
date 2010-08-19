@@ -1,1 +1,9 @@
 <!-- Displays a collection with meta data for discussion and comment -->
+
+<% unless @collection.assets.empty?%>
+	<% @collection.assets.each do |item| %>												
+		<%= image_tag(item.location, :class => "collection-thumbnail", :height => 50) %>
+	<% end %>																	
+<% else %>
+	EMPTY COLLECTION				
+<% end %>									

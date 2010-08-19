@@ -11,6 +11,14 @@ class CollectionsControllerTest < ActionController::TestCase
     context "When requesting a Collection" do
       setup do
         @collection = Factory :collection
+        @conversation  = Factory :conversation, :focus_id => @collection.id, :focus_type => "Collection"
+        @collection.conversation_id = @conversation.id
+        @collection.save
+        @focus = @collection
+        @mentions = Discussion.mentioning(@collection)
+        @comment = Comment.new
+        @comments = @collection.conversation.comments
+        @discussion = @conversation
         get :show, { :id => @collection.zooniverse_id }
       end
 

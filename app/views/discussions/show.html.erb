@@ -38,7 +38,6 @@
 		<div class="comments-list">
 			<%= render :partial => "shared/comment_short", :collection => @discussion.comments %>
 		</div>
-		<a id="comment"></a>
-		<%= render :partial => "shared/comment_new" %>			
+		<%= render :partial => "shared/comment_new" if current_zooniverse_user %>			
 	</div>
 </div>
