@@ -60,4 +60,9 @@ class Discussion
     tags.each{ |tag| counted_tags[tag] += 1 }
     self.tags = counted_tags.sort{ |a, b| b[1] <=> a[1] }.collect{ |tag| tag.first }
   end
+  
+  
+  
+  
+  def 
 end
