@@ -10,17 +10,17 @@ class Board
   
   # the science Board
   def self.science
-    find_by_title("Science")
+    find_by_title("science")
   end
   
   # the help Board
   def self.help
-    find_by_title("Help")
+    find_by_title("help")
   end
   
   # the chat Board
   def self.chat
-    find_by_title("Chat")
+    find_by_title("chat")
   end
   
   def stats 
