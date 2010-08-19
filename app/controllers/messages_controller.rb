@@ -18,12 +18,15 @@ class MessagesController < ApplicationController
     @message = Message.new(:sender => current_zooniverse_user)
   end
   
-  def edit
-    @message = Message.find(params[:id])
-  end
-  
   def create
+    @message = Message.new(params[:message])
     
+    if @message.save
+      flash[:notice] = I18n.t 'messages.created'
+      redirect_to messages_path
+    else
+      render :action => "edit"
+    end
   end
   
   private

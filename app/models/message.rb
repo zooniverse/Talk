@@ -20,7 +20,9 @@ class Message
   
   private
   def not_blocked
-    if recipient.blocked_list.include? self.sender.id
+    if recipient.nil?
+      errors.add(:base, I18n.t('messages.no_recipient'))
+    elsif recipient.blocked_list.include? self.sender.id
       errors.add(:base, I18n.t('messages.blocked'))
     end
   end
