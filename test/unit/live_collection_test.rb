@@ -54,6 +54,5 @@ class LiveCollectionTest < ActiveSupport::TestCase
         assert !@assets.include?(@not_found)
       end
     end
-    
   end
 end

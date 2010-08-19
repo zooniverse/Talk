@@ -20,5 +20,4 @@ class UserTest < ActiveSupport::TestCase
       assert @user.associations.keys.include?("sent_messages")
     end
   end
-  
 end

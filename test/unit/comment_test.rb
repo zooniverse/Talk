@@ -28,8 +28,6 @@ class CommentTest < ActiveSupport::TestCase
       assert @comment.associations.keys.include?("author")
       assert @comment.associations.keys.include?("discussion")
     end
-    
-    
   end
   
   context "Two Comments" do
@@ -46,8 +44,7 @@ class CommentTest < ActiveSupport::TestCase
       @user2.save
       @comment.save
       @parent.save
-      @discussion.save
-      
+      @discussion.save 
     end
 
     context "when scoring twice" do

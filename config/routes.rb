@@ -14,6 +14,12 @@ Sellers::Application.routes.draw do
   resources :objects, :controller => :assets do 
     resources :discussions
   end
+  
+  resources :messages
+  
+  resources :users do
+    resources :messages
+  end
 
   match '/cas_test' => 'home#cas_test'
   root :to => "home#index"
