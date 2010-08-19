@@ -29,4 +29,7 @@ en:
       discussions: "Discussions"
   messages:
     blocked: "You have been blocked by this user"
-    no_recipient: "Please select a recipient"
+  sidenav:
+    title: "Sidebar"
+    home: "Home"
+    messages: "Messages"
