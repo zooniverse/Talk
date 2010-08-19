@@ -21,7 +21,6 @@ class HomeControllerTest < ActionController::TestCase
       setup do
         @request.session = nil
         get :cas_test
-        puts @request.session.inspect
       end
       
       # FIX ME - this appears to be a known bug: http://github.com/thoughtbot/shoulda/issues/issue/117

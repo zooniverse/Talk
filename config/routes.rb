@@ -18,7 +18,11 @@ Sellers::Application.routes.draw do
     resources :discussions
   end
   
-  resources :messages
+  resources :messages do
+    collection do
+      get :sent
+    end
+  end
   
   resources :users do
     resources :messages
