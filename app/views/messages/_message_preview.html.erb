@@ -1,0 +1,8 @@
+<!-- Message preview for inbox/sent etc  -->
+<div class="message-preview">
+	<div class="message-preview-container">
+		<div class="subject"><%= message_preview.title %></div>
+		<div class="date"><%= long_date(message_preview.created_at) %></div>
+		<div class="preview"><%= message_preview.body %></div>
+	</div>
+</div>
