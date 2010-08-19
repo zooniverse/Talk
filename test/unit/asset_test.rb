@@ -4,11 +4,7 @@ class AssetTest < ActiveSupport::TestCase
   context "An Asset" do
     setup do
       @asset = Factory :asset
-      @discussion = Factory :discussion
-      @conversation = Factory :discussion
-      @asset.discussions << @discussion
-      @asset.conversation = @conversation
-      @asset.save
+      build_focus_for @asset
     end
 
     should "have keys" do
@@ -33,6 +29,23 @@ class AssetTest < ActiveSupport::TestCase
         assert_equal @asset.class.name, discussion.focus_type
         assert_equal @asset, discussion.focus
       end
+    end
+    
+    should "have aggregated #tags" do
+      comment_tags = [@comment1, @comment2, @comment3].collect{ |c| c.tags }.flatten.uniq.sort
+      assert_equal comment_tags, @asset.tags.sort
+    end
+    
+    should "find #most_recently_mentioned" do
+      assert_equal [@asset2, @asset3, @asset], Asset.most_recently_mentioned
+    end
+    
+    should "find #most_recently_commented_on" do
+      assert_equal [@asset2, @asset3, @asset], Asset.most_recently_commented_on
+    end
+    
+    should "find #trending" do
+      assert_equal [@asset2, @asset3, @asset], Asset.trending
     end
   end
 end

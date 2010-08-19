@@ -26,4 +26,36 @@ class ActiveSupport::TestCase
     @request.session[:cas_user] = {}
     @request.session[:cas_extra_attributes] = {}
   end
+  
+  def build_focus_for(focus)
+    @focus1 = focus
+    klass = focus.class.name.downcase
+    
+    2.upto(3) do |i|
+      f = instance_variable_set("@#{klass + i.to_s}", Factory(klass.to_sym))
+      instance_variable_set("@focus#{i}", f)
+      f.save
+    end
+    
+    build_discussions_for @focus2
+    build_discussions_for @focus3
+    build_discussions_for @focus1
+    
+    @discussion = focus.discussions.first
+    @conversation = focus.conversation
+    @discussion.comments.each.with_index{ |c, i| instance_variable_set "@comment#{i + 1}", c }
+  end
+  
+  def build_discussions_for(focus)
+    discussion = Factory :discussion
+    comment1 = Factory :comment, :tags => ['tag1', 'tag2'], :mentions => focus.zooniverse_id
+    comment2 = Factory :comment, :tags => ['tag2', 'tag3'], :mentions => focus.zooniverse_id
+    comment3 = Factory :comment, :tags => ['tag3', 'tag4'], :mentions => focus.zooniverse_id
+    [comment1, comment2, comment3].each{ |comment| discussion.comments << comment }
+    
+    conversation = Factory :discussion
+    focus.discussions << discussion
+    focus.conversation = conversation
+    focus.save
+  end
 end

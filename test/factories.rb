@@ -7,6 +7,7 @@ end
 Factory.define :comment do |c|
   c.body                "Monkey AMZ1monkey Monkey #cute #awesome Monkey!"
   c.tags                ["cute", "awesome"]
+  c.author              { |author| author.association(:user) }
 end
 
 Factory.define :discussion do |d|
