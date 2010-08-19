@@ -4,7 +4,7 @@
 			<h2>DISCUSSIONS</h2>
 			<ul>
 			  <%- @focus.discussions.each do |discussion| %>
-			    <li><%= discussion_link_for(@focus, discussion) %></li>
+			    <li><%= link_to discussion.subject, discussion_url_for(@focus, discussion) %></li>
 			  <% end -%>
 			</ul>		
 	</div>

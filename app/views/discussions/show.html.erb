@@ -20,11 +20,9 @@
 	<div class="lhc">
 		<h2><strong>DISCUSSION <span class="discussion-splitter">/</span> <%= @discussion.zooniverse_id %></strong></h2>		
 		<h1><%= @discussion.subject %></h1>
-		<div class="subtext">
-			<% @discussion.tags.each do |tag| %>
-				<%= link_to tag %>
-			<% end %>		
-		</div>
+		<% @discussion.tags.each do |tag| %>
+			<%= link_to tag %>
+		<% end %>
 	</div>
 </div>
 

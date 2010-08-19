@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     
     if @discussion.save
       flash[:notice] = t 'controllers.comments.flash_create'      
-      redirect_to :controller => @discussion.focus_type.underscore.pluralize.to_sym, :action => :show, :id => @discussion.focus.zooniverse_id
+      redirect_to discussion_url_for(@discussion.focus, @discussion)
     end
   end
 end
