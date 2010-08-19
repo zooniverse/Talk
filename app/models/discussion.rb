@@ -50,6 +50,18 @@ class Discussion
     comments.collect{ |comment| comment.discussion }
   end
   
+  def live_collection?
+    return (focus_type == "LiveCollection")
+  end
+  
+  def asset?
+    return (focus_type == "Asset")
+  end
+  
+  def collection?
+    return (focus_type == "Collection")
+  end
+  
   private
   # A way to aggregate tags up to a discussion.  Take this with a grain of salt.
   def update_tags

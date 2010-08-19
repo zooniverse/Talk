@@ -1,0 +1,50 @@
+<div class="upper-row">
+	<div class="rhc">
+		<div class="panel discussion-items">
+		<% if (@discussion.asset?) %>									
+			<%= image_tag(@discussion.focus.location, :class => "focus-main-image", :id => "asset-image", :height => 200) %>
+		<% end %>
+		
+		<% if (@discussion.collection? || @discussion.live_collection?) %>		
+			<% unless @discussion.focus.assets.empty?%>
+				<%= image_tag(@discussion.focus.assets.first.location, :class => "collection-large", :id => "asset-image", :height => 215) %>		
+				<% (1..3).each do %>
+					<% @discussion.focus.assets.each do |item| %>												
+						<%= image_tag(item.location, :class => "collection-thumbnail", :height => 50) %>
+					<% end %>
+				<% end %>																		
+			<% else %>
+				EMPTY COLLECTION				
+			<% end %>									
+		<% end %>	
+		</div>
+	</div>
+	<div class="lhc">
+		<h2><strong>DISCUSSION <span class="discussion-splitter">/</span> <%= @discussion.zooniverse_id %></strong></h2>		
+		<h1><%= @discussion.subject %></h1>
+		<% @discussion.tags.each do |tag| %>
+			<%= link_to tag %>
+		<% end %>
+
+	</div>
+
+</div>
+
+<div class="lower-row">
+	<% if (@discussion.asset?) %>		
+		<div class="rhc">		
+			<div class="panel">
+				AD SPACE
+			</div>
+		</div>
+	<% end %>
+
+	<div class="lhc">		
+		<div class="comments-list">
+			<% (1..20).each do %>
+				<%= render :partial => "shared/comment_short", :collection => @discussion.comments %>
+			<% end %>
+		</div>
+		<%= render :partial => "shared/comment_new" %>			
+	</div>
+</div>

@@ -29,6 +29,11 @@
 	list-style: none;
 }
 
+.ct h1 {
+	margin: 0 0 10px 0;
+	font-size: 1.2em;
+}
+
 .ct h2 {
 	margin: 0 0 5px 0;
 }
@@ -66,6 +71,14 @@
 	list-style-type:none;
 }
 
+.upper-row {
+	height:200px;
+}
+
+/*.upper-row .lhc {*/
+/*	width: 450px;*/
+/*}*/
+
 /* Lower Row */
 .lower-row .lhc {
 	border: solid #afafaf 1px;
@@ -78,9 +91,6 @@
 .rhc {
 	float: right;
 	width: 240px;
-}
-
-.lower-row .rhc a {
 }
 
 /* Tags */
@@ -225,14 +235,12 @@ h2.asset-name {
 /* jQuery */
 
 .ui-tabs .ui-tabs-hide {
-     display: none;
+  display: none;
 }
 
 #trends-tabs ul, #recents-tabs ul {
-
 	padding: 0 0 10px 0;
 }
-
 
 #trends-tabs ul li, #recents-tabs ul li {
 	display: inline;
@@ -245,4 +253,18 @@ h2.asset-name {
 
 #trends-tabs ul li a, #recents-tabs ul li a {
 	text-decoration: none;
+}
+
+.rhc .discussion-items img {
+	margin-bottom: 5px;
+}
+
+.discussion-splitter {
+	color:red;
+	position:relative;
+	top:-1px;
+}
+
+.collection-thumbnail {
+	cursor: pointer;
 }
