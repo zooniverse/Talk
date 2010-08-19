@@ -10,10 +10,18 @@ class HomeController < ApplicationController
     @trending_assets = Asset.trending 5
     @trending_collections = Collection.trending 5
     @trending_discussions = Discussion.trending 5
-    
     @trending_tags = Comment.trending_tags 10
     @trending_tags = Comment.rank_tags(@trending_tags,8)
     
+    # Loading data for boards
+    @help_board = Board.find_by_title("help")
+    @help_list = @help_board.discussions
+
+    @chat_board = Board.find_by_title("chat")
+    @chat_list = @chat_board.discussions
+
+    @science_board = Board.find_by_title("science")
+    @science_list = @science_board.discussions
   end
   
   def cas_test

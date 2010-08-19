@@ -31,10 +31,10 @@
 		</div>
 		
 		<br/>
-		<h2>BOARDS</h2>
-		<%= render :partial => "shared/boards_front_page", :locals => { :title => "HELP" } %>
-		<%= render :partial => "shared/boards_front_page", :locals => { :title => "SCIENCE" } %>
-		<%= render :partial => "shared/boards_front_page", :locals => { :title => "CHAT" } %>
+
+		<%= render :partial => "shared/boards_front_page", :locals => { :title => "HELP", :this_list => @help_list } %>
+		<%= render :partial => "shared/boards_front_page", :locals => { :title => "SCIENCE", :this_list => @science_list } %>
+		<%= render :partial => "shared/boards_front_page", :locals => { :title => "CHAT", :this_list => @chat_list } %>
 	</div>
 </div>
 <div class="home-rhc">

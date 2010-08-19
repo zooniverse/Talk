@@ -2,10 +2,8 @@
 <div class="panel boards-list">
 	<h3><%= title %></h3>
 	<ul>
-		<li>gjhgdjk fewjkf ewfyew efy dc ew so dmow cb wuy</li>
-		<li>gjhgdjk fewjkf ewfyew efy dc ew so dmow cb wuy</li>
-		<li>gjhgdjk fewjkf ewfyew efy dc ew so dmow cb wuy</li>
-		<li>gjhgdjk fewjkf ewfyew efy dc ew so dmow cb wuy</li>
-		<li>gjhgdjk fewjkf ewfyew efy dc ew so dmow cb wuy</li>
+		<% this_list.each do |l| %>
+		<li class="name"><%= link_to l.subject, "#" %></li>
+		<% end %>
 	</ul>
 </div>
