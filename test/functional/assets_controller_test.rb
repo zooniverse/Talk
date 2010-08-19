@@ -16,6 +16,10 @@ class AssetsControllerTest < ActionController::TestCase
 
       should_respond_with :success
       should_render_template :show
+      
+      should "Display the asset zooniverse_id" do
+        assert_select 'h2.asset-name', :text => @asset.zooniverse_id
+      end
     end
   end
 end
