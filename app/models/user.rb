@@ -4,6 +4,7 @@ class User
   
   key :zooniverse_user_id, Integer, :required => true
   key :name, String, :required => true
+  key :blocked_list, Array
   timestamps!
   
   many :collections
@@ -11,5 +12,4 @@ class User
   many :comments, :foreign_key => :author_id
   many :messages, :foreign_key => :recipient_id
   many :sent_messages, :class_name => "Message", :foreign_key => :sender_id
-  many :blocked, :class_name => "User", :foreign_key => :_id
 end

@@ -1,8 +1,7 @@
 require 'test_helper'
 
 class MessageTest < ActiveSupport::TestCase
-  context "A message" do 
-    
+  context "A message" do
     setup do
       @message = Factory :message
     end
@@ -24,5 +23,19 @@ class MessageTest < ActiveSupport::TestCase
       @message.reload
       assert !@message.unread
     end
+    
+    context "blocked by recipient" do
+      setup do
+        @recipient = Factory :user
+        @recipient.blocked_list << @message.sender.id
+        @recipient.save
+        @message.recipient = @recipient
+      end
+
+      should "not be valid" do
+        assert !@message.valid?
+      end
+    end
+    
   end
 end
