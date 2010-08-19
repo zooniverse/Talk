@@ -23,13 +23,14 @@ class Board
     find_by_title("Chat")
   end
   
-  # FIXME
-  def number_of_users
-    2
+  def stats 
+    self.discussions.inject({:number_of_users=>0,:number_of_comments=>0}) do |r,d|    
+       r[:number_of_users]+=d.users_commenting
+       r[:number_of_comments]+=d.number_of_comments
+    end
+    
+    
   end
+
   
-  # FIXME
-  def number_of_comments
-    3
-  end
 end
