@@ -7,6 +7,10 @@ class ActiveSupport::TestCase
     MongoMapper.database.collections.reject{ |c| c.name == 'system.indexes' }.each do |collection|
       collection.remove
     end
+    
+    Board.create(:title => "science", :description => "awesome")
+    Board.create(:title => "help", :description => "awesome")
+    Board.create(:title => "chat", :description => "awesome")
   end
   
   def standard_cas_login
