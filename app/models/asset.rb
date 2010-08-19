@@ -4,7 +4,6 @@ class Asset
   include Focus
   include Taggable
   
-  
   key :zooniverse_id, String, :required => true
   key :location, String, :required => true
   key :thumbnail_location, String, :required => true
@@ -30,7 +29,5 @@ class Asset
   def self.trending (no=10)
    result= Discussion.collection.group( [:focus_id], {:focus_type=>"Asset"}, {:count=>0},"function(obj, prev){ prev.count += obj.no_of_comments*obj.no_of_users; }")
    result[0..no-1].collect{|r| Asset.find(r['focus_id'])}
-   
-  end
-  
+  end 
 end
