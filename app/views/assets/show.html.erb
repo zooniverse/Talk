@@ -9,7 +9,7 @@
 			<%= render :partial => "shared/comment_short" %>	
 			<%= render :partial => "shared/comment_short" %>					
 		</div>
-		<%= render :partial => "shared/comment_short_new" %>			
+		<%= render :partial => "shared/comment_short_new" if current_zooniverse_user %>			
 	</div>
 	<div class="rhc">
 		<%= render :partial => "shared/list_of_collections" %>			
