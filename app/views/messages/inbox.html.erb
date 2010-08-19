@@ -1,0 +1,17 @@
+<div class="upper-row">
+	<h2>Messages > Inbox</h2>
+	<%= render :partial => "shared/meta_for_messages" %>
+</div>
+
+<div class="lower-row">
+	<div class="lhc">		
+		<div class="message-list">
+			<%= render :partial => "shared/list_of_messages", :locals => { :id_of_box => "inbox" } %>
+		</div>			
+	</div>
+	<div class="rhc">
+		<%= render :partial => "shared/zooniverse_extras" %>			
+		<%= render :partial => "shared/project_link" %>	
+		<%= render :partial => "shared/help_wanted" %>									
+	</div>
+</div>
