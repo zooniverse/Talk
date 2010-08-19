@@ -25,7 +25,7 @@ class Board
   
   def stats 
     self.discussions.inject({:number_of_users=>0,:number_of_comments=>0}) do |r,d|    
-       r[:number_of_users]+=d.users_commenting
+       r[:number_of_users]+=d.number_of_comments
        r[:number_of_comments]+=d.number_of_comments
     end
     
