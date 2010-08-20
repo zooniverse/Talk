@@ -371,14 +371,23 @@ h2.asset-name {
 }
 
 .message {
-	border-bottom: solid #afafaf 1px;
 	margin-bottom: 5px;
 	font-size: 80%;
 }
 
+.message h2 {
+	font-size: 2.0em;
+	padding: 0 0 5px 0px;
+}
+
 .message-container {
 	margin-left: 0px;
-	padding-bottom: 7px;
+	padding: 5px 5px;
+	border-top: solid #afafaf 1px;
+}
+
+.odd {
+	background-color: #eee;
 }
 
 .message-container .subject {

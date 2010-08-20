@@ -12,6 +12,7 @@ class MessagesController < ApplicationController
   def show
     @message = Message.find(params[:id])
     @message.mark_as_read unless @message.nil?
+    @thread_with_user = @message.sender
     @messages = current_zooniverse_user.messages_with(@message.sender)
   end
   

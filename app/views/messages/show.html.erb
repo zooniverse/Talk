@@ -1,7 +1,8 @@
 <!-- Show an individual message  -->
 <div class="message">
+  <h2>Message Thread with <%= @thread_with_user.name %></h2>
   <%- @messages.each do |message| %>
-  	<div class="message-container">
+  	<div class="<%= cycle("message-container even", "message-container odd") -%>">
   		<div class="subject"><%= message.title %></div>
   		<div class="date"><%= long_date(message.created_at) %></div>
   		<div class="body"><%= message.body %></div>
