@@ -350,15 +350,19 @@ h2.asset-name {
 }
 
 
+.odd {
+	background-color: #eee;
+}
+
 .message-preview {
-	border-bottom: solid #afafaf 1px;
 	margin-bottom: 5px;
 	font-size: 80%;
 }
 
 .message-preview-container {
 	margin-left: 0px;
-	padding-bottom: 7px;
+	padding: 5px 5px;
+	border-top: solid #afafaf 1px;
 }
 
 .message-preview-container .date {
@@ -375,23 +379,19 @@ h2.asset-name {
 	font-size: 80%;
 }
 
-.message h2 {
-	font-size: 2.0em;
+.message h1 {
+	font-size: 1.5em;
 	padding: 0 0 5px 0px;
 }
 
 .message-container {
 	margin-left: 0px;
 	padding: 5px 5px;
-	border-top: solid #afafaf 1px;
-}
-
-.odd {
-	background-color: #eee;
+	border-bottom: solid #afafaf 1px;
 }
 
 .message-container .subject {
-	font-size: 1.5em;
+	font-size: 1.2em;
 }
 
 .message-container .date {

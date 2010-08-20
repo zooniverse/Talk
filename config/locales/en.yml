@@ -28,6 +28,10 @@ en:
       users: "Participants"
       discussions: "Discussions"
   messages:
+    messages: "Messages"
+    inbox: "Inbox"
+    sent: "Sent"
+    thread_with: "Message thread with"
     blocked: "You have been blocked by this user"
   sidenav:
     title: "Sidebar"
