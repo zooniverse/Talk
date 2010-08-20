@@ -1,6 +1,8 @@
 <!-- Message preview for inbox/sent etc  -->
+<%= image_tag('default_user.png', :class => "message-user", :height => 45) %>
 <div class="<%= cycle("message-container even", "message-container odd") -%>">
 	<div class="subject"><%= link_to message.title, :action => :show, :id => message.id %></div>
+	<div class="user"><%= message.sender.name %></div>
 	<div class="date"><%= long_date(message.created_at) %></div>
 	<div class="preview"><%= message.body %></div>
 </div>
