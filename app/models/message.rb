@@ -26,6 +26,14 @@ class Message
     recipient = User.find_by_name(name)
   end
   
+  def sent_to?(user)
+    recipient_id == user.id
+  end
+  
+  def sent_by?(user)
+    sender_id == user.id
+  end
+  
   private
   def not_blocked
     if recipient.nil?

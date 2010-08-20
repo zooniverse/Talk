@@ -6,7 +6,8 @@
 	<div class="lhc">		
 		<div class="message-list">
 		  <%- @messages.each do |message| %>
-		  	<div class="<%= cycle("message-container even", "message-container odd") -%>">
+		    <%- base = "#{ "outgoing " if message.sent_by? current_zooniverse_user }" -%>
+		  	<div class="<%= "message-container #{base}" + cycle("even", "odd") -%>">
 		  		<div class="subject"><%= message.title %></div>
 		  		<div class="date"><%= long_date(message.created_at) %></div>
 		  		<div class="body"><%= message.body %></div>

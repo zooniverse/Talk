@@ -390,6 +390,10 @@ h2.asset-name {
 	border-bottom: solid #afafaf 1px;
 }
 
+.message-container.outgoing {
+	padding-left: 25px;
+}
+
 .message-container .subject {
 	font-size: 1.2em;
 }
