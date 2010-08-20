@@ -6,7 +6,7 @@
 <div class="lower-row">
 	<div class="lhc">		
 		<div class="message-list">
-			<%= render :partial => "list_of_messages", :locals => { :id_of_box => "sent" } %>
+			<%= render :partial => "message", :collection => @messages %>
 		</div>			
 	</div>
 	<div class="rhc">
