@@ -8,6 +8,7 @@ class MessagesController < ApplicationController
   end
   
   def sent
+    @thread_with_user = false
     @messages = current_zooniverse_user.sent_messages
   end
   
