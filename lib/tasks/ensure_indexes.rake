@@ -48,4 +48,5 @@ task :ensure_indexes => :environment do
   puts "Building indexes for User"
   drop_indexes_on(User)
   User.ensure_index [['zooniverse_user_id', 1]], :unique => true
+  User.ensure_index [['name', 1]]
 end

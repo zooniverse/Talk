@@ -1,5 +1,7 @@
 class MessagesController < ApplicationController
-  before_filter :check_or_create_zooniverse_user, :get_meta
+  respond_to :html, :json
+  before_filter :check_or_create_zooniverse_user
+  before_filter :get_meta, :except => :recipient_search
   
   def index
     @messages = current_zooniverse_user.messages
@@ -34,6 +36,11 @@ class MessagesController < ApplicationController
     else
       render :action => "edit"
     end
+  end
+  
+  def recipient_search
+    @names = User.limit(5).only(:name).all(:name => /^#{ params[:term] }/)
+    respond_with(@names.collect{ |u| u.name }.to_json)
   end
   
   private

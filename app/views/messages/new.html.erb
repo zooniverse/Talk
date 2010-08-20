@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.3/themes/base/jquery-ui.css" type="text/css" media="all" />
+
 <%= form_for @message do |f| %>
   <span><label>To:</label><%= f.text_field :recipient_name %></span><br />
 	<span><label>Title:</label><%= f.text_field :title %></span>
@@ -5,3 +7,5 @@
 	<%= f.text_area :body, :rows => 4, :cols => 61 %>
 	<%= submit_tag 'Send' %>
 <%- end %>
+
+<%= render :partial => "recipient_autocompleter.js" %>
