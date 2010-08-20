@@ -4,19 +4,24 @@ class MessagesController < ApplicationController
   before_filter :get_meta, :except => :recipient_search
   
   def index
+    @listing = true
     @messages = current_zooniverse_user.messages
   end
   
   def sent
-    @thread_with_user = false
+    @listing = false
     @messages = current_zooniverse_user.sent_messages
   end
   
   def show
+    @listing = false
     @message = Message.find(params[:id])
-    @message.mark_as_read unless @message.nil?
-    @thread_with_user = @message.sender
-    @messages = current_zooniverse_user.messages_with(@message.sender)
+    
+    unless @message.nil?
+      @message.mark_as_read
+      @thread_with_user = @message.sender
+      @messages = current_zooniverse_user.messages_with(@message.sender)
+    end
   end
   
   def new

@@ -379,6 +379,11 @@ img.message-user {
 	border-bottom: solid #afafaf 1px;
 }
 
+.message-container .preview {
+	overflow-y: auto;
+	max-height: 300px;
+}
+
 .message-container.outgoing {
 	padding-left: 25px;
 }

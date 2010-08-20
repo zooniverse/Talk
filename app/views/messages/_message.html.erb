@@ -2,9 +2,12 @@
 <%- direction = message.sent_by?(current_zooniverse_user) ? "outgoing" : "incoming" %>
 <%= image_tag('default_user.png', :class => "message-user #{direction} ", :height => 45) %>
 <div class="<%= "message-container #{direction} " + cycle("even", "odd") -%>">
-  <%- subject = @thread_with_user.nil? ? link_to(message.title, message) : message.sender.name %>
+  <%- title = @listing ? truncate(message.title, :length => 50) : message.title -%>
+  <%- subject = @listing ? link_to(title, message) : title -%>
+  <%- body = @listing ? truncate(message.body, :length => 50) : message.body -%>
+  
 	<div class="subject"><%= subject %></div>
 	<div class="user"><%= message.sender.name %></div>
 	<div class="date"><%= long_date(message.created_at) %></div>
-	<div class="preview"><%= message.body %></div>
+	<div class="preview"><%= body %></div>
 </div>
