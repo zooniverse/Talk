@@ -91,16 +91,15 @@ a img {
 	clear:both;
 /*	float:left;*/
 	width:100%;
-/*	background-image: url(/images/header_bg.gif);*/
-	background-repeat: repeat-x;
-	height: 95px; 
+/*	height: 95px; */
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
 	border-bottom-color: #494747;
+	padding-bottom: 10px;
 }
 
 #header #logo {
-	padding: 30px 10px;
+/*	padding: 30px 10px;*/
 }
 
 #lcol {

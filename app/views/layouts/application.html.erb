@@ -2,7 +2,9 @@
 <html>
 <head>
   <title><%= t 'title' %></title>
-  <%= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag "temp" %>
+  <%= stylesheet_link_tag "communicator" %>
+
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.3/jquery-ui.min.js" type="text/javascript"></script>
   <%= javascript_include_tag 'application' %>
@@ -12,8 +14,8 @@
 	<%= render :partial=> "shared/top_bar.html.erb" %>
 	<div class="wrapper">
 		<div id="header">
-			<div id="logo">
-				<%= link_to((t 'title'), root_path) %>
+			<div id="logo">				
+				<%= link_to(image_tag('logo.png'), root_path) %>
 			</div>
 		</div>
 		<div id="lcol">
@@ -22,6 +24,7 @@
 		<div id="rcol" class="ct">
 			<%= yield %>
 		</div>
+		<div class="push"></div>
 	</div>
 </body>
 </html>

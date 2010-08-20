@@ -9,11 +9,11 @@
 
 <div class="lower-row">
 	<div class="lhc">		
+		<%= render :partial => "shared/comment_short_new" if current_zooniverse_user %>			
 		<div class="comments-list">
 			<%= render :partial => "shared/comment_short" %>	
 			<%= render :partial => "shared/comment_short" %>					
 		</div>
-		<%= render :partial => "shared/comment_short_new" if current_zooniverse_user %>			
 	</div>
 	<div class="rhc">
 		<%= render :partial => "shared/list_of_collections" %>			

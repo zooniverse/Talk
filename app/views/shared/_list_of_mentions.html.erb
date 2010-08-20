@@ -1,11 +1,13 @@
 <!-- Displays list of mentions of a focus -->
 <% unless @mentions.empty? %>
 	<div class="panel collection-list">
-		<h2>MENTIONS</h2>
+		<h2>Mentions</h2>
+		<div>
 		<ul>
 		  <%- @mentions.each do |discussion| %>
 		    <li><%= link_to discussion.subject, "#" %></li>
 		  <% end -%>
-		</ul>		
+		</ul>
+		<div>		
 	</div>
 <% end %>

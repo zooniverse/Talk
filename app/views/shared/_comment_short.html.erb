@@ -2,8 +2,7 @@
 <div class="short-comment">
 	<%= image_tag('default_user.png', :class => "short-comment-user", :height => 40) %>
 	<div class="comment-container">
-		<div class="name"><%= comment_short.author.name %></div>
-		<div class="date"><%= long_date(comment_short.created_at) %></div>
-		<div class="comment-body"><%= comment_short.body %></div>
+		<span class="name"><%= comment_short.author.name %></span><div class="comment-body"><%= comment_short.body %></div>				
 	</div>
+	<div class="date"><%= long_date(comment_short.created_at) %></div>
 </div>
