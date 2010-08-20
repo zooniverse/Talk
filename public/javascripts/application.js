@@ -49,3 +49,15 @@ $(document).ready(function(){
 		OCT.collection.init();
 		OCT.scroll.init();
 });
+
+function clear_input(a){
+	myfield = document.getElementById(arguments[0]);
+	myfield.value = "";
+}
+
+function replace_input(a,b){
+	myfield = document.getElementById(arguments[0]);
+	if (myfield.value == "") {
+	 myfield.value = arguments[1];
+	}
+}
