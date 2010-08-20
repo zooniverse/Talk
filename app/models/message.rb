@@ -34,6 +34,16 @@ class Message
     sender_id == user.id
   end
   
+  def visible_to?(user)
+    sent_to?(user) || sent_by?(user)
+  end
+  
+  def destroy_for(user)
+    destroyed_by_sender = true if sent_by? user
+    destroyed_by_recipient = true if sent_to? user
+    destroy if destroyed_by_recipient and destroyed_by_sender
+  end
+  
   private
   def not_blocked
     if recipient.nil?

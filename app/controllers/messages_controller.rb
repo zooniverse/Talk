@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
     @listing = false
     @message = Message.find(params[:id])
     
-    unless @message.nil?
+    if !@message.nil? && @message.visible_to?(current_zooniverse_user)
       @message.mark_as_read
       @thread_with_user = @message.sender
       @messages = current_zooniverse_user.messages_with(@message.sender)
@@ -32,8 +32,6 @@ class MessagesController < ApplicationController
     @recipient = User.find_by_name(params["message"][:recipient_name])
     options = { :sender_id => current_zooniverse_user.id, :recipient_id => @recipient.id } unless @recipient.nil?
     params["message"].delete(:recipient_name)
-    logger.debug "PARAMS:@"
-    logger.debug params.inspect
     @message = Message.new(params[:message].merge(options))
     
     if @message.save
@@ -42,6 +40,11 @@ class MessagesController < ApplicationController
     else
       render :action => "edit"
     end
+  end
+  
+  def destroy
+    @message = Message.find(params[:id])
+    @message.destroy_for(current_zooniverse_user)
   end
   
   def recipient_search
