@@ -350,14 +350,11 @@ h2.asset-name {
 }
 
 
-.odd {
-	background-color: #eee;
+.comment-form {
+	margin: 20px 0 20px 0;
 }
 
-.my_message {
-	padding-left: 10px;
-}
-
+/* Messages */
 .message {
 	margin-bottom: 5px;
 	font-size: 80%;
@@ -366,6 +363,10 @@ h2.asset-name {
 img.message-user {
 	float: left;
 	padding: 8px 0 0 5px;
+}
+
+img.message-user.outgoing {
+	padding-left: 20px;
 }
 
 .message h1 {
@@ -385,7 +386,8 @@ img.message-user {
 }
 
 .message-container.outgoing {
-	padding-left: 25px;
+	margin-left: 15px;
+	background-color: #eee;
 }
 
 .message-container .subject {

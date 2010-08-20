@@ -1,7 +1,7 @@
 <!-- Message preview for inbox/sent etc  -->
-<%- direction = message.sent_by?(current_zooniverse_user) ? "outgoing" : "incoming" %>
+<%- direction = (@thread_with_user.nil? || message.sent_to?(current_zooniverse_user)) ? "incoming" : "outgoing" %>
 <%= image_tag('default_user.png', :class => "message-user #{direction} ", :height => 45) %>
-<div class="<%= "message-container #{direction} " + cycle("even", "odd") -%>">
+<div class="<%= "message-container #{direction}" -%>">
   <%- title = @listing ? truncate(message.title, :length => 50) : message.title -%>
   <%- subject = @listing ? link_to(title, message) : title -%>
   <%- body = @listing ? truncate(message.body, :length => 50) : message.body -%>
