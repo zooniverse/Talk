@@ -1,0 +1,6 @@
+<!-- Message preview for inbox/sent etc  -->
+<div class="<%= cycle("message-container even", "message-container odd") -%>">
+	<div class="subject"><%= link_to message.title, :action => :show, :id => message.id %></div>
+	<div class="date"><%= long_date(message.created_at) %></div>
+	<div class="preview"><%= message.body %></div>
+</div>

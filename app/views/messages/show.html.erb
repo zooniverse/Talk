@@ -5,14 +5,7 @@
 <div class="lower-row">
 	<div class="lhc">		
 		<div class="message-list">
-		  <%- @messages.each do |message| %>
-		    <%- base = "#{ "outgoing " if message.sent_by? current_zooniverse_user }" -%>
-		  	<div class="<%= "message-container #{base}" + cycle("even", "odd") -%>">
-		  		<div class="subject"><%= message.title %></div>
-		  		<div class="date"><%= long_date(message.created_at) %></div>
-		  		<div class="body"><%= message.body %></div>
-		  	</div>
-			<% end -%>
+		  <%= render :partial => "message", :collection => @messages %>
 		</div>			
 	</div>
 	<div class="rhc">
