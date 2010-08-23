@@ -4,5 +4,5 @@
 	<div class="comment-container">
 		<span class="name"><%= comment_short.author.name %></span><div class="comment-body"><%= comment_short.body %></div>				
 	</div>	
-	<div class="date"><div class="vote-controls" style="margin-top:8px"><a href="#" style="color:#2276BB;margin: 0 5px 0 0;">RECOMMEND</a><a href="#">REPORT</a></div><div style="margin-top:5px;font-size:90%;"><%= long_date(comment_short.created_at) %></div></div>
+	<div class="date"><div style="margin-top:2px;font-size:90%;"><%= long_date(comment_short.created_at) %></div><div class="vote-controls" style="margin-top:5px;float:right;"><a href="#" style="color:#2276BB;margin: 0;">RECOMMEND</a>&nbsp;|&nbsp;<a href="#" style="color:#2276BB;">REPORT</a></div></div>
 </div>

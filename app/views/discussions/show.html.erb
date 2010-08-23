@@ -1,6 +1,6 @@
 <div class="upper-row discussion">
 	<% unless @discussion.focus_type.blank? %>	
-	<div class="rhc">
+	<div class="rhc">				
 		<div class="panel discussion-items">
 		<% if (@discussion.asset?) %>								
 			<%= image_tag(@discussion.focus.location, :class => "focus-main-image", :id => "asset-image", :height => 200) %>

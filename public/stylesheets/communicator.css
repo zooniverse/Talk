@@ -101,12 +101,13 @@ a:hover {
 }
 
 .asset-meta {
-	margin-left: 20px;
-	float:right;
+		float:right;
+		font-size: 90%;
+		color: #aaa;
 }
 
 .asset-meta ul {
-	font-size: 80%;
+
 }
 
 .asset-meta li {
@@ -146,7 +147,6 @@ a:hover {
 .recent-item {
 	border-bottom: dotted #000 1px;
 	padding: 15px 10px 5px 10px;
-/*	background: #E7E7E7;*/
 	background: #F6F6F6;
 }
 
@@ -171,7 +171,7 @@ a:hover {
 
 .comment-total {
 	background: url('/images/comment.gif') no-repeat left;
-	padding-left: 17px;
+	padding-left: 16px;
 	color: #000;
 	font-size: 85%;
 	margin-right: 10px;
@@ -180,7 +180,7 @@ a:hover {
 
 .views-total {
 	background: url('/images/views.png') no-repeat left;
-	padding-left: 17px;
+	padding-left: 16px;
 	color: #000;
 	font-size: 85%;
 	margin-right: 10px;
@@ -216,7 +216,7 @@ img.short-comment-user, img.recent-comment-user {
 
 }
 
-.short-comment {
+.short-comment, .recent-comment {
 		padding: 10px 0 10px 0;
 }
 
@@ -570,6 +570,6 @@ h2.asset-name {
 .short-comment .vote-controls {
 	font-size: 70%;
 /*	float: left;*/
-/*	display: none;*/
+	display: none;
 /*	margin-top: 5px;*/
 }
