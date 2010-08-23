@@ -40,7 +40,24 @@ OCT.scroll = {
 		init: function () {
 
 		}
-}
+};
+
+/* 
+ * @Namespace Hovering
+ */
+OCT.hover = {
+		comment			: '.short-comment',
+		vote_controls : '.vote-controls',
+		
+		init: function () {
+			$(OCT.hover.comment).hover(function() {	
+				console.log
+				$(OCT.hover.vote_controls, this).show();
+			}, function() {
+				$(OCT.hover.vote_controls, this).hide();
+			});
+		}
+};
 
 
 // --
@@ -48,8 +65,11 @@ $(document).ready(function(){
 		OCT.tabs.init();
 		OCT.collection.init();
 		OCT.scroll.init();
+		OCT.hover.init();
 });
 
+
+// Utility
 function clear_input(a){
 	myfield = document.getElementById(arguments[0]);
 	myfield.value = "";

@@ -3,6 +3,6 @@
 	<%= image_tag('default_user.png', :class => "short-comment-user", :height => 40) %>
 	<div class="comment-container">
 		<span class="name"><%= comment_short.author.name %></span><div class="comment-body"><%= comment_short.body %></div>				
-	</div>
-	<div class="date"><%= long_date(comment_short.created_at) %></div>
+	</div>	
+	<div class="date"><%= long_date(comment_short.created_at) %> <div class="vote-controls"><a href="#">UP</a>&nbsp;<a href="">DOWN</a></div></div>
 </div>

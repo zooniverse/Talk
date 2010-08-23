@@ -13,9 +13,7 @@ body {
 
 /* Communication Tool resets*/
 #logo {
-/*	font-size: 36px;*/
 	text-transform: uppercase;
-/*	margin: 0 0 0 -10px;*/
 }
 
 #logo a {
@@ -108,9 +106,7 @@ padding-top: 30px;
 }
 
 .asset-meta {
-	margin-left: 210px;
-	height: 200px;
-/*	clear:left;*/
+	margin-top: -15px;
 }
 
 .asset-meta ul {
@@ -125,16 +121,9 @@ padding-top: 30px;
 	height:200px;
 }
 
-/*.upper-row .lhc {*/
-/*	width: 450px;*/
-/*}*/
-
 /* Lower Row */
 .lower-row .lhc {
-	border: solid #afafaf 1px;
-	border-style: none none none none;
 	float: left;
-	padding-top: 5px;
 }
 
 .lhc {
@@ -174,10 +163,6 @@ padding-top: 30px;
 	margin-bottom: 3px;
 }
 
-.item-container .body {
-
-}
-
 .item-container .name {
 	font-weight: bold;
 }
@@ -189,7 +174,6 @@ padding-top: 30px;
 /* Comments */
 .short-comment, .recent-comment {
 	border-bottom: solid #eee 1px;
-/*	font-size: 80%;*/
 }
 
 .short-comment a {
@@ -231,14 +215,11 @@ img.short-comment-user, img.recent-comment-user {
 
 /* Lower Row */
 .lower-row .rhc {
-/*	border-top: solid #afafaf 1px;*/
 	padding-top: 5px;
 }
 
 .rhc .panel {
 	margin-bottom: 30px;
-/*	border-left: dotted #afafaf 1px;*/
-/*	padding: 10px;*/
 }
 
 .rhc .panel div {
@@ -438,10 +419,14 @@ h2.short-comment-prompt {
 }
 
 .push {
-	height:1px;clear:both;
+	height:1px;
+	clear:both;
 }
 
-
+.push-right {
+	height: 1px;
+	clear: right;
+}
 
 #sidebar, #sidebar ul {
 	margin:0;
@@ -483,7 +468,7 @@ h2.asset-name {
 	border: solid #000 1px;
 }
 
-/* Retro Tabs */
+/* Old Tabs */
 /*
 .ct .ui-tabs-nav li {
 	background: lightgrey;
@@ -525,14 +510,13 @@ h2.asset-name {
 
 .ct .ui-tabs-nav li.ui-tabs-selected {
 	background: #2E4C6F;
-	
 }
 
 .ct .ui-tabs-nav li.ui-tabs-selected a {
 	color: #fff;
 }
 
-/* Web 2.0 tabs */
+/* Tabs */
 .headed-panel {
 	border: solid #eee 1px;
 	background: #F6F6F6;
@@ -562,3 +546,8 @@ h2.asset-name {
 	padding: 0 10px 10px 10px;
 }
 
+.short-comment .vote-controls {
+	font-size: 80%;
+	float: right;
+	display: none;
+}
