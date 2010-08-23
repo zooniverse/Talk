@@ -146,7 +146,8 @@ a:hover {
 .recent-item {
 	border-bottom: dotted #000 1px;
 	padding: 15px 10px 5px 10px;
-	background: #E7E7E7;
+/*	background: #E7E7E7;*/
+	background: #F6F6F6;
 }
 
 .item-container {
