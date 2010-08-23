@@ -20,9 +20,25 @@
 <div class="lower-row">
 	<div class="lhc">		
 		<div class="comments-list">
-			<%if @results%>
-				<%= render :partial => "shared/comment_short", :collection => @results %>
+			<h1>Comments</h1>
+			<%if @results_comments%>
+				<%= render :partial => "shared/comment_short", :collection => @results_comments %>
 			<%end%>
+		</div>
+		
+		<div class="comments-list">
+			<h1>Discussions</h1>
+			<%if @results_discussions and !@results_discussions.empty? %>
+			<%= render :partial => "shared/list_of_discussions_main", :locals => { :discussions_list => @results_discussions, :id_of_box => "found-discussions" } %>
+			<%end%>
+		</div>
+		
+		<div class="comments-list">
+			<h1>Assets</h1>
+			<%if @results_assets%>
+			<%= render :partial => "shared/list_of_assets", :locals => { :assets_list => @results_assets, :id_of_box => "found-assets" } %>
+			<%end%>
+			
 		</div>
 		<a id="comment"></a>
 	</div>
