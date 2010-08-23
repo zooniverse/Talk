@@ -16,6 +16,18 @@ module Xapify
       
       @xap_db = Xapify::XapianDb.new(:dir => "#{Rails.root}/index/#{name}.db", :create => true, :fields => @xap_fields)
     end
+    
+    def search(searchString)
+       db = @xap_db
+       docs=db.search(searchString)
+       docs.collect do |d|
+          hash ={}
+          @xap_fields.each do |k|
+            hash[k]=d.values[k]
+          end 
+          hash
+       end
+    end
   end
 
   module InstanceMethods
@@ -39,10 +51,7 @@ module Xapify
     base.key :xap_id, Fixnum
   end
   
-  def search(searchString)
-     db = self.class.xap_db
-     db.search
-  end
+  
 end
 
 MongoMapper::Plugins.send :include, Xapify
