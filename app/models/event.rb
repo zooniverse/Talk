@@ -3,7 +3,7 @@ class Event
   
   key :title, String, :required => true
   key :details, String
-  key :state, String, :default => "pending"
+  key :state, String
   key :user_id, ObjectId, :required => true
   timestamps!
     
@@ -12,6 +12,17 @@ class Event
 
   scope :pending_for_comments, :eventable_type => 'Comment', :state => 'pending'
   scope :pending_for_users, :eventable_type => 'User', :state => 'pending'
+  scope :actioned, :state => 'actioned'
+  
+  state_machine :initial => :pending do
+    event :action do
+      transition :pending => :actioned
+    end
+    
+    event :ignore do
+      transition :pending => :ignored
+    end
+  end 
   
   def target
     self.eventable

@@ -1,10 +1,13 @@
 <!-- Displays moderation log -->
 <div id="moderation-log" class="panel">
  <h2>Moderation Log</h2>
-  <ul>
-    <li>Event 1</li>
-    <li>Event 2</li>
-	<li>Event 3</li>
-	<li>Event 4</li>
-  </ul>
+ <ul>
+	<%- if @actioned.empty? -%>
+	<li>There are no events</li>
+	<%- else -%>
+		<%- @actioned.each do |event| -%>
+			<li class="<%= event.target.class.to_s %>"><%= event.target.class.to_s %>: actioned <%= time_ago_in_words(event.updated_at) %> ago</li>
+		<%- end -%>
+	<%- end -%>
+ </ul>
 </div>
