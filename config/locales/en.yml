@@ -7,6 +7,8 @@ en:
   controllers:
     comments:
       flash_create: "Comment created"
+    application:
+      not_authorised: "You don't have permissions to view this page"
   homepage:
     trends: "Trending"
     recent: "Recent"

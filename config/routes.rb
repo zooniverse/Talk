@@ -30,6 +30,9 @@ Sellers::Application.routes.draw do
   end
 
   match '/cas_test' => 'home#cas_test'
+  
+  match '/admin' => 'admin#index'
+  
   root :to => "home#index"
   
   

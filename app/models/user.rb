@@ -5,6 +5,8 @@ class User
   key :zooniverse_user_id, Integer, :required => true
   key :name, String, :required => true
   key :blocked_list, Array
+  key :moderator, Boolean, :default => false
+  key :admin, Boolean, :default => false
   timestamps!
   
   many :collections

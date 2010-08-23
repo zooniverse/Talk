@@ -15,6 +15,15 @@ class ApplicationController < ActionController::Base
   
   helper_method :discussion_url_for
   
+  helper_method :require_privileged_user
+  
+  def require_privileged_user
+    unless current_zooniverse_user.moderator? || current_zooniverse_user.admin?
+      flash[:notice] = t 'controllers.application.not_authorised'
+      redirect_to root_url
+    end
+  end
+  
   protected
   
   def zooniverse_user
