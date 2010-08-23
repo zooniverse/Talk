@@ -3,7 +3,7 @@ class SearchController < ApplicationController
   
   def index 
     @search = params[:search]
-    @page = params[:page] ? params[:page].to_i : 0
+    @page = params[:page] ? params[:page].to_i : 1
     @per_page = params[:per_page] ? params[:per_page].to_i : 10
     
     @comments = Comment.search @search, :limit => 1_000, :per_page => @per_page, :page => @page, :from_mongo => true

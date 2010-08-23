@@ -1,8 +1,10 @@
 <div class="upper-row discussion">
 	<div class="rhc">
 		<div class="panel discussion-items">
-  		<%- if @results %>
-  			<h1><%= pluralize @results.total_pages, 'page' %> of results matching <em><%= @search %></em></h1>
+  		<%- if @comments %>
+  			<h1><%= pluralize @comments.total_pages, 'page' %> of results matching <em><%= @search %></em></h1>
+  		<%- else %>
+  		  <h1>No results found</h1>
   		<% end -%>
 		</div>
 	</div>
@@ -23,6 +25,11 @@
 			<%- if @comments %>
 				<%= render :partial => "shared/comment_short", :collection => @comments %>
 			<% end -%>
+			<%- if @page < @comments.total_pages %>
+  			<div class="more-results">
+  			  <%= more_results "More", :page => @page + 1 %>
+  		  </div>
+  	  <% end -%>
 		</div>
 		
 		<div class="comments-list">
