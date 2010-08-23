@@ -20,4 +20,33 @@ class UserTest < ActiveSupport::TestCase
       assert @user.associations.keys.include?("sent_messages")
     end
   end
+  
+  context "When banning a user that is alread banned" do
+    setup do
+      @user = Factory :user, :state => 'banned'
+    end
+
+    should "fail" do
+      assert !@user.ban
+    end
+  end
+  
+  context "When banning a user" do
+    setup do
+      @user = Factory :user
+      @user.ban
+    end
+
+    should have_sent_email
+  end
+  
+  
+  context "When redeeming a user" do
+    setup do
+      @user = Factory :user, :state => 'banned'
+      @user.redeem
+    end
+
+    should have_sent_email
+  end
 end

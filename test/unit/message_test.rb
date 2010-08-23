@@ -36,6 +36,5 @@ class MessageTest < ActiveSupport::TestCase
         assert !@message.valid?
       end
     end
-    
   end
 end
