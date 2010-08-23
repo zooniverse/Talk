@@ -43,6 +43,7 @@ module Xapify
       
       doc_hash = {}
       doc_hash[:id] = self.xap_id
+      doc_hash[:bid]= self._id.to_s
       self.class.xap_fields.each do |field|
         doc_hash[field.first.to_sym] = self.send(field.first.to_sym)
       end
