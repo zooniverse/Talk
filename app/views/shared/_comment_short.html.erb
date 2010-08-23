@@ -4,5 +4,5 @@
 	<div class="comment-container">
 		<span class="name"><%= comment_short.author.name %></span><div class="comment-body"><%= comment_short.body %></div>				
 	</div>	
-	<div class="date"><%= long_date(comment_short.created_at) %> <div class="vote-controls"><a href="#" style="color:#aaa;">REPORT</a>&nbsp;&nbsp;&nbsp;<a href="#" >&#8593;&nbsp;UP</a>&nbsp;&nbsp;<a href="#">&#8595;&nbsp;DOWN</a></div></div>
+	<div class="date"><%= long_date(comment_short.created_at) %> <div class="vote-controls"><span id="report-link-<%= comment_short.id %>"><%= link_to("REPORT", {:controller => :events, :action => :report_comment, :comment_id => comment_short.id}, {:remote => true, :method => :post, :style => "color:#aaa;", :method => :post}) %></span>&nbsp;&nbsp;&nbsp;<a href="#" >&#8593;&nbsp;UP</a></div></div>
 </div>
