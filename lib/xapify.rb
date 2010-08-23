@@ -22,16 +22,20 @@ module Xapify
 
     def search(string)
       db = @xap_db
-      docs = db.search(string)
       
-      docs.collect do |doc|
+      collected = db.search(string, opts).collect do |doc|
         hash = {}
         @xap_fields.each_key do |key|
           hash[key] = doc.values[key]
         end
         
-        opts[:from_mongo] ? find(hash[:_id]) : hash
+        hash[:collapse_count] = doc.match.collapse_count if opts.has_key?(:collapse)
+        hash
       end
+      
+      collected = collected.sort{ |a, b| b[:collapse_count] <=> a[:collapse_count] } if opts.has_key?(:collapse)
+      collected = collected.map{ |doc| find(doc[:_id]) } if opts[:from_mongo]
+      collected
     end
   end
 
