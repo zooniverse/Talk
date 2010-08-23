@@ -1,3 +1,9 @@
+GIT
+  remote: http://github.com/johnl/xapian-fu.git
+  revision: 5c99c90
+  specs:
+    xapian-fu (1.1.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
