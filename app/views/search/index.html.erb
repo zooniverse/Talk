@@ -1,0 +1,29 @@
+<div class="upper-row discussion">
+	<div class="rhc">
+		<div class="panel discussion-items">
+		<%if @results%>
+			<h1><%= @results.count%> results for search <%=@text%></h1>
+		<%end%>
+		</div>
+		
+	</div>
+	<div class="lhc">
+		<div class="search_box">
+		<%=form_tag :search_path do%>
+			<%=text_field_tag "text", @text%>
+			<%=submit_tag 'search'%>
+		<%end%>
+		</div>
+	</div>
+</div>
+
+<div class="lower-row">
+	<div class="lhc">		
+		<div class="comments-list">
+			<%if @results%>
+				<%= render :partial => "shared/comment_short", :collection => @results %>
+			<%end%>
+		</div>
+		<a id="comment"></a>
+	</div>
+</div>

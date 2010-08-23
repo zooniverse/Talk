@@ -48,6 +48,7 @@ Sellers::Application.routes.draw do
   match '/help' => 'boards#help'
   match '/chat' => 'boards#chat'
   
+  match '/search' => 'search#index', :as =>:search_path
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
