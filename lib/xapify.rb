@@ -38,6 +38,11 @@ module Xapify
     base.before_save :update_xapian
     base.key :xap_id, Fixnum
   end
+  
+  def search(searchString)
+     db = self.class.xap_db
+     db.search
+  end
 end
 
 MongoMapper::Plugins.send :include, Xapify
