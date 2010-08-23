@@ -4,5 +4,5 @@
 	<div class="comment-container">
 		<span class="name"><%= comment_short.author.name %></span><div class="comment-body"><%= comment_short.body %></div>				
 	</div>	
-	<div class="date"><%= long_date(comment_short.created_at) %> <div class="vote-controls"><a href="#">UP</a>&nbsp;<a href="">DOWN</a></div></div>
+	<div class="date"><%= long_date(comment_short.created_at) %> <span class="vote-controls"><div id="report-<%= comment_short.id %>"><%= link_to "REPORT", "", :remote => true %></span> &middot; <a href="#">VOTE UP</a></div></div>
 </div>

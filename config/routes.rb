@@ -29,6 +29,13 @@ Sellers::Application.routes.draw do
     resources :messages
   end
 
+  resources :events do
+    collection do 
+      post :report_user
+      post :report_comment
+    end
+  end
+  
   match '/cas_test' => 'home#cas_test'
   
   match '/admin' => 'admin#index'
