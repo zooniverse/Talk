@@ -213,11 +213,14 @@ img.short-comment-user, img.recent-comment-user {
 
 .comment-container {
 	margin-left: 50px;
-
 }
 
 .short-comment, .recent-comment {
 		padding: 10px 0 10px 0;
+}
+
+.recent-comment .date {
+	color: #afafaf;	
 }
 
 .short-comment .date {

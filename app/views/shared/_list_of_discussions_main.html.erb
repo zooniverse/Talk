@@ -3,10 +3,12 @@
 	<% discussions_list.each do |d| %>
 		<div class="recent-item">
 			<div class="item-container">
-				<div class="name"><%= d.subject %></div>
-				<div class="date">14 January 2010, 10.37 AM</div>
-				<div class="body"><%= d.focus_type %></div>
-			</div>
+				<div class="date"><%= long_date(d.updated_at) %></div>								
+				<div class="name"><%= link_to d.subject, discussion_url(d.zooniverse_id) %></div>
+				<div class="views-total"><%= d.number_of_users %> user<% if d.number_of_users > 1 %>s<% end %></div>					
+				<div class="comment-total"><%= d.number_of_comments %> comment<% if d.number_of_comments > 1 %>s<% end %></div>				
+				<div class="push"></div>
+				</div>
 		</div>
 	<% end %>
 </div>
