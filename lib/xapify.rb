@@ -37,8 +37,8 @@ module Xapify
 
   module InstanceMethods
     def update_xapian
+      update_timestamps if new?
       db = self.class.xap_db
-      inserted = nil
       
       doc_hash = {}
       doc_hash[:id] = self.xap_id
