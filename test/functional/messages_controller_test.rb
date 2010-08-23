@@ -47,7 +47,8 @@ class MessagesControllerTest < ActionController::TestCase
     
     context "#show" do
       setup do
-        @message = Factory :message
+        @sender = Factory :user        
+        @message = Factory :message, :sender => @sender, :recipient => @user
         get :show, { :id => @message.id }
       end
       
