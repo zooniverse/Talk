@@ -1,1 +1,7 @@
-<!-- Full comment box with attachments and full text -->
+<div class="comment">
+	<%= image_tag('default_user.png', :class => "short-comment-user", :height => 40) %>
+	<div class="comment-container">
+		<div class="name"><%= comment.author.name %></div><div class="comment-body"><%= comment.body %></div>				
+	</div>	
+	<div class="date"><%= long_date(comment.created_at) %> <div class="vote-controls"><a href="#" style="color:#347235;">&#8593;&nbsp;UP</a>&nbsp;&nbsp;<a href="#">DOWN&nbsp;&#8595;</a><a href="#">!&nbsp; REPORT</a></div></div>
+</div>

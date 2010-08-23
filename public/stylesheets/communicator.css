@@ -95,17 +95,14 @@ a:hover {
 }
 
 /* Upper Row*/
-.main-image {
-	float: left;
-}
 
 .focus-main-image {
 	margin-right: 5px;
-	float: left;
 }
 
 .asset-meta {
-	margin-top: -15px;
+	margin-left: 20px;
+	float:right;
 }
 
 .asset-meta ul {
@@ -451,11 +448,6 @@ h2.short-comment-prompt {
 	clear:both;
 }
 
-.push-right {
-	height: 1px;
-	clear: right;
-}
-
 #sidebar, #sidebar ul {
 	margin:0;
 	padding: 0;
@@ -578,4 +570,5 @@ h2.asset-name {
 	font-size: 80%;
 	float: right;
 	display: none;
+	margin-top: 20px;
 }

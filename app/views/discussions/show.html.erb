@@ -1,9 +1,10 @@
 <div class="upper-row discussion">
+	<% unless @discussion.focus_type.blank? %>	
 	<div class="rhc">
 		<div class="panel discussion-items">
-		<% if (@discussion.asset?) %>									
+		<% if (@discussion.asset?) %>								
 			<%= image_tag(@discussion.focus.location, :class => "focus-main-image", :id => "asset-image", :height => 200) %>
-		<% end %>
+		<% end %>		
 		
 		<% if (@discussion.collection? || @discussion.live_collection?) %>		
 			<% unless @discussion.focus.assets.empty?%>
@@ -17,7 +18,8 @@
 		<% end %>	
 		</div>
 	</div>
-	<div class="lhc">
+	<% end %>	
+	<div class="lhc" <% if @discussion.focus_type.blank? %>style="width:auto;"<% end %>>
 		<h2><strong>DISCUSSION <span class="discussion-splitter">/</span> <%= @discussion.zooniverse_id %></strong></h2>		
 		<h1><%= @discussion.subject %></h1>
 		<% @discussion.tags.each do |tag| %>
@@ -27,11 +29,7 @@
 </div>
 
 <div class="lower-row">
-	<% if (@discussion.asset?) %>		
-
-	<% end %>
-
-	<div class="lhc">		
+	<div class="lhc" <% if @discussion.focus_type.blank? %>style="width:auto;"<% end %>>		
 		<div class="comments-list">
 			<%= render :partial => "shared/comment_short", :collection => @discussion.comments %>
 		</div>
