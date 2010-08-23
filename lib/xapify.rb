@@ -19,16 +19,13 @@ module Xapify
       db = self.class.xap_db
       inserted = nil
       
-      db.transaction do
-        doc_hash = {}
-        doc_hash[:id] = self.xap_id
-        self.class.xap_fields.each do |field|
-          doc_hash[field.to_sym] = self.send(field.to_sym)
-        end
-        
-        inserted = db.add_doc doc_hash
+      doc_hash = {}
+      doc_hash[:id] = self.xap_id
+      self.class.xap_fields.each do |field|
+        doc_hash[field.to_sym] = self.send(field.to_sym)
       end
       
+      inserted = db.add_doc doc_hash
       self.xap_id = inserted.id
     end
   end
