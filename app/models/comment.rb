@@ -14,6 +14,7 @@ class Comment
   belongs_to :discussion
   belongs_to :author, :class_name => "User"
   one :response_to, :class_name => "Comment", :foreign_key => "response_to_id"
+  many :events, :as => :eventable
   
   # Atomic operation to let a User vote for a Comment
   def cast_vote_by(user)

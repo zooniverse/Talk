@@ -14,6 +14,7 @@ class User
   many :comments, :foreign_key => :author_id
   many :messages, :foreign_key => :recipient_id
   many :sent_messages, :class_name => "Message", :foreign_key => :sender_id
+  many :events, :as => :eventable
   
   def messages_with(user)
     sent_by_them = Message.all(:sender_id => user.id, :recipient_id => id)

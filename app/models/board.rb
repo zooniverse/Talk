@@ -31,6 +31,4 @@ class Board
     end
     r
   end
-
- 
 end
