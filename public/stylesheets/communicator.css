@@ -147,8 +147,9 @@ a:hover {
 
 /* Recent Items (Collections, Discussions) */
 .recent-item {
-	border-bottom: dotted #afafaf 1px;
-	padding: 15px 0 0px 0;
+	border-bottom: dotted #000 1px;
+	padding: 15px 10px 5px 10px;
+	background: #E7E7E7;
 }
 
 .item-container {
@@ -157,9 +158,9 @@ a:hover {
 }
 
 .item-container .date {
-	color: #afafaf;
+	color: #888;
 	margin-bottom: 3px;
-	font-size: 90%;
+	font-size: 80%;
 }
 
 .item-container .name {
@@ -191,7 +192,7 @@ a:hover {
 .recent-item a {
 	font-weight: normal;
 	font-size: 1.1em;
-
+	color: #005689;
 }
 
 .recent-item .name {
