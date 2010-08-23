@@ -21,6 +21,22 @@ class ActiveSupport::TestCase
     CASClient::Frameworks::Rails::Filter.stubs(:filter).returns(true)
   end
   
+  def admin_cas_login
+    @user = Factory :user, :admin => true
+    @request.session[:cas_user] = @user.name
+    @request.session[:cas_extra_attributes] = {}
+    @request.session[:cas_extra_attributes]['id'] = @user.zooniverse_user_id
+    CASClient::Frameworks::Rails::Filter.stubs(:filter).returns(true)
+  end
+  
+  def moderator_cas_login
+    @user = Factory :user, :moderator => true
+    @request.session[:cas_user] = @user.name
+    @request.session[:cas_extra_attributes] = {}
+    @request.session[:cas_extra_attributes]['id'] = @user.zooniverse_user_id
+    CASClient::Frameworks::Rails::Filter.stubs(:filter).returns(true)
+  end
+  
   def clear_cas
     @user = Factory :user
     @request.session[:cas_user] = {}
