@@ -568,8 +568,8 @@ h2.asset-name {
 }
 
 .short-comment .vote-controls {
-	font-size: 80%;
-	float: right;
-	display: none;
-	margin-top: 20px;
+	font-size: 70%;
+/*	float: left;*/
+/*	display: none;*/
+/*	margin-top: 5px;*/
 }

@@ -65,7 +65,7 @@ $(document).ready(function(){
 		OCT.tabs.init();
 		OCT.collection.init();
 		OCT.scroll.init();
-		OCT.hover.init();
+		// OCT.hover.init();
 });
 
 
