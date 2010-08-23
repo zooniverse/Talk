@@ -64,7 +64,7 @@ class ActiveSupport::TestCase
   
   def build_discussions_for(focus)
     discussion = Factory :discussion
-    comment1 = Factory :comment, :tags => ['tag1', 'tag2'], :mentions => focus.zooniverse_id
+    comment1 = Factory :comment, :tags => ['tag1', 'tag2'], :mentions => @focus1.zooniverse_id
     comment2 = Factory :comment, :tags => ['tag2', 'tag3'], :mentions => focus.zooniverse_id
     comment3 = Factory :comment, :tags => ['tag3', 'tag4'], :mentions => focus.zooniverse_id
     [comment1, comment2, comment3].each{ |comment| discussion.comments << comment }

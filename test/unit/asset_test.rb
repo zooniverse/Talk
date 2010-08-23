@@ -37,7 +37,7 @@ class AssetTest < ActiveSupport::TestCase
     end
     
     should "find #most_recently_mentioned" do
-      assert_equal [@asset2, @asset3, @asset], Asset.most_recently_mentioned
+      assert_equal [@asset2, @asset, @asset3], Asset.most_recently_mentioned
     end
     
     should "find #most_recently_commented_on" do
