@@ -572,7 +572,9 @@ h2.asset-name {
 
 .short-comment .vote-controls {
 	font-size: 70%;
-/*	float: left;*/
 	display: none;
-/*	margin-top: 5px;*/
+}
+.collection-viewer {
+	margin-top: 20px;
+	margin-bottom: 30px;
 }
