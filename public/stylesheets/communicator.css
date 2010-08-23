@@ -79,12 +79,11 @@ a:hover {
 
 .boards p {
 	font-size: 1.0em;
-	font-weight: bold;
 }
 
 /* Object Page */
 .upper-row .rhc {
-padding-top: 30px;
+	padding-top: 30px;
 }
 
 .lower-row .rhc {
@@ -148,9 +147,8 @@ padding-top: 30px;
 
 /* Recent Items (Collections, Discussions) */
 .recent-item {
-	border-bottom: solid #afafaf 1px;
-	margin-bottom: 5px;
-	font-size: 80%;
+	border-bottom: dotted #afafaf 1px;
+	padding: 15px 0 0px 0;
 }
 
 .item-container {
@@ -161,6 +159,7 @@ padding-top: 30px;
 .item-container .date {
 	color: #afafaf;
 	margin-bottom: 3px;
+	font-size: 90%;
 }
 
 .item-container .name {
@@ -169,6 +168,34 @@ padding-top: 30px;
 
 .last {
 	border-bottom: none;
+}
+
+.comment-total {
+	background: url('/images/comment.gif') no-repeat left;
+	padding-left: 17px;
+	color: #000;
+	font-size: 85%;
+	margin-right: 10px;
+	float: left;
+}
+
+.views-total {
+	background: url('/images/views.png') no-repeat left;
+	padding-left: 17px;
+	color: #000;
+	font-size: 85%;
+	margin-right: 10px;
+	float: left;
+}
+
+.recent-item a {
+	font-weight: normal;
+	font-size: 1.1em;
+
+}
+
+.recent-item .name {
+	margin-bottom:5px;
 }
 
 /* Comments */
