@@ -9,26 +9,22 @@ module Xapify
         attr_accessor :xap_db, :xap_fields
       end
       
-      @xap_fields = {}
+      @xap_fields = {:_id=>{:store=>true, :type=>String}}
       args.each do |arg|
         @xap_fields[arg.to_sym] = { :store => true, :type => keys[arg.to_s].type }
       end
       
       @xap_db = Xapify::XapianDb.new(:dir => "#{Rails.root}/index/#{name}.db", :create => true, :fields => @xap_fields)
     end
-    
-    def search(*args)
-      opts = args.extract_options!
-      opts = { :from_mongo => false }.update(opts)
-      string = args.first
-      
+
+    def search(string)
       db = @xap_db
       docs = db.search(string)
       
       docs.collect do |doc|
         hash = {}
         @xap_fields.each_key do |key|
-          hash[key] = @xap_fields[key][:type] == Array ? JSON.load(doc.values[key]) : doc.values[key]
+          hash[key] = doc.values[key]
         end
         
         opts[:from_mongo] ? find(hash[:_id]) : hash
@@ -43,9 +39,8 @@ module Xapify
       
       doc_hash = {}
       doc_hash[:id] = self.xap_id
-      doc_hash[:bid]= self._id.to_s
       self.class.xap_fields.each do |field|
-        doc_hash[field.first.to_sym] = self.send(field.first.to_sym)
+        doc_hash[field.first.to_sym] = self.send(field.first.to_sym) unless field== :_id
       end
       
       inserted = db.add_doc doc_hash
