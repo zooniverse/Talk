@@ -22,8 +22,9 @@ module Xapify
 
     def search(string)
       db = @xap_db
+      docs = db.search(string, opts)
       
-      collected = db.search(string, opts).collect do |doc|
+      collected = docs.collect do |doc|
         hash = {}
         @xap_fields.each_key do |key|
           hash[key] = doc.values[key]
@@ -35,6 +36,10 @@ module Xapify
       
       collected = collected.sort{ |a, b| b[:collapse_count] <=> a[:collapse_count] } if opts.has_key?(:collapse)
       collected = collected.map{ |doc| find(doc[:_id]) } if opts[:from_mongo]
+      
+      collected.instance_variable_set "@total_pages", docs.total_pages
+      def collected.total_pages; @total_pages; end
+      
       collected
     end
   end
