@@ -1,0 +1,13 @@
+<!-- Displays  a moderator's banned list -->
+<div id="moderation-log" class="panel">
+ <h2>Banned List</h2>
+	<ul>
+	<%- if @banned_list.empty? -%>
+	<li>There are no banned users</li>
+	<%- else -%>
+		<%- @banned_list.each do |user| -%>
+			<li><%= link_to user.name, user_path(user) %></li>
+		<%- end -%>
+	<%- end -%>
+	</ul>
+</div>

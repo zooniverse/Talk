@@ -2,8 +2,12 @@
 <div id="moderation-log" class="panel">
  <h2>Watch List</h2>
   <ul>
-    <li>Person 1</li>
-    <li>Person 2</li>
-	<li>Person 3</li>
+	<%- if @watch_list.empty? -%>
+	<li>There are no watched users</li>
+	<%- else -%>
+		<%- @watch_list.each do |user| -%>
+			<li><%= link_to user.name, user_path(user) %></li>
+		<%- end -%>
+	<%- end -%>
   </ul>
 </div>

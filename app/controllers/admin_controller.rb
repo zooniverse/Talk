@@ -5,5 +5,7 @@ class AdminController < ApplicationController
   def index
     @pending_user_events = Event.pending_for_users
     @pending_comment_events = Event.pending_for_comments
+    @watch_list = User.watch_list
+    @banned_list  = User.banned_list
   end
 end

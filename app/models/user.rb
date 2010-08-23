@@ -9,7 +9,10 @@ class User
   key :moderator, Boolean, :default => false
   key :admin, Boolean, :default => false
   key :state, String
-
+  
+  scope :watch_list, :state => 'watched'
+  scope :banned_list, :state => 'banned'
+  
   state_machine :initial => :active do
     after_transition :on => :ban, :do => :notify_banned_user
     after_transition :on => :redeem, :do => :notify_redeemed_user
