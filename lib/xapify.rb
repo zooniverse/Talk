@@ -23,7 +23,7 @@ module Xapify
       docs.collect do |doc|
         hash = {}
         @xap_fields.each_key do |key|
-          hash[k] = doc.values[key]
+          hash[key] = @xap_fields[key][:type] == Array ? JSON.load(doc.values[key]) : doc.values[key]
         end
         
         hash
