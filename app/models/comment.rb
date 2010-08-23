@@ -2,9 +2,7 @@
 class Comment
   include MongoMapper::Document
   include Taggable
-  
   plugin Xapify
-  xapify_fields :body, :tags, :mentions
   
   key :discussion_id, ObjectId
   key :author_id, ObjectId, :required => true
@@ -13,6 +11,8 @@ class Comment
   key :tags, Array
   key :mentions, Array # mentioned Focii, whether these make their way up to the discussion level is TBD
   timestamps!
+  
+  xapify_fields :body, :tags, :mentions, :created_at
   
   belongs_to :discussion
   belongs_to :author, :class_name => "User"

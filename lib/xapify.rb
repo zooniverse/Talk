@@ -9,8 +9,12 @@ module Xapify
         attr_accessor :xap_db, :xap_fields
       end
       
-      @xap_fields = args
-      @xap_db = Xapify::XapianDb.new(:dir => "#{Rails.root}/index/#{name}.db", :create => true, :store => args)
+      @xap_fields = {}
+      args.each do |arg|
+        @xap_fields[arg.to_sym] = { :store => true, :type => keys[arg.to_s].type }
+      end
+      
+      @xap_db = Xapify::XapianDb.new(:dir => "#{Rails.root}/index/#{name}.db", :create => true, :fields => @xap_fields)
     end
   end
 
@@ -22,7 +26,7 @@ module Xapify
       doc_hash = {}
       doc_hash[:id] = self.xap_id
       self.class.xap_fields.each do |field|
-        doc_hash[field.to_sym] = self.send(field.to_sym)
+        doc_hash[field.first.to_sym] = self.send(field.first.to_sym)
       end
       
       inserted = db.add_doc doc_hash
