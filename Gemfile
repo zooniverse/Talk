@@ -9,10 +9,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'bson_ext'
 gem 'mongo_mapper'
 gem 'rubycas-client'
-gem 'state_machine'
 gem 'xapian-fu'
-
-gem 'xapian-fu', :git => 'http://github.com/johnl/xapian-fu.git'
 
 group :development do
   gem 'mysql'
