@@ -17,16 +17,21 @@ module Xapify
       @xap_db = Xapify::XapianDb.new(:dir => "#{Rails.root}/index/#{name}.db", :create => true, :fields => @xap_fields)
     end
     
-    def search(string)
+    def search(*args)
+      opts = args.extract_options!
+      opts = { :from_mongo => false }.update(opts)
+      string = args.first
+      
       db = @xap_db
       docs = db.search(string)
+      
       docs.collect do |doc|
         hash = {}
         @xap_fields.each_key do |key|
           hash[key] = @xap_fields[key][:type] == Array ? JSON.load(doc.values[key]) : doc.values[key]
         end
         
-        hash
+        opts[:from_mongo] ? find(hash[:_id]) : hash
       end
     end
   end
