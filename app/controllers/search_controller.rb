@@ -15,7 +15,6 @@ class SearchController < ApplicationController
     
     search_results.each do |result|
       kind = result.focus_type || "Discussion"
-      logger.debug kind
       grouped[kind] ||= []
       grouped[kind] << (result.focus || result.discussion)
     end
