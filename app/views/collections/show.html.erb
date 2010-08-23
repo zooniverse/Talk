@@ -1,16 +1,22 @@
 <div class="upper-row">
-	<%= render :partial => "shared/tags_for_focus" %>
-	<%= render :partial => "shared/collection_as_focus" %>
+	<div class="rhc">
+		<% unless @collection.assets.empty?%>
+		<%= image_tag(@collection.assets.first.location, :class => "collection-large", :id => "asset-image", :height => 216) %>		
+		<% end %>
+		<%= render :partial => "shared/collection_as_focus" %>
+			<%= render :partial => "shared/tags_for_focus" %>		
+	</div>
+
 </div>
 
 <div class="lower-row">
 	<div class="lhc">		
+		<%= render :partial => "shared/comment_short_new" if current_zooniverse_user %>			
 		<div class="comments-list">
 			<%= render :partial => "shared/stream" %>
 		</div>
-		<%= render :partial => "shared/comment_short_new" if current_zooniverse_user %>			
 	</div>
-	<div class="rhc">
+	<div class="rhc">		
 		<%= render :partial => "shared/list_of_discussions" %>	
 		<%= render :partial => "shared/list_of_mentions" %>									
 	</div>

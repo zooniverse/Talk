@@ -3,7 +3,7 @@
 	<% collections_list.each do |c| %>
 		<div class="recent-item">
 			<div class="item-container">
-				<div class="name"><%= c.name %></div>
+				<div class="name"><%= link_to c.name, collection_path(c.zooniverse_id) %></div>
 				<div class="date"><%= c.assets.length %> Objects</div>
 				<div class="body"><%= c.description %></div>
 			</div>
