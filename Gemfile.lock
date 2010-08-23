@@ -87,6 +87,7 @@ GEM
     treetop (1.4.8)
       polyglot (>= 0.3.1)
     tzinfo (0.3.22)
+    xapian-fu (1.1.1)
 
 PLATFORMS
   ruby
@@ -102,3 +103,4 @@ DEPENDENCIES
   shoulda
   sqlite3-ruby
   state_machine
+  xapian-fu
