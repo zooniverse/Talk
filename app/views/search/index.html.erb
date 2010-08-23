@@ -1,18 +1,17 @@
 <div class="upper-row discussion">
 	<div class="rhc">
 		<div class="panel discussion-items">
-		<%if @results%>
-			<h1><%= @results.count%> results for search <%=@text%></h1>
-		<%end%>
+  		<%- if @results %>
+  			<h1><%= pluralize @results.total_pages, 'page' %> of results matching <em><%= @search %></em></h1>
+  		<% end -%>
 		</div>
-		
 	</div>
 	<div class="lhc">
 		<div class="search_box">
-		<%=form_tag :search_path do%>
-			<%=text_field_tag "text", @text%>
-			<%=submit_tag 'search'%>
-		<%end%>
+  		<%= form_tag search_path do %>
+  			<%= text_field_tag "search", @search %>
+  			<%= submit_tag 'search' %>
+  		<% end -%>
 		</div>
 	</div>
 </div>
@@ -21,24 +20,23 @@
 	<div class="lhc">		
 		<div class="comments-list">
 			<h1>Comments</h1>
-			<%if @results_comments%>
-				<%= render :partial => "shared/comment_short", :collection => @results_comments %>
-			<%end%>
+			<%- if @comments %>
+				<%= render :partial => "shared/comment_short", :collection => @comments %>
+			<% end -%>
 		</div>
 		
 		<div class="comments-list">
 			<h1>Discussions</h1>
-			<%if @results_discussions and !@results_discussions.empty? %>
-			<%= render :partial => "shared/list_of_discussions_main", :locals => { :discussions_list => @results_discussions, :id_of_box => "found-discussions" } %>
-			<%end%>
+			<%- if @discussions %>
+  			<%= render :partial => "shared/list_of_discussions_main", :locals => { :discussions_list => @discussions, :id_of_box => "found-discussions" } %>
+			<% end -%>
 		</div>
 		
 		<div class="comments-list">
 			<h1>Assets</h1>
-			<%if @results_assets%>
-			<%= render :partial => "shared/list_of_assets", :locals => { :assets_list => @results_assets, :id_of_box => "found-assets" } %>
-			<%end%>
-			
+			<%- if @assets %>
+  			<%= render :partial => "shared/list_of_assets", :locals => { :assets_list => @assets, :id_of_box => "found-assets" } %>
+			<% end -%>
 		</div>
 		<a id="comment"></a>
 	</div>

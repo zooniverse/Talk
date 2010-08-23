@@ -12,7 +12,7 @@ class Comment
   key :mentions, Array # mentioned Focii, whether these make their way up to the discussion level is TBD
   timestamps!
   
-  xapify_fields :discussion_id, :body, :tags, :mentions, :created_at
+  xapify_fields :discussion_id, :focus_type, :body, :tags, :mentions, :created_at
   
   belongs_to :discussion
   belongs_to :author, :class_name => "User"
@@ -62,5 +62,18 @@ class Comment
      collected = {}
      tags.each{ |tag| collected[tag['_id']] = tag['value']['count'].to_i }
      collected
+  end
+  
+  def focus_type
+    self.discussion.nil? ? "" : self.discussion.focus_type
+  end
+  
+  def focus_id
+    self.discussion.nil? ? nil : self.discussion.focus_id
+  end
+  
+  def focus
+    return nil unless focus_type && focus_id
+    focus_type.constantize.find(focus_id)
   end
 end

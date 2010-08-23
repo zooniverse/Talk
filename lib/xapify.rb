@@ -11,7 +11,8 @@ module Xapify
       
       @xap_fields = {:_id=>{:store=>true, :type=>String}}
       args.each do |arg|
-        @xap_fields[arg.to_sym] = { :store => true, :type => keys[arg.to_s].type }
+        kind = key?(arg) ? keys[arg.to_s].type : String
+        @xap_fields[arg.to_sym] = { :store => true, :type => kind }
       end
       
       Dir.mkdir("#{Rails.root}/index") unless File.exists?("#{Rails.root}/index")
