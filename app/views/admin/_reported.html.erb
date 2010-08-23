@@ -1,10 +1,9 @@
 <!-- Displays reported objects -->
 <div id="reports" class="panel">
- <h2>Reported Items</h2>
+ <h2>Reported Users</h2>
   <ul>
-    <li>Item 1</li>
-    <li>Item 2</li>
-	<li>Item 3</li>
-	<li>Item 4</li>
+		<%- @pending_user_events.each do |event| -%>
+			<li><%= link_to event.target.name, user_path(event.target) %>: <%= event.title %> (reported by: <%=  link_to event.user.name, user_path(event.user) %>)</li>
+		<%- end -%>
   </ul>
 </div>

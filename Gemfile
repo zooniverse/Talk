@@ -9,6 +9,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'bson_ext'
 gem 'mongo_mapper'
 gem 'rubycas-client'
+gem 'state_machine'
 
 group :development do
   gem 'mysql'

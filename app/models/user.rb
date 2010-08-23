@@ -4,9 +4,29 @@ class User
   
   key :zooniverse_user_id, Integer, :required => true
   key :name, String, :required => true
+  key :email, String
   key :blocked_list, Array
   key :moderator, Boolean, :default => false
   key :admin, Boolean, :default => false
+  key :state, String
+
+  state_machine :initial => :active do
+    after_transition :on => :ban, :do => :notify_banned_user
+    after_transition :on => :redeem, :do => :notify_redeemed_user
+    
+    event :ban do
+      transition [:active, :watched] => :banned
+    end
+    
+    event :watch do
+      transition :active => :watched
+    end
+    
+    event :redeem do
+      transition [:banned, :watched] => :active
+    end
+  end
+  
   timestamps!
   
   many :collections
@@ -15,6 +35,14 @@ class User
   many :messages, :foreign_key => :recipient_id
   many :sent_messages, :class_name => "Message", :foreign_key => :sender_id
   many :events, :as => :eventable
+  
+  def notify_banned_user
+    Notifier.notify_banned_user(self).deliver
+  end
+  
+  def notify_redeemed_user
+    Notifier.notify_redeemed_user(self).deliver
+  end
   
   def messages_with(user)
     sent_by_them = Message.all(:sender_id => user.id, :recipient_id => id)

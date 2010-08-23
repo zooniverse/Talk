@@ -4,7 +4,7 @@ class Event
   key :title, String, :required => true
   key :details, String
   key :state, String, :default => "Pending"
-  key :user_id, ObjectId
+  key :user_id, ObjectId, :required => true
   timestamps!
     
   belongs_to :user
@@ -12,4 +12,8 @@ class Event
 
   scope :pending_for_comments, :eventable_type => 'Comment', :state => 'Pending'
   scope :pending_for_users, :eventable_type => 'User', :state => 'Pending'
+  
+  def target
+    self.eventable
+  end
 end
