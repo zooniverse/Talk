@@ -17,16 +17,17 @@ module Xapify
       @xap_db = Xapify::XapianDb.new(:dir => "#{Rails.root}/index/#{name}.db", :create => true, :fields => @xap_fields)
     end
     
-    def search(searchString)
-       db = @xap_db
-       docs=db.search(searchString)
-       docs.collect do |d|
-          hash ={}
-          @xap_fields.each do |k|
-            hash[k]=d.values[k]
-          end 
-          hash
-       end
+    def search(string)
+      db = @xap_db
+      docs = db.search(string)
+      docs.collect do |doc|
+        hash = {}
+        @xap_fields.each_key do |key|
+          hash[k] = doc.values[key]
+        end
+        
+        hash
+      end
     end
   end
 
@@ -50,8 +51,6 @@ module Xapify
     base.before_save :update_xapian
     base.key :xap_id, Fixnum
   end
-  
-  
 end
 
 MongoMapper::Plugins.send :include, Xapify
