@@ -51,7 +51,6 @@ OCT.hover = {
 		
 		init: function () {
 			$(OCT.hover.comment).hover(function() {	
-				console.log
 				$(OCT.hover.vote_controls, this).show();
 			}, function() {
 				$(OCT.hover.vote_controls, this).hide();
