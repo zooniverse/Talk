@@ -31,4 +31,9 @@ Sellers::Application.configure do
     :user_name => "user@example.com",
     :password => "password"
   }
+  
+  config.action_mailer.default_url_options = {
+    :host => "localhost",
+    :port => 3000
+  }
 end

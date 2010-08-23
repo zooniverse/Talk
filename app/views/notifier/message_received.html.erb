@@ -1,0 +1,9 @@
+<p>Dear <%= @user.name %></p>
+
+<p>You have been sent a message by <strong><%= @message.sender.name %></strong>, entitled: <%= @message.title %></p>
+
+<p><%= link_to "Click here", message_url(@message, :only_path => false) %> to read your message.</p>
+
+<p>Thanks!</p>
+
+<em>The Zooniverse Email Robot</em>

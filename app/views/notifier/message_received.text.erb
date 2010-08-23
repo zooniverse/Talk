@@ -1,0 +1,9 @@
+Dear <%= @user.name %>
+
+You have been sent a message by <%= @message.sender.name %>, entitled: <%= @message.title %>
+
+Click here: <%= message_url @message, :only_path => false %> to read your message.
+
+Thanks!
+
+The Zooniverse Email Robot

@@ -12,4 +12,10 @@ class Notifier < ActionMailer::Base
     attachments["happy-face.png"] = File.read("#{Rails.root}/public/images/happy-face.png")
     mail(:to => "#{user.name} <#{user.email}>", :subject => "Welcome back")
   end
+  
+  def message_received(message)
+    @user = message.recipient
+    @message = message
+    mail(:to => "#{@user.name} <#{@user.email}>", :subject => "New message from #{message.sender.name}")    
+  end
 end

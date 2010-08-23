@@ -14,6 +14,12 @@ class Message
   
   validate :not_blocked
   
+  after_create :deliver_notification
+  
+  def deliver_notification
+    Notifier.message_received(self).deliver
+  end
+  
   def mark_as_read
     Message.collection.update({ :_id => id }, { '$set' => { :unread => false } })
   end
