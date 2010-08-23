@@ -3,6 +3,7 @@ db/*.sqlite3
 log/*.log
 tmp/**/*
 doc/
+index/*
 *.DS_Store
 ids.yaml
 sellers.rb

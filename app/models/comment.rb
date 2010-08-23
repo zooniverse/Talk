@@ -3,6 +3,9 @@ class Comment
   include MongoMapper::Document
   include Taggable
   
+  plugin Xapify
+  xapify_fields :body, :tags, :mentions
+  
   key :discussion_id, ObjectId
   key :author_id, ObjectId, :required => true
   key :upvotes, Array
