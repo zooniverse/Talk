@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    BlueCloth (1.0.1)
     abstract (1.0.0)
     actionmailer (3.0.0.rc)
       actionpack (= 3.0.0.rc)
@@ -93,6 +94,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  BlueCloth
   bson_ext
   factory_girl_rails
   mocha

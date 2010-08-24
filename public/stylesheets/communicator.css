@@ -211,6 +211,11 @@ img.short-comment-user, img.recent-comment-user {
 	margin-top: 3px;
 }
 
+img.new-comment-user{
+	float: left;
+	margin-top: 1em;
+}
+
 .comment-container {
 	margin-left: 50px;
 }
@@ -361,7 +366,11 @@ h2.asset-name {
 
 
 .comment-form {
-	margin: 20px 0 20px 0;
+	margin: 1em 0 20px 55px;
+}
+
+.comment-form p {
+	margin: 0;
 }
 
 /* Messages */

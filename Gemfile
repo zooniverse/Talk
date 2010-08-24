@@ -10,6 +10,7 @@ gem 'bson_ext'
 gem 'mongo_mapper'
 gem 'rubycas-client'
 gem 'xapian-fu'
+gem 'BlueCloth'
 
 group :development do
   gem 'mysql'

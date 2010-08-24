@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="/javascripts/markitup/sets/sellers/style.css" type="text/css" media="screen" charset="utf-8">
 
 <!-- Box for adding a new full discussion comment -->
+<%= image_tag('default_user.png', :class => "new-comment-user", :height => 40) %>
 <%= form_for [@discussion, @comment] do |f| %>
 	<p>Add a comment</p>
 	<%= f.text_area :body, :rows => 4, :cols => 61 %>
