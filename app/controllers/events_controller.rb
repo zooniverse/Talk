@@ -7,7 +7,7 @@ class EventsController < ApplicationController
     @event = @comment.events.build( :user => current_zooniverse_user, 
                                       :title => "Comment reported by #{current_zooniverse_user.name}")
     
-    
+    @event.save
   end
   
   def report_user
