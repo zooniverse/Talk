@@ -2,20 +2,11 @@ require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
   
-  context "Single Comment" do
+  context "A Comment" do
     setup do 
-      @discussion = Factory :discussion
-      @discussion.save
-
-      @user1 = Factory :user
-      @comment = Comment.new({:body=>"baskfojsdj"})
-      # @parent = Factory :comment
-     
-      @discussion.comments<< @comment
-
-      @user1.save
-      @comment.save
-      @discussion.save
+      @asset = Factory :asset
+      build_focus_for @asset
+      @comment = @comment1
     end
     
     should "have keys" do
@@ -28,49 +19,50 @@ class CommentTest < ActiveSupport::TestCase
       assert @comment.associations.keys.include?("author")
       assert @comment.associations.keys.include?("discussion")
     end
-  end
-  
-  context "Two Comments" do
-    setup do
-      @discussion = Factory :discussion
-      
-      @user1 = Factory :user
-      @parent = Comment.new(:body=>"baskfojsdj", :author => @user1, :discussion => @discussion)
-      
-      @user2 = Factory :user
-      @comment = Comment.new(:body=>"sdfsdfggsd", :author => @user2, :response_to => @parent, :discussion => @discussion)
 
-      @user1.save
-      @user2.save
-      @comment.save
-      @parent.save
-      @discussion.save 
-    end
-
-    context "when scoring twice" do
+    context "when upvoting" do
       setup do
-        @comment.cast_vote_by(@user1)
-        @comment.reload
-        @no_votes_before = @comment.upvotes.count
-        @comment.cast_vote_by(@user1)
-        @comment.reload
-      end
-      
-      should "should only score once " do
-        assert_equal @no_votes_before, @comment.upvotes.count
-      end
-    end
-    
-
-    context "when voting" do 
-      setup do
-         @comment.cast_vote_by @user1
-         @comment.reload
+        @user = Factory :user
+        @comment.cast_vote_by(@user)
+        @votes_before = @comment.reload.upvotes.count
+        @comment.cast_vote_by(@user)
       end
       
       should "should add vote" do
-         assert @comment.upvotes.include?(@user1.id)
+        assert @comment.reload.upvotes.include?(@user.id)
       end
+      
+      should "should only score once " do
+        assert_equal @votes_before, @comment.reload.upvotes.count
+      end
+    end
+    
+    should "find #most_recent" do
+      assert Comment.most_recent(3).include? @comment1
+      assert Comment.most_recent(3).include? @comment2
+      assert Comment.most_recent(3).include? @comment3
+    end
+    
+    should "find #mentioning" do
+      assert Comment.mentioning(@asset, :limit => 3).include? @comment1
+      assert Comment.mentioning(@asset, :limit => 3).include? @comment2
+      assert Comment.mentioning(@asset, :limit => 3).include? @comment3
+    end
+    
+    should "find #trending_tags" do
+      assert_equal ['tag2', 'tag4', 'tag1'], Comment.trending_tags(3).keys
+    end
+    
+    should "know the #focus_type" do
+      assert_equal "Asset", @comment.focus_type
+    end
+    
+    should "know the #focus_id" do
+      assert_equal @asset.id, @comment.focus_id
+    end
+    
+    should "know the #focus" do
+      assert_equal @asset, @comment.focus
     end
   end
 end
