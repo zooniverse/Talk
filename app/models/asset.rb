@@ -13,17 +13,17 @@ class Asset
   
   # selects the most recently mentioned (ie AM0000BLAH was mentioned in a comment) assets
   def self.most_recently_mentioned(limit = 10)
-    cursor = Discussion.collection.find({ :focus_type => "Asset", :mentions => { "$type" => 2 } }).sort(['created_at', -1])
+    cursor = Discussion.collection.find({ :mentions => { "$type" => 2 } }).sort(['created_at', -1])
     asset_ids = {}
     
     while asset_ids.length < limit && cursor.has_next?
       doc = cursor.next_document
       doc['mentions'].each do |zoo_id|
-        asset_ids[zoo_id] = 1 if zoo_id =~ /^A/
+        asset_ids[zoo_id] = 1
       end
     end
     
-    asset_ids.map{ |zoo_id| Asset.find_by_zooniverse_id(zoo_id) }.reverse
+    asset_ids.map{ |zoo_id, d_id | Asset.find_by_zooniverse_id(zoo_id) }
   end
   
   # selects the most recently discussed assets (ie the assets with the newest comments )
@@ -36,7 +36,7 @@ class Asset
       asset_ids[ doc['focus_id'] ] = 1
     end
     
-    asset_ids.map{ |focus_id, d_id| Asset.find(focus_id) }.reverse
+    asset_ids.map{ |focus_id, d_id| Asset.find(focus_id) }
   end
   
   # selects the most recently 'popular' assets
