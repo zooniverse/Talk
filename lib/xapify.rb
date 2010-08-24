@@ -15,10 +15,13 @@ module Xapify
         @xap_fields[arg.to_sym] = { :store => true, :type => kind }
       end
       
-      Dir.mkdir("#{Rails.root}/index") unless File.exists?("#{Rails.root}/index")
-      Dir.mkdir("#{Rails.root}/index/#{Rails.env}") unless File.exists?("#{Rails.root}/index/#{Rails.env}")
-      
-      @xap_db = Xapify::XapianDb.new(:dir => "#{Rails.root}/index/#{Rails.env}/#{name}.db", :create => true, :fields => @xap_fields)
+      if Rails.env == 'test'
+        @xap_db = Xapify::XapianDb.new(:create => true, :fields => @xap_fields)
+      else
+        Dir.mkdir("#{Rails.root}/index") unless File.exists?("#{Rails.root}/index")
+        Dir.mkdir("#{Rails.root}/index/#{Rails.env}") unless File.exists?("#{Rails.root}/index/#{Rails.env}")
+        @xap_db = Xapify::XapianDb.new(:dir => "#{Rails.root}/index/#{Rails.env}/#{name}.db", :create => true, :fields => @xap_fields)
+      end
     end
 
     def search(string)

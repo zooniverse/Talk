@@ -4,6 +4,8 @@ require 'rails/test_help'
 
 class ActiveSupport::TestCase
   def setup
+    Comment.destroy_all # To empty the xapian db
+    
     MongoMapper.database.collections.reject{ |c| c.name == 'system.indexes' }.each do |collection|
       collection.remove
     end
