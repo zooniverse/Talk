@@ -9,6 +9,8 @@ en:
       flash_create: "Comment created"
     application:
       not_authorised: "You don't have permissions to view this page"
+    collections:
+      flash_create: "Collection created"
   homepage:
     trends: "Trending"
     recent: "Recent"

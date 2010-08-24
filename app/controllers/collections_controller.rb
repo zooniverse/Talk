@@ -8,4 +8,13 @@ class CollectionsController < ApplicationController
     
     @tags = ["Tag1", "Tag2", "Tag3"]
   end
+  
+  def new
+    @collection = Collection.new
+  end
+  
+  def create
+        
+  end
+  
 end
