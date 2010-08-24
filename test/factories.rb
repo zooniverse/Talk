@@ -12,7 +12,6 @@ end
 
 Factory.define :discussion do |d|
   d.subject             "Monkey is an OIII emission"
-  d.slug                "monkey-is-an-oiii-emission"
 end
 
 Factory.define :asset do |a|
@@ -28,12 +27,14 @@ Factory.define :user do |u|
 end
 
 Factory.define :collection do |c|
+  c.zooniverse_id       { "AHZ#{Factory.next(:name)}" }
   c.name                { "#{ Factory.next(:name) }" }
   c.description         { "This is collection" }
   c.user                { |user| user.association(:user) }
 end
 
 Factory.define :live_collection do |c|
+  c.zooniverse_id       { "AHZ#{Factory.next(:name)}" }
   c.name                { "#{ Factory.next(:name) }" }
   c.description         { "This is a live collection" }
   c.tags                [ "monkey", "awesome" ]

@@ -47,7 +47,7 @@ class ActiveSupport::TestCase
   
   def build_focus_for(focus)
     @focus1 = focus
-    klass = focus.class.name.downcase
+    klass = focus.class.name.underscore
     
     2.upto(3) do |i|
       f = instance_variable_set("@#{klass + i.to_s}", Factory(klass.to_sym))
