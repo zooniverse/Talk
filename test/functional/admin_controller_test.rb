@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class AdminControllerTest < ActionController::TestCase
-  
   context "AdminController when NOT logged in" do
     setup do
       @controller = AdminController.new
