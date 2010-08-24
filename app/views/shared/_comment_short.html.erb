@@ -1,7 +1,8 @@
 <div class="short-comment">
 	<%= image_tag('default_user.png', :class => "short-comment-user", :height => 40) %>
 	<div class="comment-container">
-		<span class="name"><%= comment_short.author.name %></span><div class="comment-body"><%= raw markdown(comment_short.body) %></div>				
+		<div class="comment-body">
+		<div class="name"><%= comment_short.author.name %></div><%= raw markdown(comment_short.body) %></div>				
 	</div>	
 	<div class="date">
 		<%- unless current_zooniverse_user && comment_short.author == current_zooniverse_user -%>

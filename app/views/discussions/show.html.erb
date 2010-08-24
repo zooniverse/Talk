@@ -35,7 +35,7 @@
 <div class="lower-row">
 	<div class="lhc" <% if @discussion.focus_type.blank? %>style="width:700px;"<% end %>>		
 		<div class="comments-list">
-			<%= render :partial => "shared/comment_short", :collection => @discussion.comments %>
+			<%= render :partial => "shared/comment", :collection => @discussion.comments %>
 		</div>
 		<%= render :partial => "shared/comment_new" if current_zooniverse_user %>			
 	</div>

@@ -68,7 +68,7 @@ a:hover {
 
 .comment-container .name {
 	margin-right: 5px;
-	float: left;
+/*	float: left;*/
 }
 
 /* Boards page */
@@ -247,7 +247,6 @@ img.new-comment-user{
 
 .comment-container .name {
 	font-weight:bold;
-	float: left;
 }
 
 .last {
@@ -505,24 +504,25 @@ h2.asset-name {
 }
 
 /* Old Tabs */
-/*
-.ct .ui-tabs-nav li {
+
+/*.ct .ui-tabs-nav li {
 	background: lightgrey;
-	padding: 5px 5px 0 5px;
+	padding: 5px 5px 3px 5px;
 	border: solid black 1px;
 	margin:0;
 	border-style: solid solid none solid;
-	font-size: 90%;
+	font-size: 80%;
 }
 
 .ct .ui-tabs-nav li.ui-tabs-default a:link {
 	color: #000;
+	padding: 5px;
 }
 
 .ct .ui-tabs-nav li.ui-tabs-selected {
 	background: #fff;
-}
-*/
+}*/
+
 
 .ct .ui-tabs-nav {
 	margin-bottom: 10px;
@@ -533,9 +533,6 @@ h2.asset-name {
 	padding: 2px 5px 2px 5px;
 	border: solid #eee 1px;
 	margin:0;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 	border-style: solid;
 	font-size: 80%;
 }
@@ -582,7 +579,7 @@ h2.asset-name {
 	padding: 0 10px 10px 10px;
 }
 
-.short-comment .vote-controls {
+.vote-controls {
 	font-size: 70%;
 	display: none;
 }
@@ -626,6 +623,10 @@ h2.asset-name {
 	padding:0 0 0 10px;
 }
 
+.rhc .panel .collection-info ul li {
+	margin-top: 0;
+}
+
 h1.collection-title {
 	font-size: 2.0em	;
 }
@@ -633,4 +634,18 @@ h1.collection-title {
 .discussion .main {
 	margin: 0 20px;
 	padding: 20px 0;
+}
+
+.short-comment .comment-body {
+	-webkit-border-radius: 10px;
+	background: #e6f0fc;
+	padding: 10px;
+}
+
+.short-comment p, .comment p {
+	margin: 2px 0;
+}
+
+.comment {
+	margin-bottom: 20px;
 }

@@ -5,7 +5,7 @@
 	<div class="inner">
 		<ul>
 	  	<%- @collections.each do |collection| %>
-	  	  <li><%= link_to collection.name, collection_path(collection.zooniverse_id) %></li>
+	  	  <li><%= link_to collection.name, collection_path(collection.zooniverse_id) %> (<%= collection.assets.size %> items)</li>
 	  	<% end -%>
 		</ul>		
 	</div>

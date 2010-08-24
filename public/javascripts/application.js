@@ -46,15 +46,16 @@ OCT.scroll = {
  * @Namespace Hovering
  */
 OCT.hover = {
-		comment			: '.short-comment',
+
+		voteable			: '.short-comment, .comment',
 		vote_controls : '.vote-controls',
 		
 		init: function () {
-			$(OCT.hover.comment).hover(function() {	
+			$(OCT.hover.voteable).hover(function() {	
 				$(OCT.hover.vote_controls, this).show();
 			}, function() {
 				$(OCT.hover.vote_controls, this).hide();
-			});
+			});		
 		}
 };
 
