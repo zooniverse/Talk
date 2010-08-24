@@ -38,28 +38,29 @@ class Discussion
     Comment.where(:discussion_id => self.id).limit(no).all
   end
   
-  # Finds discussions mentioning an asset
-  def self.mentioning(asset)
-    comments = Comment.mentioning(asset, :limit => 0)
-    counted_comments = Hash.new(0)
-    comments.each{ |comment| counted_comments[comment] += 1 }
-    comments = counted_comments.sort{ |a, b| b[1] <=> a[1] }.collect{ |comment| comment.first }
-    comments.collect{ |comment| comment.discussion }
+  def self.trending (no=10)
+    Discussion.limit(no).sort(['number_of_comments',-1]).all
+  end
+  
+  # Finds discussions mentioning a focus
+  def self.mentioning(focus)
+    comments = Comment.search "mentions:#{focus.zooniverse_id}", :limit => 100, :collapse => :discussion_id, :from_mongo => true
+    comments[0, 10].map{ |comment| comment.discussion }
   end
   
   def live_collection?
-    return (focus_type == "LiveCollection")
+    focus_type == "LiveCollection"
   end
   
   def asset?
-    return (focus_type == "Asset")
+    focus_type == "Asset"
   end
   
   def collection?
-    return (focus_type == "Collection")
+    focus_type == "Collection"
   end
   
-  # private
+  private
   # Creates a prettyfied slug for the URL
   def set_slug
     self.slug = self.subject.parameterize('_')
