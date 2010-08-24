@@ -454,7 +454,7 @@
 						}
 					} );
 				} else {
-					if (!template) {
+					if (!template) {						
 						$.ajax( {
 							url: options.previewTemplatePath,
 							success: function(data) {

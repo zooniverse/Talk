@@ -11,7 +11,7 @@
 // Feel free to add more tags
 // -------------------------------------------------------------------
 mySettings = {
-	previewParserPath:	'',
+	previewParserPath:	'/comments/markitup_parser',
 	onShiftEnter:		{keepDefault:false, openWith:'\n\n'},
 	markupSet: [		
 		{name:'Bold', key:'B', openWith:'**', closeWith:'**'},

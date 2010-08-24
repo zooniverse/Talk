@@ -13,6 +13,7 @@ Sellers::Application.routes.draw do
       post :vote_up
       post :report
     end
+    
     collection do
       post :markitup_parser
     end

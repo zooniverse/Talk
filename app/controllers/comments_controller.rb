@@ -33,5 +33,4 @@ class CommentsController < ApplicationController
   def markitup_parser
     render :text => BlueCloth::new(params[:data]).to_html
   end
-  
 end
