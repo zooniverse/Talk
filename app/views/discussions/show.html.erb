@@ -32,7 +32,7 @@
 	</div>
 </div>
 
-<div class="lower-row">
+<div class="lower-row discussion-thread">
 	<div class="lhc" <% if @discussion.focus_type.blank? %>style="width:700px;"<% end %>>		
 		<div class="comments-list">
 			<%= render :partial => "shared/comment", :collection => @discussion.comments %>

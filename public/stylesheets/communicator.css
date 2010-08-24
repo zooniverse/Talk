@@ -205,7 +205,7 @@ a:hover {
 }
 
 /* Comments */
-.short-comment, .recent-comment {
+.recent-comment {
 	border-bottom: solid #eee 1px;
 }
 
@@ -235,10 +235,16 @@ img.new-comment-user{
 	color: #afafaf;	
 }
 
+.comment .toolbar, .short-comment .toolbar {
+	margin-top: 5px;
+	visibility: hidden;
+}
+
 .short-comment .date {
 	color: #afafaf;
 	margin-bottom: 10px;
 	margin-left: 50px;
+	font-size: 85%;
 }
 
 .comment-container .comment-body {
@@ -581,16 +587,75 @@ h2.asset-name {
 
 .vote-controls {
 	font-size: 70%;
-	display: none;
+	float:right;
 }
 .collection-viewer {
 	margin-top: 20px;
 	margin-bottom: 30px;
 }
 
-.comment-body h1 {
-	font-weight: normal;
-	margin: 0;
-	padding: 0;
-	font-size: 1.0em;
+/* Profile page */
+.lhc .panel {
+	background: #F3F3F3;
+	padding: 5px;
+	
+}
+
+.lhc .panel img {
+	
+}
+
+.lhc .panel h2 {
+	font-size: 1.2em;
+}
+
+/* My collections */
+.my-collections .collection {
+	margin-top: 10px;
+}
+
+.my-collections ul {
+	font-size: 90%;
+	color: #afafaf;
+}
+
+.my-collections img {
+	margin-left: 10px;
+}
+
+.rhc .panel .collection-info {
+	float:left;
+	text-align:right;
+	padding:0 0 0 10px;
+}
+
+.rhc .panel .collection-info ul li {
+	margin-top: 0;
+}
+
+h1.collection-title {
+	font-size: 2.0em	;
+}
+
+.discussion .main {
+	margin: 0 20px;
+	padding: 20px 0;
+}
+
+.short-comment .comment-body {
+	-webkit-border-radius: 10px;
+	background: #e6f0fc;
+	padding: 10px;
+}
+
+.short-comment p, .comment p {
+	margin: 2px 0;
+}
+
+.comment {
+	margin-bottom: 20px;
+}
+
+.discussion-thread .lhc {
+	width:700px;
 }
