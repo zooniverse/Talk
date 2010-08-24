@@ -47,7 +47,7 @@ OCT.scroll = {
  */
 OCT.hover = {
 
-		hidden			: '.short-comment, .comment',
+		hidden			: '.short-comment',
 		vote_controls : '.toolbar',
 		
 		init: function () {

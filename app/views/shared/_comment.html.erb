@@ -1,13 +1,22 @@
 <div class="comment">
-	<%= image_tag('default_user.png', :class => "short-comment-user", :height => 40) %>
+	<div style="">
+		<%= image_tag('default_user.png', :class => "short-comment-user", :height => 40) %>
+		<% if !comment.author.admin %>
+
+		<% end %>
+	</div>
 	<div class="comment-container">
-		<div class="name"><%= comment.author.name %></div><div class="comment-body"><%= raw markdown(comment_short.body) %></div>				
-	</div>	
-	<div class="toolbar">
+		<div class="comment-body">
+			<div class="name"><%= comment.author.name %></div>
+			<%= raw markdown(comment.body) %>
+		</div>					
+		
+		<div class="toolbar">
 		<%- unless current_zooniverse_user && comment.author == current_zooniverse_user -%>
-		<div class="vote-controls">
-			<span id="comment-vote-<%= comment.id %>"><%= link_to("RECOMMEND", vote_up_comment_path(comment), {:remote => true, :method => :post, :style => "color:#2276BB;margin: 0;"}) %></span>&nbsp;|&nbsp;<span id="report-link-<%= comment.id %>"><%= link_to("REPORT", report_comment_path(comment), {:remote => true, :method => :post, :style => "color:#2276BB;", :confirm => (t 'comments.report_comment_confirm') }) %></span>
-		</div>
+			<div class="vote-controls">
+				<span id="comment-vote-<%= comment.id %>"><%= link_to("RECOMMEND", vote_up_comment_path(comment), {:remote => true, :method => :post, :style => "color:#2276BB;margin: 0;"}) %></span>&nbsp;|&nbsp;<span id="report-link-<%= comment.id %>"><%= link_to("REPORT", report_comment_path(comment), {:remote => true, :method => :post, :style => "color:#2276BB;", :confirm => (t 'comments.report_comment_confirm') }) %></span>
+			</div>
 		<%- end -%>
+		</div>
 	</div>
 </div>

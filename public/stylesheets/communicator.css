@@ -589,6 +589,12 @@ h2.asset-name {
 	font-size: 70%;
 	float:right;
 }
+
+.comment .vote-controls {
+	float: none;
+	visibility: visible;
+}
+
 .collection-viewer {
 	margin-top: 20px;
 	margin-bottom: 30px;
@@ -654,6 +660,8 @@ h1.collection-title {
 
 .comment {
 	margin-bottom: 20px;
+	border-bottom: dotted #afafaf 1px;
+	padding-bottom: 10px;
 }
 
 .discussion-thread .lhc {
