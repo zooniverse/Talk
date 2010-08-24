@@ -13,6 +13,9 @@ Sellers::Application.routes.draw do
       post :vote_up
       post :report
     end
+    collection do
+      post :markitup_parser
+    end
   end
   
   resources :discussions do
@@ -42,8 +45,7 @@ Sellers::Application.routes.draw do
   
   match '/admin' => 'admin#index'
   
-  root :to => "home#index"
-  
+  root :to => "home#index"  
   
   # mapping for boards 
   match '/science' => 'boards#science'

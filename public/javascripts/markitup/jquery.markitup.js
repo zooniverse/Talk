@@ -36,7 +36,7 @@
 					previewAutoRefresh:		true,
 					previewPosition:		'after',
 					previewTemplatePath:	'/javascripts/markitup/templates/preview.html',
-					previewParserPath:		'',
+					previewParserPath:		'/comments/markitup_parser',
 					previewParserVar:		'data',
 					resizeHandle:			true,
 					beforeInsert:			'',

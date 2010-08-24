@@ -29,4 +29,9 @@ class CommentsController < ApplicationController
     
     @event.save
   end
+  
+  def markitup_parser
+    render :text => BlueCloth::new(params[:data]).to_html
+  end
+  
 end
