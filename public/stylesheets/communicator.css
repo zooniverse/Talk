@@ -585,14 +585,11 @@ h2.asset-name {
 	padding: 0 10px 10px 10px;
 }
 
-.vote-controls {
+.comment .vote-controls, .comment .reponse-to {
 	font-size: 70%;
-	float:right;
-}
-
-.comment .vote-controls {
-	float: none;
+	float: left;
 	visibility: visible;
+	
 }
 
 .collection-viewer {

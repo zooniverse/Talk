@@ -81,3 +81,9 @@ function replace_input(a,b){
 	 myfield.value = arguments[1];
 	}
 }
+
+// --
+function reply_to(comment_id){
+	$('#comment_response_to_id').val(comment_id);
+	$('html,body').animate({ scrollTop: $('#new_comment').offset().top }, { duration: 'medium', easing: 'swing'});
+}

@@ -5,6 +5,7 @@ class Comment
   plugin Xapify
   
   key :discussion_id, ObjectId
+  key :response_to_id, ObjectId
   key :author_id, ObjectId, :required => true
   key :upvotes, Array
   key :body, String, :required => true
@@ -18,6 +19,10 @@ class Comment
   belongs_to :author, :class_name => "User"
   one :response_to, :class_name => "Comment", :foreign_key => "response_to_id"
   many :events, :as => :eventable
+  
+  def is_a_response?
+    self.response_to_id.nil? ? false : true
+  end
   
   # Atomic operation to let a User vote for a Comment
   def cast_vote_by(user)

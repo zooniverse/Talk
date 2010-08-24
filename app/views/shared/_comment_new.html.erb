@@ -8,7 +8,9 @@
 <%= form_for [@discussion, @comment] do |f| %>
 	<p>Add a comment</p>
 	<%= f.text_area :body, :rows => 4, :cols => 61 %>
-	<%= hidden_field_tag('comment[author_id]', current_zooniverse_user.id)  %>
+	<%= hidden_field_tag('comment[author_id]', current_zooniverse_user.id) %>
+	<%= hidden_field_tag('comment[response_to_id]', "") %>
+	
 	<%= submit_tag 'Submit' %>	
 	</div>
 <%- end %>
