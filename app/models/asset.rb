@@ -23,7 +23,7 @@ class Asset
       end
     end
     
-    asset_ids.map{ |zoo_id| Asset.find_by_zooniverse_id(zoo_id) }
+    asset_ids.map{ |zoo_id| Asset.find_by_zooniverse_id(zoo_id) }.reverse
   end
   
   # selects the most recently discussed assets (ie the assets with the newest comments )
@@ -36,7 +36,7 @@ class Asset
       asset_ids[ doc['focus_id'] ] = 1
     end
     
-    asset_ids.map{ |focus_id, d_id| Asset.find(focus_id) }
+    asset_ids.map{ |focus_id, d_id| Asset.find(focus_id) }.reverse
   end
   
   # selects the most recently 'popular' assets
