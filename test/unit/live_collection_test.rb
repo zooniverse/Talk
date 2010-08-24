@@ -42,16 +42,12 @@ class LiveCollectionTest < ActiveSupport::TestCase
     
     context "Finding #assets" do
       setup do
-        @found1 = Factory :asset, :tags => [ "monkey", "awesome" ]
-        @found2 = Factory :asset, :tags => [ "really", "awesome", "monkey" ]
-        @not_found = Factory :asset, :tags => [ "big", "purple", "truck" ]
-        @assets = @collection.assets
+        @asset = Factory :asset
+        build_focus_for @asset
       end
 
-      should "find tag-matched assets" do
-        assert @assets.include?(@found1)
-        assert @assets.include?(@found2)
-        assert !@assets.include?(@not_found)
+      should_eventually "find tag-matched assets" do
+        assert_equal [@asset], @collection.assets
       end
     end
   end

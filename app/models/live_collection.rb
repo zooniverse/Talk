@@ -18,14 +18,11 @@ class LiveCollection
   
   # Finds assets that match the tags in the LiveCollection
   #   e.g. live_collection.assets(:page => 1, :per_page => 5)
-  #--
-  # Major performance hit here
-  #++
   def assets(*args)
-    options = { :page => 0, :per_page => 10 }
-    options = options.update(args.first) unless args.first.nil?
-    
-    Asset.where(:tags.all => self.tags).skip(options[:page] * options[:per_page]).limit(options[:per_page]).all
+    options = { :page => 0, :per_page => 10 }.update args.extract_options!
+    results = Comment.search "focus_type:Asset tags:#{ self.tags.join(' ') }", :limit => 10_000, :collapse => :focus_id
+    results = results[ options[:page] * options[:per_page], options[:per_page] ]
+    results.map{ |result| Asset.find(result[:focus_id]) }
   end
   
   # Bypasses the Focus#tags aggregation
@@ -33,13 +30,22 @@ class LiveCollection
     self[:tags]
   end
   
-  def self.most_recent (no=10)
-     LiveCollection.limit(no).sort(['created_at', -1]).all
-   end
+  def self.most_recent(limit = 10)
+    LiveCollection.limit(limit).sort(['created_at', -1]).all
+  end
   
-   def self.trending (no=10)
-    result= Discussion.collection.group( [:focus_id], {:focus_type=>"LiveCollection"}, {:count=>0},"function(obj, prev){ prev.count += obj.no_of_comments*obj.no_of_users; }")
-    result[0..no-1].collect{|r| LiveCollection.find(r['focus_id'])}
-
+  def self.trending(limit = 10)
+    discussions = Discussion.collection.group([:focus_id],
+      { :focus_type => "LiveCollection" },
+      { :score => 0 },
+      <<-JS
+        function(obj, prev) {
+          prev.count += obj.number_of_comments * obj.number_of_users;
+        }
+      JS
+    )
+    
+    discussions = discussions.result[0, limit].sort{ |a, b| b['score'] <=> a['score'] }
+    discussions.map{ |key, val| LiveCollection.find(key['focus_id']) }
    end
 end

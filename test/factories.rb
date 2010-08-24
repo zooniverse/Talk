@@ -37,7 +37,7 @@ Factory.define :live_collection do |c|
   c.zooniverse_id       { "AHZ#{Factory.next(:name)}" }
   c.name                { "#{ Factory.next(:name) }" }
   c.description         { "This is a live collection" }
-  c.tags                [ "monkey", "awesome" ]
+  c.tags                [ "tag2", "tag4" ]
   c.user                { |user| user.association(:user) }
 end
 

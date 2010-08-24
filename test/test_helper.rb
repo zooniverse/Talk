@@ -72,6 +72,8 @@ class ActiveSupport::TestCase
     
     [comment1, comment2, comment3].each do |comment|
       discussion.comments << comment
+      discussion.save
+      comment.save
     end
     
     conversation = Factory :discussion, :created_at => Time.now + delay.minutes
