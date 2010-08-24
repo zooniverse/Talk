@@ -1,4 +1,4 @@
-<div class="upper-row discussion">
+<div class="upper-row">
 	<% unless @discussion.focus_type.blank? %>	
 	<div class="rhc">				
 		<div class="panel discussion-items">
@@ -19,12 +19,16 @@
 		</div>
 	</div>
 	<% end %>	
-	<div class="lhc" <% if @discussion.focus_type.blank? %>style="width:auto;"<% end %>>
-		<h2><strong>DISCUSSION <span class="discussion-splitter">/</span> <%= @discussion.zooniverse_id %></strong></h2>		
-		<h1><%= @discussion.subject %></h1>
-		<% @discussion.tags.each do |tag| %>
-			<%= link_to tag %>
-		<% end %>
+	<div class="lhc discussion" <% if @discussion.focus_type.blank? %>style="width:auto;"<% end %>>
+		<div class="main">
+			<h2><strong>DISCUSSION / <%= @discussion.zooniverse_id %></strong></h2>		
+			<h1><%= @discussion.subject %></h1>
+			<div class="subtext">
+				<% @discussion.tags.each do |tag| %>
+					<%= link_to tag %>
+				<% end %>		
+			</div>
+		</div>
 	</div>
 </div>
 

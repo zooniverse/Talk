@@ -115,7 +115,9 @@ a:hover {
 }
 
 .discussion  {
-	height:200px;
+/*	height:200px;*/
+	background: #d5eff7;
+/*	padding: 20px;*/
 }
 
 /* Lower Row */
@@ -124,12 +126,16 @@ a:hover {
 }
 
 .lhc {
-	width: 440px;	
+	width: 450px;	
 }
 
 .rhc {
 	float: right;
 	width: 230px;
+}
+
+.panel ul li {
+	margin-top: 8px;
 }
 
 /* Tags */
@@ -141,6 +147,7 @@ a:hover {
 .tags ul li {
 	float: left;
 	margin-right: 5px;
+	margin-top: 0;
 }
 
 /* Recent Items (Collections, Discussions) */
@@ -270,10 +277,6 @@ img.new-comment-user{
 	margin-bottom: 0;
 }
 
-.lower-row .rhc .panel ul li {
-	margin-top: 8px;
-}
-
 .subtext {
 	font-size: 85%;
 }
@@ -354,7 +357,7 @@ h2.asset-name {
 	margin-bottom: 5px;
 }
 
-.discussion-splitter {
+.splitter {
 	color: red;
 	position:relative;
 	top:-1px;
@@ -621,4 +624,13 @@ h2.asset-name {
 	float:left;
 	text-align:right;
 	padding:0 0 0 10px;
+}
+
+h1.collection-title {
+	font-size: 2.0em	;
+}
+
+.discussion .main {
+	margin: 0 20px;
+	padding: 20px 0;
 }
