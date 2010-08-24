@@ -11,6 +11,10 @@ class EventsController < ApplicationController
   end
   
   def report_user
-    
+    @user = User.find(params[:user_id])
+    @event = @user.events.build(:user => current_zooniverse_user,
+                                :title => "User reported by #{current_zooniverse_user.name}")
+                                
+    @event.save
   end
 end
