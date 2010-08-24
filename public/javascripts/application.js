@@ -82,8 +82,13 @@ function replace_input(a,b){
 	}
 }
 
-// --
-function reply_to(comment_id){
+
+/* 
+ * @Reply to link helpers
+ */
+
+function reply_to(comment_id, author){
+	$('#comment-form-title').html('Reply to '+ author)
 	$('#comment_response_to_id').val(comment_id);
 	$('html,body').animate({ scrollTop: $('#new_comment').offset().top }, { duration: 'medium', easing: 'swing'});
 }

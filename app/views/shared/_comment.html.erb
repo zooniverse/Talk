@@ -13,7 +13,7 @@
 		
 		<div class="toolbar">
 			<div class="reponse-to">
-				<%= link_to "Reply to this comment", "#", :onclick => "reply_to('#{comment.id}');" %>&nbsp;
+				<%= link_to "Reply to this comment", "#", :onclick => "reply_to('#{comment.id}', '#{comment.author.name}');" %>&nbsp;
 			</div>
 		
 		<%- if comment.is_a_response? -%>
