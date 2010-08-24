@@ -5,7 +5,7 @@
 		<div class="inner">
 		  	<ul>
 		    <%- @focus.tags.each do |tag| %>
-		  		<li><%= link_to tag, "#" %></li>
+		  		<li><%= link_to tag, :controller => :search, :action => :index, :search => "tags:#{tag}" %></li>
 		  	<% end -%>
 			</ul>
 			<div class="push"></div>
