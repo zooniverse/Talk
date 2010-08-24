@@ -8,7 +8,11 @@ Sellers::Application.routes.draw do
     resources :discussions
   end
   
-  resources :comments
+  resources :comments do
+    member do
+      post :vote_up
+    end
+  end
   
   resources :discussions do
     resources :comments

@@ -24,6 +24,8 @@ en:
     about:
       title1: "What is Sellers?"
       body1a: "Sellers is a collaboration tool that lets you learn to stop worrying and love the bomb.. er I mean the Zooniverse."
+  comments:
+    report_comment_confirm: "Are you sure you want to report this comment?"
   discussion:
     meta:
       comments: "Comments"
