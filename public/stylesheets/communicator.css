@@ -647,6 +647,7 @@ h1.collection-title {
 
 .short-comment .comment-body {
 	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
 	background: #e6f0fc;
 	padding: 10px;
 }
