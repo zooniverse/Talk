@@ -1,8 +1,8 @@
 <!-- Box for front page trending tags -->
 <div id="<%= id_of_box %>" class="panel">
 	<ul id="tag-cloud">
-		<% tags_list.each do |tag| %>
-		<li><a href="#" class="level<%= tag[1] %>"><%= tag[0] %></a></li>
+		<% tags_list.each_pair do |tag, count| %>
+		<li class="level<%= count %>" ><%= link_to tag, :controller => :search, :action => :index, :search => "tags:#{tag}" %></li>
 		<% end %>
 	</ul>
 </div>

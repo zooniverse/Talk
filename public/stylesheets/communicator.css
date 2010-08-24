@@ -319,15 +319,15 @@ img.new-comment-user{
 	display: inline;
 }
 
-#tag-cloud a.level1 { font-size: 0.7em; font-weight: 100; }
-#tag-cloud a.level2 { font-size: 0.8em; font-weight: 200; }
-#tag-cloud a.level3 { font-size: 0.9em; font-weight: 300; }
-#tag-cloud a.level4 { font-size: 1.0em; font-weight: 400; }
-#tag-cloud a.level5 { font-size: 1.2em; font-weight: 500; }
-#tag-cloud a.level6 { font-size: 1.4em; font-weight: 600; }
-#tag-cloud a.level7 { font-size: 1.6em; font-weight: 700; }
-#tag-cloud a.level8 { font-size: 1.8em; font-weight: 800; }
-#tag-cloud a.level9 { font-size: 2.2em; font-weight: 900; }
+#tag-cloud li.level1 { font-size: 0.7em; font-weight: 100; }
+#tag-cloud li.level2 { font-size: 0.8em; font-weight: 200; }
+#tag-cloud li.level3 { font-size: 0.9em; font-weight: 300; }
+#tag-cloud li.level4 { font-size: 1.0em; font-weight: 400; }
+#tag-cloud li.level5 { font-size: 1.2em; font-weight: 500; }
+#tag-cloud li.level6 { font-size: 1.4em; font-weight: 600; }
+#tag-cloud li.level7 { font-size: 1.6em; font-weight: 700; }
+#tag-cloud li.level8 { font-size: 1.8em; font-weight: 800; }
+#tag-cloud li.level9 { font-size: 2.2em; font-weight: 900; }
 
 h2.asset-name {
 	font-weight: bold;
