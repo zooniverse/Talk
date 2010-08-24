@@ -17,8 +17,17 @@ class Comment
   
   belongs_to :discussion
   belongs_to :author, :class_name => "User"
-  one :response_to, :class_name => "Comment", :foreign_key => "response_to_id"
   many :events, :as => :eventable
+  
+  def response_to=(comment)
+    self.response_to_id = comment.id
+    self.save if self.changed?
+    @cached_response_to = comment
+  end
+  
+  def response_to
+    @cached_response_to ||= Comment.find(self.response_to_id)
+  end
   
   def is_a_response?
     self.response_to_id.nil? ? false : true

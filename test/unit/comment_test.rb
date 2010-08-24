@@ -19,6 +19,27 @@ class CommentTest < ActiveSupport::TestCase
       assert @comment.associations.keys.include?("author")
       assert @comment.associations.keys.include?("discussion")
     end
+    
+    context "in #response_to another" do
+      setup do
+        @comment2.response_to = @comment
+        # @comment2.save
+        # @comment2.reload
+        # puts "\n\ncomment2"
+        # pp @comment2.to_mongo
+        # puts "\n\ncomment"
+        # pp @comment.to_mongo
+      end
+
+      should "store the #response_to_id" do
+        assert_equal @comment.id, @comment2.response_to_id
+      end
+      
+      should "find the #response_to comment" do
+        assert_equal @comment, @comment2.response_to
+      end
+    end
+    
 
     context "when upvoting" do
       setup do
