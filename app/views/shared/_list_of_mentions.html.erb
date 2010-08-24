@@ -2,7 +2,7 @@
 <% unless @mentions.empty? %>
 	<div class="panel collection-list">
 		<h2>Mentions</h2>
-		<div>
+		<div class="inner">
 		<ul>
 		  <%- @mentions.each do |discussion| %>
 		    <li><%= link_to discussion.subject, "#" %></li>

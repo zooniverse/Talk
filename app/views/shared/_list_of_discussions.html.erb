@@ -2,7 +2,7 @@
 <% unless @focus.discussions.empty? %>
 	<div class="panel collection-list">
 			<h2>Discussions</h2>
-			<div>
+			<div class="inner">
 			<ul>
 			  <%- @focus.discussions.each do |discussion| %>
 			    <li><%= link_to discussion.subject, discussion_url_for(@focus, discussion) %></li>

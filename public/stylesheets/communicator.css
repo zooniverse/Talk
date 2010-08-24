@@ -82,7 +82,7 @@ a:hover {
 }
 
 /* Object Page */
-.upper-row .rhc {
+.asset-upper .rhc {
 	padding-top: 30px;
 }
 
@@ -220,7 +220,7 @@ img.new-comment-user{
 	margin-left: 50px;
 }
 
-.short-comment, .recent-comment {
+.recent-comment {
 		padding: 10px 0 10px 0;
 }
 
@@ -256,7 +256,7 @@ img.new-comment-user{
 	margin-bottom: 30px;
 }
 
-.rhc .panel div {
+.rhc .panel .inner {
 	background: #F3F3F3;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -586,4 +586,39 @@ h2.asset-name {
 .collection-viewer {
 	margin-top: 20px;
 	margin-bottom: 30px;
+}
+
+/* Profile page */
+.lhc .panel {
+	background: #F3F3F3;
+	padding: 5px;
+	
+}
+
+.lhc .panel img {
+	
+}
+
+.lhc .panel h2 {
+	font-size: 1.2em;
+}
+
+/* My collections */
+.my-collections .collection {
+	margin-top: 10px;
+}
+
+.my-collections ul {
+	font-size: 90%;
+	color: #afafaf;
+}
+
+.my-collections img {
+	margin-left: 10px;
+}
+
+.rhc .panel .collection-info {
+	float:left;
+	text-align:right;
+	padding:0 0 0 10px;
 }

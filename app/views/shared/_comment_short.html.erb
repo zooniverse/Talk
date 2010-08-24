@@ -3,11 +3,12 @@
 	<div class="comment-container">
 		<span class="name"><%= comment_short.author.name %></span><div class="comment-body"><%= raw markdown(comment_short.body) %></div>				
 	</div>	
-	<div class="date"><div style="margin-top:2px;font-size:90%;"><%= long_date(comment_short.created_at) %></div>
+	<div class="date">
 		<%- unless current_zooniverse_user && comment_short.author == current_zooniverse_user -%>
 		<div class="vote-controls" style="margin-top:5px;float:right;">
 			<span id="comment-vote-<%= comment_short.id %>"><%= link_to("RECOMMEND", vote_up_comment_path(comment_short), {:remote => true, :method => :post, :style => "color:#2276BB;margin: 0;"}) %></span>&nbsp;|&nbsp;<span id="report-link-<%= comment_short.id %>"><%= link_to("REPORT", {:controller => :events, :action => :report_comment, :comment_id => comment_short.id}, {:remote => true, :method => :post, :style => "color:#2276BB;", :confirm => (t 'comments.report_comment_confirm') }) %></span>
 		</div>
 		<%- end -%>
+		<div style="margin-top:2px;font-size:90%;"><%= long_date(comment_short.created_at) %></div>
 	</div>
 </div>

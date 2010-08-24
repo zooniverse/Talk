@@ -2,12 +2,12 @@
 <% unless @collections.empty? %>
 <div class="panel">	
 	<h2>Collections</h2>
-	<div>
-	<ul>
-  	<%- @collections.each do |collection| %>
-  	  <li><%= link_to collection.name, collection_path(collection.zooniverse_id) %></li>
-  	<% end -%>
-	</ul>		
+	<div class="inner">
+		<ul>
+	  	<%- @collections.each do |collection| %>
+	  	  <li><%= link_to collection.name, collection_path(collection.zooniverse_id) %></li>
+	  	<% end -%>
+		</ul>		
 	</div>
 </div>
 <% end %>

@@ -1,3 +1,37 @@
-<h1><%= @user.name %></h1>
+<div class="upper-row">
+	<div class="rhc">
+		<div class="panel my-collections">		
+		<h2>My Collections</h2>
+			<div class="inner">				
+					<% @user.collections.each do |collection| %>
+						<div class="collection">
+							<%= link_to image_tag(collection.assets.first.thumbnail_location, :class => "collection-thumbnail", :height => 100), collection_path(collection.zooniverse_id)%>
+							<div class="collection-info">						
+									<h3><%= link_to collection.name, collection_path(collection.zooniverse_id) %></h3>
+									<ul>	
+										<li><%= collection.assets.size %> item<% if collection.assets.size > 1 %>s<% end %></li>																	
+										<li><%= collection.discussions.size %> discussion<% if collection.discussions.size > 1 %>s<% end %></li>																										
+										<li><%= collection.conversation.number_of_comments %> comment<% if collection.conversation.number_of_comments > 1 %>s<% end %></li>																																			
+									</ul>
+							</div>
+						</div>							
+						<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="lhc">		
+		<h1><%= @user.name %></h1>		
+		<span id="report-user-link-<%= @user.id %>"><%= link_to("REPORT THIS USER", {:controller => :events, :action => :report_user, :user_id => @user.id}, {:remote => true, :method => :post, :method => :post, :style => "color:#2276BB;"}) %></span>
+	</div>
 
-<span id="report-user-link-<%= @user.id %>"><%= link_to("REPORT THIS USER", {:controller => :events, :action => :report_user, :user_id => @user.id}, {:remote => true, :method => :post, :method => :post, :style => "color:#2276BB;"}) %></span>
+</div>
+<div class="lower-row">
+	<div class="rhc" ></div>
+	<div class="lhc">
+		<div class="panel">		
+			<h2>Popular</h2>
+			<div>dss</divs>
+		</div>
+	</div>
+
+</div>
