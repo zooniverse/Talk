@@ -10,7 +10,7 @@ class CommentTest < ActiveSupport::TestCase
     end
     
     should "have keys" do
-      [ :discussion_id, :tags, :mentions].each do |key|
+      [ :discussion_id, :author_id, :upvotes, :body, :tags, :mentions, :created_at, :updated_at].each do |key|
         assert @comment.respond_to?(key)
       end
     end
