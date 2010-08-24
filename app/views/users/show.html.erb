@@ -22,6 +22,12 @@
 	<div class="lhc">		
 		<h1><%= @user.name %></h1>		
 		<span id="report-user-link-<%= @user.id %>"><%= link_to("REPORT THIS USER", {:controller => :events, :action => :report_user, :user_id => @user.id}, {:remote => true, :method => :post, :method => :post, :style => "color:#2276BB;"}) %></span>
+		
+		<%- if current_zooniverse_user && current_zooniverse_user.moderator? -%>
+		<span id="moderation-links">
+			
+		</span>
+		<%- end -%>
 	</div>
 
 </div>
@@ -30,8 +36,7 @@
 	<div class="lhc">
 		<div class="panel">		
 			<h2>Popular</h2>
-			<div>dss</divs>
+			<div>dss</div>
 		</div>
 	</div>
-
 </div>
