@@ -13,12 +13,12 @@
 		
 		<div class="toolbar">
 			<div class="reponse-to">
-				<%= link_to "Reply to this comment", "#", :onclick => "reply_to('#{comment.id}', '#{comment.author.name}');" %>&nbsp;
+				<%= link_to "REPLY", "#", :onclick => "reply_to('#{comment.id}', '#{comment.author.name}');" %>&nbsp;
+				<%- if comment.is_a_response? -%>
+					Response to <%= comment.response_to.author.name %>
+				<%- end -%>
 			</div>
-		
-		<%- if comment.is_a_response? -%>
-			Response!
-		<%- end -%>
+	
 		<%- unless current_zooniverse_user && comment.author == current_zooniverse_user -%>
 			<div class="vote-controls">
 				<span id="comment-vote-<%= comment.id %>">&middot;&nbsp;<%= link_to("RECOMMEND", vote_up_comment_path(comment), {:remote => true, :method => :post, :style => "color:#2276BB;margin: 0;"}) %></span>&nbsp;|&nbsp;<span id="report-link-<%= comment.id %>"><%= link_to("REPORT", report_comment_path(comment), {:remote => true, :method => :post, :style => "color:#2276BB;", :confirm => (t 'comments.report_comment_confirm') }) %></span>
