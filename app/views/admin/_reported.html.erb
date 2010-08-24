@@ -10,4 +10,15 @@
 		<%- end -%>
 	<%- end -%>
   </ul>
+ <br/>
+ <h2>Reported Comments</h2>
+  <ul>
+	<%- if @pending_comment_events.empty? -%>
+	<li>There are no reported comments</li>
+	<%- else -%>
+		<%- @pending_comment_events.each do |event| -%>
+			<li><%= link_to truncate(event.target.body, :length =>50), comment_path(event.target) %><br /> (reported by: <%=  link_to event.user.name, user_path(event.user) %>)</li>
+		<%- end -%>
+	<%- end -%>
+  </ul>
 </div>

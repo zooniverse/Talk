@@ -5,9 +5,9 @@
 		<div class="recent-comment">
 			<%= image_tag('default_user.png', :class => "recent-comment-user", :height => 40) %>
 			<div class="comment-container">
-				<div class="name">Name</div>
-				<div class="date">14 January 2010, 10.37 AM</div>
-				<div class="comment-body"><%= c.body %></div>
+				<div class="name"><%= c.author.name %></div>
+				<div class="date"><%= long_date(c.created_at) %></div>
+				<div class="comment-body"><%= (markdown(c.body)).gsub(/<\/?[^>]*>/,"") %></div>
 			</div>
 			<div class="push"></div>
 		</div>

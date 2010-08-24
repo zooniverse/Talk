@@ -13,21 +13,15 @@
 mySettings = {
 	previewParserPath:	'',
 	onShiftEnter:		{keepDefault:false, openWith:'\n\n'},
-	markupSet: [
-		{name:'First Level Heading', key:'1', placeHolder:'Your title here...', closeWith:function(markItUp) { return miu.markdownTitle(markItUp, '=') } },
-		{name:'Second Level Heading', key:'2', placeHolder:'Your title here...', closeWith:function(markItUp) { return miu.markdownTitle(markItUp, '-') } },
-		{separator:'---------------' },		
+	markupSet: [		
 		{name:'Bold', key:'B', openWith:'**', closeWith:'**'},
 		{name:'Italic', key:'I', openWith:'_', closeWith:'_'},
 		{separator:'---------------' },
 		{name:'Bulleted List', openWith:'- ' },
-		{name:'Numeric List', openWith:function(markItUp) {
-			return markItUp.line+'. ';
-		}},
+		{name:'Quotes', openWith:'> '},
 		{separator:'---------------' },
 		{name:'Picture', key:'P', replaceWith:'![[![Alternative text]!]]([![Url:!:http://]!] "[![Title]!]")'},
 		{name:'Link', key:'L', openWith:'[', closeWith:']([![Url:!:http://]!] "[![Title]!]")', placeHolder:'Your text to link here...' },
-		{name:'Quotes', openWith:'> '},
 		{separator:'---------------'},
 		{name:'Preview', call:'preview', className:"preview"}
 	]
