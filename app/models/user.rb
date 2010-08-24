@@ -12,6 +12,7 @@ class User
   
   scope :watch_list, :state => 'watched'
   scope :banned_list, :state => 'banned'
+  scope :moderators, :moderator => true
   
   state_machine :initial => :active do
     after_transition :on => :ban, :do => :notify_banned_user

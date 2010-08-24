@@ -1,0 +1,9 @@
+<p>Dear <%= @moderator.name %></p>
+
+<p><strong><%= @user.name %></strong> has been reported by <%= @reporter.name %>.</p>
+
+<p>Please check back at <%= link_to "Sellers", admin_url(:only_path => false) %> for more information.</p>
+
+<p>Thanks!</p>
+
+<em>The Zooniverse Email Robot</em>

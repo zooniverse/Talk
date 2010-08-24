@@ -18,4 +18,11 @@ class Notifier < ActionMailer::Base
     @message = message
     mail(:to => "#{@user.name} <#{@user.email}>", :subject => "New message from #{message.sender.name}")    
   end
+  
+  def notify_reported_user(user, recipient, reporter)
+    @user = user
+    @moderator = recipient
+    @reporter = reporter
+    mail(:to => "#{recipient.name} <#{recipient.email}>", :subject => "#{user.name} has been reported by #{reporter.name}")    
+  end
 end

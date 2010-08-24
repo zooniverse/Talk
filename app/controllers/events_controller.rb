@@ -14,7 +14,10 @@ class EventsController < ApplicationController
     @user = User.find(params[:user_id])
     @event = @user.events.build(:user => current_zooniverse_user,
                                 :title => "User reported by #{current_zooniverse_user.name}")
+                         
                                 
-    @event.save
+    if @event.save
+      User.moderators.each { |moderator| Notifier.notify_reported_user(@user, moderator, current_zooniverse_user).deliver }
+    end
   end
 end
