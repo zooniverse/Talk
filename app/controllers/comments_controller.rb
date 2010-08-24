@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   respond_to :html, :only => :create
-  respond_to :js, :only => :vote_up
+  respond_to :js, :only => [:vote_up, :report]
   
   def create
     @discussion = Discussion.find(params[:discussion_id])
@@ -20,5 +20,13 @@ class CommentsController < ApplicationController
     else
       @comment.cast_vote_by(current_zooniverse_user)
     end
+  end
+  
+  def report
+    @comment = Comment.find(params[:id])
+    @event = @comment.events.build(:user => current_zooniverse_user, 
+                                   :title => "Comment reported by #{current_zooniverse_user.name}")
+    
+    @event.save
   end
 end

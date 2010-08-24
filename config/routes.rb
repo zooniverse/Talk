@@ -11,6 +11,7 @@ Sellers::Application.routes.draw do
   resources :comments do
     member do
       post :vote_up
+      post :report
     end
   end
   
@@ -31,12 +32,9 @@ Sellers::Application.routes.draw do
   
   resources :users do
     resources :messages
-  end
-
-  resources :events do
-    collection do 
-      post :report_user
-      post :report_comment
+    
+    member do
+      post :report
     end
   end
   
