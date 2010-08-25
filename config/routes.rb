@@ -2,6 +2,10 @@ Sellers::Application.routes.draw do
 
   resources :collections do 
     resources :discussions
+    
+    member do
+      post :add
+    end
   end
   
   resources :live_collections do
