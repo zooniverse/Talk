@@ -220,11 +220,11 @@ img.short-comment-user, img.recent-comment-user {
 
 img.new-comment-user{
 	float: left;
-	margin-top: 1em;
 }
 
 .comment-container {
 	margin-left: 50px;
+	padding-bottom: 5px;
 }
 
 .recent-comment {
@@ -587,9 +587,8 @@ h2.asset-name {
 
 .comment .vote-controls, .comment .reponse-to {
 	font-size: 70%;
-	float: left;
+	float: right;
 	visibility: visible;
-	
 }
 
 .collection-viewer {
@@ -657,7 +656,7 @@ h1.collection-title {
 }
 
 .comment {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	border-bottom: dotted #afafaf 1px;
 	padding-bottom: 10px;
 }
