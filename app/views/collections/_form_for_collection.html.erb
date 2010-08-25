@@ -1,0 +1,6 @@
+<%= form_for @collection do |f| %>
+	<span><%= f.text_field :name, :size => 30, :onfocus => "clear_input('collection_name');", :onblur => "replace_input('collection_name','Name of new collection');", :value => "Name of new collection" %></span>
+	<br /><br />
+	<span><%= f.text_field :description, :size => 60, :onfocus => "clear_input('collection_description');", :onblur => "replace_input('collection_description','Brief description of collection');", :value => "Brief description of collection" %></span>
+	<%= submit_tag 'Send' %>
+<%- end %>
