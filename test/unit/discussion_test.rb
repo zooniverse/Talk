@@ -80,6 +80,11 @@ class DiscussionTest < ActiveSupport::TestCase
       should "know when it belongs to an asset" do
         assert @discussion.asset?
       end
+      
+      should "know when it is a conversation" do
+        assert @conversation.conversation?
+        assert !@discussion.conversation?
+      end
     end
     
   end
