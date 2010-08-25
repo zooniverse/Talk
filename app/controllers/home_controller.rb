@@ -1,5 +1,5 @@
 class HomeController < ApplicationController 
-  before_filter :require_user, :only => :cas_test
+  before_filter CASClient::Frameworks::Rails::Filter, :only => :cas_test
   
   def index
     @recent_comments = Comment.most_recent 5

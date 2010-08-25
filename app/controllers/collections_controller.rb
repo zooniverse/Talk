@@ -1,5 +1,5 @@
 class CollectionsController < ApplicationController
-  before_filter :require_user, :only => [:new, :edit, :add]
+  before_filter CASClient::Frameworks::Rails::Filter, :only => [:new, :edit, :add]
   respond_to :js, :only => :add
   
   def show

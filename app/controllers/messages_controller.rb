@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   respond_to :html, :json
-  before_filter :require_user
+  before_filter CASClient::Frameworks::Rails::Filter
   before_filter :get_meta, :except => :recipient_search
   
   def index
