@@ -1,6 +1,9 @@
 <div class="upper-row">
 	<div class="lhc">
-		<h1 class="discussion-title"><%= t 'discussion.startnew' %></h1>
+		<h1 class="discussion-title"><%= t 'discussion.startnew' %>
+		<% if @focus %>
+		<%= t 'discussion.startnew' %> OBJECT
+		<% end %></h1>
 		<%= render :partial => "form_for_discussion" %>
 	</div>
 	<div class="rhc">

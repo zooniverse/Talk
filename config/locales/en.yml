@@ -37,6 +37,8 @@ en:
   comments:
     report_comment_confirm: "Are you sure you want to report this comment?"
   discussion:
+    startnew: "Start a new discussion"
+    about: "about"
     meta:
       comments: "Comments"
       users: "Participants"
