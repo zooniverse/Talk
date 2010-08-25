@@ -24,6 +24,8 @@ class CollectionsController < ApplicationController
     @collection.user = current_zooniverse_user
     
     if @collection.save
+      @collection.conversation = Discussion.create(:subject => @collection.zooniverse_id)
+      @collection.save
       flash[:notice] = I18n.t 'controllers.collections.flash_create'
       redirect_to root_url
     else

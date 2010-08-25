@@ -13,6 +13,7 @@ module Focus
       many :discussions, :in => :discussion_ids
       
       before_save :set_focus
+      before_destroy :remove_focus
     end
     
     base.extend ClassMethods
@@ -48,6 +49,20 @@ module Focus
       discussions.each do |discussion|
         discussion.focus_id = self.id
         discussion.focus_type = self.class.name
+        discussion.save if discussion.changed?
+      end
+    end
+    
+    def remove_focus
+      unless conversation.nil?
+        conversation.focus_id = nil
+        conversation.focus_type = ""
+        conversation.save if conversation.changed?
+      end
+      
+      discussions.each do |discussion|
+        discussion.focus_id = nil
+        discussion.focus_type = ""
         discussion.save if discussion.changed?
       end
     end
