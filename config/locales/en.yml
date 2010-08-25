@@ -37,8 +37,9 @@ en:
   comments:
     report_comment_confirm: "Are you sure you want to report this comment?"
   discussion:
+    name: "discussion"
     startnew: "Start a new discussion"
-    about: "about"
+    about: "about this"
     meta:
       comments: "Comments"
       users: "Participants"
@@ -47,10 +48,15 @@ en:
       emptycollection: "Empty Collection"
       startedby: "Started by"
   collection:
+    name: "collection"
     collection: "Collection"
     livecollection: "Live Collection"
     startnewcol: "Start a New Collection"
     startnewlivecol: "Start a New Live Collection"
+  live_collection:
+    name: "live collection"
+  asset:
+    name: "object"
   messages:
     messages: "Messages"
     message: "Message"

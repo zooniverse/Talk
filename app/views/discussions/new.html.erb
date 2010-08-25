@@ -2,7 +2,7 @@
 	<div class="lhc">
 		<h1 class="discussion-title"><%= t 'discussion.startnew' %>
 		<% if @focus %>
-		<%= t 'discussion.startnew' %> OBJECT
+		<%= "#{t('discussion.about')} #{t(@focus.class.name.downcase + ".name")}" %>
 		<% end %></h1>
 		<%= render :partial => "form_for_discussion" %>
 	</div>

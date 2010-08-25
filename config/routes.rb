@@ -46,6 +46,10 @@ Sellers::Application.routes.draw do
     end
   end
   
+  resources :boards do
+    resources :discussions
+  end
+  
   match '/cas_test' => 'home#cas_test'
   
   match '/admin' => 'admin#index'
