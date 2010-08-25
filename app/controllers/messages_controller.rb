@@ -35,7 +35,7 @@ class MessagesController < ApplicationController
     @message = Message.new(params[:message].merge(options))
     
     if @message.save
-      flash[:notice] = I18n.t 'messages.created'
+      flash[:notice] = I18n.t 'controllers.messages.flash_create'
       redirect_to messages_path
     else
       render :action => "edit"

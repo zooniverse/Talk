@@ -11,6 +11,9 @@ en:
       not_authorised: "You don't have permissions to view this page"
     collections:
       flash_create: "Collection created"
+  models:
+    blocked: "You have been blocked by this user"
+    no_recipient: "Please select a recipient"
   homepage:
     trends: "Trending"
     recent: "Recent"
@@ -38,8 +41,6 @@ en:
     inbox: "Inbox"
     sent: "Sent"
     thread_with: "Message thread with"
-    blocked: "You have been blocked by this user"
-    no_recipient: "Please select a recipient"
   admin:
     title: "Moderation"
   sidenav:
