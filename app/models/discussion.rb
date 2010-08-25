@@ -66,7 +66,7 @@ class Discussion
   end
   
   def conversation?
-    focus.conversation == self
+    focus_id.nil? ? false : focus.conversation == self
   end
   
   private

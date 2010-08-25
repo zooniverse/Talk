@@ -3,7 +3,9 @@ class ApplicationController < ActionController::Base
   before_filter :check_or_create_zooniverse_user
   
   def discussion_url_for(focus, discussion)
-    if discussion.conversation?
+    if discussion.focus.nil?
+      discussion_path(discussion.zooniverse_id)
+    elsif discussion.conversation?
       case focus.class.to_s
       when "Asset"
         object_path(focus.zooniverse_id)
