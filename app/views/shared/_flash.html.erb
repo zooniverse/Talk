@@ -1,0 +1,7 @@
+<%- [:notice, :alert].each do |level| -%>
+  <%- if flash[level] -%>
+  	<div id="<%= level.to_s %>" class="flash <%= level.to_s -%>" onclick="new Effect.Fade('<%= level.to_s %>');">
+			<p><%= flash[level] %></p>
+		</div>
+  <%- end -%>
+<%- end -%>
