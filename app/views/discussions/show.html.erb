@@ -25,7 +25,7 @@
 			<h1><%= @discussion.subject %></h1>
 			<div class="subtext">
 				<% @discussion.tags.each do |tag| %>
-					<%= link_to tag %>
+					<%= link_to tag, :controller => :search, :action => :index, :search => "tags:#{tag}" %>
 				<% end %>		
 			</div>
 		</div>
