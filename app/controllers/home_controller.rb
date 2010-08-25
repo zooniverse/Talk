@@ -26,5 +26,6 @@ class HomeController < ApplicationController
   
   def cas_test
     @user = session[:cas_user]
+    redirect_to :back
   end  
 end
