@@ -41,12 +41,12 @@ class HomeControllerTest < ActionController::TestCase
 
     context "#cas_test logged in" do
       setup do
+        @request.env["HTTP_REFERER"] = "/"
         standard_cas_login
         get :cas_test
       end
 
-      should respond_with :success
-      should render_template :cas_test
+      should respond_with :redirect
     end
   end
 end
