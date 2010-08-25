@@ -1,9 +1,9 @@
 <!-- Box for HELP, SCIENCE and CHAT threads on front page -->
 <div class="panel boards-list">
-	<h3><%= title %></h3>
+	<h2><%= link_to title, :controller => :boards, :action => title.downcase %></h2>
 	<ul>
 		<% this_list.each do |l| %>
-		<li class="name"><%= link_to l.subject, "#" %></li>
+		<li class="name"><%= link_to l.subject, :controller => :discussions, :action => :show, :id => l.zooniverse_id %></li>
 		<% end %>
 	</ul>
 </div>
