@@ -1,6 +1,6 @@
 <div class="upper-row">
 	<div class="lhc">
-		<h1 class="collection-title">Start a New Live Collection</h1>
+		<h1 class="collection-title"><%= t 'collection.startnewlivecol' %></h1>
 		<%= form_for @collection do |f| %>
 		    <span><%= f.text_field :name, :size => 30, :onfocus => "clear_input('collection_name');", :onblur => "replace_input('collection_name','Name of new collection');", :value => "Name of new collection" %></span>
 		    <br /><br />

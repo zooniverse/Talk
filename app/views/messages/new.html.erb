@@ -4,7 +4,7 @@
     <span><%= f.text_field :recipient_name, :onfocus => "clear_input('message_recipient_name');", :onblur => "replace_input('message_recipient_name','Recipient's login or email');", :value => "Recipient's login or email" %></span>
     <br /><br />
 	<span><%= f.text_field :title, :onfocus => "clear_input('message_title');", :onblur => "replace_input('message_title','Message title');", :value => "Message title" %></span>
-	<p>Message:</p>
+	<p><%= t 'messages.message' %>:</p>
 	<%= f.text_area :body, :rows => 4, :cols => 61 %>
 	<%= submit_tag 'Send' %>
 <%- end %>

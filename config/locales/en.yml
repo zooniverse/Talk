@@ -20,7 +20,7 @@ en:
   homepage:
     trends: "Trending"
     recent: "Recent"
-    tags: "Tags"
+    keywords: "Keywords"
     assets: "Assets"
     collections: "Collections"
     discussions: "Discussions"
@@ -39,11 +39,21 @@ en:
       comments: "Comments"
       users: "Participants"
       discussions: "Discussions"
+      discussion: "Discussion"
+      emptycollection: "Empty Collection"
+  collection:
+    collection: "Collection"
+    livecollection: "Live Collection"
+    startnewcol: "Start a New Collection"
+    startnewlivecol: "Start a New Live Collection"
   messages:
     messages: "Messages"
+    message: "Message"
     inbox: "Inbox"
     sent: "Sent"
     thread_with: "Message thread with"
+    new: "new messages"
+    conversations: "conversations"
   admin:
     title: "Moderation"
   sidenav:
