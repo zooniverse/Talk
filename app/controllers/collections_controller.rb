@@ -40,14 +40,17 @@ class CollectionsController < ApplicationController
     
     unless current_zooniverse_user == @collection.user
       flash[:notice] = I18n.t 'controllers.collections.not_yours'
-      redirect_to root_url
     end
     
-    if @collection.asset_ids.include? @asset
+    if @collection.asset_ids.include? @asset.id
       flash[:notice] = I18n.t 'controllers.collections.already_added'
     else
       @collection.asset_ids << @asset.id
-      flash[:notice] = I18n.t('controllers.collections.added') if @collection.save
+      
+      if @collection.save
+        flash[:notice] = I18n.t('controllers.collections.added')
+        @success = true
+      end
     end
   end
 end

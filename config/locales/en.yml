@@ -9,6 +9,8 @@ en:
       flash_create: "Comment created"
     application:
       not_authorised: "You don't have permissions to view this page"
+    messages:
+      flash_create: "Message sent"
     collections:
       flash_create: "Collection created"
       not_yours: "You can't add to this collection because it's not yours"

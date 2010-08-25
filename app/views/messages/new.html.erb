@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.3/themes/base/jquery-ui.css" type="text/css" media="all" />
-
 <%= form_for @message do |f| %>
     <span><%= f.text_field :recipient_name, :onfocus => "clear_input('message_recipient_name');", :onblur => "replace_input('message_recipient_name','Recipient's login or email');", :value => "Recipient's login or email" %></span>
     <br /><br />
