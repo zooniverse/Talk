@@ -1,0 +1,6 @@
+<%= form_for @discussion do |f| %>
+	<span><%= f.text_field :name, :size => 30, :onfocus => "clear_input('discussion_name');", :onblur => "replace_input('discussion_name','Subject of new discussion');", :value => "Subject of new discussion" %></span>
+	<br /><br />
+	<span><%= f.text_field :description, :size => 60, :onfocus => "clear_input('discussion_description');", :onblur => "replace_input('discussion_description','Brief description of discussion');", :value => "Brief description of discussion" %></span>
+	<%= submit_tag 'Send' %>
+<%- end %>
