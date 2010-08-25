@@ -31,7 +31,7 @@ class Discussion
   end
   
   def self.most_recent (no=10)
-    Discussion.limit(no).sort(['created_at', -1]).all(:created_at.gt => Time.now - 1.day)
+    Discussion.limit(no).sort(['created_at', -1]).all(:created_at.gt => Time.now - 3.day)
   end
   
   def most_recent_comments(no=10)
