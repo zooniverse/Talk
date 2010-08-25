@@ -41,6 +41,7 @@ en:
       discussions: "Discussions"
       discussion: "Discussion"
       emptycollection: "Empty Collection"
+      startedby: "Started by"
   collection:
     collection: "Collection"
     livecollection: "Live Collection"

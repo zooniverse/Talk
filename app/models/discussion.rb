@@ -48,6 +48,10 @@ class Discussion
     comments[0, 10].map{ |comment| comment.discussion }
   end
   
+  def started_by 
+    Comment.sort(['created_at', :asc]).first(:discussion_id => self.id).author.name
+  end
+  
   def live_collection?
     focus_type == "LiveCollection"
   end
