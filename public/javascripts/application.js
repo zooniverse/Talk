@@ -27,7 +27,7 @@ OCT.collection = {
 
 	// Initialise switching behaviour
 	init: function () {
-		$(OCT.collection.thumbnail).bind('click', function(){			
+		$(OCT.collection.thumbnail).mouseover(function() {
 			$(OCT.collection.large).attr("src", $(this).attr("src"));
 		});
 	}

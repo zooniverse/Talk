@@ -10,7 +10,7 @@
 			<% unless @discussion.focus.assets.empty?%>
 				<%= image_tag(@discussion.focus.assets.first.location, :class => "collection-large", :id => "asset-image", :height => 216) %>		
 				<% @discussion.focus.assets.each do |item| %>												
-					<%= image_tag(item.thumbnail_location, :class => "collection-thumbnail", :height => 51) %>
+					<%= link_to image_tag(item.thumbnail_location, :class => "collection-thumbnail", :height => 51), object_path(item.zooniverse_id) %>
 				<% end %>																	
 			<% else %>
 				<%= t 'discussion.meta.emptycollection' %>				
