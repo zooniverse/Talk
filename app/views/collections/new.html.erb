@@ -5,12 +5,10 @@
 		    <span><%= f.text_field :name, :size => 30, :onfocus => "clear_input('collection_name');", :onblur => "replace_input('collection_name','Name of new collection');", :value => "Name of new collection" %></span>
 		    <br /><br />
 			<span><%= f.text_field :description, :size => 60, :onfocus => "clear_input('collection_description');", :onblur => "replace_input('collection_description','Brief description of collection');", :value => "Brief description of collection" %></span>
-			<br/>
-			<br/>
-			<p>Live collection tags:</p>
-			<span><%= f.text_field :tags, :size => 60, :onfocus => "clear_input('collection_tags');", :onblur => "replace_input('collection_tags','e.g. big, purple, truck');", :value => "e.g. big, purple, truck" %></span>
 			<%= submit_tag 'Send' %>
 		<%- end %>
+		<%= render :partial => "keyword_filter" %>
+		<%= render :partial => "collection_preview", :locals => { :assets_to_show => Asset.most_recently_commented_on } %>
 	</div>
 	<div class="rhc">
 		<%= render :partial => "shared/zooniverse_extras" %>			
