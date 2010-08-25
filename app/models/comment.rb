@@ -13,11 +13,15 @@ class Comment
   key :mentions, Array # mentioned Focii, whether these make their way up to the discussion level is TBD
   timestamps!
   
-  xapify_fields :discussion_id, :focus_type, :focus_id, :body, :tags, :mentions, :created_at
+  xapify_fields :discussion_id, :focus_type, :focus_id, :body, :keywords, :mentions, :created_at
   
   belongs_to :discussion
   belongs_to :author, :class_name => "User"
   many :events, :as => :eventable
+  
+  def keywords
+    self.tags
+  end
   
   def response_to=(comment)
     self.response_to_id = comment.id

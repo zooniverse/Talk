@@ -13,7 +13,7 @@
 					<%= image_tag(item.thumbnail_location, :class => "collection-thumbnail", :height => 51) %>
 				<% end %>																	
 			<% else %>
-				EMPTY COLLECTION				
+				<%= t 'discussion.meta.emptycollection' %>				
 			<% end %>									
 		<% end %>	
 		</div>
@@ -21,11 +21,11 @@
 	<% end %>	
 	<div class="lhc discussion" <% if @discussion.focus_type.blank? %>style="width:auto;"<% end %>>
 		<div class="main">
-			<h2><strong>DISCUSSION / <%= @discussion.zooniverse_id %></strong></h2>		
+			<h2><strong><%= t 'discussion.meta.discussion' %> / <%= @discussion.zooniverse_id %></strong></h2>		
 			<h1><%= @discussion.subject %></h1>
 			<div class="subtext">
 				<% @discussion.tags.each do |tag| %>
-					<%= link_to tag, :controller => :search, :action => :index, :search => "tags:#{tag}" %>
+					<%= link_to tag, :controller => :search, :action => :index, :search => "keywords:#{tag}" %>
 				<% end %>		
 			</div>
 		</div>

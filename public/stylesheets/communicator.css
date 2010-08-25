@@ -304,30 +304,30 @@ img.new-comment-user{
 }
 
 /* Tag Cloud */
-#tag-cloud {
+#keyword-cloud {
 	padding: 2px;
 	line-height: 3em;
 	text-align: center;
 	margin: 0;
 }
 
-#tag-cloud a {
+#keyword-cloud a {
 	padding: 0px;
 }
 
-#tag-cloud li {
+#keyword-cloud li {
 	display: inline;
 }
 
-#tag-cloud li.level1 { font-size: 0.7em; font-weight: 100; }
-#tag-cloud li.level2 { font-size: 0.8em; font-weight: 200; }
-#tag-cloud li.level3 { font-size: 0.9em; font-weight: 300; }
-#tag-cloud li.level4 { font-size: 1.0em; font-weight: 400; }
-#tag-cloud li.level5 { font-size: 1.2em; font-weight: 500; }
-#tag-cloud li.level6 { font-size: 1.4em; font-weight: 600; }
-#tag-cloud li.level7 { font-size: 1.6em; font-weight: 700; }
-#tag-cloud li.level8 { font-size: 1.8em; font-weight: 800; }
-#tag-cloud li.level9 { font-size: 2.2em; font-weight: 900; }
+#keyword-cloud li.level1 { font-size: 0.7em; font-weight: 100; }
+#keyword-cloud li.level2 { font-size: 0.8em; font-weight: 200; }
+#keyword-cloud li.level3 { font-size: 0.9em; font-weight: 300; }
+#keyword-cloud li.level4 { font-size: 1.0em; font-weight: 400; }
+#keyword-cloud li.level5 { font-size: 1.2em; font-weight: 500; }
+#keyword-cloud li.level6 { font-size: 1.4em; font-weight: 600; }
+#keyword-cloud li.level7 { font-size: 1.6em; font-weight: 700; }
+#keyword-cloud li.level8 { font-size: 1.8em; font-weight: 800; }
+#keyword-cloud li.level9 { font-size: 2.2em; font-weight: 900; }
 
 h2.asset-name {
 	font-weight: bold;
