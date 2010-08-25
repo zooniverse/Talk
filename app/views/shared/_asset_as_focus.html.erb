@@ -8,4 +8,10 @@
 			<li><%= @asset.coords.first.to_s %>, <%= @asset.coords.last.to_s %></li>
 		</ul>
 	</div>
+	<div class="asset-actions">
+		<ul>
+			<li><%= link_to "Examine", "http://www.moonzoo.org/examine/#{@asset.zooniverse_id.to_s}" %></li>
+			<%= render :partial => "collect" if current_zooniverse_user %>
+		</ul>
+	</div>
 </div>
