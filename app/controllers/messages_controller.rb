@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   respond_to :html, :json
-  before_filter :check_or_create_zooniverse_user
+  before_filter :require_user
   before_filter :get_meta, :except => :recipient_search
   
   def index
@@ -54,11 +54,6 @@ class MessagesController < ApplicationController
   
   private
   def get_meta
-    if current_zooniverse_user.nil?
-      redirect_to "/cas_test"
-      return false
-    end
-    
     @unread = current_zooniverse_user.messages.select{ |message| message.unread }
     @conversations = current_zooniverse_user.messages.collect{ |message| message.sender }.uniq
   end

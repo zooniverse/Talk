@@ -24,6 +24,12 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def require_user
+    check_or_create_zooniverse_user
+    CASClient::Frameworks::Rails::Filter
+  end
+  helper_method :require_user
+  
   protected
   
   def zooniverse_user
