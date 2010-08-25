@@ -8,7 +8,7 @@ class AssetsController < ApplicationController
     @collections = Collection.with_asset(@asset)
     @comment = Comment.new
     
-    @dis = @asset.conversation
+    @discussion = @asset.conversation
   
     if @asset.conversation.nil?
       @comments = []

@@ -1,5 +1,5 @@
 <div class="short-comment-form">
-<%= form_for [@dis, @comment] do |f| %>
+<%= form_for [@discussion, @comment] do |f| %>
 	<h2 class="short-comment-prompt">What do you think?</h2>
 	<%= f.text_area :body, :rows => 2, :cols => 40 %>
 	<%= hidden_field_tag('comment[author_id]', current_zooniverse_user.id)  %>
