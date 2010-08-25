@@ -6,6 +6,8 @@ class DiscussionsControllerTest < ActionController::TestCase
       @controller = DiscussionsController.new
       @request    = ActionController::TestRequest.new
       @response   = ActionController::TestResponse.new
+      build_focus_for(Factory :asset)
+      @comment = @comment1
     end
 
     context "When requesting a Discussion" do
@@ -25,10 +27,10 @@ class DiscussionsControllerTest < ActionController::TestCase
     context "When viewing a discussion with a comment written by self" do
       setup do
         standard_cas_login
-        @random_author = Factory :user
-        @discussion = Factory :discussion
-        @comment1 = Factory :comment, :discussion => @discussion, :author => @user
-        @comment2 = Factory :comment, :discussion => @discussion, :author => @random_author
+        
+        @comment1.author = @user
+        @comment1.save
+        
         get :show, { :id => @discussion.zooniverse_id }
       end
 

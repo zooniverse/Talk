@@ -48,7 +48,8 @@ class Discussion
     comments[0, 10].map{ |comment| comment.discussion }
   end
   
-  def started_by 
+  def started_by
+    return nil if self.comments.empty?
     Comment.sort(['created_at', :asc]).first(:discussion_id => self.id).author.name
   end
   
