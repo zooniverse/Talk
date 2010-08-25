@@ -3,8 +3,8 @@ class CollectionsController < ApplicationController
   respond_to :js, :only => :add
   
   def show
-    @collection = Collection.find_by_zooniverse_id(params[:id])
-    @focus = @collection
+    @focus = @collection = Collection.find_by_zooniverse_id(params[:id])
+    @discussion = @collection.conversation
     @mentions = Discussion.mentioning(@collection)
     @comment = Comment.new
     @comments = @collection.conversation.comments

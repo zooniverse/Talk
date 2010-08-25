@@ -60,6 +60,10 @@ class Discussion
     focus_type == "Collection"
   end
   
+  def conversation?
+    focus.conversation == self
+  end
+  
   private
   # Creates a prettyfied slug for the URL
   def set_slug

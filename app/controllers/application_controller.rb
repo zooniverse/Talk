@@ -3,13 +3,24 @@ class ApplicationController < ActionController::Base
   before_filter :check_or_create_zooniverse_user
   
   def discussion_url_for(focus, discussion)
-    case focus.class.to_s
-    when "Asset"
-      object_discussion_path(focus.zooniverse_id, discussion.zooniverse_id)
-    when "Collection"
-      collection_discussion_path(focus.zooniverse_id, discussion.zooniverse_id)
-    when "LiveCollection"
-      live_collection_discussion_path(focus.zooniverse_id, discussion.zooniverse_id)
+    if discussion.conversation?
+      case focus.class.to_s
+      when "Asset"
+        object_path(focus.zooniverse_id)
+      when "Collection"
+        collection_path(focus.zooniverse_id)
+      when "LiveCollection"
+        live_collection_path(focus.zooniverse_id)
+      end
+    else
+      case focus.class.to_s
+      when "Asset"
+        object_discussion_path(focus.zooniverse_id, discussion.zooniverse_id)
+      when "Collection"
+        collection_discussion_path(focus.zooniverse_id, discussion.zooniverse_id)
+      when "LiveCollection"
+        live_collection_discussion_path(focus.zooniverse_id, discussion.zooniverse_id)
+      end
     end
   end
   
