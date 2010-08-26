@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @discussions = Discussion.all
+    @discussions = Discussion.find(:started_by => @user.id)    
   end
   
   def report

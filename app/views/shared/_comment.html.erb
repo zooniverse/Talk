@@ -7,7 +7,7 @@
 	</div>
 	<div class="comment-container">
 		<div class="comment-body">
-			<div class="name"><%= comment.author.name %></div>
+			<div class="name"><%= link_to comment.author.name, user_path(comment.author.id) %></div>
 			<%= raw markdown(comment.body) %>
 		</div>					
 		

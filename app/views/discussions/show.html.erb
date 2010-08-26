@@ -21,7 +21,7 @@
 	<% end %>	
 	<div class="lhc discussion" <% if @discussion.focus_type.blank? %>style="width:auto;"<% end %>>
 		<div class="main">
-			<h2><strong><%= t 'discussion.meta.discussion' %> / <%= @discussion.zooniverse_id %> / <%= t 'discussion.meta.startedby' %> <%= @discussion.started_by %></strong></h2>		
+			<h2><strong><%= t 'discussion.meta.discussion' %> / <%= @discussion.zooniverse_id %> / <%= t 'discussion.meta.startedby' %> <%= @discussion.started_by.name %></strong></h2>		
 			<h1><%= @discussion.subject %></h1>
 			<div class="subtext">
 				<% @discussion.tags.each do |tag| %>

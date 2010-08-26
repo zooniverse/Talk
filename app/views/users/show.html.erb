@@ -4,7 +4,6 @@
 		<h2>My Collections</h2>
 			<div class="inner">				
 					<% @user.collections.each do |collection| %>
-									<% unless collection.nil? %>
 						<div class="collection">
 							<%= link_to image_tag(collection.assets.first.thumbnail_location, :class => "collection-thumbnail", :height => 100), collection_path(collection.zooniverse_id) unless collection.assets.empty? %>
 							<div class="collection-info">						
@@ -15,7 +14,6 @@
 									</ul>
 							</div>
 						</div>							
-						<% end %>
 					<% end %>						
 			</div>
 		</div>
@@ -45,16 +43,14 @@
 	<div class="lhc">
 		<div class="panel">		
 			<h2>Popular Discussions</h2>
-			
+			<% unless @discussions.nil? %>
+				<%= render :partial => "shared/list_of_discussions_main", :locals => { :discussions_list => @discussions, :id_of_box => "trending-discussions" } %>				
+			<% end %>
 		</div>
 		
-		<div class="panel">		
+		<div class="panel" style="margin-top:10px">		
 			<h2>Latest Comments</h2>
-			<% @user.comments.each do |c| %>
-				<div class="comment">
-					<%= c.body %>
-				</div>
-			<% end %>
+		<%= render :partial => "shared/list_of_comments", :locals => { :comments_list => @user.comments, :id_of_box => "recent-comments" } %>
 		</div>
 	</div>
 </div>

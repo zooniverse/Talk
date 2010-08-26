@@ -47,14 +47,14 @@ OCT.scroll = {
  */
 OCT.hover = {
 
-		hidden			: '.short-comment',
-		vote_controls : '.toolbar',
+		item			: '.short-comment, .comment',
+		toolbar : '.toolbar',
 		
 		init: function () {
-			$(OCT.hover.hidden).hover(function() {	
-				$(OCT.hover.vote_controls, this).css('visibility', 'visible');
+			$(OCT.hover.item).hover(function() {	
+				$(OCT.hover.toolbar, this).css('visibility', 'visible');
 			}, function() {
-				$(OCT.hover.vote_controls, this).css('visibility', 'hidden');
+				$(OCT.hover.toolbar, this).css('visibility', 'hidden');
 			});		
 		}
 };
