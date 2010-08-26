@@ -65,6 +65,7 @@ en:
     thread_with: "Message thread with"
     new: "new messages"
     conversations: "conversations"
+    startnew: "Start a New Message"
   admin:
     title: "Moderation"
   sidenav:

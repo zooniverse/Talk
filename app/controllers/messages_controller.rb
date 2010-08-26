@@ -29,9 +29,13 @@ class MessagesController < ApplicationController
   end
   
   def create
-    @recipient = User.find_by_name(params["message"][:recipient_name])
-    options = { :sender_id => current_zooniverse_user.id, :recipient_id => @recipient.id } unless @recipient.nil?
-    params["message"].delete(:recipient_name)
+    @recipient = User.find_by_name(params[:message][:recipient_name])
+    if @recipient.nil?
+      options = {}
+    else
+      options = { :sender_id => current_zooniverse_user.id, :recipient_id => @recipient.id }
+    end
+    
     @message = Message.new(params[:message].merge(options))
     
     if @message.save

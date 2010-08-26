@@ -10,6 +10,9 @@
 		</div>			
 	</div>
 	<div class="rhc">
+		<div id="compose-message" class="panel" >
+			<p class="new"><%= link_to "+ #{t('messages.startnew')}", :controller => :messages, :action => :new %></p>
+		</div>
 		<%= render :partial => "shared/zooniverse_extras" %>			
 		<%= render :partial => "shared/project_link" %>	
 		<%= render :partial => "shared/help_wanted" %>									
