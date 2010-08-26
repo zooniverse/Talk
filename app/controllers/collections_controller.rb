@@ -14,6 +14,7 @@ class CollectionsController < ApplicationController
   
   def new
     @collection = Collection.new
+    @asset = Asset.find_by_zooniverse_id(params[:zooniverse_id]) unless params[:zooniverse_id].nil?
   end
   
   def edit
