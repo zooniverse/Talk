@@ -54,6 +54,8 @@ Sellers::Application.routes.draw do
   
   match '/admin' => 'admin#index'
   
+  match '/logout' => 'application#cas_logout'
+  
   root :to => "home#index"  
   
   # mapping for boards 

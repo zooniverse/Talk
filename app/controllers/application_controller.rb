@@ -55,6 +55,10 @@ class ApplicationController < ActionController::Base
     CASClient::Frameworks::Rails::Filter
   end
   
+  def cas_logout
+    CASClient::Frameworks::Rails::Filter.logout(self)
+  end
+  
   protected
   
   def zooniverse_user
