@@ -677,3 +677,8 @@ h1.collection-title {
 .new {
 	font-weight: bold;
 }
+
+#not-logged-in {
+	width: 99%;
+	text-align: center;
+}
