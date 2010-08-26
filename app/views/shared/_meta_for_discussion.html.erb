@@ -1,5 +1,5 @@
 <!-- Displays info about the discussions for a board -->
 <div id="meta-for-discussions" class="panel">
 	<div> </div>
-<%= t 'discussion.meta.discussions' %>: <%= @board.discussion_ids.length %> / <%= t 'discussion.meta.users' %>: <%= @board_stats[:number_of_users] %> / <%= t 'discussion.meta.comments' %>: <%= @board_stats[:number_of_comments] %>
+<%= @board.discussion_ids.length %> <%= t 'discussion.meta.discussions' %> / <%= @board.number_of_comments %> <%= t 'discussion.meta.comments' %>
 </div>

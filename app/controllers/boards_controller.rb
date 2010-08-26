@@ -13,7 +13,6 @@ class BoardsController < ApplicationController
     @per_page = params[:per_page] ? params[:per_page].to_i : 10
     @page = params[:page] ? params[:page].to_i : 1
     @board = Board.by_title(title, :page => @page, :per_page => @per_page)
-    @board_stats = @board.stats
     @discussions_list = @board.current_page
     
     render "show"

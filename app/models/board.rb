@@ -28,7 +28,7 @@ class Board
     self
   end
   
-  def stats
-    { :number_of_users => 0, :number_of_comments => 0 }
+  def number_of_comments
+    Comment.count(:discussion_id.in => self.discussion_ids)
   end
 end
