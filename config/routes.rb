@@ -62,6 +62,7 @@ Sellers::Application.routes.draw do
   match '/chat' => 'boards#chat'
   
   match '/search(.:format)' => 'search#index', :as => :search
+  match '/search/live_collection_results' => 'search#live_collection_results', :as => :live_collection_results
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

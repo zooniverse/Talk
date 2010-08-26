@@ -2,5 +2,25 @@
 	<span><%= f.text_field :name, :size => 30, :onfocus => "clear_input('collection_name');", :onblur => "replace_input('collection_name','Name of new collection');", :value => "Name of new collection" %></span>
 	<br /><br />
 	<span><%= f.text_field :description, :size => 60, :onfocus => "clear_input('collection_description');", :onblur => "replace_input('collection_description','Brief description of collection');", :value => "Brief description of collection" %></span>
-	<%= submit_tag 'Send' %>
+	<br /><br />
+	<span><%= select("collection_kind", "id", "<option>Collection</option><option>Live Collection</option>", {}, {:onchange => 'check_collection_type();'}) %></span>
+	<br /><br />
+	
+	<div id="live_collection_form" style="display:none;">
+		<div id="keyword_1_wrapper">
+		<%= text_field "keyword", "1", :value => "Add a keyword", :class => "keyword" %>  <%= link_to((image_tag "add.png", :size => "13x13"), "#", :onclick => "add_keyword_field();" ) %> <%= link_to((image_tag "cancel.png", :size => "13x13"), "#", :onclick => "remove_keyword_field('keyword_1');") %>
+		</div>
+		
+		<p><%= link_to "Preview &rarr;".html_safe, "#", :onclick => 'update_live_collection_results();' %></p>
+		
+		<div id="live_collection_results">
+			
+		</div>
+		<br /><br />
+
+	</div>
+	<%= submit_tag 'Create' %>
 <%- end %>
+
+
+<%# link_to("REPORT", report_comment_path(comment_short), {:remote => true, :method => :post, :style => "color:#2276BB;", :confirm => (t 'comments.report_comment_confirm') }) %>

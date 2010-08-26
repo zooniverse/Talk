@@ -5,7 +5,7 @@ class DiscussionsController < ApplicationController
   end
   
   def new
-    find_focus
+    find_show_focus
     @board = params[:board_id]
     @discussion = Discussion.new
     @discussion.comments.build
@@ -20,6 +20,7 @@ class DiscussionsController < ApplicationController
     comment_params = params[:discussion].delete :comments
     @comment = Comment.new(comment_params) if params.has_key? :discussion
     @discussion = Discussion.new(params[:discussion])
+    @discussion.started_by_id = current_zooniverse_user.id
     
     if @discussion.valid? && @comment.valid?
       @discussion.comments << @comment
@@ -40,7 +41,18 @@ class DiscussionsController < ApplicationController
   end
   
   protected
+  
   def find_focus
+    focus_id = params['discussion']['focus_id']
+    focus_type = params['discussion']['focus_type']
+
+    if focus_id
+      @focus = focus_type.constantize.find(focus_id)
+    end
+  end
+  
+  #FIX ME - (sorry)
+  def find_show_focus
     focus_key = params.keys.select{ |key| ['object_id', 'collection_id', 'live_collection_id'].include? key }.first
     
     if focus_key

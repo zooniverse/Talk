@@ -22,14 +22,22 @@ class CollectionsController < ApplicationController
   end
   
   def create
-    @collection = Collection.new(params[:collection])
+    if params[:collection_kind][:id] == "Live Collection"
+      @collection = LiveCollection.new(params[:collection])
+      @collection.tags = params[:keyword].values
+    elsif params[:collection_kind][:id] == "Collection"
+      @collection = Collection.new(params[:collection])
+    end
+    
     @collection.user = current_zooniverse_user
     
     if @collection.save
-      @collection.conversation = Discussion.create(:subject => @collection.zooniverse_id)
-      @collection.save
       flash[:notice] = I18n.t 'controllers.collections.flash_create'
-      redirect_to root_url
+      if @collection.is_a?(LiveCollection)
+        redirect_to live_collection_path(@collection.zooniverse_id)
+      elsif @collection.is_a?(Collection)
+        redirect_to collection_path(@collection.zooniverse_id)
+      end
     else
       render :action => 'edit'
     end

@@ -53,7 +53,7 @@ en:
     livecollection: "Live Collection"
     startnewcol: "Start a New Collection"
     startnewlivecol: "Start a New Live Collection"
-  live_collection:
+  livecollection:
     name: "live collection"
   asset:
     name: "object"

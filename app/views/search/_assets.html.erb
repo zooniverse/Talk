@@ -1,0 +1,7 @@
+<%- if @assets.empty? %>
+	<p>No objects for those keywords</p>
+<%- else %>
+	<%- @assets.each do |asset| %>
+		<%= link_to((image_tag asset.thumbnail_location, :size => "50x50"), object_path(asset.zooniverse_id), :target => "_blank") if asset %>
+	<%- end %>
+<%- end %>

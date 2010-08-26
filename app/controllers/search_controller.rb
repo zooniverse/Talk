@@ -23,4 +23,9 @@ class SearchController < ApplicationController
       instance_variable_set("@#{kind.underscore.pluralize}", list)
     end
   end
+  
+  def live_collection_results
+    @keywords = params[:keywords]
+    @assets = Asset.with_keywords(@keywords.split(','), :per_page => 49)
+  end
 end

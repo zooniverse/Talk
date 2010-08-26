@@ -92,3 +92,72 @@ function reply_to(comment_id, author){
 	$('#comment_response_to_id').val(comment_id);
 	$('html,body').animate({ scrollTop: $('#new_comment').offset().top }, { duration: 'medium', easing: 'swing'});
 }
+
+// Collection/live collection form JS
+
+function check_collection_type(){
+	if ($('#collection_kind_id').val() == "Live Collection"){
+		$('#live_collection_form').show();
+	} else if ($('#collection_kind_id').val() == "Collection"){
+		$('#live_collection_form').hide();
+	}
+}
+
+function remove_keyword_field(field_id){
+	$('#'+field_id + '_wrapper').remove();
+}
+
+function add_keyword_field(){
+	var last = get_keyword_count();
+	count = last + 1;
+	$("#keyword_" + last + "_wrapper").after("<div id='keyword_"+count+"_wrapper'><input class='keyword' id='keyword_"+ count + "' name='keyword["+count+"]' size='30' type='text' value='Add a keyword' /> <a href='#' onclick='add_keyword_field();'><img alt='Add' height='13' src='/images/add.png' width='13' /></a>" +	" <a href='#' onclick=\"remove_keyword_field('keyword_"+count+"');\"><img alt='Cancel' height='13' src='/images/cancel.png' width='13' /></div>");
+}
+
+function get_keyword_count(){
+	return $('.keyword').length;
+}
+
+function update_live_collection_results(){
+	var keywords = new Array();
+	$('.keyword').each(function(){
+		keywords.push($(this).val());
+	});
+	
+	$.ajax({
+	   type: "POST",
+	   url: "/search/live_collection_results",
+	   data: "keywords="+keywords.join(',')
+	 });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
