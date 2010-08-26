@@ -613,6 +613,11 @@ h2.asset-name {
 	margin-left: 10px;
 }
 
+.my-collections .toolbar {
+	margin-top: 10px;
+	text-align: right;
+}
+
 .rhc .panel .collection-info {
 	float:left;
 	text-align:right;
@@ -654,14 +659,18 @@ h1.collection-title {
 }
 
 /* Profile */
-.profile h1 {
-	
+.profile .info h1 {
+	margin-bottom: 0;
 }
 .profile img {
 	float: left;
 } 
 .profile .info {
 	margin-left: 50px;
+}
+
+.profile .user-actions {
+	font-size: 80%;
 }
 
 /* Collection viewer */

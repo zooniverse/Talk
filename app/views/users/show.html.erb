@@ -18,8 +18,10 @@
 						<% end %>							
 					<% else %>											
 						<p>No Collections</p>
-					<% end %>					
-					<%= link_to (t 'collection.startnewcol'), new_collection_path() %>	
+					<% end %>				
+					<div class="toolbar">	
+						<%= link_to "+ "+(t 'collection.startnewcol'), new_collection_path() %>	
+					</div>
 			</div>
 		</div>
 	</div>
@@ -29,8 +31,8 @@
 			<div class="info">
 				<h1><%= @user.name %></h1>
 		
-				<%- unless current_zooniverse_user == @user -%>	
-				<span id="report-user-link-<%= @user.id %>"><%= link_to("REPORT THIS USER", report_user_path(@user), {:remote => true, :method => :post, :method => :post, :style => "color:#2276BB;"}) %></span>
+				<%- unless current_zooniverse_user == @user -%>					
+				<span class="user-actions" id="report-user-link-<%= @user.id %>"><%= link_to("REPORT THIS USER", report_user_path(@user), {:remote => true, :method => :post, :method => :post, :style => "color:#2276BB;"}) %></span>
 				<%- end -%>		
 			</div>
 		</div>			
@@ -51,6 +53,8 @@
 			<div class="inner">
 			<% unless @discussions.nil? %>
 				<%= render :partial => "shared/list_of_discussions_main", :locals => { :discussions_list => @discussions, :id_of_box => "trending-discussions" } %>				
+			<% else %>
+				<p>No discussions</p>
 			<% end %>
 			</div>
 		</div>
