@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @discussions = Discussion.find(:started_by => @user.id)    
+    @discussions = Discussion.where(:started_by_id => @user.id).sort(['number_of_comments', -1]) 
   end
   
   def report
