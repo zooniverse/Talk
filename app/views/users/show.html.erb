@@ -4,26 +4,33 @@
 		<h2>My Collections</h2>
 			<div class="inner">				
 					<% @user.collections.each do |collection| %>
+									<% unless collection.nil? %>
 						<div class="collection">
 							<%= link_to image_tag(collection.assets.first.thumbnail_location, :class => "collection-thumbnail", :height => 100), collection_path(collection.zooniverse_id) unless collection.assets.empty? %>
 							<div class="collection-info">						
 									<h3><%= link_to collection.name, collection_path(collection.zooniverse_id) %></h3>
 									<ul>	
-										<li><%= collection.assets.size %> item<% if collection.assets.size > 1 %>s<% end %></li>																	
-										<li><%= collection.discussions.size %> discussion<% if collection.discussions.size > 1 %>s<% end %></li>																										
-										<li><%= collection.conversation.number_of_comments %> comment<% if collection.conversation.number_of_comments > 1 %>s<% end %></li>
+										<li><%= pluralize collection.assets.size, "item"%></li>										
+										<li><%= pluralize collection.discussions.size, "discussion"%></li>
 									</ul>
 							</div>
 						</div>							
 						<% end %>
+					<% end %>						
 			</div>
 		</div>
 	</div>
 	<div class="lhc">		
-		<h1><%= @user.name %></h1>
-		<%- unless current_zooniverse_user == @user -%>	
-		<span id="report-user-link-<%= @user.id %>"><%= link_to("REPORT THIS USER", report_user_path(@user), {:remote => true, :method => :post, :method => :post, :style => "color:#2276BB;"}) %></span>
-		<%- end -%>
+		<div class="profile">
+			<%= image_tag "default_user.png" %>
+			<div class="info">
+				<h1><%= @user.name %></h1>
+		
+				<%- unless current_zooniverse_user == @user -%>	
+				<span id="report-user-link-<%= @user.id %>"><%= link_to("REPORT THIS USER", report_user_path(@user), {:remote => true, :method => :post, :method => :post, :style => "color:#2276BB;"}) %></span>
+				<%- end -%>		
+			</div>
+		</div>			
 		
 		<%- if current_zooniverse_user.moderator? -%>
 		<span id="moderation-links">
@@ -37,8 +44,17 @@
 	<div class="rhc" ></div>
 	<div class="lhc">
 		<div class="panel">		
-			<h2>Popular</h2>
-			<div>dss</div>
+			<h2>Popular Discussions</h2>
+			
+		</div>
+		
+		<div class="panel">		
+			<h2>Latest Comments</h2>
+			<% @user.comments.each do |c| %>
+				<div class="comment">
+					<%= c.body %>
+				</div>
+			<% end %>
 		</div>
 	</div>
 </div>

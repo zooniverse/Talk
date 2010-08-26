@@ -677,3 +677,17 @@ h1.collection-title {
 .discussion-thread .lhc {
 	width:700px;
 }
+
+/* Profile */
+.profile h1 {
+	
+}
+
+.profile img {
+	float: left;
+} 
+
+
+.profile .info {
+	margin-left: 50px;
+}
