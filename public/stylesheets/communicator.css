@@ -251,10 +251,13 @@ img.new-comment-user{
 }
 
 .short-comment .date {
-	color: #afafaf;
+	color: #afafaf;	
+	font-size: 85%;
+}
+
+.short-comment .toolbar .date {
 	margin-bottom: 10px;
 	margin-left: 50px;
-	font-size: 85%;
 }
 
 .comment-container .name {
