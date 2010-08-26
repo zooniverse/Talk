@@ -662,6 +662,10 @@ h1.collection-title {
 }
 
 /* Profile */
+.profile {
+	min-height: 50px;
+}
+
 .profile .info h1 {
 	margin-bottom: 0;
 }

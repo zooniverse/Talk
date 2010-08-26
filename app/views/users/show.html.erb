@@ -1,7 +1,7 @@
 <div class="upper-row">
 	<div class="rhc">
 		<div class="panel my-collections">		
-		<h2>My Collections</h2>
+		<h2><%- if current_zooniverse_user == @user -%>My&nbsp;<% end %>Collections</h2>
 			<div class="inner">				
 					<% unless @user.collections.empty?  %>				
 					<% @user.collections.each do |collection| %>
@@ -18,10 +18,12 @@
 						<% end %>							
 					<% else %>											
 						<p>No Collections</p>
-					<% end %>				
+					<% end %>			
+					<%- if current_zooniverse_user == @user -%>						
 					<div class="toolbar">	
 						<%= link_to "+ "+(t 'collection.startnewcol'), new_collection_path() %>	
 					</div>
+					<% end %>
 			</div>
 		</div>
 	</div>
@@ -34,8 +36,9 @@
 				<%- unless current_zooniverse_user == @user -%>					
 				<span class="user-actions" id="report-user-link-<%= @user.id %>"><%= link_to("REPORT THIS USER", report_user_path(@user), {:remote => true, :method => :post, :method => :post, :style => "color:#2276BB;"}) %></span>
 				<%- end -%>		
-			</div>
-		</div>			
+			</div>			
+		</div>	
+
 		
 		<%- if current_zooniverse_user.moderator? -%>
 		<span id="moderation-links">
