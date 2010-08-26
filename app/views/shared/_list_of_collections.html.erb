@@ -11,4 +11,13 @@
 		</ul>		
 	</div>
 </div>
+<% else %>
+<div class="panel">	
+	<h2>Collections</h2>
+	<div class="inner">
+		<ul>
+			<li class="new"><%= link_to "+ #{t('collection.startnewcol')}", "#" %></li>
+		</ul>		
+	</div>
+</div>
 <% end %>

@@ -11,4 +11,13 @@
 			</ul>		
 			</div>
 	</div>
+<% else %>
+<div class="panel collection-list">
+		<h2>Discussions</h2>
+		<div class="inner">
+		<ul>
+		    <li class="new"><%= link_to "+ #{t('discussion.startnew')}", new_discussion_url_for(@focus) %></li>
+		</ul>		
+		</div>
+</div>
 <% end %>
