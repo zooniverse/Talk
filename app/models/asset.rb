@@ -55,4 +55,13 @@ class Asset
     discussions = discussions[0, limit].sort{ |a, b| b['score'] <=> a['score'] }
     discussions.map{ |key, val| Asset.find(key['focus_id']) }
   end
+  
+  # Finds assets that match the given keywords
+  #   e.g. Asset.by_keywords('tag1', 'tag2', :page => 1, :per_page => 5)
+  def self.with_keywords(*args)
+    options = { :page => 0, :per_page => 10 }.update args.extract_options!
+    results = Comment.search "focus_type:Asset keywords:#{ args.join(' OR ') }", :limit => 10_000, :collapse => :focus_id
+    results = results[ options[:page] * options[:per_page], options[:per_page] ]
+    results.map{ |result| Asset.find(result[:focus_id]) }
+  end
 end
