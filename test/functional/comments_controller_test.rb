@@ -6,15 +6,16 @@ class CommentsControllerTest < ActionController::TestCase
       @controller = CommentsController.new
       @request    = ActionController::TestRequest.new
       @response   = ActionController::TestResponse.new
+      
+      @author = Factory :user
+      @asset = Factory :asset
+      build_focus_for(@asset)
+      @comment = @comment1
     end
     
     context "When voting on a comment in a discussion" do
       setup do
         standard_cas_login
-        @author = Factory :user
-        @discussion = Factory :discussion
-        @comment = Factory :comment, :discussion => @discussion, :author => @author
-        
         post :vote_up, {:id => @comment.id, :format => :js}
       end
 
@@ -29,10 +30,6 @@ class CommentsControllerTest < ActionController::TestCase
     context "When reporting a comment" do
       setup do
         standard_cas_login
-        @author = Factory :user
-        @discussion = Factory :discussion
-        @comment = Factory :comment, :discussion => @discussion, :author => @author
-        
         post :report, {:id => @comment.id, :format => :js}
       end
 

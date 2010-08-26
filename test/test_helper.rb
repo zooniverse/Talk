@@ -65,7 +65,7 @@ class ActiveSupport::TestCase
   end
   
   def build_discussions_for(focus)
-    discussion = Discussion.new(:subject => "Monkey is an OIII emission")
+    discussion = Discussion.new(:subject => "Monkey is an OIII emission", :started_by_id => Factory(:user).id)
     focus.discussions << discussion
     focus.save
     discussion.reload

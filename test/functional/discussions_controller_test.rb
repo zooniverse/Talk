@@ -12,7 +12,6 @@ class DiscussionsControllerTest < ActionController::TestCase
 
     context "When requesting a Discussion" do
       setup do
-        @discussion = Factory :discussion
         get :show, { :id => @discussion.zooniverse_id }
       end
 

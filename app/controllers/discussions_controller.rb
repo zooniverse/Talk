@@ -7,7 +7,7 @@ class DiscussionsController < ApplicationController
       @title = Board.first(:discussion_ids => @discussion.id).title    
       @bns_path = "/"+@title
     else
-      @title = @discussion.focus.name
+      @title = @discussion.focus.zooniverse_id
       @bns_path = "/collections/"+@discussion.focus.zooniverse_id
     end 
   end
