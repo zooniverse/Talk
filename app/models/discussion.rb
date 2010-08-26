@@ -12,6 +12,7 @@ class Discussion
   key :focus_id, ObjectId
   key :focus_type, String
   key :slug, String
+  key :started_by_id, ObjectId
 
   key :number_of_users, Integer, :default => 0
   key :number_of_comments, Integer, :default => 0
@@ -21,6 +22,7 @@ class Discussion
   many :comments
   
   before_create :set_slug
+  before_create :set_started_by
   before_save :aggregate_comments
   after_save :update_counts
   
@@ -48,11 +50,6 @@ class Discussion
     comments[0, 10].map{ |comment| comment.discussion }
   end
   
-  def started_by
-    return nil if self.comments.empty?
-    Comment.sort(['created_at', :asc]).first(:discussion_id => self.id).author.name
-  end
-  
   def live_collection?
     focus_type == "LiveCollection"
   end
@@ -69,10 +66,18 @@ class Discussion
     focus_id.nil? ? false : focus.conversation == self
   end
   
+  def started_by
+    User.find(self.started_by_id)
+  end
+  
   private
   # Creates a prettyfied slug for the URL
   def set_slug
     self.slug = self.subject.parameterize('_')
+  end
+  
+  def set_started_by
+    self.started_by_id = self.comments.first.author.id unless self.comments.empty?
   end
   
   # Aggregate tags and mentions from comments

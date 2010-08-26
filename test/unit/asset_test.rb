@@ -45,7 +45,9 @@ class AssetTest < ActiveSupport::TestCase
     end
     
     should "find #trending" do
-      assert_equal [@asset2, @asset3, @asset], Asset.trending
+      assert Asset.trending.include? @asset
+      assert Asset.trending.include? @asset2
+      assert Asset.trending.include? @asset3
     end
   end
 end
