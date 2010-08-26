@@ -15,8 +15,9 @@ class ApplicationController < ActionController::Base
   
   helper_method :new_discussion_url_for
   
-  def discussion_url_for(focus, discussion)
-    if discussion.focus.nil?
+  def discussion_url_for(discussion)
+    focus = discussion.focus
+    if discussion.focus_id.nil?
       discussion_path(discussion.zooniverse_id)
     elsif discussion.conversation?
       case focus.class.to_s
@@ -40,8 +41,6 @@ class ApplicationController < ActionController::Base
   end
   
   helper_method :discussion_url_for
-  
-  helper_method :require_privileged_user
   
   def require_privileged_user
     unless current_zooniverse_user.moderator? || current_zooniverse_user.admin?

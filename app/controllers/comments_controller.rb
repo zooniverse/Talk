@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     
     if @discussion.save
       flash[:notice] = t 'controllers.comments.flash_create'      
-      redirect_to discussion_url_for(@discussion.focus, @discussion)
+      redirect_to discussion_url_for(@discussion)
     end
   end
   

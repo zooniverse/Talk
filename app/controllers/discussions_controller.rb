@@ -34,9 +34,9 @@ class DiscussionsController < ApplicationController
         board.save
       end
       
-      redirect_to discussion_url_for(@discussion.focus, @discussion)
+      redirect_to discussion_url_for(@discussion)
     else
-      render discussion_url_for(@focus, @discussion)
+      render discussion_url_for(@discussion)
     end
   end
   
