@@ -5,11 +5,11 @@ class ApplicationController < ActionController::Base
   def new_discussion_url_for(focus)
       case focus.class.to_s
       when "Asset"
-        object_url = "/objects/#{focus.zooniverse_id}/discussion/new"
+        object_url = "/objects/#{focus.zooniverse_id}/discussions/new"
       when "Collection"
-        collection_url = "/collections/#{focus.zooniverse_id}/discussion/new"
+        collection_url = "/collections/#{focus.zooniverse_id}/discussions/new"
       when "LiveCollection"
-        live_collection_url = "/live_collections/#{focus.zooniverse_id}/discussion/new"
+        live_collection_url = "/live_collections/#{focus.zooniverse_id}/discussions/new"
       end
   end
   
