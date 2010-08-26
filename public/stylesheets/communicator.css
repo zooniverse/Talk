@@ -54,7 +54,7 @@ body {
 	color: #900;
 }
 
-a:link, a:visited, a:hover, .comment-container .name {
+a:link, a:visited, a:hover {
 	color: #2276BB;
 }
 
