@@ -512,13 +512,13 @@ h2.asset-name {
 }
 
 /* Old Tabs */
-/*.ct .ui-tabs-nav li {
+.ct .ui-tabs-nav li {
 	background: lightgrey;
 	padding: 5px 5px 3px 5px;
 	border: solid black 1px;
 	margin:0;
 	border-style: solid solid none solid;
-	font-size: 80%;
+	font-size: 80%;	
 }
 
 .ct .ui-tabs-nav li.ui-tabs-default a:link {
@@ -533,9 +533,13 @@ h2.asset-name {
 
 .ct .ui-tabs-nav {
 	margin-bottom: 10px;
-}*/
+}
 
-.ct .ui-tabs-nav li {
+.ui-corner-top {
+	border-radius: 0 !important;
+}
+
+/*.ct .ui-tabs-nav li {
 	background: white;
 	padding: 2px 5px 2px 5px;
 	border: solid #eee 1px;
@@ -554,7 +558,7 @@ h2.asset-name {
 
 .ct .ui-tabs-nav li.ui-tabs-selected a {
 	color: #fff;
-}
+}*/
 
 /* jQuery UI overide*/
 .ui-widget-header {background:none !important;border:0 !important;	}
@@ -574,15 +578,16 @@ h2.asset-name {
 }
 
 .headed-panel h1 {
-	text-transform: uppercase;
-	font-size: 1.0em;
-	text-align: right;
-	color: #fff;
-	background: #2E4C6F;
+/*	text-transform: uppercase;*/
+	font-size: 1.5em;
+/*	text-align: right;*/
+/*	color: #fff;*/
+/*	background: #2E4C6F;*/
 /*	-webkit-border-radius: 5px 5px 0 0;*/
 /*	-moz-border-radius: 5px 5px 0 0 ;*/
 /*	border-radius: 5px 5px 0 0;*/
-	padding: 5px 10px 5px 10px;
+/*	padding: 5px 10px 5px 10px;*/
+	margin-bottom:10px;
 }
 
 .headed-panel h1 img {
