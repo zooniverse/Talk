@@ -1,7 +1,6 @@
 # A Comment on a Discussion by a User
 class Comment
   include MongoMapper::Document
-  include Taggable
   plugin Xapify
   
   key :discussion_id, ObjectId
@@ -18,6 +17,8 @@ class Comment
   belongs_to :discussion
   belongs_to :author, :class_name => "User"
   many :events, :as => :eventable
+  
+  after_create :push_tags
   
   def keywords
     self.tags
@@ -83,7 +84,7 @@ class Comment
   end
   
   def focus_type
-    self.discussion.nil? ? "" : self.discussion.focus_type
+    self.discussion.nil? ? nil : self.discussion.focus_type
   end
   
   def focus_id
@@ -93,5 +94,12 @@ class Comment
   def focus
     return nil unless focus_type && focus_id
     focus_type.constantize.find(focus_id)
+  end
+  
+  def push_tags
+    self.tags.each do |tag|
+      Discussion.collection.update({ :_id => self.discussion_id }, { "$inc" => { "taggings.#{tag}" => 1 } })
+      focus_type.constantize.collection.update({ :_id => focus_id }, { "$inc" => { "taggings.#{tag}" => 1 } }) if focus_type && focus_id
+    end
   end
 end

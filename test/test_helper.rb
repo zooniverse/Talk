@@ -56,29 +56,31 @@ class ActiveSupport::TestCase
     end
     
     build_discussions_for @focus2
-    build_discussions_for @focus3, 2
-    build_discussions_for @focus1, 5
+    build_discussions_for @focus3
+    build_discussions_for @focus1
     
     @discussion = focus.discussions.first
     @conversation = focus.conversation
     @discussion.comments.each.with_index{ |c, i| instance_variable_set "@comment#{i + 1}", c }
   end
   
-  def build_discussions_for(focus, delay = 0)
-    discussion = Factory :discussion, :created_at => Time.now + delay.minutes
-    comment2 = Factory :comment, :tags => ['tag2', 'tag4'], :mentions => focus.zooniverse_id, :created_at => Time.now + delay.minutes
-    comment3 = Factory :comment, :tags => ['tag2', 'tag4'], :mentions => focus.zooniverse_id, :created_at => Time.now + delay.minutes
-    comment1 = Factory :comment, :tags => ['tag1', 'tag2'], :mentions => focus.zooniverse_id, :created_at => Time.now + delay.minutes
+  def build_discussions_for(focus)
+    discussion = Discussion.new(:subject => "Monkey is an OIII emission")
+    focus.discussions << discussion
+    focus.save
+    discussion.reload
+    
+    comment1 = Comment.new(:body => "blah", :author => Factory(:user), :tags => ['tag1', 'tag2'], :mentions => focus.zooniverse_id)
+    comment2 = Comment.new(:body => "blah", :author => Factory(:user), :tags => ['tag2', 'tag4'], :mentions => focus.zooniverse_id)
+    comment3 = Comment.new(:body => "blah", :author => Factory(:user), :tags => ['tag2', 'tag4'], :mentions => focus.zooniverse_id)
     
     [comment1, comment2, comment3].each do |comment|
       discussion.comments << comment
-      discussion.save
-      comment.save
     end
     
-    conversation = Factory :discussion, :created_at => Time.now + delay.minutes
-    focus.discussions << discussion
-    focus.conversation = conversation
-    focus.save
+    discussion.reload
+    discussion.save
+    
+    focus.reload
   end
 end

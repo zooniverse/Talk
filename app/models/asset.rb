@@ -9,11 +9,10 @@ class Asset
   key :thumbnail_location, String, :required => true
   key :coords, Array
   key :size, Array
-  key :tags, Array
   
   # selects the most recently mentioned (ie AM0000BLAH was mentioned in a comment) assets
   def self.most_recently_mentioned(limit = 10)
-    cursor = Discussion.collection.find({ :mentions => { "$type" => 2 } }).sort(['created_at', -1])
+    cursor = Comment.collection.find({ :mentions => { "$type" => 2 } }).sort(['created_at', -1])
     asset_ids = {}
     
     while asset_ids.length < limit && cursor.has_next?

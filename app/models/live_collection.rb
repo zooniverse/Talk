@@ -7,7 +7,6 @@ class LiveCollection
   zoo_id :prefix => "C", :sub_id => "S"
   key :name, String, :required => true
   key :description, String
-  include Taggable
   
   # tag filters to build this collection
   key :tags, Array, :required => true

@@ -33,7 +33,6 @@ class CommentTest < ActiveSupport::TestCase
         assert_equal @comment, @comment2.response_to
       end
     end
-    
 
     context "when upvoting" do
       setup do
@@ -53,9 +52,9 @@ class CommentTest < ActiveSupport::TestCase
     end
     
     should "find #most_recent" do
-      assert Comment.most_recent(3).include? @comment1
-      assert Comment.most_recent(3).include? @comment2
-      assert Comment.most_recent(3).include? @comment3
+      assert Comment.most_recent.include? @comment1
+      assert Comment.most_recent.include? @comment2
+      assert Comment.most_recent.include? @comment3
     end
     
     should "find #mentioning" do

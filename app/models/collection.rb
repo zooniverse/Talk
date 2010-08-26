@@ -8,7 +8,6 @@ class Collection
   zoo_id :prefix => "C", :sub_id => "S"
   key :name, String, :required => true
   key :description, String
-  key :tags, Array
   timestamps!
   
   key :asset_ids, Array

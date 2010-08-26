@@ -10,7 +10,7 @@ class DiscussionTest < ActiveSupport::TestCase
     end
     
     should "have keys" do
-      [:zooniverse_id, :subject, :tags, :mentions, :focus_id, :focus_type,
+      [:zooniverse_id, :subject, :taggings, :focus_id, :focus_type,
        :slug, :created_at, :updated_at, :number_of_users, :number_of_comments].each do |key|
         assert @discussion.respond_to?(key)
       end
@@ -48,7 +48,6 @@ class DiscussionTest < ActiveSupport::TestCase
     
     should "#aggregate_comments" do
       assert_equal ['tag2', 'tag4', 'tag1'], @discussion.tags
-      assert_equal [@asset.zooniverse_id], @discussion.mentions
     end
     
     should "#update_counts" do

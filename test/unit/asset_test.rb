@@ -8,7 +8,7 @@ class AssetTest < ActiveSupport::TestCase
     end
 
     should "have keys" do
-      [:zooniverse_id, :location, :thumbnail_location, :coords, :size, :tags, :conversation, :conversation=].each do |key|
+      [:zooniverse_id, :location, :thumbnail_location, :coords, :size, :taggings, :conversation, :conversation=].each do |key|
         assert @asset.respond_to?(key)
       end
     end
@@ -37,11 +37,15 @@ class AssetTest < ActiveSupport::TestCase
     end
     
     should "find #most_recently_mentioned" do
-      assert_equal [@asset, @asset3, @asset2], Asset.most_recently_mentioned
+      assert Asset.most_recently_mentioned(3).include? @asset
+      assert Asset.most_recently_mentioned(3).include? @asset2
+      assert Asset.most_recently_mentioned(3).include? @asset3
     end
     
     should "find #most_recently_commented_on" do
-      assert_equal [@asset, @asset3, @asset2], Asset.most_recently_commented_on
+      assert Asset.most_recently_commented_on(3).include? @asset
+      assert Asset.most_recently_commented_on(3).include? @asset2
+      assert Asset.most_recently_commented_on(3).include? @asset3
     end
     
     should "find #trending" do

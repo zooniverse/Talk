@@ -31,15 +31,18 @@ class DiscussionsController < ApplicationController
     @discussion.started_by_id = current_zooniverse_user.id
     
     if @discussion.valid? && @comment.valid?
-      @discussion.comments << @comment
-      
       if @focus
         @focus = @discussion.focus
         @focus.discussion_ids << @discussion.id
+        @focus.save
+        
+        @discussion.comments << @comment
       else
         board = Board.find_by_title(params[:board_id])
         board.discussion_ids << @discussion.id
         board.save
+        
+        @discussion.comments << @comment
       end
       
       redirect_to discussion_url_for(@discussion)

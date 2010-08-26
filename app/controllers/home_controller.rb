@@ -12,7 +12,6 @@ class HomeController < ApplicationController
     @trending_collections = Collection.trending 5
     @trending_discussions = Discussion.trending 5
     @trending_tags = Comment.trending_tags 10
-    @trending_tags = Comment.rank_tags(@trending_tags,8)
     
     # Loading data for boards
     @help_board = Board.find_by_title("help")

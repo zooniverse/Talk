@@ -7,8 +7,6 @@ class Discussion
   
   zoo_id :prefix => "D"
   key :subject, String, :required => true
-  key :tags, Array
-  key :mentions, Array # mentioned Focii, i.e. not the focus
   key :focus_id, ObjectId
   key :focus_type, String
   key :slug, String
@@ -23,7 +21,6 @@ class Discussion
   
   before_create :set_slug
   before_create :set_started_by
-  before_save :aggregate_comments
   after_save :update_counts
   
   # Fetches the Focus of this Discussion if it exists
@@ -80,12 +77,6 @@ class Discussion
     self.started_by_id = self.comments.first.author.id unless self.comments.empty?
   end
   
-  # Aggregate tags and mentions from comments
-  def aggregate_comments
-    self.tags = collect_comment_attribute 'tags'
-    self.mentions = collect_comment_attribute 'mentions'
-  end
-  
   # Updates the denormalized counts
   def update_counts
     fresh_comments = Comment.collection.find(:discussion_id => id).to_a
@@ -95,15 +86,5 @@ class Discussion
     Discussion.collection.update({:_id => id}, {
       '$set' => { :number_of_comments => n_comments, :number_of_users => n_users }
     })
-  end
-  
-  # Aggregates and sorts an attribute on associated comments
-  def collect_comment_attribute(attribute)
-    raw = Comment.collection.find({:discussion_id => id}, {:fields => [attribute]}).to_a
-    raw = raw.collect{ |doc| doc[attribute] }.flatten
-    
-    counted = Hash.new(0)
-    raw.each{ |attrib| counted[attrib] += 1 }
-    counted = counted.sort{ |a, b| b[1] <=> a[1] }.collect{ |attrib| attrib.first }
   end
 end
