@@ -121,6 +121,8 @@ a:hover {
 	background: #d5eff7;
 }
 
+.discussion-title {font-size:1.8em;margin-bottom:15px;}
+
 /* Lower Row */
 .lower-row .lhc {
 	float: left;
