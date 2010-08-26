@@ -2,6 +2,14 @@ class DiscussionsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter, :only => [:new, :create]
   def show
     @discussion = Discussion.find_by_zooniverse_id(params[:id])
+    @comment = Comment.new
+    if (@discussion.focus.nil?)
+      @title = Board.first(:discussion_ids => @discussion.id).title    
+      @bns_path = "/"+@title
+    else
+      @title = @discussion.focus.name
+      @bns_path = "/collections/"+@discussion.focus.zooniverse_id
+    end 
   end
   
   def new
