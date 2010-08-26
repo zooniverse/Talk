@@ -68,7 +68,6 @@ a:hover {
 
 .comment-container .name {
 	margin-right: 5px;
-/*	float: left;*/
 }
 
 /* Boards page */
@@ -95,7 +94,6 @@ a:hover {
 }
 
 /* Upper Row*/
-
 .focus-main-image {
 	margin-right: 5px;
 }
@@ -104,10 +102,6 @@ a:hover {
 		float:right;
 		font-size: 90%;
 		color: #aaa;
-}
-
-.asset-meta ul {
-
 }
 
 .asset-meta li {
@@ -119,18 +113,12 @@ a:hover {
 		color: #aaa;
 }
 
-.asset-actions ul {
-
-}
-
 .asset-actions li {
 	list-style-type:none;
 }
 
 .discussion  {
-/*	height:200px;*/
 	background: #d5eff7;
-/*	padding: 20px;*/
 }
 
 /* Lower Row */
@@ -260,10 +248,6 @@ img.new-comment-user{
 	font-size: 85%;
 }
 
-.comment-container .comment-body {
-	
-}
-
 .comment-container .name {
 	font-weight:bold;
 }
@@ -277,11 +261,11 @@ img.new-comment-user{
 	padding-top: 5px;
 }
 
-.rhc .panel {
+.panel {
 	margin-bottom: 30px;
 }
 
-.rhc .panel .inner {
+.panel .inner {
 	background: #F3F3F3;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -289,7 +273,7 @@ img.new-comment-user{
 	padding: 5px 10px 10px 10px;
 }
 
-.rhc .panel h2 {
+.panel h2 {
 	border-bottom: solid #aaa 1px;
 	font-size: 1.1em;
 	margin-bottom: 0;
@@ -345,7 +329,6 @@ img.new-comment-user{
 h2.asset-name {
 	font-weight: bold;
 	font-size: 1.2em;
-
 }
 
 /* jQuery */
@@ -444,14 +427,8 @@ img.message-user.outgoing {
 	margin-bottom: 0px;
 }
 
-.message-container .body {
-
-}
-
 /* pagination stuff */
-
-.pagination{
-	
+.pagination {
 	display:inline;
 }
 
@@ -523,7 +500,6 @@ h2.asset-name {
 }
 
 /* Old Tabs */
-
 /*.ct .ui-tabs-nav li {
 	background: lightgrey;
 	padding: 5px 5px 3px 5px;
@@ -540,12 +516,12 @@ h2.asset-name {
 
 .ct .ui-tabs-nav li.ui-tabs-selected {
 	background: #fff;
-}*/
+}
 
 
 .ct .ui-tabs-nav {
 	margin-bottom: 10px;
-}
+}*/
 
 .ct .ui-tabs-nav li {
 	background: white;
@@ -566,6 +542,12 @@ h2.asset-name {
 
 .ct .ui-tabs-nav li.ui-tabs-selected a {
 	color: #fff;
+}
+
+/* jQuery UI overide*/
+.ui-widget-header {
+	background:none !important;
+	border:0 !important;
 }
 
 /* Tabs */
@@ -606,21 +588,6 @@ h2.asset-name {
 .collection-viewer {
 	margin-top: 20px;
 	margin-bottom: 30px;
-}
-
-/* Profile page */
-.lhc .panel {
-	background: #F3F3F3;
-	padding: 5px;
-	
-}
-
-.lhc .panel img {
-	
-}
-
-.lhc .panel h2 {
-	font-size: 1.2em;
 }
 
 /* My collections */
@@ -675,6 +642,29 @@ h1.collection-title {
 
 .discussion-thread .lhc {
 	width:700px;
+}
+
+/* Profile */
+.profile h1 {
+	
+}
+.profile img {
+	float: left;
+} 
+.profile .info {
+	margin-left: 50px;
+}
+
+/* Collection viewer */
+.right-arrow-panel {
+	background: #dfdfdf;
+	display: inline;
+	width: 51px;
+	height: 32px;
+	margin-right: 11px;
+	padding-top: 19px;
+	float: right;
+	text-align: center;
 }
 
 .new {
