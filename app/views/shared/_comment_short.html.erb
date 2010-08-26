@@ -2,7 +2,7 @@
 	<%= image_tag('default_user.png', :class => "short-comment-user", :height => 40) %>
 	<div class="comment-container">
 		<div class="comment-body">
-		<div class="name"><%= comment_short.author.name %></div><%= raw markdown(comment_short.body) %></div>				
+		<div class="name"><%= link_to comment_short.author.name, user_path(comment_short.author.id) %></div><%= raw markdown(comment_short.body) %></div>				
 	</div>	
 	<div class="toolbar">
 		<%- unless current_zooniverse_user && comment_short.author == current_zooniverse_user -%>
