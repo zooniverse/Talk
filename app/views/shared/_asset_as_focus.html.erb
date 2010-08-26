@@ -10,7 +10,7 @@
 	</div>
 	<div class="asset-actions">
 		<ul>
-			<li><%= link_to "Examine", "http://www.moonzoo.org/examine/#{@asset.zooniverse_id.to_s}" %></li>
+			<li><%= link_to "Examine", "http://www.moonzoo.org/examine/#{@asset.zooniverse_id.to_s}", :target => :blank %></li>
 			<%= render :partial => "collect" if current_zooniverse_user %>
 		</ul>
 	</div>
