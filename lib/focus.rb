@@ -12,6 +12,7 @@ module Focus
       # other discussions where the Asset is the focus
       many :discussions, :in => :discussion_ids
       
+      after_create :build_conversation
       before_save :set_focus
       before_destroy :remove_focus
     end
@@ -65,6 +66,11 @@ module Focus
         discussion.focus_type = ""
         discussion.save if discussion.changed?
       end
+    end
+    
+    def build_conversation
+      self.conversation = Discussion.new(:subject => self.zooniverse_id)
+      self.save
     end
     
     # A way to aggregate tags up to a focus.  Take this with a grain of salt.
