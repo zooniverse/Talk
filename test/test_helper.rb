@@ -70,9 +70,9 @@ class ActiveSupport::TestCase
     focus.save
     discussion.reload
     
-    comment1 = Comment.new(:body => "blah", :author => Factory(:user), :tags => ['tag1', 'tag2'], :mentions => focus.zooniverse_id)
-    comment2 = Comment.new(:body => "blah", :author => Factory(:user), :tags => ['tag2', 'tag4'], :mentions => focus.zooniverse_id)
-    comment3 = Comment.new(:body => "blah", :author => Factory(:user), :tags => ['tag2', 'tag4'], :mentions => focus.zooniverse_id)
+    comment1 = Comment.new(:body => "blah #tag1 blah #tag2 blah #{focus.zooniverse_id} is awesome", :author => Factory(:user))
+    comment2 = Comment.new(:body => "blah #tag2 blah #tag4 blah #{focus.zooniverse_id} is awesome", :author => Factory(:user))
+    comment3 = Comment.new(:body => "blah #tag2 blah #tag4 blah #{focus.zooniverse_id} is awesome", :author => Factory(:user))
     
     [comment1, comment2, comment3].each do |comment|
       discussion.comments << comment

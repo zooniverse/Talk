@@ -18,6 +18,7 @@ class Comment
   belongs_to :author, :class_name => "User"
   many :events, :as => :eventable
   
+  after_validation_on_create :parse_body
   after_create :push_tags
   
   def keywords
@@ -117,5 +118,10 @@ class Comment
       Discussion.collection.update({ :_id => self.discussion_id }, { "$inc" => { "taggings.#{tag}" => 1 } })
       focus_type.constantize.collection.update({ :_id => focus_id }, { "$inc" => { "taggings.#{tag}" => 1 } }) if focus_type && focus_id
     end
+  end
+  
+  def parse_body
+    self.tags = self.body.scan(/#([-\w\d]{3,40})/im).flatten
+    self.mentions = self.body.scan(/([A|C|D]MZ\w{7})/m).flatten
   end
 end

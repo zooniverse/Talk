@@ -1,11 +1,11 @@
 require 'factory_girl'
 
 Factory.sequence :name do |n|
-  "#{n}" 
+  "0000000".split('').zip("#{n}".reverse.split('')).reverse.collect{ |a| a[1] || a[0] }.join
 end
 
 Factory.define :asset do |a|
-  a.zooniverse_id       { "AHZ#{Factory.next(:name)}" }
+  a.zooniverse_id       { "AMZ#{Factory.next(:name)}" }
   a.location            "http://imageserver.org/assets/1"
   a.thumbnail_location  "http://imageserver.org/assets/thumbs/1"
   a.taggings            Hash.new({ "monkey" => 1 })
@@ -17,14 +17,12 @@ Factory.define :user do |u|
 end
 
 Factory.define :collection do |c|
-  c.zooniverse_id       { "AHZ#{Factory.next(:name)}" }
   c.name                { "#{ Factory.next(:name) }" }
   c.description         { "This is collection" }
   c.user                { |user| user.association(:user) }
 end
 
 Factory.define :live_collection do |c|
-  c.zooniverse_id       { "AHZ#{Factory.next(:name)}" }
   c.name                { "#{ Factory.next(:name) }" }
   c.description         { "This is a live collection" }
   c.tags                [ "tag2", "tag4" ]
