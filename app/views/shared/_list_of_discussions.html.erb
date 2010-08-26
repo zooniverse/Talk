@@ -7,6 +7,7 @@
 			  <%- @focus.discussions.each do |discussion| %>
 			    <li><%= link_to discussion.subject, discussion_url_for(@focus, discussion) %></li>
 			  <% end -%>
+			    <li class="new"><%= link_to "+ #{t('discussion.startnew')}", new_discussion_url_for(@focus) %></li>
 			</ul>		
 			</div>
 	</div>

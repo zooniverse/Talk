@@ -2,6 +2,19 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :check_or_create_zooniverse_user
   
+  def new_discussion_url_for(focus)
+      case focus.class.to_s
+      when "Asset"
+        object_url = "/objects/#{focus.zooniverse_id}/discussion/new"
+      when "Collection"
+        collection_url = "/collections/#{focus.zooniverse_id}/discussion/new"
+      when "LiveCollection"
+        live_collection_url = "/live_collections/#{focus.zooniverse_id}/discussion/new"
+      end
+  end
+  
+  helper_method :new_discussion_url_for
+  
   def discussion_url_for(focus, discussion)
     if discussion.focus.nil?
       discussion_path(discussion.zooniverse_id)
