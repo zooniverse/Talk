@@ -12,7 +12,7 @@
 			<%= render :partial => "shared/list_of_discussions_board", :locals => { :id_of_box => "discussions-list" } %>
 		</div>		
 		
-		<%= page_bar @page,@number_of_pages%>
+		<%= page_bar @page, @board.total_pages %>
 			
 	</div>
 	<div class="rhc">

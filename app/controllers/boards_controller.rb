@@ -1,66 +1,21 @@
 class BoardsController < ApplicationController
   def show
-    @per_page = params[:per_page]
-    @page= params[:page]
-    
-    @per_page ||= 10
-    @page ||= 1    
-    
-    @per_page=@per_page.to_i
-    @page=@page.to_i
-    
-    @board = Board.find_by_title(params[:id])
-    @board_stats = @board.stats
-    @discussions_list = @board.discussions.paginate :per_page=>@per_page, :page=>@page
-    @number_of_pages = (@board.discussion_ids.count/@per_page).floor
+    show_by_title(params[:board_id])
   end
   
-  def science 
-    @per_page = params[:per_page]
-    @page= params[:page]
-    
-    @per_page ||= 10
-    @page ||= 1    
-    
-    @per_page=@per_page.to_i
-    @page=@page.to_i
-    
-    @board = Board.find_by_title("science")
-    @board_stats = @board.stats
-    @discussions_list = @board.discussions.paginate :per_page=>@per_page, :page=>@page
-    @number_of_pages = (@board.discussion_ids.count/@per_page).floor 
-    
-    render "show"
+  %w(help science chat).each do |title|
+    define_method(title.to_sym) do
+      show_by_title title
+    end
   end
   
-  def chat 
-    @per_page = params[:per_page]
-    @page= params[:page]
-    @per_page ||= 10
-    @page ||= 1
-    @per_page=@per_page.to_i
-    @page=@page.to_i
-    
-    @board = Board.find_by_title("chat")
+  def show_by_title(title)
+    @per_page = params[:per_page] ? params[:per_page].to_i : 10
+    @page = params[:page] ? params[:page].to_i : 1
+    @board = Board.by_title(title, :page => @page, :per_page => @per_page)
     @board_stats = @board.stats
-    @discussions_list = @board.discussions.paginate :per_page=>@per_page, :page=>@page
-    @number_of_pages = (@board.discussion_ids.count/@per_page).floor 
-    render "show"
-  end
-  
-  def help
-    @per_page = params[:per_page]
-    @page= params[:page]
-    @per_page ||= 10
-    @page ||= 1
+    @discussions_list = @board.current_page
     
-    @per_page=@per_page.to_i
-    @page=@page.to_i
-    
-    @board = Board.find_by_title("help")
-    @board_stats = @board.stats
-    @discussions_list = @board.discussions.paginate :per_page=>@per_page, :page=>@page
-    @number_of_pages = (@board.discussion_ids.count/@per_page).floor 
     render "show"
   end
 end
