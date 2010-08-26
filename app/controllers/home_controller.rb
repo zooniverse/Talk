@@ -1,5 +1,6 @@
 class HomeController < ApplicationController 
   before_filter CASClient::Frameworks::Rails::Filter, :only => :cas_test
+  before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => :index
   
   def index
     @recent_comments = Comment.most_recent 5
@@ -26,6 +27,5 @@ class HomeController < ApplicationController
   
   def cas_test
     @user = session[:cas_user]
-    redirect_to :back
   end  
 end
