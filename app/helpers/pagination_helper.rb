@@ -3,7 +3,7 @@ module PaginationHelper
     
     path = request.path
     s="<ul>"
-    (1..no_of_pages+1).each do |i|
+    (1..no_of_pages).each do |i|
       if(i==page_no)
         s<< "<li class='pagination'> <a href=#{path}?page=#{i}> \<#{i}\> </a> </li>" 
       else

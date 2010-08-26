@@ -22,7 +22,12 @@ class Board
   
   def by_page(*args)
     opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
-    ids = self.discussion_ids.reverse[ opts[:per_page] * (opts[:page] - 1), opts[:per_page] ]
+    
+    max = self.discussion_ids.length
+    start = [ opts[:per_page] * (opts[:page] - 1), max ].min
+    length = [opts[:per_page], max - start].min
+    
+    ids = self.discussion_ids.reverse[ start, length ]
     @current_page = ids.map{ |id| Discussion.find(id) }
     @total_pages = (discussion_ids.length / opts[:per_page].to_f).ceil
     self
