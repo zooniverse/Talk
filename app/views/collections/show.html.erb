@@ -1,13 +1,13 @@
 <div class="upper-row">
+	<h1 class="collection-title"><%= @collection.name %> by <%= link_to @collection.user.name, user_path(@collection.user) %></h1>
+	
 	<div class="rhc">
-
 		<%= render :partial => "shared/list_of_discussions" %>	
 		<%= render :partial => "shared/list_of_mentions" %>	
 		<%= render :partial => "shared/tags_for_focus" %>	
 	</div>
 	
 	<div class="lhc">
-		<h1 class="collection-title"><%= @collection.name %> by <%= link_to @collection.user.name, user_path(@collection.user) %></h1>
 		<p class="collection-description"><%= @collection.description %></p>
 		<div class="collection-viewer">
 			<%= render :partial => "shared/collection_as_focus" %>
