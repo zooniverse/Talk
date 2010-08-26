@@ -13,12 +13,11 @@
 		</div>					
 		
 		<div class="toolbar">
-		<%- unless current_zooniverse_user && comment.author == current_zooniverse_user -%>
-	
+		<%- unless current_zooniverse_user && comment.author == current_zooniverse_user %>
 			<div class="vote-controls">
 				<span id="comment-vote-<%= comment.id %>">
-				  <%- unless comment.upvotes.include?(current_zooniverse_user.id) %>
-  				  <%= link_to("RECOMMEND", vote_up_comment_path(comment), {:remote => true, :method => :post, :style => "color:#2276BB;margin: 0;"}) unless comment.upvotes.include?(current_zooniverse_user.id) %>
+				  <%- unless comment.upvotes.include?(current_zooniverse_user) %>
+  				  <%= link_to("RECOMMEND", vote_up_comment_path(comment), {:remote => true, :method => :post, :style => "color:#2276BB;margin: 0;"}) %>
   				<%- else -%>
   				  RECOMMENDED
   				<% end -%>

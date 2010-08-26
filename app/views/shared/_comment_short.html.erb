@@ -7,7 +7,7 @@
 		<%= raw markdown(comment_short.body) %></div>				
 	</div>	
 	<div class="toolbar">
-		<%- unless current_zooniverse_user && comment_short.author == current_zooniverse_user -%>
+		<%- unless current_zooniverse_user && comment_short.author == current_zooniverse_user %>
 		<div class="vote-controls">
 			<span id="comment-vote-<%= comment_short.id %>">
 			  <%- unless comment_short.upvotes.include?(current_zooniverse_user.id) %>
