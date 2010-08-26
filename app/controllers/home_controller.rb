@@ -11,7 +11,8 @@ class HomeController < ApplicationController
     @trending_assets = Asset.trending 5
     @trending_collections = Collection.trending 5
     @trending_discussions = Discussion.trending 5
-    @trending_tags = Comment.trending_tags 10
+    
+    @trending_tags = Comment.rank_tags :from => 0, :to => 8
     
     # Loading data for boards
     @help_board = Board.find_by_title("help")
