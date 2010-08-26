@@ -6,8 +6,8 @@
 		<div class="recent-comment">
 			<%= image_tag('default_user.png', :class => "recent-comment-user", :height => 40) %>
 			<div class="comment-container">
-				<div class="name"><%= link_to c.author.name, user_path(c.author.id) %> in discussion <%= link_to discussion.subject, discussion_url_for(discussion) %></div>
-				<div class="date"><%= long_date(c.created_at) %></div>
+				<div class="name"><%= link_to c.author.name, user_path(c.author.id) %> in <%= link_to truncate(discussion.subject, :length => 25), discussion_url_for(discussion) %></div>
+				<div class="date">Posted <%= time_ago_in_words(c.created_at) %> ago</div>
 				<div class="comment-body"><%= (markdown(c.body)).gsub(/<\/?[^>]*>/,"") %></div>
 			</div>
 			<div class="push"></div>

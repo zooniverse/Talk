@@ -241,6 +241,13 @@ img.new-comment-user{
 	visibility: hidden;
 }
 
+.comment .date {
+	color: #afafaf;
+	margin-bottom: 0px;
+
+	font-size: 85%;
+}
+
 .short-comment .date {
 	color: #afafaf;
 	margin-bottom: 10px;

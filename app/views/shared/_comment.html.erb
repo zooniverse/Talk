@@ -8,6 +8,7 @@
 	<div class="comment-container">
 		<div class="comment-body">
 			<div class="name"><%= link_to comment.author.name, user_path(comment.author.id) %></div>
+			<div class="date">Posted <%= time_ago_in_words(comment.created_at) %> ago</div>
 			<%= raw markdown(comment.body) %>
 		</div>					
 		
@@ -17,7 +18,6 @@
 			<div class="vote-controls">
 				<span id="comment-vote-<%= comment.id %>"><%= link_to("RECOMMEND", vote_up_comment_path(comment), {:remote => true, :method => :post, :style => "color:#2276BB;margin: 0;"}) %></span>&nbsp;|&nbsp;<span id="report-link-<%= comment.id %>"><%= link_to("REPORT", report_comment_path(comment), {:remote => true, :method => :post, :style => "color:#2276BB;", :confirm => (t 'comments.report_comment_confirm') }) %></span>
 			</div>
-			
 			<div class="reponse-to">
 				<%= link_to "REPLY", "#", :onclick => "reply_to('#{comment.id}', '#{comment.author.name}');" %>&nbsp;|&nbsp;
 				<%- if comment.is_a_response? -%>
