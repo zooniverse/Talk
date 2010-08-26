@@ -30,19 +30,4 @@ class LiveCollection
   def self.most_recent(limit = 10)
     LiveCollection.limit(limit).sort(['created_at', -1]).all
   end
-  
-  def self.trending(limit = 10)
-    discussions = Discussion.collection.group([:focus_id],
-      { :focus_type => "LiveCollection" },
-      { :score => 0 },
-      <<-JS
-        function(obj, prev) {
-          prev.count += obj.number_of_comments * obj.number_of_users;
-        }
-      JS
-    )
-    
-    discussions = discussions.result[0, limit].sort{ |a, b| b['score'] <=> a['score'] }
-    discussions.map{ |key, val| LiveCollection.find(key['focus_id']) }
-   end
 end

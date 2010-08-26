@@ -38,23 +38,6 @@ class Asset
     asset_ids.map{ |focus_id, d_id| Asset.find(focus_id) }
   end
   
-  # selects the most recently 'popular' assets
-  #  Popularity = Number_of_Comments * Number_of_Users
-  def self.trending(limit = 10)
-    discussions = Discussion.collection.group([:focus_id],
-      { :focus_type => "Asset", :created_at => { "$gt" => Time.now.utc - 1.week } },
-      { :score => 0 },
-      <<-JS
-        function(obj, prev) {
-          prev.score += obj.number_of_comments * obj.number_of_users;
-        }
-      JS
-    )
-    
-    discussions = discussions[0, limit].sort{ |a, b| b['score'] <=> a['score'] }
-    discussions.map{ |key, val| Asset.find(key['focus_id']) }
-  end
-  
   # Finds assets that match the given keywords
   #   e.g. Asset.by_keywords('tag1', 'tag2', :page => 1, :per_page => 5)
   def self.with_keywords(*args)

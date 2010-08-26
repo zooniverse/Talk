@@ -23,6 +23,22 @@ module Focus
   
   # Class Methods!
   module ClassMethods
+    # selects the most recently 'popular' focii
+    #  Popularity = Number_of_Comments * Number_of_Users
+    def trending(limit = 10)
+      discussions = Discussion.collection.group([:focus_id],
+        { :focus_type => self.name, :created_at => { "$gt" => Time.now.utc - 1.week } },
+        { :score => 0 },
+        <<-JS
+          function(obj, prev) {
+            prev.score += obj.number_of_comments * obj.number_of_users;
+          }
+        JS
+      )
+
+      discussions = discussions[0, limit].sort{ |a, b| b['score'] <=> a['score'] }
+      discussions.map{ |key, val| self.find(key['focus_id']) }
+    end
   end
   
   # Instance Methods!

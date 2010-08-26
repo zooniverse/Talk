@@ -36,19 +36,4 @@ class Collection
     
     Collection.limit(opts[:limit]).sort(opts[:order]).all(:asset_ids => asset.id)
   end
-  
-  def self.trending(limit = 10)
-    discussions = Discussion.collection.group([:focus_id],
-    { :focus_type => "Collection" },
-      { :score => 0 },
-      <<-JS
-        function(obj, prev) {
-          prev.score += obj.number_of_comments * obj.number_of_users;
-        }
-      JS
-    )
-    
-    discussions = discussions[0, limit].sort{ |a, b| b['score'] <=> a['score'] }
-    discussions.map{ |key, val| Collection.find(key['focus_id']) }
-  end
 end
