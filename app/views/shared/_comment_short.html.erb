@@ -9,7 +9,19 @@
 	<div class="toolbar">
 		<%- unless current_zooniverse_user && comment_short.author == current_zooniverse_user -%>
 		<div class="vote-controls">
-			<span id="comment-vote-<%= comment_short.id %>"><%= link_to("RECOMMEND", vote_up_comment_path(comment_short), {:remote => true, :method => :post, :style => "color:#2276BB;margin: 0;"}) %></span>&nbsp;|&nbsp;<span id="report-link-<%= comment_short.id %>"><%= link_to("REPORT", report_comment_path(comment_short), {:remote => true, :method => :post, :style => "color:#2276BB;", :confirm => (t 'comments.report_comment_confirm') }) %></span>
+			<span id="comment-vote-<%= comment_short.id %>">
+			  <%- unless comment_short.upvotes.include?(current_zooniverse_user.id) %>
+    			<%= link_to("RECOMMEND", vote_up_comment_path(comment_short), {:remote => true, :method => :post, :style => "color:#2276BB;margin: 0;"}) %>
+    	  <%- else -%>
+    	    RECOMMENDED
+    	  <% end -%>
+			</span>&nbsp;|&nbsp;<span id="report-link-<%= comment_short.id %>">
+			  <%- if comment_short.events.select{ |event| event.user_id == current_zooniverse_user.id }.empty? %>
+			    <%= link_to("REPORT", report_comment_path(comment_short), {:remote => true, :method => :post, :style => "color:#2276BB;", :confirm => (t 'comments.report_comment_confirm') }) %>
+			  <%- else -%>
+			    REPORTED!
+			  <% end -%>
+			</span>
 		</div>
 		<%- end -%>
 		<div class="date"><%= long_date(comment_short.created_at) %></div>
