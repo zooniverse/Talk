@@ -20,7 +20,7 @@ class LiveCollection
   #   e.g. live_collection.assets(:page => 1, :per_page => 5)
   def assets(*args)
     options = { :page => 0, :per_page => 10 }.update args.extract_options!
-    results = Comment.search "focus_type:Asset tags:#{ self.tags.join(' ') }", :limit => 10_000, :collapse => :focus_id
+    results = Comment.search "focus_type:Asset keywords:#{ self.tags.join(' ') }", :limit => 10_000, :collapse => :focus_id
     results = results[ options[:page] * options[:per_page], options[:per_page] ]
     results.map{ |result| Asset.find(result[:focus_id]) }
   end

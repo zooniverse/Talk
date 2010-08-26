@@ -12,6 +12,7 @@ end
 
 Factory.define :discussion do |d|
   d.subject             "Monkey is an OIII emission"
+  d.started_by_id       { |user| user.association(:user).id }
 end
 
 Factory.define :asset do |a|
