@@ -69,7 +69,12 @@ class Discussion
   end
   
   def started_by
-    User.find(self.started_by_id)
+    @cached_started_by ||= User.find(self.started_by_id)
+  end
+  
+  def started_by=(user)
+    @cached_started_by = user
+    self.started_by_id = user.id
   end
   
   private
