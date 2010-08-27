@@ -5,7 +5,7 @@
 
 		<% end %>
 	</div>
-	<div class="comment-container">
+	<div class="comment-container highlight_keywords">
 		<div class="comment-body">
 			<div class="name"><%= link_to comment.author.name, user_path(comment.author.id) %></div>
 			<div class="date">Posted <%= time_ago_in_words(comment.created_at) %> ago</div>

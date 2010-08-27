@@ -66,6 +66,7 @@ $(document).ready(function(){
 		OCT.collection.init();
 		OCT.scroll.init();
 		OCT.hover.init();
+		$("highlight_keywords").keywordHighlight();
 });
 
 
@@ -129,6 +130,8 @@ function update_live_collection_results(){
 	   data: "keywords="+keywords.join(',')
 	 });
 }
+
+
 
 
 
