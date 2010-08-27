@@ -1,6 +1,6 @@
 <div class="short-comment">
 	<%= image_tag('default_user.png', :class => "short-comment-user", :height => 40) %>
-	<div class="comment-container">
+	<div class="comment-container highlight_keywords">
 		<div class="comment-body">
 		<div class="name"><%= link_to comment_short.author.name, user_path(comment_short.author.id) %></div>
 		<div class="date">Posted <%= time_ago_in_words(comment_short.created_at) %> ago</div>
