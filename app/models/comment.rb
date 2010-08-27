@@ -94,6 +94,7 @@ class Comment
     return {} if trended.empty?
     min, max = trended.values.minmax
     old_range = max - min.to_f
+    return {} if old_range == 0
     
     trended.each_pair do |tag, count|
       trended[tag] = (opts[:from] + ((count - min) / old_range) * new_range).round
