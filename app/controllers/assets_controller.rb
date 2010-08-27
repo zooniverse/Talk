@@ -16,4 +16,5 @@ class AssetsController < ApplicationController
       @comments = @asset.conversation.comments
     end
   end
+
 end

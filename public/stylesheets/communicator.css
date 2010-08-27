@@ -181,6 +181,10 @@ a:hover {
 	font-weight: bold;
 }
 
+.item-container .body {
+
+}
+
 .last {
 	border-bottom: none;
 }
@@ -215,6 +219,20 @@ a:hover {
 
 .featured-item .name {
 	margin-bottom: 2px;
+}
+
+.recent-asset {
+	border-bottom: solid #eee 1px;
+}
+
+.asset-container {
+	margin-left: 50px;
+	padding-bottom: 5px;
+}
+
+.asset-container .name {
+	margin: 5px 0 4px 0px;
+	font-size: 1.2em;
 }
 
 /* Comments */

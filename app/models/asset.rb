@@ -50,4 +50,13 @@ class Asset
     results = results[ options[:page] * options[:per_page], options[:per_page] ]
     results.map{ |result| Asset.find(result[:focus_id]) }
   end
+  
+  def collections
+    collections = Collection.with_asset(self)
+  end
+  
+  def mentions
+    mentions = Discussion.mentioning(self)
+  end
+  
 end
