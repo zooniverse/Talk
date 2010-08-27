@@ -14,7 +14,7 @@ $.fn.keywordHighlight = function(options) {
 			var text = $this.html();
 		
 			
-			var result=text.replace(/\B(^|\s)#(\w+)/g, "$1<a class='keyword'  href='/search?search=%3A$2'>#$2</a>");
+			var result=text.replace(/(^|\s)#(\w+)/g, "$1<a class='keyword'  href='/search?search=%3A$2'>#$2</a>");
 			
 			$this.html(result);
 			return $this;

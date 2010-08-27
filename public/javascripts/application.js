@@ -66,7 +66,7 @@ $(document).ready(function(){
 		OCT.collection.init();
 		OCT.scroll.init();
 		OCT.hover.init();
-		$("highlight_keywords").keywordHighlight();
+		$(".highlight_keywords").keywordHighlight();
 });
 
 
