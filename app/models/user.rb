@@ -40,6 +40,10 @@ class User
   many :sent_messages, :class_name => "Message", :foreign_key => :sender_id
   many :events, :as => :eventable
   
+  def privileged?
+    self.admin? || self.moderator?
+  end
+  
   def notify_banned_user
     Notifier.notify_banned_user(self).deliver
   end

@@ -40,5 +40,4 @@ class Board
   def show 
     @board =Board.find(:params[:id])
   end
-  
 end
