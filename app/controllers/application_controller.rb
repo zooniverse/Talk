@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :check_or_create_zooniverse_user
-  before_filter :check_for_banned_user
+  before_filter :check_for_banned_user, :except => :cas_logout
   
   def get_featured_discussions
     @featured_list = Discussion.featured.all
@@ -94,6 +94,10 @@ class ApplicationController < ActionController::Base
     session[:cas_extra_attributes]['id']
   end
   
+  def zooniverse_user_email
+    session[:cas_extra_attributes]['email']
+  end
+  
   def current_zooniverse_user
     @current_zooniverse_user ||= (User.find_by_zooniverse_user_id(zooniverse_user_id) if zooniverse_user)
   end
@@ -101,17 +105,17 @@ class ApplicationController < ActionController::Base
   def check_or_create_zooniverse_user
     if zooniverse_user
       if user = User.find_by_zooniverse_user_id(zooniverse_user_id)
-        user.update_attributes(:name => zooniverse_user)
+        user.update_attributes(:name => zooniverse_user, :email => zooniverse_user_email)
       else
-        User.create(:zooniverse_user_id => zooniverse_user_id, :name => zooniverse_user)
+        User.create(:zooniverse_user_id => zooniverse_user_id, :name => zooniverse_user, :email => zooniverse_user_email)
       end
     end
   end
   
   def check_for_banned_user
-    if zooniverse_user
-      if User.find_by_zooniverse_user_id(zooniverse_user_id).state == "banned"
-        flash[:notice] = 'You have been banned'
+    if current_zooniverse_user
+      if current_zooniverse_user.state == "banned"
+        flash[:notice] = t 'controllers.home.banned'
         redirect_to root_url
       end
     end
