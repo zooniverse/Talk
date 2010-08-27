@@ -48,6 +48,7 @@ class Discussion
   
   # Finds discussions mentioning a focus
   def self.mentioning(focus)
+    return [] if Comment.count == 0
     comments = Comment.search "mentions:#{focus.zooniverse_id}", :limit => 100, :collapse => :discussion_id, :from_mongo => true
     comments[0, 10].map{ |comment| comment.discussion }
   end
