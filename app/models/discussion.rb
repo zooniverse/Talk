@@ -3,7 +3,7 @@ class Discussion
   include MongoMapper::Document
   include ZooniverseId
   include Taggable
-  
+  plugin Xapify
   
   zoo_id :prefix => "D"
   key :subject, String, :required => true
@@ -25,6 +25,8 @@ class Discussion
   after_save :update_counts
   
   scope :featured, :featured=>true 
+  
+  xapify_fields :tags
   
   # Fetches the Focus of this Discussion if it exists
   def focus
@@ -90,6 +92,4 @@ class Discussion
       '$set' => { :number_of_comments => n_comments, :number_of_users => n_users }
     })
   end
-  
-  
 end

@@ -3,12 +3,16 @@ class Asset
   include MongoMapper::Document
   include Focus
   include Taggable
+  plugin Xapify
   
   key :zooniverse_id, String, :required => true
   key :location, String, :required => true
   key :thumbnail_location, String, :required => true
   key :coords, Array
   key :size, Array
+  timestamps!
+  
+  xapify_fields :tags => Array
   
   # selects the most recently mentioned (ie AM0000BLAH was mentioned in a comment) assets
   def self.most_recently_mentioned(limit = 10)
@@ -42,7 +46,7 @@ class Asset
   #   e.g. Asset.by_keywords('tag1', 'tag2', :page => 1, :per_page => 5)
   def self.with_keywords(*args)
     options = { :page => 0, :per_page => 10 }.update args.extract_options!
-    results = Comment.search "focus_type:Asset keywords:#{ args.join(' OR ') }", :limit => 10_000, :collapse => :focus_id
+    results = Asset.search "tags:#{ args.join(' ') }", :limit => 1_000
     results = results[ options[:page] * options[:per_page], options[:per_page] ]
     results.map{ |result| Asset.find(result[:focus_id]) }
   end

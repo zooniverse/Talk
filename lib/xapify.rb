@@ -9,9 +9,17 @@ module Xapify
         attr_accessor :xap_db, :xap_fields
       end
       
-      @xap_fields = {:_id=>{:store=>true, :type=>String}}
+      @xap_fields = { :_id => { :store => true, :type => String } }
       args.each do |arg|
-        kind = key?(arg) ? keys[arg.to_s].type : String
+        kind = String
+        
+        if key?(arg)
+          kind = keys[arg].type
+        elsif arg.is_a? Hash
+          kind = arg.values.first
+          arg = arg.keys.first
+        end
+        
         @xap_fields[arg.to_sym] = { :store => true, :type => kind }
       end
       
@@ -31,7 +39,7 @@ module Xapify
       collected = docs.collect do |doc|
         hash = {}
         @xap_fields.each_key do |key|
-          hash[key] = doc.values[key]
+          hash[key] = [Array, Hash].include?(@xap_fields[key][:type]) ? JSON.load(doc.values[key]) : doc.values[key]
         end
         
         hash[:collapse_count] = doc.match.collapse_count if opts.has_key?(:collapse)
