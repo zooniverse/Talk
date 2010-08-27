@@ -7,7 +7,7 @@
   <%- body = @listing ? truncate(message.body, :length => 50) : message.body -%>
   
 	<div class="subject"><%= subject %></div>
-	<div class="user"><%= message.sender.name %></div>
+	<div class="user"><%= link_to message.sender.name, user_path(message.sender.zooniverse_id) %></div>
 	<div class="date"><%= long_date(message.created_at) %></div>
 	<div class="preview"><%= body %></div>
 </div>
