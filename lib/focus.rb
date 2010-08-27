@@ -85,8 +85,8 @@ module Focus
     end
     
     def build_conversation
-      self.conversation = Discussion.new(:subject => self.zooniverse_id)
-      self.save
+      self.conversation ||= Discussion.new(:subject => self.zooniverse_id)
+      self.save if self.changed?
     end
   end
 end
