@@ -36,4 +36,9 @@ class Board
   def number_of_comments
     Comment.count(:discussion_id.in => self.discussion_ids)
   end
+  
+  def show 
+    @board =Board.find(:params[:id])
+  end
+  
 end

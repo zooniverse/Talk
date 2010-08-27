@@ -11,6 +11,7 @@ class Discussion
   key :focus_type, String
   key :slug, String
   key :started_by_id, ObjectId
+  key :featured, Boolean, :default=>false 
 
   key :number_of_users, Integer, :default => 0
   key :number_of_comments, Integer, :default => 0
@@ -22,6 +23,8 @@ class Discussion
   before_create :set_slug
   before_create :set_started_by
   after_save :update_counts
+  
+  scope :featured, :featured=>true 
   
   # Fetches the Focus of this Discussion if it exists
   def focus
@@ -87,4 +90,6 @@ class Discussion
       '$set' => { :number_of_comments => n_comments, :number_of_users => n_users }
     })
   end
+  
+  
 end
