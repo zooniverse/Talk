@@ -8,8 +8,11 @@
 		<li><%= link_to t('sidenav.help'), :controller => :boards, :action => :help %></li>
 		<li><%= link_to t('sidenav.chat'), :controller => :boards, :action => :chat %></li>
 		<br/>
-		<li><%= link_to t('sidenav.moderation'), :controller => :admin, :action => :index %></li>
 		<% if current_zooniverse_user %>
+			<%- if current_zooniverse_user.admin? || current_zooniverse_user.moderator? -%>
+			<li><%= link_to t('sidenav.moderation'), :controller => :admin, :action => :index %></li>
+			<%- end -%>
+			<li><%= link_to t('sidenav.profile'), :controller => :users, :action => :show, :id => current_zooniverse_user.id %></li>
 			<li><%= link_to t('sidenav.logout'), :controller => :application, :action => :cas_logout %></li>
 		<% else %>		
 			<li><%= link_to t('sidenav.login'), :controller => :home, :action => :cas_test %></li>

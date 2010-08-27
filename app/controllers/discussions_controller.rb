@@ -8,7 +8,7 @@ class DiscussionsController < ApplicationController
       @bns_path = "/"+@title
     else
       @title = @discussion.focus.zooniverse_id
-      @bns_path = "/collections/"+@discussion.focus.zooniverse_id
+      @bns_path = parent_url_for(@discussion)
     end 
   end
   

@@ -7,3 +7,11 @@
 <% else %>
 	EMPTY COLLECTION				
 <% end %>									
+
+<%- if @collection.user == current_zooniverse_user -%>
+<div class="asset-actions">
+	<ul>
+		<li><%= link_to "Edit", edit_collection_path(@collection.zooniverse_id) %></li>
+	</ul>
+</div>
+<%- end -%>

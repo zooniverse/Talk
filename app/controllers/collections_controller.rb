@@ -43,6 +43,29 @@ class CollectionsController < ApplicationController
     end
   end
   
+  def update
+    if params[:collection_kind][:id] == "Live Collection"
+      @collection = LiveCollection.find(params[:id])
+    elsif params[:collection_kind][:id] == "Collection"
+      @collection = Collection.find(params[:id])
+    end
+    
+    if @collection.is_a?(LiveCollection)
+      @collection.tags = params[:keyword].values
+    end
+    
+    if @collection.update_attributes(params[:collection])
+      flash[:notice] = I18n.t 'controllers.collections.flash_updated'
+      if @collection.is_a?(LiveCollection)
+        redirect_to live_collection_path(@collection.zooniverse_id)
+      elsif @collection.is_a?(Collection)
+        redirect_to collection_path(@collection.zooniverse_id)
+      end
+    else
+      render :action => 'edit'
+    end
+  end
+  
   def add
     @collection = Collection.find_by_zooniverse_id(params[:id])
     @asset = Asset.find_by_zooniverse_id(params[:asset_id])

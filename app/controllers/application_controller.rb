@@ -47,6 +47,20 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def parent_url_for(discussion)
+    focus = discussion.focus
+    case focus.class.to_s
+    when "Asset"
+      object_path(focus.zooniverse_id)
+    when "Collection"
+      collection_path(focus.zooniverse_id)
+    when "LiveCollection"
+      live_collection_path(focus.zooniverse_id)
+    end
+  end
+  
+  helper_method :parent_url_for
+  
   helper_method :discussion_url_for
   
   def require_privileged_user

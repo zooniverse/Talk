@@ -7,7 +7,7 @@
 	  	<%- @collections.each do |collection| %>
 	  	  <li><%= link_to collection.name, collection_path(collection.zooniverse_id) %> (<%= collection.assets.size %> items)</li>
 	  	<% end -%>
-			<li class="new"><%= link_to "+ #{t('collection.startnewcol')}", "#" %></li>
+			<li class="new"><%= link_to "+ #{t('collection.startnewcol')}", new_collection_path %></li>
 		</ul>		
 	</div>
 </div>
@@ -16,7 +16,7 @@
 	<h2>Collections</h2>
 	<div class="inner">
 		<ul>
-			<li class="new"><%= link_to "+ #{t('collection.startnewcol')}", "#" %></li>
+			<li class="new"><%= link_to "+ #{t('collection.startnewcol')}", new_collection_path %></li>
 		</ul>		
 	</div>
 </div>
