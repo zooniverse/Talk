@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
       case focus.class.to_s
       when "Asset"
         object_url = "/objects/#{focus.zooniverse_id}/discussions/new"
+      when "Board"
+        board_url = "/boards/#{focus.title}/discussions/new"
       when "Collection"
         collection_url = "/collections/#{focus.zooniverse_id}/discussions/new"
       when "LiveCollection"
@@ -24,9 +26,7 @@ class ApplicationController < ActionController::Base
   
   def discussion_url_for(discussion)
     focus = discussion.focus
-    if discussion.focus_id.nil?
-      discussion_path(discussion.zooniverse_id)
-    elsif discussion.conversation?
+    if !focus.is_a?(Board) && discussion.conversation?
       case focus.class.to_s
       when "Asset"
         object_path(focus.zooniverse_id)
@@ -39,6 +39,8 @@ class ApplicationController < ActionController::Base
       case focus.class.to_s
       when "Asset"
         object_discussion_path(focus.zooniverse_id, discussion.zooniverse_id)
+      when "Board"
+        discussion_path(discussion.zooniverse_id)
       when "Collection"
         collection_discussion_path(focus.zooniverse_id, discussion.zooniverse_id)
       when "LiveCollection"
@@ -52,6 +54,8 @@ class ApplicationController < ActionController::Base
     case focus.class.to_s
     when "Asset"
       object_path(focus.zooniverse_id)
+    when "Board"
+      board_path(focus.title)
     when "Collection"
       collection_path(focus.zooniverse_id)
     when "LiveCollection"

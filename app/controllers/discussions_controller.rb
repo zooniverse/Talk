@@ -3,9 +3,9 @@ class DiscussionsController < ApplicationController
   def show
     @discussion = Discussion.find_by_zooniverse_id(params[:id])
     @comment = Comment.new
-    if (@discussion.focus.nil?)
-      @title = Board.first(:discussion_ids => @discussion.id).title    
-      @bns_path = "/"+@title
+    if @discussion.focus_type == "Board"
+      @title = @discussion.focus.title
+      @bns_path = "/#{@title}"
     else
       @title = @discussion.focus.zooniverse_id
       @bns_path = parent_url_for(@discussion)
@@ -40,6 +40,8 @@ class DiscussionsController < ApplicationController
       else
         board = Board.find_by_title(params[:board_id])
         board.discussion_ids << @discussion.id
+        @discussion.focus_type = "Board"
+        @discussion.focus_id = board.id
         board.save
         
         @discussion.comments << @comment
