@@ -1,7 +1,7 @@
 <!-- Displays list of collections containing a focus -->
 <% unless @collections.empty? %>
 <div class="panel">	
-	<h2>Collections</h2>
+	<h2><%= pluralize(@collections.size, "Collection") %></h2>
 	<div class="inner">
 		<ul>
 	  	<%- @collections.each do |collection| %>
@@ -13,7 +13,7 @@
 </div>
 <% else %>
 <div class="panel">	
-	<h2>Collections</h2>
+	<h2>No Collections Yet</h2>
 	<div class="inner">
 		<ul>
 			<li class="new"><%= link_to "+ #{t('collection.startnewcol')}", new_collection_path %></li>
