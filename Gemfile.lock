@@ -57,6 +57,9 @@ GEM
       jnunemaker-validatable (~> 1.8.4)
       plucky (~> 0.3.3)
     mysql (2.8.1)
+    paperclip (2.3.3)
+      activerecord
+      activesupport
     plucky (0.3.4)
       mongo (~> 1.0.7)
     polyglot (0.3.1)
@@ -100,6 +103,7 @@ DEPENDENCIES
   mocha
   mongo_mapper
   mysql
+  paperclip
   rails (= 3.0.0.rc)
   rubycas-client
   shoulda
