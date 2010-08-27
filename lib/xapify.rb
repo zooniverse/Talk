@@ -70,7 +70,16 @@ module Xapify
         doc_hash[field.first.to_sym] = self.send(field.first.to_sym) unless field== :_id
       end
       
-      inserted = db.add_doc doc_hash
+      counter = 0
+      
+      begin
+        inserted = db.add_doc doc_hash
+        counter += 1
+      rescue
+        sleep(0.1)
+        retry unless counter > 50
+      end
+      
       self.xap_id = inserted.id
     end
     
