@@ -83,6 +83,15 @@ function replace_input(a,b){
 	}
 }
 
+function clear_this(element){
+	element.value = "";
+}
+
+function replace_this(element){
+	if (element.value == ""){
+		element.value = "Add a keyword";
+	} 
+}
 
 /* 
  * @Reply to link helpers
@@ -111,7 +120,7 @@ function remove_keyword_field(field_id){
 function add_keyword_field(){
 	var last = get_keyword_count();
 	count = last + 1;
-	$("#keyword_" + last + "_wrapper").after("<div id='keyword_"+count+"_wrapper'><input class='keyword' id='keyword_"+ count + "' name='keyword["+count+"]' size='30' type='text' value='Add a keyword' /> <a href='#' onclick='add_keyword_field();'><img alt='Add' height='13' src='/images/add.png' width='13' /></a>" +	" <a href='#' onclick=\"remove_keyword_field('keyword_"+count+"');\"><img alt='Cancel' height='13' src='/images/cancel.png' width='13' /></div>");
+	$("#keyword_" + last + "_wrapper").after("<div id='keyword_"+count+"_wrapper'><input class='keyword' id='keyword_"+ count + "' name='keyword["+count+"]' size='30' type='text' value='Add a keyword' onfocus='clear_this(this);' onblur='replace_this(this);' /> <a href='#' onclick='add_keyword_field();'><img alt='Add' height='13' src='/images/add.png' width='13' /></a>" +	" <a href='#' onclick=\"remove_keyword_field('keyword_"+count+"');\"><img alt='Cancel' height='13' src='/images/cancel.png' width='13' /></div>");
 }
 
 function get_keyword_count(){
