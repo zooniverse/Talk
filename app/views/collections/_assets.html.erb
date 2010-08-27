@@ -1,0 +1,15 @@
+<%- if @collection.assets.empty? %>
+	<p>There are no objects in this collection</p>
+<%- else %>
+	<%- @collection.assets.each do |asset| %>
+		<%- if asset -%>
+		<div class="collection-asset">
+			<%= link_to((image_tag asset.thumbnail_location, :size => "50x50"), object_path(asset.zooniverse_id), :target => "_blank") %>
+			<div class="asset-actions">
+				<%= link_to "Remove", {:controller => :collections, :action => :remove, :format => :js, :id => @collection.zooniverse_id, :asset_id => asset.zooniverse_id}, { :remote => true, :method => :post} %>
+			</div>
+		<%- end -%>
+		</div>
+	<%- end %>
+<%- end %>
+<br /><br /><br /><br /><br />

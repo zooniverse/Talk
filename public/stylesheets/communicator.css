@@ -684,3 +684,8 @@ h1.collection-title {
 #moderation-links {
 
 }
+
+.collection-asset{
+	float:left;
+	margin-right:5px;
+}

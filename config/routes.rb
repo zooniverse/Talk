@@ -5,6 +5,7 @@ Sellers::Application.routes.draw do
     
     member do
       post :add
+      post :remove
     end
   end
   
