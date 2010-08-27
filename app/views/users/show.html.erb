@@ -1,5 +1,17 @@
 <div class="upper-row">
 	<div class="rhc">
+		
+		<%- if current_zooniverse_user.moderator? -%>
+		<div class="panel admin-panel">	
+			<h2>Administration</h2>								
+			<div class="inner">
+				<div id="user-state">
+					<%= render :partial => "shared/user_state" %>
+				</div>
+			</div>
+		</div>
+		<% end %>
+		
 		<div class="panel my-collections">		
 		<h2><%- if current_zooniverse_user == @user -%>My&nbsp;<% end %>Collections</h2>
 			<div class="inner">				
@@ -35,17 +47,6 @@
 		
 				<%- unless current_zooniverse_user == @user -%>					
 				<div class="user-actions" id="report-user-link-<%= @user.id %>"><%= link_to("REPORT THIS USER", report_user_path(@user), {:remote => true, :method => :post, :method => :post, :style => "color:#2276BB;"}) %>					
-
-					<%- if current_zooniverse_user.moderator? -%>
-					<div id="moderation-links" style="">									
-						<% unless @user.state == "banned" %>
-			      				<%= link_to 'Ban this user', ban_user_path(@user.id), {:remote => true, :method => :post, :id => "ban-user-link-#{@user.id}"} %>
-			      	  <% else %>
-			      	    BANNED
-			      	  <% end %>
-					</div>
-					<%- end -%>
-					
 				</div>
 				<%- end -%>		
 			

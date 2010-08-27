@@ -48,6 +48,7 @@ Sellers::Application.routes.draw do
     member do
       post :report
       post :ban
+      post :activate
     end
   end
   

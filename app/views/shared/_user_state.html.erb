@@ -1,0 +1,7 @@
+ <% if @user.state != "banned" %>
+   <%= @user.state.capitalize %> <%= link_to 'Ban this user', ban_user_path(@user.id), {:remote => true, :method => :post } %>
+<% end %>
+
+ <% if @user.state == "banned" %>
+   <%= @user.state.capitalize %> (<%= link_to 'Remove ban', activate_user_path(@user.id), {:remote => true, :method => :post } %>)
+<% end %>

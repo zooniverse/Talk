@@ -33,14 +33,6 @@ OCT.collection = {
 	}
 };
 
-/* 
- * @Namespace Scrolling
- */
-OCT.scroll = {
-		init: function () {
-
-		}
-};
 
 /* 
  * @Namespace Hovering
@@ -64,7 +56,6 @@ OCT.hover = {
 $(document).ready(function(){
 		OCT.tabs.init();
 		OCT.collection.init();
-		OCT.scroll.init();
 		OCT.hover.init();
 		$(".highlight_keywords").keywordHighlight();
 });
