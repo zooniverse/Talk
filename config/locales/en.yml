@@ -40,6 +40,12 @@ en:
       body1a: "Sellers is a collaboration tool that lets you learn to stop worrying and love the bomb.. er I mean the Zooniverse."
   comments:
     report_comment_confirm: "Are you sure you want to report this comment?"
+    own_comment: "You can't vote on your own comment!"
+    report: "REPORT"
+    reported: "REPORTED"
+    recommend: "RECOMMEND"
+    recommended: "RECOMMENDED"
+    reply: "REPLY"
   discussion:
     name: "discussion"
     startnew: "Start a new discussion"
