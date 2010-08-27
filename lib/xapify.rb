@@ -37,7 +37,12 @@ module Xapify
 
     def search(string)
       db = @xap_db
-      docs = db.search(string, opts)
+      
+      begin
+        docs = db.search(string, opts)
+      rescue
+        return []
+      end
       
       collected = docs.collect do |doc|
         hash = {}
