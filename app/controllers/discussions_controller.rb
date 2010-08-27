@@ -51,6 +51,16 @@ class DiscussionsController < ApplicationController
     end
   end
   
+  def toggle_featured
+    @discussion = Discussion.find(params[:id])
+    if @discussion.featured == false
+      @discussion.featured = true
+    elsif @discussion.featured == true 
+      @discussion.featured = false
+    end
+    @discussion.save
+  end
+  
   protected
   
   def find_focus

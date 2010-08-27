@@ -25,6 +25,9 @@ Sellers::Application.routes.draw do
   
   resources :discussions do
     resources :comments
+    member do
+      post :toggle_featured
+    end
   end
   
   resources :objects, :controller => :assets do 

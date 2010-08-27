@@ -21,7 +21,6 @@
 		</div>
 	</div>
 	<% end %>	
-	
 	<div class="lhc discussion" <% if @discussion.focus_type.blank? %>style="width:auto;"<% end %>>
 		<div class="main">
 			<h2><strong><%= t 'discussion.meta.startedby' %> <%= @discussion.started_by.name %></strong></h2>		
@@ -31,9 +30,15 @@
 					<%= link_to tag, :controller => :search, :action => :index, :search => "keywords:#{tag}" %>
 				<% end %>		
 			</div>
+			<% if current_zooniverse_user && current_zooniverse_user.privileged? %>
 			<div id="admin-tools">
-				<p><%= link_to "Make this a featured discussion", "#" %></p>
+			<% if @discussion.featured == false %>
+				<p id="featured-link"><%= link_to("Make this a featured discussion", toggle_featured_discussion_path(@discussion), {:remote => true, :method => :post }) %></p>
+			<% else %>
+				<p id="featured-link"><%= link_to("Remove this from featured discussions", toggle_featured_discussion_path(@discussion), {:remote => true, :method => :post }) %></p>
+			<% end %>
 			</div>
+			<% end %>
 		</div>
 	</div>
 </div>
