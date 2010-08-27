@@ -3,6 +3,12 @@ class ApplicationController < ActionController::Base
   before_filter :check_or_create_zooniverse_user
   before_filter :check_for_banned_user
   
+  def get_featured_discussions
+    @featured_list = Discussion.featured.all
+  end
+  
+  helper_method :get_featured_discussions
+  
   def new_discussion_url_for(focus)
       case focus.class.to_s
       when "Asset"

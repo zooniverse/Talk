@@ -160,6 +160,12 @@ a:hover {
 	background: #F6F6F6;
 }
 
+.featured-item {
+	border-bottom: dotted #000 1px;
+	padding: 5px 5px 5px 2px;
+	background: #F6F6F6;
+}
+
 .item-container {
 	margin-left: 0px;
 	padding-bottom: 7px;
@@ -197,14 +203,18 @@ a:hover {
 	float: left;
 }
 
-.recent-item a {
+.recent-item a, .featured-item a {
 	font-weight: normal;
 	font-size: 1.1em;
 	color: #005689;
 }
 
 .recent-item .name {
-	margin-bottom:5px;
+	margin-bottom: 5px;
+}
+
+.featured-item .name {
+	margin-bottom: 2px;
 }
 
 /* Comments */

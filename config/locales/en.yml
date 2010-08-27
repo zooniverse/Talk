@@ -30,6 +30,7 @@ en:
     help: "Help"
     science: "Science"
     chat: "Chat"
+    featured: "Featured Discussions"
   panels:
     about:
       title1: "What is Sellers?"
