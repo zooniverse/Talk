@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :check_or_create_zooniverse_user
+  before_filter :check_for_banned_user
   
   def new_discussion_url_for(focus)
       case focus.class.to_s
@@ -79,6 +80,15 @@ class ApplicationController < ActionController::Base
         user.update_attributes(:name => zooniverse_user)
       else
         User.create(:zooniverse_user_id => zooniverse_user_id, :name => zooniverse_user)
+      end
+    end
+  end
+  
+  def check_for_banned_user
+    if zooniverse_user
+      if User.find_by_zooniverse_user_id(zooniverse_user_id).state == "banned"
+        flash[:notice] = 'You have been banned'
+        redirect_to root_url
       end
     end
   end

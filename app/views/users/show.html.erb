@@ -34,17 +34,24 @@
 				<h1><%= @user.name %></h1>
 		
 				<%- unless current_zooniverse_user == @user -%>					
-				<span class="user-actions" id="report-user-link-<%= @user.id %>"><%= link_to("REPORT THIS USER", report_user_path(@user), {:remote => true, :method => :post, :method => :post, :style => "color:#2276BB;"}) %></span>
+				<div class="user-actions" id="report-user-link-<%= @user.id %>"><%= link_to("REPORT THIS USER", report_user_path(@user), {:remote => true, :method => :post, :method => :post, :style => "color:#2276BB;"}) %>					
+
+					<%- if current_zooniverse_user.moderator? -%>
+					<div id="moderation-links" style="">									
+						<% unless @user.state == "banned" %>
+			      				<%= link_to 'Ban this user', ban_user_path(@user.id), {:remote => true, :method => :post, :id => "ban-user-link-#{@user.id}"} %>
+			      	  <% else %>
+			      	    BANNED
+			      	  <% end %>
+					</div>
+					<%- end -%>
+					
+				</div>
 				<%- end -%>		
+			
 			</div>			
 		</div>	
-
-		
-		<%- if current_zooniverse_user.moderator? -%>
-		<span id="moderation-links">
-			
-		</span>
-		<%- end -%>
+	
 	</div>
 
 </div>

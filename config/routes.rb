@@ -43,6 +43,7 @@ Sellers::Application.routes.draw do
     
     member do
       post :report
+      post :ban
     end
   end
   

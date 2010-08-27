@@ -1,6 +1,7 @@
 class HomeController < ApplicationController 
   before_filter CASClient::Frameworks::Rails::Filter, :only => :cas_test
   before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => :index
+  skip_before_filter :check_for_banned_user, :only => :index
   
   def index
     @recent_comments = Comment.most_recent 5

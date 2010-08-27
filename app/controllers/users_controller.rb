@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter
   
-  respond_to :js, :only => :report
+  respond_to :js, :only => [:report, :ban]
   respond_to :html, :only => :show
   
   def show
@@ -19,4 +19,18 @@ class UsersController < ApplicationController
       User.moderators.each { |moderator| Notifier.notify_reported_user(@user, moderator, current_zooniverse_user).deliver }
     end
   end
+  
+  def ban
+    @user = User.find(params[:id])
+    @user.state = "banned"  
+    if @user.save
+      Notifier.notify_banned_user(@user)
+    end
+  end
+
+  def active
+    @user = User.find(params[:id])
+    @user.state = "active"    
+  end
+  
 end
