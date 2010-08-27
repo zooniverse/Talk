@@ -1,11 +1,11 @@
 <div class="upper-row">
 	<div class="rhc">
 		
-		<%- if current_zooniverse_user.moderator? -%>
+		<%- if current_zooniverse_user.moderator? && current_zooniverse_user != @user  -%>
 		<div class="panel admin-panel">	
 			<h2>Administration</h2>								
 			<div class="inner">
-				<div id="user-state">
+				<div id="moderation-links">
 					<%= render :partial => "shared/user_state" %>
 				</div>
 			</div>

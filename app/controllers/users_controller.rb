@@ -29,7 +29,7 @@ class UsersController < ApplicationController
         respond_to do |format|
           format.js {
             render :update do |page|
-              page['#user-state'].html(render :partial => 'shared/user_state')            
+              page['#moderation-links'].html(render :partial => 'shared/user_state')            
             end    
           }
        end      
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
         respond_to do |format|
           format.js {
             render :update do |page|
-              page['#user-state'].html(render :partial => 'shared/user_state')            
+              page['#moderation-links'].html(render :partial => 'shared/user_state')            
             end    
           }
        end      
