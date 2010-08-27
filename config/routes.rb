@@ -17,6 +17,7 @@ Sellers::Application.routes.draw do
     member do
       post :vote_up
       post :report
+      post :user_owned
     end
     
     collection do
@@ -28,6 +29,7 @@ Sellers::Application.routes.draw do
     resources :comments
     member do
       post :toggle_featured
+      post :user_owned
     end
   end
   

@@ -33,6 +33,17 @@ OCT.collection = {
 	}
 };
 
+OCT.loading = {
+	
+	init: function() {
+		  var toggleLoading = function() { $(".loading").toggle() };
+
+		  $(".show-more")
+				.bind("ajax:loading",  toggleLoading)
+		    .bind("ajax:complete", toggleLoading);		
+	}
+}
+
 
 /* 
  * @Namespace Hovering
@@ -57,6 +68,7 @@ $(document).ready(function(){
 		OCT.tabs.init();
 		OCT.collection.init();
 		OCT.hover.init();
+		OCT.loading.init();
 		$(".highlight_keywords").keywordHighlight();
 });
 

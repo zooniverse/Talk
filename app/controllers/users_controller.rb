@@ -7,7 +7,18 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @discussions = Discussion.where(:started_by_id => @user.id).sort(['number_of_comments', -1]) 
+    @per_page = 5
+
+    @user_comments = @user.comments.paginate(:page => 0, :per_page => @per_page)       
+    if @user.comments.size > @per_page
+      @more_comments = true
+    end
+    
+    @discussions = Discussion.where(:started_by_id => @user.id).sort(['number_of_comments', -1]).paginate(:page => 0, :per_page => @per_page) 
+    if Discussion.where(:started_by_id => @user.id).count > @per_page
+      @more_discussions = true
+    end
+    
   end
   
   def report

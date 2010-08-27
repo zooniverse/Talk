@@ -1,5 +1,7 @@
 class DiscussionsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter, :only => [:new, :create]
+  respond_to :js, :only => :user_owned
+  
   def show
     @discussion = Discussion.find_by_zooniverse_id(params[:id])
     @comment = Comment.new
@@ -61,6 +63,19 @@ class DiscussionsController < ApplicationController
       @discussion.featured = false
     end
     @discussion.save
+  end
+  
+  def user_owned
+    @user = User.find(params[:id])
+    @discussions = Discussion.where(:started_by_id => @user.id).sort(['number_of_comments', -1])      
+    respond_with(@discussions) do |format|
+        format.js { 
+          render :update do |page|              
+            page['.popular-discussions .inner'].html(render :partial => "shared/list_of_discussions_main", :locals => { :discussions_list => @discussions, :id_of_box => "trending-discussions"})
+            page['#more-discussions'].hide()
+          end
+        }
+    end
   end
   
   protected

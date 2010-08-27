@@ -703,3 +703,5 @@ h1.collection-title {
 	float:left;
 	margin-right:5px;
 }
+
+.loading {display:none;font-size:80%;margin-left:10px;color:#afafaf;}
