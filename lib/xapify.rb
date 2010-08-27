@@ -28,7 +28,10 @@ module Xapify
       else
         Dir.mkdir("#{Rails.root}/index") unless File.exists?("#{Rails.root}/index")
         Dir.mkdir("#{Rails.root}/index/#{Rails.env}") unless File.exists?("#{Rails.root}/index/#{Rails.env}")
-        @xap_db = Xapify::XapianDb.new(:dir => "#{Rails.root}/index/#{Rails.env}/#{name}.db", :create => true, :fields => @xap_fields)
+        
+        # Switch to in-memory to avoid writelocks
+        # was @xap_db = Xapify::XapianDb.new(:dir => "#{Rails.root}/index/#{Rails.env}/#{name}.db", :create => true, :fields => @xap_fields)
+        @xap_db = Xapify::XapianDb.new(:create => true, :fields => @xap_fields)
       end
     end
 
