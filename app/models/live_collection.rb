@@ -27,7 +27,8 @@ class LiveCollection
     self[:tags]
   end
   
+  # Finds the most recently created LiveCollections
   def self.most_recent(limit = 10)
-    LiveCollection.limit(limit).sort(['created_at', -1]).all
+    LiveCollection.limit(limit).sort([:created_at, :desc]).all
   end
 end

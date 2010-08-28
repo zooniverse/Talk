@@ -1,7 +1,10 @@
+# Adds Xapian indexing to a model
 module Xapify
   include XapianFu
   
   module ClassMethods
+    # Sets the fields or methods to index (optionally with a type)
+    #  xapify_fields :fields, :method => Hash
     def xapify_fields(*args)
       opts = args.extract_options!
       
@@ -34,8 +37,17 @@ module Xapify
         @xap_db = Xapify::XapianDb.new(:dir => "#{Rails.root}/index/#{Rails.env}/#{name}.db", :create => true, :fields => @xap_fields)
       end
     end
-
-    def search(string)
+    
+    # Returns xapian search records
+    #  results = Model.search "search string", *options
+    #    :from_mongo => true          # load the records from mongo
+    #    :collapse => :field          # Group by and sort on the count for this field
+    #    :page => x, :per_page => y   # Paginates the results (results.total_pages is available)
+    def search(*args)
+      opts = args.extract_options!
+      opts = { :from_mongo => false }.update(opts)
+      string = args.first
+      
       db = @xap_db
       
       begin
@@ -65,6 +77,7 @@ module Xapify
   end
 
   module InstanceMethods
+    # Callback to add the record to xapian
     def update_xapian
       update_timestamps if new?
       db = self.class.xap_db
@@ -88,11 +101,13 @@ module Xapify
       self.xap_id = inserted.id
     end
     
+    # Callback to remove the record from xapian
     def remove_from_xapian
       self.class.xap_db.documents.delete(self.xap_id)
     end
   end
   
+  # Sets up callbacks and keys
   def self.configure(base)
     base.before_save :update_xapian
     base.after_destroy :remove_from_xapian

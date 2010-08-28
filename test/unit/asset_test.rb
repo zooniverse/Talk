@@ -6,19 +6,14 @@ class AssetTest < ActiveSupport::TestCase
       @asset = Factory :asset
       build_focus_for @asset
     end
-
-    should "have keys" do
-      [:zooniverse_id, :location, :thumbnail_location, :coords, :size, :taggings, :conversation, :conversation=].each do |key|
-        assert @asset.respond_to?(key)
-      end
-    end
     
-    should "create associations" do
-      assert @asset.associations.keys.include?("discussions")
-    end
+    should_associate :discussions
+    should_include_modules :focus, :taggable, 'MongoMapper::Document'
+    should_include_plugins :xapify
+    should_have_keys :zooniverse_id, :location, :thumbnail_location, :coords, :size, :taggings,
+                     :conversation_id, :discussion_ids, :created_at, :updated_at, :xap_id
     
     should "include a working Focus" do
-      assert Asset.include?(Focus)
       [:conversation_id, :discussion_ids].each{ |key| assert @asset.respond_to?(key) }
       
       assert_equal @discussion, @asset.discussions.first
@@ -32,26 +27,35 @@ class AssetTest < ActiveSupport::TestCase
     end
     
     should "have aggregated #tags" do
-      comment_tags = [@comment1, @comment2, @comment3].collect{ |c| c.tags }.flatten.uniq.sort
-      assert_equal comment_tags, @asset.tags.sort
+      comment_tags = [@comment1, @comment2, @comment3].collect{ |c| c.tags }.flatten.uniq
+      assert_same_elements comment_tags, @asset.tags
     end
     
     should "find #most_recently_mentioned" do
-      assert Asset.most_recently_mentioned(3).include? @asset
-      assert Asset.most_recently_mentioned(3).include? @asset2
-      assert Asset.most_recently_mentioned(3).include? @asset3
+      assert_same_elements [@asset, @asset2, @asset3], Asset.most_recently_mentioned(3)
     end
     
     should "find #most_recently_commented_on" do
-      assert Asset.most_recently_commented_on(3).include? @asset
-      assert Asset.most_recently_commented_on(3).include? @asset2
-      assert Asset.most_recently_commented_on(3).include? @asset3
+      assert_same_elements [@asset, @asset2, @asset3], Asset.most_recently_commented_on(3)
     end
     
     should "find #trending" do
-      assert Asset.trending.include? @asset
-      assert Asset.trending.include? @asset2
-      assert Asset.trending.include? @asset3
+      assert_same_elements [@asset, @asset2, @asset3], Asset.trending
+    end
+    
+    should "find assets #with_keywords" do
+      assert_same_elements [@asset, @asset2, @asset3], Asset.with_keywords("tag1", "tag2", "tag4")
+    end
+    
+    should "find #collections containing this asset" do
+      collection = Factory :collection
+      collection.assets << @asset
+      collection.save
+      assert_equal [collection], @asset.collections
+    end
+    
+    should "find discussions that #mentions this asset" do
+      assert_equal [@asset.discussions.first], @asset.mentions
     end
   end
 end

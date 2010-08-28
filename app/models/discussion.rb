@@ -34,45 +34,54 @@ class Discussion
     @cached_focus ||= focus_type.constantize.find(focus_id)
   end
   
-  def self.most_recent (no=10)
-    Discussion.limit(no).sort(['created_at', -1]).all
+  # Finds the most recent discussions
+  def self.most_recent(limit = 10)
+    Discussion.limit(limit).sort([:created_at, :desc]).all
   end
   
-  def most_recent_comments(no=10)
-    Comment.where(:discussion_id => self.id).limit(no).all
+  # Finds the most recent comments in this discussion
+  def most_recent_comments(limit = 10)
+    Comment.limit(limit).all(:discussion_id => self.id)
   end
   
-  def self.trending (no=10)
-    Discussion.limit(no).sort(['number_of_comments',-1]).all
+  # Finds popular discussions
+  def self.trending(limit = 10)
+    Discussion.limit(limit).sort([:number_of_comments, :desc]).all
   end
   
   # Finds discussions mentioning a focus
-  def self.mentioning(focus)
+  def self.mentioning(focus, limit = 10)
     return [] if Comment.count == 0
     comments = Comment.search "mentions:#{focus.zooniverse_id}", :limit => 100, :collapse => :discussion_id, :from_mongo => true
-    comments[0, 10].map{ |comment| comment.discussion }
+    comments[0, limit].map{ |comment| comment.discussion }
   end
   
+  # True if discussing LiveCollections
   def live_collection?
     focus_type == "LiveCollection"
   end
   
+  # True if discussing Assets
   def asset?
     focus_type == "Asset"
   end
   
+  # True if discussing Collections
   def collection?
     focus_type == "Collection"
   end
   
+  # True if this is a focus conversation (live comment stream)
   def conversation?
     focus_id.nil? ? false : focus.conversation == self
   end
   
+  # Finds the user that started this discussion
   def started_by
     @cached_started_by ||= User.find(self.started_by_id)
   end
   
+  # Sets the user that started this discussion
   def started_by=(user)
     @cached_started_by = user
     self.started_by_id = user.id
@@ -84,6 +93,7 @@ class Discussion
     self.slug = self.subject.parameterize('_')
   end
   
+  # Sets the user that started this discussion
   def set_started_by
     self.started_by_id = self.comments.first.author.id unless self.comments.empty?
   end

@@ -31,7 +31,7 @@
 			</div>
 			<div class="reponse-to">
 				<%= link_to t('comments.reply'), "#", :onclick => "reply_to('#{comment.id}', '#{comment.author.name}');" %>&nbsp;|&nbsp;
-				<%- if comment.is_a_response? -%>
+				<%- if comment.response? -%>
 					Response to <%= comment.response_to.author.name %>
 				<%- end -%>
 			</div>

@@ -3,28 +3,31 @@ require 'test_helper'
 class CollectionTest < ActiveSupport::TestCase
   context "A Collection" do
     setup do 
-      @user = Factory :user
-      @collection= Collection.create({:name=>"collection",:description=>"jksdfsdngdsa", :user=>@user})
-    end
-  
-    should "have keys" do
-      [:name,:description, :tags, :asset_ids,:user_id].each do |key|
-        assert @collection.respond_to?(key)
+      @collection = Factory :collection
+      build_focus_for @collection
+      
+      1.upto(5) do |i|
+        asset = Factory(:asset)
+        instance_variable_set "@asset#{i}", asset
+        @collection.asset_ids << asset.id
+        @collection.save
       end
     end
   
-    should "create associations" do 
-      assert @collection.associations.keys.include?("assets")
-      assert @collection.associations.keys.include?("user")
+    should_have_keys :name, :description, :taggings, :asset_ids, :user_id, :created_at, :updated_at
+    should_associate :assets, :user
+    should_include_modules :focus, :zooniverse_id, :taggable, 'MongoMapper::Document'
+    
+    should "find #most_recent" do
+      assert_same_elements [@collection, @collection2, @collection3], Collection.most_recent
     end
     
-    should "include a working focus" do
-      assert Collection.include?(Focus)      
+    should "find #most_recent_assets" do
+      assert_equal [@asset5, @asset4, @asset3], @collection.most_recent_assets(3)
     end
     
-    should "include the zooniverse_id generator" do
-      assert LiveCollection.include?(ZooniverseId)
+    should "find collections #with_asset" do
+      assert_equal [@collection], Collection.with_asset(@asset1)
     end
   end
-  
 end

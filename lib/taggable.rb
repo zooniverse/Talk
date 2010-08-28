@@ -1,4 +1,6 @@
+# Adds tagging to a model
 module Taggable
+  # Sets up tagging keys
   def self.included(base)
     base.class_eval do
       key :taggings, Hash, :default => Hash.new(0)
@@ -12,6 +14,7 @@ module Taggable
   end
   
   module InstanceMethods
+    # Sorts taggings
     def tags
       self.taggings.sort{ |a, b| b[1] <=> a[1] }.collect{ |t| t.first }
     end

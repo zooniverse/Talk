@@ -21,21 +21,28 @@ class Comment
   after_validation_on_create :parse_body
   after_create :push_tags
   
+  TAG = /#([-\w\d]{3,40})/im
+  MENTION = /([A|C|D]MZ\w{7})/m
+  
+  # Alias for tags (xapian indexes use this)
   def keywords
     self.tags
   end
   
+  # Sets the comment being responded to
   def response_to=(comment)
     self.response_to_id = comment.id
     self.save if self.changed?
     @cached_response_to = comment
   end
   
+  # The comment being responded to
   def response_to
     @cached_response_to ||= Comment.find(self.response_to_id)
   end
   
-  def is_a_response?
+  # True if this comment is a response
+  def response?
     self.response_to_id.nil? ? false : true
   end
   
@@ -45,19 +52,20 @@ class Comment
     Comment.collection.update({ '_id' => self.id }, {'$addToSet' => { 'upvotes' => user.id } })
   end
   
-  def self.most_recent(no=10)
-    Comment.limit(no).sort(['created_at', -1]).all(:created_at.gt => Time.now - 1.day)
+  # The most recent comments
+  def self.most_recent(limit = 10)
+    Comment.limit(limit).sort([:created_at, :desc]).all
   end
   
   # Finds comments mentioning a focus
   def self.mentioning(focus, *args)
-    opts = { :limit => 10, :order => ['created_at', -1] }
+    opts = { :limit => 10, :order => [:created_at, :desc] }
     opts = opts.update(args.first) unless args.first.nil?
     Comment.limit(opts[:limit]).sort(opts[:order]).all(:mentions => focus.zooniverse_id)
   end
   
   # Gets the top most used tags
-  def self.trending_tags(no=10)
+  def self.trending_tags(limit = 10)
      map = <<-MAP
      function() {
        this.tags.forEach( function(tag) {
@@ -77,7 +85,7 @@ class Comment
      }
      REDUCE
      
-     tags = Comment.collection.map_reduce(map, reduce).find().sort(['value.count', -1]).limit(no).to_a
+     tags = Comment.collection.map_reduce(map, reduce).find().sort(['value.count', :desc]).limit(limit).to_a
      
      collected = {}
      tags.each{ |tag| collected[tag['_id']] = tag['value']['count'].to_i }
@@ -101,19 +109,23 @@ class Comment
     end
   end
   
+  # The focus type of this comment
   def focus_type
     self.discussion.nil? ? nil : self.discussion.focus_type
   end
   
+  # The focus id of this comment
   def focus_id
     self.discussion.nil? ? nil : self.discussion.focus_id
   end
   
+  # The focus of this comment
   def focus
     return nil unless focus_type && focus_id
     focus_type.constantize.find(focus_id)
   end
   
+  # Adds tags from this comment to the discussion and focus
   def push_tags
     self.tags.each do |tag|
       Discussion.collection.update({ :_id => self.discussion_id }, { "$inc" => { "taggings.#{tag}" => 1 } })
@@ -121,8 +133,9 @@ class Comment
     end
   end
   
+  # Finds tags and mentions in the comment body
   def parse_body
-    self.tags = self.body.scan(/#([-\w\d]{3,40})/im).flatten
-    self.mentions = self.body.scan(/([A|C|D]MZ\w{7})/m).flatten
+    self.tags = self.body.scan(TAG).flatten
+    self.mentions = self.body.scan(MENTION).flatten
   end
 end

@@ -16,7 +16,7 @@ class Asset
   
   # selects the most recently mentioned (ie AM0000BLAH was mentioned in a comment) assets
   def self.most_recently_mentioned(limit = 10)
-    cursor = Comment.collection.find({ :mentions => { "$type" => 2 } }).sort(['created_at', -1])
+    cursor = Comment.collection.find({ :mentions => { "$type" => 2 } }).sort([:created_at, :desc])
     asset_ids = {}
     
     while asset_ids.length < limit && cursor.has_next?
@@ -31,7 +31,7 @@ class Asset
   
   # selects the most recently discussed assets (ie the assets with the newest comments )
   def self.most_recently_commented_on(limit = 10)
-    cursor = Discussion.collection.find({ :focus_type => "Asset" }).sort(['created_at', -1])
+    cursor = Discussion.collection.find({ :focus_type => "Asset" }).sort([:created_at, :desc])
     asset_ids = {}
     
     while asset_ids.length < limit && cursor.has_next?
@@ -48,15 +48,16 @@ class Asset
     options = { :page => 0, :per_page => 10 }.update args.extract_options!
     results = Asset.search "tags:#{ args.join(' ') }", :limit => 1_000
     results = results[ options[:page] * options[:per_page], options[:per_page] ]
-    results.map{ |result| Asset.find(result[:focus_id]) }
+    results.map{ |result| Asset.find(result[:_id]) }
   end
   
+  # Find collections containing this asset
   def collections
     collections = Collection.with_asset(self)
   end
   
+  # Find discussions mentioning this asset
   def mentions
     mentions = Discussion.mentioning(self)
   end
-  
 end

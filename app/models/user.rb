@@ -40,18 +40,22 @@ class User
   many :sent_messages, :class_name => "Message", :foreign_key => :sender_id
   many :events, :as => :eventable
   
+  # True if user is an admin or moderator
   def privileged?
     self.admin? || self.moderator?
   end
   
+  # Emails a user when banned
   def notify_banned_user
     Notifier.notify_banned_user(self).deliver
   end
   
+  # Emails a user when un-banned
   def notify_redeemed_user
     Notifier.notify_redeemed_user(self).deliver
   end
   
+  # Finds messages between this user and another
   def messages_with(user)
     sent_by_them = Message.all(:sender_id => user.id, :recipient_id => id)
     sent_by_me = Message.all(:sender_id => id, :recipient_id => user.id)

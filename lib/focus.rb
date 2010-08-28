@@ -70,6 +70,7 @@ module Focus
       end
     end
     
+    # Sets orphaned discussions to be unfocused (could become dependent-destroy)
     def remove_focus
       unless conversation.nil?
         conversation.focus_id = nil
@@ -84,6 +85,7 @@ module Focus
       end
     end
     
+    # Adds a conversation to all Focii
     def build_conversation
       self.conversation ||= Discussion.new(:subject => self.zooniverse_id)
       self.save if self.changed?

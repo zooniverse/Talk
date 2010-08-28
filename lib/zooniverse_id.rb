@@ -9,7 +9,8 @@ module ZooniverseId
   
   # Adds class macros
   module ClassMethods
-    # To produce a zooniverse_id of "AMZ...":  zoo_id :prefix => 'A', :site => 'MZ', :sub_id => '1'
+    # To produce a zooniverse_id of "AMZ...":
+    #   zoo_id :prefix => 'A', :site => 'MZ', :sub_id => '1'
     def zoo_id(*args)
       self.zoo_id_options = { :prefix => "A", :site => "MZ", :sub_id => "1" }
       self.zoo_id_options = self.zoo_id_options.update(args.first) unless args.first.nil?
@@ -23,7 +24,7 @@ module ZooniverseId
     private
     # assigns a zooniverse_id to a new record
     def set_zoo_id
-      last_one = self.class.limit(1).sort(['zooniverse_id', -1]).all(:zooniverse_id => /^#{zoo_id_prefix}/).first
+      last_one = self.class.limit(1).sort([:zooniverse_id, :desc]).all(:zooniverse_id => /^#{zoo_id_prefix}/).first
       last_id = last_one.nil? ? "#{zoo_id_prefix}000000" : last_one.zooniverse_id
       self.zooniverse_id = increment_zoo_id_from last_id
     end

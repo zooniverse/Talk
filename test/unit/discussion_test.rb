@@ -9,17 +9,11 @@ class DiscussionTest < ActiveSupport::TestCase
       @discussion3 = @asset3.discussions.first
     end
     
-    should "have keys" do
-      [:zooniverse_id, :subject, :taggings, :focus_id, :focus_type,
-       :slug, :created_at, :updated_at, :number_of_users, :number_of_comments].each do |key|
-        assert @discussion.respond_to?(key)
-      end
-    end
-
-    should "have correct associations" do
-      assert @discussion.comments.include?(@comment1)
-      assert @discussion.associations.keys.include?("comments")
-    end
+    should_associate :comments
+    should_include_modules :zooniverse_id, :taggable, 'MongoMapper::Document'
+    should_include_plugins :xapify
+    should_have_keys :zooniverse_id, :taggings, :subject, :focus_id, :focus_type, :slug, :started_by_id,
+                     :featured, :number_of_users, :number_of_comments, :created_at, :updated_at
     
     should "#set_slug correctly" do
       assert_equal "monkey_is_an_oiii_emission", @discussion.slug
@@ -30,16 +24,13 @@ class DiscussionTest < ActiveSupport::TestCase
     end
     
     should "find the #most_recent" do
-      assert Discussion.most_recent.include? @discussion
-      assert Discussion.most_recent.include? @discussion2
-      assert Discussion.most_recent.include? @discussion3
+      assert_contains Discussion.most_recent, @discussion
+      assert_contains Discussion.most_recent, @discussion2
+      assert_contains Discussion.most_recent, @discussion3
     end
     
     should "find #trending" do
-      assert Discussion.trending(3).include? @discussion
-      assert Discussion.trending(3).include? @discussion2
-      assert Discussion.trending(3).include? @discussion3
-      assert !Discussion.trending(3).include?(@asset.conversation)
+      assert_same_elements [@discussion, @discussion2, @discussion3], Discussion.trending(3)
     end
     
     should "find #mentioning" do
