@@ -137,6 +137,20 @@ class ActiveSupport::TestCase
     focus.save
   end
   
+  def collection_for(asset)
+    @collection = Collection.create(:name => "Collection", :asset_ids => [asset.id], :user => Factory(:user))
+  end
+  
+  def conversation_for(focus)
+    conversation = focus.conversation
+    comment1 = Comment.new(:body => "blah #tag1 blah #tag2 blah #{focus.zooniverse_id} is awesome", :author => Factory(:user))
+    conversation.comments << comment1
+    conversation.reload
+    conversation.save
+    focus.reload
+    focus.save
+  end
+  
   def board_discussions_in(board)
     1.upto(8) do |i|
       discussion = Discussion.new(:subject => "Topic ##{i}", :started_by_id => Factory(:user).id)
