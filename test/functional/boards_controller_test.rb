@@ -10,7 +10,7 @@ class BoardsControllerTest < ActionController::TestCase
           
     context "When the science board" do
       setup do
-        @board = Factory :board, :title => "science"
+        @board = Board.science
         get 'science'
       end
 
@@ -24,7 +24,7 @@ class BoardsControllerTest < ActionController::TestCase
     
     context "When the chat board" do
       setup do
-        @board = Factory :board, :title => "chat"
+        @board = Board.chat
         get 'chat'
       end
 
@@ -38,7 +38,7 @@ class BoardsControllerTest < ActionController::TestCase
     
     context "When the help board" do
       setup do
-        @board = Factory :board, :title => "help"
+        @board = Board.help
         get 'help'
       end
 
@@ -49,5 +49,40 @@ class BoardsControllerTest < ActionController::TestCase
         assert_select '#board-heading h1', :text => @board.title
       end
     end
+    
+    context "#show" do
+      setup do
+        @board = Board.science
+        @discussions = 12
+        board_discussions_in @board, @discussions
+        @discussion = @board.discussions.first
+        @discussion.featured = true
+        @discussion.save
+        
+        get 'science'
+      end
+
+      should "display meta information" do
+        assert_select "#meta-for-discussions", :text => "#{@discussions} Discussions / #{@discussions * 2} Comments"
+      end
+      
+      should "display discussions" do
+        assert_select "#discussions-list > div", 10
+      end
+      
+      should "display zooniverse ad" do
+        assert_select "#zooniverse-extras"
+      end
+      
+      should "display project link" do
+        assert_select "#project-link"
+      end
+      
+      should "display featured discussions" do
+        assert_select "#help-wanted > .featured-item", 1
+        assert_select "#help-wanted .name", :text => @discussion.subject
+      end
+    end
+    
   end
 end

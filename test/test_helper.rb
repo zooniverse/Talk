@@ -151,8 +151,8 @@ class ActiveSupport::TestCase
     focus.save
   end
   
-  def board_discussions_in(board)
-    1.upto(8) do |i|
+  def board_discussions_in(board, limit=8)
+    1.upto(limit) do |i|
       discussion = Discussion.new(:subject => "Topic ##{i}", :started_by_id => Factory(:user).id)
       board.discussion_ids << discussion.id
       
