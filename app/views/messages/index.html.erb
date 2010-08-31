@@ -1,6 +1,11 @@
 <div class="upper-row">
-	<h1><%= t 'messages.messages' %> > <%= t 'messages.inbox' %></h1>
-	<%= render :partial => "meta_for_messages" %>
+	<h1><%= t 'messages.messages' %></h1>	
+	<div class="message-nav">
+		<a class="current" href="/messages"><%=  t 'messages.inbox' %></a>&nbsp;|&nbsp;<a href="/messages/sent"><%= t 'messages.sent' %></a>
+	</div>
+	<div class="rhc">
+		<%= render :partial => "meta_for_messages" %>
+	</div>
 </div>
 
 <div class="lower-row">
@@ -15,7 +20,10 @@
 	</div>
 	<div class="rhc">
 		<div id="compose-message" class="panel" >
+			<h2>Actions</h2>
+			<div class="inner">
 			<p class="new"><%= link_to "+ #{t('messages.startnew')}", :controller => :messages, :action => :new %></p>
+			</div>
 		</div>
 		<%= render :partial => "shared/zooniverse_extras" %>			
 		<%= render :partial => "shared/project_link" %>	

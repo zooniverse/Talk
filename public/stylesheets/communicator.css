@@ -473,6 +473,13 @@ img.message-user.outgoing {
 	min-height: 200px;
 }
 
+.message-nav {color: #afafaf;}
+.message-nav .current {
+	color: #000;
+	text-decoration:none;
+	cursor:text;
+}
+
 /* pagination stuff */
 .pagination {
 	display:inline;

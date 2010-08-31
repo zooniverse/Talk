@@ -1,6 +1,11 @@
 <div class="upper-row">
-	<h2><%= t 'messages.messages' %> > <%= t 'messages.sent' %></h2>
-	<%= render :partial => "meta_for_messages" %>
+	<h1><%= t 'messages.messages' %></h1>
+	<div class="message-nav">
+		<a href="/messages"><%=  t 'messages.inbox' %></a>&nbsp;|&nbsp;<a class="current" href="/messages/sent"><%= t 'messages.sent' %></a>
+	</div>
+	<div class="rhc">
+		<%= render :partial => "meta_for_messages" %>
+	</div>
 </div>
 
 <div class="lower-row">

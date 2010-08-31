@@ -1,7 +1,10 @@
 <!-- Displays info about the discussions for a board -->
-<div id="meta-for-messages" class="rhc panel tags right">
-  <ul>
-    <li><%= @unread.length %> <%= t 'messages.new' %></li>
-    <li><%= @conversations.length %> <%= t 'messages.conversations' %></li>
-  </ul>
+<div id="meta-for-messages" class="panel">
+	<h2>Information</h2>
+	<div class="inner">
+	  <ul>
+	    <li><%= @unread.length %> <%= t 'messages.new' %></li>
+	    <li><%= @conversations.length %> <%= t 'messages.conversations' %></li>
+	  </ul>
+	</div>
 </div>
