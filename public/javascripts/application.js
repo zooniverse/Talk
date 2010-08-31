@@ -62,6 +62,22 @@ OCT.hover = {
 		}
 };
 
+OCT.textcount = {
+	short_text : '#short-text',
+	short_counter : "#short-counter",
+	short_max : 140,
+	
+	init: function() {
+		$(OCT.textcount.short_text).keyup(function() {
+			var remaining = OCT.textcount.short_max - $(OCT.textcount.short_text).val().length;
+			$(OCT.textcount.short_counter).html(remaining);
+		});
+		
+		$(OCT.textcount.short_counter).html(OCT.textcount.short_max);
+		$(OCT.textcount.short_text).attr("maxlength", OCT.textcount.short_max);
+	}
+};
+
 
 // --
 $(document).ready(function(){
@@ -69,6 +85,7 @@ $(document).ready(function(){
 		OCT.collection.init();
 		OCT.hover.init();
 		OCT.loading.init();
+		OCT.textcount.init();
 		$(".highlight_keywords").keywordHighlight();
 });
 
@@ -142,37 +159,3 @@ function update_live_collection_results(){
 	   data: "keywords="+keywords.join(',')
 	 });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
