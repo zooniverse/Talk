@@ -24,10 +24,8 @@ class HomeControllerTest < ActionController::TestCase
         get :cas_test
       end
       
-      # FIX ME - this appears to be a known bug: http://github.com/thoughtbot/shoulda/issues/issue/117
-      # should_redirect_to('cas server with gateway set to true') {'https://example.com/login?service=http%3A%2F%2Ftest.host%2F&gateway=true'}
-      should_eventually "be redirected" do
-        assert_redirected_to "The CAS login url"
+      should "be redirected to login" do
+        assert_redirected_to CASClient::Frameworks::Rails::Filter.login_url(@controller)
       end
     end
   end

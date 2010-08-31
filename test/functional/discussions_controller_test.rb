@@ -18,8 +18,8 @@ class DiscussionsControllerTest < ActionController::TestCase
       should respond_with :success
       should render_template :show
       
-      should_eventually "Display the discussion zooniverse_id" do
-        assert_select 'h2.discussion-name', :text => @discussion.zooniverse_id
+      should "Display the discussion zooniverse_id" do
+        assert_select '.discussion-title', :text => "#{@discussion.focus.zooniverse_id} discussion"
       end
     end
     

@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class MessagesControllerTest < ActionController::TestCase
-  context "A MessagesController when NOT logged in" do
+  context "A MessagesController" do
     setup do
       @controller = MessagesController.new
       @request    = ActionController::TestRequest.new
@@ -10,25 +10,7 @@ class MessagesControllerTest < ActionController::TestCase
     
     context "#index" do
       setup do
-        get :index
-      end
-      
-      should_eventually "be redirected" do
-        assert_redirected_to "The CAS login url"
-      end
-    end
-  end
-  
-  context "A MessagesController when logged in" do
-    setup do
-      @controller = MessagesController.new
-      @request    = ActionController::TestRequest.new
-      @response   = ActionController::TestResponse.new   
-      standard_cas_login
-    end
-    
-    context "#index" do
-      setup do
+        standard_cas_login
         get :index
       end
       
@@ -38,6 +20,7 @@ class MessagesControllerTest < ActionController::TestCase
     
     context "#sent" do
       setup do
+        standard_cas_login
         get :sent
       end
       
@@ -47,8 +30,9 @@ class MessagesControllerTest < ActionController::TestCase
     
     context "#show" do
       setup do
-        @sender = Factory :user        
-        @message = Factory :message, :sender => @sender, :recipient => @user
+        @sender = Factory :user
+        @message = Factory :message, :sender => @sender
+        standard_cas_login(@sender)
         get :show, { :id => @message.id }
       end
       
@@ -58,6 +42,7 @@ class MessagesControllerTest < ActionController::TestCase
     
     context "#new" do
       setup do
+        standard_cas_login
         get :new
       end
       
@@ -65,55 +50,73 @@ class MessagesControllerTest < ActionController::TestCase
       should render_template :new
     end
     
-    # FIXME
     context "#create when not blocked" do
       setup do
-        @message = Factory :message
+        @sender = Factory :user
+        @recipient = Factory :user
+        
         options = {
-          :sender_id => @message.sender.id,
-          :recipient_id => @message.recipient.id,
-          :title => "HI",
-          :body => "AWESOME!"
+          :message => {
+            :recipient_name => @recipient.name,
+            :title => "HI",
+            :body => "AWESOME!"
+          }
         }
-          
+        
+        standard_cas_login(@sender)
         post :create, options
       end
       
-      should_eventually "create" do
-        respond_with :success
-      end
+      should respond_with :found
       
-      should_eventually "be redirected" do
-        assert_redirected_to "/messages"
+      should "redirect to messages" do
+        assert_redirected_to messages_path
       end
     end
     
-    # FIXME
     context "#create when blocked" do
       setup do
-        @message = Factory :message
+        @sender = Factory :user
         @recipient = Factory :user
-        @recipient.blocked_list << @message.sender.id
+        @recipient.blocked_list << @sender.id
         @recipient.save
-        @message.recipient = @recipient
         
         options = {
-          :sender_id => @message.sender.id,
-          :recipient_id => @recipient.id,
-          :title => "BLAH!",
-          :body => "blocked :("
+          :message => {
+            :recipient_name => @recipient.name,
+            :title => "BLAH!",
+            :body => "blocked :("
+          }
         }
-          
+        
+        standard_cas_login(@sender)
         post :create, options
       end
       
-      should_eventually "create" do
-        respond_with :success
+      should respond_with :success
+      should render_template :edit
+    end
+    
+    context "#create with no recipient" do
+      setup do
+        @sender = Factory :user
+        @recipient = Factory :user
+        @recipient.blocked_list << @sender.id
+        @recipient.save
+        
+        options = {
+          :message => {
+            :title => "BLAH!",
+            :body => "blocked :("
+          }
+        }
+        
+        standard_cas_login(@sender)
+        post :create, options
       end
       
-      should_eventually "render edit" do
-        render_template :edit
-      end
+      should respond_with :success
+      should render_template :edit
     end
   end
 end

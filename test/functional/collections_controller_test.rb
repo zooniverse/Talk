@@ -25,8 +25,8 @@ class CollectionsControllerTest < ActionController::TestCase
       should respond_with :success
       should render_template :show
       
-      should_eventually "Display the collection zooniverse_id" do
-        assert_select 'h2.collection-name', :text => @collection.zooniverse_id
+      should "Display the collection name" do
+        assert_select 'h1.collection-title', :text => "#{@collection.name} by #{@collection.user.name}"
       end
     end
   end

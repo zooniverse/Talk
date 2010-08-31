@@ -18,8 +18,8 @@ class UsersControllerTest < ActionController::TestCase
       should respond_with :success
       should render_template :show
       
-      should_eventually "Display the user display name" do
-        assert_select 'h2.user-name', :text => @user.name
+      should "Display the user display name" do
+        assert_select '.profile .info h1', :text => @user.name
       end
     end
     

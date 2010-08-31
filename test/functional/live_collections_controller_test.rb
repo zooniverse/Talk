@@ -17,13 +17,9 @@ class LiveCollectionsControllerTest < ActionController::TestCase
       should respond_with :success
       should render_template :show
       
-      should_eventually "Display the live collection zooniverse_id" do
-        assert_select 'h2.collection-name', :text => @live_collection.zooniverse_id
+      should "Display the live collection title" do
+        assert_select 'h1.collection-title', :text => "#{@live_collection.name} by #{@live_collection.user.name}"
       end
-      
-      should_eventually "Display the live collection owner name" do
-        assert_select 'h2.collection-owner-name', :text => @live_collection.user.name
-      end 
     end
   end
 end

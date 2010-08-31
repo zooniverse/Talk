@@ -13,8 +13,8 @@ class AdminControllerTest < ActionController::TestCase
         get :index
       end
       
-      should_eventually "be redirected" do
-        assert_redirected_to "The CAS login url"
+      should "be redirected to login" do
+        assert_redirected_to CASClient::Frameworks::Rails::Filter.login_url(@controller)
       end
     end
   end
@@ -70,11 +70,9 @@ class AdminControllerTest < ActionController::TestCase
       
       should respond_with :redirect
       
-      should_eventually "be redirected" do
-        assert_redirected_to "the front page"
+      should "be redirected to login" do
+        assert_redirected_to root_url
       end
-
     end
   end
-  
 end

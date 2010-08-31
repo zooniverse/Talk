@@ -68,8 +68,8 @@ class ActiveSupport::TestCase
     Board.create(:title => "chat", :description => "awesome")
   end
   
-  def standard_cas_login
-    @user = Factory :user
+  def standard_cas_login(user = nil)
+    @user = user ||= Factory(:user)
     @request.session[:cas_user] = @user.name
     @request.session[:cas_extra_attributes] = {}
     @request.session[:cas_extra_attributes]['id'] = @user.zooniverse_user_id

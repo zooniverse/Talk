@@ -22,8 +22,9 @@ en:
       already_added: "You've already added this object to this collection"
       added: "You've added this object to your collection"
   models:
-    blocked: "You have been blocked by this user"
-    no_recipient: "Please select a recipient"
+    messages:
+      blocked: "You have been blocked by this user"
+      no_recipient: "Please select a recipient"
   homepage:
     trends: "Trending"
     recent: "Recent"

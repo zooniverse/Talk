@@ -62,10 +62,10 @@ class Message
   private
   # Validation ensuring that the sender is not blocked by the recipient
   def not_blocked
-    if recipient.nil?
-      errors.add(:base, I18n.t('models.messages.no_recipient'))
-    elsif recipient.blocked_list.include? self.sender.id
-      errors.add(:base, I18n.t('models.messages.blocked'))
+    if self.recipient.nil?
+      self.errors.add(:base, I18n.t('models.messages.no_recipient'))
+    elsif self.recipient.blocked_list.include? self.sender.id
+      self.errors.add(:base, I18n.t('models.messages.blocked'))
     end
   end
 end

@@ -74,12 +74,6 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  # This should work, but doesn't
-  def require_user
-    check_or_create_zooniverse_user
-    CASClient::Frameworks::Rails::Filter
-  end
-  
   def cas_logout
     CASClient::Frameworks::Rails::Filter.logout(self)
   end
