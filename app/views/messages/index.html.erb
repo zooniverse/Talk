@@ -11,20 +11,15 @@
 <div class="lower-row">
 	<div class="lhc">		
 		<div class="message-list">
+							<div class="news" style="float:right;margin-right:0;"><%= link_to "#{t('messages.startnew')}", :controller => :messages, :action => :new %></div>
 			<% if @messages.empty? %>
 				<%= t 'messages.none' %>
 			<% else %>
-			<%= render :partial => "message", :collection => @messages %>
+				<%= render :partial => "message", :collection => @messages %>
 			<% end %>
 		</div>			
 	</div>
 	<div class="rhc">
-		<div id="compose-message" class="panel" >
-			<h2>Actions</h2>
-			<div class="inner">
-			<p class="new"><%= link_to "+ #{t('messages.startnew')}", :controller => :messages, :action => :new %></p>
-			</div>
-		</div>
 		<%= render :partial => "shared/zooniverse_extras" %>			
 		<%= render :partial => "shared/project_link" %>	
 		<%= render :partial => "shared/help_wanted" %>									

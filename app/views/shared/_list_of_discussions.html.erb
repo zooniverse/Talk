@@ -7,17 +7,15 @@
 			  <%- @focus.discussions.each do |discussion| %>
 			    <li><%= link_to discussion.subject, discussion_url_for(discussion) %></li>
 			  <% end -%>
-			    <li class="new"><%= link_to "+ #{t('discussion.startnew')}", new_discussion_url_for(@focus) %></li>
 			</ul>		
 			</div>
+			<div class="new"><%= link_to "#{t('discussion.startnew')}", new_discussion_url_for(@focus) %></div>
 	</div>
 <% else %>
 <div class="panel collection-list">
 		<h2>No Discussions Yet</h2>
 		<div class="inner">
-		<ul>
-		    <li class="new"><%= link_to "+ #{t('discussion.startnew')}", new_discussion_url_for(@focus) %></li>
-		</ul>		
+			<div class="new"><%= link_to "#{t('discussion.startnew')}", new_discussion_url_for(@focus) %></div>
 		</div>
 </div>
 <% end %>

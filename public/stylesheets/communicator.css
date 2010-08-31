@@ -232,7 +232,7 @@ a:hover {
 
 .asset-container .name {
 	margin: 5px 0 4px 0px;
-	font-size: 1.2em;
+	font-size: 1.1em;
 }
 
 /* Comments */
@@ -269,7 +269,7 @@ img.new-comment-user{
 }
 
 .comment .toolbar, .short-comment .toolbar {
-	margin-top: 5px;
+	margin-top: 4px;
 	visibility: hidden;
 }
 
@@ -354,6 +354,9 @@ img.new-comment-user{
 	background: #F3F3F3;
 	margin-right: 5px;
 }
+.boards-list ul li a {
+ color: #005689;
+}
 
 .boards-list ul li div.info {
 	font-style: italic;
@@ -408,12 +411,13 @@ h2.asset-name {
 	text-transform: uppercase;
 }
 
-.headed-panel ul li.title {
-	font-weight: bold;
+.headed-panel ul li a, .headed-panel ul li a.name {
+	text-decoration: none;
+	font-weight: normal;
 }
 
-.headed-panel ul li a {
-	text-decoration: none;
+.headed-panel ul li.title {
+	font-weight: bold;
 }
 
 .rhc .discussion-items img {
@@ -491,6 +495,8 @@ img.message-user.outgoing {
 
 .message-list {
 	min-height: 200px;
+	border-top: dotted #000 1px;
+	padding-top: 5px;
 }
 
 .message-nav {color: #afafaf;}
@@ -498,6 +504,10 @@ img.message-user.outgoing {
 	color: #000;
 	text-decoration:none;
 	cursor:text;
+}
+
+#meta-for-messages ul li {
+	margin-top: 1px;
 }
 
 /* pagination stuff */
@@ -692,21 +702,21 @@ h1.collection-title {
 }
 
 /* Profile */
-.profile {
+.profile-detail {
 	min-height: 50px;
 }
 
-.profile .info h1 {
+.profile-detail .info h1 {
 	margin-bottom: 0;
 }
-.profile img {
+.profile-detail img {
 	float: left;
 } 
-.profile .info {
+.profile-detail .info {
 	margin-left: 50px;
 }
 
-.profile .user-actions {
+.profile-detail .user-actions {
 	font-size: 80%;
 }
 
@@ -722,8 +732,41 @@ h1.collection-title {
 	text-align: center;
 }
 
-.new {
-	font-weight: bold;
+.rhc .new a {
+	text-decoration:none;
+	padding: 0px 5px 5px 30px;
+	width:auto;
+	display:block;
+	font-size: 90%;
+	margin: 5px 0;
+	text-align:right;
+}
+
+.rhc .new a:hover {}
+
+.profile #trending-discussions {
+	margin-bottom: 0px;
+}
+
+.profile .popular-discussions {
+	margin: 0;
+}
+
+.profile .popular-discussions .inner {
+	padding: 0;
+	margin-bottom: 5px;
+}
+
+.profile .user-comments #recent-comments {
+	margin-bottom: 0;
+}
+
+.profile .user-comments {
+	margin-top: 30px;
+}
+
+.profile .user-comments .inner {
+		margin-bottom: 5px;
 }
 
 #not-logged-in {
@@ -737,3 +780,6 @@ h1.collection-title {
 }
 
 .loading {display:none;font-size:80%;margin-left:10px;color:#afafaf;}
+
+.notice {background: #a7de9f; }
+.notice p {padding: 5px 10px;}

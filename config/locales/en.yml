@@ -51,7 +51,7 @@ en:
     reply: "REPLY"
   discussion:
     name: "discussion"
-    startnew: "Start a new discussion"
+    startnew: "New discussion"
     about: "about this"
     meta:
       comments: "Comments"
@@ -64,8 +64,8 @@ en:
     name: "collection"
     collection: "Collection"
     livecollection: "Live Collection"
-    startnewcol: "Start a New Collection"
-    startnewlivecol: "Start a New Live Collection"
+    startnewcol: "New collection"
+    startnewlivecol: "New Live Collection"
   livecollection:
     name: "live collection"
   asset:
@@ -78,7 +78,7 @@ en:
     thread_with: "Message thread with"
     new: "new messages"
     conversations: "conversations"
-    startnew: "Start a New Message"
+    startnew: "New Message"
     none: "No messages"
   admin:
     title: "Moderation"
