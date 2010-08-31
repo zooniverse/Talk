@@ -21,7 +21,7 @@
 		</div>
 	</div>
 	<% end %>	
-	<div class="lhc discussion" <% if @discussion.focus_type.blank? %>style="width:auto;"<% end %>>
+	<div class="lhc discussion" <% if @discussion.focus_type == "Board" %>style="width:auto;"<% end %>>
 		<div class="main">
 			<h2><strong><%= t 'discussion.meta.startedby' %> <%= @discussion.started_by.name unless @discussion.started_by.nil? %></strong></h2>
 			<h1><%= @discussion.subject %></h1>
@@ -44,7 +44,7 @@
 </div>
 
 <div class="lower-row discussion-thread">
-	<div class="lhc" <% if @discussion.focus_type.blank? %>style="width:700px;"<% end %>>		
+	<div class="lhc" <% if @discussion.focus_type == "Board" %>style="width:700px;"<% end %>>
 		<div class="comments-list">
 			<%= render :partial => "shared/comment", :collection => @discussion.comments %>
 		</div>
