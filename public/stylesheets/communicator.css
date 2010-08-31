@@ -483,15 +483,14 @@ img.message-user.outgoing {
 }
 
 .short-comment-form textarea {
-	font-size: 1.4em;
+	font-size: 1.2em;
 	background: #fff;
 	width: 435px;
-	padding: 4px 2px;
+	padding: 5px 5px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;	
-	border: solid #aaa 1px;
-	
+	border: solid #aaa 1px;	
 }
 
 h2.short-comment-prompt {
