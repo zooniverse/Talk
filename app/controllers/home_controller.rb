@@ -16,14 +16,16 @@ class HomeController < ApplicationController
     @trending_tags = Comment.rank_tags :from => 0, :to => 8
     
     # Loading data for boards
+    page_size = 6
+    page = 0
     @help_board = Board.find_by_title("help")
-    @help_list = @help_board.discussions
+    @help_list = @help_board.discussions.paginate(:per_page => page_size, :page => page)
 
     @chat_board = Board.find_by_title("chat")
-    @chat_list = @chat_board.discussions
+    @chat_list = @chat_board.discussions.paginate(:per_page => page_size, :page => page)
 
     @science_board = Board.find_by_title("science")
-    @science_list = @science_board.discussions
+    @science_list = @science_board.discussions.paginate(:per_page => page_size, :page => page)
   end
   
   def cas_test

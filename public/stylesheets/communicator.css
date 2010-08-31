@@ -338,8 +338,28 @@ img.new-comment-user{
 }
 
 .boards-list {
-	width: 33%;
+	width: 540px;
+	margin-bottom: 20px;
+}
+
+.boards-list ul {
+	padding: 0 10px 0 0;
+}
+
+.boards-list ul li {
+	width: 150px;
+	padding: 5px 10px;
 	float: left;
+	height: 120px;
+	background: #F3F3F3;
+	margin-right: 5px;
+}
+
+.boards-list ul li div.info {
+	font-style: italic;
+	font-size: 80%;
+	color: #afafaf;
+	margin-top:5px;
 }
 
 /* Tag Cloud */
@@ -379,20 +399,20 @@ h2.asset-name {
   display: none;
 }
 
-#trends-tabs ul, #recents-tabs ul {
+.headed-panel ul {
 	padding: 0 0 10px 0;
 }
 
-#trends-tabs ul li, #recents-tabs ul li {
+.headed-panel ul li {
 	display: inline;
 	text-transform: uppercase;
 }
 
-#trends-tabs ul li.title, #recents-tabs ul li.title {
+.headed-panel ul li.title {
 	font-weight: bold;
 }
 
-#trends-tabs ul li a, #recents-tabs ul li a {
+.headed-panel ul li a {
 	text-decoration: none;
 }
 

@@ -1,9 +1,13 @@
 <!-- Box for HELP, SCIENCE and CHAT threads on front page -->
-<div class="panel boards-list">
+<div class="panel boards-list">	
 	<h2><%= link_to title, :controller => :boards, :action => title.downcase %></h2>
-	<ul>
-		<% this_list.each do |l| %>
-		<li class="name"><%= link_to l.subject, :controller => :discussions, :action => :show, :id => l.zooniverse_id %></li>
-		<% end %>
-	</ul>
+		<ul>
+			<% this_list.each do |l| %>
+			<li class="name">
+			<%= link_to l.subject.truncate(80), :controller => :discussions, :action => :show, :id => l.zooniverse_id %>
+				<div class="info"><%= pluralize( l.number_of_comments, 'comment') %></div>
+				</li>
+			<% end %>
+		</ul>
+		<div class="push"></div>
 </div>

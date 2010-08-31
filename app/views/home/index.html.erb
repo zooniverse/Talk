@@ -34,13 +34,11 @@
 		<%= render :partial => "shared/list_of_comments", :locals => { :comments_list => @recent_comments, :id_of_box => "recent-comments" } %>
 		</div>
 		</div>
-		
-		<br/>
-
-		<%= render :partial => "shared/boards_front_page", :locals => { :title => t('homepage.help'), :this_list => @help_list } %>
-		<%= render :partial => "shared/boards_front_page", :locals => { :title => t('homepage.science'), :this_list => @science_list } %>
-		<%= render :partial => "shared/boards_front_page", :locals => { :title => t('homepage.chat'), :this_list => @chat_list } %>
-	</div>
+	
+			<%= render :partial => "shared/boards_front_page", :locals => { :title => t('homepage.help'), :this_list => @help_list } %>
+			<%= render :partial => "shared/boards_front_page", :locals => { :title => t('homepage.science'), :this_list => @science_list } %>
+			<%= render :partial => "shared/boards_front_page", :locals => { :title => t('homepage.chat'), :this_list => @chat_list } %>
+	</div>	
 </div>
 <div class="home-rhc">
 	<%= render :partial => "shared/about_box" %>
