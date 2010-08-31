@@ -467,6 +467,10 @@ img.message-user.outgoing {
 	margin-bottom: 0px;
 }
 
+.message-list {
+	min-height: 200px;
+}
+
 /* pagination stuff */
 .pagination {
 	display:inline;

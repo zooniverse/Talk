@@ -6,7 +6,11 @@
 <div class="lower-row">
 	<div class="lhc">		
 		<div class="message-list">
+			<% if @messages.empty? %>
+				<%= t 'messages.none' %>
+			<% else %>
 			<%= render :partial => "message", :collection => @messages %>
+			<% end %>
 		</div>			
 	</div>
 	<div class="rhc">

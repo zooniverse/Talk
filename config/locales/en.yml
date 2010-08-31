@@ -78,6 +78,7 @@ en:
     new: "new messages"
     conversations: "conversations"
     startnew: "Start a New Message"
+    none: "No messages"
   admin:
     title: "Moderation"
   sidenav:
