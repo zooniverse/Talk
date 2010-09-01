@@ -1,17 +1,18 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0.rc'
+gem 'rails', '3.0.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'bson_ext'
-gem 'mongo_mapper'
-gem 'rubycas-client'
-gem 'xapian-fu'
-gem 'bluecloth'
-gem 'paperclip'
+gem 'bson_ext', '1.0.7'
+gem 'mongo_mapper', '0.8.4'
+gem 'rubycas-client', '2.2.1'
+gem 'state_machine', '0.9.4'
+gem 'xapian-fu', '1.1.2'
+gem 'bluecloth', '2.0.7'
+# gem 'paperclip'
 
 group :development do
   gem 'mysql'
