@@ -14,6 +14,7 @@ end
 Factory.define :user do |u|
   u.zooniverse_user_id  { "#{Factory.next(:name)}" }
   u.name                { "User #{Factory.next(:name)}"}
+  u.email               { "#{Factory.next(:name)}@localhost" }
 end
 
 Factory.define :collection do |c|
