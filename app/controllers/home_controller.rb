@@ -30,9 +30,5 @@ class HomeController < ApplicationController
   
   def cas_test
     @user = session[:cas_user]
-    
-    unless @user
-      redirect_to CASClient::Frameworks::Rails::Filter.login_url(self)
-    end
   end  
 end

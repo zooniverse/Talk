@@ -13,24 +13,6 @@ class CommentsControllerTest < ActionController::TestCase
       @comment = @comment1
     end
     
-    context "#create not logged in" do
-      setup do
-        @discussion = @asset.conversation
-        options = {
-          :discussion_id => @discussion.id,
-          :comment => {
-            :body => "Hey!"
-          }
-        }
-        
-        post :create, options
-      end
-      
-      should "be redirected to login" do
-        assert_redirected_to CASClient::Frameworks::Rails::Filter.login_url(@controller)
-      end
-    end
-    
     context "#create logged in" do
       setup do
         standard_cas_login

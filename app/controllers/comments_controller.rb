@@ -4,16 +4,12 @@ class CommentsController < ApplicationController
   respond_to :js, :only => [:vote_up, :report, :user_owned]
   
   def create
-    if current_zooniverse_user.nil?
-      redirect_to CASClient::Frameworks::Rails::Filter.login_url(self)
-    else
-      @discussion = Discussion.find(params[:discussion_id])
-      @discussion.comments.build(params[:comment])
+    @discussion = Discussion.find(params[:discussion_id])
+    @discussion.comments.build(params[:comment])
 
-      if @discussion.save
-        flash[:notice] = t 'controllers.comments.flash_create'
-        redirect_to discussion_url_for(@discussion)
-      end
+    if @discussion.save
+      flash[:notice] = t 'controllers.comments.flash_create'
+      redirect_to discussion_url_for(@discussion)
     end
   end
   

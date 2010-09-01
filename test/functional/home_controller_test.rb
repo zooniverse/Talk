@@ -17,17 +17,6 @@ class HomeControllerTest < ActionController::TestCase
       should respond_with :success
       should render_template :index
     end
-    
-    context "#cas_test not logged in" do
-      setup do
-        @request.session = nil
-        get :cas_test
-      end
-      
-      should "be redirected to login" do
-        assert_redirected_to CASClient::Frameworks::Rails::Filter.login_url(@controller)
-      end
-    end
   end
   
   context "Home Controller actions when logged in as standard user" do
