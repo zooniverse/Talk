@@ -1,7 +1,7 @@
 <div class="upper-row">
 	<div class="discussion-title"><%= link_to @title, @bns_path %> discussion</div>
 	
-	<% unless @discussion.focus_type.blank? %>	
+	<% unless @discussion.focus_type == "Board" %>	
 	<div class="rhc">				
 		<div class="panel discussion-items">
 		<% if (@discussion.asset?) %>								

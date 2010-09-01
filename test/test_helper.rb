@@ -118,12 +118,13 @@ class ActiveSupport::TestCase
   end
   
   def build_discussions_for(focus)
-    discussion = Discussion.new(:subject => "Monkey is an OIII emission", :started_by_id => Factory(:user).id)
+    user = Factory(:user)
+    discussion = Discussion.new(:subject => "Monkey is an OIII emission", :started_by_id => user.id)
     focus.discussions << discussion
     focus.save
     discussion.reload
     
-    comment1 = Comment.new(:body => "blah #tag1 blah #tag2 blah #{focus.zooniverse_id} is awesome", :author => Factory(:user))
+    comment1 = Comment.new(:body => "blah #tag1 blah #tag2 blah #{focus.zooniverse_id} is awesome", :author => user)
     comment2 = Comment.new(:body => "blah #tag2 blah #tag4 blah #{focus.zooniverse_id} is awesome", :author => Factory(:user))
     comment3 = Comment.new(:body => "blah #tag2 blah #tag4 blah #{focus.zooniverse_id} is awesome", :author => Factory(:user))
     
@@ -153,7 +154,7 @@ class ActiveSupport::TestCase
   
   def board_discussions_in(board, limit=8)
     1.upto(limit) do |i|
-      discussion = Discussion.new(:subject => "Topic ##{i}", :started_by_id => Factory(:user).id)
+      discussion = Discussion.new(:subject => "Topic ##{i}", :started_by_id => Factory(:user).id, :focus_type => "Board", :focus_id => board.id)
       board.discussion_ids << discussion.id
       
       discussion.comments << Comment.new(:body => "blah #tag1 blah #tag2 blah", :author => Factory(:user))
