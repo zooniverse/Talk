@@ -115,5 +115,101 @@ class DiscussionsControllerTest < ActionController::TestCase
         assert_select "#comment-vote-#{@comment2.id}", 1
       end
     end
+    
+    context "#create on asset" do
+      setup do
+        @asset = Factory :asset
+        standard_cas_login
+        options = {
+          :discussion => {
+            :subject => "Blah",
+            :description => "blah",
+            :focus_type => "Asset",
+            :focus_id => @asset.id,
+            :comments => {
+              :body => "Hi",
+              :author_id => @user.id
+            }
+          }
+        }
+        post :create, options
+      end
+      
+      should respond_with :found
+      should set_the_flash.to(I18n.t('controllers.discussions.flash_create'))
+
+      should "redirect to asset discussion page" do
+        assert_redirected_to object_discussion_path(@asset.zooniverse_id, assigns(:discussion).zooniverse_id)
+      end
+    end
+    
+    context "#create on board" do
+      setup do
+        @board = Board.science
+        standard_cas_login
+        options = {
+          :board_id => "science",
+          :discussion => {
+            :subject => "Blah",
+            :description => "blah",
+            :comments => {
+              :body => "Hi",
+              :author_id => @user.id
+            }
+          }
+        }
+        post :create, options
+      end
+      
+      should respond_with :found
+      should set_the_flash.to(I18n.t('controllers.discussions.flash_create'))
+
+      should "redirect to board discussion page" do
+        assert_redirected_to discussion_path(assigns(:discussion).zooniverse_id)
+      end
+    end
+    
+    context "#toggle_featured" do
+      setup do
+        build_focus_for(Factory :asset)
+        moderator_cas_login
+        post :toggle_featured, { :id => @discussion.id, :format => :js }
+      end
+      
+      should respond_with :success
+
+      should "be featured" do
+        assert @discussion.reload.featured
+      end
+      
+      context "toggling again" do
+        setup do
+          post :toggle_featured, { :id => @discussion.id, :format => :js }
+        end
+
+        should "be unfeatured" do
+          assert !@discussion.reload.featured
+        end
+      end
+    end
+    
+    context "When requesting more #user_owned discussions" do
+      setup do
+        @author = Factory :user
+        20.times do |i|
+          Discussion.create(:started_by_id => @author.id, :subject => "blah")
+        end
+        
+        post :user_owned, { :id => @author.id, :format => :js }
+      end
+      
+      should respond_with :success
+      should respond_with_content_type(:js)
+
+      should "display more discussions" do
+        assert_match /#more-discussions.*.hide()/, @response.body, "more-discussions link was not hidden"
+        assert_equal 20, @response.body.scan(/item-container/).length, "all discussions weren't rendered"
+      end
+    end
   end
 end

@@ -1,6 +1,7 @@
 class DiscussionsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter, :only => [:new, :create]
-  respond_to :js, :only => :user_owned
+  before_filter :require_privileged_user, :only => :toggle_featured
+  respond_to :js, :only => [:user_owned, :toggle_featured]
   
   def show
     @discussion = Discussion.find_by_zooniverse_id(params[:id])
@@ -49,6 +50,7 @@ class DiscussionsController < ApplicationController
         @discussion.comments << @comment
       end
       
+      flash[:notice] = I18n.t 'controllers.discussions.flash_create'
       redirect_to discussion_url_for(@discussion)
     else
       render discussion_url_for(@discussion)
@@ -57,11 +59,7 @@ class DiscussionsController < ApplicationController
   
   def toggle_featured
     @discussion = Discussion.find(params[:id])
-    if @discussion.featured == false
-      @discussion.featured = true
-    elsif @discussion.featured == true 
-      @discussion.featured = false
-    end
+    @discussion.featured = !@discussion.featured
     @discussion.save
   end
   

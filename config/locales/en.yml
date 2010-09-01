@@ -11,6 +11,8 @@ en:
       own_comment: "You can't vote on your own comment!"
       not_logged_in: "You must log in first"
       flash_create: "Comment created"
+    discussions:
+      flash_create: "Discussion created"
     application:
       not_authorised: "You don't have permissions to view this page"
     messages:
