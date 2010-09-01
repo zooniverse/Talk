@@ -142,6 +142,12 @@ class ActiveSupport::TestCase
     @collection = Collection.create(:name => "Collection", :asset_ids => [asset.id], :user => Factory(:user))
   end
   
+  def build_collection(assets = 5)
+    collection = Collection.create(:name => "Collection", :user => Factory(:user))
+    assets.times{ collection.assets << Factory(:asset) }
+    collection
+  end
+  
   def conversation_for(focus)
     conversation = focus.conversation
     comment1 = Comment.new(:body => "blah #tag1 blah #tag2 blah #{focus.zooniverse_id} is awesome", :author => Factory(:user))

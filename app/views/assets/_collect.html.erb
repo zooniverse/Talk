@@ -2,7 +2,7 @@
 <div class="collect-dialog" title="Choose your collection or start a new one" style="display: none;">
   <%- current_zooniverse_user.collections.each do |collection| %>
     <%= link_to collection.name,
-      { :controller => :collections, :action => :add, :format => :js, :id => collection.zooniverse_id, :asset_id => @asset.zooniverse_id },
+      { :controller => :collections, :action => :add, :format => :js, :id => collection.zooniverse_id, :asset_id => @asset.id },
       { :remote => true, :method => :post, :class => "collect-link" }
     %><br/>
   <% end -%>

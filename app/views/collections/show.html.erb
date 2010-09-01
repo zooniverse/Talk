@@ -18,7 +18,11 @@
 
 <div class="lower-row">
 	<div class="lhc">		
-		<%= render :partial => "shared/comment_short_new" if current_zooniverse_user %>			
+		<%- if current_zooniverse_user %>
+			<%= render :partial => "shared/comment_short_new" %>
+		<%- else -%>
+			<%= render :partial => "shared/please_log_in" %>
+		<% end -%>
 		<div class="comments-list">
 			<%= render :partial => "shared/stream" %>
 		</div>

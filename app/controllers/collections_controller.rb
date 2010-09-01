@@ -1,6 +1,6 @@
 class CollectionsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter, :only => [:new, :edit, :add]
-  respond_to :js, :only => :add
+  respond_to :js, :only => [:add, :remove]
   
   def show
     @focus = @collection = Collection.find_by_zooniverse_id(params[:id])
@@ -66,9 +66,21 @@ class CollectionsController < ApplicationController
     end
   end
   
+  def destroy
+    @collection = Collection.find_by_zooniverse_id(params[:id])
+    if @collection.user == current_zooniverse_user
+      @collection.destroy
+      flash[:notice] = I18n.t 'controllers.collections.flash_destroyed'
+    else
+      flash[:alert] = I18n.t 'controllers.collections.not_yours'
+    end
+    
+    redirect_to collections_path
+  end
+  
   def add
     @collection = Collection.find_by_zooniverse_id(params[:id])
-    @asset = Asset.find_by_zooniverse_id(params[:asset_id])
+    @asset = Asset.find(params[:asset_id])
     
     unless current_zooniverse_user == @collection.user
       flash[:notice] = I18n.t 'controllers.collections.not_yours'
@@ -88,7 +100,7 @@ class CollectionsController < ApplicationController
   
   def remove
     @collection = Collection.find_by_zooniverse_id(params[:id])
-    @asset = Asset.find_by_zooniverse_id(params[:asset_id])
+    @asset = Asset.find(params[:asset_id])
     
     @collection.asset_ids.delete_if { |id| id == @asset.id }
     
