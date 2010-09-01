@@ -82,7 +82,12 @@ class BoardsControllerTest < ActionController::TestCase
         assert_select "#help-wanted > .featured-item", 1
         assert_select "#help-wanted .name", :text => @discussion.subject
       end
+      
+      should "display pagination links" do
+        assert_select "li.pagination > a", 2
+        assert_select "li.pagination a:nth-child(1)", :text => "&lt;1&gt;"
+        assert_select "li.pagination a:nth-child(1)", :text => "2"
+      end
     end
-    
   end
 end
