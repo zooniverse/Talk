@@ -67,7 +67,12 @@ class CollectionsController < ApplicationController
   end
   
   def destroy
-    @collection = Collection.find_by_zooniverse_id(params[:id])
+    if params[:collection_kind] == "Live Collection"
+      @collection = LiveCollection.find_by_zooniverse_id(params[:id])
+    elsif params[:collection_kind] == "Collection"
+      @collection = Collection.find_by_zooniverse_id(params[:id])
+    end
+    
     if @collection.user == current_zooniverse_user
       @collection.destroy
       flash[:notice] = I18n.t 'controllers.collections.flash_destroyed'

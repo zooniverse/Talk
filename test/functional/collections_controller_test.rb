@@ -204,11 +204,29 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
-    context "#destroy by owner" do
+    context "#destroy Collection by owner" do
       setup do
         @collection = Factory :collection
         standard_cas_login(@collection.user)
-        post :destroy, { :id => @collection.zooniverse_id }
+        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Collection" }
+      end
+      
+      should set_the_flash.to(I18n.t('controllers.collections.flash_destroyed'))
+      should respond_with :found
+      should "redirect to collections" do
+        assert_redirected_to collections_path
+      end
+      
+      should "destroy collection" do
+        assert_raise(MongoMapper::DocumentNotFound) { @collection.reload }
+      end
+    end
+    
+    context "#destroy LiveCollection by owner" do
+      setup do
+        @collection = Factory :live_collection
+        standard_cas_login(@collection.user)
+        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Live Collection" }
       end
       
       should set_the_flash.to(I18n.t('controllers.collections.flash_destroyed'))
@@ -226,7 +244,7 @@ class CollectionsControllerTest < ActionController::TestCase
       setup do
         @collection = Factory :collection
         standard_cas_login
-        post :destroy, { :id => @collection.zooniverse_id }
+        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Collection" }
       end
       
       should set_the_flash.to(I18n.t('controllers.collections.not_yours'))
