@@ -148,6 +148,12 @@ class ActiveSupport::TestCase
     collection
   end
   
+  def build_live_collection(assets = 5)
+    collection = LiveCollection.create(:name => "LiveCollection", :user => Factory(:user), :tags => ['tag1'])
+    assets.times{ Factory(:asset, :taggings => { 'tag1' => 1 }) }
+    collection
+  end
+  
   def conversation_for(focus)
     conversation = focus.conversation
     comment1 = Comment.new(:body => "blah #tag1 blah #tag2 blah #{focus.zooniverse_id} is awesome", :author => Factory(:user))
