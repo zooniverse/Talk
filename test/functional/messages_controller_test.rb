@@ -95,6 +95,7 @@ class MessagesControllerTest < ActionController::TestCase
       
       should respond_with :success
       should render_template :edit
+      should set_the_flash.to(I18n.t('models.messages.blocked'))
     end
     
     context "#create with no recipient" do
@@ -117,6 +118,42 @@ class MessagesControllerTest < ActionController::TestCase
       
       should respond_with :success
       should render_template :edit
+      should set_the_flash.to(I18n.t('models.messages.no_recipient'))
+    end
+    
+    context "#destroy for sender" do
+      setup do
+        @message = Factory :message
+        standard_cas_login(@message.sender)
+        post :destroy, { :id => @message.id }
+      end
+
+      should respond_with :found
+      should set_the_flash.to(I18n.t('controllers.messages.flash_destroyed'))
+      
+      should "redirect to inbox" do
+        assert_redirected_to messages_path
+      end
+      
+      should "destroy for sender only" do
+        assert @message.reload.destroyed_by_sender
+        assert !@message.reload.destroyed_by_recipient
+      end
+    end
+    
+    context "#destroy for recipient" do
+      setup do
+        @message = Factory :message, :destroyed_by_sender => true
+        standard_cas_login(@message.recipient)
+        post :destroy, { :id => @message.id }
+      end
+      
+      should respond_with :found
+      should set_the_flash.to(I18n.t('controllers.messages.flash_destroyed'))
+
+      should "destroy message" do
+        assert_raise(MongoMapper::DocumentNotFound) { @message.reload }
+      end
     end
   end
 end

@@ -56,7 +56,12 @@ class Message
   def destroy_for(user)
     self.destroyed_by_sender = true if sent_by? user
     self.destroyed_by_recipient = true if sent_to? user
-    destroy if destroyed_by_recipient and destroyed_by_sender
+    
+    if destroyed_by_recipient and destroyed_by_sender
+      destroy
+    else
+      save
+    end
   end
   
   private

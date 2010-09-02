@@ -42,6 +42,7 @@ class MessagesController < ApplicationController
       flash[:notice] = I18n.t 'controllers.messages.flash_create'
       redirect_to messages_path
     else
+      flash[:notice] = @message.errors.errors[:base].join("\n") if @message.errors.errors.has_key?(:base)
       render :action => "edit"
     end
   end
@@ -49,6 +50,8 @@ class MessagesController < ApplicationController
   def destroy
     @message = Message.find(params[:id])
     @message.destroy_for(current_zooniverse_user)
+    flash[:notice] = I18n.t 'controllers.messages.flash_destroyed'
+    redirect_to messages_path
   end
   
   def recipient_search

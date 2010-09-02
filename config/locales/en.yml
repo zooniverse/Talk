@@ -17,6 +17,7 @@ en:
       not_authorised: "You don't have permissions to view this page"
     messages:
       flash_create: "Message sent"
+      flash_destroyed: "Message deleted"
     collections:
       flash_create: "Collection created"
       flash_updated: "Collection updated"
