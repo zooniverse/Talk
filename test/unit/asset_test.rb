@@ -9,9 +9,8 @@ class AssetTest < ActiveSupport::TestCase
     
     should_associate :discussions
     should_include_modules :focus, :taggable, 'MongoMapper::Document'
-    should_include_plugins :xapify
     should_have_keys :zooniverse_id, :location, :thumbnail_location, :coords, :size, :taggings,
-                     :conversation_id, :discussion_ids, :created_at, :updated_at, :xap_id
+                     :conversation_id, :discussion_ids, :created_at, :updated_at
     
     should "include a working Focus" do
       [:conversation_id, :discussion_ids].each{ |key| assert @asset.respond_to?(key) }
@@ -54,7 +53,7 @@ class AssetTest < ActiveSupport::TestCase
       assert_equal [collection], @asset.collections
     end
     
-    should "find discussions that #mentions this asset" do
+    should_eventually "find discussions that #mentions this asset" do
       assert_equal [@asset.discussions.first], @asset.mentions
     end
   end

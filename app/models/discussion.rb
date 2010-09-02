@@ -3,7 +3,6 @@ class Discussion
   include MongoMapper::Document
   include ZooniverseId
   include Taggable
-  plugin Xapify
   
   zoo_id :prefix => "D"
   key :subject, String, :required => true
@@ -24,9 +23,7 @@ class Discussion
   before_create :set_started_by
   after_save :update_counts
   
-  scope :featured, :featured=>true 
-  
-  xapify_fields :tags
+  scope :featured, :featured => true
   
   # Fetches the Focus of this Discussion if it exists
   def focus
@@ -52,8 +49,8 @@ class Discussion
   # Finds discussions mentioning a focus
   def self.mentioning(focus, limit = 10)
     return [] if Comment.count == 0
-    comments = Comment.search "mentions:#{focus.zooniverse_id}", :limit => 100, :collapse => :discussion_id, :from_mongo => true
-    comments[0, limit].map{ |comment| comment.discussion }
+    # comments = Comment.search focus.zooniverse_id, :limit => limit, :group_by => :discussion_id
+    []
   end
   
   # True if discussing LiveCollections

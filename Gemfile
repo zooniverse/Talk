@@ -10,7 +10,6 @@ gem 'bson_ext', '1.0.7'
 gem 'mongo_mapper', '0.8.4'
 gem 'rubycas-client', '2.2.1'
 gem 'state_machine', '0.9.4'
-gem 'xapian-fu', '1.1.2'
 gem 'bluecloth', '2.0.7'
 # gem 'paperclip'
 

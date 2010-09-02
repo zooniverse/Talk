@@ -8,10 +8,9 @@ class CommentTest < ActiveSupport::TestCase
       @comment = @comment1
     end
     
-    should_have_keys :discussion_id, :response_to_id, :author_id, :upvotes, :body, :tags, :mentions, :created_at, :updated_at, :xap_id
+    should_have_keys :discussion_id, :response_to_id, :author_id, :upvotes, :body, :_body, :tags, :mentions, :created_at, :updated_at
     should_associate :author, :discussion, :events
     should_include_modules 'MongoMapper::Document'
-    should_include_plugins :xapify
     
     context "in #response_to another" do
       setup do
@@ -47,10 +46,6 @@ class CommentTest < ActiveSupport::TestCase
       should "should only score once " do
         assert_equal @votes_before, @comment.reload.upvotes.count
       end
-    end
-    
-    should "have #keywords" do
-      assert_equal @comment.tags, @comment.keywords
     end
     
     should "find #most_recent" do

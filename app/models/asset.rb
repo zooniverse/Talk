@@ -3,7 +3,6 @@ class Asset
   include MongoMapper::Document
   include Focus
   include Taggable
-  plugin Xapify
   
   key :zooniverse_id, String, :required => true
   key :location, String, :required => true
@@ -11,8 +10,6 @@ class Asset
   key :coords, Array
   key :size, Array
   timestamps!
-  
-  xapify_fields :tags => Array
   
   # selects the most recently mentioned (ie AM0000BLAH was mentioned in a comment) assets
   def self.most_recently_mentioned(limit = 10)
@@ -45,10 +42,11 @@ class Asset
   # Finds assets that match the given keywords
   #   e.g. Asset.by_keywords('tag1', 'tag2', :page => 1, :per_page => 5)
   def self.with_keywords(*args)
-    options = { :page => 0, :per_page => 10 }.update args.extract_options!
-    results = Asset.search "tags:#{ args.join(' ') }", :limit => 1_000
-    results = results[ options[:page] * options[:per_page], options[:per_page] ]
-    results.map{ |result| Asset.find(result[:_id]) }
+    opts = { :page => 0, :per_page => 10 }.update(args.extract_options!)
+    args = args.first if args.first.is_a? Array
+    criteria = args.collect{ |tag| { :"taggings.#{tag}".exists => true } }.inject :merge
+    order = args.collect{ |tag| "taggings.#{tag} desc" }.join(', ')
+    results = Asset.where(criteria).sort(order).paginate :page => opts[:page], :per_page => opts[:per_page]
   end
   
   # Find collections containing this asset

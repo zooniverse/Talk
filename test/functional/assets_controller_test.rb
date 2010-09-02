@@ -54,7 +54,7 @@ class AssetsControllerTest < ActionController::TestCase
         assert_select '.lower-row .rhc .panel:nth-child(2) .inner ul li a', :text => @discussion.subject
       end
       
-      should "display mentions list" do
+      should_eventually "display mentions list" do
         assert_select '.lower-row .rhc .panel:nth-child(3) h2', :text => 'Mentions'
         assert_select '.lower-row .rhc .panel:nth-child(3) .inner ul li a', :text => @discussion.subject
       end

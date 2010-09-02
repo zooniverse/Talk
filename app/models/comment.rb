@@ -1,32 +1,36 @@
 # A Comment on a Discussion by a User
 class Comment
   include MongoMapper::Document
-  plugin Xapify
   
   key :discussion_id, ObjectId
   key :response_to_id, ObjectId
   key :author_id, ObjectId, :required => true
   key :upvotes, Array
   key :body, String, :required => true
+  key :_body, Array
   key :tags, Array
   key :mentions, Array # mentioned Focii, whether these make their way up to the discussion level is TBD
   timestamps!
-  
-  xapify_fields :discussion_id, :focus_type, :focus_id, :body, :keywords, :mentions, :created_at
   
   belongs_to :discussion
   belongs_to :author, :class_name => "User"
   many :events, :as => :eventable
   
   after_validation_on_create :parse_body
+  before_create :split_body
   after_create :push_tags
   
   TAG = /#([-\w\d]{3,40})/im
   MENTION = /([A|C|D]MZ\w{7})/m
   
-  # Alias for tags (xapian indexes use this)
-  def keywords
-    self.tags
+  def self.search(*args)
+    opts = { :page => 1, :per_page => 10, :order => :created_at.desc, :field => :_body }.update(args.extract_options!)
+    opts[:per_page] = opts[:limit] if opts.has_key?(:limit)
+    opts[:fields] = [opts[:fields]] unless opts[:fields].is_a?(Array)
+    
+    criteria = opts[:criteria] || {}
+    criteria.merge!(opts[:field].all => args.first.split)
+    where(criteria).sort(opts[:order]).paginate(:page => opts[:page], :per_page => opts[:per_page])
   end
   
   # Sets the comment being responded to
@@ -131,6 +135,10 @@ class Comment
       Discussion.collection.update({ :_id => self.discussion_id }, { "$inc" => { "taggings.#{tag}" => 1 } })
       focus_type.constantize.collection.update({ :_id => focus_id }, { "$inc" => { "taggings.#{tag}" => 1 } }) if focus_type && focus_id
     end
+  end
+  
+  def split_body
+    self._body = self.body.split
   end
   
   # Finds tags and mentions in the comment body

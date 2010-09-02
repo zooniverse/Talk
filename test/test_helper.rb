@@ -54,11 +54,6 @@ end
 
 class ActiveSupport::TestCase
   def setup
-    # To empty the xapian db
-    Comment.destroy_all
-    Asset.destroy_all
-    Discussion.destroy_all
-    
     MongoMapper.database.collections.reject{ |c| c.name == 'system.indexes' }.each do |collection|
       collection.remove
     end

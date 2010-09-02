@@ -11,7 +11,6 @@ class DiscussionTest < ActiveSupport::TestCase
     
     should_associate :comments
     should_include_modules :zooniverse_id, :taggable, 'MongoMapper::Document'
-    should_include_plugins :xapify
     should_have_keys :zooniverse_id, :taggings, :subject, :focus_id, :focus_type, :slug, :started_by_id,
                      :featured, :number_of_users, :number_of_comments, :created_at, :updated_at
     
@@ -33,7 +32,7 @@ class DiscussionTest < ActiveSupport::TestCase
       assert_same_elements [@discussion, @discussion2, @discussion3], Discussion.trending(3)
     end
     
-    should "find #mentioning" do
+    should_eventually "find #mentioning" do
       assert_equal [@discussion], Discussion.mentioning(@asset)
     end
     

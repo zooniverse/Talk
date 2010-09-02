@@ -18,8 +18,7 @@ class LiveCollection
   # Finds assets that match the tags in the LiveCollection
   #   e.g. live_collection.assets(:page => 1, :per_page => 5)
   def assets(*args)
-    options = { :page => 0, :per_page => 10 }.update args.extract_options!
-    Asset.with_keywords(self.tags, options)
+    Asset.with_keywords(self.tags, args.extract_options!)
   end
   
   # Bypasses the Focus#tags aggregation
