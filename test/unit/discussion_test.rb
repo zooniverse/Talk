@@ -32,7 +32,7 @@ class DiscussionTest < ActiveSupport::TestCase
       assert_same_elements [@discussion, @discussion2, @discussion3], Discussion.trending(3)
     end
     
-    should_eventually "find #mentioning" do
+    should "find #mentioning" do
       assert_equal [@discussion], Discussion.mentioning(@asset)
     end
     

@@ -28,7 +28,7 @@ class LiveCollectionsControllerTest < ActionController::TestCase
         assert_select '.rhc .panel .inner ul li a', :text => @discussion.subject
       end
       
-      should_eventually "display mentions list" do
+      should "display mentions list" do
         assert_select '.rhc .panel:nth-child(2) h2', :text => 'Mentions'
         assert_select '.rhc .panel:nth-child(2) .inner ul li a', :text => @discussion.subject
       end

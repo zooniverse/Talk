@@ -53,7 +53,7 @@ class AssetTest < ActiveSupport::TestCase
       assert_equal [collection], @asset.collections
     end
     
-    should_eventually "find discussions that #mentions this asset" do
+    should "find discussions that #mentions this asset" do
       assert_equal [@asset.discussions.first], @asset.mentions
     end
   end

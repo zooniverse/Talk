@@ -49,8 +49,17 @@ class Discussion
   # Finds discussions mentioning a focus
   def self.mentioning(focus, limit = 10)
     return [] if Comment.count == 0
-    # comments = Comment.search focus.zooniverse_id, :limit => limit, :group_by => :discussion_id
-    []
+    collected = Hash.new(0)
+    page = 1
+    
+    begin
+      comments = Comment.search focus.zooniverse_id, :fields => :mentions
+      comments.each{ |comment| collected[comment.discussion_id] += 1 }
+      comments = comments.next_page
+    end while(comments && collected.length < limit)
+    
+    collected = collected.sort{ |a, b| b[1] <=> a[1] }.collect{ |id, count| id }.uniq
+    collected[0, limit].map{ |id| find(id) }
   end
   
   # True if discussing LiveCollections
