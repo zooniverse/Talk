@@ -82,9 +82,9 @@ class CommentTest < ActiveSupport::TestCase
       assert_equal @asset, @comment.focus
     end
     
-    should "#push_tags to discussion and focus" do
-      assert_equal ['tag2', 'tag4', 'tag1'], @discussion.tags
-      assert_equal ['tag2', 'tag4', 'tag1'], @asset.tags
+    should "#create_tags" do
+      assert_same_elements ['tag2', 'tag4', 'tag1'], @asset.tags
+      assert_equal ['tag2', 'tag4', 'tag1'], Tag.for_focus(@asset).collect{ |t| t.name }
     end
     
     context "parsing tags and mentions" do

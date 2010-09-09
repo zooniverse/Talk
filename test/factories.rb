@@ -8,7 +8,6 @@ Factory.define :asset do |a|
   a.zooniverse_id       { "AMZ#{Factory.next(:name)}" }
   a.location            "http://imageserver.org/assets/1"
   a.thumbnail_location  "http://imageserver.org/assets/thumbs/1"
-  a.taggings            Hash.new({ "monkey" => 1 })
 end
 
 Factory.define :user do |u|

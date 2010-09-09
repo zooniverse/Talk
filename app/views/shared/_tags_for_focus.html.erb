@@ -1,11 +1,11 @@
 <!-- Displays tags for a focus -->
-<% unless @focus.tags.empty? %>
+<% unless @focus.keywords.empty? %>
 	<div id="tags-for-focus" class="panel tags right">
 		<h2><%= t 'homepage.keywords' %></h2>
 		<div class="inner">
 		  	<ul>
-		    <%- @focus.tags.each do |tag| %>
-		  		<li><%= link_to tag, :controller => :search, :action => :index, :search => "keywords:#{tag}" %></li>
+		    <%- @focus.keywords.each do |keyword| %>
+		  		<li><%= link_to keyword, :controller => :search, :action => :index, :search => "keywords:#{keyword}" %></li>
 		  	<% end -%>
 			</ul>
 			<div class="push"></div>

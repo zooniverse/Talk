@@ -10,8 +10,8 @@ class DiscussionTest < ActiveSupport::TestCase
     end
     
     should_associate :comments
-    should_include_modules :zooniverse_id, :taggable, 'MongoMapper::Document'
-    should_have_keys :zooniverse_id, :taggings, :subject, :focus_id, :focus_type, :slug, :started_by_id,
+    should_include_modules :zooniverse_id, 'MongoMapper::Document'
+    should_have_keys :zooniverse_id, :subject, :focus_id, :focus_type, :slug, :started_by_id,
                      :featured, :number_of_users, :number_of_comments, :created_at, :updated_at
     
     should "#set_slug correctly" do
@@ -37,7 +37,7 @@ class DiscussionTest < ActiveSupport::TestCase
     end
     
     should "#aggregate_comments" do
-      assert_equal ['tag2', 'tag4', 'tag1'], @discussion.tags
+      assert_equal ['tag2', 'tag4', 'tag1'], @discussion.keywords
     end
     
     should "#update_counts" do

@@ -109,7 +109,6 @@ class ActiveSupport::TestCase
     
     @discussion = focus.discussions.first
     @conversation = focus.conversation
-    @discussion.comments.each.with_index{ |c, i| instance_variable_set "@comment#{i + 1}", c }
   end
   
   def build_discussions_for(focus)
@@ -119,11 +118,11 @@ class ActiveSupport::TestCase
     focus.save
     discussion.reload
     
-    comment1 = Comment.new(:body => "blah #tag1 blah #tag2 blah #{focus.zooniverse_id} is awesome", :author => user)
-    comment2 = Comment.new(:body => "blah #tag2 blah #tag4 blah #{focus.zooniverse_id} is awesome", :author => Factory(:user))
-    comment3 = Comment.new(:body => "blah #tag2 blah #tag4 blah #{focus.zooniverse_id} is awesome", :author => Factory(:user))
+    @comment1 = Comment.new(:body => "blah #tag1 blah #tag2 blah #{focus.zooniverse_id} is awesome", :author => user)
+    @comment2 = Comment.new(:body => "blah #tag2 blah #tag4 blah #{focus.zooniverse_id} is awesome", :author => Factory(:user))
+    @comment3 = Comment.new(:body => "blah #tag2 blah #tag4 blah #{focus.zooniverse_id} is awesome", :author => Factory(:user))
     
-    [comment1, comment2, comment3].each do |comment|
+    [@comment1, @comment2, @comment3].each do |comment|
       discussion.comments << comment
     end
     
@@ -145,7 +144,7 @@ class ActiveSupport::TestCase
   
   def build_live_collection(assets = 5)
     collection = LiveCollection.create(:name => "LiveCollection", :user => Factory(:user), :tags => ['tag1'])
-    assets.times{ Factory(:asset, :taggings => { 'tag1' => 1 }) }
+    assets.times{ Factory(:asset, :tags => ['tag1']) }
     collection
   end
   

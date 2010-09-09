@@ -35,7 +35,7 @@ class CollectionsControllerTest < ActionController::TestCase
       
       should "display collection tags" do
         assert_select '#tags-for-focus h2', :text => I18n.t('homepage.keywords')
-        assert_select '#tags-for-focus ul li a', :text => @collection.tags.first
+        assert_select '#tags-for-focus ul li a', :text => @collection.keywords.first
       end
       
       should "display collection assets" do

@@ -42,11 +42,11 @@ class DiscussionsControllerTest < ActionController::TestCase
       end
       
       should "Display the author of the discussion" do
-        assert_select ".main h2", :text => "Started by #{@discussion.comments.first.author.name}"
+        assert_select ".main h2", :text => "Started by #{@discussion.started_by.name}"
       end
       
       should "Display the discussion tags" do
-        assert_select ".subtext > a", @discussion.tags.length
+        assert_select ".subtext > a", @discussion.keywords.length
       end
       
       should "not show the admin-tools" do
@@ -55,7 +55,7 @@ class DiscussionsControllerTest < ActionController::TestCase
       
       should "list the comments" do
         assert_select ".comments-list > div.comment", @discussion.comments.length
-        assert_select ".comments-list > div.comment:nth-child(1) .name", :text => @comment1.author.name
+        assert_select ".comments-list > div.comment:nth-child(1) .name", :text => @discussion.comments.first.author.name
       end
     end
     

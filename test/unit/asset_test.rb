@@ -8,8 +8,8 @@ class AssetTest < ActiveSupport::TestCase
     end
     
     should_associate :discussions
-    should_include_modules :focus, :taggable, 'MongoMapper::Document'
-    should_have_keys :zooniverse_id, :location, :thumbnail_location, :coords, :size, :taggings,
+    should_include_modules :focus, 'MongoMapper::Document'
+    should_have_keys :zooniverse_id, :location, :thumbnail_location, :coords, :size, :tags,
                      :conversation_id, :discussion_ids, :created_at, :updated_at
     
     should "include a working Focus" do

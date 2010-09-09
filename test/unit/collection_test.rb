@@ -14,9 +14,9 @@ class CollectionTest < ActiveSupport::TestCase
       end
     end
   
-    should_have_keys :name, :description, :taggings, :asset_ids, :user_id, :created_at, :updated_at
+    should_have_keys :name, :description, :asset_ids, :user_id, :created_at, :updated_at
     should_associate :assets, :user
-    should_include_modules :focus, :zooniverse_id, :taggable, 'MongoMapper::Document'
+    should_include_modules :focus, :zooniverse_id, 'MongoMapper::Document'
     
     should "find #most_recent" do
       assert_same_elements [@collection, @collection2, @collection3], Collection.most_recent

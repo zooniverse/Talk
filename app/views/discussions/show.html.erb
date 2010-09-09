@@ -26,8 +26,8 @@
 			<h2><strong><%= t 'discussion.meta.startedby' %> <%= @discussion.started_by.name unless @discussion.started_by.nil? %></strong></h2>
 			<h1><%= @discussion.subject %></h1>
 			<div class="subtext">
-				<% @discussion.tags.each do |tag| %>
-					<%= link_to tag, :controller => :search, :action => :index, :search => "keywords:#{tag}" %>
+				<% @discussion.keywords.each do |keyword| %>
+					<%= link_to keyword, :controller => :search, :action => :index, :search => "keywords:#{keyword}" %>
 				<% end %>		
 			</div>
 			<% if current_zooniverse_user && current_zooniverse_user.privileged? %>
