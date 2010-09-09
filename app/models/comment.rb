@@ -68,30 +68,6 @@ class Comment
     Comment.limit(opts[:limit]).sort(opts[:order]).all(:mentions => focus.zooniverse_id)
   end
   
-  # Gets the top most used tags
-  def self.trending_tags(limit = 10)
-    collected = {}
-    Tag.sort(:count.desc).limit(limit).each{ |tag| collected[tag.name] = tag.count }
-    collected
-  end
-  
-  # Normalizes and interpolates trending_tags onto a range
-  #  Comment.rank_tags :from => 0, :to => 8
-  def self.rank_tags(*args)
-    opts = { :from => 0, :to => 10 }.merge(args.extract_options!)
-    new_range = opts[:to] - opts[:from]
-    
-    trended = trending_tags
-    return {} if trended.empty?
-    min, max = trended.values.minmax
-    old_range = max - min.to_f
-    return {} if old_range == 0
-    
-    trended.each_pair do |tag, count|
-      trended[tag] = (opts[:from] + ((count - min) / old_range) * new_range).round
-    end
-  end
-  
   # The focus type of this comment
   def focus_type
     self.discussion.nil? ? nil : self.discussion.focus_type

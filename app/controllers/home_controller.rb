@@ -13,7 +13,7 @@ class HomeController < ApplicationController
     @trending_collections = Collection.trending 5
     @trending_discussions = Discussion.trending 5
     
-    @trending_tags = Comment.rank_tags :from => 0, :to => 8
+    @trending_tags = Tag.rank_tags :from => 0, :to => 8
     
     # Loading data for boards
     page_size = 6

@@ -58,18 +58,6 @@ class CommentTest < ActiveSupport::TestCase
       assert_same_elements [@comment1, @comment2, @comment3], Comment.mentioning(@asset, :limit => 3)
     end
     
-    should "find #trending_tags" do
-      assert_equal ['tag2', 'tag4', 'tag1'], Comment.trending_tags(3).keys
-    end
-    
-    should "#rank_tags correctly" do
-      ranked = Comment.rank_tags :from => 3, :to => 8
-      
-      assert_equal 3, ranked['tag1']
-      assert_equal 6, ranked['tag4']
-      assert_equal 8, ranked['tag2']
-    end
-    
     should "know the #focus_type" do
       assert_equal "Asset", @comment.focus_type
     end
@@ -85,6 +73,10 @@ class CommentTest < ActiveSupport::TestCase
     should "#create_tags" do
       assert_same_elements ['tag2', 'tag4', 'tag1'], @asset.tags
       assert_equal ['tag2', 'tag4', 'tag1'], Tag.for_focus(@asset).collect{ |t| t.name }
+      
+      [['tag1', 1], ['tag2', 3], ['tag4', 2]].each do |tag, count|
+        assert Tagging.first(:name => tag, :focus_id => @asset.id, :focus_type => "Asset", :count => count)
+      end
     end
     
     context "parsing tags and mentions" do
