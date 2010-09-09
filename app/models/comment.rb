@@ -63,7 +63,7 @@ class Comment
   # Finds comments mentioning a focus
   def self.mentioning(focus, *args)
     opts = { :page => 1, :per_page => 10, :order => :created_at.desc }.update(args.extract_options!)
-    Comment.sort(opts[:order]).where(:mentions => focus.zooniverse_id).paginate opts[:page], opts[:per_page]
+    Comment.sort(opts[:order]).where(:mentions => focus.zooniverse_id).paginate :page => opts[:page], :per_page => opts[:per_page]
   end
   
   # Finds the number of comments mentioning a focus
