@@ -90,5 +90,9 @@ module Focus
       self.conversation ||= Discussion.new(:subject => self.zooniverse_id)
       self.save if self.changed?
     end
+    
+    def keywords(limit = 10)
+      Tag.for_focus(self, limit).collect{ |t| t.name }
+    end
   end
 end

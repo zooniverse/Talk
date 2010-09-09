@@ -2,13 +2,13 @@
 class Asset
   include MongoMapper::Document
   include Focus
-  include Taggable
   
   key :zooniverse_id, String, :required => true
   key :location, String, :required => true
   key :thumbnail_location, String, :required => true
   key :coords, Array
   key :size, Array
+  key :tags, Array
   timestamps!
   
   # selects the most recently mentioned (ie AM0000BLAH was mentioned in a comment) assets
@@ -44,9 +44,7 @@ class Asset
   def self.with_keywords(*args)
     opts = { :page => 0, :per_page => 10 }.update(args.extract_options!)
     args = args.first if args.first.is_a? Array
-    criteria = args.collect{ |tag| { :"taggings.#{tag}".exists => true } }.inject :merge
-    order = args.collect{ |tag| "taggings.#{tag} desc" }.join(', ')
-    results = Asset.where(criteria).sort(order).paginate :page => opts[:page], :per_page => opts[:per_page]
+    Asset.where(:tags.all => args).paginate :page => opts[:page], :per_page => opts[:per_page]
   end
   
   # Find collections containing this asset

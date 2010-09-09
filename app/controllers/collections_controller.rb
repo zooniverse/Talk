@@ -9,7 +9,7 @@ class CollectionsController < ApplicationController
     @comment = Comment.new
     @comments = @collection.conversation.comments
     
-    @tags = @collection.tags
+    @tags = @collection.keywords
   end
   
   def new

@@ -18,7 +18,7 @@ class Comment
   
   after_validation_on_create :parse_body
   before_create :split_body
-  after_create :push_tags
+  after_create :create_tags
   
   TAG = /#([-\w\d]{3,40})/im
   MENTION = /([A|C|D]MZ\w{7})/m
@@ -70,30 +70,9 @@ class Comment
   
   # Gets the top most used tags
   def self.trending_tags(limit = 10)
-     map = <<-MAP
-     function() {
-       this.tags.forEach( function(tag) {
-         emit(tag, { count: 1 });
-       });
-     }
-     MAP
-
-     reduce = <<-REDUCE
-     function(key, values) {
-       var total = 0;
-       for(var i = 0; i < values.length; i++) {
-         total += values[i].count;
-       }
-
-       return { count: total };
-     }
-     REDUCE
-     
-     tags = Comment.collection.map_reduce(map, reduce).find().sort(['value.count', :desc]).limit(limit).to_a
-     
-     collected = {}
-     tags.each{ |tag| collected[tag['_id']] = tag['value']['count'].to_i }
-     collected
+    collected = {}
+    Tag.sort(:count.desc).limit(limit).each{ |tag| collected[tag.name] = tag.count }
+    collected
   end
   
   # Normalizes and interpolates trending_tags onto a range
@@ -129,14 +108,6 @@ class Comment
     focus_type.constantize.find(focus_id)
   end
   
-  # Adds tags from this comment to the discussion and focus
-  def push_tags
-    self.tags.each do |tag|
-      Discussion.collection.update({ :_id => self.discussion_id }, { "$inc" => { "taggings.#{tag}" => 1 } })
-      focus_type.constantize.collection.update({ :_id => focus_id }, { "$inc" => { "taggings.#{tag}" => 1 } }) if focus_type && focus_id
-    end
-  end
-  
   def split_body
     self._body = self.body.split
   end
@@ -145,5 +116,23 @@ class Comment
   def parse_body
     self.tags = self.body.scan(TAG).flatten
     self.mentions = self.body.scan(MENTION).flatten
+  end
+  
+  # Adds tags from this comment to the discussion and focus
+  def create_tags
+    if focus_type == "Asset"
+      Asset.collection.update({ :_id => focus_id }, { :$addToSet => { :tags => { :$each => self.tags } } })
+    end
+    
+    self.tags.uniq.each do |tag_name|
+      Tag.collection.update({ :name => tag_name }, { :$inc => { :count => 1 } }, :upsert => true)
+      
+      unless focus_id.nil?
+        Tagging.collection.update({ :name => tag_name, :focus_id => focus_id, :focus_type => focus_type }, {
+          :$addToSet => { :discussion_ids => self.discussion_id, :comment_ids => self.id },
+          :$inc => { :count => 1 }
+        }, :upsert => true)
+      end
+    end
   end
 end

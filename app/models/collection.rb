@@ -3,7 +3,6 @@ class Collection
   include MongoMapper::Document
   include Focus
   include ZooniverseId
-  include Taggable
   
   zoo_id :prefix => "C", :sub_id => "S"
   key :name, String, :required => true

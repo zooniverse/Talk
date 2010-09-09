@@ -21,11 +21,6 @@ class LiveCollection
     Asset.with_keywords(self.tags, args.extract_options!)
   end
   
-  # Bypasses the Focus#tags aggregation
-  def tags
-    self[:tags]
-  end
-  
   # Finds the most recently created LiveCollections
   def self.most_recent(limit = 10)
     LiveCollection.limit(limit).sort([:created_at, :desc]).all

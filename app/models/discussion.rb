@@ -2,7 +2,6 @@
 class Discussion
   include MongoMapper::Document
   include ZooniverseId
-  include Taggable
   
   zoo_id :prefix => "D"
   key :subject, String, :required => true
@@ -93,6 +92,10 @@ class Discussion
     self.started_by_id = user.id
   end
   
+  def keywords(limit = 10)
+    Tag.for_discussion(self, limit).collect{ |t| t.name }
+  end
+  
   private
   # Creates a prettyfied slug for the URL
   def set_slug
@@ -101,7 +104,8 @@ class Discussion
   
   # Sets the user that started this discussion
   def set_started_by
-    self.started_by_id = self.comments.first.author.id unless self.comments.empty?
+    return if self.comments.empty? || !self.started_by_id.nil?
+    self.started_by_id = self.comments.first.author.id
   end
   
   # Updates the denormalized counts
