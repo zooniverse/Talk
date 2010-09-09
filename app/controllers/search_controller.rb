@@ -2,25 +2,37 @@ class SearchController < ApplicationController
   respond_to :html, :js
   
   def index 
-    @search = params[:search]
+    @search = params[:search] ? params[:search] : ""
     @page = params[:page] ? params[:page].to_i : 1
     @per_page = params[:per_page] ? params[:per_page].to_i : 10
     
-    @comments = Comment.search @search, :limit => 1_000, :per_page => @per_page, :page => @page, :from_mongo => true
-    group_by_type(@comments)
+    if @search =~ /^keywords:/i
+      tags = @search.sub(/^keywords:/i, '').gsub(/#|,/, ' ').split.collect{ |tag| tag.strip.downcase }.join(' ')
+      @comments = Comment.search tags, :field => :tags, :per_page => @per_page, :page => @page
+      group_by_type(@comments)
+      @assets = Asset.with_keywords tags.split, :page => @page, :per_page => @per_page
+    else
+      @comments = Comment.search @search, :per_page => @per_page, :page => @page
+      group_by_type(@comments)
+    end
   end
   
   def group_by_type(search_results)
     grouped = {}
+    grouped["Discussion"] = []
     
     search_results.each do |result|
-      kind = result.focus_type || "Discussion"
-      grouped[kind] ||= []
-      grouped[kind] << (result.focus || result.discussion)
+      grouped["Discussion"] << result.discussion
+      
+      kind = result.focus_type
+      if kind
+        grouped[kind] ||= []
+        grouped[kind] << result.focus
+      end
     end
     
     grouped.each_pair do |kind, list|
-      instance_variable_set("@#{kind.underscore.pluralize}", list)
+      instance_variable_set("@#{kind.underscore.pluralize}", list.uniq)
     end
   end
   

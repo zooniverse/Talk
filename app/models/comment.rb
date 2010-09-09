@@ -26,7 +26,6 @@ class Comment
   def self.search(*args)
     opts = { :page => 1, :per_page => 10, :order => :created_at.desc, :field => :_body }.update(args.extract_options!)
     opts[:per_page] = opts[:limit] if opts.has_key?(:limit)
-    opts[:fields] = [opts[:fields]] unless opts[:fields].is_a?(Array)
     
     criteria = opts[:criteria] || {}
     criteria.merge!(opts[:field].all => args.first.split)
@@ -63,9 +62,13 @@ class Comment
   
   # Finds comments mentioning a focus
   def self.mentioning(focus, *args)
-    opts = { :limit => 10, :order => [:created_at, :desc] }
-    opts = opts.update(args.first) unless args.first.nil?
-    Comment.limit(opts[:limit]).sort(opts[:order]).all(:mentions => focus.zooniverse_id)
+    opts = { :page => 1, :per_page => 10, :order => :created_at.desc }.update(args.extract_options!)
+    Comment.sort(opts[:order]).where(:mentions => focus.zooniverse_id).paginate opts[:page], opts[:per_page]
+  end
+  
+  # Finds the number of comments mentioning a focus
+  def self.count_mentions(focus)
+    Comment.where(:mentions => focus.zooniverse_id).count
   end
   
   # The focus type of this comment

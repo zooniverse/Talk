@@ -52,13 +52,19 @@ class Discussion
     page = 1
     
     begin
-      comments = Comment.search focus.zooniverse_id, :fields => :mentions
+      comments = Comment.where(:mentions => focus.zooniverse_id).only(:discussion_id).paginate(:page => page)
       comments.each{ |comment| collected[comment.discussion_id] += 1 }
       comments = comments.next_page
     end while(comments && collected.length < limit)
     
     collected = collected.sort{ |a, b| b[1] <=> a[1] }.collect{ |id, count| id }.uniq
     collected[0, limit].map{ |id| find(id) }
+  end
+  
+  # Finds the number of discussions mentioning a focus
+  def self.count_mentions(focus)
+    comments = Comment.where(:mentions => focus.zooniverse_id).only(:discussion_id).all
+    comments.collect{ |c| c.discussion_id }.uniq.length
   end
   
   # True if discussing LiveCollections

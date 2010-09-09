@@ -48,12 +48,22 @@ class Asset
   end
   
   # Find collections containing this asset
-  def collections
-    collections = Collection.with_asset(self)
+  def collections(limit = 10)
+    collections = Collection.with_asset self, :limit => limit
   end
   
-  # Find discussions mentioning this asset
-  def mentions
-    mentions = Discussion.mentioning(self)
+  # Finds comments mentioning this asset
+  def mentions(limit = 10)
+    mentions = Comment.mentioning(self, limit)
+  end
+  
+  # Counts comments mentioning this asset
+  def count_mentions
+    Comment.count_mentions(self)
+  end
+  
+  # Counts collections with this asset
+  def count_collections
+    Collection.count(:asset_ids => self.id)
   end
 end
