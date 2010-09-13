@@ -32,7 +32,7 @@ class Discussion
   
   # Finds the most recent discussions
   def self.most_recent(limit = 10)
-    Discussion.limit(limit).sort([:created_at, :desc]).all
+    Discussion.limit(limit).sort(:created_at.desc).all
   end
   
   # Finds the most recent comments in this discussion
@@ -42,7 +42,7 @@ class Discussion
   
   # Finds popular discussions
   def self.trending(limit = 10)
-    Discussion.limit(limit).sort([:number_of_comments, :desc]).all
+    Discussion.limit(limit).sort(:number_of_comments.desc).all
   end
   
   # Finds discussions mentioning a focus

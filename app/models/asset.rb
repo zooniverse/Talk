@@ -28,7 +28,7 @@ class Asset
   
   # selects the most recently discussed assets (ie the assets with the newest comments )
   def self.most_recently_commented_on(limit = 10)
-    cursor = Discussion.collection.find({ :focus_type => "Asset" }).sort([:created_at, :desc])
+    cursor = Discussion.where(:focus_type => "Asset").sort(:created_at.desc).find_each
     asset_ids = {}
     
     while asset_ids.length < limit && cursor.has_next?

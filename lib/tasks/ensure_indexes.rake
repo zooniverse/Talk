@@ -18,6 +18,7 @@ task :ensure_indexes => :environment do
   Collection.ensure_index [['zooniverse_id', 1]], :unique => true
   Collection.ensure_index [['user_id', 1], ['created_at', -1]]
   Collection.ensure_index [['asset_ids', 1]]
+  Collection.ensure_index [['created_at', -1]]
   
   puts "Building indexes for Comment"
   drop_indexes_on(Comment)
@@ -25,8 +26,9 @@ task :ensure_indexes => :environment do
   Comment.ensure_index [['discussion_id', 1], ['created_at', -1]]
   Comment.ensure_index [['author_id', 1], ['created_at', -1]]
   Comment.ensure_index [['tags', 1]]
-  Comment.ensure_index [['mentions', 1]]
+  # Comment.ensure_index [['mentions', 1], ['created_at', -1]]
   Comment.ensure_index [['_body', 1], ['created_at', -1]]
+  Comment.ensure_index [['created_at', -1]]
   
   puts "Building indexes for Discussion"
   drop_indexes_on(Discussion)
@@ -35,6 +37,9 @@ task :ensure_indexes => :environment do
   Discussion.ensure_index [['focus_id', 1], ['created_at', -1]]
   Discussion.ensure_index [['focus_type', 1], ['created_at', -1]]
   Discussion.ensure_index [['featured', 1], ['created_at', -1]]
+  Discussion.ensure_index [['created_at', -1]]
+  Discussion.ensure_index [['focus_type', 1], ['updated_at', -1], ['number_of_comments', -1]]
+  Discussion.ensure_index [['number_of_comments', -1]]
   
   puts "Building indexes for Event"
   drop_indexes_on(Event)
@@ -55,6 +60,7 @@ task :ensure_indexes => :environment do
   puts "Building indexes for Tag"
   drop_indexes_on(Tag)
   Tag.ensure_index [['name', 1], ['count', -1]]
+  Tag.ensure_index [['count', -1]]
   
   puts "Building indexes for Tagging"
   drop_indexes_on(Tagging)

@@ -17,7 +17,7 @@ class Collection
   
   # Finds the most recent Collections
   def self.most_recent(limit = 10)
-    Collection.limit(limit).sort(['created_at', :desc]).all
+    Collection.limit(limit).sort(:created_at.desc).all
   end
   
   # Finds the most recent assets added to this Collection
