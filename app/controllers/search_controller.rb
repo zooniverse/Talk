@@ -25,6 +25,7 @@ class SearchController < ApplicationController
       grouped["Discussion"] << result.discussion
       
       kind = result.focus_type
+      kind = "Collection" if kind == "LiveCollection"
       if kind
         grouped[kind] ||= []
         grouped[kind] << result.focus

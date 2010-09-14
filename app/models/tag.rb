@@ -27,6 +27,7 @@ class Tag
     
     trended = {}
     Tag.sort(:count.desc).limit(opts[:limit]).all.each{ |tag| trended[tag.name] = tag.count }
+    return {} if trended.empty?
 
     min, max = trended.values.minmax
     old_range = max - min.to_f

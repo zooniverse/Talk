@@ -1,7 +1,7 @@
 <div class="upper-row">
 	<div class="rhc">
 		<div class="panel discussion-items">
-  		<%- if @comments %>
+  		<%- if @comments.any? %>
   			<h1><%= pluralize @comments.total_pages, 'page' %> of results matching <em><%= @search %></em></h1>
   		<%- else %>
   		  <h1>No results found</h1>
@@ -19,31 +19,38 @@
 </div>
 
 <div class="lower-row">
-	<div class="lhc">		
-		<div class="comments-list">
-			<h1>Comments</h1>
-			<%- if @comments %>
+	<div class="lhc">
+	  <%- if @comments && @comments.any? %>
+  		<div class="comments-list">
+  			<h1>Comments</h1>
 				<%= render :partial => "shared/comment_short", :collection => @comments %>
-			<% end -%>
-			<%- if @page < @comments.total_pages %>
-  			<div class="more-results">
-  			  <%= more_results "More", :page => @page + 1 %>
-  		  </div>
-  	  <% end -%>
-		</div>
+  			<%- if @page < @comments.total_pages %>
+    			<div class="more-results">
+    			  <%= more_results "More", :page => @page + 1 %>
+    		  </div>
+    	  <% end -%>
+  		</div>
+		<% end -%>
 		
-		<div class="comments-list">
-			<h1>Discussions</h1>
-			<%- if @discussions %>
+		<%- if @discussions && @discussions.any? %>
+  		<div class="comments-list">
+  			<h1>Discussions</h1>
   			<%= render :partial => "shared/list_of_discussions_main", :locals => { :discussions_list => @discussions, :id_of_box => "found-discussions" } %>
-			<% end -%>
-		</div>
+  		</div>
+		<% end -%>
 		
-		<div class="comments-list">
-			<h1>Assets</h1>
-			<%- if @assets %>
+		<%- if @assets && @assets.any? %>
+  		<div class="comments-list">
+  			<h1>Assets</h1>
   			<%= render :partial => "shared/list_of_assets", :locals => { :assets_list => @assets, :id_of_box => "found-assets" } %>
-			<% end -%>
-		</div>
+  		</div>
+		<% end -%>
+		
+		<%- if @collections && @collections.any? %>
+  		<div class="comments-list">
+  			<h1>Collections</h1>
+  			<%= render :partial => "shared/list_of_collections", :locals => { :collections_list => @collections, :id_of_box => "found-collections" } %>
+  		</div>
+		<% end -%>
 	</div>
 </div>

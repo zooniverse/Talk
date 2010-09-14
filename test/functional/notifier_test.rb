@@ -13,7 +13,7 @@ class NotifierTest < ActionMailer::TestCase
       end
 
       should "send email" do
-        assert !ActionMailer::Base.deliveries.empty?, "email didn't send"
+        assert ActionMailer::Base.deliveries.any?, "email didn't send"
         assert_equal [@user.email], @email.to
         assert_equal "You have been banned", @email.subject
       end
@@ -26,7 +26,7 @@ class NotifierTest < ActionMailer::TestCase
       end
 
       should "send email" do
-        assert !ActionMailer::Base.deliveries.empty?, "email didn't send"
+        assert ActionMailer::Base.deliveries.any?, "email didn't send"
         assert_equal [@user.email], @email.to
         assert_equal "Welcome back", @email.subject
       end
@@ -39,7 +39,7 @@ class NotifierTest < ActionMailer::TestCase
       end
 
       should "send email" do
-        assert !ActionMailer::Base.deliveries.empty?, "email didn't send"
+        assert ActionMailer::Base.deliveries.any?, "email didn't send"
         assert_equal [@message.recipient.email], @email.to
         assert_equal "New message from #{@message.sender.name}", @email.subject
       end
@@ -54,7 +54,7 @@ class NotifierTest < ActionMailer::TestCase
       end
 
       should "send email" do
-        assert !ActionMailer::Base.deliveries.empty?, "email didn't send"
+        assert ActionMailer::Base.deliveries.any?, "email didn't send"
         assert_equal [@moderator.email], @email.to
         assert_equal "#{@user.name} has been reported by #{@reporter.name}", @email.subject
       end

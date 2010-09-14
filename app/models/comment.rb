@@ -99,7 +99,7 @@ class Comment
   
   # Adds tags from this comment to the discussion and focus
   def create_tags
-    if focus_type == "Asset"
+    if focus_type == "Asset" && self.tags.any?
       Asset.collection.update({ :_id => focus_id }, { :$addToSet => { :tags => { :$each => self.tags } } })
     end
     
