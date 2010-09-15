@@ -105,5 +105,29 @@ class CommentTest < ActiveSupport::TestCase
         assert_equal nil, "a amz10000a ".scan(Comment::MENTION).flatten.first
       end
     end
+    
+    context "being searched" do
+      should "paginate" do
+        search = Comment.search "blah", :per_page => 2
+        assert_equal 5, search.total_pages
+        assert_equal 9, search.total_entries
+      end
+      
+      should "match on body terms" do
+        assert_equal [@comment], Comment.search("#tag1 #{@asset.zooniverse_id}")
+        assert_same_elements [@comment1, @comment2, @comment3], Comment.search(@asset.zooniverse_id)
+      end
+      
+      should "match on other fields" do
+        assert_same_elements [@comment1, @comment2, @comment3], Comment.search(@asset.zooniverse_id, :field => :mentions)
+      end
+      
+      should "match by focus_type" do
+        assert_same_elements [@comment1, @comment2, @comment3], Comment.search(@asset.zooniverse_id, :focus_type => "Asset")
+        [@comment1, @comment2, @comment3].each do |comment|
+          assert_contains Comment.search(:focus_type => "Asset"), comment
+        end
+      end
+    end
   end
 end

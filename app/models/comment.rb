@@ -30,7 +30,8 @@ class Comment
     opts[:per_page] = opts[:limit] if opts.has_key?(:limit)
     
     criteria = opts[:criteria] || {}
-    criteria.merge!(opts[:field].all => args.first.split)
+    criteria[:focus_type] = opts[:focus_type] if opts.has_key?(:focus_type)
+    criteria.merge!(opts[:field].all => args.first.split) unless args.first.nil?
     where(criteria).sort(opts[:order]).paginate(:page => opts[:page], :per_page => opts[:per_page])
   end
   
