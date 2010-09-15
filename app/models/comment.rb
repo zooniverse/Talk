@@ -10,6 +10,8 @@ class Comment
   key :_body, Array
   key :tags, Array
   key :mentions, Array # mentioned Focii, whether these make their way up to the discussion level is TBD
+  key :focus_id, ObjectId
+  key :focus_type, String
   timestamps!
   
   belongs_to :discussion
@@ -17,7 +19,7 @@ class Comment
   many :events, :as => :eventable
   
   after_validation_on_create :parse_body
-  before_create :split_body
+  before_create :split_body, :set_focus
   after_create :create_tags
   
   TAG = /#([-\w\d]{3,40})/im
@@ -71,20 +73,10 @@ class Comment
     Comment.where(:mentions => focus.zooniverse_id).count
   end
   
-  # The focus type of this comment
-  def focus_type
-    self.discussion.nil? ? nil : self.discussion.focus_type
-  end
-  
-  # The focus id of this comment
-  def focus_id
-    self.discussion.nil? ? nil : self.discussion.focus_id
-  end
-  
   # The focus of this comment
   def focus
-    return nil unless focus_type && focus_id
-    focus_type.constantize.find(focus_id)
+    return nil unless self.focus_type && self.focus_id
+    self.focus_type.constantize.find(self.focus_id)
   end
   
   def split_body
@@ -95,6 +87,12 @@ class Comment
   def parse_body
     self.tags = self.body.scan(TAG).flatten
     self.mentions = self.body.scan(MENTION).flatten
+  end
+  
+  # Sets the focus of this comment
+  def set_focus
+    self.focus_id = discussion.focus_id unless discussion.nil?
+    self.focus_type = discussion.focus_type unless discussion.nil?
   end
   
   # Adds tags from this comment to the discussion and focus
