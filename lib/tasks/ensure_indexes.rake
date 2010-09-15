@@ -26,7 +26,7 @@ task :ensure_indexes => :environment do
   Comment.ensure_index [['discussion_id', 1], ['created_at', -1]]
   Comment.ensure_index [['author_id', 1], ['created_at', -1]]
   Comment.ensure_index [['tags', 1]]
-  # Comment.ensure_index [['mentions', 1], ['created_at', -1]]
+  Comment.ensure_index [['mentions', 1], ['created_at', -1]]
   Comment.ensure_index [['_body', 1], ['created_at', -1]]
   Comment.ensure_index [['created_at', -1]]
   
