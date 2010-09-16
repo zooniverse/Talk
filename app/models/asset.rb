@@ -44,6 +44,7 @@ class Asset
   def self.with_keywords(*args)
     opts = { :page => 0, :per_page => 10 }.update(args.extract_options!)
     args = args.first if args.first.is_a? Array
+    return [] if args.blank?
     Asset.where(:tags.all => args).paginate :page => opts[:page], :per_page => opts[:per_page]
   end
   

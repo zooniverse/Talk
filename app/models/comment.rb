@@ -27,11 +27,13 @@ class Comment
   
   def self.search(*args)
     opts = { :page => 1, :per_page => 10, :order => :created_at.desc, :field => :_body }.update(args.extract_options!)
+    args = args.first if args.first.is_a? Array
     opts[:per_page] = opts[:limit] if opts.has_key?(:limit)
     
     criteria = opts[:criteria] || {}
-    criteria[:focus_type] = opts[:focus_type] if opts.has_key?(:focus_type)
-    criteria.merge!(opts[:field].all => args.first.split) unless args.first.nil?
+    criteria[:focus_type] = opts[:focus_type].singularize.camelize if opts.has_key?(:focus_type)
+    criteria.merge!(opts[:field].all => args.first.split) unless args.first.nil? || args.first.blank?
+    return [] if criteria.blank?
     where(criteria).sort(opts[:order]).paginate(:page => opts[:page], :per_page => opts[:per_page])
   end
   

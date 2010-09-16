@@ -5,7 +5,9 @@ class SearchController < ApplicationController
     @search = params[:search] ? params[:search] : ""
     @page = params[:page] ? params[:page].to_i : 1
     @per_page = params[:per_page] ? params[:per_page].to_i : 10
-    @for = params[:for] ? params[:for].pluralize.downcase : "comments"
+    @for = params[:for] ? params[:for].underscore.pluralize : "comments"
+    @for.sub('live_collections', 'collections')
+    
     parse_keywords
     search_terms = @keywords || @search
     
