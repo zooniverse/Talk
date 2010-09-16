@@ -18,11 +18,11 @@ class LiveCollectionTest < ActiveSupport::TestCase
       end
       
       should "increment 9 to a" do
-        assert_equal "CMZS00000a", @collections[8].zooniverse_id
+        assert_equal "CMZL00000a", @collections[8].zooniverse_id
       end
       
       should "increment z to 1" do
-        assert_equal "CMZS000010", @collections[34].zooniverse_id
+        assert_equal "CMZL000010", @collections[34].zooniverse_id
       end
     end
     

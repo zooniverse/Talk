@@ -4,7 +4,7 @@ class LiveCollection
   include Focus
   include ZooniverseId
   
-  zoo_id :prefix => "C", :sub_id => "S"
+  zoo_id :prefix => "C", :sub_id => "L"
   key :name, String, :required => true
   key :description, String
   
