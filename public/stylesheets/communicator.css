@@ -434,6 +434,18 @@ h2.asset-name {
 	cursor: pointer;
 }
 
+.red-add {
+	color: red;
+}
+.comment-link {
+	float:right;
+	text-decoration:none;
+	font-size:60%;
+	color: #000;
+	top:-17px;
+	position:relative;
+	text-transform: uppercase;
+}
 
 .comment-form {
 	margin: 1em 0 20px 55px;
@@ -783,3 +795,25 @@ h1.collection-title {
 
 .notice {background: #a7de9f; }
 .notice p {padding: 5px 10px;}
+
+ul.search-kinds {
+  margin-left: 40px;
+  font-size: 14px;
+}
+
+ul.search-kinds li {
+  padding-left: 20px;
+}
+
+li.search-for-comments {
+  background: url('/images/search_comments.png') no-repeat left;
+  padding-left: 20px;
+}
+
+li.search-for-objects {
+  background: url('/images/search_objects.png') no-repeat left;
+}
+
+li.search-for-collections {
+  background: url('/images/search_collections.png') no-repeat left;
+}
