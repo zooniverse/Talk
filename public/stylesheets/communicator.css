@@ -285,6 +285,11 @@ img.new-comment-user{
 	font-size: 85%;
 }
 
+.recent-item .date {
+	color: #afafaf;	
+	font-size: 85%;
+}
+
 .short-comment .toolbar .date {
 	margin-bottom: 10px;
 	margin-left: 50px;

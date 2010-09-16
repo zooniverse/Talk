@@ -1,46 +1,38 @@
-<div class="home-lhc">		
+<div class="home-lhc">
 	<div class="comments-list">
 		<div id="trends-tabs" class="headed-panel">
 			<h1><%= t 'homepage.trends' %></h1>
 			<div class="inner">
-			<ul>
-				<li><a href="#trending-assets"><%= t 'homepage.assets' %></a></li>
-				<li><a href="#trending-collections"><%= t 'homepage.collections' %></a></li>
-				<li><a href="#trending-discussions"><%= t 'homepage.discussions' %></a></li>
-				<li><a href="#trending-tags"><%= t 'homepage.keywords' %></a></li>
-			</ul>
-		<%= render :partial => "shared/list_of_assets", :locals => { :assets_list => @trending_assets, :id_of_box => "trending-assets" } %>
-		<%= render :partial => "shared/list_of_collections_main", :locals => { :collections_list => @trending_collections, :id_of_box => "trending-collections" } %>
-		<%= render :partial => "shared/list_of_discussions_main", :locals => { :discussions_list => @trending_discussions, :id_of_box => "trending-discussions" } %>
-		<%= render :partial => "shared/list_of_tags", :locals => { :tags_list => @trending_tags, :id_of_box => "trending-tags" } %>
-		</div>
-		</div>
+  			<ul>
+  				<li><%= link_to t('homepage.assets'), home_trending_assets_path %></li>
+  				<li><%= link_to t('homepage.collections'), home_trending_collections_path %></li>
+  				<li><%= link_to t('homepage.discussions'), home_trending_discussions_path %></li>
+  				<li><%= link_to t('homepage.keywords'), home_trending_keywords_path %></li>
+  			</ul>
+  		</div>
+  	</div>
 		
 		<br/>
-
+		
 		<div id="recents-tabs" class="headed-panel">
-			<!-- <%= image_tag 'graph-icon.png' %> -->
 			<h1><%= t 'homepage.recent' %></h1>
 			<div class="inner">
-			<ul>
-				<li><a href="#recent-assets"><%= t 'homepage.assets' %></a></li>
-				<li><a href="#recent-collections"><%= t 'homepage.collections' %></a></li>
-				<li><a href="#recent-discussions"><%= t 'homepage.discussions' %></a></li>
-				<li><a href="#recent-comments"><%= t 'homepage.comments' %></a></li>
-			</ul>
-		<%= render :partial => "shared/list_of_assets", :locals => { :assets_list => @recent_assets, :id_of_box => "recent-assets" } %>
-		<%= render :partial => "shared/list_of_collections_main", :locals => { :collections_list => @recent_collections, :id_of_box => "recent-collections" } %>
-		<%= render :partial => "shared/list_of_discussions_main", :locals => { :discussions_list => @recent_discussions, :id_of_box => "recent-discussions" } %>
-		<%= render :partial => "shared/list_of_comments", :locals => { :comments_list => @recent_comments, :id_of_box => "recent-comments" } %>
+  			<ul>
+  				<li><%= link_to t('homepage.assets'), home_recent_assets_path %></li>
+  				<li><%= link_to t('homepage.collections'), home_recent_collections_path %></li>
+  				<li><%= link_to t('homepage.discussions'), home_recent_discussions_path %></li>
+  				<li><%= link_to t('homepage.comments'), home_recent_comments_path %></li>
+  			</ul>
+  		</div>
 		</div>
-		</div>
-	
-			<%= render :partial => "shared/boards_front_page", :locals => { :title => t('homepage.help'), :this_list => @help_list } %>
-			<%= render :partial => "shared/boards_front_page", :locals => { :title => t('homepage.science'), :this_list => @science_list } %>
-			<%= render :partial => "shared/boards_front_page", :locals => { :title => t('homepage.chat'), :this_list => @chat_list } %>
-	</div>	
+		
+		<%= render :partial => "shared/boards_front_page", :locals => { :title => t('homepage.help'), :this_list => @help_list } %>
+		<%= render :partial => "shared/boards_front_page", :locals => { :title => t('homepage.science'), :this_list => @science_list } %>
+		<%= render :partial => "shared/boards_front_page", :locals => { :title => t('homepage.chat'), :this_list => @chat_list } %>
+	</div>
 </div>
+
 <div class="home-rhc">
 	<%= render :partial => "shared/about_box" %>
-	<%= render :partial => "shared/help_wanted" %>										
+	<%= render :partial => "shared/help_wanted" %>
 </div>

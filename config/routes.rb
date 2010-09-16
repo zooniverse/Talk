@@ -64,7 +64,12 @@ Sellers::Application.routes.draw do
   
   match '/logout' => 'application#cas_logout'
   
-  root :to => "home#index"  
+  root :to => "home#index"
+  match '/home/trending_keywords' => 'home#trending_keywords'
+  %w(comments assets collections discussions).each do |kind|
+    match "/home/trending_#{kind}" => "home#trending_#{kind}"
+    match "/home/recent_#{kind}" => "home#recent_#{kind}"
+  end
   
   # mapping for boards 
   match '/science' => 'boards#science'

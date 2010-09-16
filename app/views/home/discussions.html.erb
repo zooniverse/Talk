@@ -1,0 +1,13 @@
+<div class="panel">
+	<% @discussions.each do |d| %>
+		<div class="recent-item">
+			<div class="item-container">
+				<div class="date"><%= long_date(d.updated_at) %></div>								
+				<div class="name"><%= link_to d.subject, discussion_url_for(d) %></div>
+				<div class="views-total"><%= pluralize(d.number_of_users, "user") %></div>					
+				<div class="comment-total"><%= pluralize(d.number_of_comments, "comment") %> </div>				
+				<div class="push"></div>
+				</div>
+		</div>
+	<% end %>
+</div>

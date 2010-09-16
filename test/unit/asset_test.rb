@@ -35,7 +35,7 @@ class AssetTest < ActiveSupport::TestCase
     end
     
     should "find #most_recently_commented_on" do
-      assert_same_elements [@asset, @asset2, @asset3], Asset.most_recently_commented_on(3)
+      assert_same_elements [@asset, @asset2, @asset3], Asset.most_recent(3)
     end
     
     should "find #trending" do

@@ -21,19 +21,24 @@ class HomeControllerTest < ActionController::TestCase
       should respond_with :success
       should render_template :index
       
-      should "Show trending" do
-        assert_select "#trending-assets > .recent-asset", 3
-        assert_select "#trending-collections > .recent-item", 1
-        assert_select "#trending-discussions > .recent-item", 5
-        assert_select "#keyword-cloud > li", 3
+      context "showing #trending_assets" do
+        setup do
+          get :trending_assets, { :format => :js }
+        end
+        
+        should respond_with :success
+        should render_template :assets
       end
       
-      should "Show recent" do
-        assert_select "#recent-assets > .recent-asset", 3
-        assert_select "#recent-collections > .recent-item", 1
-        assert_select "#recent-discussions > .recent-item", 5
-        assert_select "#recent-comments > .recent-comment", 5
+      context "showing #recent_assets" do
+        setup do
+          get :recent_assets, { :format => :js }
+        end
+
+        should respond_with :success
+        should render_template :assets
       end
+      
       
       should "Show board discussions" do
         assert_select ".boards-list", 3
