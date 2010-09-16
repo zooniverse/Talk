@@ -15,6 +15,7 @@ gem 'bluecloth', '2.0.7'
 
 group :development do
   gem 'mysql'
+  gem 'mongrel', '1.2.0.pre2'
 end
 
 group :test do
