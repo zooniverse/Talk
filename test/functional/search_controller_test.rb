@@ -23,7 +23,7 @@ class SearchControllerTest < ActionController::TestCase
     
     context "#index with malformed keywords" do
       setup do
-        get :index, { :search => "keywords: " }
+        get :index, { :search => "", :for => "objects" }
       end
       
       should respond_with :success
@@ -34,26 +34,15 @@ class SearchControllerTest < ActionController::TestCase
       end
     end
     
-    context "#index with keywords" do
+    context "#index with keywords for objects" do
       setup do
         @asset = Factory :asset
         build_focus_for @asset
-        get :index, { :search => "keywords:tag1" }
+        get :index, { :search => "keywords: #tag1", :for => "objects" }
       end
       
       should respond_with :success
       should render_template :index
-      
-      should "list comments" do
-        assert_select ".comments-list > div.short-comment", 3
-      end
-      
-      should "list discussions" do
-        [@asset, @asset2, @asset3].each do |asset|
-          d_id = asset.discussions.first.zooniverse_id
-          assert_select "a[href='/objects/#{asset.zooniverse_id}/discussions/#{d_id}']"
-        end
-      end
       
       should "list assets" do
         [@asset, @asset2, @asset3].each do |asset|
@@ -62,7 +51,43 @@ class SearchControllerTest < ActionController::TestCase
       end
     end
     
-    context "#index with text search" do
+    context "#index with keywords for collections" do
+      setup do
+        @asset = Factory :asset
+        @collection = collection_for @asset
+        @collection2 = collection_for @asset
+        
+        build_focus_for @collection
+        build_focus_for @collection2
+        
+        get :index, { :search => "keywords: #tag1", :for => "collections" }
+      end
+      
+      should respond_with :success
+      should render_template :index
+      
+      should "list collections" do
+        assert_select "a[href='/collections/#{@collection.zooniverse_id}']", 1
+        assert_select "a[href='/collections/#{@collection2.zooniverse_id}']", 1
+      end
+    end
+    
+    context "#index with keywords for comments" do
+      setup do
+        @asset = Factory :asset
+        build_focus_for @asset
+        get :index, { :search => "keywords: #tag1", :for => "comments" }
+      end
+      
+      should respond_with :success
+      should render_template :index
+      
+      should "list comments" do
+        assert_select ".comments-list div.panel > div.short-comment", 3
+      end
+    end
+    
+    context "#index with text search for comments" do
       setup do
         @asset = Factory :asset
         build_focus_for @asset
@@ -73,15 +98,43 @@ class SearchControllerTest < ActionController::TestCase
       should render_template :index
       
       should "list comments" do
-        assert_select ".comments-list > div.short-comment", 3
+        assert_select ".comments-list div.panel > div.short-comment", 3
       end
       
-      should "list discussions" do
+      should "link to discussions" do
         assert_select "a[href='/objects/#{@asset.zooniverse_id}/discussions/#{@discussion.zooniverse_id}']"
       end
+    end
+    
+    context "#index with text search for objects" do
+      setup do
+        @asset = Factory :asset
+        build_focus_for @asset
+        get :index, { :search => @asset.zooniverse_id, :for => "objects" }
+      end
+      
+      should respond_with :success
+      should render_template :index
       
       should "list assets" do
         assert_select "a[href='/objects/#{@asset.zooniverse_id}']", 2
+      end
+    end
+    
+    context "#index with text search for collections" do
+      setup do
+        @asset = Factory :asset
+        @collection = collection_for @asset
+        build_focus_for @collection
+        
+        get :index, { :search => @collection.zooniverse_id, :for => "collections" }
+      end
+      
+      should respond_with :success
+      should render_template :index
+      
+      should "list collections" do
+        assert_select "a[href='/collections/#{@collection.zooniverse_id}']", 1
       end
     end
   end

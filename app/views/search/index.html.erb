@@ -1,17 +1,24 @@
 <div class="upper-row">
 	<div class="rhc">
 		<div class="panel discussion-items">
-  		<%- if @comments.any? %>
-  			<h1><%= pluralize @comments.total_pages, 'page' %> of results matching <em><%= @search %></em></h1>
-  		<%- else %>
-  		  <h1>No results found</h1>
-  		<% end -%>
+		  <ul class="search-kinds">
+		    <%- %w(comments objects collections).each do |kind| %>
+  		    <li class="search-for-<%= kind %>">
+  		      <%- if kind == @for %>
+  		        <%= kind.humanize %>
+  		      <%- else -%>
+    		      <%= link_to kind.humanize, search_url(:search => @search, :for => kind) %>
+  		      <% end -%>
+		      </li>
+		    <% end -%>
+		  </ul>
 		</div>
 	</div>
 	<div class="lhc">
-		<div class="search_box">
+		<div class="search-box">
   		<%= form_tag search_path do %>
   			<%= text_field_tag "search", @search %>
+  			<%= hidden_field_tag "for", @for %>
   			<%= submit_tag 'search' %>
   		<% end -%>
 		</div>
@@ -20,37 +27,16 @@
 
 <div class="lower-row">
 	<div class="lhc">
-	  <%- if @comments && @comments.any? %>
-  		<div class="comments-list">
-  			<h1>Comments</h1>
-				<%= render :partial => "shared/comment_short", :collection => @comments %>
-  			<%- if @page < @comments.total_pages %>
-    			<div class="more-results">
-    			  <%= more_results "More", :page => @page + 1 %>
-    		  </div>
-    	  <% end -%>
-  		</div>
-		<% end -%>
-		
-		<%- if @discussions && @discussions.any? %>
-  		<div class="comments-list">
-  			<h1>Discussions</h1>
-  			<%= render :partial => "shared/list_of_discussions_main", :locals => { :discussions_list => @discussions, :id_of_box => "found-discussions" } %>
-  		</div>
-		<% end -%>
-		
-		<%- if @assets && @assets.any? %>
-  		<div class="comments-list">
-  			<h1>Assets</h1>
-  			<%= render :partial => "shared/list_of_assets", :locals => { :assets_list => @assets, :id_of_box => "found-assets" } %>
-  		</div>
-		<% end -%>
-		
-		<%- if @collections && @collections.any? %>
-  		<div class="comments-list">
-  			<h1>Collections</h1>
-  			<%= render :partial => "shared/list_of_collections", :locals => { :collections_list => @collections, :id_of_box => "found-collections" } %>
-  		</div>
-		<% end -%>
+	  <%- unless @search.blank? %>
+  	  <div id="search-results">
+  	    <div class="comments-list">
+  	      <%- kind = @for.sub('keywords', 'objects') %>
+          <h1><%= kind.humanize.pluralize %></h1>
+          <%- if @results && @results.any? %>
+            <%= render :partial => kind, :locals => { kind.to_sym => @results } %>
+          <% end -%>
+        </div>
+    	</div>
+  	<% end -%>
 	</div>
 </div>

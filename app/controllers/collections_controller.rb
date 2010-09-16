@@ -3,7 +3,12 @@ class CollectionsController < ApplicationController
   respond_to :js, :only => [:add, :remove]
   
   def show
-    @focus = @collection = Collection.find_by_zooniverse_id(params[:id])
+    if params[:id] =~ /^CMZS/
+      @focus = @collection = Collection.find_by_zooniverse_id(params[:id])
+    else
+      @focus = @collection = LiveCollection.find_by_zooniverse_id(params[:id])
+    end
+    
     @discussion = @collection.conversation
     @mentions = Discussion.mentioning(@collection)
     @comment = Comment.new
