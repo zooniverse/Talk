@@ -71,10 +71,12 @@ Sellers::Application.routes.draw do
     match "/home/recent_#{kind}" => "home#recent_#{kind}"
   end
   
-  # mapping for boards 
-  match '/science' => 'boards#science'
-  match '/help' => 'boards#help'
-  match '/chat' => 'boards#chat'
+  # mapping for boards
+  %w(help science chat).each do |board|
+    match "/#{board}" => "boards##{board}"
+    match "/#{board}/discussions" => "boards##{board}"
+    match "/#{board}/discussions/:id" => "discussions#show"
+  end
   
   match '/search(.:format)' => 'search#index', :as => :search
   match '/search/live_collection_results' => 'search#live_collection_results', :as => :live_collection_results
