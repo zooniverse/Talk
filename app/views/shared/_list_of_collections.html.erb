@@ -1,21 +1,18 @@
-<!-- Displays list of collections containing a focus -->
-<% unless @collections.empty? %>
 <div class="panel">	
-	<h2><%= pluralize(@collections.size, "Collection") %></h2>
-	<div class="inner">
-		<ul>
-	  	<%- @collections.each do |collection| %>
-	  	  <li><%= link_to collection.name, collection_path(collection.zooniverse_id) %> (<%= collection.assets.size %> items)</li>
-	  	<% end -%>
-		</ul>		
-	</div>
-	<div class="new"><%= link_to "#{t('collection.startnewcol')}", new_collection_path %></div> 	
+  <% unless @collections.empty? %>
+    <h2><%= pluralize(@collections.size, "Collection") %></h2>
+    <div class="inner">
+      <ul>
+        <%- @collections.each do |collection| %>
+          <li><%= link_to collection.name, collection_path(collection.zooniverse_id) %> (<%= collection.assets.size %> items)</li>
+        <% end -%>
+      </ul>
+    </div>
+  <% else %>
+    <h2>No Collections Yet</h2>
+    <div class="inner"></div>
+  <% end %>
+  <div class="new">
+    <%= link_to "#{t('collection.startnewcol')}", new_collection_path(:object_id => @asset.zooniverse_id) %>
+  </div>
 </div>
-<% else %>
-<div class="panel">	
-	<h2>No Collections Yet</h2>
-	<div class="inner">
-	</div>
-	<div class="new"><%= link_to "#{t('collection.startnewcol')}", new_collection_path %></div>
-</div>
-<% end %>
