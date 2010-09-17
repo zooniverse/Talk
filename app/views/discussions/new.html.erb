@@ -1,12 +1,11 @@
 <div class="upper-row">
 	<div class="lhc">
-		<h1 class="discussion-title"><%= t 'discussion.startnew' %>
-		<% if @focus %>
-		<%= "#{t('discussion.about')} #{t(@focus.class.name.downcase + ".name")}" %>
-		<% end %></h1>
+		<h1 class="discussion-title">
+		  <%= title_for(@focus) %>
+		</h1>
 		<%= render :partial => "form_for_discussion" %>
 	</div>
 	<div class="rhc">
-		<%= render :partial => "shared/zooniverse_extras" %>			
+		<%= render :partial => "shared/zooniverse_extras" %>
 	</div>
 </div>

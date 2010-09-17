@@ -12,13 +12,11 @@ class ApplicationController < ActionController::Base
   def new_discussion_url_for(focus)
       case focus.class.to_s
       when "Asset"
-        object_url = "/objects/#{focus.zooniverse_id}/discussions/new"
+        new_object_discussion_path(focus.zooniverse_id)
       when "Board"
-        board_url = "/boards/#{focus.title}/discussions/new"
-      when "Collection"
-        collection_url = "/collections/#{focus.zooniverse_id}/discussions/new"
-      when "LiveCollection"
-        live_collection_url = "/live_collections/#{focus.zooniverse_id}/discussions/new"
+        new_board_discussion_path(focus.title)
+      when "Collection", "LiveCollection"
+        new_collection_discussion_path(focus.zooniverse_id)
       end
   end
   
@@ -40,7 +38,7 @@ class ApplicationController < ActionController::Base
       when "Asset"
         object_discussion_path(focus.zooniverse_id, discussion.zooniverse_id)
       when "Board"
-        discussion_path(discussion.zooniverse_id)
+        "/#{discussion.focus.title.downcase}/discussions/#{discussion.zooniverse_id}"
       when "Collection"
         collection_discussion_path(focus.zooniverse_id, discussion.zooniverse_id)
       when "LiveCollection"
@@ -55,11 +53,11 @@ class ApplicationController < ActionController::Base
     when "Asset"
       object_path(focus.zooniverse_id)
     when "Board"
-      board_path(focus.title)
+      "/#{focus.title.downcase}"
     when "Collection"
       collection_path(focus.zooniverse_id)
     when "LiveCollection"
-      live_collection_path(focus.zooniverse_id)
+      collection_path(focus.zooniverse_id)
     end
   end
   

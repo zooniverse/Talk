@@ -72,10 +72,11 @@ Sellers::Application.routes.draw do
   end
   
   # mapping for boards
+  match "/:board_id/discussions/new" => "discussions#new", :as => :new_board_discussion
   %w(help science chat).each do |board|
-    match "/#{board}" => "boards##{board}"
+    match "/#{board}" => "boards##{board}", :as => "#{board}_board".to_sym
     match "/#{board}/discussions" => "boards##{board}"
-    match "/#{board}/discussions/:id" => "discussions#show"
+    match "/#{board}/discussions/:id" => "discussions#show", :as => "#{board}_board_discussion".to_sym
   end
   
   match '/search(.:format)' => 'search#index', :as => :search

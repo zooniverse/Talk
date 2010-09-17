@@ -7,6 +7,8 @@ en:
   controllers:
     home:
       banned: "You have been banned"
+    boards:
+      new_discussion: "Start a new discussion"
     comments:
       own_comment: "You can't vote on your own comment!"
       not_logged_in: "You must log in first"
@@ -41,7 +43,7 @@ en:
     science: "Science"
     chat: "Chat"
     featured: "Featured Discussions"
-    boards: "Boards"    
+    boards: "Boards"
   panels:
     about:
       title1: "What is Sellers?"
@@ -57,6 +59,12 @@ en:
     name: "discussion"
     startnew: "New discussion"
     about: "about this"
+    board:
+      new: "New"
+      chat: "chat"
+      science: "science"
+      help: "help"
+      discussion: "discussion"
     meta:
       comments: "Comments"
       users: "Participants"
@@ -71,7 +79,7 @@ en:
     startnewcol: "New collection"
     startnewlivecol: "New Live Collection"
   livecollection:
-    name: "live collection"
+    name: "collection"
   asset:
     name: "object"
   messages:

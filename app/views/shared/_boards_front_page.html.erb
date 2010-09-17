@@ -4,7 +4,7 @@
 		<ul>
 			<% this_list.each do |l| %>
 			<li class="name">
-			<%= link_to l.subject.truncate(80), "/#{title.downcase}/discussions/#{l.zooniverse_id}" %>
+			<%= link_to l.subject.truncate(80), discussion_url_for(l) %>
 				<div class="info"><%= pluralize( l.number_of_comments, 'comment') %></div>
 				</li>
 			<% end %>

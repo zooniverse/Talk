@@ -35,27 +35,17 @@ class DiscussionsController < ApplicationController
     @discussion = Discussion.new(params[:discussion])
     @discussion.started_by_id = current_zooniverse_user.id
     
-    if @discussion.valid? && @comment.valid?
-      if @focus
-        @focus = @discussion.focus
-        @focus.discussion_ids << @discussion.id
-        @focus.save
-        
-        @discussion.comments << @comment
-      else
-        board = Board.find_by_title(params[:board_id])
-        board.discussion_ids << @discussion.id
-        @discussion.focus_type = "Board"
-        @discussion.focus_id = board.id
-        board.save
-        
-        @discussion.comments << @comment
-      end
+    if @discussion.valid? && @comment.valid? && @focus
+      @discussion.focus_id = @focus.id
+      @discussion.focus_type = @focus.class.name
+      @focus.discussion_ids << @discussion.id
+      @focus.save
+      @discussion.comments << @comment
       
       flash[:notice] = I18n.t 'controllers.discussions.flash_create'
       redirect_to discussion_url_for(@discussion)
     else
-      render discussion_url_for(@discussion)
+      render :action => :new
     end
   end
   
@@ -81,20 +71,21 @@ class DiscussionsController < ApplicationController
   protected
   
   def find_focus
-    focus_id = params['discussion']['focus_id']
-    focus_type = params['discussion']['focus_type']
-
-    if focus_id
-      @focus = focus_type.constantize.find(focus_id)
+    if params.has_key? :board_id
+      @focus = Board.find_by_title(params[:board_id])
+    else
+      focus_id = params['discussion']['focus_id']
+      focus_type = params['discussion']['focus_type']
+      @focus = focus_type.constantize.find(focus_id) if focus_id
     end
   end
   
-  #FIX ME - (sorry)
   def find_show_focus
-    focus_key = params.keys.select{ |key| ['object_id', 'collection_id', 'live_collection_id'].include? key }.first
-    
-    if focus_key
-      @focus = focus_key.sub('object', 'asset').sub('_id', '').camelize.constantize.find_by_zooniverse_id(params[focus_key])
-    end
+    focus_key = params.keys.select{ |key| %w(object_id collection_id board_id).include? key }.first
+    focus_id = params[focus_key]
+    return unless focus_key and focus_id
+    klass = focus_key.sub('_id', '').sub('object', 'asset').camelize.constantize
+    klass = LiveCollection if focus_key == 'collection_id' && focus_id =~ /^CMZL/
+    @focus = (klass == Board) ? klass.find_by_title(focus_id) : klass.find_by_zooniverse_id(focus_id)
   end
 end
