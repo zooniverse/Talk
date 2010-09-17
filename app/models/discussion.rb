@@ -9,8 +9,9 @@ class Discussion
   key :focus_type, String
   key :slug, String
   key :started_by_id, ObjectId
-  key :featured, Boolean, :default=>false 
-
+  key :featured, Boolean, :default => false
+  
+  key :popularity, Integer
   key :number_of_users, Integer, :default => 0
   key :number_of_comments, Integer, :default => 0
   
@@ -42,7 +43,7 @@ class Discussion
   
   # Finds popular discussions
   def self.trending(limit = 10)
-    Discussion.limit(limit).sort(:number_of_comments.desc).all
+    Discussion.limit(limit).sort(:popularity.desc).all
   end
   
   # Finds discussions mentioning a focus
@@ -121,7 +122,11 @@ class Discussion
     n_users = fresh_comments.collect{ |c| c["author_id"] }.uniq.length
     
     Discussion.collection.update({:_id => id}, {
-      '$set' => { :number_of_comments => n_comments, :number_of_users => n_users }
+      '$set' => {
+        :number_of_comments => n_comments,
+        :number_of_users => n_users,
+        :popularity => n_users * n_comments
+      }
     })
   end
 end

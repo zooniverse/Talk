@@ -25,7 +25,7 @@ module Focus
   module ClassMethods
     # selects the most 'popular' focii
     def trending(limit = 10)
-      cursor = Discussion.where(:focus_type => self.name, :updated_at.gt => 1.week.ago).sort(:number_of_comments.desc).only(:focus_id).find_each
+      cursor = Discussion.where(:focus_type => self.name).sort(:popularity.desc).only(:focus_id).find_each
       focii = {}
       
       while focii.length < limit && cursor.has_next?

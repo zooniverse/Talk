@@ -62,7 +62,7 @@ class Comment
   
   # The most recent comments
   def self.most_recent(limit = 10)
-    Comment.limit(limit).sort([:created_at, :desc]).all
+    Comment.limit(limit).sort(:created_at.desc).all
   end
   
   # Finds comments mentioning a focus

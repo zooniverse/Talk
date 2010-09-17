@@ -65,7 +65,7 @@ class DiscussionsController < ApplicationController
   
   def user_owned
     @user = User.find(params[:id])
-    @discussions = Discussion.where(:started_by_id => @user.id).sort(['number_of_comments', -1])      
+    @discussions = Discussion.where(:started_by_id => @user.id).sort(:popularity.desc)
     respond_with(@discussions) do |format|
         format.js { 
           render :update do |page|              
