@@ -1,0 +1,8 @@
+var response = $('#response-<%= @response.id %>');
+response.html("<%= escape_javascript(render(:partial => "preview", :locals => { :comment => @response })) %>");
+response.dialog({
+  dialogClass: 'comment-preview-dialog',
+  show: 'clip',
+  maxHeight: 500,
+  title: '<%= "#{ I18n.t('comments.by') } #{ @response.author.name }" %>'
+});

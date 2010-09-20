@@ -1,58 +1,58 @@
 <div class="upper-row">
-	<div class="discussion-title"><%= link_to @title, @bns_path %> discussion</div>
-	
-	<% unless @discussion.focus_type == "Board" %>	
-	<div class="rhc">				
-		<div class="panel discussion-items">
-		<% if (@discussion.asset?) %>								
-			<%= image_tag(@discussion.focus.location, :class => "focus-main-image", :id => "asset-image", :height => 200) %>
-		<% end %>		
-		
-		<% if (@discussion.collection? || @discussion.live_collection?) %>		
-			<% unless @discussion.focus.assets.empty?%>
-				<%= image_tag(@discussion.focus.assets.first.location, :class => "collection-large", :id => "asset-image", :height => 216) %>		
-				<% @discussion.focus.assets.each do |item| %>												
-					<%= link_to image_tag(item.thumbnail_location, :class => "collection-thumbnail", :height => 51), object_path(item.zooniverse_id) %>
-				<% end %>																	
-			<% else %>
-				<%= t 'discussion.meta.emptycollection' %>				
-			<% end %>									
-		<% end %>	
-		</div>
-	</div>
-	<% end %>	
-	<div class="lhc discussion" <% if @discussion.focus_type == "Board" %>style="width:auto;"<% end %>>
-		<div class="main">
-			<h2><strong><%= t 'discussion.meta.startedby' %> <%= @discussion.started_by.name unless @discussion.started_by.nil? %></strong></h2>
-			<h1><%= @discussion.subject %></h1>
-			<div class="subtext">
-				<% @discussion.keywords.each do |keyword| %>
-					<%= link_to keyword, search_url(:search => "keywords: #{keyword}") %>
-				<% end %>		
-			</div>
-			<% if current_zooniverse_user && current_zooniverse_user.privileged? %>
-			<div id="admin-tools">
-			<% if @discussion.featured == false %>
-				<p id="featured-link"><%= link_to("Make this a featured discussion", toggle_featured_discussion_path(@discussion), {:remote => true, :method => :post }) %></p>
-			<% else %>
-				<p id="featured-link"><%= link_to("Remove this from featured discussions", toggle_featured_discussion_path(@discussion), {:remote => true, :method => :post }) %></p>
-			<% end %>
-			</div>
-			<% end %>
-		</div>
-	</div>
+  <div class="discussion-title"><%= link_to @title, @bns_path %> discussion</div>
+  
+  <% unless @discussion.focus_type == "Board" %>
+  <div class="rhc">
+    <div class="panel discussion-items">
+    <% if (@discussion.asset?) %>
+      <%= image_tag(@discussion.focus.location, :class => "focus-main-image", :id => "asset-image", :height => 200) %>
+    <% end %>
+    
+    <% if (@discussion.collection? || @discussion.live_collection?) %>
+      <% unless @discussion.focus.assets.empty?%>
+        <%= image_tag(@discussion.focus.assets.first.location, :class => "collection-large", :id => "asset-image", :height => 216) %>
+        <% @discussion.focus.assets.each do |item| %>
+          <%= link_to image_tag(item.thumbnail_location, :class => "collection-thumbnail", :height => 51), object_path(item.zooniverse_id) %>
+        <% end %>
+      <% else %>
+        <%= t 'discussion.meta.emptycollection' %>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+  <% end %>
+  <div class="lhc discussion" <% if @discussion.focus_type == "Board" %>style="width:auto;"<% end %>>
+    <div class="main">
+      <h2><strong><%= t 'discussion.meta.startedby' %> <%= @discussion.started_by.name unless @discussion.started_by.nil? %></strong></h2>
+      <h1><%= @discussion.subject %></h1>
+      <div class="subtext">
+        <% @discussion.keywords.each do |keyword| %>
+          <%= link_to keyword, search_url(:search => "keywords: #{keyword}") %>
+        <% end %>
+      </div>
+      <% if current_zooniverse_user && current_zooniverse_user.privileged? %>
+      <div id="admin-tools">
+      <% if @discussion.featured == false %>
+        <p id="featured-link"><%= link_to("Make this a featured discussion", toggle_featured_discussion_path(@discussion), {:remote => true, :method => :post }) %></p>
+      <% else %>
+        <p id="featured-link"><%= link_to("Remove this from featured discussions", toggle_featured_discussion_path(@discussion), {:remote => true, :method => :post }) %></p>
+      <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <div class="lower-row discussion-thread">
-	<div class="lhc" <% if @discussion.focus_type == "Board" %>style="width:700px;"<% end %>>
-		<div class="comments-list">
-			<%= render :partial => "shared/comment", :collection => @comments %>
-		</div>
-		<a id="comment"></a>
-		<% if current_zooniverse_user %>
-			<%= render :partial => "shared/comment_new" %>
-		<% else %>		
-			<%= render :partial => "shared/please_log_in" %>
-		<% end %>
-	</div>
+  <div class="lhc" <% if @discussion.focus_type == "Board" %>style="width:700px;"<% end %>>
+    <div class="comments-list">
+      <%= render :partial => "shared/comment", :collection => @comments %>
+    </div>
+    <a id="comment"></a>
+    <% if current_zooniverse_user %>
+      <%= render :partial => "shared/comment_new" %>
+    <% else %>
+      <%= render :partial => "shared/please_log_in" %>
+    <% end %>
+  </div>
 </div>

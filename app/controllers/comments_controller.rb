@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter, :only => :create
   respond_to :html, :only => :create
-  respond_to :js, :only => [:vote_up, :report, :user_owned]
+  respond_to :js, :only => [:vote_up, :report, :user_owned, :preview]
   
   def create
     @discussion = Discussion.find(params[:discussion_id])
@@ -55,5 +55,11 @@ class CommentsController < ApplicationController
           end
         }
     end
+  end
+  
+  def preview
+    @comment = Comment.find(params[:id])
+    @response = @comment.response_to
+    respond_with @comment
   end
 end
