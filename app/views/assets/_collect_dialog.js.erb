@@ -1,5 +1,9 @@
 <script type="text/javascript" charset="utf-8">
   $('.collect-asset').click(function() {
-    $('.collect-dialog').dialog();
+    $('.collect-dialog').dialog({
+      dialogClass: 'collection-dialog',
+      minWidth: 250,
+      minHeight: 200
+    });
   });
 </script>

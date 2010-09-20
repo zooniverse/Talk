@@ -877,3 +877,19 @@ li.search-for-collections {
 .collect-asset {
   cursor: pointer;
 }
+
+.collection-dialog .ui-widget-header {
+  font-size: 80%;
+}
+
+.collection-dialog p {
+  font-size: 80%;
+}
+
+.collection-dialog .ui-widget-content ul {
+  list-style: none;
+}
+
+.collection-dialog .ui-widget-content a {
+  color: #2276BB;
+}

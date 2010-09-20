@@ -110,7 +110,7 @@ class CollectionsController < ApplicationController
   
   def remove
     @collection = Collection.find_by_zooniverse_id(params[:id])
-    @asset = Asset.find(params[:asset_id])
+    @asset = Asset.find_by_zooniverse_id(params[:asset_id])
     
     @collection.asset_ids.delete_if { |id| id == @asset.id }
     

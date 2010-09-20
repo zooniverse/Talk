@@ -277,7 +277,7 @@ class CollectionsControllerTest < ActionController::TestCase
         @asset = Factory :asset
         @collection = Factory :collection, :asset_ids => [ @asset.id ]
         standard_cas_login(@collection.user)
-        post :remove, { :id => @collection.zooniverse_id, :asset_id => @asset.id, :format => :js }
+        post :remove, { :id => @collection.zooniverse_id, :asset_id => @asset.zooniverse_id, :format => :js }
       end
       
       should respond_with :success

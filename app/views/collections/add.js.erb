@@ -1,8 +1,10 @@
-if(<%= @success == true %>) {
-  $('.collect-dialog').dialog('close');
-  $('.collect-asset').replaceWith('<p class=".collect-asset collected-asset">Collected!</p>');
-}
+$(function() {
+  if(<%= @success == true %>) {
+    $('.collect-dialog').dialog('close');
+    $('.collect-asset').replaceWith('<p class=".collect-asset collected-asset">Collected!</p>');
+  }
 
-$('#rcol').prepend("<%= escape_javascript(render(:partial => "shared/flash", :locals => { :flash => flash })) %>");
+  $('#rcol').prepend("<%= escape_javascript(render(:partial => "shared/flash", :locals => { :flash => flash })) %>");
 
-<%- flash.clear %>
+  <%- flash.clear %>
+});

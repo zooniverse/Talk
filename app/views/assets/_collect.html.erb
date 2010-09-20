@@ -1,11 +1,19 @@
-<li><a class="collect-asset">Collect This</a></li>
-<div class="collect-dialog" title="Choose your collection or start a new one" style="display: none;">
-  <%- current_zooniverse_user.collections.each do |collection| %>
-    <%= link_to collection.name,
-      { :controller => :collections, :action => :add, :format => :js, :id => collection.zooniverse_id, :asset_id => @asset.id },
-      { :remote => true, :method => :post, :class => "collect-link" }
-    %><br/>
-  <% end -%>
+<li><a class="collect-asset"><%= t 'collection.collect' %></a></li>
+<div class="collect-dialog" title="<%= "#{ t 'collection.collect' } #{ t 'asset.name' }" %>" style="display: none;">
+  <p><%= t 'collection.choose' %></p>
+  <ul>
+    <li>
+      <%= link_to "#{ image_tag('add.png') } #{ t 'collection.startnewcol' }".html_safe, new_collection_url(:object_id => @asset.zooniverse_id) %>
+    </li>
+    <%- current_zooniverse_user.collections.each do |collection| %>
+      <li>
+        <%= link_to collection.name,
+          { :controller => :collections, :action => :add, :format => :js, :id => collection.zooniverse_id, :asset_id => @asset.id },
+          { :remote => true, :method => :post, :class => "collect-link" }
+        %>
+      </li>
+    <% end -%>
+  </ul>
 </div>
 
 <%= render :partial => "collect_dialog.js" %>

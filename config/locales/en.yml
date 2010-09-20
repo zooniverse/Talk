@@ -75,6 +75,8 @@ en:
       emptycollection: "Empty Collection"
       startedby: "Started by"
   collection:
+    collect: "Collect this"
+    choose: "Choose a collection or start a new one"
     name: "collection"
     collection: "Collection"
     livecollection: "Live Collection"
