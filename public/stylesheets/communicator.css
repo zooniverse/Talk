@@ -623,6 +623,11 @@ h2.asset-name {
   border: none;
 }
 
+#trends-tabs div.inner div.ui-widget-content a,
+#recents-tabs div.inner div.ui-widget-content a {
+  color: #2276BB;
+}
+
 #trends-tabs div.inner ul.ui-widget-header,
 #recents-tabs div.inner ul.ui-widget-header {
   background: none;
@@ -867,4 +872,8 @@ li.search-for-collections {
   background: #e6f0fc;
   margin-top: 5px;
   padding: 10px;
+}
+
+.collect-asset {
+  cursor: pointer;
 }
