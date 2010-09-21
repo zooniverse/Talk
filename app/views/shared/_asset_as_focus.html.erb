@@ -2,7 +2,7 @@
 
 <div id="asset-as-focus">
 	<h2 class="asset-name"><%= @asset.zooniverse_id.to_s %></h2>
-	<%= image_tag(@asset.location, :class => "focus-main-image", :id => "asset-image", :height => 200) %>
+	<%= image_tag(@asset.location, :class => "focus-main-image", :id => "asset-image", :width => 200) %>
 	<div class="asset-meta">
 		<ul>
 			<li><%= @asset.coords.first.to_s %>, <%= @asset.coords.last.to_s %></li>
