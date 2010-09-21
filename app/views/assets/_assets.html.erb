@@ -1,0 +1,13 @@
+<div class="panel">
+  <%- @assets.each do |asset| %>
+    <div class="recent-asset">
+      <%= link_to image_tag(asset.thumbnail_location, :class => "recent-comment-user", :height => 40), :controller => :assets, :action => :show, :id => asset.zooniverse_id %>
+      <div class="asset-container">
+        <div class="name"><%= link_to asset.zooniverse_id, :controller => :assets, :action => :show, :id => asset.zooniverse_id %></div>
+        <div class="comment-total"><%= pluralize(asset.count_mentions, "mention") %></div>
+        <div class="views-total"><%= pluralize(asset.count_collections, "collection") %></div>
+        <div class="push"></div>
+      </div>
+    </div>
+  <% end -%>
+</div>

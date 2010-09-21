@@ -1,42 +1,42 @@
 <div class="upper-row">
-	<div class="rhc">
-		<div class="panel discussion-items">
-		  <ul class="search-kinds">
-		    <%- %w(comments objects collections).each do |kind| %>
-  		    <li class="search-for-<%= kind %>">
-  		      <%- if kind == @for %>
-  		        <%= kind.humanize %>
-  		      <%- else -%>
-    		      <%= link_to kind.humanize, search_url(:search => @search, :for => kind) %>
-  		      <% end -%>
-		      </li>
-		    <% end -%>
-		  </ul>
-		</div>
-	</div>
-	<div class="lhc">
-		<div class="search-box">
-  		<%= form_tag search_path do %>
-  			<%= text_field_tag "search", @search %>
-  			<%= hidden_field_tag "for", @for %>
-  			<%= submit_tag 'search' %>
-  		<% end -%>
-		</div>
-	</div>
+  <div class="rhc">
+    <div class="panel discussion-items">
+      <ul class="search-kinds">
+        <%- %w(comments objects collections).each do |kind| %>
+          <li class="search-for-<%= kind %>">
+            <%- if kind == @for %>
+              <%= kind.humanize %>
+            <%- else -%>
+              <%= link_to kind.humanize, search_url(:search => @search, :for => kind) %>
+            <% end -%>
+          </li>
+        <% end -%>
+      </ul>
+    </div>
+  </div>
+  <div class="lhc">
+    <div class="search-box">
+      <%= form_tag search_path do %>
+        <%= text_field_tag "search", @search %>
+        <%= hidden_field_tag "for", @for %>
+        <%= submit_tag 'search' %>
+      <% end -%>
+    </div>
+  </div>
 </div>
 
 <div class="lower-row">
-	<div class="lhc">
-	  <%- unless @search.blank? %>
-  	  <div id="search-results">
-  	    <div class="comments-list">
-  	      <%- kind = @for.sub('keywords', 'objects') %>
+  <div class="lhc">
+    <%- unless true && @search.blank? %>
+      <div id="search-results">
+        <div class="comments-list">
+          <%- kind = @for.sub('objects', 'assets').underscore.pluralize %>
           <h1><%= kind.humanize.pluralize %></h1>
           <%- if @results && @results.any? %>
-            <%= render :partial => kind, :locals => { kind.to_sym => @results } %>
+            <%= render :partial => "#{kind}/#{kind}" %>
           <% end -%>
         </div>
-    	</div>
-  	<% end -%>
-	</div>
+      </div>
+    <% end -%>
+  </div>
 </div>

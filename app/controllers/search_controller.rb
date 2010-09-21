@@ -27,9 +27,9 @@ class SearchController < ApplicationController
       @comments = @results = Comment.search(search_terms, selector)
     when 'objects'
       if @keywords.nil?
-        @objects = focus_results(search_terms, :focus_type => "Asset")
+        @objects = @assets = focus_results(search_terms, :focus_type => "Asset")
       else
-        @results = @objects = Asset.with_keywords(search_terms, :page => @page, :per_page => @per_page)
+        @results = @assets = @objects = Asset.with_keywords(search_terms, :page => @page, :per_page => @per_page)
       end
     end
   end

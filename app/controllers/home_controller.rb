@@ -34,13 +34,13 @@ class HomeController < ApplicationController
     
     define_method "recent_#{kind}".to_sym do
       respond_with(instance_variable_set("@#{kind}", klass.most_recent(5))) do |format|
-        format.js { render kind }
+        format.js { render :partial => "#{kind}/#{kind}" }
       end
     end
     
     define_method "trending_#{kind}".to_sym do
       respond_with(instance_variable_set("@#{kind}", klass.trending(5))) do |format|
-        format.js { render kind }
+        format.js { render :partial => "#{kind}/#{kind}" }
       end
     end
   end
