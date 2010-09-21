@@ -142,7 +142,7 @@ class CollectionsControllerTest < ActionController::TestCase
       should set_the_flash.to(I18n.t('controllers.collections.flash_create'))
       should respond_with :found
       should "redirect to collection page" do
-        assert_redirected_to live_collection_path(assigns(:collection).zooniverse_id)
+        assert_redirected_to collection_path(assigns(:collection).zooniverse_id)
       end
     end
     
@@ -152,7 +152,7 @@ class CollectionsControllerTest < ActionController::TestCase
         standard_cas_login(@collection.user)
         
         options = {
-          :id => @collection.id,
+          :id => @collection.zooniverse_id,
           :collection_kind => {
             :id => "Collection"
           },
@@ -180,7 +180,7 @@ class CollectionsControllerTest < ActionController::TestCase
         standard_cas_login(@collection.user)
         
         options = {
-          :id => @collection.id,
+          :id => @collection.zooniverse_id,
           :collection_kind => {
             :id => "Live Collection"
           },
@@ -196,7 +196,7 @@ class CollectionsControllerTest < ActionController::TestCase
       should set_the_flash.to(I18n.t('controllers.collections.flash_updated'))
       should respond_with :found
       should "redirect to collection page" do
-        assert_redirected_to live_collection_path(assigns(:collection).zooniverse_id)
+        assert_redirected_to collection_path(assigns(:collection).zooniverse_id)
       end
       
       should "update values" do

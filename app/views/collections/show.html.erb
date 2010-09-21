@@ -1,33 +1,32 @@
 <div class="upper-row">
-	<h1 class="collection-title"><%= @collection.name %> by <%= link_to @collection.user.name, user_path(@collection.user) %></h1>
-	
-	<div class="rhc">
-		<%= render :partial => "shared/list_of_discussions" %>	
-		<%= render :partial => "shared/list_of_mentions" %>	
-		<%= render :partial => "shared/tags_for_focus" %>	
-	</div>
-	
-	<div class="lhc">
-		<p class="collection-description"><%= @collection.description %></p>
-		<div class="collection-viewer">
-			<%= render :partial => "shared/collection_as_focus" %>
-		</div>
-	</div>
-
+  <h1 class="collection-title">
+    <%= @collection.name %> by <%= link_to @collection.user.name, user_path(@collection.user) %>
+  </h1>
+  
+  <div class="rhc">
+    <%= render :partial => "shared/list_of_discussions" %>
+    <%= render :partial => "shared/list_of_mentions" %>
+    <%= render :partial => "shared/tags_for_focus" %>
+  </div>
+  
+  <div class="lhc">
+    <p class="collection-description"><%= @collection.description %></p>
+    <div class="collection-viewer">
+      <%= render :partial => "collection" %>
+    </div>
+  </div>
 </div>
 
 <div class="lower-row">
-	<div class="lhc">		
-		<%- if current_zooniverse_user %>
-			<%= render :partial => "shared/comment_short_new" %>
-		<%- else -%>
-			<%= render :partial => "shared/please_log_in" %>
-		<% end -%>
-		<div class="comments-list">
-			<%= render :partial => "shared/stream" %>
-		</div>
-	</div>
-	<div class="rhc">		
-							
-	</div>
+  <div class="lhc">
+    <%- if current_zooniverse_user %>
+      <%= render :partial => "shared/comment_short_new" %>
+    <%- else -%>
+      <%= render :partial => "shared/please_log_in" %>
+    <% end -%>
+    <div class="comments-list">
+      <%= render :partial => "shared/stream" %>
+    </div>
+  </div>
+  <div class="rhc"></div>
 </div>

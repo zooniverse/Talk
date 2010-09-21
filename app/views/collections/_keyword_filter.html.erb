@@ -1,0 +1,7 @@
+<p>Live collection keywords:</p>
+<span>
+  <%= f.text_field :tags, :size => 60,
+      :onfocus => "clear_input('collection_tags');",
+      :onblur => "replace_input('collection_tags', 'e.g. big, purple, truck');",
+      :value => "e.g. big, purple, truck" %>
+</span>
