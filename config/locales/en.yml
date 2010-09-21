@@ -87,6 +87,7 @@ en:
   asset:
     name: "object"
   messages:
+    send_to: "Send a message"
     messages: "Messages"
     message: "Message"
     inbox: "Inbox"

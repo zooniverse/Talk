@@ -26,6 +26,7 @@ class MessagesController < ApplicationController
   
   def new
     @message = Message.new
+    @recipient_name = params[:recipient_name] if params[:recipient_name]
   end
   
   def create

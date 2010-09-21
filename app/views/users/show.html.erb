@@ -1,89 +1,90 @@
 <div class="profile">
-	<div class="upper-row">
-		<div class="rhc"></div>
-		<div class="lhc">		
-			<div class="profile-detail">
-				<%= image_tag "default_user.png" %>
-				<div class="info">
-					<h1><%= @user.name %></h1>
-		
-					<%- unless current_zooniverse_user == @user -%>					
-					<div class="user-actions" id="report-user-link-<%= @user.id %>"><%= link_to("REPORT THIS USER", report_user_path(@user), {:remote => true, :method => :post, :method => :post, :style => "color:#2276BB;"}) %>					
-					</div>
-					<%- end -%>		
-			
-				</div>			
-			</div>	
-	
-		</div>
-
-	</div>
-	<div class="lower-row">
-		<div class="rhc" >
-			<%- if current_zooniverse_user.moderator? && current_zooniverse_user != @user  -%>
-			<div class="panel admin-panel">	
-				<h2>Administration</h2>								
-				<div class="inner">
-					<div id="moderation-links">
-						<%= render :partial => "shared/user_state" %>
-					</div>
-				</div>
-			</div>
-			<% end %>
-		
-				<div class="panel my-collections">		
-				<h2><%- if current_zooniverse_user == @user -%>My&nbsp;<% end %>Collections</h2>
-					<div class="inner">				
-							<% unless @user.collections.empty?  %>				
-							<% @user.collections.each do |collection| %>
-								<div class="collection">
-									<%= link_to image_tag(collection.assets.first.thumbnail_location, :class => "collection-thumbnail", :height => 100), collection_path(collection.zooniverse_id) unless collection.assets.empty? %>
-									<div class="collection-info">						
-											<h3><%= link_to collection.name, collection_path(collection.zooniverse_id) %></h3>
-											<ul>	
-												<li><%= pluralize collection.assets.size, "item"%></li>										
-												<li><%= pluralize collection.discussions.size, "discussion"%></li>
-											</ul>
-									</div>
-								</div>							
-								<% end %>							
-							<% else %>											
-								<p>No Collections</p>
-							<% end %>			
-					</div>
-					<%- if current_zooniverse_user == @user -%>						
-						<div class="new">												
-						<%= link_to (t 'collection.startnewcol'), new_collection_path() %>					
-						</div>
-					<% end %>
-				</div>
-		
-		</div>
-		<div class="lhc">
-			<div class="panel popular-discussions">		
-				<h2>Popular Discussions</h2>
-				<div class="inner">
-				<% unless @discussions.nil? %>
-					<%= render :partial => "shared/list_of_discussions_main", :locals => { :discussions_list => @discussions, :id_of_box => "trending-discussions" } %>				
-				<% else %>
-					<p>No discussions</p>
-				<% end %>
-				</div>
-			
-				<% if @more_discussions == true %>
-					<%= link_to 'Show all', user_owned_discussion_path(@user.id), {:remote => true, :method => :post, :id => "more-discussions", :class => 'show-more' } %><span class="loading">LOADING</span>
-				<% end %>
-			</div>
-		
-			<div class="panel user-comments">		
-				<h2>Latest Comments</h2>
-				<div class="inner">			
-			<%= render :partial => "shared/list_of_comments", :locals => { :comments_list => @user_comments, :id_of_box => "recent-comments" } %>
-				</div>
-				<% if @more_comments == true %>
-					<%= link_to 'Show all', user_owned_comment_path(@user.id), {:remote => true, :method => :post, :id => "more-comments", :class => 'show-more' } %><span class="loading">LOADING</span>
-				<% end %>
-			</div>
-		</div>
-	</div>
+  <div class="upper-row">
+    <div class="rhc"></div>
+    <div class="lhc">
+      <div class="profile-detail">
+        <%= image_tag "default_user.png" %>
+        <div class="info">
+          <h1><%= @user.name %></h1>
+          
+          <%- unless current_zooniverse_user == @user %>
+            <div class="user-actions" id="report-user-link-<%= @user.id %>">
+              <ul>
+                <li><%= link_to t('messages.send_to').upcase, new_message_url(:recipient_name => @user.name) %></li>
+                <li><%= link_to("REPORT THIS USER", report_user_path(@user), { :remote => true, :method => :post, :method => :post, :style => "color:#2276BB;" }) %></li>
+              </ul>
+            </div>
+          <% end -%>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="lower-row">
+    <div class="rhc" >
+      <%- if current_zooniverse_user.moderator? && current_zooniverse_user != @user %>
+        <div class="panel admin-panel">
+          <h2>Administration</h2>
+          <div class="inner">
+            <div id="moderation-links">
+              <%= render :partial => "shared/user_state" %>
+            </div>
+          </div>
+        </div>
+      <% end -%>
+      
+      <div class="panel my-collections">
+        <h2><%- if current_zooniverse_user == @user %>My&nbsp;<% end %>Collections</h2>
+        <div class="inner">
+          <%- unless @user.collections.empty? %>
+            <% @user.collections.each do |collection| %>
+              <div class="collection">
+                <%= link_to image_tag(collection.assets.first.thumbnail_location, :class => "collection-thumbnail", :height => 100), collection_path(collection.zooniverse_id) unless collection.assets.empty? %>
+                <div class="collection-info">
+                  <h3><%= link_to collection.name, collection_path(collection.zooniverse_id) %></h3>
+                  <ul>
+                    <li><%= pluralize collection.assets.size, "item"%></li>
+                    <li><%= pluralize collection.discussions.size, "discussion"%></li>
+                  </ul>
+                </div>
+              </div>
+            <% end -%>
+          <%- else -%>
+            <p>No Collections</p>
+          <% end -%>
+        </div>
+        <%- if current_zooniverse_user == @user %>
+          <div class="new">
+            <%= link_to (t 'collection.startnewcol'), new_collection_path() %>
+          </div>
+        <% end -%>
+      </div>
+    </div>
+    <div class="lhc">
+      <div class="panel popular-discussions">
+        <h2>Popular Discussions</h2>
+        <div class="inner">
+          <%- unless @discussions.nil? %>
+            <%= render :partial => "shared/list_of_discussions_main", :locals => { :discussions_list => @discussions, :id_of_box => "trending-discussions" } %>
+          <%- else -%>
+            <p>No discussions</p>
+          <% end -%>
+        </div>
+        
+        <%- if @discussions.total_pages > 1 %>
+          <%= link_to 'Show all', user_owned_discussion_path(@user.id), {:remote => true, :method => :post, :id => "more-discussions", :class => 'show-more' } %>
+          <span class="loading">LOADING</span>
+        <% end -%>
+      </div>
+      
+      <div class="panel user-comments">
+        <h2>Latest Comments</h2>
+        <div class="inner">
+          <%= render :partial => "shared/list_of_comments", :locals => { :comments_list => @user_comments, :id_of_box => "recent-comments" } %>
+        </div>
+        <%- if @user_comments.total_pages > 1 %>
+          <%= link_to 'Show all', user_owned_comment_path(@user.id), {:remote => true, :method => :post, :id => "more-comments", :class => 'show-more' } %><span class="loading">LOADING</span>
+        <% end -%>
+      </div>
+    </div>
+  </div>
 </div>
