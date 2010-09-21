@@ -141,6 +141,25 @@ class DiscussionsControllerTest < ActionController::TestCase
       should "redirect to asset discussion page" do
         assert_redirected_to object_discussion_path(@asset.zooniverse_id, assigns(:discussion).zooniverse_id)
       end
+      
+      should "#create discussion" do
+        assert Discussion.find(@asset.reload.discussions.first.id)
+      end
+      
+      should "#create comment" do
+        comment = Comment.first(:body => "Hi", :author_id => @user.id)
+        discussion = Discussion.find(@asset.reload.discussions.first.id)
+        
+        assert comment
+        assert_equal comment, discussion.comments.first
+      end
+      
+      should "have denormalized counts" do
+        discussion = Discussion.find(@asset.reload.discussions.first.id)
+        assert_equal 1, discussion.number_of_users
+        assert_equal 1, discussion.number_of_comments
+        assert_equal 1, discussion.popularity
+      end
     end
     
     context "#create on board" do

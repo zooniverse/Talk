@@ -41,6 +41,7 @@ class DiscussionsController < ApplicationController
       @focus.discussion_ids << @discussion.id
       @focus.save
       @discussion.comments << @comment
+      @discussion.save
       
       flash[:notice] = I18n.t 'controllers.discussions.flash_create'
       redirect_to discussion_url_for(@discussion)
