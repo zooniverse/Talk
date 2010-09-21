@@ -1,16 +1,15 @@
-<!-- Displays tags for a focus -->
-<% unless @focus.keywords.empty? %>
-	<div id="tags-for-focus" class="panel tags right">
-		<h2><%= t 'homepage.keywords' %></h2>
-		<div class="inner">
-		  	<ul>
-		    <%- @focus.keywords.each do |keyword| %>
-		      <%- klass = @focus.class.name.underscore.pluralize %>
-		      <%- klass.sub('assets', 'objects').sub('live_collections', 'collections') %>
-		  		<li><%= link_to keyword, search_url(:search => "keywords: #{keyword}", :for => klass) %></li>
-		  	<% end -%>
-			</ul>
-			<div class="push"></div>
-		</div>
-	</div>
-<% end %>
+<%- unless @focus.keywords.empty? %>
+  <div id="tags-for-focus" class="panel tags right">
+    <h2><%= t 'homepage.keywords' %></h2>
+    <div class="inner">
+      <ul>
+        <%- @focus.keywords.each do |keyword| %>
+          <%- klass = @focus.class.name.underscore.pluralize %>
+          <%- klass.sub('assets', 'objects').sub('live_collections', 'collections') %>
+          <li><%= link_to keyword, search_url(:search => "keywords: #{keyword}", :for => klass) %></li>
+        <% end -%>
+      </ul>
+      <div class="push"></div>
+    </div>
+  </div>
+<% end -%>

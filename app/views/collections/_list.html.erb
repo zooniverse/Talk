@@ -1,5 +1,5 @@
 <div class="panel">	
-  <% unless @collections.empty? %>
+  <%- unless @collections.empty? %>
     <h2><%= pluralize(@collections.size, "Collection") %></h2>
     <div class="inner">
       <ul>
@@ -8,10 +8,10 @@
         <% end -%>
       </ul>
     </div>
-  <% else %>
+  <%- else -%>
     <h2>No Collections Yet</h2>
     <div class="inner"></div>
-  <% end %>
+  <% end -%>
   <div class="new">
     <%= link_to "#{t('collection.startnewcol')}", new_collection_path(:object_id => @asset.zooniverse_id) %>
   </div>

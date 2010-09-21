@@ -1,11 +1,11 @@
 <div class="panel">
-	<% @collections.each do |c| %>
-		<div class="recent-item">
-			<div class="item-container">
-				<div class="name"><%= link_to c.name, collection_path(c.zooniverse_id) %></div>
-				<div class="date"><%= c.assets.length %> Objects</div>
-				<div class="body"><%= c.description %></div>
-			</div>
-		</div>
-	<% end %>
+  <%- @collections.each do |c| %>
+    <div class="recent-item">
+      <div class="item-container">
+        <div class="name"><%= link_to c.name, collection_path(c.zooniverse_id) %></div>
+        <div class="date"><%= c.assets.length %> Objects</div>
+        <div class="body"><%= c.description %></div>
+      </div>
+    </div>
+  <% end -%>
 </div>

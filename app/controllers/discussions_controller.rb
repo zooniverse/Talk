@@ -62,7 +62,7 @@ class DiscussionsController < ApplicationController
     respond_with(@discussions) do |format|
         format.js { 
           render :update do |page|              
-            page['.popular-discussions .inner'].html(render :partial => "shared/list_of_discussions_main", :locals => { :discussions_list => @discussions, :id_of_box => "trending-discussions"})
+            page['.popular-discussions .inner'].html(render :partial => "discussions/list_trending")
             page['#more-discussions'].hide()
           end
         }

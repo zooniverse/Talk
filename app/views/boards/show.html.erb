@@ -1,24 +1,26 @@
 <div class="upper-row">
-	<div id="board-heading" class="panel boards">
-		<h1><%= @board.title %></h1>
-		<%= render :partial => "shared/meta_for_discussion" %>
-		<p><%= @board.description %></p>
-		<%= link_to t('controllers.boards.new_discussion'), new_board_discussion_url(@board.title) %>
-	</div>
+  <div id="board-heading" class="panel boards">
+    <h1><%= @board.title %></h1>
+    <div id="meta-for-discussions" class="panel">
+      <%= "#{ @board.discussion_ids.length } #{ t('discussion.meta.discussions') } / #{ @board.number_of_comments } #{ t('discussion.meta.comments') }" %>
+    </div>
+    <p><%= @board.description %></p>
+    <%= link_to t('controllers.boards.new_discussion'), new_board_discussion_url(@board.title) %>
+  </div>
 </div>
 
 <div class="lower-row">
-	<div class="lhc">
-		<div class="discussions-list">
-			<%= render :partial => "shared/list_of_discussions_board", :locals => { :id_of_box => "discussions-list" } %>
-		</div>
-		
-		<%= page_bar @page, @board.total_pages %>
-		
-	</div>
-	<div class="rhc">
-		<%= render :partial => "shared/zooniverse_extras" %>
-		<%= render :partial => "shared/project_link" %>
-		<%= render :partial => "shared/help_wanted" %>
-	</div>
+  <div class="lhc">
+    <div class="discussions-list">
+      <%= render :partial => "discussions" %>
+    </div>
+    
+    <%= page_bar @page, @board.total_pages %>
+    
+  </div>
+  <div class="rhc">
+    <%= render :partial => "shared/zooniverse_extras" %>
+    <%= render :partial => "shared/project_link" %>
+    <%= render :partial => "shared/help_wanted" %>
+  </div>
 </div>

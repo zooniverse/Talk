@@ -1,0 +1,24 @@
+<%- unless @focus.discussions.empty? %>
+  <div class="panel collection-list">
+    <h2><%= pluralize(@focus.discussions.size, "Discussion") %></h2>
+    <div class="inner">
+      <ul>
+        <%- @focus.discussions.each do |discussion| %>
+          <li><%= link_to discussion.subject, discussion_url_for(discussion) %></li>
+        <% end -%>
+      </ul>
+    </div>
+    <div class="new">
+      <%= link_to "#{t('discussion.startnew')}", new_discussion_url_for(@focus) %>
+    </div>
+  </div>
+<%- else -%>
+  <div class="panel collection-list">
+    <h2>No Discussions Yet</h2>
+    <div class="inner">
+      <div class="new">
+        <%= link_to "#{t('discussion.startnew')}", new_discussion_url_for(@focus) %>
+      </div>
+    </div>
+  </div>
+<% end -%>

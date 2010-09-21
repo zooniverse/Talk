@@ -1,0 +1,12 @@
+<div class="short-comment-form">
+  <%= form_for [@discussion, @comment] do |f| %>
+    <div id="short-counter"></div>
+    <h2 class="short-comment-prompt">What do you think?</h2>
+    <%= f.text_area :body, :rows => 3, :cols => 40, :maxlength => 140, :id => "short-text" %>
+    <%= hidden_field_tag('comment[author_id]', current_zooniverse_user.id)  %>
+    <div style="float: right">
+      <%= submit_tag 'Submit' %>
+    </div>
+    <div class="push"></div>
+  <% end -%>
+</div>

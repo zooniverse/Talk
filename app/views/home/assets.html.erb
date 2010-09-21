@@ -1,13 +1,13 @@
 <div class="panel">
-	<% @assets.each do |a| %>
-		<div class="recent-asset">
-			<%= link_to image_tag(a.thumbnail_location, :class => "recent-comment-user", :height => 40), :controller => :assets, :action => :show, :id => a.zooniverse_id %>
-			<div class="asset-container">
-				<div class="name"><%= link_to a.zooniverse_id, :controller => :assets, :action => :show, :id => a.zooniverse_id %></div>
-				<div class="comment-total"><%= pluralize(a.count_mentions, "mention") %></div>
-				<div class="views-total"><%= pluralize(a.count_collections, "collection") %></div>
-				<div class="push"></div>
-			</div>
-		</div>
-	<% end %>
+  <%- @assets.each do |a| %>
+    <div class="recent-asset">
+      <%= link_to image_tag(a.thumbnail_location, :class => "recent-comment-user", :height => 40), :controller => :assets, :action => :show, :id => a.zooniverse_id %>
+      <div class="asset-container">
+        <div class="name"><%= link_to a.zooniverse_id, :controller => :assets, :action => :show, :id => a.zooniverse_id %></div>
+        <div class="comment-total"><%= pluralize(a.count_mentions, "mention") %></div>
+        <div class="views-total"><%= pluralize(a.count_collections, "collection") %></div>
+        <div class="push"></div>
+      </div>
+    </div>
+  <% end -%>
 </div>

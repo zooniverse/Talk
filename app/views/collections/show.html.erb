@@ -4,8 +4,8 @@
   </h1>
   
   <div class="rhc">
-    <%= render :partial => "shared/list_of_discussions" %>
-    <%= render :partial => "shared/list_of_mentions" %>
+    <%= render :partial => "discussions/list_for_focus" %>
+    <%= render :partial => "discussions/mentions" %>
     <%= render :partial => "shared/tags_for_focus" %>
   </div>
   
@@ -20,12 +20,12 @@
 <div class="lower-row">
   <div class="lhc">
     <%- if current_zooniverse_user %>
-      <%= render :partial => "shared/comment_short_new" %>
+      <%= render :partial => "comments/new_short" %>
     <%- else -%>
       <%= render :partial => "shared/please_log_in" %>
     <% end -%>
     <div class="comments-list">
-      <%= render :partial => "shared/stream" %>
+      <%= render :partial => "comments/list_short" %>
     </div>
   </div>
   <div class="rhc"></div>

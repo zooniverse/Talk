@@ -46,11 +46,11 @@
 <div class="lower-row discussion-thread">
   <div class="lhc" <% if @discussion.focus_type == "Board" %>style="width:700px;"<% end %>>
     <div class="comments-list">
-      <%= render :partial => "shared/comment", :collection => @comments %>
+      <%= render :partial => "comments/list" %>
     </div>
     <a id="comment"></a>
     <% if current_zooniverse_user %>
-      <%= render :partial => "shared/comment_new" %>
+      <%= render :partial => "comments/new" %>
     <% else %>
       <%= render :partial => "shared/please_log_in" %>
     <% end %>

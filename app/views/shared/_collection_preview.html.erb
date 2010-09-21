@@ -1,8 +1,0 @@
-<!-- Shows a gallery of assets for a collection -->
-<div id="object-gallery" class="panel">
-	<ul>
-	<% assets_to_show.each do |asset| %>
-		<li><%= image_tag asset.thumbnail_location, :size => "40x40", :class => "gallery-thumb" %></li>
-	<% end %>
-	</ul>
-</div>

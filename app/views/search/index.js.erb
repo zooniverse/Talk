@@ -1,4 +1,4 @@
-$(".comments-list").first().append("<%= escape_javascript(render(:partial => "shared/comment_short", :collection => @comments)) %>");
+$(".comments-list").first().append("<%= escape_javascript(render(:partial => "comments/list_short")) %>");
 $(".more-results").remove();
 if(<%= @page < @comments.total_pages %>) {
   $(".comments-list").first().append('<div class="more-results"><%= more_results "More", :page => @page + 1 %></div>');

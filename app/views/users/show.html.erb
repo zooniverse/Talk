@@ -26,7 +26,7 @@
           <h2>Administration</h2>
           <div class="inner">
             <div id="moderation-links">
-              <%= render :partial => "shared/user_state" %>
+              <%= render :partial => "state" %>
             </div>
           </div>
         </div>
@@ -64,7 +64,7 @@
         <h2>Popular Discussions</h2>
         <div class="inner">
           <%- unless @discussions.nil? %>
-            <%= render :partial => "shared/list_of_discussions_main", :locals => { :discussions_list => @discussions, :id_of_box => "trending-discussions" } %>
+            <%= render :partial => "discussions/list_trending" %>
           <%- else -%>
             <p>No discussions</p>
           <% end -%>
@@ -79,7 +79,7 @@
       <div class="panel user-comments">
         <h2>Latest Comments</h2>
         <div class="inner">
-          <%= render :partial => "shared/list_of_comments", :locals => { :comments_list => @user_comments, :id_of_box => "recent-comments" } %>
+          <%= render :partial => "comments/recent" %>
         </div>
         <%- if @user_comments.total_pages > 1 %>
           <%= link_to 'Show all', user_owned_comment_path(@user.id), {:remote => true, :method => :post, :id => "more-comments", :class => 'show-more' } %><span class="loading">LOADING</span>

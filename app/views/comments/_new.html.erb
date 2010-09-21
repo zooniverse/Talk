@@ -3,18 +3,17 @@
 <link rel="stylesheet" href="/javascripts/markitup/skins/simple/style.css" type="text/css" media="screen" charset="utf-8">
 <link rel="stylesheet" href="/javascripts/markitup/sets/sellers/style.css" type="text/css" media="screen" charset="utf-8">
 
-<!-- Box for adding a new full discussion comment -->
 <%= image_tag('default_user.png', :class => "new-comment-user", :height => 40) %>
 <%= form_for [@discussion, @comment] do |f| %>
-	<div class="comment-form">
-		<p id="comment-form-title">Add a comment</p>
-		<%= f.text_area :body, :rows => 4, :cols => 61 %>
-		<%= hidden_field_tag('comment[author_id]', current_zooniverse_user.id) %>
-		<%= hidden_field_tag('comment[response_to_id]', "") %>
-	
-		<%= submit_tag 'Submit' %>	
-	</div>
-<%- end %>
+  <div class="comment-form">
+    <p id="comment-form-title">Add a comment</p>
+    <%= f.text_area :body, :rows => 4, :cols => 61 %>
+    <%= hidden_field_tag('comment[author_id]', current_zooniverse_user.id) %>
+    <%= hidden_field_tag('comment[response_to_id]', "") %>
+    
+    <%= submit_tag 'Submit' %>	
+  </div>
+<% end -%>
 
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {

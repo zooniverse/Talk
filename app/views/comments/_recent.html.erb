@@ -1,0 +1,18 @@
+<div id="recent-comments" class="panel">
+  <%- if @comments %>
+    <%- @comments.each do |comment| %>
+      <%- discussion = Discussion.find_by_id(comment.discussion_id) %>
+      <div class="recent-comment highlight_keywords">
+        <%= image_tag('default_user.png', :class => "recent-comment-user", :height => 40) %>
+        <div class="comment-container">
+          <div class="name">
+            <%= link_to comment.author.name, user_path(comment.author.id) %> in <%= link_to truncate(discussion.subject, :length => 25), discussion_url_for(discussion) %>
+          </div>
+          <div class="date">Posted <%= time_ago_in_words(comment.created_at) %> ago</div>
+          <div class="comment-body"><%= (markdown(comment.body)).gsub(/<\/?[^>]*>/,"") %></div>
+        </div>
+        <div class="push"></div>
+      </div>
+    <% end -%>
+  <% end -%>
+</div>

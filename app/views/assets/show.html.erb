@@ -1,27 +1,26 @@
 <div class="upper-row asset-upper">
-	<div class="rhc">
-		<%= render :partial => "shared/tags_for_focus" %>
-	</div>
-	<div class="lhc">
-		<%= render :partial => "shared/asset_as_focus" %>
-	</div>
+  <div class="rhc">
+    <%= render :partial => "shared/tags_for_focus" %>
+  </div>
+  <div class="lhc">
+    <%= render :partial => "asset" %>
+  </div>
 </div>
 
 <div class="lower-row">
-	<div class="lhc">	
-		<% if current_zooniverse_user %>
-			<%= render :partial => "shared/comment_short_new" %>
-		<% else %>		
-			<%= render :partial => "shared/please_log_in" %>
-		<% end %>			
-		<div class="comments-list">
-			<%= render :partial => "shared/comment_short" %>	
-			<%= render :partial => "shared/comment_short" %>					
-		</div>
-	</div>
-	<div class="rhc">
-		<%= render :partial => "shared/list_of_collections" %>
-		<%= render :partial => "shared/list_of_discussions" %>
-		<%= render :partial => "shared/list_of_mentions" %>
-	</div>
+  <div class="lhc">
+    <%- if current_zooniverse_user %>
+      <%= render :partial => "comments/new_short" %>
+    <%- else -%>
+      <%= render :partial => "shared/please_log_in" %>
+    <% end -%>
+    <div class="comments-list">
+      <%= render :partial => "comments/list_short" %>
+    </div>
+  </div>
+  <div class="rhc">
+    <%= render :partial => "collections/list" %>
+    <%= render :partial => "discussions/list_for_focus" %>
+    <%= render :partial => "discussions/mentions" %>
+  </div>
 </div>
