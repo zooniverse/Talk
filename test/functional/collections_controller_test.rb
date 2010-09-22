@@ -91,6 +91,15 @@ class CollectionsControllerTest < ActionController::TestCase
       should respond_with :success
       should render_template :edit
     end
+    
+    context "#new" do
+      setup do
+        get :new
+      end
+      
+      should respond_with :success
+      should render_template :new
+    end
       
     context "#create Collection" do
       setup do

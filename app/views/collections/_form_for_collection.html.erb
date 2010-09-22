@@ -1,5 +1,5 @@
-<%= form_for @collection, :url => collection_path(@collection.zooniverse_id) do |f| %>
-  <%- if @collection.new_record? %>
+<%- if @collection.new_record? %>
+  <%= form_for @collection do |f| %>
     <%= hidden_field_tag('collection[asset_ids]', @asset.id) if @asset %>
     <span>
       <%= f.text_field :name, :size => 30,
@@ -19,7 +19,7 @@
       <%= select "collection_kind", "id", options_for_select(['Collection', 'Live Collection'], 'Collection'), {}, { :onchange => 'check_collection_type();' } %>
     </span>
     <br /><br />
-    
+  
     <div id="live_collection_form" style="display:none;">
       <div id="keyword_1_wrapper">
         <%= text_field "keyword", "1", :value => "Add a keyword", :class => "keyword", :onfocus => 'clear_this(this);', :onblur => 'replace_this(this);' %>
@@ -30,17 +30,22 @@
       <div id="live_collection_results"></div>
       <br /><br />
     </div>
-  <%- else -%>
+    
+    <%= submit_tag %>
+  <% end -%>
+<%- else -%>
+  <%= form_for @collection, :url => collection_path(@collection.zooniverse_id) do |f| %>
     <span><%= f.text_field :name, :size => 30 %></span>
     <br /><br />
     <span><%= f.text_field :description, :size => 60 %></span>
     <br /><br />
     <span><%= select("collection_kind", "id", "<option>Collection</option>") %></span>
     <br /><br />
-    
+  
     <div id="collection-assets">
       <%= render :partial => "assets" %>
     </div>
+    
+    <%= submit_tag %>
   <% end -%>
-  <%= submit_tag %>
 <% end -%>
