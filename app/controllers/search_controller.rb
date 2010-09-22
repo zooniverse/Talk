@@ -13,9 +13,12 @@ class SearchController < ApplicationController
     
     case @for
     when 'collections'
-      selector = { :criteria => { :$or => [{ :focus_type => "Collection" }, { :focus_type => "LiveCollection" }] } }
-      selector[:field] = :tags unless @keywords.nil?
-      @collections = focus_results(search_terms, selector)
+      if @keywords.nil?
+        selector = { :criteria => { :$or => [{ :focus_type => "Collection" }, { :focus_type => "LiveCollection" }] } }
+        @collections = focus_results(search_terms, selector)
+      else
+        @results = @collections = Collection.with_keywords(search_terms, :page => @page, :per_page => @per_page)
+      end
     when 'comments'
       selector = { :per_page => @per_page, :page => @page }
       

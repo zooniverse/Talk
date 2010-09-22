@@ -17,20 +17,21 @@ class SearchControllerTest < ActionController::TestCase
       should render_template :index
       
       should "not list results" do
-        assert_select ".comments-list", false
+        assert_select ".comment-container", false
       end
     end
     
     context "#index with malformed keywords" do
       setup do
-        get :index, { :search => "", :for => "objects" }
+        get :index, { :search => "keywords:", :for => "objects" }
       end
       
       should respond_with :success
       should render_template :index
       
       should "not list results" do
-        assert_select ".comments-list", false
+        assert_select ".comments-list", 1
+        assert_select ".comment-container", false
       end
     end
     
@@ -48,6 +49,25 @@ class SearchControllerTest < ActionController::TestCase
         [@asset, @asset2, @asset3].each do |asset|
           assert_select "a[href='/objects/#{asset.zooniverse_id}']", 2
         end
+      end
+    end
+    
+    context "#index with multiple keywords for objects" do
+      setup do
+        @asset = Factory :asset
+        build_focus_for @asset
+        @asset.conversation.comments << Comment.new(:author => @comment1.author, :body => "it's #awesome")
+        
+        get :index, { :search => "keywords: #tag1, awesome", :for => "objects" }
+      end
+      
+      should respond_with :success
+      should render_template :index
+      
+      should "list assets" do
+        assert_select "a[href='/objects/#{@asset.zooniverse_id}']", 2
+        assert_select "a[href='/objects/#{@asset2.zooniverse_id}']", false
+        assert_select "a[href='/objects/#{@asset3.zooniverse_id}']", false
       end
     end
     
@@ -72,6 +92,27 @@ class SearchControllerTest < ActionController::TestCase
       end
     end
     
+    context "#index with multiple keywords for collections" do
+      setup do
+        @asset = Factory :asset
+        @collection = collection_for @asset
+        @collection2 = collection_for @asset
+        build_focus_for @collection
+        build_focus_for @collection2
+        @collection.conversation.comments << Comment.new(:author => @comment1.author, :body => "it's #awesome")
+        
+        get :index, { :search => "keywords: #tag1, awesome", :for => "collections" }
+      end
+      
+      should respond_with :success
+      should render_template :index
+      
+      should "list collections" do
+        assert_select "a[href='/collections/#{@collection.zooniverse_id}']", 1
+        assert_select "a[href='/collections/#{@collection2.zooniverse_id}']", false
+      end
+    end
+    
     context "#index with keywords for comments" do
       setup do
         @asset = Factory :asset
@@ -84,6 +125,23 @@ class SearchControllerTest < ActionController::TestCase
       
       should "list comments" do
         assert_select ".comments-list div.panel > div.short-comment", 3
+      end
+    end
+    
+    context "#index with multiple keywords for comments" do
+      setup do
+        @asset = Factory :asset
+        build_focus_for @asset
+        @comment1.tags << "awesome"
+        @comment1.save
+        get :index, { :search => "keywords: #tag1, #tag2, awesome", :for => "comments" }
+      end
+      
+      should respond_with :success
+      should render_template :index
+      
+      should "list comments" do
+        assert_select ".comments-list div.panel > div.short-comment", 1
       end
     end
     
@@ -106,11 +164,54 @@ class SearchControllerTest < ActionController::TestCase
       end
     end
     
+    context "#index with multiple text search terms for comments" do
+      setup do
+        @asset = Factory :asset
+        build_focus_for @asset
+        @comment1._body << "awesomeness"
+        @comment1.save
+        get :index, { :search => "#{ @asset.zooniverse_id} awesomeness" }
+      end
+      
+      should respond_with :success
+      should render_template :index
+      
+      should "list comments" do
+        assert_select ".comments-list div.panel > div.short-comment", 1
+      end
+      
+      should "link to discussions" do
+        assert_select "a[href='/objects/#{@asset.zooniverse_id}/discussions/#{@discussion.zooniverse_id}']"
+      end
+    end
+    
     context "#index with text search for objects" do
       setup do
         @asset = Factory :asset
         build_focus_for @asset
         get :index, { :search => @asset.zooniverse_id, :for => "objects" }
+      end
+      
+      should respond_with :success
+      should render_template :index
+      
+      should "list assets" do
+        assert_select "a[href='/objects/#{@asset.zooniverse_id}']", 2
+      end
+    end
+    
+    context "#index with multiple text search terms for objects" do
+      setup do
+        @asset = Factory :asset
+        build_focus_for @asset
+        
+        @comment1._body << "awesomeness"
+        @comment1.save
+        other = @asset2.discussions.first.comments.first
+        other._body << "awesomeness"
+        other.save
+        
+        get :index, { :search => "#{ @asset.zooniverse_id } awesomeness", :for => "objects" }
       end
       
       should respond_with :success
@@ -128,6 +229,29 @@ class SearchControllerTest < ActionController::TestCase
         build_focus_for @collection
         
         get :index, { :search => @collection.zooniverse_id, :for => "collections" }
+      end
+      
+      should respond_with :success
+      should render_template :index
+      
+      should "list collections" do
+        assert_select "a[href='/collections/#{@collection.zooniverse_id}']", 1
+      end
+    end
+    
+    context "#index with multiple text search terms for collections" do
+      setup do
+        @asset = Factory :asset
+        @collection = collection_for @asset
+        build_focus_for @collection
+        
+        @comment1._body << "awesomeness"
+        @comment1.save
+        other = @collection2.discussions.first.comments.first
+        other._body << "awesomeness"
+        other.save
+        
+        get :index, { :search => "#{ @collection.zooniverse_id } awesomeness", :for => "collections" }
       end
       
       should respond_with :success

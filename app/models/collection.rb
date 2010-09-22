@@ -7,6 +7,7 @@ class Collection
   zoo_id :prefix => "C", :sub_id => "S"
   key :name, String, :required => true
   key :description, String
+  key :tags, Array
   timestamps!
   
   key :asset_ids, Array
@@ -31,5 +32,14 @@ class Collection
   def self.with_asset(*args)
     opts = { :limit => 10, :order => ['created_at', :desc] }.update(args.extract_options!)
     Collection.limit(opts[:limit]).sort(opts[:order]).all(:asset_ids => args.first.id)
+  end
+  
+  def self.with_keywords(*args)
+    opts = { :per_page => 10, :page => 1, :order => :updated_at.desc }.update(args.extract_options!)
+    args = args.collect{ |arg| arg.split }.flatten
+    return [] if args.blank?
+    
+    Collection.sort(opts[:order]).where(:tags.all => args).paginate(:page => opts[:page], :per_page => opts[:per_page] / 2) |
+    LiveCollection.sort(opts[:order]).where(:tags.all => args).paginate(:page => opts[:page], :per_page => opts[:per_page] / 2)
   end
 end

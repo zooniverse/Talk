@@ -27,11 +27,11 @@
 
 <div class="lower-row">
   <div class="lhc">
-    <%- unless true && @search.blank? %>
+    <%- unless @search.blank? %>
       <div id="search-results">
         <div class="comments-list">
+          <h1><%= @for.humanize.pluralize %></h1>
           <%- kind = @for.sub('objects', 'assets').underscore.pluralize %>
-          <h1><%= kind.humanize.pluralize %></h1>
           <%- if @results && @results.any? %>
             <%= render :partial => "#{kind}/#{kind}" %>
           <% end -%>
