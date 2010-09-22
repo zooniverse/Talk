@@ -125,7 +125,7 @@ class CommentTest < ActiveSupport::TestCase
       should "match by focus_type" do
         assert_same_elements [@comment1, @comment2, @comment3], Comment.search(@asset.zooniverse_id, :focus_type => "Asset")
         [@comment1, @comment2, @comment3].each do |comment|
-          assert_contains Comment.search(:focus_type => "Asset"), comment
+          assert_contains Comment.search("blah", :focus_type => "Asset"), comment
         end
       end
     end

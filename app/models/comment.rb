@@ -26,13 +26,13 @@ class Comment
   MENTION = /([A|C|D]MZ\w{7})/m
   
   def self.search(*args)
-    opts = { :page => 1, :per_page => 10, :order => :created_at.desc, :field => :_body }.update(args.extract_options!)
-    args = args.first if args.first.is_a? Array
+    opts = { :page => 1, :operator => :$all, :per_page => 10, :order => :created_at.desc, :field => :_body }.update(args.extract_options!)
+    args = args.collect{ |arg| arg.split }.flatten
     opts[:per_page] = opts[:limit] if opts.has_key?(:limit)
     
     criteria = opts[:criteria] || {}
     criteria[:focus_type] = opts[:focus_type].singularize.camelize if opts.has_key?(:focus_type)
-    criteria.merge!(opts[:field].all => args.first.split) unless args.first.nil? || args.first.blank?
+    criteria.merge!(opts[:field] => { opts[:operator] => args }) unless args.nil?
     return [] if criteria.blank?
     where(criteria).sort(opts[:order]).paginate(:page => opts[:page], :per_page => opts[:per_page])
   end
