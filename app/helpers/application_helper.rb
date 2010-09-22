@@ -4,7 +4,7 @@ module ApplicationHelper
   end
   
   def markdown(text)
-    output = BlueCloth::new(text).to_html
+    output = BlueCloth::new(text.sub(/^#/, '\#')).to_html
     
     tags = ["h1","h2","h3","h4","h5","h6"]
     
