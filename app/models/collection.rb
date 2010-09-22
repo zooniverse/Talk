@@ -30,16 +30,17 @@ class Collection
   # Finds collections containing an asset
   #  Collection.with_asset asset, :limit => 10, :order => [:created_at, :desc]
   def self.with_asset(*args)
-    opts = { :limit => 10, :order => ['created_at', :desc] }.update(args.extract_options!)
-    Collection.limit(opts[:limit]).sort(opts[:order]).all(:asset_ids => args.first.id)
+    opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
+    opts[:per_page] = opts[:limit] if opts.has_key?(:limit)
+    Collection.where(:asset_ids => args.first.id).paginate :page => opts[:page], :per_page => opts[:per_page]
   end
   
   def self.with_keywords(*args)
-    opts = { :per_page => 10, :page => 1, :order => :updated_at.desc }.update(args.extract_options!)
+    opts = { :per_page => 10, :page => 1, :order => :created_at.desc }.update(args.extract_options!)
     args = args.collect{ |arg| arg.split }.flatten
     return [] if args.blank?
     
-    Collection.sort(opts[:order]).where(:tags.all => args).paginate(:page => opts[:page], :per_page => opts[:per_page] / 2) |
-    LiveCollection.sort(opts[:order]).where(:tags.all => args).paginate(:page => opts[:page], :per_page => opts[:per_page] / 2)
+    Collection.where(:tags.all => args).paginate(:page => opts[:page], :per_page => opts[:per_page] / 2) |
+    LiveCollection.where(:tags.all => args).paginate(:page => opts[:page], :per_page => opts[:per_page] / 2)
   end
 end
