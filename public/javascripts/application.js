@@ -68,9 +68,10 @@ OCT.textcount = {
   short_max : 140,
   
   init: function() {
-    $(OCT.textcount.short_text).keypress(function() {
+    $(OCT.textcount.short_text).live('keydown keyup focus input paste', function() {
       var remaining = OCT.textcount.short_max - $(OCT.textcount.short_text).val().length;
-      $(OCT.textcount.short_counter).html(remaining);
+      $(OCT.textcount.short_counter).html(Math.max(remaining, 0));
+      $(OCT.textcount.short_text).val($(OCT.textcount.short_text).val().substr(0, OCT.textcount.short_max));
     });
     
     $(OCT.textcount.short_counter).html(OCT.textcount.short_max);
