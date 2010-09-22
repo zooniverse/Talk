@@ -28,10 +28,8 @@ class ApplicationController < ActionController::Base
       case focus.class.to_s
       when "Asset"
         object_path(focus.zooniverse_id)
-      when "Collection"
+      when "Collection", "LiveCollection"
         collection_path(focus.zooniverse_id)
-      when "LiveCollection"
-        live_collection_path(focus.zooniverse_id)
       end
     else
       case focus.class.to_s
@@ -39,10 +37,8 @@ class ApplicationController < ActionController::Base
         object_discussion_path(focus.zooniverse_id, discussion.zooniverse_id)
       when "Board"
         "/#{discussion.focus.title.downcase}/discussions/#{discussion.zooniverse_id}"
-      when "Collection"
+      when "Collection", "LiveCollection"
         collection_discussion_path(focus.zooniverse_id, discussion.zooniverse_id)
-      when "LiveCollection"
-        live_collection_discussion_path(focus.zooniverse_id, discussion.zooniverse_id)
       end
     end
   end
@@ -54,9 +50,7 @@ class ApplicationController < ActionController::Base
       object_path(focus.zooniverse_id)
     when "Board"
       "/#{focus.title.downcase}"
-    when "Collection"
-      collection_path(focus.zooniverse_id)
-    when "LiveCollection"
+    when "Collection", "LiveCollection"
       collection_path(focus.zooniverse_id)
     end
   end
