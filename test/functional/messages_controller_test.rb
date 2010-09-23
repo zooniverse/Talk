@@ -68,6 +68,7 @@ class MessagesControllerTest < ActionController::TestCase
       end
       
       should respond_with :found
+      should set_the_flash.to(I18n.t('controllers.messages.flash_create'))
       
       should "redirect to messages" do
         assert_redirected_to messages_path

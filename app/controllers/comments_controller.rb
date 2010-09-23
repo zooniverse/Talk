@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
     else
       @comment = Comment.find(params[:id])
       @event = @comment.events.build(:user => current_zooniverse_user, 
-                                     :title => "Comment reported by #{current_zooniverse_user.name}")
+                                     :title => "#{ I18n.t('controllers.comments.reported') } #{ current_zooniverse_user.name }")
 
       @event.save
     end

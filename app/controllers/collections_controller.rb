@@ -92,7 +92,10 @@ class CollectionsController < ApplicationController
     find_collection
     @asset = Asset.find_by_zooniverse_id(params[:asset_id])
     @collection.asset_ids.delete_if { |id| id == @asset.id }
-    @collection.save
+    
+    if @collection.save
+      flash[:notice] = I18n.t('controllers.collections.removed')
+    end
   end
   
   private
