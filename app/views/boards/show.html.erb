@@ -15,7 +15,7 @@
       <%= render :partial => "discussions" %>
     </div>
     
-    <%= page_bar @page, @board.total_pages %>
+    <%= will_paginate @discussions %>
     
   </div>
   <div class="rhc">

@@ -59,7 +59,7 @@ class BoardsControllerTest < ActionController::TestCase
         @discussion.featured = true
         @discussion.save
         
-        get 'science'
+        get 'science', { :page => 2, :per_page => 5 }
       end
 
       should "display meta information" do
@@ -67,7 +67,7 @@ class BoardsControllerTest < ActionController::TestCase
       end
       
       should "display discussions" do
-        assert_select "#discussions-list > div", 10
+        assert_select "#discussions-list > div", 5
       end
       
       should "display zooniverse ad" do
@@ -84,9 +84,9 @@ class BoardsControllerTest < ActionController::TestCase
       end
       
       should "display pagination links" do
-        assert_select "li.pagination > a", 2
-        assert_select "li.pagination a:nth-child(1)", :text => "&lt;1&gt;"
-        assert_select "li.pagination a:nth-child(1)", :text => "2"
+        assert_select "div.pagination", 1
+        assert_select "div.pagination > a", 4
+        assert_select "div.pagination", :text => /Previous 1 2 3 Next/
       end
     end
   end

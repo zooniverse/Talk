@@ -12,8 +12,8 @@ class BoardsController < ApplicationController
   def show_by_title(title)
     @per_page = params[:per_page] ? params[:per_page].to_i : 10
     @page = params[:page] ? params[:page].to_i : 1
-    @board = Board.by_title(title, :page => @page, :per_page => @per_page)
-    @discussions = @board.current_page
+    @board = Board.by_title(title)
+    @discussions = @board.discussions.paginate :page => @page, :per_page => @per_page
     
     render "show"
   end

@@ -12,6 +12,7 @@ gem 'mongo_mapper', '0.8.4'
 gem 'rubycas-client', '2.2.1'
 gem 'state_machine', '0.9.4'
 gem 'bluecloth', '2.0.7'
+gem "will_paginate", :git => 'http://github.com/mislav/will_paginate.git', :branch => 'rails3'
 # gem 'paperclip'
 
 group :development do
@@ -20,9 +21,9 @@ group :development do
 end
 
 group :test do
-	gem 'mocha'
+  gem 'mocha'
   gem 'shoulda'
- 	gem 'factory_girl_rails'
+  gem 'factory_girl_rails'
 end
 
 # Use unicorn as the web server
