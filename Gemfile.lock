@@ -1,6 +1,6 @@
 GIT
   remote: http://github.com/mislav/will_paginate.git
-  revision: 36159385c8a5837fc63fe901ebe0a88205b5ce8d
+  revision: 3615938
   branch: rails3
   specs:
     will_paginate (3.0.pre2)
