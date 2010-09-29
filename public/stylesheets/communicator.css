@@ -448,8 +448,13 @@ h2.asset-name {
 	text-transform: uppercase;
 }
 
+#comment-annotation {
+  text-align: center;
+  margin: 3px auto;
+}
+
 .comment-form {
-	margin: 1em 0 20px 55px;
+	margin: 1em 0 20px 0px;
 }
 
 .comment-form p {

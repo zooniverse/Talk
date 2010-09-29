@@ -22,7 +22,7 @@
 /*	font:12px 'Courier New', Courier, monospace;*/
 	font:12px Verdana, sans-serif;
 	padding:5px;
-	width:635px;
+	width:100%;
 	height:320px;
 	clear:both; display:block;
 	line-height:18px;
@@ -32,7 +32,7 @@
 .markItUpPreviewFrame	{
 	overflow:auto;
 	background-color:#FFF;
-	width:635px;
+	width:100%;
 	padding: 5px;
 	height:300px;
 	margin:5px 0;

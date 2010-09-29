@@ -6,6 +6,7 @@ class DiscussionsController < ApplicationController
   def show
     @discussion = Discussion.find_by_zooniverse_id(params[:id])
     @comments = Comment.where(:discussion_id => @discussion.id).sort(:created_at.asc).all
+    @focus = @discussion.focus
     
     @comment = Comment.new
     if @discussion.focus_type == "Board"

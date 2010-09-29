@@ -1,3 +1,41 @@
+$.fn.parseAnnotations = function(editable) {
+  editable = editable ? true : false
+  var text = $(this).val();
+  var matched = text.match(/\"[^\"]*\"\:\(\d+x\d+@\d+,\d+\)/gm);
+  var annotations = new Array();
+  
+  if(matched) {
+    $.each(matched, function(index, part) {
+      var parts = part.match(/\"([^\"]*)\"\:\((\d+x\d+)@(\d+,\d+)\)/m);
+      if(parts.length == 4) {
+        var annotation = {
+          id: annotations.length,
+          text: parts[1],
+          width: parseInt(parts[2].split('x')[0]),
+          height: parseInt(parts[2].split('x')[1]),
+          top: parseInt(parts[3].split(',')[0]),
+          left: parseInt(parts[3].split(',')[1])
+        };
+      
+        if(editable) {
+          annotation['editable'] = true;
+        }
+      
+        annotations.push(annotation);
+      }
+    });
+  }
+  
+  return annotations;
+}
+
+$.fn.addAnnotations = function(textarea) {
+  $.fn.annotateImage.clear(this);
+  var annotations = $(textarea).parseAnnotations(true);
+  this.notes = annotations;
+  $.fn.annotateImage.load(this);
+}
+
 $.fn.keywordHighlight = function(options) {
   var defaults = {
   

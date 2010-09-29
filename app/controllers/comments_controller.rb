@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
   end
   
   def markitup_parser
-    render :text => BlueCloth::new(params[:data]).to_html
+    render :text => markdown(params[:data])
   end
   
   def user_owned

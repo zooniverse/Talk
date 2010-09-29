@@ -3,6 +3,17 @@ class ApplicationController < ActionController::Base
   before_filter :check_or_create_zooniverse_user
   before_filter :check_for_banned_user, :except => :cas_logout
   
+  def markdown(text)
+    output = BlueCloth::new(text.sub(/^#/, '\#')).to_html
+    tags = ["h1","h2","h3","h4","h5","h6"]
+    tags.each do |tag|
+      output.gsub!(/<#{tag}\b[^>]*>(.*?)<\/#{tag}>/in, '\1')
+    end
+    
+    return output
+  end
+  helper_method :markdown
+  
   def get_featured_discussions
     @featured_list = Discussion.featured.all
   end
