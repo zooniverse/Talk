@@ -70,6 +70,7 @@ GEM
       daemons (~> 1.0.10)
       gem_plugin (~> 0.2.3)
     mysql (2.8.1)
+    newrelic_rpm (2.13.1)
     plucky (0.3.5)
       mongo (~> 1.0.8)
     polyglot (0.3.1)
@@ -114,6 +115,7 @@ DEPENDENCIES
   mongo_mapper (= 0.8.4)
   mongrel (= 1.2.0.pre2)
   mysql
+  newrelic_rpm (= 2.13.1)
   rails (= 3.0.0)
   rubycas-client (= 2.2.1)
   shoulda
