@@ -408,6 +408,7 @@
       note.text = note.text.replace(/\(/g, '&#40;');
       note.text = note.text.replace(/\)/g, '&#41;');
       note.text = note.text.replace(/\:/g, '&#58;');
+      note.text = note.text.replace(/\#/g, '&#35;');
       return '"' + note.text + 
         '":(' + Math.round(parseInt(note.width)) + 'x' + Math.round(parseInt(note.height)) +
         '@' + Math.round(parseInt(note.top)) + ',' + Math.round(parseInt(note.left)) + ')';

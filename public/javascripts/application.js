@@ -88,6 +88,7 @@ $(document).ready(function(){
     OCT.loading.init();
     OCT.textcount.init();
     $(".highlight_keywords").keywordHighlight();
+    $('.highlight_annotations').highlightAnnotations();
 });
 
 

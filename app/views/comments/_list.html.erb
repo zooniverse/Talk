@@ -3,7 +3,7 @@
     <div>
       <%= image_tag('default_user.png', :class => "short-comment-user", :height => 40) %>
     </div>
-    <div class="comment-container highlight_keywords">
+    <div class="comment-container highlight_keywords<%= ' highlight_annotations' if @focus.is_a?(Asset) %>">
       <div class="comment-body">
         <div class="name">
           <%= link_to comment.author.name, user_path(comment.author.id) %>
