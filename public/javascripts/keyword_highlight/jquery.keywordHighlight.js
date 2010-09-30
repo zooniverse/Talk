@@ -51,7 +51,7 @@ $.fn.highlightAnnotations = function() {
       body.after('<div id="' + comment_id + '-annotations" class="annotated-comment" style="display: none;"><img class="annotated-comment-image" src="' + src + '" /></div>');
       body.html(body.html().replace(/\"([^\"]*)\"\:\(\d+x\d+@\d+,\d+\)/gm, '<a class="annotated-comment-link" href="#">$1</a>'));
       
-      $('#' + comment_id + ' .annotated-comment-link').click(function() {
+      $('#' + comment_id + ' .annotated-comment-link').live('click', function() {
         var dialog = $('#' + comment_id + '-annotations');
         if(dialog.hasClass('initialized')) {
           dialog.dialog('open');
