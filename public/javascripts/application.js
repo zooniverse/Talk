@@ -94,7 +94,7 @@ $(document).ready(function(){
 function markitup_preview() {
   $.ajax({
     url: '/comments/markitup_parser',
-    data: { data: $('#comment_body').val() },
+    data: { data: $('#comment_body').val() || $('#discussion_comments_body').val() },
     type: 'post'
   });
 }

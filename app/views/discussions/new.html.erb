@@ -1,11 +1,11 @@
-<div class="upper-row">
-	<div class="lhc">
-		<h1 class="discussion-title">
-		  <%= title_for(@focus) %>
-		</h1>
-		<%= render :partial => "form_for_discussion" %>
-	</div>
-	<div class="rhc">
-		<%= render :partial => "shared/zooniverse_extras" %>
-	</div>
+<div class="upper-row discussion-thread">
+  <div class="lhc"<% if @discussion.focus_type == "Board" %>style="width:700px;"<% end %>>
+    <h1 class="discussion-title">
+      <%= title_for(@focus) %>
+    </h1>
+    <%= render :partial => "form_for_discussion" %>
+  </div>
+  <div class="rhc">
+    <%= render :partial => "shared/zooniverse_extras" %>
+  </div>
 </div>

@@ -1,28 +1,39 @@
 <%= javascript_include_tag "markitup/jquery.markitup" %>
 <%= javascript_include_tag "markitup/sets/sellers/set" %>
+<%= javascript_include_tag "jquery.a-tools" %>
+<%= javascript_include_tag "jquery.annotate" %>
+<%= stylesheet_link_tag "annotation" %>
+
 <link rel="stylesheet" href="/javascripts/markitup/skins/simple/style.css" type="text/css" media="screen" charset="utf-8">
 <link rel="stylesheet" href="/javascripts/markitup/sets/sellers/style.css" type="text/css" media="screen" charset="utf-8">
 
 <%= form_for @discussion do |f| %>
-	<span><%= f.text_field :subject, :size => 30, :onfocus => "clear_input('discussion_subject');", :onblur => "replace_input('discussion_subject','Subject of new discussion');", :value => "Subject of new discussion" %></span>
-	<br /><br />
-	<span><%= f.text_field :description, :size => 60, :onfocus => "clear_input('discussion_description');", :onblur => "replace_input('discussion_description','Brief description of discussion');", :value => "Brief description of discussion" %></span>
-	
-	<%= f.fields_for :comments do |builder| %>
-  	<div class="comment-form" style="margin: 1em 0 20px 0;">
-    	<p id="comment-form-title">Add a comment</p>
-    	<%= builder.text_area :body, :rows => 4, :cols => 51, :style => "display: inline;" %>
-    	<%= hidden_field_tag('discussion[comments][author_id]', current_zooniverse_user.id) %>
-    	<%= hidden_field_tag('discussion[focus_type]', @focus.class.name) if @focus %>
-    	<%= hidden_field_tag('discussion[focus_id]', @focus.id) if @focus %>
-    	<%= hidden_field_tag('board_id', @board) if @board %>
-    	<%= submit_tag 'Submit' %>
-  	</div>
-	<% end -%>
+  <span><%= f.text_field :subject, :size => 30, :onfocus => "clear_input('discussion_subject');", :onblur => "replace_input('discussion_subject','Subject of new discussion');", :value => "Subject of new discussion" %></span>
+  <br /><br />
+  <span><%= f.text_field :description, :size => 60, :onfocus => "clear_input('discussion_description');", :onblur => "replace_input('discussion_description','Brief description of discussion');", :value => "Brief description of discussion" %></span>
+  
+  <%= f.fields_for :comments do |builder| %>
+    <div class="comment-form" style="margin: 1em 0 20px 0;">
+      <p id="comment-form-title">Add a comment</p>
+      <%= builder.text_area :body, :rows => 4, :cols => 51, :style => "display: inline;" %>
+      <%= hidden_field_tag('discussion[comments][author_id]', current_zooniverse_user.id) %>
+      <%= hidden_field_tag('discussion[focus_type]', @focus.class.name) if @focus %>
+      <%= hidden_field_tag('discussion[focus_id]', @focus.id) if @focus %>
+      <%= hidden_field_tag('board_id', @board) if @board %>
+      <div id="comment-preview"></div>
+      
+      <div style="float: right;">
+        <%= submit_tag 'Submit' %>
+      </div>
+    </div>
+  <% end -%>
 <%- end %>
 
-<script type="text/javascript" charset="utf-8">
-  $(document).ready(function() {
-    $("#discussion_comments_body").markItUp(mySettings);
-  });
-</script>
+<%- if @focus && @focus.is_a?(Asset) %>
+  <img id="asset-image" src="<%= @focus.location %>" style = "display: none;" />
+  <div id="comment-annotation" style="display: none;">
+    <%= image_tag @focus.location, :id => "comment-focus" %>
+  </div>
+<% end -%>
+
+<%= render :partial => "new.js" %>
