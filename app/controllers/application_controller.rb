@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :check_for_banned_user, :except => :cas_logout
   
   def markdown(text)
-    output = BlueCloth::new(text.sub(/^#/, '\#')).to_html
+    output = BlueCloth::new(text.sub(/^#/, '\#'), :escape_html => true).to_html
     tags = ["h1","h2","h3","h4","h5","h6"]
     tags.each do |tag|
       output.gsub!(/<#{tag}\b[^>]*>(.*?)<\/#{tag}>/in, '\1')
