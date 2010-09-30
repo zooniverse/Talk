@@ -38,7 +38,7 @@ GEM
     activesupport (3.0.0)
     arel (1.0.1)
       activesupport (~> 3.0.0)
-    bluecloth (2.0.7)
+    bluecloth (2.0.9)
     bson (1.0.9)
     bson_ext (1.0.9)
     builder (2.1.2)
@@ -107,7 +107,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bluecloth (= 2.0.7)
+  bluecloth (= 2.0.9)
   bson_ext (= 1.0.9)
   factory_girl_rails
   mocha

@@ -1,0 +1,13 @@
+<%= render :partial => "list" %>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('#comment-preview .comment').css('border-bottom', 'none');
+    if($('#asset-image')) {
+      $('#comment-preview .comment .comment-container').highlightAnnotations();
+      $('#comment-preview .comment .comment-container').keywordHighlight();
+    }
+    
+    $('#comment-preview').addClass('active');
+  });
+</script>

@@ -15,6 +15,7 @@
     <%= hidden_field_tag('comment[author_id]', current_zooniverse_user.id) %>
     <%= hidden_field_tag('comment[response_to_id]', "") %>
     
+    <div id="comment-preview"></div>
     <div style="float: right">
       <%= submit_tag 'Submit' %>
     </div>

@@ -91,6 +91,14 @@ $(document).ready(function(){
     $('.highlight_annotations').highlightAnnotations();
 });
 
+function markitup_preview() {
+  $.ajax({
+    url: '/comments/markitup_parser',
+    data: { data: $('#comment_body').val() },
+    type: 'post'
+  });
+}
+
 
 // Utility
 function clear_input(a){

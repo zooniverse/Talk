@@ -24,7 +24,7 @@ mySettings = {
     {name:'Link', key:'L', openWith:'[', closeWith:']([![Url:!:http://]!] "[![Title]!]")', placeHolder:'Your text to link here...' },
     {name:'Annotate', key:'A', className:"annotate-button", call:"new_annotation"},
     {separator:'---------------'},
-    {name:'Preview', call:'preview', className:"preview"}
+    {name:'Preview', call:'markitup_preview', className:"preview"}
   ]
 }
 

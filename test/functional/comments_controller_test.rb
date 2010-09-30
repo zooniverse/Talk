@@ -114,17 +114,18 @@ class CommentsControllerTest < ActionController::TestCase
     
     context "When parsing markdown" do
       setup do
+        standard_cas_login
         @data = "![logo](http://www.zooniverse.org/images/header1.gif \"zooniverse logo\")"
-        @html = "<p><img src=\"http://www.zooniverse.org/images/header1.gif\" title=\"zooniverse logo\" alt=\"logo\" /></p>"
+        @html = '<p><img src=\"http://www.zooniverse.org/images/header1.gif\" title=\"zooniverse logo\" alt=\"logo\" /></p>'
         
         post :markitup_parser, { :data => @data, :format => :js }
       end
       
       should respond_with :success
       should respond_with_content_type(:js)
-
+      
       should "produce the correct html" do
-        assert_equal @html, @response.body
+        assert response.body.include?(@html)
       end
     end
   end

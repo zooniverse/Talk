@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_filter CASClient::Frameworks::Rails::Filter, :only => :create
+  before_filter CASClient::Frameworks::Rails::Filter, :only => [:create, :markitup_parser]
   respond_to :html, :only => :create
   respond_to :js, :only => [:vote_up, :report, :user_owned, :preview]
   
@@ -41,7 +41,15 @@ class CommentsController < ApplicationController
   end
   
   def markitup_parser
-    render :text => markdown(params[:data])
+    @comments = [Comment.new(:author => current_zooniverse_user, :body => params[:data])]
+    @comments.first.update_timestamps
+    respond_with(@comments) do |format|
+      format.js do
+        render :update do |page|
+          page['#comment-preview'].html(render :partial => "comments/markitup_parser")
+        end
+      end
+    end
   end
   
   def user_owned

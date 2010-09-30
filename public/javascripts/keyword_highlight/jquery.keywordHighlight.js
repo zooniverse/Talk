@@ -1,8 +1,13 @@
 $.fn.parseAnnotations = function(editable) {
   editable = editable ? true : false
   var text = $(this).val() || $(this).html();
-  var matched = text.match(/\"[^\"]*\"\:\(\d+x\d+@\d+,\d+\)/gm);
   var annotations = new Array();
+  
+  if(!text) {
+    return annotations;
+  }
+  
+  var matched = text.match(/\"[^\"]*\"\:\(\d+x\d+@\d+,\d+\)/gm);
   
   if(matched) {
     $.each(matched, function(index, part) {
@@ -40,12 +45,11 @@ $.fn.highlightAnnotations = function() {
   this.each(function() {
     var body = $(this).children('.comment-body');
     var comment_id = $(this).attr('id');
-    var elem = body.children('p');
-    var annotations = elem.parseAnnotations();
+    var annotations = body.parseAnnotations();
     if(annotations.length > 0) {
       var src = $('#asset-image').attr('src');
       body.after('<div id="' + comment_id + '-annotations" class="annotated-comment" style="display: none;"><img class="annotated-comment-image" src="' + src + '" /></div>');
-      elem.html(elem.html().replace(/\"([^\"]*)\"\:\(\d+x\d+@\d+,\d+\)/gm, '<a class="annotated-comment-link" href="#">$1</a>'));
+      body.html(body.html().replace(/\"([^\"]*)\"\:\(\d+x\d+@\d+,\d+\)/gm, '<a class="annotated-comment-link" href="#">$1</a>'));
       
       $('#' + comment_id + ' .annotated-comment-link').click(function() {
         var dialog = $('#' + comment_id + '-annotations');
