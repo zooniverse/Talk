@@ -857,6 +857,10 @@ li.search-for-collections {
   background: url('/images/search_collections.png') no-repeat left;
 }
 
+div.more-results {
+  text-align: center;
+}
+
 .comment-preview-dialog div.ui-dialog-titlebar {
   font-size: 80%;
 }

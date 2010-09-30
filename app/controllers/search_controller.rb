@@ -61,5 +61,8 @@ class SearchController < ApplicationController
     end while @results.length < @per_page && @comments.next_page
     
     @results = @results.keys
+    @results.instance_variable_set("@total_pages", @comments.total_pages)
+    def @results.total_pages; @total_pages; end
+    @results
   end
 end

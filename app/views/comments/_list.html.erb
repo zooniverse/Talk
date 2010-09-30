@@ -1,7 +1,7 @@
 <%- @comments.each do |comment| %>
   <div class="comment">
     <div>
-      <%= image_tag('default_user.png', :class => "short-comment-user", :height => 40) %>
+      <%= image_tag('default_user.png', :class => "short-comment-user", :size => "40x40") %>
     </div>
     <div id="<%= comment.id %>" class="comment-container highlight_keywords<%= ' highlight_annotations' if @focus.is_a?(Asset) %>">
       <div class="comment-body">

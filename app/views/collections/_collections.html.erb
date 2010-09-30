@@ -1,7 +1,7 @@
 <div class="panel">
   <%- @collections.each do |collection| %>
     <div class="recent-item">
-      <%= image_tag('default_user.png', :class => "short-comment-user", :style => "margin-right: 10px", :height => 40) %>
+      <%= image_tag('default_user.png', :class => "short-comment-user", :style => "margin-right: 10px", :size => "40x40") %>
       <div class="item-container">
         <div>
           <%= link_to collection.name, collection_path(collection.zooniverse_id) %> by <%= collection.user.name %>

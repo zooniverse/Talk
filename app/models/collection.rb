@@ -36,11 +36,19 @@ class Collection
   end
   
   def self.with_keywords(*args)
-    opts = { :per_page => 10, :page => 1, :order => :created_at.desc }.update(args.extract_options!)
+    opts = { :per_page => 20, :page => 1, :order => :created_at.desc }.update(args.extract_options!)
     args = args.collect{ |arg| arg.split }.flatten
     return [] if args.blank?
     
-    Collection.where(:tags.all => args).paginate(:page => opts[:page], :per_page => opts[:per_page] / 2) |
-    LiveCollection.where(:tags.all => args).paginate(:page => opts[:page], :per_page => opts[:per_page] / 2)
+    static = Collection.where(:tags.all => args).paginate(:page => opts[:page], :per_page => opts[:per_page] / 2)
+    live = LiveCollection.where(:tags.all => args).paginate(:page => opts[:page], :per_page => opts[:per_page] / 2)
+    combined = static | live
+    
+    %w(total_pages total_entries).each do |ivar|
+      combined.instance_variable_set("@#{ivar}", static.send(ivar) + live.send(ivar))
+      combined.define_singleton_method(ivar){ instance_variable_get "@#{ivar}" }
+    end
+    
+    combined
   end
 end

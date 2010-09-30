@@ -35,6 +35,10 @@
           <%- if @results && @results.any? %>
             <%= render :partial => "#{kind}/#{kind}" %>
           <% end -%>
+          
+          <%- if @results.respond_to?(:total_pages) && @page < @results.total_pages %>
+            <div class="more-results"><%= more_results "More", :page => @page + 1, :search => @search, :for => @for %></div>
+          <% end -%>
         </div>
       </div>
     <% end -%>

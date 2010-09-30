@@ -9,7 +9,7 @@
 
 <%= form_for [@discussion, @comment] do |f| %>
   <div class="comment-form">
-    <%= image_tag('default_user.png', :class => "new-comment-user", :height => 40) %>
+    <%= image_tag('default_user.png', :class => "new-comment-user", :size => "40x40") %>
     <p id="comment-form-title">Add a comment</p>
     <%= f.text_area :body, :rows => 4, :cols => 61 %>
     <%= hidden_field_tag('comment[author_id]', current_zooniverse_user.id) %>
