@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
   end
   
   def markitup_parser
-    @comments = [Comment.new(:author => current_zooniverse_user, :body => params[:data])]
+    @comments = [Comment.new(:author => current_zooniverse_user, :body => params[:data] || "")]
     @comments.first.update_timestamps
     respond_with(@comments) do |format|
       format.js do
