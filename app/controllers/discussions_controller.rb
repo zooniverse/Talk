@@ -57,19 +57,6 @@ class DiscussionsController < ApplicationController
     @discussion.save
   end
   
-  def user_owned
-    @user = User.find(params[:id])
-    @discussions = Discussion.where(:started_by_id => @user.id).sort(:popularity.desc)
-    respond_with(@discussions) do |format|
-        format.js { 
-          render :update do |page|              
-            page['.popular-discussions .inner'].html(render :partial => "discussions/list_trending")
-            page['#more-discussions'].hide()
-          end
-        }
-    end
-  end
-  
   protected
   
   def find_focus

@@ -71,8 +71,7 @@
         </div>
         
         <%- if @discussions.total_pages > 1 %>
-          <%= link_to 'Show all', user_owned_discussion_path(@user.id), {:remote => true, :method => :post, :id => "more-discussions", :class => 'show-more' } %>
-          <span class="loading">LOADING</span>
+          <div class="more-results"><%= more_discussions "More", :page => @discussion_page + 1, :id => @user.id %></div>
         <% end -%>
       </div>
       
@@ -81,8 +80,8 @@
         <div class="inner">
           <%= render :partial => "comments/recent" %>
         </div>
-        <%- if @user_comments.total_pages > 1 %>
-          <%= link_to 'Show all', user_owned_comment_path(@user.id), {:remote => true, :method => :post, :id => "more-comments", :class => 'show-more' } %><span class="loading">LOADING</span>
+        <%- if @comments.total_pages > 1 %>
+          <div class="more-results"><%= more_comments "More", :page => @comment_page + 1, :id => @user.id %></div>
         <% end -%>
       </div>
     </div>

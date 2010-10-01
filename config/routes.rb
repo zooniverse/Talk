@@ -17,7 +17,6 @@ Sellers::Application.routes.draw do
     member do
       post :vote_up
       post :report
-      post :user_owned
       post :preview
     end
     
@@ -30,7 +29,6 @@ Sellers::Application.routes.draw do
     resources :comments
     member do
       post :toggle_featured
-      post :user_owned
     end
   end
   
@@ -52,6 +50,8 @@ Sellers::Application.routes.draw do
       post :report
       post :ban
       post :activate
+      post :comments
+      post :discussions
     end
   end
   

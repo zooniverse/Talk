@@ -211,24 +211,5 @@ class DiscussionsControllerTest < ActionController::TestCase
         end
       end
     end
-    
-    context "When requesting more #user_owned discussions" do
-      setup do
-        @author = Factory :user
-        20.times do |i|
-          Discussion.create(:started_by_id => @author.id, :subject => "blah")
-        end
-        
-        post :user_owned, { :id => @author.id, :format => :js }
-      end
-      
-      should respond_with :success
-      should respond_with_content_type(:js)
-
-      should "display more discussions" do
-        assert_match /#more-discussions.*.hide()/, @response.body, "more-discussions link was not hidden"
-        assert_equal 20, @response.body.scan(/item-container/).length, "all discussions weren't rendered"
-      end
-    end
   end
 end

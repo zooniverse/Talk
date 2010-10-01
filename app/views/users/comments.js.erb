@@ -1,0 +1,7 @@
+$('#recent-comments').children().last().css('border-bottom', '1px solid black');
+var more_comments = $("<%= escape_javascript(render(:partial => "comments/recent")) %>").children().unwrap();
+$('#recent-comments').append(more_comments);
+$('.user-comments .more-results').remove();
+if(<%= @comment_page < @comments.total_pages %>) {
+  $('.user-comments').append('<div class="more-results"><%= more_comments "More", :page => @comment_page + 1, :id => @user.id %></div>');
+}

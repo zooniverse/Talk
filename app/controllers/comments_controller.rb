@@ -52,19 +52,6 @@ class CommentsController < ApplicationController
     end
   end
   
-  def user_owned
-    @user = User.find(params[:id])
-    @comments = @user.comments
-    respond_with(@user_comments) do |format|
-        format.js { 
-          render :update do |page|              
-            page['.user-comments .inner'].html(render :partial => "comments/recent")
-            page['#more-comments'].hide()
-          end
-        }
-    end
-  end
-  
   def preview
     @comment = Comment.find(params[:id])
     @response = @comment.response_to

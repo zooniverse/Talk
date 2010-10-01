@@ -1,0 +1,7 @@
+$('#trending-discussions').children().last().css('border-bottom', '1px solid black');
+var more_discussions = $("<%= escape_javascript(render(:partial => "discussions/list_trending")) %>").children().unwrap();
+$('#trending-discussions').append(more_discussions);
+$('.popular-discussions .more-results').remove();
+if(<%= @discussion_page < @discussions.total_pages %>) {
+  $('.popular-discussions').append('<div class="more-results"><%= more_discussions "More", :page => @discussion_page + 1, :id => @user.id %></div>');
+}

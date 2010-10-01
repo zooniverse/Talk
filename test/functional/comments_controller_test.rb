@@ -94,24 +94,6 @@ class CommentsControllerTest < ActionController::TestCase
       end
     end
     
-    context "When requesting more #user_owned comments" do
-      setup do
-        20.times do |i|
-          Comment.create(:author => @author, :discussion_id => @asset.conversation_id, :body => "blah")
-        end
-        
-        post :user_owned, { :id => @author.id, :format => :js }
-      end
-      
-      should respond_with :success
-      should respond_with_content_type(:js)
-
-      should "display more comments" do
-        assert_match /#more-comments.*.hide()/, @response.body, "more-comments link was not hidden"
-        assert_equal 20, @response.body.scan(/comment-container/).length, "all comments weren't rendered"
-      end
-    end
-    
     context "When parsing markdown" do
       setup do
         standard_cas_login

@@ -2,14 +2,15 @@ class UsersController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter
   before_filter :require_privileged_user, :only => [:activate, :ban]
   
-  respond_to :js, :only => [:report, :activate, :ban]
+  respond_to :js, :except => [:show]
   respond_to :html, :only => [:show]
 
   def show
     @user = User.find(params[:id])
-    @per_page = 5
+    @per_page = 10
+    @comment_page = @discussion_page = 1
     
-    @user_comments = @user.comments.paginate(:page => 0, :per_page => @per_page)
+    @comments = @user.comments.paginate(:page => 1, :per_page => @per_page)
     @discussions = Discussion.where(:started_by_id => @user.id).sort(:popularity.desc).paginate(:page => 0, :per_page => @per_page)
   end
   
@@ -51,6 +52,18 @@ class UsersController < ApplicationController
           }
       end
     end
+  end
+  
+  def comments
+    @user = User.find(params[:id])
+    @comment_page = params[:page] ? params[:page].to_i : 1
+    @comments = Comment.where(:author_id => @user.id).sort(:created_at.desc).paginate(:page => @comment_page, :per_page => 10)
+  end
+  
+  def discussions
+    @user = User.find(params[:id])
+    @discussion_page = params[:page] ? params[:page].to_i : 1
+    @discussions = Discussion.where(:started_by_id => @user.id).sort(:created_at.desc).paginate(:page => @discussion_page, :per_page => 10)
   end
   
 end
