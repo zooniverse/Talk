@@ -1,8 +1,14 @@
-var response = $('#response-<%= @response.id %>');
-response.html("<%= escape_javascript(render(:partial => "preview", :locals => { :comment => @response })) %>");
-response.dialog({
-  dialogClass: 'comment-preview-dialog',
-  show: 'clip',
-  maxHeight: 500,
-  title: '<%= "#{ I18n.t('comments.by') } #{ @response.author.name }" %>'
-});
+var preview_id = 'preview-<%= @comment.id %>';
+if($('#' + preview_id).length > 0) {
+  $('#' + preview_id).dialog('open');
+}
+else {
+  var preview = '<div id="' + preview_id + '"><%= escape_javascript(render(:partial => "preview", :locals => { :comment => @comment })) %></div>';
+  $('.comments-list').append(preview);
+  $('#' + preview_id).dialog({
+    dialogClass: 'comment-preview-dialog',
+    show: 'clip',
+    maxHeight: 500,
+    title: '<%= "#{ I18n.t('comments.by') } #{ @comment.author.name }" %>'
+  });
+}

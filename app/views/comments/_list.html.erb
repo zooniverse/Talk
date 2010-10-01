@@ -9,8 +9,7 @@
           <%= link_to comment.author.name, user_path(comment.author.id) %>
           <%- if comment.response? %>
             <%= t 'comments.in_response_to' %>
-            <%= link_to comment.response_to.author.name, preview_comment_path(comment), { :remote => true, :method => :post } %>
-            <div id="response-<%= comment.response_to_id %>"></div>
+            <%= link_to comment.response_to.author.name, preview_comment_path(comment.response_to), { :remote => true, :method => :post } %>
           <% end -%>
         </div>
         <div class="date">Posted <%= time_ago_in_words(comment.created_at) %> ago</div>

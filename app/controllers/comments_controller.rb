@@ -54,7 +54,6 @@ class CommentsController < ApplicationController
   
   def preview
     @comment = Comment.find(params[:id])
-    @response = @comment.response_to
     respond_with @comment
   end
 end
