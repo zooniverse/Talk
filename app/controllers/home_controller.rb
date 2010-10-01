@@ -23,7 +23,7 @@ class HomeController < ApplicationController
   end
   
   def trending_keywords
-    @tags = Tag.rank_tags(:from => 0, :to => 8)
+    @tags = Tag.rank_tags :limit => 50, :from => 1, :to => 9
     respond_with(@tags) do |format|
       format.js { render "keywords" }
     end
