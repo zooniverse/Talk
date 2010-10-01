@@ -1,7 +1,7 @@
 <div class="panel">
   <ul id="keyword-cloud">
     <%- @tags.each_pair do |tag, count| %>
-      <li class="level<%= count %>" ><%= link_to tag, search_url(:search => tag, :for => "keywords") %></li>
+      <li class="level<%= count %>" ><%= link_to tag, search_url(:search => "keywords:#{ tag }") %></li>
     <% end -%>
   </ul>
 </div>
