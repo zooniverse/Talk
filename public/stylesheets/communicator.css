@@ -269,8 +269,8 @@ img.new-comment-user{
 }
 
 .comment .toolbar, .short-comment .toolbar {
-	margin-top: 4px;
-	visibility: hidden;
+  margin: 0 0 15px 0;
+  visibility: hidden;
 }
 
 .comment .date {
