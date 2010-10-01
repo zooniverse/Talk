@@ -13,7 +13,7 @@ gem 'rubycas-client', '2.2.1'
 gem 'state_machine', '0.9.4'
 gem 'bluecloth', '2.0.9'
 gem "will_paginate", :git => 'http://github.com/mislav/will_paginate.git', :branch => 'rails3'
-gem 'newrelic_rpm', '2.13.1'
+# gem 'newrelic_rpm', '2.13.1'
 
 # gem 'paperclip'
 
