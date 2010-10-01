@@ -155,9 +155,9 @@ a:hover {
 
 /* Recent Items (Collections, Discussions) */
 .recent-item {
-	border-bottom: dotted #000 1px;
-	padding: 15px 10px 5px 10px;
-	background: #F6F6F6;
+  height: 55px;
+  border-bottom: dotted #000 1px;
+  background: #F6F6F6;
 }
 
 .featured-item {
@@ -167,8 +167,8 @@ a:hover {
 }
 
 .item-container {
-	margin-left: 0px;
-	padding-bottom: 7px;
+  margin-left: 0px;
+  padding-bottom: 5px;
 }
 
 .item-container .date {
@@ -182,7 +182,7 @@ a:hover {
 }
 
 .item-container .body {
-
+  font-size: 80%;
 }
 
 .last {
@@ -214,7 +214,8 @@ a:hover {
 }
 
 .recent-item .name {
-	margin-bottom: 5px;
+  margin: 5px 0 4px;
+  font-weight: normal;
 }
 
 .featured-item .name {
@@ -222,7 +223,9 @@ a:hover {
 }
 
 .recent-asset {
-	border-bottom: solid #eee 1px;
+  height: 55px;
+  border-bottom: dotted #000 1px;
+  background: #F6F6F6;
 }
 
 .asset-container {
@@ -372,10 +375,11 @@ img.new-comment-user{
 
 /* Tag Cloud */
 #keyword-cloud {
-	padding: 2px;
-	line-height: 3em;
-	text-align: center;
-	margin: 0;
+  padding: 2px;
+  line-height: 3em;
+  text-align: center;
+  margin: 0;
+  height: 300px;
 }
 
 #keyword-cloud a {
@@ -626,6 +630,7 @@ h2.asset-name {
 /* jQuery UI overide*/
 #trends-tabs, #recents-tabs {
   border: none;
+  height: 400px;
 }
 
 #trends-tabs div.inner div.ui-widget-content a,

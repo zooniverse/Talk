@@ -13,8 +13,8 @@ OCT.tabs = {
 
   // Initialise bindings for tabs
   init: function () {
-    $(OCT.tabs.trends).tabs();
-    $(OCT.tabs.recents).tabs();
+    $(OCT.tabs.trends).tabs({ cache: true });
+    $(OCT.tabs.recents).tabs({ cache: true });
   }
 };
 

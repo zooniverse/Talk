@@ -67,7 +67,7 @@ class BoardsControllerTest < ActionController::TestCase
       end
       
       should "display discussions" do
-        assert_select "#discussions-list > div", 5
+        assert_select ".recent-item", 5
       end
       
       should "display zooniverse ad" do

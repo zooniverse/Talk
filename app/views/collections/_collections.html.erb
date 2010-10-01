@@ -3,12 +3,11 @@
     <div class="recent-item">
       <%= image_tag('default_user.png', :class => "short-comment-user", :style => "margin-right: 10px", :size => "40x40") %>
       <div class="item-container">
-        <div>
+        <div class="name">
           <%= link_to collection.name, collection_path(collection.zooniverse_id) %> by <%= collection.user.name %>
         </div>
         <div class="date">Last updated <%= time_ago_in_words(collection.updated_at) %> ago</div>
-        <div class="date"><%= collection.assets.length %> Objects</div>
-        <div class="body"><%= truncate collection.description, :length => 200, :separator => ' ' %></div>
+        <div class="body"><%= truncate collection.description, :length => 80, :separator => ' ' %></div>
       </div>
     </div>
   <% end -%>

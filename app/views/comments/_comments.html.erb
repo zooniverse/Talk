@@ -1,15 +1,13 @@
 <div class="panel">
   <%- @comments.each do |comment| %>
-    <div class="short-comment">
-      <%= image_tag('default_user.png', :class => "short-comment-user", :size => "40x40") %>
-      <div class="comment-container highlight_keywords">
-        <div class="comment-body">
-          <div class="name"><%= link_to comment.author.name, user_path(comment.author.id) %></div>
-          <div class="date">
-            Posted <%= time_ago_in_words(comment.created_at) %> ago in <%= link_to truncate(comment.discussion.subject), discussion_url_for(comment.discussion) %>
-          </div>
-          <%= raw markdown(truncate(comment.body, :length => 200, :separator => ' ')) %>
+    <div class="recent-item">
+      <%= image_tag('default_user.png', :class => "short-comment-user", :style => "margin-right: 10px", :size => "40x40") %>
+      <div class="item-container">
+        <div class="name"><%= link_to comment.author.name, user_path(comment.author.id) %></div>
+        <div class="date">
+          Posted <%= time_ago_in_words(comment.created_at) %> ago in <%= link_to truncate(comment.discussion.subject), discussion_url_for(comment.discussion) %>
         </div>
+        <div class="body"><%= truncate(comment.body, :length => 80, :separator => ' ') %></div>
       </div>
     </div>
   <% end -%>
