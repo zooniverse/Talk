@@ -1,21 +1,21 @@
 <div id="sidebar">
-	<ul>
-		<li><%= link_to t('sidenav.home'), :controller => :home, :action => :index %></li>
-		<li><%= link_to t('sidenav.messages'), :controller => :messages, :action => :index %></li>
-		<li><%= link_to t('sidenav.search'), :controller => :search, :action => :index %></li>
-		<br/>
-		<li><%= link_to t('sidenav.science'), :controller => :boards, :action => :science %></li>
-		<li><%= link_to t('sidenav.help'), :controller => :boards, :action => :help %></li>
-		<li><%= link_to t('sidenav.chat'), :controller => :boards, :action => :chat %></li>
-		<br/>
-		<% if current_zooniverse_user %>
-			<%- if current_zooniverse_user.admin? || current_zooniverse_user.moderator? -%>
-			<li><%= link_to t('sidenav.moderation'), :controller => :admin, :action => :index %></li>
-			<%- end -%>
-			<li><%= link_to t('sidenav.profile'), :controller => :users, :action => :show, :id => current_zooniverse_user.id %></li>
-			<li><%= link_to t('sidenav.logout'), :controller => :application, :action => :cas_logout %></li>
-		<% else %>		
-			<li><%= link_to t('sidenav.login'), :controller => :home, :action => :cas_test %></li>
-		<% end %>
-	</ul>
+  <ul>
+    <li><%= link_to t('sidenav.home'), root_path %></li>
+    <li><%= link_to t('sidenav.messages'), messages_path %></li>
+    <li><%= link_to t('sidenav.search'), search_path %></li>
+    <br/>
+    <li><%= link_to t('sidenav.help'), help_board_path %></li>
+    <li><%= link_to t('sidenav.science'), science_board_path %></li>
+    <li><%= link_to t('sidenav.chat'), chat_board_path %></li>
+    <br/>
+    <%- if current_zooniverse_user %>
+      <%- if current_zooniverse_user.admin? || current_zooniverse_user.moderator? %>
+        <li><%= link_to t('sidenav.moderation'), admin_path %></li>
+      <% end -%>
+      <li><%= link_to t('sidenav.profile'), user_path(current_zooniverse_user) %></li>
+      <li><%= link_to t('sidenav.logout'), logout_path %></li>
+    <%- else -%>
+      <li><%= link_to t('sidenav.login'), cas_test_path %></li>
+    <% end -%>
+  </ul>
 </div>
