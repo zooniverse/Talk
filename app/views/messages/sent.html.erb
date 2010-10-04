@@ -1,22 +1,24 @@
 <div class="upper-row">
-	<h1><%= t 'messages.messages' %></h1>
-	<div class="message-nav">
-		<a href="/messages"><%=  t 'messages.inbox' %></a>&nbsp;|&nbsp;<a class="current" href="/messages/sent"><%= t 'messages.sent' %></a>
-	</div>
-	<div class="rhc">
-		<%= render :partial => "meta_for_messages" %>
-	</div>
+  <h1><%= t 'messages.messages' %></h1>
+  <div class="message-nav">
+    <%= link_to t('messages.inbox'), messages_path %>
+    &nbsp;|&nbsp;
+    <span class="current"><%= t('messages.sent') %></span>
+  </div>
+  <div class="rhc">
+    <%= render :partial => "meta_for_messages" %>
+  </div>
 </div>
 
 <div class="lower-row">
-	<div class="lhc">		
-		<div class="message-list">
-			<%= render :partial => "message", :collection => @messages %>
-		</div>			
-	</div>
-	<div class="rhc">
-		<%= render :partial => "shared/zooniverse_extras" %>			
-		<%= render :partial => "shared/project_link" %>	
-		<%= render :partial => "shared/help_wanted" %>									
-	</div>
+  <div class="lhc">
+    <div class="message-list">
+      <%= render :partial => "message", :collection => @messages %>
+    </div>
+  </div>
+  <div class="rhc">
+    <%= render :partial => "shared/zooniverse_extras" %>
+    <%= render :partial => "shared/project_link" %>
+    <%= render :partial => "shared/help_wanted" %>
+  </div>
 </div>

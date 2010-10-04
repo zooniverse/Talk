@@ -1,15 +1,18 @@
 <div class="message-reply-form">
-<%= image_tag('default_user.png', :class => "message-user", :height => 45) %>
-<div class="<%= "message-container" -%>">
-<%= form_for Message.new do |f| %>
-	<h2>Reply to <%= @thread_with_user.name %></h2>
-	<%= f.text_field :title, :size => 72, :onfocus => "clear_input('message_title');", :onblur => "replace_input('message_title','Message title');", :value => "Message title" %>
-	<%= f.text_area :body, :rows => 8, :cols => 52, :value => "" %>
-	<%= hidden_field_tag('message[recipient_name]', @thread_with_user.name )  %>
-	<div style="float:right">
-	<%= submit_tag 'Reply' %>	
-	</div>
-	<div class="push"></div>
-<%- end %>
+  <%= image_tag('default_user.png', :class => "message-user", :height => 45) %>
+  <div class="message-container">
+    <%= form_for Message.new do |f| %>
+      <h2>Reply to <%= @thread_with_user.name %></h2>
+      <%= f.text_field :title, :size => 55, :value => "Message title",
+          :onfocus => "clear_input('message_title');",
+          :onblur => "replace_input('message_title', 'Message title');" %>
+      
+      <%= f.text_area :body, :rows => 8, :cols => 48, :value => "" %>
+      <%= hidden_field_tag('message[recipient_name]', @thread_with_user.name )  %>
+      <div style="float: right; padding-top: 3px;">
+        <%= submit_tag 'Reply' %>
+      </div>
+      <div class="push"></div>
+<% end -%>
 </div>
 </div>
