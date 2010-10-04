@@ -1,8 +1,10 @@
 $('.panel').css('margin-bottom', '0');
-$('.panel').last().children().last().css('border-bottom', '1px solid black');
+var last_result = $('.panel').last().children().last()
+last_result.css('border-bottom', '1px solid black');
 <%- kind = @for.sub('objects', 'assets').underscore.pluralize %>
 $('.comments-list').first().append("<%= escape_javascript(render(:partial => "#{ kind }/#{ kind }")) %>");
 $('.more-results').remove();
+$('html,body').animate({ scrollTop: last_result.offset().top }, { duration: 'slow', easing: 'swing' });
 if(<%= @page < @results.total_pages %>) {
   $('.comments-list').first().append('<div class="more-results"><%= more_results "More", :page => @page + 1, :search => @search, :for => @for %></div>');
 }
