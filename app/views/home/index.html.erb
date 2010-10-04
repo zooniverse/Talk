@@ -1,34 +1,43 @@
 <div class="home-lhc">
   <div class="comments-list">
-    <div id="trends-tabs" class="headed-panel">
-      <h1><%= t 'homepage.trends' %></h1>
+    <div id="home-tabs" class="headed-panel">
       <div class="inner">
         <ul>
-          <li><%= link_to t('homepage.assets'), home_trending_assets_path %></li>
-          <li><%= link_to t('homepage.collections'), home_trending_collections_path %></li>
-          <li><%= link_to t('homepage.discussions'), home_trending_discussions_path %></li>
-          <li><%= link_to t('homepage.keywords'), home_trending_keywords_path %></li>
+          <li><a href="#boards-tabs"><%= t 'homepage.boards' %></a></li>
+          <li><a href="#trends-tabs"><%= t 'homepage.trends' %></a></li>
+          <li><a href="#recents-tabs"><%= t 'homepage.recent' %></a></li>
         </ul>
       </div>
-    </div>
-    
-    <br/>
-    
-    <div id="recents-tabs" class="headed-panel">
-      <h1><%= t 'homepage.recent' %></h1>
-      <div class="inner">
-        <ul>
-          <li><%= link_to t('homepage.assets'), home_recent_assets_path %></li>
-          <li><%= link_to t('homepage.collections'), home_recent_collections_path %></li>
-          <li><%= link_to t('homepage.discussions'), home_recent_discussions_path %></li>
-          <li><%= link_to t('homepage.comments'), home_recent_comments_path %></li>
-        </ul>
+      <div id="boards-tabs" class="headed-panel">
+        <div class="inner">
+          <ul>
+            <li><%= link_to t('homepage.help'), home_recent_help_path %></li>
+            <li><%= link_to t('homepage.science'), home_recent_science_path %></li>
+            <li><%= link_to t('homepage.chat'), home_recent_chat_path %></li>
+          </ul>
+        </div>
+      </div>
+      <div id="trends-tabs" class="headed-panel">
+        <div class="inner">
+          <ul>
+            <li><%= link_to t('homepage.assets'), home_trending_assets_path %></li>
+            <li><%= link_to t('homepage.collections'), home_trending_collections_path %></li>
+            <li><%= link_to t('homepage.discussions'), home_trending_discussions_path %></li>
+            <li><%= link_to t('homepage.keywords'), home_trending_keywords_path %></li>
+          </ul>
+        </div>
+      </div>
+      <div id="recents-tabs" class="headed-panel">
+        <div class="inner">
+          <ul>
+            <li><%= link_to t('homepage.assets'), home_recent_assets_path %></li>
+            <li><%= link_to t('homepage.collections'), home_recent_collections_path %></li>
+            <li><%= link_to t('homepage.discussions'), home_recent_discussions_path %></li>
+            <li><%= link_to t('homepage.comments'), home_recent_comments_path %></li>
+          </ul>
+        </div>
       </div>
     </div>
-    
-    <%= render :partial => "board", :locals => { :title => t('homepage.help'), :this_list => @help_list } %>
-    <%= render :partial => "board", :locals => { :title => t('homepage.science'), :this_list => @science_list } %>
-    <%= render :partial => "board", :locals => { :title => t('homepage.chat'), :this_list => @chat_list } %>
   </div>
 </div>
 

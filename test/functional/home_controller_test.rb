@@ -11,38 +11,43 @@ class HomeControllerTest < ActionController::TestCase
     context "#index not logged in" do
       setup do
         CASClient::Frameworks::Rails::GatewayFilter.stubs(:filter).returns(true)
-        @asset = Factory :asset
-        build_focus_for(@asset)
-        collection_for(@asset)
-        board_discussions_in Board.help
         get :index
       end
       
       should respond_with :success
       should render_template :index
       
-      context "showing #trending_assets" do
-        setup do
-          get :trending_assets, { :format => :js }
+      %w(assets collections discussions comments).each do |kind|
+        context "showing #recent_#{kind}" do
+          setup do
+            get "recent_#{kind}".to_sym, { :format => :js }
+          end
+          
+          should respond_with :success
+          should render_template kind.to_sym
         end
-        
-        should respond_with :success
-        should render_template :assets
       end
       
-      context "showing #recent_assets" do
-        setup do
-          get :recent_assets, { :format => :js }
+      %w(help science chat).each do |kind|
+        context "showing #recent_#{kind}" do
+          setup do
+            get "recent_#{kind}".to_sym, { :format => :js }
+          end
+          
+          should respond_with :success
+          should render_template :discussions
         end
-
-        should respond_with :success
-        should render_template :assets
       end
       
-      
-      should "Show board discussions" do
-        assert_select ".boards-list", 3
-        assert_select ".boards-list ul > li.name", 6
+      %w(assets collections discussions keywords).each do |kind|
+        context "showing #trending_#{kind}" do
+          setup do
+            get "trending_#{kind}".to_sym, { :format => :js }
+          end
+          
+          should respond_with :success
+          should render_template kind.to_sym
+        end
       end
       
       should "Show about box" do

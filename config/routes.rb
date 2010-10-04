@@ -72,6 +72,10 @@ Sellers::Application.routes.draw do
     match "/home/recent_#{kind}" => "home#recent_#{kind}"
   end
   
+  %w(help science chat).each do |board|
+    match "/home/recent_#{board}" => "home#recent_#{board}"
+  end
+  
   # mapping for boards
   match "/:board_id/discussions/new" => "discussions#new", :as => :new_board_discussion
   %w(help science chat).each do |board|

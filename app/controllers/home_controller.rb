@@ -5,21 +5,21 @@ class HomeController < ApplicationController
   respond_to :js, :except => [:index, :cas_test]
   
   def index
-    # Loading data for boards
-    page_size = 6
-    page = 0
-    @help_board = Board.find_by_title("help")
-    @help_list = @help_board.discussions.paginate(:per_page => page_size, :page => page)
-
-    @chat_board = Board.find_by_title("chat")
-    @chat_list = @chat_board.discussions.paginate(:per_page => page_size, :page => page)
-
-    @science_board = Board.find_by_title("science")
-    @science_list = @science_board.discussions.paginate(:per_page => page_size, :page => page)
   end
   
   def cas_test
     @user = session[:cas_user]
+  end
+  
+  %w(help science chat).each do |board|
+    define_method "recent_#{board}".to_sym do
+      @title = board
+      @discussions = board_discussions(Board.find_by_title(board))
+      
+      respond_with(@discussions) do |format|
+        format.js { render :partial => "discussions/discussions" }
+      end
+    end
   end
   
   def trending_keywords
@@ -43,5 +43,10 @@ class HomeController < ApplicationController
         format.js { render :partial => "#{kind}/#{kind}" }
       end
     end
+  end
+  
+  protected
+  def board_discussions(board, limit = 5)
+    Discussion.sort(:created_at.desc).limit(limit).all(:id.in => board.discussion_ids)
   end
 end
