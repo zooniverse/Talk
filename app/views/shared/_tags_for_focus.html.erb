@@ -5,7 +5,7 @@
       <ul>
         <%- @focus.keywords.each do |keyword| %>
           <%- klass = @focus.class.name.underscore.pluralize %>
-          <%- klass.sub('assets', 'objects').sub('live_collections', 'collections') %>
+          <%- klass = klass.sub('assets', 'objects').sub('live_collections', 'collections') %>
           <li><%= link_to keyword, search_url(:search => "keywords: #{keyword}", :for => klass) %></li>
         <% end -%>
       </ul>
