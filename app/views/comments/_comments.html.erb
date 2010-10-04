@@ -7,7 +7,7 @@
         <div class="date">
           Posted <%= time_ago_in_words(comment.created_at) %> ago in <%= link_to truncate(comment.discussion.subject), discussion_url_for(comment.discussion) %>
         </div>
-        <div class="body"><%= truncate(comment.body, :length => 80, :separator => ' ') %></div>
+        <div class="body"><%= truncate(comment.body, :length => 70, :separator => ' ') %></div>
       </div>
     </div>
   <% end -%>

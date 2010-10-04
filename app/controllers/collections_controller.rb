@@ -8,9 +8,11 @@ class CollectionsController < ApplicationController
     @discussion = @collection.conversation
     @mentions = Discussion.mentioning(@collection)
     @comment = Comment.new
-    @comments = @collection.conversation.comments
-    
     @tags = @collection.keywords
+    
+    @discussion_id = @collection.conversation_id
+    @comments = Comment.sort(:created_at.desc).where(:discussion_id => @discussion_id).paginate(:page => 1, :per_page => 10)
+    @page = 1
   end
   
   def new

@@ -18,6 +18,7 @@ Sellers::Application.routes.draw do
       post :vote_up
       post :report
       post :preview
+      post :more
     end
     
     collection do

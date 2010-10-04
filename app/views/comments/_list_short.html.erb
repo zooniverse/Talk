@@ -27,8 +27,14 @@
               </span>
             <% end -%>
           </div>
-        <%- end -%>
+        <% end -%>
       </div>
     </div>
+  </div>
+<% end -%>
+
+<%- if @page && @comments.respond_to?(:total_pages) && @page < @comments.total_pages %>
+  <div class="more-results">
+    <%= list_more_comments "More", :discussion_id => @discussion_id || @discussion.id, :page => @page + 1 %>
   </div>
 <% end -%>
