@@ -39,8 +39,8 @@ GEM
     arel (1.0.1)
       activesupport (~> 3.0.0)
     bluecloth (2.0.9)
-    bson (1.0.9)
-    bson_ext (1.0.9)
+    bson (1.1)
+    bson_ext (1.1)
     builder (2.1.2)
     daemons (1.0.10)
     erubis (2.6.6)
@@ -60,7 +60,7 @@ GEM
     mime-types (1.16)
     mocha (0.9.8)
       rake
-    mongo (1.0.9)
+    mongo (1.1)
       bson (>= 1.0.5)
     mongo_mapper (0.8.4)
       activesupport (>= 2.3.4)
@@ -71,7 +71,7 @@ GEM
       gem_plugin (~> 0.2.3)
     mysql (2.8.1)
     plucky (0.3.5)
-      mongo (~> 1.0.8)
+      mongo (>= 1.0.8)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.13)
@@ -107,10 +107,10 @@ PLATFORMS
 
 DEPENDENCIES
   bluecloth (= 2.0.9)
-  bson_ext (= 1.0.9)
+  bson_ext (= 1.1)
   factory_girl_rails
   mocha
-  mongo (= 1.0.9)
+  mongo (= 1.1)
   mongo_mapper (= 0.8.4)
   mongrel (= 1.2.0.pre2)
   mysql
