@@ -89,8 +89,8 @@ $(document).ready(function(){
     OCT.hover.init();
     OCT.loading.init();
     OCT.textcount.init();
-    $(".highlight_keywords").keywordHighlight();
     $('.highlight_annotations').highlightAnnotations();
+    $(".highlight_keywords").keywordHighlight();
 });
 
 function markitup_preview() {
