@@ -42,3 +42,5 @@
     </div>
   </div>
 <% end -%>
+
+<%= will_paginate @comments if @comments.respond_to?(:total_pages) %>
