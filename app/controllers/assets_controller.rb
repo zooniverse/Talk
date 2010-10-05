@@ -9,6 +9,7 @@ class AssetsController < ApplicationController
     @collections = Collection.with_asset(@asset)
     @comment = Comment.new
     
+    @discussion = @asset.conversation
     @discussion_id = @asset.conversation_id
     @comments = Comment.sort(:created_at.desc).where(:discussion_id => @discussion_id).paginate(:page => @page, :per_page => @per_page)
   end

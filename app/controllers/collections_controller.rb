@@ -11,6 +11,7 @@ class CollectionsController < ApplicationController
     @comment = Comment.new
     @tags = @collection.keywords
     
+    @discussion = @collection.conversation
     @discussion_id = @collection.conversation_id
     @comments = Comment.sort(:created_at.desc).where(:discussion_id => @discussion_id).paginate(:page => @page, :per_page => @per_page)
   end
