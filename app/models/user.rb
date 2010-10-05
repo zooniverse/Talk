@@ -70,6 +70,13 @@ class User
   def watch(moderator)
     return false if self.state == "watched"
     self.state = "watched"
+    
+    Event.pending_for_user(self).all.each do |event|
+      event.state = "actioned"
+      event.moderator = moderator
+      event.save
+    end
+    
     Event.create(:user => moderator, :moderator => moderator, :target_user => self, :state => "actioned", :title => "#{ self.name } watched by #{ moderator.name }")
   end
   
