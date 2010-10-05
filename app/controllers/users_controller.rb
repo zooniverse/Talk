@@ -17,7 +17,8 @@ class UsersController < ApplicationController
   def report
     @user = User.find(params[:id])
     @event = @user.events.build(:user => current_zooniverse_user,
-                                :title => "User reported by #{current_zooniverse_user.name}")
+                                :target_user => @user,
+                                :title => "#{ @user.name } reported by #{current_zooniverse_user.name}")
                                 
     if @event.save
       User.moderators.each { |moderator| Notifier.notify_reported_user(@user, moderator, current_zooniverse_user).deliver }
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
   
   def ban
     @user = User.find(params[:id])
-    @user.state = "banned"
+    @user.ban(current_zooniverse_user)
     if @user.save
        Notifier.notify_banned_user(@user).deliver
         respond_with(@user) do |format|
@@ -41,7 +42,26 @@ class UsersController < ApplicationController
   
   def activate
     @user = User.find(params[:id])
-    @user.state = "active"
+    @user.redeem(current_zooniverse_user)
+    if @user.save
+      respond_with(@user) do |format|
+          format.js {
+            render :update do |page|
+              page['#moderation-links'].html(render :partial => 'state')
+            end
+          }
+      end
+    end
+  end
+  
+  def watch
+    @user = User.find(params[:id])
+    
+    if @user.state == "active"
+      @user.watch(current_zooniverse_user)
+    else
+      @user.unwatch(current_zooniverse_user)
+    end
     
     if @user.save
       respond_with(@user) do |format|

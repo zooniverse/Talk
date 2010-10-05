@@ -1,0 +1,14 @@
+var more = $('#<%= @more.underscore.dasherize %>');
+var last = more.children('ul').children().last();
+var more_results = $("<%= escape_javascript(render(:partial => @more)) %>").children('ul').children();
+$('#<%= @more.underscore.dasherize %>').children('ul').first().append(more_results);
+
+last.css('border-bottom', '1px solid #aaaaaa');
+more.children('.more-results').remove();
+
+<%- results = instance_variable_get("@#{ @more.underscore }") %>
+<%- page = instance_variable_get("@#{ @more.underscore }_page") %>
+if(<%= page < results.total_pages %>)
+more.append('<div class="more-results" style="margin-top: 10px;"><%= list_more @more.underscore, :page => page + 1 %></div>');
+
+$('html,body').animate({ scrollTop: last.offset().top }, { duration: 'slow', easing: 'swing' });

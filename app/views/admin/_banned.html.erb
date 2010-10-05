@@ -1,0 +1,21 @@
+<div id="banned" class="panel">
+  <h2>Banned List</h2>
+  <ul>
+    <%- if @banned.empty? %>
+      <li>There are no banned users</li>
+    <%- else -%>
+      <%- @banned.each do |user| %>
+        <li>
+          <%= link_to user.name, user_path(user) %>
+          <%= render :partial => "moderation", :locals => { :user => user, :redeemable => true } %>
+        </li>
+      <% end -%>
+    <% end -%>
+  </ul>
+  
+  <%- if @banned.respond_to?(:total_pages) && @banned_page < @banned.total_pages %>
+    <div class="more-results" style="margin-top: 10px;">
+      <%= list_more "banned", :page => @banned_page + 1 %>
+    </div>
+  <% end -%>
+</div>

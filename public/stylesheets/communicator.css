@@ -960,3 +960,14 @@ div.more-results {
 .collection-dialog .ui-widget-content a {
   color: #2276BB;
 }
+
+.moderator-actions {
+  float: right;
+}
+
+.moderator-actions ul li {
+  display: inline;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+}

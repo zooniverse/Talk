@@ -1,0 +1,23 @@
+<div id="logged" class="panel">
+  <h2>Moderation Log</h2>
+  <ul class="moderation-log">
+    <%- if @logged.empty? %>
+      <li>There are no events</li>
+    <%- else -%>
+      <%- @logged.each do |event| %>
+        <li>
+          <em><%= event.title %></em>:
+          <strong><%= event.state %></strong>
+          <%= "by #{ link_to event.moderator.name, user_path(event.moderator) }".html_safe if event.moderator %>
+          (<%= "#{ time_ago_in_words(event.updated_at) } ago" %>)
+        </li>
+      <% end -%>
+    <% end -%>
+  </ul>
+  
+  <%- if @logged.respond_to?(:total_pages) && @logged_page < @logged.total_pages %>
+    <div class="more-results" style="margin-top: 10px;">
+      <%= list_more "logged", :page => @logged_page + 1 %>
+    </div>
+  <% end -%>
+</div>

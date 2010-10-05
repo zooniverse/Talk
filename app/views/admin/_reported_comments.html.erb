@@ -1,0 +1,22 @@
+<div id="reported-comments" class="panel">
+  <h2>Reported Comments</h2>
+  <div class="comments-list"></div>
+  <ul>
+    <%- if @reported_comments.empty? %>
+      <li>There are no reported comments</li>
+    <%- else -%>
+      <%- @reported_comments.each do |event| %>
+        <li>
+          <%= link_to "#{ event.target.author.name }'s comment", preview_comment_path(event.target), { :remote => true, :method => :post } %>
+          reported by: <%=  link_to event.user.name, user_path(event.user) %>
+          <%= render :partial => "moderation", :locals => { :event => event, :redeemable => false } %>
+      <% end -%>
+    <% end -%>
+  </ul>
+  
+  <%- if @reported_comments.respond_to?(:total_pages) && @reported_comments_page < @reported_comments.total_pages %>
+    <div class="more-results" style="margin-top: 10px;">
+      <%= list_more "reported_comments", :page => @reported_comments_page + 1 %>
+    </div>
+  <% end -%>
+</div>

@@ -1,0 +1,21 @@
+<div id="watched" class="panel">
+  <h2>Watch List</h2>
+  <ul>
+    <%- if @watched.empty? %>
+      <li>There are no watched users</li>
+    <%- else -%>
+      <%- @watched.each do |user| %>
+        <li>
+          <%= link_to user.name, user_path(user) %>
+          <%= render :partial => "moderation", :locals => { :user => user, :redeemable => true } %>
+        </li>
+      <% end -%>
+    <% end -%>
+  </ul>
+  
+  <%- if @watched.respond_to?(:total_pages) && @watched_page < @watched.total_pages %>
+    <div class="more-results" style="margin-top: 10px;">
+      <%= list_more "watched", :page => @watched_page + 1 %>
+    </div>
+  <% end -%>
+</div>

@@ -51,6 +51,7 @@ Sellers::Application.routes.draw do
       post :report
       post :ban
       post :activate
+      post :watch
       post :comments
       post :discussions
     end
@@ -62,7 +63,14 @@ Sellers::Application.routes.draw do
   
   match '/cas_test' => 'home#cas_test'
   
-  match '/admin' => 'admin#index'
+  resources :admin do
+    member do
+      post :ignore
+      post :ban
+      post :redeem
+      post :watch
+    end
+  end
   
   match '/logout' => 'application#cas_logout'
   

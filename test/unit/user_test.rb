@@ -32,17 +32,19 @@ class UserTest < ActiveSupport::TestCase
   context "When banning a user that is already banned" do
     setup do
       @user = Factory :user, :state => 'banned'
+      @moderator = Factory :user, :moderator => true
     end
 
     should "fail" do
-      assert !@user.ban
+      assert !@user.ban(@moderator)
     end
   end
   
   context "When banning a user" do
     setup do
       @user = Factory :user
-      @user.ban
+      @moderator = Factory :user, :moderator => true
+      @user.ban(@moderator)
     end
 
     should have_sent_email
@@ -51,7 +53,8 @@ class UserTest < ActiveSupport::TestCase
   context "When redeeming a user" do
     setup do
       @user = Factory :user, :state => 'banned'
-      @user.redeem
+      @moderator = Factory :user, :moderator => true
+      @user.redeem(@moderator)
     end
 
     should have_sent_email

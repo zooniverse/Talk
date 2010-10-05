@@ -1,0 +1,16 @@
+<span class="moderator-actions">
+  <ul>
+    <%- if redeemable %>
+      <li><%= link_to t('messages.send_to'), new_message_url(:recipient_name => user.name) %></li>
+      <%- if user.state == "watched" %>
+        <li>|&nbsp;&nbsp;<%= link_to "Remove watch", watch_admin_path(user), { :remote => true, :method => :post } %>
+      <%- else -%>
+        <li>|&nbsp;&nbsp;<%= link_to "Redeem this user", redeem_admin_path(user), { :remote => true, :method => :post } %></li>
+      <% end -%>
+    <%- else -%>
+      <li><%= link_to t('messages.send_to'), new_message_url(:recipient_name => event.target_user.name) %></li>
+      <li>|&nbsp;&nbsp;<%= link_to "Ignore", ignore_admin_path(event.id), { :remote => true, :method => :post } %>
+      <li>|&nbsp;&nbsp;<%= link_to "Ban this user", ban_admin_path(event.id), { :remote => true, :method => :post } %></li>
+    <% end -%>
+  </ul>
+</span>

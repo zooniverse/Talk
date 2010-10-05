@@ -10,8 +10,8 @@ class User
   key :admin, Boolean, :default => false
   key :state, String
   
-  scope :watch_list, :state => 'watched'
-  scope :banned_list, :state => 'banned'
+  scope :watched, :state => 'watched'
+  scope :banned, :state => 'banned'
   scope :moderators, :moderator => true
   
   state_machine :initial => :active do
@@ -43,6 +43,40 @@ class User
   # True if user is an admin or moderator
   def privileged?
     self.admin? || self.moderator?
+  end
+  
+  def ban(moderator)
+    return false if self.state == "banned"
+    self.state = "banned"
+    pending = Event.pending_for_user(self).all
+    
+    if pending.any?
+      pending.each do |event|
+        event.state = "actioned"
+        event.moderator = moderator
+        event.save
+      end
+    else
+      Event.create(:user => moderator, :moderator => moderator, :target_user => self, :state => "actioned", :title => "#{ self.name } banned by #{ moderator.name }")
+    end
+  end
+  
+  def redeem(moderator)
+    return false if self.state == "active"
+    self.state = "active"
+    Event.create(:user => moderator, :moderator => moderator, :target_user => self, :state => "actioned", :title => "#{ self.name } redeemed by #{ moderator.name }")
+  end
+  
+  def watch(moderator)
+    return false if self.state == "watched"
+    self.state = "watched"
+    Event.create(:user => moderator, :moderator => moderator, :target_user => self, :state => "actioned", :title => "#{ self.name } watched by #{ moderator.name }")
+  end
+  
+  def unwatch(moderator)
+    return false if self.state == "active"
+    self.state = "active"
+    Event.create(:user => moderator, :moderator => moderator, :target_user => self, :state => "actioned", :title => "#{ self.name } no longer watched by #{ moderator.name }")
   end
   
   # Emails a user when banned

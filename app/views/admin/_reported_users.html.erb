@@ -1,0 +1,21 @@
+<div id="reported-users" class="panel">
+  <h2>Reported Users</h2>
+  <ul>
+    <%- if @reported_users.empty? %>
+      <li>There are no reported users</li>
+    <%- else -%>
+      <%- @reported_users.each do |event| %>
+        <li>
+          <%= link_to event.target.name, user_path(event.target) %>: User reported by <%=  link_to event.user.name, user_path(event.user) %>
+          <%= render :partial => "moderation", :locals => { :event => event, :redeemable => false } %>
+        </li>
+      <% end -%>
+    <% end -%>
+  </ul>
+  
+  <%- if @reported_users.respond_to?(:total_pages) && @reported_users_page < @reported_users.total_pages %>
+    <div class="more-results" style="margin-top: 10px;">
+      <%= list_more "reported_users", :page => @reported_users_page + 1 %>
+    </div>
+  <% end -%>
+</div>

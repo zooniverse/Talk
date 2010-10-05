@@ -1,7 +1,9 @@
- <% if @user.state != "banned" %>
-   <%= @user.state %> <%= link_to 'Ban this user', ban_user_path(@user.id), {:remote => true, :method => :post } %>
-<% end %>
-
- <% if @user.state == "banned" %>
-   <%= @user.state %> (<%= link_to 'Remove ban', activate_user_path(@user.id), {:remote => true, :method => :post } %>)
-<% end %>
+<%- case @user.state %>
+<%- when "banned" %>
+  <%= @user.state %> (<%= link_to 'Remove ban', activate_user_path(@user.id), { :remote => true, :method => :post } %>)
+<%- when "watched" %>
+  <%= @user.state %> (<%= link_to 'Remove watch', watch_user_path(@user.id), { :remote => true, :method => :post } %>)
+<%- else -%>
+  <%= link_to 'Ban this user', ban_user_path(@user.id), {:remote => true, :method => :post } %><br />
+  <%= link_to 'Watch this user', watch_user_path(@user.id), { :remote => true, :method => :post } %>
+<% end -%>

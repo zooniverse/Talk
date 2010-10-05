@@ -13,7 +13,7 @@ en:
       own_comment: "You can't vote on your own comment!"
       not_logged_in: "You must log in first"
       flash_create: "Comment created"
-      reported: "Comment reported by"
+      reported: "'s comment reported by"
     discussions:
       flash_create: "Discussion created"
     application:

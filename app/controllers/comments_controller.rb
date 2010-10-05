@@ -33,8 +33,9 @@ class CommentsController < ApplicationController
       render :action_denied
     else
       @comment = Comment.find(params[:id])
-      @event = @comment.events.build(:user => current_zooniverse_user, 
-                                     :title => "#{ I18n.t('controllers.comments.reported') } #{ current_zooniverse_user.name }")
+      @event = @comment.events.build(:user => current_zooniverse_user,
+                                     :target_user => @comment.author,
+                                     :title => "#{ @comment.author.name }#{ I18n.t('controllers.comments.reported') } #{ current_zooniverse_user.name }")
 
       @event.save
     end
