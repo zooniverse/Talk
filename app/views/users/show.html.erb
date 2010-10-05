@@ -33,14 +33,14 @@
       <% end -%>
       
       <div class="panel my-collections">
-        <h2><%- if current_zooniverse_user == @user %>My&nbsp;<% end %>Collections</h2>
+        <h2><%= "My " if current_zooniverse_user == @user %>Collections</h2>
         <div class="inner">
-          <%- unless @user.collections.empty? %>
-            <% @user.collections.each do |collection| %>
+          <%- unless @collections.empty? %>
+            <% @collections.each do |collection| %>
               <div class="collection">
-                <%= link_to image_tag(collection.assets.first.thumbnail_location, :class => "collection-thumbnail", :height => 100), collection_path(collection.zooniverse_id) unless collection.assets.empty? %>
+                <%= link_to image_tag(collection.assets.first.thumbnail_location, :class => "collection-thumbnail", :width => 75, :height => 50), collection_path(collection.zooniverse_id) unless collection.assets.empty? %>
                 <div class="collection-info">
-                  <h3><%= link_to collection.name, collection_path(collection.zooniverse_id) %></h3>
+                  <%= link_to truncate(collection.name, :length => 25, :separator => ' '), collection_path(collection.zooniverse_id) %>
                   <ul>
                     <li><%= pluralize collection.assets.size, "item"%></li>
                     <li><%= pluralize collection.discussions.size, "discussion"%></li>
