@@ -10,8 +10,7 @@ class BoardsController < ApplicationController
   end
   
   def show_by_title(title)
-    @per_page = params[:per_page] ? params[:per_page].to_i : 10
-    @page = params[:page] ? params[:page].to_i : 1
+    default_params :page => 1, :per_page => 10
     @board = Board.by_title(title)
     @discussions = @board.discussions.paginate :page => @page, :per_page => @per_page
     

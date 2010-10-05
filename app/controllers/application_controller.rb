@@ -3,6 +3,23 @@ class ApplicationController < ActionController::Base
   before_filter :check_or_create_zooniverse_user
   before_filter :check_for_banned_user, :except => :cas_logout
   
+  def default_params(*args)
+    hash = args.extract_options!
+    
+    hash.each_pair do |param, default|
+      value = params[param] ? params[param] : default
+      
+      case default.class
+      when Integer, Fixnum
+        value = value.to_i
+      when Float
+        value = value.to_f
+      end
+      
+      instance_variable_set "@#{ param.to_s }", value
+    end
+  end
+  
   def markdown(text)
     formatted = text.gsub(/#/m, '\#').gsub(/[\r?\n]/, "\n\n")
     output = BlueCloth::new(formatted, :escape_html => true, :auto_links => true).to_html

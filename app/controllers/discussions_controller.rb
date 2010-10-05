@@ -4,8 +4,7 @@ class DiscussionsController < ApplicationController
   respond_to :js, :only => [:user_owned, :toggle_featured]
   
   def show
-    @page = params[:page] ? params[:page].to_i : 1
-    @per_page = params[:per_page] ? params[:per_page].to_i : 10
+    default_params :page => 1, :per_page => 10
     
     @discussion = Discussion.find_by_zooniverse_id(params[:id])
     @comments = Comment.sort(:created_at.asc).where(:discussion_id => @discussion.id).paginate(:page => @page, :per_page => @per_page)

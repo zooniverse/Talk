@@ -3,6 +3,7 @@ class CollectionsController < ApplicationController
   respond_to :js, :only => [:add, :remove]
   
   def show
+    default_params :page => 1, :per_page => 10
     find_collection
     
     @discussion = @collection.conversation
@@ -11,8 +12,7 @@ class CollectionsController < ApplicationController
     @tags = @collection.keywords
     
     @discussion_id = @collection.conversation_id
-    @comments = Comment.sort(:created_at.desc).where(:discussion_id => @discussion_id).paginate(:page => 1, :per_page => 10)
-    @page = 1
+    @comments = Comment.sort(:created_at.desc).where(:discussion_id => @discussion_id).paginate(:page => @page, :per_page => @per_page)
   end
   
   def new

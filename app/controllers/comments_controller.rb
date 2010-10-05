@@ -58,8 +58,7 @@ class CommentsController < ApplicationController
   end
   
   def more
-    @page = params[:page] ? params[:page].to_i : 1
-    @per_page = params[:per_page] ? params[:per_page].to_i : 10
+    default_params :page => 1, :per_page => 10
     @discussion_id = params[:discussion_id]
     @comments = Comment.sort(:created_at.desc).where(:discussion_id => @discussion_id).paginate(:page => @page, :per_page => @per_page)
   end

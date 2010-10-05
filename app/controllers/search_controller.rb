@@ -1,11 +1,8 @@
 class SearchController < ApplicationController
   respond_to :html, :js
   
-  def index 
-    @search = params[:search] ? params[:search] : ""
-    @page = params[:page] ? params[:page].to_i : 1
-    @per_page = params[:per_page] ? params[:per_page].to_i : 10
-    @for = params[:for] ? params[:for].underscore.pluralize : "comments"
+  def index
+    default_params :search => "", :page => 1, :per_page => 10, :for => "comments"
     @for.sub('live_collections', 'collections')
     
     parse_keywords
