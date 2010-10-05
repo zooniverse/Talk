@@ -8,7 +8,7 @@
   <div class="rhc">
     <div class="panel discussion-items">
     <% if (@discussion.asset?) %>
-      <%= image_tag(@discussion.focus.location, :class => "focus-main-image", :id => "asset-image", :width => 200) %>
+      <%= image_tag(@discussion.focus.location, :class => "focus-main-image", :id => "asset-image", :height => 150, :width => 200) %>
     <% end %>
     
     <% if (@discussion.collection? || @discussion.live_collection?) %>
