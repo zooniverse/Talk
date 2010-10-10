@@ -5,7 +5,6 @@ log/*.log
 tmp/**/*
 doc/
 index/*
-dump
 *.DS_Store
 ids.yaml
 sellers.rb
