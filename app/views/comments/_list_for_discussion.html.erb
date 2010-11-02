@@ -1,0 +1,19 @@
+<% unless @comments.empty? %>
+  <%- @comments.each do |comment| %>
+    <div class="item">
+      <%= image_tag('interface/default_user.png', :class => "user", :size => "40x40") %>
+      <div class="item-container">
+        <div class="name"><%= link_to comment.author.name, user_path(comment.author.id) %></div>
+        <div class="date">
+           <%= time_ago_in_words(comment.created_at) %> ago
+        </div>
+        <div class="body"><%= comment.body %></div>
+      </div>
+    </div>
+  <% end -%>
+
+<% else %>
+	<div class="engraved">
+		No Comments
+	</div>
+<% end %>

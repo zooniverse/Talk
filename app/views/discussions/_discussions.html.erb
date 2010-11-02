@@ -1,13 +1,10 @@
-<div class="panel">
-  <%- @discussions.each do |discussion| %>
-    <div class="recent-item">
-      <div class="item-container">
-        <div class="name"><%= link_to truncate(discussion.subject, :length => 50, :separator => ' '), discussion_url_for(discussion) %></div>
-        <div class="date">Last updated <%= time_ago_in_words(discussion.updated_at) %> ago</div>
-        <div class="views-total"><%= pluralize(discussion.number_of_users, "user") %></div>
-        <div class="comment-total"><%= pluralize(discussion.number_of_comments, "comment") %> </div>
-        <div class="push"></div>
-      </div>
-    </div>
-  <% end -%>
-</div>
+	<% @discussions.each do |discussion| %>	
+	<div class="discussion">
+		<p><%= link_to truncate(discussion.subject, :length => 50, :separator => ' '), discussion_url_for(discussion) %></p>
+		<div class="stats">
+			<div class="views-total"><%= pluralize(discussion.number_of_users, "user") %></div>
+			<div class="comment-total"><%= pluralize(discussion.number_of_comments, "comment") %> </div>
+		</div>
+	</div>
+	<% end %>
+

@@ -28,8 +28,8 @@
             :onfocus => 'clear_this(this);',
             :onblur => 'replace_this(this);',
             :value => tag %>
-        <%= link_to((image_tag "add.png", :size => "13x13"), "#", :onclick => "add_keyword_field();" ) %>
-        <%= link_to((image_tag "cancel.png", :size => "13x13"), "#", :onclick => "remove_keyword_field('keyword_#{count}');") %>
+        <%= link_to((image_tag "icons/add.png", :size => "13x13"), "#", :onclick => "add_keyword_field();" ) %>
+        <%= link_to((image_tag "icons/cancel.png", :size => "13x13"), "#", :onclick => "remove_keyword_field('keyword_#{count}');") %>
       </div>
     <% end -%>
     

@@ -1,4 +1,6 @@
 class BoardsController < ApplicationController
+  respond_to :js, :only => [:list_for_explorer]  
+  
   def show
     show_by_title(params[:board_id])
   end
@@ -15,5 +17,13 @@ class BoardsController < ApplicationController
     @discussions = @board.discussions.paginate :page => @page, :per_page => @per_page
     
     render "show"
+  end
+  
+  def list_for_explorer    
+    @boards = Board.all()
+       
+    respond_with(@boards) do |format|
+       format.js { render :partial => "list_for_explorer" }
+     end    
   end
 end

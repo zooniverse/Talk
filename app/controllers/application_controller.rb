@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :check_or_create_zooniverse_user
   before_filter :check_for_banned_user, :except => :cas_logout
+  layout :smart_layout
   
   def default_params(*args)
     hash = args.extract_options!
@@ -134,6 +135,10 @@ class ApplicationController < ActionController::Base
         redirect_to root_url
       end
     end
+  end
+  
+  def smart_layout
+    return "application"
   end
   
   helper_method :current_zooniverse_user

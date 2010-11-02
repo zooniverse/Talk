@@ -2,14 +2,14 @@
   <%- if @comments %>
     <%- @comments.each do |comment| %>
       <%- discussion = Discussion.find_by_id(comment.discussion_id) %>
-      <div class="recent-comment highlight_keywords">
-        <%= image_tag('default_user.png', :class => "recent-comment-user", :size => "40x40") %>
-        <div class="comment-container">
+      <div class="item highlight_keywords">
+        <%= image_tag('interface/default_user.png', :class => "user", :size => "40x40") %>
+        <div class="comment_container">
           <div class="name">
-            <%= link_to comment.author.name, user_path(comment.author.id) %> in <%= link_to truncate(discussion.subject, :length => 25), discussion_url_for(discussion) %>
+            <%= link_to truncate(discussion.subject, :length => 25), discussion_url_for(discussion) %>
           </div>
-          <div class="date">Posted <%= time_ago_in_words(comment.created_at) %> ago</div>
-          <div class="comment-body"><%= (markdown(comment.body)).gsub(/<\/?[^>]*>/,"") %></div>
+          <div class="body"><%= (markdown(comment.body)).gsub(/<\/?[^>]*>/,"") %></div>
+          <div class="date"><%= time_ago_in_words(comment.created_at) %> ago</div>
         </div>
         <div class="push"></div>
       </div>

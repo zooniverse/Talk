@@ -1,24 +1,30 @@
+<!-- New -->
 <%- unless @focus.discussions.empty? %>
-  <div class="panel collection-list">
-    <h2><%= pluralize(@focus.discussions.size, "Discussion") %></h2>
-    <div class="inner">
-      <ul>
+	<div class="discussions">
+			<h2>DISCUSSIONS</h2>
         <%- @focus.discussions.each do |discussion| %>
-          <li><%= link_to discussion.subject, discussion_url_for(discussion) %></li>
-        <% end -%>
-      </ul>
-    </div>
-    <div class="new">
-      <%= link_to "#{t('discussion.startnew')}", new_discussion_url_for(@focus) %>
-    </div>
+				<div class="discussion">
+					<p><%= link_to truncate(discussion.subject, :length => 50, :separator => ' '), discussion_url_for(discussion) %></p>
+					<div class="stats">
+						<div class="views-total"><%= pluralize(discussion.number_of_users, "user") %></div>
+						<div class="comment-total"><%= pluralize(discussion.number_of_comments, "comment") %> </div>
+					</div>
+				</div>
+				<% end %>
   </div>
+  <div class="new">
+		<a href="<%=  new_discussion_url_for(@focus) %>" class="button">
+			<span><%= t('discussion.startnew') %></span>			
+		</a>
+  </div>
+
 <%- else -%>
-  <div class="panel collection-list">
-    <h2>No Discussions Yet</h2>
-    <div class="inner">
-      <div class="new">
-        <%= link_to "#{t('discussion.startnew')}", new_discussion_url_for(@focus) %>
-      </div>
-    </div>
-  </div>
+<div class="discussions">
+  	<h2>No Discussions Yet</h2>
+ </div>
+ <div class="new">
+	<a href="<%=  new_discussion_url_for(@focus) %>" class="button">
+		<span><%= t('discussion.startnew') %></span>			
+	</a>
+</div>
 <% end -%>

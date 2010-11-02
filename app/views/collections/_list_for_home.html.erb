@@ -1,0 +1,21 @@
+<%- @collections.each do |collection| %>
+	<div class="collection <%=cycle('', 'last')%>">
+		<div class="circle gold"><p><%= collection.zooniverse_id.split(/CMZ/)[1] %></p></div>
+		<h2><%= link_to collection.name, collection_path(collection.zooniverse_id) %></h2>
+		<div class="film">
+		 <%- unless collection.assets.empty? %>
+		    <% collection.assets.each do |asset| %>
+						<%= image_tag(asset.location, :height => 39) %>
+		    <% end %>
+		  <% else %>
+		    EMPTY
+		  <% end %>
+		</div>
+		<div class="statbar"><%= collection.discussions.count %> Discussion<% unless collection.discussions.count < 2 %>s<% end %></div>
+		<div class="stats">
+			<span class="no"><%= collection.discussions.count %></span>&nbsp;discussion<% unless collection.discussions.count < 2 %>s<% end %><br/>
+			<div class="progress"></div>
+		</div>
+	</div>
+<% end -%>
+

@@ -63,4 +63,12 @@ class CommentsController < ApplicationController
     @discussion_id = params[:discussion_id]
     @comments = Comment.sort(:created_at.desc).where(:discussion_id => @discussion_id).paginate(:page => @page, :per_page => @per_page)
   end
+  
+  def list_for_discussion
+    discussion = Discussion.find(params[:id])
+    @comments = discussion.comments
+     respond_with(@comments) do |format|
+        format.js { render :partial => "list_for_discussion" }
+      end
+  end
 end

@@ -1,6 +1,6 @@
 class CollectionsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter, :only => [:new, :edit, :add]
-  respond_to :js, :only => [:add, :remove]
+  respond_to :js, :only => [:add, :remove, :list_for_explorer]
   
   def show
     default_params :page => 1, :per_page => 10
@@ -98,6 +98,13 @@ class CollectionsController < ApplicationController
     
     if @collection.save
       flash[:notice] = I18n.t('controllers.collections.removed')
+    end
+  end
+  
+  def list_for_explorer
+    @collections = Collection.trending(5)
+    respond_with(@collections) do |format|
+      format.js { render :partial => "list_for_explorer" }
     end
   end
   

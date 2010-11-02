@@ -3,7 +3,7 @@
     <div class="rhc"></div>
     <div class="lhc">
       <div class="profile-detail">
-        <%= image_tag "default_user.png" %>
+        <%= image_tag "interface/default_user.png" %>
         <div class="info">
           <h1><%= @user.name %></h1>
           
@@ -24,7 +24,7 @@
       <%- if current_zooniverse_user.moderator? && current_zooniverse_user != @user %>
         <div class="panel admin-panel">
           <h2>Administration</h2>
-          <div class="inner">
+          <div>
             <div id="moderation-links">
               <%= render :partial => "state" %>
             </div>
@@ -32,26 +32,25 @@
         </div>
       <% end -%>
       
-      <div class="panel my-collections">
+      <div class="my-collections">
         <h2><%= "My " if current_zooniverse_user == @user %>Collections</h2>
-        <div class="inner">
           <%- unless @collections.empty? %>
             <% @collections.each do |collection| %>
-              <div class="collection">
-                <%= link_to image_tag(collection.assets.first.thumbnail_location, :class => "collection-thumbnail", :width => 75, :height => 50), collection_path(collection.zooniverse_id) unless collection.assets.empty? %>
-                <div class="collection-info">
-                  <%= link_to truncate(collection.name, :length => 25, :separator => ' '), collection_path(collection.zooniverse_id) %>
-                  <ul>
-                    <li><%= pluralize collection.assets.size, "item"%></li>
-                    <li><%= pluralize collection.discussions.size, "discussion"%></li>
-                  </ul>
-                </div>
+              <div class="item">
+								<div class="name"><%= link_to collection.name, collection_path(collection.zooniverse_id) %></div>
+								  <%- unless collection.assets.empty? %>
+						        <%- collection.assets.each do |item| %>
+						          <%= link_to image_tag(item.location, :class => "collection-thumbnail", :height => 20), object_path(item.zooniverse_id) %>
+						        <% end -%>
+						      <%- else -%>
+						        <div>Empty</div>
+						      <% end -%>
               </div>
             <% end -%>
           <%- else -%>
             <p>No Collections</p>
           <% end -%>
-        </div>
+
         <%- if current_zooniverse_user == @user %>
           <div class="new">
             <%= link_to (t 'collection.startnewcol'), new_collection_path() %>
@@ -59,10 +58,11 @@
         <% end -%>
       </div>
     </div>
+
     <div class="lhc">
-      <div class="panel popular-discussions">
+      <div class="popular-discussions">
         <h2>Popular Discussions</h2>
-        <div class="inner">
+        <div>
           <%- unless @discussions.nil? %>
             <%= render :partial => "discussions/list_trending" %>
           <%- else -%>
@@ -77,7 +77,7 @@
       
       <div class="panel user-comments">
         <h2>Latest Comments</h2>
-        <div class="inner">
+        <div>
           <%= render :partial => "comments/recent" %>
         </div>
         <%- if @comments.total_pages > 1 %>

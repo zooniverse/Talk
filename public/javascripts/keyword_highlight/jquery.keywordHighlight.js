@@ -43,7 +43,7 @@ $.fn.addAnnotations = function(elem) {
 
 $.fn.highlightAnnotations = function() {
   this.each(function() {
-    var body = $(this).children('.comment-body');
+    var body = $(this).children('.comment .body');
     var comment_id = $(this).attr('id');
     var annotations = body.parseAnnotations();
     if(annotations.length > 0) {

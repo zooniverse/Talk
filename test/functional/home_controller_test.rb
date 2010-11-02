@@ -50,9 +50,6 @@ class HomeControllerTest < ActionController::TestCase
         end
       end
       
-      should "Show about box" do
-        assert_select "#about-box"
-      end
     end
     
     context "#cas_test logged in" do

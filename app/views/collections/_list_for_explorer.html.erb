@@ -1,0 +1,16 @@
+<% unless @collections.empty? %>
+	<% @collections.each do |collection| %>
+	<div class="item collection" id="<%= collection.id %>">
+		 <h3><a><%= collection.name %></a></h3>
+		  <%- unless collection.assets.empty? %>
+        <%- collection.assets.each do |item| %>
+          <%= link_to image_tag(item.location, :class => "collection-thumbnail", :height => 20), object_path(item.zooniverse_id) %>
+        <% end -%>
+      <%- else -%>
+        <div>Empty</div>
+      <% end -%>
+	</div>
+	<% end %>
+<% else %>
+	<div class="engraved">No collections</div>
+<% end %>

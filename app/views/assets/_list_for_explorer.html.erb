@@ -1,0 +1,6 @@
+<%- @assets.each do |asset| %>
+	<div class="item asset" id="<%= asset.id %>">
+		<%= image_tag(asset.thumbnail_location, :size => "97x97") %>
+		<div class="circle <%=cycle('red', 'blue', 'gold')%>"><p><%= link_to asset.zooniverse_id.split(/AMZ/)[1], :controller => :assets, :action => :show, :id => asset.zooniverse_id %></p></div>
+	</div>
+<% end -%>

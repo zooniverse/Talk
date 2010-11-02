@@ -22,16 +22,16 @@ class AssetsControllerTest < ActionController::TestCase
       should render_template :show
       
       should "Display the asset zooniverse_id" do
-        assert_select 'h2.asset-name', :text => @asset.zooniverse_id
+        assert_select '.asset-name', :text => @asset.zooniverse_id
       end
       
       should "display asset tags" do
-        assert_select '#tags-for-focus h2', :text => I18n.t('homepage.keywords')
-        assert_select '#tags-for-focus ul li a', :text => @asset.tags.first
+        # assert_select '#tags-for-focus h2', :text => I18n.t('homepage.keywords')
+        # assert_select '#tags-for-focus ul li a', :text => @asset.tags.first
       end
       
       should "display asset" do
-        assert_select '#asset-as-focus h2', :text => @asset.zooniverse_id
+        assert_select '#asset-as-focus .asset-name', :text => @asset.zooniverse_id
         assert_select '#asset-as-focus .asset-actions ul li a', :text => "Examine"
       end
       
@@ -39,25 +39,20 @@ class AssetsControllerTest < ActionController::TestCase
         assert_select '#not-logged-in'
       end
       
-      should "display comment list" do
-        assert_select '.comment-container .comment-body'
-        assert_select '.comment-container .comment-body .name', :text => @conversation.comments.first.author.name
+      should "display short comment list" do
+        assert_select '.short-comments'
+        assert_select '.short-comments .short-comment:nth-child(1) .body .name a', :text => @conversation.comments.first.author.name
       end
       
       should "display collection list" do
-        assert_select '.lower-row .rhc .panel:nth-child(1) h2', :text => '1 Collection'
-        assert_select '.lower-row .rhc .panel:nth-child(1) .inner ul li a', :text => @collection.name
+        assert_select '.rounded-panel .collection:nth-child(1) h2 a', :text => @collection.name
       end
       
       should "display discussions list" do
-        assert_select '.lower-row .rhc .panel:nth-child(2) h2', :text => '1 Discussion'
-        assert_select '.lower-row .rhc .panel:nth-child(2) .inner ul li a', :text => @discussion.subject
+        assert_select '.rhc .discussions'
+        assert_select '.rhc .discussions .discussion:nth-child(2) p a', :text => @discussion.subject
       end
-      
-      should "display mentions list" do
-        assert_select '.lower-row .rhc .panel:nth-child(3) h2', :text => 'Mentions'
-        assert_select '.lower-row .rhc .panel:nth-child(3) .inner ul li a', :text => @discussion.subject
-      end
+    
     end
     
     context "When requesting an Asset logged in" do

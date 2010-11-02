@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= t 'title' %> | Moon Zoo</title>
+  <%= stylesheet_link_tag "reset" %>
+ 	<%= stylesheet_link_tag "moonzoo" %> 
+ 	<%= stylesheet_link_tag "communicator" %> 
+	<%= javascript_include_tag 'jquery-1.4.2.min.js' %>
+	<%= javascript_include_tag 'jquery-ui-1.8.4.min.js' %>	
+
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script> -->
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js" type="text/javascript"></script> -->
+  <%= javascript_include_tag 'keyword_highlight/jquery.keywordHighlight.js'%>
+  <%= javascript_include_tag 'application', 'rails' %>
+	<%= yield :page_includes %>
+	
+  <%= csrf_meta_tag %>
+</head>
+<body>
+	<div class="nav">				
+		<div class="menu">
+			<div class="inner">
+				<a class="galaxyzoo_logo" href="#"></a>
+				<a class="zooniverse_logo" href="#"></a>
+			</div>									
+		</div>
+		
+		<div class="sub_menu">
+			<div class="inner">
+				<a href="/">				
+						<img src="/images/moonzoo/header/logo.png" width="197" height="34" alt="Logo" class="logo">
+					</a>
+					<ul >
+						<li class="main_link back_to_app">Return to Moonzoo</li>
+					</ul>					
+				<ul>
+					<li class="main_link">Account</li>													
+					<%- if current_zooniverse_user %>
+			      <%- if current_zooniverse_user.admin? || current_zooniverse_user.moderator? %>
+			        <li><%= link_to t('sidenav.moderation'), admin_index_path %></li>
+			      <% end -%>
+			      <li><%= link_to t('sidenav.profile'), user_path(current_zooniverse_user) %></li>
+						<li><a href="/messages">Messages</a></li>									
+			      <li><%= link_to t('sidenav.logout'), logout_path %></li>						
+			    <%- else -%>
+			      <li><%= link_to t('sidenav.login'), cas_test_path %></li>
+			    <% end -%>										
+				</ul>
+				
+				<ul>
+					<li class="main_link">Discussions</li>													
+					<li><a href="/help">Help</a></li>
+					<li><a href="/science">Science</a></li>
+					<li><a href="/chat">Chat</a></li>			
+				</ul>
+								
+				<ul>
+					<li class="main_link">Home</li>																				
+					<li><a href="/explore">Explore</a></li>										
+					<li><a href="/search">Search</a></li>												
+				</ul>		
+			</div>
+			
+		</div>
+	</div>
+	<div class="wrapper">		
+		<div class="ct content <%= yield :content_class %>">
+		  <%= render :partial => "shared/flash", :locals => { :flash => flash } %>
+			<%= yield %>
+			<div class="push"></div>	
+		</div>
+		<div class="footer">
+			<img src="/images/moonzoo/footer/ox.jpg" width="121" height="36" />
+			<div class="inner">University of Oxford<br/>&copy;&nbsp;2010</div></div>			
+	</div>
+</body>
+</html>

@@ -1,47 +1,52 @@
-<div class="home-lhc">
-  <div class="comments-list">
-    <div id="home-tabs" class="headed-panel">
-      <div class="inner">
-        <ul>
-          <li><a href="#boards-tabs"><%= t 'homepage.boards' %></a></li>
-          <li><a href="#trends-tabs"><%= t 'homepage.trends' %></a></li>
-          <li><a href="#recents-tabs"><%= t 'homepage.recent' %></a></li>
-        </ul>
-      </div>
-      <div id="boards-tabs" class="headed-panel">
-        <div class="inner">
-          <ul>
-            <li><%= link_to t('homepage.help'), home_recent_help_path %></li>
-            <li><%= link_to t('homepage.science'), home_recent_science_path %></li>
-            <li><%= link_to t('homepage.chat'), home_recent_chat_path %></li>
-          </ul>
-        </div>
-      </div>
-      <div id="trends-tabs" class="headed-panel">
-        <div class="inner">
-          <ul>
-            <li><%= link_to t('homepage.assets'), home_trending_assets_path %></li>
-            <li><%= link_to t('homepage.collections'), home_trending_collections_path %></li>
-            <li><%= link_to t('homepage.discussions'), home_trending_discussions_path %></li>
-            <li><%= link_to t('homepage.keywords'), home_trending_keywords_path %></li>
-          </ul>
-        </div>
-      </div>
-      <div id="recents-tabs" class="headed-panel">
-        <div class="inner">
-          <ul>
-            <li><%= link_to t('homepage.assets'), home_recent_assets_path %></li>
-            <li><%= link_to t('homepage.collections'), home_recent_collections_path %></li>
-            <li><%= link_to t('homepage.discussions'), home_recent_discussions_path %></li>
-            <li><%= link_to t('homepage.comments'), home_recent_comments_path %></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+<%= content_for :content_class do %>home<% end %>
+<div>
+<div class="mode_switch">
+	<a href="#" class="current" id="trending">Trending</a>&nbsp;|&nbsp;<a href="#" id="recent">Recent</a>
 </div>
+<h1>Community</h1>
+</div>
+	<div class="rhc">
+	<div class="featured">
+		<h2>Featured</h2>			
+		<div class="list">	
+			<div class="ribbon"></div>
+			<img src="http://moonzoo.s3.amazonaws.com/v10/slices/000000963.jpg" width="130" />
+			<div class="box_shadow"></div>
+			<p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elite.<a href="#">Take part</a></p>
+		</div>
+	</div>
+	<div class="assets">
+		<h2>ASSETS</h2>	
+		<div class="list">	
+			<p class="loading">Loading..</p>
+		</div>	
+	</div>
+</div>	
 
-<div class="home-rhc">
-  <%= render :partial => "shared/about_box" %>
-  <%= render :partial => "shared/help_wanted" %>
+<div class="lhc">
+	<div class="collections">
+		<div class="list">
+			<div class="collection"><p class="loading">Loading..</p></div>
+			<div class="collection last"><p class="loading">Loading..</p></div>		
+			<div class="collection"><p class="loading">Loading..</p></div>			
+			<div class="collection last"><p class="loading">Loading..</p></div>	
+		</div>
+	</div>
+	
+	<!-- Bottom cols-->
+	<div class="lower_home">
+		<div class="discussions">
+			<h2>DISCUSSIONS</h2>
+			<div class="list">
+				<p class="loading">Loading..</p>
+			</div>			
+		</div>
+		
+		<div class="comments last">
+			<h2>COMMENTS</h2>	
+			<div class="list">		
+				<p class="loading">Loading..</p>
+			</div>
+		</div>		
+	</div>		
 </div>

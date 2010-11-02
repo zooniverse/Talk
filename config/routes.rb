@@ -1,5 +1,13 @@
 Sellers::Application.routes.draw do
 
+  match '/collections/list_for_explorer' => 'collections#list_for_explorer'
+  match "/assets/list_for_explorer" => "assets#list_for_explorer"      
+  match "/boards/list_for_explorer" => "boards#list_for_explorer"      
+  match "/discussions/list_for_asset" => "discussions#list_for_asset"  
+  match "/discussions/list_for_collection" => "discussions#list_for_collection"    
+  match "/discussions/list_for_board" => "discussions#list_for_board"  
+  match "/comments/list_for_discussion" => "comments#list_for_discussion"
+
   resources :collections do 
     resources :discussions
     
@@ -79,6 +87,7 @@ Sellers::Application.routes.draw do
   %w(comments assets collections discussions).each do |kind|
     match "/home/trending_#{kind}" => "home#trending_#{kind}"
     match "/home/recent_#{kind}" => "home#recent_#{kind}"
+    match "/explore" => "home#explore"
   end
   
   %w(help science chat).each do |board|

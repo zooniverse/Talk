@@ -1,7 +1,7 @@
 class DiscussionsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter, :only => [:new, :create]
   before_filter :require_privileged_user, :only => :toggle_featured
-  respond_to :js, :only => [:user_owned, :toggle_featured]
+  respond_to :js, :only => [:user_owned, :toggle_featured, :list_for_asset, :list_for_boards, :list_for_collection]
   
   def show
     default_params :page => 1, :per_page => 10
@@ -14,6 +14,9 @@ class DiscussionsController < ApplicationController
     if @discussion.focus_type == "Board"
       @title = @discussion.focus.title
       @bns_path = "/#{@title}"
+    elsif @discussion.focus_type == "Collection"
+      @title = @discussion.focus.name
+      @bns_path = parent_url_for(@discussion)
     else
       @title = @discussion.focus.zooniverse_id
       @bns_path = parent_url_for(@discussion)
@@ -59,6 +62,34 @@ class DiscussionsController < ApplicationController
     @discussion.save
   end
   
+  def list_for_asset
+    asset = Asset.find(params[:id])
+    @discussions = asset.discussions    
+    general = asset.conversation
+    general.subject = "General"
+    @discussions.insert(0, general)
+    
+     respond_with(@discussions) do |format|
+        format.js { render :partial => "list_for_explorer" }
+      end
+  end
+  
+  def list_for_collection
+    collection = Collection.find(params[:id])
+    @discussions = collection.discussions  
+     respond_with(@discussions) do |format|
+        format.js { render :partial => "list_for_explorer" }
+      end
+  end
+  
+  def list_for_board
+    board = Board.find(params[:id])
+    @discussions = board.discussions  
+     respond_with(@discussions) do |format|
+        format.js { render :partial => "list_for_explorer" }
+      end
+  end
+    
   protected
   
   def find_focus

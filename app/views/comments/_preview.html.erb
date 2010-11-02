@@ -1,8 +1,8 @@
 <div class="comment-preview">
-  <%= image_tag('default_user.png', :class => "user", :size => "40x40") %>
-  <div class="comment-container highlight_keywords">
-    <div class="comment-body">
-      <div class="date">Posted <%= time_ago_in_words(comment.created_at) %> ago</div>
+  <%= image_tag('interface/default_user.png', :class => "user", :size => "40x40") %>
+  <div class="highlight_keywords">
+    <div class="body">
+      <div class="date"><%= time_ago_in_words(comment.created_at) %> ago</div>
       <%= raw markdown(comment.body) %>
     </div>
   </div>

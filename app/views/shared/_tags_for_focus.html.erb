@@ -1,7 +1,7 @@
 <%- unless @focus.keywords.empty? %>
   <div id="tags-for-focus" class="panel tags right">
     <h2><%= t 'homepage.keywords' %></h2>
-    <div class="inner">
+    <div>
       <ul>
         <%- @focus.keywords.each do |keyword| %>
           <%- klass = @focus.class.name.underscore.pluralize %>

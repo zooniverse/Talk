@@ -65,6 +65,11 @@ class Comment
     Comment.limit(limit).sort(:created_at.desc).all
   end
   
+  # The most trendy comments  
+  def self.trending(limit = 10)
+    Comment.limit(limit).sort(:popularity.desc).all
+  end
+    
   # Finds comments mentioning a focus
   def self.mentioning(focus, *args)
     opts = { :page => 1, :per_page => 10, :order => :created_at.desc }.update(args.extract_options!)

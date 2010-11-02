@@ -32,17 +32,13 @@ class DiscussionsControllerTest < ActionController::TestCase
 
       should respond_with :success
       should render_template :show
-      
-      should "Display the asset zooniverse_id" do
-        assert_select ".discussion-title", :text => "#{@focus.zooniverse_id} discussion"
-      end
-      
+            
       should "Display the asset image" do
         assert_select ".discussion-items img.focus-main-image"
       end
       
       should "Display the author of the discussion" do
-        assert_select ".main h2", :text => "Started by #{@discussion.started_by.name}"
+        assert_select ".question .started_by", :text => "Started by #{@discussion.started_by.name}"
       end
       
       should "Display the discussion tags" do
@@ -69,11 +65,7 @@ class DiscussionsControllerTest < ActionController::TestCase
 
       should respond_with :success
       should render_template :show
-      
-      should "Display the collection zooniverse_id" do
-        assert_select ".discussion-title", :text => "#{@focus.zooniverse_id} discussion"
-      end
-      
+            
       should "Display the collection images" do
         assert_select ".discussion-items", :html => /src="#{@asset.location}"/
         assert_select ".collection-thumbnail", 1

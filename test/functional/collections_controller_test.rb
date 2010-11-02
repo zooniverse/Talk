@@ -24,13 +24,13 @@ class CollectionsControllerTest < ActionController::TestCase
       end
       
       should "display discussions list" do
-        assert_select '.rhc .panel h2', :text => '1 Discussion'
-        assert_select '.rhc .panel .inner ul li a', :text => @discussion.subject
+        assert_select '.rhc .discussions'
+        assert_select '.rhc .discussions:nth-child(1) p a', :text => @discussion.subject
       end
       
       should "display mentions list" do
-        assert_select '.rhc .panel:nth-child(2) h2', :text => 'Mentions'
-        assert_select '.rhc .panel:nth-child(2) .inner ul li a', :text => @discussion.subject
+        assert_select '.rhc .mentions h2', :text => 'Mentions'
+        assert_select '.rhc .mentions .item:nth-child(1) a', :text => @discussion.subject
       end
       
       should "display collection tags" do
@@ -47,8 +47,8 @@ class CollectionsControllerTest < ActionController::TestCase
       end
       
       should "display comment list" do
-        assert_select '.comment-container .comment-body'
-        assert_select '.comment-container .comment-body .name', :text => @conversation.comments.first.author.name
+        assert_select '.short-comments'
+        assert_select '.short-comments .short-comment:nth-child(1) .body .name a', :text => @conversation.comments.first.author.name
       end
     end
       

@@ -4,14 +4,10 @@
 //
 var OCT = window.OCT || {};
 
-/* 
- * @Namespace Tabs
- */
 OCT.tabs = {
   trends      : '#trends-tabs',
   recents      : '#recents-tabs',
-
-  // Initialise bindings for tabs
+  
   init: function () {
     $('#home-tabs').tabs();
     $('#boards-tabs').tabs({ cache: true });
@@ -20,14 +16,11 @@ OCT.tabs = {
   }
 };
 
-/* 
- * @Namespace Collection Viewing
- */
+
 OCT.collection = {
   large          : '.collection-large',
   thumbnail      : '.collection-thumbnail',
 
-  // Initialise switching behaviour
   init: function () {
     $(OCT.collection.thumbnail).mouseover(function() {
       $(OCT.collection.large).attr("src", $(this).attr("src"));
@@ -35,11 +28,10 @@ OCT.collection = {
   }
 };
 
-OCT.loading = {
-  
+
+OCT.loading = {  
   init: function() {
       var toggleLoading = function() { $(".loading").toggle() };
-
       $(".show-more")
         .bind("ajax:loading",  toggleLoading)
         .bind("ajax:complete", toggleLoading);
@@ -47,22 +39,25 @@ OCT.loading = {
 }
 
 
-/* 
- * @Namespace Hovering
- */
 OCT.hover = {
-
-    item      : '.short-comment, .comment',
-    toolbar : '.toolbar',
+    container : '.short-comment, .comment, .collection-viewer',
+    targets : '.toolbar, .date, .toggle',
     
     init: function () {
-      $(OCT.hover.item).hover(function() {
-        $(OCT.hover.toolbar, this).css('visibility', 'visible');
+      $(OCT.hover.container).hover(function() {
+        $(OCT.hover.targets, this).css('visibility', 'visible');
       }, function() {
-        $(OCT.hover.toolbar, this).css('visibility', 'hidden');
+        $(OCT.hover.targets, this).css('visibility', 'hidden');
+      });
+      
+      $('#asset-as-focus .rounded-panel').hover(function(){
+        $('.asset-actions', this).css('visibility', 'visible');
+      }, function() {
+        $('.asset-actions', this).css('visibility', 'hidden');        
       });
     }
 };
+
 
 OCT.textcount = {
   short_text : '#short-text',
@@ -82,13 +77,150 @@ OCT.textcount = {
 };
 
 
-// --
+OCT.notice = {
+  init: function () {
+    $('.notice').bind("click", function(){ $(this).hide()});    
+    setTimeout("$('.notice').fadeOut(1000);", 3000);
+  }
+};
+
+
+OCT.explore = {  
+  init:function() {
+     $.ajax({
+       url: '/assets/list_for_explorer',
+       dataType: 'js',
+       success: function(response) {
+         $('.col1').html(response);
+       }, 
+       error: function() {
+         $('.col1').html("<div class='engraved'>Problem getting Asssets</div>");         
+       }
+     });
+    
+     // Click on Col 1 | Load discussion 
+     $('.col1 .item').live('click', function() {     
+        $('.col2').html("<div class='engraved'>Loading..</div>");    
+        $('.col3').html("<div class='engraved'>Comments</div>");    
+                  
+        var type = "asset";
+        if ($(this).hasClass("board")) {
+          type ="board";
+        }
+        if ($(this).hasClass("collection")) {
+          type ="collection";
+        }
+      
+       $.ajax({
+         url: '/discussions/list_for_'+type,       
+         data: {id: $(this).attr('id')},
+         dataType: 'js',
+         success: function(response) {
+           $('.col2').html(response);    
+         }, 
+         error: function() {
+           $('.col2').html("<div class='engraved'>Problem getting "+type+"</div>");         
+         }
+       });
+     }); 
+   
+     // Click on discussion | Show comments
+    $('.col2 .item').live('click', function() {     
+      $('.col3').html("<div class='engraved'>Loading..</div>");    
+      $.ajax({
+        url: '/comments/list_for_discussion',       
+        data: {id: $(this).attr('id')},
+        dataType: 'js',
+        success: function(response) {
+          $('.col3').html(response);
+        }, 
+        error: function() {
+          $('.col3').html("<div class='engraved'>Problem getting comments</div>");         
+        }
+      });
+    });
+
+    //  TYPE toolbar
+    $('.type_toolbar .type').live('click', function() {     
+       $('.col1').html("<div class='engraved'>Loading..</div>");          
+       $('.col2').html("<div class='engraved'></div>");    
+       $('.col3').html("<div class='engraved'></div>");    
+
+       $('.type').removeClass("current");
+       $(this).addClass("current");
+       var type = $(this).attr("id");             
+        $.ajax({
+               url: '/'+type+'/list_for_explorer',
+               dataType: 'js',
+               success: function(response) {
+                 $('.col1').html(response);
+               }, 
+               error: function() {
+                 $('.col1').html("<div class='engraved'>Problem getting type</div>");         
+               }
+             });                         
+     });         
+  }
+};
+
+
+OCT.home = {
+  mode : 'trending',
+  
+  init: function() {    
+    $('.mode_switch a').bind("click", function() {
+      if (!$(this).hasClass('current')) {
+        OCT.home.mode = $(this).attr("id");
+        OCT.home.load();
+        $('.mode_switch a').removeClass("current");
+        $(this).addClass('current');
+      }
+      return false;
+    });
+    
+    $('.film img').live("mouseover", function() {
+      $('.large', $(this).parent().parent()).attr("src", $(this).attr("src"));
+    });
+    
+    OCT.home.load();
+        
+    // Commment user image hover
+    $('.home .comment img').live("mouseenter", function() {
+      $('.author', $(this).parent()).css("display", "inline");
+    });
+    
+    $('.home .comment').live("mouseleave", function() {
+      $('.author', this).css("display", "none");
+    });                  
+   },
+   
+   load: function() {
+      var types = new Array("collections", "assets", "discussions", "comments");  
+       $(types).each(function(i, type){
+         $("."+type+" .list").html("<p class='loading'>Loading..</p>")
+         $.ajax({
+          url: '/home/'+OCT.home.mode+'_'+type,
+          dataType: 'js',
+          success: function(response) {
+            $("."+type+" .list").html(response);
+          }, 
+          error: function() {
+            $("."+type+" .list").html("<div>Problem getting "+type+"</div>");         
+          }
+         });
+       });      
+   }
+};
+
 $(document).ready(function(){
     OCT.tabs.init();
     OCT.collection.init();
     OCT.hover.init();
     OCT.loading.init();
     OCT.textcount.init();
+    OCT.notice.init();    
+    OCT.explore.init();  
+    OCT.home.init();        
     $('.highlight_annotations').highlightAnnotations();
     $(".highlight_keywords").keywordHighlight();
 });

@@ -1,21 +1,33 @@
+<%= content_for :content_class do %>messages<% end %>
+
 <div class="upper-row">
-  <h1><%= t 'messages.messages' %></h1>
-  <div class="message-nav">
-    <span class="current"><%= t('messages.inbox') %></span>
-    &nbsp;|&nbsp;
-    <%= link_to t('messages.sent'), sent_messages_path %>
+	<div class="rhc">
+		<div class="right">
+			<%= render :partial => "new_button" %>	
+		</div>	
   </div>
-  <div class="rhc">
-    <%= render :partial => "meta_for_messages" %>
+	
+	<div class="lhc">
+	  <h1><%= t 'messages.messages' %></h1>
+		<div>
+		  <span class="current"><%= t('messages.inbox') %></span>
+		  &nbsp;|&nbsp;
+		  <%= link_to t('messages.sent'), sent_messages_path %>
+		</div>
   </div>
 </div>
 
 <div class="lower-row">
+
+  <div class="rhc">
+    <%= render :partial => "meta_for_messages" %>	
+    <%= render :partial => "shared/zooniverse_extras" %>
+    <%= render :partial => "shared/project_link" %>
+    <%= render :partial => "shared/help_wanted" %>
+  </div>
+
   <div class="lhc">
     <div class="message-list">
-      <div class="news" style="float:right;margin-right:0;">
-        <%= link_to "#{t('messages.startnew')}", new_message_path %>
-      </div>
       <%- if @messages.empty? %>
         <%= t 'messages.none' %>
       <%- else -%>
@@ -23,9 +35,5 @@
       <% end -%>
     </div>
   </div>
-  <div class="rhc">
-    <%= render :partial => "shared/zooniverse_extras" %>
-    <%= render :partial => "shared/project_link" %>
-    <%= render :partial => "shared/help_wanted" %>
-  </div>
+
 </div>

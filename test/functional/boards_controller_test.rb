@@ -67,21 +67,12 @@ class BoardsControllerTest < ActionController::TestCase
       end
       
       should "display discussions" do
-        assert_select ".recent-item", 5
+        assert_select ".item", 1
       end
       
       should "display zooniverse ad" do
         assert_select "#zooniverse-extras"
-      end
-      
-      should "display project link" do
-        assert_select "#project-link"
-      end
-      
-      should "display featured discussions" do
-        assert_select "#help-wanted > .featured-item", 1
-        assert_select "#help-wanted .name", :text => @discussion.subject
-      end
+      end    
       
       should "display pagination links" do
         assert_select "div.pagination", 1

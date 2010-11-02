@@ -124,7 +124,7 @@ class SearchControllerTest < ActionController::TestCase
       should render_template :index
       
       should "list comments" do
-        assert_select ".recent-item", 3
+        assert_select ".item", 3
       end
     end
     
@@ -141,7 +141,7 @@ class SearchControllerTest < ActionController::TestCase
       should render_template :index
       
       should "list comments" do
-        assert_select ".recent-item", 1
+        assert_select ".item", 1
       end
     end
     
@@ -156,7 +156,7 @@ class SearchControllerTest < ActionController::TestCase
       should render_template :index
       
       should "list comments" do
-        assert_select ".recent-item", 3
+        assert_select ".item", 3
       end
       
       should "link to discussions" do
@@ -177,7 +177,7 @@ class SearchControllerTest < ActionController::TestCase
       should render_template :index
       
       should "list comments" do
-        assert_select ".recent-item", 1
+        assert_select ".item", 1
       end
       
       should "link to discussions" do

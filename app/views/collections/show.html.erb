@@ -4,24 +4,24 @@
   </h1>
   
   <div class="rhc">
+    <%= render :partial => "discussions/list_for_focus" %>
     <%= render :partial => "shared/tags_for_focus" %>
     <%= render :partial => "discussions/mentions" %>
-    <%= render :partial => "discussions/list_for_focus" %>
   </div>
   
   <div class="lhc">
     <p class="collection-description"><%= @collection.description %></p>
-    <div class="collection-viewer">
-      <%- unless @collection.assets.empty? %>
+    <div class="collection-viewer rounded-panel">
+      <%- unless @collection.assets.empty? %>							
         <%- @collection.assets.each do |item| %>
-          <%= link_to image_tag(item.location, :class => "collection-thumbnail", :height => 50), object_path(item.zooniverse_id) %>
+          <%= link_to image_tag(item.location, :class => "collection-thumbnail", :height => 90), object_path(item.zooniverse_id) %>
         <% end -%>
       <%- else -%>
         EMPTY COLLECTION
       <% end -%>
       
       <%- if @collection.user == current_zooniverse_user %>
-        <div class="asset-actions">
+        <div class="asset-actions toggle">
           <ul>
             <li><%= link_to "Edit", edit_collection_path(@collection.zooniverse_id) %></li>
           </ul>
@@ -39,7 +39,7 @@
     <%- else -%>
       <%= render :partial => "shared/please_log_in" %>
     <% end -%>
-    <div class="comments-list">
+    <div class="comments-list rounded-panel short-comments">
       <%= render :partial => "comments/list_short" %>
     </div>
   </div>

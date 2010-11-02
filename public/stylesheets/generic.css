@@ -1,0 +1,112 @@
+body {
+  background: #ccc;
+  margin: 0;
+  font-family: Helvetica, "Arial Narrow", Arial, verdana;
+  line-height: 1.3em;
+  font-size: 0.8em;
+  background-position: 0 28px;
+}
+
+a:link, a:visited {
+  color: #900;
+  text-decoration: none;  
+}
+
+a:hover {
+  color: #F00;
+}
+
+h1, h2, h3, h4 {
+  margin: 10px 0 5px 0;
+  font-family: "HelveticaNeue-Light", Helvetica, "Arial Narrow", Arial,sans-serif;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 1.8em;
+  margin: 20px 0 15px 0;  
+}
+
+h2 {
+  font-size: 1.4em;
+  margin: 20px 0 15px 0;
+}
+
+h3 {
+  font-size: 1.2em;
+  margin: 15px 0 10px 0;  
+}
+
+h4 {
+  font-size: 1.1em;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+ol li {
+  margin-bottom: 3px;
+}
+
+p {
+  margin: 0 0 10px 0;
+}
+
+.logo {position:absolute;top:47px;left: 17px;display:block;}
+
+.wrapper {
+  width: 945px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.header {
+  margin: 10px auto;
+  width: 945px;    
+}
+
+.nav{
+  height: 175px;
+}
+
+.main, .content {
+/*  padding: 20px 56px 20px 39px;*/
+}
+
+.content {
+  padding-top: 40px;
+  background: #eee;
+  border-top: 7px solid #E3E3E3;  
+}
+
+.menu {
+  float:right;
+}
+
+.menu ul{
+    float:right;
+    margin-left:20px;
+    font-size:0.9em;
+}
+
+/**/
+.footer {
+  text-align: right;
+  background: #000;
+  height: 82px;
+  margin:0 auto;    
+  color: #afafaf;
+  font-family: 'lucida grande';
+  font-size: 1em;
+  margin-bottom:20px;
+}
+
+.footer .inner {
+  position: relative;
+  top: 26px;
+  padding-right: 20px;
+}
+
+/* --- */
+.wrapper{position:relative;}

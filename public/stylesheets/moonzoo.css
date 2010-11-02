@@ -1,0 +1,358 @@
+body {
+  background: #d2c5a4 url(/images/moonzoo/interface/body_fade.png) repeat-x;
+  margin: 0;
+  font-family: Helvetica, "Arial Narrow", Arial, verdana;
+  line-height: 1.3em;
+  font-size: 0.8em;
+  background-position: 0 28px;
+}
+
+a:link, a:visited {
+  color: #900;
+  text-decoration: none;  
+}
+
+a:hover {
+  color: #F00;
+}
+
+h1, h2, h3, h4 {
+  margin: 10px 0 5px 0;
+  font-family: "HelveticaNeue-Light", Helvetica, "Arial Narrow", Arial,sans-serif;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 1.8em;
+  margin: 20px 0 15px 0;  
+}
+
+
+h2 {
+  font-size: 1.4em;
+  margin: 20px 0 15px 0;
+}
+
+h3 {
+  font-size: 1.2em;
+  margin: 15px 0 10px 0;  
+}
+
+h4 {
+  font-size: 1.1em;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+ol li {
+  margin-bottom: 3px;
+}
+
+p {
+  margin: 0 0 10px 0;
+}
+
+.header img {
+  display: block;
+}
+
+.logo {position:absolute;top:47px;left: 17px;}
+
+.wrapper {
+  width: 945px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.header {
+  margin: 0 auto;
+  width: 1025px;  
+}
+
+.nav{
+  height: 175px;
+}
+
+.main, .content {
+  padding: 20px 56px 20px 39px;
+}
+
+.content {
+  padding-top: 40px;
+  background: #eee;
+  border-top: 7px solid #E3E3E3;  
+}
+
+.menu {
+  background: url(/images/moonzoo/interface/menu_bg.jpg) repeat-x center;
+  display: block;
+  height: 28px;
+  border-bottom: solid #000 1px;
+  border-top: solid #65737b 1px;
+  width: 100%;
+}
+
+.menu ul li a{
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.7em;
+  position:relative;
+  top: 5px;
+  font-family: "Gill Sans", "Gill Sans MT", verdana, sans-serif;
+  text-shadow: 0px 1px 1px #000;
+}
+
+.menu ul {
+  position:relative;
+  width: 945px;
+  margin: 0 auto;
+}
+
+.menu ul li {
+  float: right;
+  text-transform: uppercase;
+  width: 85px;
+  height: 28px;
+  text-align: center;
+  cursor:pointer;
+}
+
+/**/
+h3.step {
+  margin: 30px 0 10px 0;
+  padding-top: 10px;
+}
+
+ol {
+  margin-bottom: 20px;
+}
+
+ol li {
+  margin-left: 40px;
+}
+
+.play { 
+  padding-top: 40px;
+}
+
+.panel {
+  margin-bottom: 20px;
+}
+
+.play .panel {
+  width: 260px;
+  margin-right: 30px;
+  margin-bottom: 0;
+}
+
+.panel p {
+  margin: 8px 13px 13px 13px;
+}
+
+.panel .cta {
+  margin: 5px 13px 15px 13px;
+  display:block;
+}
+
+.last {
+  margin-right: 0 !important;
+}
+
+.push {
+  clear: both;
+  height: 1px;
+  width: 100%;
+}
+
+.right {
+  float:right;
+}
+
+.col {
+  width: 400px;
+  float: left;
+  margin-right: 50px;
+}
+
+.about .col {
+  margin-bottom: 40px;  
+}
+
+.contents {
+  padding: 15px 18px 30px 18px;
+  margin-bottom: 20px;
+}
+
+.section {
+  clear:both;
+  padding-top: 40px;
+}
+
+.left {
+  float:left;
+}
+
+.example_images img {
+  margin: 0 8px 10px 0;
+}
+
+.sub_menu {
+  position:absolute;
+  height: 118px;
+  padding: 14px 0;
+  color: #fff;
+  z-index: 900;
+  width: 100%;
+  font-size: 0.8em;
+}
+
+.sub_menu a:link, .sub_menu a:visited {
+  color:#808080;  
+}
+
+.sub_menu a:hover {
+  color: #000;
+}
+
+.sub_menu .inner {
+  margin: 0 auto;
+  width: 950px;
+  position:relative;
+}
+
+.sub_menu ul {
+  float: right;
+  height: 175px;
+  position:relative;
+  top:10px;
+}
+
+.sub_menu li {
+  text-align:right;
+  padding-right: 20px;  
+  padding-left: 20px;  
+  margin-bottom:-2px;
+  visibility:hidden;
+}
+
+.sub_menu li.main_link {
+  background: #aaa287;
+  border-top: solid #cac4b2 3px;
+  color:#fff;
+  padding-top:3px;
+  padding-bottom:3px;
+  margin-bottom: 4px;
+  visibility:visible;  
+}
+
+/* Homepage showcase panel*/
+.showcase {
+  position: relative;
+  width:945px;
+  height:292px;
+  overflow:hidden;
+  background:black;
+}
+
+
+
+/* ---------------------------------------- */
+/* Moon glide */
+/* ---------------------------------------- */
+.showcase #hp_7 {
+  position: relative;
+  top: -250px;
+  left: 110px;
+  display: none;  
+/*  -webkit-transition: all 30s ease-in-out;*/
+/*  -moz-transition: all 30s ease-in-out;*/
+/*  -o-transition: all 30s ease-in-out;*/
+}
+
+.showcase_end #hp_7 {  
+/*  -webkit-transform: translate(60px,60px);*/
+/*  -moz-transform: translate(60px,60px);*/
+/*  -o-transform: translate(60px,60px);*/
+}
+
+.showcase .loading {
+  display: none;
+}
+
+.showcase img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Showcase controls */
+.showcase_controls {
+  position: absolute;
+  left: -38px;
+  width: 1100px;
+  height: 290px;
+}
+
+.showcase_controls a.next, .showcase_controls a.back {
+  display:block;
+  height: 59px;
+  width: 36px;
+  top: 110px;
+  position:absolute;
+  display:none;
+}
+
+.showcase_controls a.next {
+  background: url(/images/moonzoo/interface/right_arrow.png) no-repeat;
+  right: 0;  
+}
+
+.showcase_controls a.back {
+  background: url(/images/moonzoo/interface/left_arrow.png) no-repeat;
+}
+
+/* Showcase status */
+.showcase_status{float:right;margin-right:10px;width: 100px;}
+.hp_icon{background:#b9ae95;width:7px;height:7px;margin-left:6px;float:left;}
+.showcase_status .current{background: #807867;}
+
+/**/
+.footer {
+  text-align: right;
+  background: url(/images/moonzoo/footer/bg_wide.jpg) no-repeat center center;
+  height: 82px;
+/*  width: 945px;*/
+  margin:0 auto;
+    
+  color: #afafaf;
+  font-family: 'lucida grande';
+  font-size: 1em;
+  margin-bottom:20px;
+}
+
+.footer img {
+  float:left;
+  margin-left:20px;
+  position: relative;
+  top: 25px;  
+}
+
+.footer .inner {
+  position: relative;
+  top: 26px;
+  padding-right: 20px;
+}
+
+/* --- */
+.menu .inner{width:945px;margin:0 auto;color:#fff;font-size:0.9em;}
+.menu .inner a{margin-top: 2px;}
+a.zooniverse_logo{background: url(/images/moonzoo/interface/zooniverse_logo.png) no-repeat;height: 25px;width:140px;display:block;}
+a.galaxyzoo_logo{background: url(/images/moonzoo/interface/galaxyzoo_logo.png) no-repeat;height: 21px;width:144px;display:block;float:right;}
+
+.wrapper{position:relative;}
+.sub_menu li.back_to_app {
+  background:#4f8c33;
+  border-top: solid #84c267 3px;
+}

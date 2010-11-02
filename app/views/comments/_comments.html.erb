@@ -1,11 +1,11 @@
 <div class="panel">
   <%- @comments.each do |comment| %>
-    <div class="recent-item">
-      <%= image_tag('default_user.png', :class => "short-comment-user", :style => "margin-right: 10px", :size => "40x40") %>
+    <div class="item">
+      <%= image_tag('interface/default_user.png', :class => "user", :size => "40x40") %>
       <div class="item-container">
         <div class="name"><%= link_to comment.author.name, user_path(comment.author.id) %></div>
         <div class="date">
-          Posted <%= time_ago_in_words(comment.created_at) %> ago in <%= link_to truncate(comment.discussion.subject), discussion_url_for(comment.discussion) %>
+           <%= time_ago_in_words(comment.created_at) %> ago in <%= link_to truncate(comment.discussion.subject), discussion_url_for(comment.discussion) %>
         </div>
         <div class="body"><%= truncate(comment.body, :length => 70, :separator => ' ') %></div>
       </div>

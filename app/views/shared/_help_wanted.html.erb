@@ -1,8 +1,8 @@
 <% unless get_featured_discussions.empty? %>
-	<div id="help-wanted" class="panel">
+	<div id="help-wanted">
 		<h2><%= t 'homepage.featured' %></h2>
 			<% get_featured_discussions.each do |d| %>
-			<div class="featured-item">
+			<div class="item">
 				<div class="item-container">							
 					<div class="name"><%= link_to d.subject, discussion_url(d.zooniverse_id) %></div>
 					<div class="date"><%= long_date(d.updated_at) %></div>	

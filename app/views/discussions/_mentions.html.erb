@@ -1,10 +1,10 @@
 <%- unless @mentions.empty? %>
-  <div class="panel collection-list">
+  <div class="mentions collection-list">
     <h2>Mentions</h2>
-    <div class="inner">
+    <div>
       <ul>
         <%- @mentions.each do |discussion| %>
-          <li><%= link_to discussion.subject, "#" %></li>
+          <li class="item"><%= link_to discussion.subject, "#" %></li>
         <% end -%>
       </ul>
     </div>
