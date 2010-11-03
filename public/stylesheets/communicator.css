@@ -282,6 +282,7 @@ h1.collection-title {font-size: 2.0em;line-height:1.0em;width:590px;}
 	margin-right:5px;
 }
 
+/* Comments */
 .comment {
 	margin-bottom: 10px;
   border-bottom: dotted #afafaf 1px;
@@ -292,19 +293,36 @@ h1.collection-title {font-size: 2.0em;line-height:1.0em;width:590px;}
 	padding: 20px 30px 20px 40px;
 }
 
-/* Short comment */
 .short-comment {
   padding: 10px 0;
   width: 426px;
-  background: transparent url(/images/interface/arrow_bubble.png) no-repeat 46px 16px;
+}
+
+.short-comment .avatar {
+  width: 71px;
+  height: 40px;
+  float:left;
+}
+
+.short-comment .avatar img.user {
+  display:block;
+}
+
+.short-comment .avatar .arrow {
+  background: transparent url(/images/interface/arrow_bubble.png) no-repeat;  
+  position: relative;
+  width: 18px;
+  height: 28px;
+  float: right;
+  margin-top: 6px;
 }
 
 .short-comment .body {
   background: #ECF4E6;
   border-bottom: solid #d3dbce 3px;
-  margin-left: 64px;
   padding: 15px 20px 5px;
   width: 329px;
+  margin-left: 70px;
 }
 
 .short-comment .name {
@@ -321,10 +339,11 @@ h1.collection-title {font-size: 2.0em;line-height:1.0em;width:590px;}
 }
 
 /* Image */
-.comment img.user, .short-comment img.user {
+.comment img.user {
   float: left;
   margin-top: 3px;
-  margin-right: 10px;  
+  margin-right: 10px; 
+  
 }
 
 /* Date */
@@ -430,7 +449,7 @@ div.more-results {text-align: center;}
 .type_toolbar {
 	position:absolute;
 	top: 30px;
-	left: -50px;
+	left: -80px;
 }
 
 .type_toolbar .type {
@@ -443,13 +462,10 @@ div.more-results {text-align: center;}
 .type_toolbar .type_bg {
 	position:absolute;
 	background: #000;
-	opacity: 0.1;
 	height: 60px;
 	width: 60px;	
-	-webkit-border-radius: 30px;
-	-moz-border-radius: 30px;
-	border-radius: 30px;	
-	z-index: 400;	
+  background:transparent url(/images/interface/circle_black_light.png) no-repeat;
+	z-index: 400;
 }
 
 .type_toolbar .type p {
@@ -460,8 +476,12 @@ div.more-results {text-align: center;}
 	text-align:center;
 }
 
-.type_toolbar .current .type_bg {opacity: 0.5;}
-.type_toolbar .type:hover .type_bg {opacity: 0.2;}
+.type_toolbar .current .type_bg {
+  background:transparent url(/images/interface/circle_black_dark.png) no-repeat;
+}
+.type_toolbar .type:hover .type_bg {
+  opacity: 0.8;
+}
 .item h3 {margin-top:0;}
 .item h2 {margin-top:0;text-transform:uppercase;}
 
@@ -480,18 +500,18 @@ div.more-results {text-align: center;}
 .assets, .featured {width:228px;padding: 10px 16px 20px 0;background: #fff;}
 .lhc {width:631px;padding: 0 0 20px 0;}
 .home .featured h2 {margin-bottom:15px;}
-.featured {margin-bottom:20px;height: 284px;position:relative;}
+.featured {margin-bottom:20px;position:relative;}
 .featured .ribbon{background: #E0EBCD;height: 55px; width: 100%;position:absolute; left:0; top: 104px;z-index: 100;}
 .featured img{position:absolute;z-index: 200;left:20px;}
-.featured p{position:relative;top:130px;display:block;padding:25px 20px 0;}
+.featured p{top:130px;display:block;padding:25px 20px 0;}
 .featured p a{display:block;margin-top:5px;}
 .featured .box_shadow {
   background: #000;
   height: 130px;
   left: 28px;
   opacity: 0.2;
-  position: absolute;
-  top: 71px;
+  position: relative;
+  top: 10px;
   width: 130px;
   z-index: 150;
 }
@@ -506,7 +526,7 @@ div.more-results {text-align: center;}
   background: #fff;
   float: left;
   width: 286px !important;
-  margin: 0px 17px 40px 0px;
+  margin: 0px 17px 25px 0px;
   border-right: solid 3px #dfdfdf;
   padding: 14px 0px 0px 18px;
   position:relative;
@@ -618,8 +638,9 @@ div.more-results {text-align: center;}
 }
 
 .comments .comment img {
-	display:block;
-	margin-bottom: 10px;
+  display:block;
+  margin-bottom: 10px;
+  float:right;
 }
 
 .comments .comment p {
@@ -652,7 +673,7 @@ div.more-results {text-align: center;}
 	float: right;
 	width: 150px;
 	text-align: right;	
-	position: absolute;
+/*  position: absolute;*/
 	top: 113px;
 	right: 0px;
 	display: none;
@@ -786,6 +807,7 @@ a.button {
   margin-top: 3px;
   padding-right: 15px;
   text-decoration: none;
+  cursor:pointer;
 }
 
 a.button span {

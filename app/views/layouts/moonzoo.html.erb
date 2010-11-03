@@ -5,15 +5,14 @@
   <%= stylesheet_link_tag "reset" %>
  	<%= stylesheet_link_tag "moonzoo" %> 
  	<%= stylesheet_link_tag "communicator" %> 
-	<%= javascript_include_tag 'jquery-1.4.2.min.js' %>
-	<%= javascript_include_tag 'jquery-ui-1.8.4.min.js' %>	
-
-  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script> -->
-  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js" type="text/javascript"></script> -->
+	<!--[if lte IE 8]>	
+		<%= stylesheet_link_tag 'ie' %> 						 
+	<![endif]-->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script> 
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js" type="text/javascript"></script>
   <%= javascript_include_tag 'keyword_highlight/jquery.keywordHighlight.js'%>
   <%= javascript_include_tag 'application', 'rails' %>
-	<%= yield :page_includes %>
-	
+	<%= yield :page_includes %>	
   <%= csrf_meta_tag %>
 </head>
 <body>
@@ -27,9 +26,7 @@
 		
 		<div class="sub_menu">
 			<div class="inner">
-				<a href="/">				
-						<img src="/images/moonzoo/header/logo.png" width="197" height="34" alt="Logo" class="logo">
-					</a>
+					<a href="/" class="logo"></a>
 					<ul >
 						<li class="main_link back_to_app">Return to Moonzoo</li>
 					</ul>					

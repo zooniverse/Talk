@@ -58,7 +58,15 @@ p {
   display: block;
 }
 
-.logo {position:absolute;top:47px;left: 17px;}
+.logo {
+  background: transparent url(/images/moonzoo/header/logo.png);
+  display:block;
+  width:197px;
+  height: 34px;
+  position:absolute;
+  top:47px;
+  left: 17px;
+}
 
 .wrapper {
   width: 945px;

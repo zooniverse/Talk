@@ -1,8 +1,6 @@
 <%- @comments.each do |comment| %>
   <div class="comment">
-    <div>
       <%= image_tag('interface/default_user.png', :class => "user", :size => "40x40") %>
-    </div>
     <div id="<%= comment.id %>" class="comment-container highlight_keywords<%= ' highlight_annotations' if @focus.is_a?(Asset) %>">
       <div class="body">
         <div class="date"><%= time_ago_in_words(comment.created_at) %> ago</div>	
