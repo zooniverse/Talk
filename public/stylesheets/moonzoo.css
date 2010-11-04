@@ -58,7 +58,15 @@ a.zooniverse_logo{background: url(/images/moonzoo/interface/zooniverse_logo.png)
 a.galaxyzoo_logo{background: url(/images/moonzoo/interface/galaxyzoo_logo.png) no-repeat;height: 21px;width:144px;display:block;float:right;}
 
 /* Header & Menu */
-.header {height: 145px;}
+.header {
+/*  height: 145px;*/
+  height: 123px;
+}
+.header .inner {
+  margin: 0 auto;
+  width: 950px;
+  position:relative;
+}
 .logo {
   background: transparent url(/images/moonzoo/header/logo.png);
   display:block;
@@ -70,34 +78,28 @@ a.galaxyzoo_logo{background: url(/images/moonzoo/interface/galaxyzoo_logo.png) n
 }
 
 .menu {
-  position:absolute;
+  position: relative;
+  float:right;
   height: 118px;
   padding: 14px 0;
   color: #fff;
   z-index: 900;
-  width: 100%;
+  width: 500px;
   font-size: 0.8em;
 }
 
 .menu a:link, .menu a:visited {
-  color:#808080;  
+  color:#7E7E7E;  
 }
 
 .menu a:hover {
-  color: #000;
-}
-
-.menu .inner {
-  margin: 0 auto;
-  width: 950px;
-  position:relative;
+  color: #666666;
 }
 
 .menu ul {
   float: right;
-  height: 175px;
-  position:relative;
-  top:10px;
+/*  position:relative;*/
+/*  top:10px;*/
 }
 
 .menu li {
@@ -111,6 +113,7 @@ a.galaxyzoo_logo{background: url(/images/moonzoo/interface/galaxyzoo_logo.png) n
 .menu li.main_link {
   background: #aaa287;
   border-top: solid #cac4b2 3px;
+  border-left: solid #aaa287 3px;
   color:#fff;
   padding-top:3px;
   padding-bottom:3px;

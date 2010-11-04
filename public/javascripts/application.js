@@ -212,6 +212,22 @@ OCT.home = {
    }
 };
 
+var t;
+
+OCT.menu = {
+  init: function() {
+    $('.menu').live("mouseover", function() {
+      clearTimeout(t);
+      $('.menu ul li').css("visibility", "visible");      
+    })
+
+    $('.header').live("mouseout", function() {
+      t = setTimeout(function(){ $('.menu ul li:not(.main_link)').css("visibility", "hidden");}, 800);          
+    })
+
+  }
+};
+
 $(document).ready(function(){
     OCT.tabs.init();
     OCT.collection.init();
@@ -220,7 +236,8 @@ $(document).ready(function(){
     OCT.textcount.init();
     OCT.notice.init();    
     OCT.explore.init();  
-    OCT.home.init();        
+    OCT.home.init();     
+    OCT.menu.init();          
     $('.highlight_annotations').highlightAnnotations();
     $(".highlight_keywords").keywordHighlight();
 });

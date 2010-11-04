@@ -138,7 +138,7 @@ class ApplicationController < ActionController::Base
   end
   
   def smart_layout
-    return "application"
+    return "moonzoo"
   end
   
   helper_method :current_zooniverse_user
