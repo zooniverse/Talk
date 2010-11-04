@@ -186,11 +186,11 @@ OCT.home = {
         
     // Commment user image hover
     $('.home .comment img').live("mouseenter", function() {
-      $('.author', $(this).parent()).css("display", "inline");
+      $('.author', $(this).parent()).css("visibility", "visible");
     });
     
     $('.home .comment').live("mouseleave", function() {
-      $('.author', this).css("display", "none");
+      $('.author', this).css("visibility", "hidden");
     });                  
    },
    

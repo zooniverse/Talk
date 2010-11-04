@@ -729,7 +729,20 @@ div.more-results {text-align: center;}
 	margin-top:0;
 }
 
-.home .comment .author {float:right;display:none;}
+.home .comment .author {
+  visibility:hidden;
+  background: #C6D5AC;
+  border-bottom: 3px solid #AEBC99;
+  left: 0;
+  padding: 2px 10px 2px 8px;
+  position: absolute;
+  text-align: right;
+  width: 247px;
+}
+.home .comment .author a:link, .home .comment .author a:link:hover {
+  font-size: 0.7em;
+  text-transform: uppercase;
+}
 
 /* RHC Collection list on assets page */
 .rhc .collection {
