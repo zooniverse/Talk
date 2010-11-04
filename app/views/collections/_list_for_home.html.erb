@@ -1,4 +1,5 @@
-<%- @collections.each do |collection| %>
+<%- @collections.each_with_index do |collection, collection_index| %>
+	<% if collection_index < 4 %>
 	<div class="collection <%=cycle('', 'last')%>">
 		<div class="circle gold"><p><%= collection.zooniverse_id.split(/CMZ/)[1] %></p></div>
 		<h2><%= link_to collection.name, collection_path(collection.zooniverse_id) %></h2>
@@ -14,5 +15,6 @@
 		  <% end %>
 		</div>
 	</div>
+	<% end %>	
 <% end -%>
 
