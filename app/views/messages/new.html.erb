@@ -1,21 +1,33 @@
 <%= content_for :content_class do %>messages<% end %>
+<div class="upper-row">	
+	<div class="lhc">
+	  <h1>New Message</h1>
+		<div>
+		   <%= link_to t('messages.inbox'), messages_path %>
+		  &nbsp;|&nbsp;
+		  <%= link_to t('messages.sent'), sent_messages_path %>
+		</div>
+  </div>
+</div>
+
+<div class="lower_row">
 <%= form_for @message do |f| %>
-  <span>
+  <p>
     <%= f.text_field :recipient_name,
         :onfocus => "clear_input('message_recipient_name');",
         :onblur => "replace_input('message_recipient_name', 'Recipient's login or email');",
         :value => (@recipient_name || "Recipient's login or email") %>
-  </span>
-  <br /><br />
-  <span>
+  </p>
+  <p>
     <%= f.text_field :title,
         :onfocus => "clear_input('message_title');",
         :onblur => "replace_input('message_title', 'Message title');",
         :value => "Message title" %>
-  </span>
-  <p><%= t 'messages.message' %>:</p>
+  </p>
   <%= f.text_area :body, :rows => 4, :cols => 61 %>
-  <%= submit_tag 'Send' %>
+	<p>
+  	<%= submit_tag 'Send' %>
+	</p>
 <% end -%>
-
+</div>
 <%= render :partial => "recipient_autocompleter.js" %>
