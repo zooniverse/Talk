@@ -1,41 +1,45 @@
-<%- @comments.each do |comment| %>
-  <div class="short-comment">
-		<div class="avatar">
-			<div class="arrow"></div>
-    	<%= image_tag('interface/default_user.png', :class => "user", :size => "40x40") %>
-		</div>
-    <div class="highlight_keywords">		
-      <div class="body">
-        	<%= raw markdown(comment.body) %>
-        	<div class="name toggle"><%= link_to comment.author.name, user_path(comment.author.id) %></div>
-        	<div class="date toggle"><%= time_ago_in_words(comment.created_at) %> ago</div>
-      	</div>
-	      <div class="toolbar">
-	        <%- unless current_zooniverse_user && comment.author == current_zooniverse_user %>
-	          <div class="vote-controls">
-	            <%- if current_zooniverse_user %>
-	              <span id="comment-vote-<%= comment.id %>">
-	                <%- unless comment.upvotes.include?(current_zooniverse_user.id) %>
-	                  <%= link_to("RECOMMEND", vote_up_comment_path(comment), {:remote => true, :method => :post}) %>
-	                <%- else -%>
-	                  RECOMMENDED
-	                <% end -%>
-	              </span>&nbsp;|&nbsp;
-	              <span id="report-link-<%= comment.id %>">
-	                <%- if comment.events.select{ |event| event.user_id == current_zooniverse_user.id }.empty? %>
-	                  <%= link_to("REPORT", report_comment_path(comment), {:remote => true, :method => :post, :confirm => (t 'comments.report_comment_confirm') }) %>
-	                <%- else -%>
-	                  REPORTED!
-	                <% end -%>
-	              </span>
-	            <% end -%>
-	          </div>
-	        <% end -%>
-	      </div>
-			<div class="push"></div>
-    </div>
-  </div>
-<% end -%>
+<% unless @comments.empty? %>
+	<%- @comments.each do |comment| %>
+	  <div class="short-comment">
+			<div class="avatar">
+				<div class="arrow"></div>
+	    	<%= image_tag('interface/default_user.png', :class => "user", :size => "40x40") %>
+			</div>
+	    <div class="highlight_keywords">		
+	      <div class="body">
+	        	<%= raw markdown(comment.body) %>
+	        	<div class="name toggle"><%= link_to comment.author.name, user_path(comment.author.id) %></div>
+	        	<div class="date toggle"><%= time_ago_in_words(comment.created_at) %> ago</div>
+	      	</div>
+		      <div class="toolbar">
+		        <%- unless current_zooniverse_user && comment.author == current_zooniverse_user %>
+		          <div class="vote-controls">
+		            <%- if current_zooniverse_user %>
+		              <span id="comment-vote-<%= comment.id %>">
+		                <%- unless comment.upvotes.include?(current_zooniverse_user.id) %>
+		                  <%= link_to("RECOMMEND", vote_up_comment_path(comment), {:remote => true, :method => :post}) %>
+		                <%- else -%>
+		                  RECOMMENDED
+		                <% end -%>
+		              </span>&nbsp;|&nbsp;
+		              <span id="report-link-<%= comment.id %>">
+		                <%- if comment.events.select{ |event| event.user_id == current_zooniverse_user.id }.empty? %>
+		                  <%= link_to("REPORT", report_comment_path(comment), {:remote => true, :method => :post, :confirm => (t 'comments.report_comment_confirm') }) %>
+		                <%- else -%>
+		                  REPORTED!
+		                <% end -%>
+		              </span>
+		            <% end -%>
+		          </div>
+		        <% end -%>
+		      </div>
+				<div class="push"></div>
+	    </div>
+	  </div>
+	<% end -%>
+<% else %>
+	<div class="comment_status">Comments</div>
+<% end %>
 
 <%- if @page && @comments.respond_to?(:total_pages) && @page < @comments.total_pages %>
   <div class="more-results">

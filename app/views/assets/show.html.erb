@@ -13,17 +13,21 @@
 			<div class="rounded-panel">
 				
 				<div class="collection-info">
-					<%- @collections.each do |collection| %>
-						<div class="collection">
-							<h2><%= link_to collection.name, collection_path(collection.zooniverse_id) %></h2>
-							<div class="film">
-							 <%- unless collection.assets.empty? %>
-							    <% collection.assets.each do |asset| %>
-											<%= image_tag(asset.location, :height => 29) %>
-						    	<% end %>											
-						    <% end %>
+					<%- @collections.each_with_index do |collection, collection_index| %>
+						<% if collection_index < 4 %>
+							<div class="collection">
+								<h2><%= link_to collection.name, collection_path(collection.zooniverse_id) %></h2>
+								<div class="film">
+								 <%- unless collection.assets.empty? %>
+								    <% collection.assets.each_with_index do |asset, index| %>
+												<% if index < 8 %>
+													<%= image_tag(asset.location, :height => 29) %>
+												<% end %>
+							    	<% end %>											
+							    <% end %>
+								</div>
 							</div>
-						</div>
+						<% end %>
 					<% end -%>
 				</div>
 					

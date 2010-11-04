@@ -4,8 +4,10 @@
 		<h2><%= link_to collection.name, collection_path(collection.zooniverse_id) %></h2>
 		<div class="film">
 		 <%- unless collection.assets.empty? %>
-		    <% collection.assets.each do |asset| %>
-						<%= image_tag(asset.location, :height => 39) %>
+		    <% collection.assets.each_with_index do |asset, index| %>
+					<% if index <= 5 %>
+							<%= image_tag(asset.location, :height => 39) %>
+					<% end %>
 		    <% end %>
 		  <% else %>
 		    EMPTY
