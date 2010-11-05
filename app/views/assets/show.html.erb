@@ -10,11 +10,18 @@
   <div class="lhc">
     <div id="asset-as-focus">
       <h1 class="asset-name"><%= @asset.zooniverse_id.to_s %></h1>
+
 			<div class="rounded-panel">
-				
-				<div class="collection-info">
+				<div class="collection-info">					
+					<div class="container">
+					<% count = 0 %>
 					<%- @collections.each_with_index do |collection, collection_index| %>
-						<% if collection_index < 4 %>
+					
+							<% count = count+1 %>
+							<% if count == 1 %>
+								<div class="col">
+							<% end %>
+							
 							<div class="collection">
 								<h2><%= link_to collection.name, collection_path(collection.zooniverse_id) %></h2>
 								<div class="film">
@@ -26,10 +33,17 @@
 							    	<% end %>											
 							    <% end %>
 								</div>
-							</div>						
-						<% end %>
-					<% end -%>
-				</div>
+							</div>	
+							
+							<% if count == 4 || collection_index == @collections.size-1 %>
+								</div>	<!--  close col -->																										
+							<% count = 0 %>
+							<% end %>
+							
+					<% end %>						
+					</div>	<!--  close container -->
+					<div class="nav"></div>									
+				</div>	<!--  close collection info -->
 					
 	      <%= image_tag(@asset.location, :class => "focus-main-image", :id => "asset-image", :height => 225, :width => 225) %>
 	      <div class="asset-meta">
@@ -44,7 +58,9 @@
 	          <%= render :partial => "collect" if current_zooniverse_user %>
 	        </ul>
 	      </div>
-			</div>
+	
+			</div> <!-- close rounded panel -->
+			
     </div>
   </div>
 </div>
