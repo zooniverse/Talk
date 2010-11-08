@@ -1,5 +1,5 @@
 <% @comments.each do |comment| %>
-<div class="comment" style="height:80px">
+<div class="comment">
 		<img src="/images/interface/default_user.png" width="40" height="40" />
 		<p><%= truncate(comment.body, :length => 70, :separator => ' ') %></p>	
 		<div class="in"><%= link_to truncate(comment.discussion.subject), discussion_url_for(comment.discussion) %><span class="author"><%= link_to comment.author.name, user_path(comment.author.id) %></span></div>
