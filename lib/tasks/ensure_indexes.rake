@@ -17,7 +17,7 @@ task :ensure_indexes => :environment do
   drop_indexes_on(Collection)
   Collection.ensure_index [['zooniverse_id', 1]], :unique => true
   Collection.ensure_index [['user_id', 1], ['created_at', -1]]
-  Collection.ensure_index [['asset_ids', 1]]
+  Collection.ensure_index [['asset_ids', 1], ['created_at', -1]]
   Collection.ensure_index [['tags', 1]]
   Collection.ensure_index [['created_at', -1]]
   

@@ -7,14 +7,14 @@ class UsersControllerTest < ActionController::TestCase
       @request    = ActionController::TestRequest.new
       @response   = ActionController::TestResponse.new
     end
-
+    
     context "When requesting a User" do
       setup do
         standard_cas_login
         @user = Factory :user
         get :show, { :id => @user.id }
       end
-
+      
       should respond_with :success
       should render_template :show
       
@@ -29,7 +29,7 @@ class UsersControllerTest < ActionController::TestCase
         @viewed_user = Factory :user
         get :show, { :id => @viewed_user.id }
       end
-
+      
       should respond_with :success
       should render_template :show
       
@@ -48,7 +48,7 @@ class UsersControllerTest < ActionController::TestCase
         @viewed_user = Factory :user
         get :show, { :id => @viewed_user.id }
       end
-
+      
       should respond_with :success
       should render_template :show
       
@@ -66,7 +66,7 @@ class UsersControllerTest < ActionController::TestCase
         standard_cas_login
         get :show, { :id => @user.id }
       end
-
+      
       should respond_with :success
       should render_template :show
       
@@ -85,9 +85,9 @@ class UsersControllerTest < ActionController::TestCase
         @viewed_user = Factory :user
         post :report, { :id => @viewed_user.id, :format => :js }
       end
-
+      
       should respond_with :success
-      should respond_with_content_type(:js)      
+      should respond_with_content_type(:js)
       
       should "add to the event list" do
         assert_equal @viewed_user.reload.events.size, 1
@@ -106,7 +106,7 @@ class UsersControllerTest < ActionController::TestCase
       
       should respond_with :success
       should respond_with_content_type(:js)
-
+      
       should "display more discussions" do
         assert_match /.more-results.*.remove()/, @response.body, "more discussions link was not removed"
         assert_equal 10, @response.body.scan(/item-container/).length, "all discussions weren't rendered"
@@ -129,10 +129,10 @@ class UsersControllerTest < ActionController::TestCase
       
       should respond_with :success
       should respond_with_content_type(:js)
-
+      
       should "display more comments" do
         assert_match /.more-results.*.remove()/, @response.body, "more comments link was not hidden"
-        assert_equal 10, @response.body.scan(/comment-container/).length, "all comments weren't rendered"
+        assert_equal 10, @response.body.scan(/comment_container/).length, "all comments weren't rendered"
         assert_not_match /if\(true\)/, @response.body, "more comments link was shown again (it shouldn't be)"
       end
     end

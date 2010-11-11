@@ -108,6 +108,10 @@ a.galaxyzoo_logo{background: url(/images/moonzoo/interface/galaxyzoo_logo.png) n
   visibility:visible;  
 }
 
+.menu li.main_link a {
+  color: #fff;
+}
+
 .menu li.back_to_app {
   background:#4f8c33;
   border-top: solid #84c267 3px;

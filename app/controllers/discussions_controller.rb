@@ -62,31 +62,26 @@ class DiscussionsController < ApplicationController
     @discussion.save
   end
   
-  def list_for_asset
-    asset = Asset.find(params[:id])
-    @discussions = asset.discussions    
-    general = asset.conversation
-    general.subject = "General"
-    @discussions.insert(0, general)
+  def list_for_object
+    @discussions = Discussion.limit(10).sort(:created_at.desc).all(:focus_id => params[:id]) if params[:id]
     
-     respond_with(@discussions) do |format|
-        format.js { render :partial => "list_for_explorer" }
-      end
+    respond_with(@discussions) do |format|
+      format.js { render :partial => "list_for_browser" }
+    end
   end
   
   def list_for_collection
-    collection = Collection.find(params[:id])
-    @discussions = collection.discussions  
-     respond_with(@discussions) do |format|
-        format.js { render :partial => "list_for_explorer" }
-      end
+    @discussions = Discussion.limit(10).sort(:created_at.desc).all(:focus_id => params[:id]) if params[:id]
+    
+    respond_with(@discussions) do |format|
+      format.js { render :partial => "list_for_browser" }
+    end
   end
   
   def list_for_board
-    board = Board.find(params[:id])
-    @discussions = board.discussions  
+    @discussions = Discussion.limit(10).sort(:created_at.desc).all(:focus_id => params[:id]) if params[:id]
      respond_with(@discussions) do |format|
-        format.js { render :partial => "list_for_explorer" }
+        format.js { render :partial => "list_for_browser" }
       end
   end
     

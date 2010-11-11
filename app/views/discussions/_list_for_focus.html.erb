@@ -1,30 +1,28 @@
-<!-- New -->
 <%- unless @focus.discussions.empty? %>
-	<div class="discussions">
-			<h2>DISCUSSIONS</h2>
-        <%- @focus.discussions.each do |discussion| %>
-				<div class="discussion">
-					<p><%= link_to truncate(discussion.subject, :length => 50, :separator => ' '), discussion_url_for(discussion) %></p>
-					<div class="stats">
-						<div class="views-total"><%= pluralize(discussion.number_of_users, "user") %></div>
-						<div class="comment-total"><%= pluralize(discussion.number_of_comments, "comment") %> </div>
-					</div>
-				</div>
-				<% end %>
+  <div class="discussions">
+    <h2>DISCUSSIONS</h2>
+    <%- @focus.discussions.each do |discussion| %>
+      <div class="discussion">
+        <p><%= link_to truncate(discussion.subject, :length => 33, :separator => ' '), discussion_url_for(discussion) %></p>
+        <div class="stats">
+          <div class="views-total"><%= pluralize(discussion.number_of_users, "user") %></div>
+          <div class="comment-total"><%= pluralize(discussion.number_of_comments, "comment") %> </div>
+        </div>
+      </div>
+    <% end -%>
   </div>
   <div class="new">
-		<a href="<%=  new_discussion_url_for(@focus) %>" class="button">
-			<span><%= t('discussion.startnew') %></span>			
-		</a>
+    <a href="<%=  new_discussion_url_for(@focus) %>" class="button">
+      <span><%= t('discussion.startnew') %></span>
+    </a>
   </div>
-
 <%- else -%>
-<div class="discussions">
-  	<h2>No Discussions Yet</h2>
- </div>
- <div class="new">
-	<a href="<%=  new_discussion_url_for(@focus) %>" class="button">
-		<span><%= t('discussion.startnew') %></span>			
-	</a>
-</div>
+  <div class="discussions">
+    <h2>No Discussions Yet</h2>
+  </div>
+  <div class="new">
+    <a href="<%=  new_discussion_url_for(@focus) %>" class="button">
+      <span><%= t('discussion.startnew') %></span>
+    </a>
+  </div>
 <% end -%>

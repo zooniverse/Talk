@@ -1,62 +1,77 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title><%= t 'title' %></title>
-  <%= stylesheet_link_tag "reset" %>
-	<%= stylesheet_link_tag "generic" %> 
- 	<%= stylesheet_link_tag "communicator" %> 
-	<!--[if lte IE 8]>	
-		<%= stylesheet_link_tag 'ie' %> 						 
-	<![endif]-->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script> 
-  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js" type="text/javascript"></script>
-  <%= javascript_include_tag 'keyword_highlight/jquery.keywordHighlight.js'%>
-  <%= javascript_include_tag 'application', 'rails' %>
-	<%= yield :page_includes %>
-	
-  <%= csrf_meta_tag %>
-</head>
-<body>
-	<div class="header">		
-			<a href="/">
-				<img src="/images/interface/logo.png" width="100" height="100" alt="Logo"> 
-			</a>
-			<div class="menu">
-				<ul>									
-					<%- if current_zooniverse_user %>
-			      <%- if current_zooniverse_user.admin? || current_zooniverse_user.moderator? %>
-			        <li><%= link_to t('sidenav.moderation'), admin_index_path %></li>
-			      <% end -%>
-			      <li><%= link_to t('sidenav.profile'), user_path(current_zooniverse_user) %></li>
-						<li><a href="/messages">Messages</a></li>									
-			      <li><%= link_to t('sidenav.logout'), logout_path %></li>						
-			    <%- else -%>
-			      <li><%= link_to t('sidenav.login'), cas_test_path %></li>
-			    <% end -%>										
-				</ul>
-
-				<ul>														
-					<li><a href="/boards">Boards</a></li>															
-					<li><a href="/explore">Explore</a></li>										
-					<li><a href="/search">Search</a></li>												
-				</ul>	
-
-				<ul>
-					<li><a href="/">Home</a></li>
-				</ul>
-			
-			</div>							
-	</div>			
-		
-	<div class="wrapper">		
-		
-		<div class="ct content <%= yield :content_class %>">
-		  <%= render :partial => "shared/flash", :locals => { :flash => flash } %>
-			<%= yield %>
-			<div class="push"></div>	
-		</div>
-		
-		<div class="footer">		
-		</div>
-</body>
+  <head>
+    <title><%= t 'title' %> | Moon Zoo</title>
+    <%= stylesheet_link_tag "reset" %>
+    <%= stylesheet_link_tag "moonzoo" %>
+    <%= stylesheet_link_tag "communicator" %>
+    <!--[if lte IE 8]>
+      <%= stylesheet_link_tag 'ie' %>
+    <![endif]-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js" type="text/javascript"></script>
+    <%= javascript_include_tag 'keyword_highlight/jquery.keywordHighlight.js'%>
+    <%= javascript_include_tag 'application', 'rails' %>
+    <%= yield :page_includes %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+    <div class="bar">
+      <div class="inner">
+        <a class="galaxyzoo_logo" href="#"></a>
+        <a class="zooniverse_logo" href="#"></a>
+      </div>
+    </div>
+    <div class="header">
+      <div class="inner">
+        <a href="/" class="logo"></a>
+        <div class="menu">
+          <ul>
+            <li class="main_link back_to_app"><%= link_to "Return to Moonzoo", "http://www.moonzoo.org/" %></li>
+          </ul>
+          <ul>
+            <li class="main_link">
+              <%- if current_zooniverse_user %>
+                <%= link_to "Account", user_path(current_zooniverse_user) %>
+              <%- else -%>
+                <%= link_to "Account", cas_test_path %>
+              <% end -%>
+            </li>
+            
+            <%- if current_zooniverse_user %>
+              <li><%= link_to(t('sidenav.moderation'), admin_index_path) if current_zooniverse_user.privileged? %></li>
+              <li><%= link_to t('sidenav.profile'), user_path(current_zooniverse_user) %></li>
+              <li><%= link_to "Messages", messages_path %></li>
+              <li><%= link_to t('sidenav.logout'), logout_path %></li>
+            <%- else -%>
+              <li><%= link_to t('sidenav.login'), cas_test_path %></li>
+            <% end -%>
+          </ul>
+          
+          <ul>
+            <li class="main_link"><%= link_to "Discussions", "#" %></li>
+            <li><%= link_to "Help", help_board_path %></li>
+            <li><%= link_to "Science", science_board_path %></li>
+            <li><%= link_to "Chat", chat_board_path %></li>
+          </ul>
+          
+          <ul>
+            <li class="main_link"><%= link_to "Home", root_url %></li>
+            <li><%= link_to "Browse", browse_path %></li>
+            <li><%= link_to "Search", search_path %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper">
+      <div class="ct content <%= yield :content_class %>">
+        <%= render :partial => "shared/flash", :locals => { :flash => flash } %>
+        <%= yield %>
+        <div class="push"></div>
+      </div>
+      <div class="footer">
+        <div class="inner">Zooniverse<br/>&copy;&nbsp;2010</div>
+      </div>
+    </div>
+  </body>
 </html>

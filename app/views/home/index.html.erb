@@ -1,53 +1,58 @@
 <%= content_for :content_class do %>home<% end %>
 <div>
-<div class="mode_switch">
-	<a href="#" class="current" id="trending">Trending</a>&nbsp;|&nbsp;<a href="#" id="recent">Recent</a>
+  <div class="mode_switch">
+    <a href="#" class="current" id="trending">Trending</a>&nbsp;|&nbsp;<a href="#" id="recent">Recent</a>
+  </div>
+  <h1>Community</h1>
 </div>
-<h1>Community</h1>
+
+<div class="rhc">
+  <div class="featured">
+    <h2>Featured</h2>
+    <div class="list">
+      <div class="ribbon"></div>
+      <img src="http://moonzoo.s3.amazonaws.com/v10/slices/000000963.jpg" width="130" />
+      <div class="box_shadow"></div>
+      <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elite.<a href="#">Take part</a></p>
+    </div>
+  </div>
 </div>
-	<div class="rhc">
-	<div class="featured">
-		<h2>Featured</h2>			
-		<div class="list">				
-			<div class="ribbon"></div>			
-			<img src="http://moonzoo.s3.amazonaws.com/v10/slices/000000963.jpg" width="130" />
-			<div class="box_shadow"></div>			
-			<p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elite.<a href="#">Take part</a></p>
-		</div>
-	</div>
-	<div class="assets">
-		<h2>ASSETS</h2>	
-		<div class="list">	
-			<p class="loading">Loading..</p>
-		</div>	
-	</div>
-</div>	
 
 <div class="lhc">
-	<div class="collections">
-		<div class="list">
-			<div class="collection"><p class="loading">Loading..</p></div>
-			<div class="collection last"><p class="loading">Loading..</p></div>		
-			<div class="collection"><p class="loading">Loading..</p></div>			
-			<div class="collection last"><p class="loading">Loading..</p></div>	
-		</div>
-	</div>
-	
-	<!-- Bottom cols-->
-	<div class="lower_home">
-		<div class="discussions">
-			<h2>DISCUSSIONS</h2>
-			<div class="list">
-				<p class="loading">Loading..</p>
-			</div>			
-		</div>
-		
-		<div class="comments last">
-			<h2>COMMENTS</h2>	
-			<div class="list">		
-				<p class="loading">Loading..</p>
-			</div>
-		</div>				
-	</div>	
-	<div class="push"></div>	
+  <div id="objects" class="assets objects">
+    <h2>OBJECTS</h2>
+    <div class="list">
+      <p class="loading">Loading..</p>
+    </div>
+  </div>
+  
+  <div id="collections" class="collections">
+    <h2>COLLECTIONS</h2>
+    <div class="list">
+      <p class="loading">Loading..</p>
+    </div>
+  </div>
+  
+  <div class="lower_home">
+    <div id="discussions" class="discussions">
+      <h2>DISCUSSIONS</h2>
+      <div class="list">
+        <p class="loading">Loading..</p>
+      </div>
+    </div>
+    
+    <div id="comments-or-keywords" class="keywords last">
+      <h2>KEYWORDS</h2>
+      <div class="list">
+        <p class="loading">Loading..</p>
+      </div>
+    </div>
+  </div>
+  <div class="push"></div>
 </div>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    OCT.home.init();
+  });
+</script>

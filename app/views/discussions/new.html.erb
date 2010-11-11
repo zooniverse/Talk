@@ -1,8 +1,11 @@
-<%= javascript_include_tag "jquery.annotate" %>
-<%= stylesheet_link_tag "annotation" %>
+<%= content_for :page_includes do %>
+  <%= javascript_include_tag "jquery.annotate" %>
+  <%= stylesheet_link_tag "annotation" %>
+  <link rel="stylesheet" href="/stylesheets/jquery-ui-1.8.5.custom.css" type="text/css" media="all" />
+<% end -%>
 
 <div class="upper-row discussion-thread">
-	<div class="rhc">
+  <div class="rhc">
     <%= render :partial => "shared/zooniverse_extras" %>
   </div>
   <div class="lhc"<% if @discussion.focus_type == "Board" %>style="width:700px;"<% end %>>

@@ -45,10 +45,8 @@ a.galaxyzoo_logo{
 .lower_home{margin-top:20px;}
 
 /* Comment bubble */
-.short-comment .avatar {
-  width: 71px;
-  height: 40px;
-  float:left;
+.short-comment .body {
+  width: 329px;
 }
 
 .short-comment {width: 440px;}
@@ -56,6 +54,7 @@ a.galaxyzoo_logo{
   float:right;
   margin-left: 0;
 }
+
 .short-comment .avatar .arrow {
   background: none;
   filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/interface/arrow_bubble.png', sizingMethod='crop');
@@ -66,7 +65,7 @@ a.galaxyzoo_logo{
 .board_info h2 a:link, .board_info h2 a:visited {color:#999;}
 .featured .box_shadow {background: #afafaf;}
 
-/* Explore */
+/* Browse */
 .type_toolbar .type_bg {
   background: none;
   filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/interface/circle_black_light.png', sizingMethod='crop');

@@ -1,4 +1,5 @@
 $('.comments-list .more-results').remove();
 var last_comment = $('.comments-list').children().last();
+last_comment.css('border-bottom', '1px solid #aaaaaa');
 $('html,body').animate({ scrollTop: last_comment.offset().top }, { duration: 'slow', easing: 'swing' });
 $('.comments-list').append("<%= escape_javascript(render(:partial => "list_short")) %>");

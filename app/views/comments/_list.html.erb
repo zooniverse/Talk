@@ -1,9 +1,9 @@
 <%- @comments.each do |comment| %>
   <div class="comment">
-      <%= image_tag('interface/default_user.png', :class => "user", :size => "40x40") %>
+    <%= image_tag('interface/default_user.png', :class => "user", :size => "40x40") %>
     <div id="<%= comment.id %>" class="comment-container highlight_keywords<%= ' highlight_annotations' if @focus.is_a?(Asset) %>">
       <div class="body">
-        <div class="date"><%= time_ago_in_words(comment.created_at) %> ago</div>	
+        <div class="date"><%= time_ago_in_words(comment.created_at) %> ago</div>
         <div class="name">
           <%= link_to comment.author.name, user_path(comment.author.id) %>
           <%- if comment.response? %>
@@ -13,12 +13,12 @@
         </div>
         <%= raw markdown(comment.body) %>
       </div>
-    
+      
       <div class="toolbar">
-          <div class="vote-controls">						
-        		<%- if current_zooniverse_user && comment.author != current_zooniverse_user %>						
+        <div class="vote-controls">
+          <%- if current_zooniverse_user && comment.author != current_zooniverse_user %>
             <%= link_to t('comments.reply'), "#", :onclick => "reply_to('#{comment.id}', '#{comment.author.name}');" %>&nbsp;|&nbsp;
-						<span id="comment-vote-<%= comment.id %>">
+            <span id="comment-vote-<%= comment.id %>">
               <%- unless comment.upvotes.include?(current_zooniverse_user.id) %>
                 <%= link_to(t('comments.recommend'), vote_up_comment_path(comment), {:remote => true, :method => :post}) %>
               <%- else -%>
@@ -32,8 +32,8 @@
                 REPORTED!
               <% end -%>
             </span>
-        		<% end -%>
-          </div>
+          <% end -%>
+        </div>
       </div>
     </div>
   </div>

@@ -65,10 +65,10 @@ class CommentsController < ApplicationController
   end
   
   def list_for_discussion
-    discussion = Discussion.find(params[:id])
-    @comments = discussion.comments
-     respond_with(@comments) do |format|
-        format.js { render :partial => "list_for_discussion" }
-      end
+    @comments = Comment.limit(10).sort(:created_at.desc).all(:discussion_id => params[:id]) if params[:id]
+    
+    respond_with(@comments) do |format|
+      format.js { render :partial => "list_for_discussion" }
+    end
   end
 end

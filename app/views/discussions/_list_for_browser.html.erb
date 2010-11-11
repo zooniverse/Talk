@@ -1,18 +1,16 @@
 <% unless @discussions.empty? %>
   <%- @discussions.each do |discussion| %>
     <div class="item" id="<%= discussion.id %>">
-				<div class="item-container">
+      <div class="item-container">
         <div class="name"><%= link_to truncate(discussion.subject, :length => 50, :separator => ' '), discussion_url_for(discussion) %></div>
         <div class="date">Updated <%= time_ago_in_words(discussion.updated_at) %> ago</div>
-				<div class="info">
-        	<div class="views-total"><%= pluralize(discussion.number_of_users, "user") %></div>
-        	<div class="comment-total"><%= pluralize(discussion.number_of_comments, "comment") %> </div>
-				</div>
-				</div>				
+        <div class="info">
+          <div class="views-total"><%= pluralize(discussion.number_of_users, "user") %></div>
+          <div class="comment-total"><%= pluralize(discussion.number_of_comments, "comment") %></div>
+        </div>
       </div>
+    </div>
   <% end -%>
-<% else %>
-<div class="engraved">
-	No Discussions
-</div>
-<% end %>
+<%- else -%>
+  <div class="engraved">No Discussions</div>
+<% end -%>

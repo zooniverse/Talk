@@ -1,12 +1,14 @@
 <div id="trending-discussions" class="panel">
   <%- @discussions.each do |discussion| %>
     <div class="item">
-      <div class="item-container">	
-        <div class="name"><%= link_to discussion.subject, discussion_url_for(discussion) %></div>
-				<div class="stats">
-        	<div class="views-total"><%= pluralize(discussion.number_of_users, "user") %></div>
-        	<div class="comment-total"><%= pluralize(discussion.number_of_comments, "comment") %></div>				
-				</div>
+      <div class="item-container">
+        <div class="name">
+          <%= link_to truncate(discussion.subject, :length => 45, :separator => ' '), discussion_url_for(discussion) %>
+        </div>
+        <div class="stats">
+          <div class="views-total"><%= pluralize(discussion.number_of_users, "user") %></div>
+          <div class="comment-total"><%= pluralize(discussion.number_of_comments, "comment") %></div>
+        </div>
         <div class="date"><%= long_date(discussion.updated_at) %></div>
         <div class="push"></div>
       </div>

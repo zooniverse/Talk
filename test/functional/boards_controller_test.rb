@@ -7,13 +7,13 @@ class BoardsControllerTest < ActionController::TestCase
       @request    = ActionController::TestRequest.new
       @response   = ActionController::TestResponse.new
     end
-          
+    
     context "When the science board" do
       setup do
         @board = Board.science
         get 'science'
       end
-
+      
       should respond_with :success
       should render_template :show
       
@@ -27,7 +27,7 @@ class BoardsControllerTest < ActionController::TestCase
         @board = Board.chat
         get 'chat'
       end
-
+      
       should respond_with :success
       should render_template :show
       
@@ -41,7 +41,7 @@ class BoardsControllerTest < ActionController::TestCase
         @board = Board.help
         get 'help'
       end
-
+      
       should respond_with :success
       should render_template :show
       
@@ -61,18 +61,18 @@ class BoardsControllerTest < ActionController::TestCase
         
         get 'science', { :page => 2, :per_page => 5 }
       end
-
+      
       should "display meta information" do
         assert_select "#meta-for-discussions", :text => "#{@discussions} Discussions / #{@discussions * 2} Comments"
       end
       
       should "display discussions" do
-        assert_select ".item", 1
+        assert_select ".discussions .discussion", 5
       end
       
       should "display zooniverse ad" do
         assert_select "#zooniverse-extras"
-      end    
+      end
       
       should "display pagination links" do
         assert_select "div.pagination", 1

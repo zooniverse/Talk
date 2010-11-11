@@ -1,20 +1,15 @@
-<%- @collections.each_with_index do |collection, collection_index| %>
-	<% if collection_index < 4 %>
-	<div class="collection <%=cycle('', 'last')%>">
-		<div class="circle gold"><p><%= collection.zooniverse_id.split(/CMZ/)[1] %></p></div>
-		<h2><%= link_to collection.name, collection_path(collection.zooniverse_id) %></h2>
-		<div class="film">
-		 <%- unless collection.assets.empty? %>
-		    <% collection.assets.each_with_index do |asset, index| %>
-					<% if index <= 5 %>
-							<%= image_tag(asset.location, :height => 39) %>
-					<% end %>
-		    <% end %>
-		  <% else %>
-		    EMPTY
-		  <% end %>
-		</div>
-	</div>
-	<% end %>	
+<%- @collections.each do |collection| %>
+  <div class="collection">
+    <div class="<%= cycle_circles %>">
+      <p><%= link_to short_id_for(collection), collection_path(collection.zooniverse_id) %></p>
+    </div>
+    <h2><%= link_to truncate(collection.name, :length => 30, :separator => ' '), collection_path(collection.zooniverse_id) %></h2>
+    
+    <%- assets = Asset.all :id.in => collection.asset_ids[0, 5] %>
+    <div class="film">
+      <%- assets.each do |asset| %>
+        <%= image_tag asset.location, :width => 39, :height => 39 %>
+      <% end -%>
+    </div>
+  </div>
 <% end -%>
-

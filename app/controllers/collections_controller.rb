@@ -1,6 +1,6 @@
 class CollectionsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter, :only => [:new, :edit, :add]
-  respond_to :js, :only => [:add, :remove, :list_for_explorer]
+  respond_to :js, :only => [:add, :remove, :list_for_browser]
   
   def show
     default_params :page => 1, :per_page => 10
@@ -101,10 +101,10 @@ class CollectionsController < ApplicationController
     end
   end
   
-  def list_for_explorer
+  def list_for_browser
     @collections = Collection.trending(5)
     respond_with(@collections) do |format|
-      format.js { render :partial => "list_for_explorer" }
+      format.js { render :partial => "list_for_browser" }
     end
   end
   

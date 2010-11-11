@@ -1,8 +1,8 @@
 .annotate-button a {
-  background-image: url(/images/asterisk_yellow.png);
+  background-image: url(/images/icons/asterisk_yellow.png);
 }
 .image-annotate-add {
-  background: #fff url(/images/add.png) no-repeat 3px 3px;
+  background: #fff url(/images/icons/add.png) no-repeat 3px 3px;
   border: solid 1px #ccc !important;
   color: #000 !important;
   cursor: pointer;
@@ -143,13 +143,13 @@
   opacity: 0.8;
 }
 .image-annotate-edit-ok {
-  background-image: url(/images/accept.png);
+  background-image: url(/images/icons/accept.png);
 }
 .image-annotate-edit-delete {
-  background-image: url(/images/delete.png);
+  background-image: url(/images/icons/delete.png);
 }
 .image-annotate-edit-close {
-  background-image: url(/images/cross.png);
+  background-image: url(/images/icons/cross.png);
 }
 .ui-resizable {
   position: relative;

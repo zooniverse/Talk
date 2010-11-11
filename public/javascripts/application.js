@@ -109,7 +109,8 @@ OCT.loading = {
 
 
 OCT.hover = {
-    container : '.short-comment, .comment, .collection-viewer',
+    // container : '.short-comment, .comment, .collection-viewer',
+    container : '.short-comment, .comment',
     targets : '.toolbar, .date, .toggle',
     
     init: function () {
@@ -154,16 +155,16 @@ OCT.notice = {
 };
 
 
-OCT.explore = {  
+OCT.browse = {  
   init:function() {
      $.ajax({
-       url: '/assets/list_for_explorer',
+       url: '/objects/list_for_browser',
        dataType: 'js',
        success: function(response) {
          $('.col1').html(response);
        }, 
        error: function() {
-         $('.col1').html("<div class='engraved'>Problem getting Asssets</div>");         
+         $('.col1').html("<div class='engraved'>Problem getting Objects</div>");         
        }
      });
     
@@ -172,7 +173,7 @@ OCT.explore = {
         $('.col2').html("<div class='engraved'>Loading..</div>");    
         $('.col3').html("<div class='engraved'>Comments</div>");    
                   
-        var type = "asset";
+        var type = "object";
         if ($(this).hasClass("board")) {
           type ="board";
         }
@@ -219,7 +220,7 @@ OCT.explore = {
        $(this).addClass("current");
        var type = $(this).attr("id");             
         $.ajax({
-               url: '/'+type+'/list_for_explorer',
+               url: '/'+type+'/list_for_browser',
                dataType: 'js',
                success: function(response) {
                  $('.col1').html(response);
@@ -238,18 +239,32 @@ OCT.home = {
   
   init: function() {    
     $('.mode_switch a').bind("click", function() {
-      if (!$(this).hasClass('current')) {
+      if(!$(this).hasClass('current')) {
         OCT.home.mode = $(this).attr("id");
+        
+        if(this.id == 'recent') {
+          $('#comments-or-keywords').removeClass('keywords');
+          $('#comments-or-keywords').addClass('comments');
+        }
+        else {
+          $('#comments-or-keywords').removeClass('comments');
+          $('#comments-or-keywords').addClass('keywords');
+        }
+        
         OCT.home.load();
-        $('.mode_switch a').removeClass("current");
+        $('.mode_switch a').removeClass('current');
         $(this).addClass('current');
       }
+      
       return false;
     });
     
+    /* This looks like it's supposed to show a larger version of the collection image but it's not selecting any dom elements.
+       
     $('.film img').live("mouseover", function() {
       $('.large', $(this).parent().parent()).attr("src", $(this).attr("src"));
     });
+    */
     
     OCT.home.load();
         
@@ -264,20 +279,24 @@ OCT.home = {
    },
    
    load: function() {
-      var types = new Array("collections", "assets", "discussions", "comments");  
-       $(types).each(function(i, type){
-         $("."+type+" .list").html("<p class='loading'>Loading..</p>")
-         $.ajax({
-          url: '/home/'+OCT.home.mode+'_'+type,
-          dataType: 'js',
-          success: function(response) {
-            $("."+type+" .list").html(response);
-          }, 
-          error: function() {
-            $("."+type+" .list").html("<div>Problem getting "+type+"</div>");         
-          }
-         });
-       });      
+     var kinds = ['objects', 'collections', 'discussions', (OCT.home.mode == 'recent') ? 'comments' : 'keywords'];
+      
+     $(kinds).each(function(i, kind) {
+       var elem = $('.' + kind + ' .list')[0];
+       
+       $.ajax({
+         url: '/home/' + OCT.home.mode + '_' + kind,
+         datakind: 'js',
+         success: function(response) {
+           $('.' + kind + ' h2').html(kind.toUpperCase());
+           $(elem).html(response);
+         },
+         error: function(response) {
+           $('.' + kind + ' h2').html(kind.toUpperCase());
+           $(elem).html('<div>Unable to retrieve ' + kind + '</div>');
+         }
+       });
+     });
    }
 };
 
@@ -298,15 +317,14 @@ OCT.menu = {
 };
 
 $(document).ready(function(){
-    OCT.tabs.init();
-    OCT.collection.init();
+    // OCT.tabs.init();
+    // OCT.collection.init();
     OCT.hover.init();
     OCT.loading.init();
-    OCT.textcount.init();
+    // OCT.textcount.init();
     OCT.notice.init();    
-    OCT.explore.init();  
-    OCT.home.init();     
-    OCT.menu.init(); 
+    // OCT.home.init();
+    OCT.menu.init();
     $('.highlight_annotations').highlightAnnotations();
     $(".highlight_keywords").keywordHighlight();
 });
@@ -348,9 +366,14 @@ function replace_this(element){
  */
 
 function reply_to(comment_id, author){
-  $('#comment-form-title').html('Reply to '+ author)
+  $('.comment-form h2').html('Response to '+ author + '<ul id="cancel-response"><li></li></ul>');
   $('#comment_response_to_id').val(comment_id);
   $('html,body').animate({ scrollTop: $('#new_comment').offset().top }, { duration: 'medium', easing: 'swing'});
+  
+  $('#cancel-response').click(function() {
+    $('.comment-form h2').html('Comment');
+    $('#comment_response_to_id').val('');
+  });
 }
 
 // Collection/live collection form JS
@@ -370,7 +393,7 @@ function remove_keyword_field(field_id){
 function add_keyword_field(){
   var last = get_keyword_count();
   count = last + 1;
-  $("#keyword_" + last + "_wrapper").after("<div id='keyword_"+count+"_wrapper'><input class='keyword' id='keyword_"+ count + "' name='keyword["+count+"]' size='30' type='text' value='Add a keyword' onfocus='clear_this(this);' onblur='replace_this(this);' /> <a href='#' onclick='add_keyword_field();'><img alt='Add' height='13' src='/images/add.png' width='13' /></a>" + " <a href='#' onclick=\"remove_keyword_field('keyword_"+count+"');\"><img alt='Cancel' height='13' src='/images/cancel.png' width='13' /></div>");
+  $("#keyword_" + last + "_wrapper").after("<div id='keyword_"+count+"_wrapper'><input class='keyword' id='keyword_"+ count + "' name='keyword["+count+"]' size='30' type='text' value='Add a keyword' onfocus='clear_this(this);' onblur='replace_this(this);' /> <a href='#' onclick='add_keyword_field();'><img alt='Add' height='13' src='/images/icons/add.png' width='13' /></a>" + " <a href='#' onclick=\"remove_keyword_field('keyword_"+count+"');\"><img alt='Cancel' height='13' src='/images/icons/cancel.png' width='13' /></div>");
 }
 
 function get_keyword_count(){

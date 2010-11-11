@@ -1,0 +1,22 @@
+<%= content_for :content_class do %>browse<% end -%>
+
+<div class="type_toolbar">
+  <div class="type current" id="objects"><div class="type_bg"></div><p>Objects</p></div>
+  <div class="type" id="collections"><div class="type_bg"></div><p>Collections</p></div>
+  <div class="type" id="boards"><div class="type_bg"></div><p>Boards</p></div>
+</div>
+<div class="col col1">
+  <div class="engraved">Objects</div>
+</div>
+<div class="col col2">
+  <div class="engraved">Discussions</div>
+</div>
+<div class="col col3">
+  <div class="engraved">Comments</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    OCT.browse.init();
+  });
+</script>

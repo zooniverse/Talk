@@ -1,14 +1,16 @@
-<% @assets.each do |asset| %>
-<div class="asset">
-		<%= image_tag(asset.thumbnail_location, :size => "94x94") %>
-		<div class="circle <%=cycle('red', 'blue', 'gold')%>"><p><%= link_to asset.zooniverse_id.split(/AMZ/)[1], :controller => :assets, :action => :show, :id => asset.zooniverse_id %></p></div>
-		<div class="stats">	
-			<span class="no"><%= asset.count_mentions %></span></span>&nbsp;mention<% unless asset.count_mentions == 1%>s<% end %><br/>
-			<div class="progress"></div>
-		</div>
-		<div class="stats comment_stats">	
-			<span class="no"><%= asset.count_collections %></span>&nbsp;collection<% unless asset.count_collections == 1%>s<% end %><br/>
-			<div class="progress"></div>
-		</div>		
-</div>
-<% end %>
+<%- @assets.each do |asset| %>
+  <div class="asset">
+    <%= image_tag(asset.thumbnail_location, :size => "94x94") %>
+    <div class="<%= cycle_circles %>">
+      <p><%= link_to short_id_for(asset), object_path(asset.zooniverse_id) %></p>
+    </div>
+    <div class="stats">
+      <span class="no"><%= "#{ pluralize asset.count_mentions, 'mention' }" %></span><br />
+      <div class="progress"></div>
+    </div>
+    <div class="stats comment_stats">
+      <span class="no"><%= "#{ pluralize asset.count_collections, 'collection' }" %></span><br />
+      <div class="progress"></div>
+    </div>
+  </div>
+<% end -%>

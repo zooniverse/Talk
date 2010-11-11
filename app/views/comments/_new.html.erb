@@ -1,9 +1,11 @@
-<%= javascript_include_tag "markitup/jquery.markitup" %>
-<%= javascript_include_tag "markitup/sets/sellers/set" %>
-<%= javascript_include_tag "jquery.a-tools" %>
+<%= content_for :page_includes do %>
+  <%= javascript_include_tag "markitup/jquery.markitup" %>
+  <%= javascript_include_tag "markitup/sets/sellers/set" %>
+  <%= javascript_include_tag "jquery.a-tools" %>
 
-<link rel="stylesheet" href="/javascripts/markitup/skins/simple/style.css" type="text/css" media="screen" charset="utf-8">
-<link rel="stylesheet" href="/javascripts/markitup/sets/sellers/style.css" type="text/css" media="screen" charset="utf-8">
+  <link rel="stylesheet" href="/javascripts/markitup/skins/simple/style.css" type="text/css" media="screen" charset="utf-8">
+  <link rel="stylesheet" href="/javascripts/markitup/sets/sellers/style.css" type="text/css" media="screen" charset="utf-8">
+<% end -%>
 
 <%= form_for [@discussion, @comment] do |f| %>
   <div class="comment-form">

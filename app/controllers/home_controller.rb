@@ -7,6 +7,9 @@ class HomeController < ApplicationController
   def index
   end
   
+  def browse
+  end
+  
   def cas_test
     @user = session[:cas_user]
   end
@@ -44,6 +47,9 @@ class HomeController < ApplicationController
       end
     end
   end
+  
+  alias_method :trending_objects, :trending_assets
+  alias_method :recent_objects, :recent_assets
   
   protected
   def board_discussions(board, limit = 5)

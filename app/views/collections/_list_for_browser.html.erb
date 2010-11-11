@@ -1,0 +1,19 @@
+<%- unless @collections.empty? %>
+  <% @collections.each do |collection| %>
+    <div class="item collection" id="<%= collection.id %>">
+      <h3>
+        <%= link_to truncate(collection.name, :length => 30, :separator => ' '), collection_path(collection.zooniverse_id) %>
+      </h3>
+      
+      <%- assets = Asset.all :id.in => collection.asset_ids[0, 6] %>
+      <div class="film">
+        <%- assets.each do |asset| %>
+          <%= image_tag asset.location, :width => 39, :height => 39 %>
+        <% end -%>
+        <%= "<div>Empty collection</div>" if assets.empty? %>
+      </div>
+    </div>
+  <% end -%>
+<%- else -%>
+  <div class="engraved">No collections</div>
+<% end -%>

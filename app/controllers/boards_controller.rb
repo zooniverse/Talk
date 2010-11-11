@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  respond_to :js, :only => [:list_for_explorer]  
+  respond_to :js, :only => [:list_for_browser]
   
   def show
     show_by_title(params[:board_id])
@@ -12,18 +12,18 @@ class BoardsController < ApplicationController
   end
   
   def show_by_title(title)
-    default_params :page => 1, :per_page => 10
+    default_params :page => 1, :per_page => 9
     @board = Board.by_title(title)
     @discussions = @board.discussions.paginate :page => @page, :per_page => @per_page
     
     render "show"
   end
   
-  def list_for_explorer    
-    @boards = Board.all()
-       
+  def list_for_browser
+    @boards = [Board.help, Board.science, Board.chat]
+    
     respond_with(@boards) do |format|
-       format.js { render :partial => "list_for_explorer" }
+       format.js { render :partial => "list_for_browser" }
      end    
   end
 end

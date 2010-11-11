@@ -33,40 +33,32 @@
       
       <div class="my-collections">
         <h2><%= "My " if current_zooniverse_user == @user %>Collections</h2>
-          <%- unless @collections.empty? %>
-            <% @collections.each do |collection| %>
-              <div class="item">
-								<div class="name"><%= link_to collection.name, collection_path(collection.zooniverse_id) %></div>
-								  <%- unless collection.assets.empty? %>
-						        <%- collection.assets.each do |item| %>
-						          <%= link_to image_tag(item.location, :class => "collection-thumbnail", :height => 20), object_path(item.zooniverse_id) %>
-						        <% end -%>
-						      <%- else -%>
-						        <div>Empty</div>
-						      <% end -%>
-              </div>
+        <% @collections.each do |collection| %>
+          <div class="item">
+            <div class="name">
+              <%= link_to truncate(collection.name, :length => 30, :separator => ' '), collection_path(collection.zooniverse_id) %>
+            </div>
+            
+            <%- assets = collection.asset_ids[0, 5].map{ |id| Asset.find(id) } %>
+            <%- assets.each do |asset| %>
+              <%= link_to image_tag(asset.location, :class => "collection-thumbnail", :width => 20, :height => 20), object_path(asset.zooniverse_id) %>
             <% end -%>
-          <%- else -%>
-            <p>No Collections</p>
-          <% end -%>
-
+          </div>
+        <% end -%>
+        
         <%- if current_zooniverse_user == @user %>
           <div class="new">
-            <%= link_to (t 'collection.startnewcol'), new_collection_path() %>
+            <%= link_to (t 'collection.startnewcol'), new_collection_path %>
           </div>
         <% end -%>
       </div>
     </div>
-
+    
     <div class="lhc">
       <div class="popular-discussions">
         <h2>Popular Discussions</h2>
         <div>
-          <%- unless @discussions.nil? %>
-            <%= render :partial => "discussions/list_trending" %>
-          <%- else -%>
-            <p>No discussions</p>
-          <% end -%>
+          <%= render(:partial => "discussions/list_trending") if @discussions.any? %>
         </div>
         
         <%- if @discussions.total_pages > 1 %>
