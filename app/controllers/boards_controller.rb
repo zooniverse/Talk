@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  respond_to :js, :only => [:list_for_browser]
+  respond_to :js, :only => [:browse]
   
   def show
     show_by_title(params[:board_id])
@@ -19,11 +19,11 @@ class BoardsController < ApplicationController
     render "show"
   end
   
-  def list_for_browser
+  def browse
     @boards = [Board.help, Board.science, Board.chat]
     
     respond_with(@boards) do |format|
-       format.js { render :partial => "list_for_browser" }
+       format.js { render :partial => "browse" }
      end    
   end
 end

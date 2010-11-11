@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter, :only => [:create, :markitup_parser]
   respond_to :html, :only => :create
-  respond_to :js, :only => [:vote_up, :report, :user_owned, :preview]
+  respond_to :js, :only => [:vote_up, :report, :user_owned, :preview, :browse]
   
   def create
     @discussion = Discussion.find(params[:discussion_id])
@@ -64,11 +64,11 @@ class CommentsController < ApplicationController
     @comments = Comment.sort(:created_at.desc).where(:discussion_id => @discussion_id).paginate(:page => @page, :per_page => @per_page)
   end
   
-  def list_for_discussion
+  def browse
     @comments = Comment.limit(10).sort(:created_at.desc).all(:discussion_id => params[:id]) if params[:id]
     
     respond_with(@comments) do |format|
-      format.js { render :partial => "list_for_discussion" }
+      format.js { render :partial => "browse" }
     end
   end
 end

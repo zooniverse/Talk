@@ -158,7 +158,7 @@ OCT.notice = {
 OCT.browse = {  
   init:function() {
      $.ajax({
-       url: '/objects/list_for_browser',
+       url: '/objects/browse',
        dataType: 'js',
        success: function(response) {
          $('.col1').html(response);
@@ -182,14 +182,14 @@ OCT.browse = {
         }
       
        $.ajax({
-         url: '/discussions/list_for_'+type,       
+         url: '/discussions/browse',
          data: {id: $(this).attr('id')},
          dataType: 'js',
          success: function(response) {
            $('.col2').html(response);    
          }, 
          error: function() {
-           $('.col2').html("<div class='engraved'>Problem getting "+type+"</div>");         
+           $('.col2').html('<div class="engraved">Problem getting ' + type + '</div>');
          }
        });
      }); 
@@ -198,7 +198,7 @@ OCT.browse = {
     $('.col2 .item').live('click', function() {     
       $('.col3').html("<div class='engraved'>Loading..</div>");    
       $.ajax({
-        url: '/comments/list_for_discussion',       
+        url: '/comments/browse',       
         data: {id: $(this).attr('id')},
         dataType: 'js',
         success: function(response) {
@@ -220,7 +220,7 @@ OCT.browse = {
        $(this).addClass("current");
        var type = $(this).attr("id");             
         $.ajax({
-               url: '/'+type+'/list_for_browser',
+               url: '/'+type+'/browse',
                dataType: 'js',
                success: function(response) {
                  $('.col1').html(response);

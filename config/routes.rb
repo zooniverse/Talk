@@ -8,7 +8,7 @@ Sellers::Application.routes.draw do
     end
     
     collection do
-      get :list_for_browser
+      get :browse
     end
   end
   
@@ -26,7 +26,7 @@ Sellers::Application.routes.draw do
     
     collection do
       post :markitup_parser
-      get :list_for_discussion
+      get :browse
     end
   end
   
@@ -38,9 +38,7 @@ Sellers::Application.routes.draw do
     end
     
     collection do
-      get :list_for_object
-      get :list_for_board
-      get :list_for_collection
+      get :browse
     end
   end
   
@@ -48,7 +46,7 @@ Sellers::Application.routes.draw do
     resources :discussions
     
     collection do
-      get :list_for_browser
+      get :browse
     end
   end
   
@@ -76,7 +74,7 @@ Sellers::Application.routes.draw do
     resources :discussions
     
     collection do
-      get :list_for_browser
+      get :browse
     end
   end
   

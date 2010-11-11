@@ -1,7 +1,7 @@
 class DiscussionsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter, :only => [:new, :create]
   before_filter :require_privileged_user, :only => :toggle_featured
-  respond_to :js, :only => [:user_owned, :toggle_featured, :list_for_asset, :list_for_boards, :list_for_collection]
+  respond_to :js, :only => [:user_owned, :toggle_featured, :browse]
   
   def show
     default_params :page => 1, :per_page => 10
@@ -62,31 +62,14 @@ class DiscussionsController < ApplicationController
     @discussion.save
   end
   
-  def list_for_object
+  def browse
     @discussions = Discussion.limit(10).sort(:created_at.desc).all(:focus_id => params[:id]) if params[:id]
-    
     respond_with(@discussions) do |format|
-      format.js { render :partial => "list_for_browser" }
+      format.js { render :partial => "browse" }
     end
   end
   
-  def list_for_collection
-    @discussions = Discussion.limit(10).sort(:created_at.desc).all(:focus_id => params[:id]) if params[:id]
-    
-    respond_with(@discussions) do |format|
-      format.js { render :partial => "list_for_browser" }
-    end
-  end
-  
-  def list_for_board
-    @discussions = Discussion.limit(10).sort(:created_at.desc).all(:focus_id => params[:id]) if params[:id]
-     respond_with(@discussions) do |format|
-        format.js { render :partial => "list_for_browser" }
-      end
-  end
-    
   protected
-  
   def find_focus
     if params.has_key? :board_id
       @focus = Board.find_by_title(params[:board_id])
