@@ -11,4 +11,4 @@ more.children('.more-results').remove();
 if(<%= page < results.total_pages %>)
 more.append('<div class="more-results" style="margin-top: 10px;"><%= list_more @more.underscore, :page => page + 1 %></div>');
 
-$('html,body').animate({ scrollTop: last.offset().top }, { duration: 'slow', easing: 'swing' });
+$('html,body').animate({ scrollTop: last.next().offset().top }, { duration: 'slow', easing: 'swing' });
