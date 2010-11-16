@@ -17,12 +17,12 @@ class AssetsControllerTest < ActionController::TestCase
         
         get :show, { :id => @asset.zooniverse_id }
       end
-
+      
       should respond_with :success
       should render_template :show
       
       should "Display the asset zooniverse_id" do
-        assert_select '.asset-name', :text => @asset.zooniverse_id
+        assert_select '#asset-as-focus h1', :text => /.*#{ @asset.zooniverse_id }.*/
       end
       
       should "display asset tags" do
@@ -31,7 +31,6 @@ class AssetsControllerTest < ActionController::TestCase
       end
       
       should "display asset" do
-        assert_select '#asset-as-focus .asset-name', :text => @asset.zooniverse_id
         assert_select '#asset-as-focus .asset-actions ul li a', :text => "Examine"
       end
       

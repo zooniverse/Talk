@@ -111,14 +111,26 @@ OCT.loading = {
 
 OCT.hover = {
     // container : '.short-comment, .comment, .collection-viewer',
-    container : '.short-comment, .comment',
-    targets : '.toolbar, .date, .toggle',
+    container : '.short-comment, .comment,',
+    targets : '.date, .toggle,',
     
     init: function () {
       $(OCT.hover.container).hover(function() {
-        $(OCT.hover.targets, this).css('visibility', 'visible');
+        $(OCT.hover.targets, this).css('color', '#000000');
       }, function() {
-        $(OCT.hover.targets, this).css('visibility', 'hidden');
+        $(OCT.hover.targets, this).css('color', '#999999');
+      });
+      
+      $(OCT.hover.container).hover(function() {
+        $('.toolbar', this).css('visibility', 'visible');
+      }, function() {
+        $('.toolbar', this).css('visibility', 'hidden');
+      });
+      
+      $(OCT.hover.container).hover(function() {
+        $('.name.toggle a', this).css('color', '#990000');
+      }, function() {
+        $('.name.toggle a', this).css('color', '#999999');
       });
       
       $('#asset-as-focus .rounded-panel').hover(function(){
@@ -268,15 +280,6 @@ OCT.home = {
     */
     
     OCT.home.load();
-        
-    // Commment user image hover
-    $('.home .comment img').live("mouseenter", function() {
-      $('.author', $(this).parent()).css("visibility", "visible");
-    });
-    
-    $('.home .comment').live("mouseleave", function() {
-      $('.author', this).css("visibility", "hidden");
-    });                  
    },
    
    load: function() {

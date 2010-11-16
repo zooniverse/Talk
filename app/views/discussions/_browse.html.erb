@@ -2,7 +2,8 @@
   <%- @discussions.each do |discussion| %>
     <div class="item" id="<%= discussion.id %>">
       <div class="item-container">
-        <div class="name"><%= link_to truncate(discussion.subject, :length => 50, :separator => ' '), discussion_url_for(discussion) %></div>
+        <%- subject = discussion.conversation? ? "Recent comments" : discussion.subject %>
+        <div class="name"><%= link_to truncate(subject, :length => 50, :separator => ' '), discussion_url_for(discussion) %></div>
         <div class="date">Updated <%= time_ago_in_words(discussion.updated_at) %> ago</div>
         <div class="info">
           <div class="views-total"><%= pluralize(discussion.number_of_users, "user") %></div>

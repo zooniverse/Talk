@@ -1,6 +1,6 @@
 <%- @assets.each do |asset| %>
   <div class="item asset" id="<%= asset.id %>">
-    <div class="<%= cycle_circles %>">
+    <div class="red circle">
       <p><%= link_to short_id_for(asset), object_path(asset.zooniverse_id ) %></p>
     </div>
     <%= image_tag(asset.thumbnail_location, :size => "97x97") %>

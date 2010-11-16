@@ -58,7 +58,7 @@
 
 .rhc .new a.button {
   margin: 0 auto;
-  width: 109px;
+  width: 120px;
 }
 
 .pagination {
@@ -108,7 +108,6 @@ h1.asset-name {margin-bottom: 20px;}
 
 /* Collection */
 .collection-thumbnail {cursor: pointer;}
-h1.collection-title {font-size: 2.0em;line-height:1.0em;width:590px;}
 .lhc .collection-viewer {
   margin-top: 14px;
 }
@@ -246,6 +245,25 @@ h1.collection-title {font-size: 2.0em;line-height:1.0em;width:590px;}
 	border: solid #000 1px;
 }
 
+#asset-as-focus h1 {
+  font-size: 1.8em;
+  margin: 0;
+}
+
+#asset-as-focus .collection-info {
+  margin-top: -22px;
+}
+
+#asset-as-focus h2.asset-collections {
+  color: #999999;
+  font-size: 1.3em;
+}
+
+h1.collection-title {
+  font-size: 1.8em;
+  margin: 0;
+}
+
 .collection-info {
   width:300px;
   float:right;
@@ -333,6 +351,9 @@ h1.collection-title {font-size: 2.0em;line-height:1.0em;width:590px;}
 }
 
 /* Comments */
+#comment-preview .comment {
+  left: 0px;
+}
 .comment {
 	margin-bottom: 10px;
   border-bottom: dotted #afafaf 1px;
@@ -341,10 +362,6 @@ h1.collection-title {font-size: 2.0em;line-height:1.0em;width:590px;}
 	left: -40px;
 	background: #fff;
 	padding: 20px 30px 20px 40px;
-}
-
-#comment-preview .comment {
-  min-height: 50px;
 }
 
 .short-comment {
@@ -381,17 +398,60 @@ h1.collection-title {font-size: 2.0em;line-height:1.0em;width:590px;}
 }
 
 .short-comment .name {
-  float:right;  
+  float: left;
 }
 
 .short-comment .toggle {
-  visibility: hidden;
+  color: #999999;
 }
+
+.short-comment .toggle a {
+  color: #999999;
+}
+
+
+.short-comment .toggle a:hover {
+  color: #990000;
+}
+
 
 /* Body */
 .comment .body {
   margin-left: 56px;
-  overflow: hidden;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 5px;
+}
+
+.comment .body blockquote {
+  padding: 5px;
+  border: 1px solid #afafaf;
+  background-color: #eeeeee;
+}
+
+.comment .body blockquote p {
+  margin: 0;
+}
+
+.comment .body ul,
+.comment .body ol {
+  margin: 5px 5px 5px 20px;
+  padding: 0;
+}
+
+.comment .body ul li {
+  list-style: disc;
+  margin-left: 20px;
+}
+
+.comment .body ol li {
+  list-style: decimal;
+  margin-left: 20px;
+}
+
+#comment-preview .comment {
+  min-height: 50px;
 }
 
 /* Image */
@@ -412,9 +472,13 @@ h1.collection-title {font-size: 2.0em;line-height:1.0em;width:590px;}
   /* position: relative; Clips text */
   right: -15px;
   top: -11px;
-  visibility:hidden;
+  /* visibility:hidden; */
 }
-.short-comment .date {color: #999;}
+.short-comment .date {
+  color: #999999;
+  float: right;
+}
+
 .comment_status{font-family:georgia, serif;color:#d3d3d3;margin-left:10px;font-size:1.5em;font-style:italic;}
 
 /* Voting */
@@ -736,6 +800,7 @@ div.more-results {text-align: center;}
   margin-top:18px;
 }
 
+
 .home .collection .statbar {
   color: #afafaf;
   font-size: 0.3em;
@@ -941,14 +1006,17 @@ div.more-results {text-align: center;}
 }
 
 .home .comment .author {
-  visibility:hidden;
+  float: right;
+  right: -2px;
   background: none;
   border-bottom: 3px solid #AEBC99;
-  left: 0;
   padding: 2px 5px;
   position: absolute;
   text-align: right;
-  width: 272px;
+}
+
+.home .comment .in a {
+  color: #999999;
 }
 
 .home .comment .author a:link, .home .comment .author a:link:hover {

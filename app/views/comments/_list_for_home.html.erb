@@ -3,8 +3,18 @@
     <img src="/images/interface/default_user.png" width="40" height="40" />
     <p><%= truncate(comment.body, :length => 35, :separator => ' ') %></p>
     <div class="in">
-      <%= link_to truncate(comment.discussion.subject, :length => 45, :separator => ' '), discussion_url_for(comment.discussion) %>
+      <span><%= link_to truncate(comment.discussion.subject, :length => 45, :separator => ' '), discussion_url_for(comment.discussion) %></span>
       <span class="author"><%= link_to comment.author.name, user_path(comment.author.id) %></span>
     </div>
   </div>
 <% end -%>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('.comments .comment').hover(function() {
+      $('.in a', this).css('color', '#990000');
+    }, function() {
+      $('.in a', this).css('color', '#999999');
+    });
+  });
+</script>

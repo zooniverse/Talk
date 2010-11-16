@@ -81,7 +81,7 @@ class Discussion
   
   # True if this is a focus conversation (live comment stream)
   def conversation?
-    focus_id.nil? ? false : focus.conversation == self
+    (focus_id.nil? || focus_type == "Board" ) ? false : focus.conversation == self
   end
   
   # Finds the user that started this discussion

@@ -4,7 +4,7 @@
 
 <div class="upper-row">
   <h1 class="collection-title">
-    <%= @collection.name %> by <%= link_to @collection.user.name, user_path(@collection.user) %>
+    COLLECTION <em>&#8220;<%= @collection.name %>&#8221;</em> by <%= link_to @collection.user.name, user_path(@collection.user) %>
   </h1>
   
   <div class="rhc">
@@ -47,5 +47,4 @@
       <%= render :partial => "comments/list_short" %>
     </div>
   </div>
-  <div class="rhc"></div>
 </div>

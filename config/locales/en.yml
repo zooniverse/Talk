@@ -62,7 +62,7 @@ en:
     in_response_to: "in response to"
   discussion:
     name: "discussion"
-    startnew: "Start discussion"
+    startnew: "Start a discussion"
     about: "about this"
     board:
       new: "New"

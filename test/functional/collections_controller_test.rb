@@ -20,7 +20,7 @@ class CollectionsControllerTest < ActionController::TestCase
       should render_template :show
       
       should "Display the collection name" do
-        assert_select 'h1.collection-title', :text => "#{@collection.name} by #{@collection.user.name}"
+        assert_select 'h1.collection-title', :text => /.*#{ @collection.name}.*#{ @collection.user.name }.*/
       end
       
       should "display discussions list" do
