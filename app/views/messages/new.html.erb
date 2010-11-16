@@ -18,9 +18,9 @@
 <%= form_for @message do |f| %>
   <p>
     <%= f.text_field :recipient_name,
-        :onfocus => "clear_input('message_recipient_name');",
-        :onblur => "replace_input('message_recipient_name', 'Recipient's login or email');",
-        :value => (@recipient_name || "Recipient's login or email") %>
+        :onfocus => 'clear_input("message_recipient_name");',
+        :onblur => 'replace_input("message_recipient_name", "Recipient\'s login or email");',
+        :value => (@recipient_name || "Recipient's name") %>
   </p>
   <p>
     <%= f.text_field :title,
