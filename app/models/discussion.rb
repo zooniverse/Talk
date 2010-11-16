@@ -32,13 +32,9 @@ class Discussion
   end
   
   # Finds the most recent discussions
-  def self.most_recent(limit = 10)
-    Discussion.limit(limit).sort(:created_at.desc).all
-  end
-  
-  # Finds the most recent comments in this discussion
-  def most_recent_comments(limit = 10)
-    Comment.limit(limit).all(:discussion_id => self.id)
+  def self.most_recent(*args)
+    opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
+    Discussion.sort(:created_at.desc).paginate :page => opts[:page], :per_page => opts[:per_page]
   end
   
   # Finds popular discussions

@@ -36,7 +36,8 @@ class HomeController < ApplicationController
     klass = kind.singularize.camelize.constantize
     
     define_method "recent_#{kind}".to_sym do
-      respond_with(instance_variable_set("@#{kind}", klass.most_recent(5))) do |format|
+      default_params :page => 1, :per_page => 5
+      respond_with(instance_variable_set("@#{kind}", klass.most_recent(:page => @page, :per_page => @per_page))) do |format|
         format.js { render :partial => "#{kind}/list_for_home" }
       end
     end

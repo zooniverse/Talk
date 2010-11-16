@@ -17,8 +17,9 @@ class Collection
   belongs_to :user
   
   # Finds the most recent Collections
-  def self.most_recent(limit = 10)
-    Collection.limit(limit).sort(:created_at.desc).all
+  def self.most_recent(*args)
+    opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
+    Collection.sort(:created_at.desc).paginate :page => opts[:page], :per_page => opts[:per_page]
   end
   
   # Finds the most recent assets added to this Collection

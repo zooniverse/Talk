@@ -27,16 +27,19 @@ class Asset
   end
   
   # selects the most recently discussed assets (ie the assets with the newest comments )
-  def self.most_recent(limit = 10)
+  def self.most_recent(*args)
+    opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
+    offset = [0, opts[:page] - 1].max * opts[:per_page]
+    
     cursor = Discussion.where(:focus_type => "Asset").sort(:created_at.desc).find_each
     asset_ids = {}
     
-    while asset_ids.length < limit && cursor.has_next?
+    while asset_ids.length < offset + opts[:per_page] && cursor.has_next?
       doc = cursor.next_document
       asset_ids[ doc['focus_id'] ] = 1
     end
     
-    asset_ids.map{ |focus_id, d_id| Asset.find(focus_id) }
+    asset_ids.map(&:first)[offset, opts[:per_page]].map{ |id| Asset.find(id) }
   end
   
   # Finds assets that match the given keywords
