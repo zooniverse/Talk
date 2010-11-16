@@ -30,70 +30,71 @@ OCT.collection = {
   },
   
   list: function() {
-  		if ($(".collection-info .col").length > 0) {  		
-  			var new_width = $('.collection-info .col').length*($('.collection-info .col').width());
-  			$('.collection-info .container').css("width", new_width+"px");
-  		}
-  		
-  	  $('.collection-info .nav').html('');
-  		
-  		if ($(".collection-info .col").length > 1) {  		  	  
-  		  
-        // Create dots
-    	  var page = 0;
-    	  $(".collection-info .col").each(function() {
-      	  $('.collection-info .nav').append("<a href='#' id='p-"+page+"'></a>");
-      	  page++;
-    	  });
-  	    $('.collection-info .nav a').first().addClass("current");
-  	  
-        // Dot nav
-  	    $(".collection-info .nav a").live("click", function() {  	   
-  	      $(".collection-info .nav a").removeClass("current");
-  	      var dot = $(this);
-    	    var leftPosition = 0-(parseInt($(dot).attr("id").split("-")[1])*$(".collection-info .col").width())+"px";
-    	    $(".collection-info .container").animate({
-    	      left: leftPosition
-    	    }, function() {
-    	      $(dot).addClass("current");
-    	    });
-    	    return false;
-    	  });
-    	     
-     	  OCT.collection.keybind();
-  	  }
-  	
-  }, 
+    if($(".collection-info .col").length > 0) {
+      var new_width = $('.collection-info .col').length * $('.collection-info .col').width();
+      $('.collection-info .container').css("width", new_width + "px");
+    }
+    
+    $('.collection-info .nav').html('');
+    if($(".collection-info .col").length > 1) {
+      // Create dots
+      var page = 0;
+      $(".collection-info .col").each(function() {
+        $('.collection-info .nav').append('<a href="#" id="p-' + page+ '></a>');
+        page++;
+      });
+      
+      $('.collection-info .nav a').first().addClass("current");
+      // Dot nav
+      
+      $(".collection-info .nav a").live("click", function() {
+        $(".collection-info .nav a").removeClass("current");
+        var dot = $(this);
+        var leftPosition = 0-(parseInt($(dot).attr("id").split("-")[1])*$(".collection-info .col").width())+"px";
+        
+        $(".collection-info .container").animate({
+          left: leftPosition
+        }, function() {
+          $(dot).addClass("current");
+        });
+        
+        return false;
+      });
+      
+      OCT.collection.keybind();
+    }
+  },
   
-  keybind:function() {
+  keybind: function() {
     $('*').keyup(function(e) {
-
       // Next
-			if (e.keyCode == 39 || e.which == 39) {    
-			  var current = parseInt($(".collection-info .nav a.current").attr("id").split("-")[1]);
-			  var next = current+1;
-			  OCT.collection.page(next);
-			}
-			
-      // Prev
-			if (e.keyCode == 37 || e.which == 37) {
-			  var current = parseInt($(".collection-info .nav a.current").attr("id").split("-")[1]);
-			  var previous = current-1;
-			  OCT.collection.page(previous);
-			}
-		});
-  }, 
-  
-  page:function(page) {
-     if (page >= 0 && page < $(".collection-info .col").length) {
-       $(".collection-info .nav a").removeClass("current");       
-			  var leftPosition = 0-(page*$(".collection-info .col").width())+"px";
-	      $(".collection-info .container").animate({
-	        left: leftPosition
-	      }, function() {
-	        $("#p-"+page).addClass("current");
-	      });
+      
+      if (e.keyCode == 39 || e.which == 39) {
+        var current = parseInt($(".collection-info .nav a.current").attr("id").split("-")[1]);
+        var next = current + 1;
+        OCT.collection.page(next);
       }
+      
+      // Prev
+      if (e.keyCode == 37 || e.which == 37) {
+        var current = parseInt($(".collection-info .nav a.current").attr("id").split("-")[1]);
+        var previous = current - 1;
+        OCT.collection.page(previous);
+      }
+    });
+  },
+  
+  page: function(page) {
+    if (page >= 0 && page < $(".collection-info .col").length) {
+      $(".collection-info .nav a").removeClass("current");
+      var leftPosition = 0 - (page * $(".collection-info .col").width()) + "px";
+      
+      $(".collection-info .container").animate({
+        left: leftPosition
+      }, function() {
+        $("#p-" + page).addClass("current");
+      });
+    }
   }
 };
 

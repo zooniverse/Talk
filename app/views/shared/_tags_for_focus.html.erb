@@ -1,12 +1,12 @@
 <%- unless @focus.keywords.empty? %>
-  <div id="tags-for-focus" class="panel tags right">
+  <div id="tags-for-focus" class="panel collection-list">
     <h2><%= t 'homepage.keywords' %></h2>
     <div>
       <ul>
         <%- @focus.keywords.each do |keyword| %>
           <%- klass = @focus.class.name.underscore.pluralize %>
           <%- klass = klass.sub('assets', 'objects').sub('live_collections', 'collections') %>
-          <li><%= link_to keyword, search_url(:search => "keywords: #{keyword}", :for => klass) %></li>
+          <li class="item"><%= link_to keyword, search_url(:search => "keywords: #{keyword}", :for => klass) %></li>
         <% end -%>
       </ul>
       <div class="push"></div>

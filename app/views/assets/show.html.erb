@@ -6,27 +6,30 @@
   <div class="rhc">
     <%= render :partial => "discussions/list_for_focus" %>
     <%= render :partial => "shared/tags_for_focus" %>
+    <%= render :partial => "discussions/mentions" %>
   </div>
   <div class="lhc">
     <div id="asset-as-focus">
-      <h1 class="asset-name"><%= @asset.zooniverse_id %></h1>
-      
+      <h1><p>OBJECT <%= link_to @asset.zooniverse_id, object_path(@asset.zooniverse_id) %></p></h1>
       <div class="rounded-panel">
         <div class="collection-info">
+          <h2 class="asset-collections">COLLECTIONS WITH THIS OBJECT</h2>
           <div class="container">
-            <div class="col">
-              <%- @collections.each do |collection| %>
-                <div class="collection">
-                  <h2><%= link_to truncate(collection.name, :length => 60, :separator => ' '), collection_path(collection.zooniverse_id) %></h2>
-                  <div class="film">
-                    <%- assets = collection.asset_ids[0, 8].map{ |id| Asset.find(id) } %>
-                    <%- assets.each do |asset| %>
-                      <%= image_tag(asset.location, :width => 29, :height => 29) %>
-                    <% end -%>
+            <%- @collections.in_groups_of(4).each do |group| %>
+              <div class="col">
+                <%- group.reject{ |c| c.nil? }.each do |collection| %>
+                  <div class="collection">
+                    <h2><%= link_to truncate(collection.name, :length => 60, :separator => ' '), collection_path(collection.zooniverse_id) %></h2>
+                    <div class="film">
+                      <%- assets = collection.asset_ids[0, 8].map{ |id| Asset.find(id) } %>
+                      <%- assets.each do |asset| %>
+                        <%= image_tag(asset.location, :width => 29, :height => 29) %>
+                      <% end -%>
+                    </div>
                   </div>
-                </div>
-              <% end -%>
-            </div>
+                <% end -%>
+              </div>
+            <% end -%>
           </div>
           <div class="nav"></div>
         </div>
@@ -60,7 +63,10 @@
       <%= render :partial => "comments/list_short" %>
     </div>
   </div>
-  <div class="rhc">
-    <%= render :partial => "discussions/mentions" %>
-  </div>
 </div>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    OCT.collection.init();
+  });
+</script>

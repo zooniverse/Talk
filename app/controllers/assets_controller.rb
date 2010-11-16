@@ -7,7 +7,7 @@ class AssetsController < ApplicationController
     @asset = Asset.find_by_zooniverse_id(params[:id])
     @focus = @asset
     @mentions = Discussion.mentioning(@asset)
-    @collections = Collection.with_asset @asset, :per_page => 4
+    @collections = Collection.with_asset @asset, :page => 1, :per_page => 20
     @comment = Comment.new
     
     @discussion = @asset.conversation
