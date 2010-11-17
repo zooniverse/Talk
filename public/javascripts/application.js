@@ -168,84 +168,91 @@ OCT.notice = {
 };
 
 
-OCT.browse = {  
+OCT.browse = {
   init:function() {
-     $.ajax({
-       url: '/objects/browse',
-       dataType: 'js',
-       success: function(response) {
-         $('.col1').html(response);
-       }, 
-       error: function() {
-         $('.col1').html("<div class='engraved'>Problem getting Objects</div>");         
-       }
-     });
+    $.ajax({
+      url: '/objects/browse',
+      dataType: 'js',
+      success: function(response) {
+        $('.col1').html(response);
+      },
+      error: function() {
+        $('.col1').html('<div class="engraved">There was a problem getting objects</div>');
+      }
+    });
     
-     // Click on Col 1 | Load discussion 
-     $('.col1 .item').live('click', function() {     
-        $('.col2').html("<div class='engraved'>Loading..</div>");    
-        $('.col3').html("<div class='engraved'>Comments</div>");    
-                  
-        var type = "object";
-        if ($(this).hasClass("board")) {
-          type ="board";
-        }
-        if ($(this).hasClass("collection")) {
-          type ="collection";
-        }
+    // Click on Col 1 | Load discussion
+    $('.col1 .item').live('click', function() {
+      var type = 'object';
       
-       $.ajax({
-         url: '/discussions/browse',
-         data: {id: $(this).attr('id')},
-         dataType: 'js',
-         success: function(response) {
-           $('.col2').html(response);    
-         }, 
-         error: function() {
-           $('.col2').html('<div class="engraved">Problem getting ' + type + '</div>');
-         }
-       });
-     }); 
-   
-     // Click on discussion | Show comments
-    $('.col2 .item').live('click', function() {     
-      $('.col3').html("<div class='engraved'>Loading..</div>");    
+      if($(this).hasClass('board')) {
+        type ='board';
+      }
+      else if($(this).hasClass('collection')) {
+        type ='collection';
+      }
+      
+      $('.col2').html('<div class="engraved">Loading discussions..</div>');
+      $('.col3').html('<div class="engraved">Select a discussion</div>');
+      
       $.ajax({
-        url: '/comments/browse',       
-        data: {id: $(this).attr('id')},
+        url: '/discussions/browse',
+        data: { id: $(this).attr('id') },
         dataType: 'js',
         success: function(response) {
-          $('.col3').html(response);
-        }, 
+          $('.col2').html(response);
+        },
         error: function() {
-          $('.col3').html("<div class='engraved'>Problem getting comments</div>");         
+          $('.col2').html('<div class="engraved">There was a problem getting ' + type + '</div>');
         }
       });
     });
-
+    
+    // Click on discussion | Show comments
+    $('.col2 .item').live('click', function() {
+      $('.col3').html('<div class="engraved">Loading comments..</div>');
+      
+      $.ajax({
+        url: '/comments/browse',
+        data: { id: $(this).attr('id') },
+        dataType: 'js',
+        success: function(response) {
+          $('.col3').html(response);
+        },
+        error: function() {
+          $('.col3').html('<div class="engraved">There was a problem getting comments</div>');
+        }
+      });
+    });
+    
     //  TYPE toolbar
-    $('.type_toolbar .type').live('click', function() {     
-       $('.col1').html("<div class='engraved'>Loading..</div>");          
-       $('.col2').html("<div class='engraved'></div>");    
-       $('.col3').html("<div class='engraved'></div>");    
-
-       $('.type').removeClass("current");
-       $(this).addClass("current");
-       var type = $(this).attr("id");             
-        $.ajax({
-               url: '/'+type+'/browse',
-               dataType: 'js',
-               success: function(response) {
-                 $('.col1').html(response);
-               }, 
-               error: function() {
-                 $('.col1').html("<div class='engraved'>Problem getting type</div>");         
-               }
-             });                         
-     });         
+    $('.type_toolbar .type').live('click', function() {
+      var type = $(this).attr('id');
+      var singularized_type = type.substr(0, type.length - 1);
+      var humanized_type = type[0].toUpperCase() + type.slice(1);
+      var message = 'Select ' + (type == 'objects' ? 'an ' : 'a ') + singularized_type;
+      
+      $('.browse .titles .focus').html('<div class="engraved">' + humanized_type + '</div>');
+      $('.col1').html('<div class="engraved">Loading ' + type + '..</div>');
+      $('.col2').html('<div class="engraved">' + message + '</div>');
+      $('.col3').html('<div class="engraved"></div>');
+      
+      $('.type').removeClass('current');
+      $(this).addClass('current');
+      
+      $.ajax({
+        url: '/' + type + '/browse',
+        dataType: 'js',
+        success: function(response) {
+          $('.col1').html(response);
+        },
+        error: function() {
+          $('.col1').html('<div class="engraved">There was a problem getting ' + type + '</div>');
+        }
+      });
+    });
   }
 };
-
 
 OCT.home = {
   mode : 'trending',
