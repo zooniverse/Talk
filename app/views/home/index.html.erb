@@ -11,9 +11,10 @@
     <h2>Featured</h2>
     <div class="list">
       <div class="ribbon"></div>
-      <img src="http://moonzoo.s3.amazonaws.com/v10/slices/000000963.jpg" width="130" />
+      <%- featured = Asset.find_by_zooniverse_id "AMZ40000qr" %>
+      <%= link_to image_tag(featured.location, :width => 130, :height => 130), object_path(featured.zooniverse_id) %>
       <div class="box_shadow"></div>
-      <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elite.<a href="#">Take part</a></p>
+      <p>You may see featured objects, collections, or projects to <a href="#">take part</a> in here.</p>
     </div>
   </div>
 </div>

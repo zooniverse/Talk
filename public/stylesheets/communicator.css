@@ -811,11 +811,6 @@ div.more-results {text-align: center;}
   padding: 25px 20px 0;
 }
 
-.featured p a {
-  display: block;
-  margin-top: 5px;
-}
-
 .featured .box_shadow {
   background: #000;
   height: 130px;
