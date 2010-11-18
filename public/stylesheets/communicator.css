@@ -212,6 +212,7 @@ h1.asset-name {margin-bottom: 20px;}
   line-height: 3em;
   text-align: center;
   margin: 0;
+  padding: 25px;
   height: 300px;
 }
 #keyword-cloud a {padding: 0px;}
@@ -1124,16 +1125,16 @@ div.more-results {text-align: center;}
 
 /* Boards */
 .board .rhc {
-  padding-top:0;
-  width: 90px;
+  padding-top: 0;
+  width: 200px;
 }
 
 .board .lhc {
   left: -39px;
-  padding: 20px 0px 20px 39px;
+  padding: 20px 0px 20px 15px;
   background: #fff;
-  position:relative;
-  width:725px;
+  position: relative;
+  min-width: 650px;
 }
 
 .board .lhc .discussions {

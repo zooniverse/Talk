@@ -17,7 +17,7 @@
         
         <%- if @discussion.collection? || @discussion.live_collection? %>
           <%- unless @discussion.focus.assets.empty? %>
-            <%= image_tag @discussion.focus.assets.first.location, :class => "collection-large", :id => "asset-image", :height => 200, :width => 200 %>
+            <%= image_tag @discussion.focus.assets.first.location, :class => "collection-large", :id => "asset-image", :height => 215, :width => 215 %>
             <% @discussion.focus.assets.each do |item| %>
               <%= link_to image_tag(item.thumbnail_location, :class => "collection-thumbnail", :height => 51, :width => 51), object_path(item.zooniverse_id) %>
             <% end -%>
