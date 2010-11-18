@@ -8,9 +8,9 @@ task :load_data, :load_from, :restore_to, :needs => :environment do |t, args|
   config = YAML.load_file(Rails.root + 'config' + 'mongodb.yml')[ args[:restore_to] ]
   options = "--host #{ config['host'] } --db #{ config['database'] } --port #{ config['port'] }"
   options += " --username #{ config['username'] }" if config.has_key?('username')
-  options += " --password #{ config['password'] }" if config.has_key?('password')
+  options += " --password \"#{ config['password'] }\"" if config.has_key?('password')
   
-  `mongorestore #{ options } --drop --objcheck dump/sellers-beta-#{ args[:load_from] }`
+  `mongorestore --drop --objcheck dump/sellers-beta-#{ args[:load_from] } #{ options }`
 end
 
 # Dump the development database to the development directory:   rake dump_data[development]
