@@ -4,12 +4,13 @@ class CommentsController < ApplicationController
   respond_to :js, :only => [:vote_up, :report, :user_owned, :preview, :browse]
   
   def create
+    default_params :page => 1
     @discussion = Discussion.find(params[:discussion_id])
     @discussion.comments.build(params[:comment])
 
     if @discussion.save
       flash[:notice] = t 'controllers.comments.flash_create'
-      redirect_to discussion_url_for(@discussion)
+      redirect_to discussion_url_for(@discussion, :page => @page)
     end
   end
   

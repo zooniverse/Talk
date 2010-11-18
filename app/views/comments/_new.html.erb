@@ -13,6 +13,7 @@
     <%= f.text_area :body, :rows => 4, :cols => 40 %>
     <%= hidden_field_tag('comment[author_id]', current_zooniverse_user.id) %>
     <%= hidden_field_tag('comment[response_to_id]', "") %>
+    <%= hidden_field_tag('page', @page) %>
     
     <div id="comment-preview"></div>
       <%= submit_tag 'Submit' %>

@@ -52,23 +52,28 @@ class ApplicationController < ActionController::Base
   
   helper_method :new_discussion_url_for
   
-  def discussion_url_for(discussion)
+  def discussion_url_for(*args)
+    options = args.extract_options!
+    options.delete(:page) if options[:page] == 1
+    discussion = args.first
     focus = discussion.focus
+    
     if !focus.is_a?(Board) && discussion.conversation?
       case focus.class.to_s
       when "Asset"
-        object_path(focus.zooniverse_id)
+        object_path(focus.zooniverse_id, options)
       when "Collection", "LiveCollection"
-        collection_path(focus.zooniverse_id)
+        collection_path(focus.zooniverse_id, options)
       end
     else
       case focus.class.to_s
       when "Asset"
-        object_discussion_path(focus.zooniverse_id, discussion.zooniverse_id)
+        object_discussion_path(focus.zooniverse_id, discussion.zooniverse_id, options)
       when "Board"
-        "/#{discussion.focus.title.downcase}/discussions/#{discussion.zooniverse_id}"
+        query_string = options.any? ? "?#{ options.to_query }" : ""
+        "/#{ discussion.focus.title.downcase }/discussions/#{ discussion.zooniverse_id }#{ query_string }"
       when "Collection", "LiveCollection"
-        collection_discussion_path(focus.zooniverse_id, discussion.zooniverse_id)
+        collection_discussion_path(focus.zooniverse_id, discussion.zooniverse_id, options)
       end
     end
   end
