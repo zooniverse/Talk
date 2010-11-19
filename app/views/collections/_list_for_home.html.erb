@@ -5,7 +5,7 @@
     </div>
     <h2><%= link_to truncate(collection.name, :length => 30, :separator => ' '), collection_path(collection.zooniverse_id) %></h2>
     
-    <%- assets = Asset.all :id.in => collection.asset_ids[0, 5] %>
+    <%- assets = collection.is_a?(LiveCollection) ? collection.assets(:per_page => 5) : collection.asset_ids[0, 5].map{ |id| Asset.find(id) } %>
     <div class="film">
       <%- assets.each do |asset| %>
         <%= link_to image_tag(asset.location, :width => 39, :height => 39), object_path(asset.zooniverse_id) %>

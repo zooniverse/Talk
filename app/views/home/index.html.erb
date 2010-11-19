@@ -12,7 +12,7 @@
     <div class="list">
       <div class="ribbon"></div>
       <%- featured = Asset.find_by_zooniverse_id "AMZ40000qr" %>
-      <%= link_to image_tag(featured.location, :width => 130, :height => 130), object_path(featured.zooniverse_id) %>
+      <%= link_to(image_tag(featured.location, :width => 130, :height => 130), object_path(featured.zooniverse_id)) unless featured.nil? %>
       <div class="box_shadow"></div>
       <p>You may see featured objects, collections, or projects to <a href="#">take part</a> in here.</p>
     </div>

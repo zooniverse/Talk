@@ -39,7 +39,7 @@
               <%= link_to truncate(collection.name, :length => 30, :separator => ' '), collection_path(collection.zooniverse_id) %>
             </div>
             
-            <%- assets = collection.asset_ids[0, 5].map{ |id| Asset.find(id) } %>
+            <%- assets = collection.is_a?(LiveCollection) ? collection.assets(:per_page => 5) : collection.asset_ids[0, 5].map{ |id| Asset.find(id) } %>
             <%- assets.each do |asset| %>
               <%= link_to image_tag(asset.location, :class => "collection-thumbnail", :width => 20, :height => 20), object_path(asset.zooniverse_id) %>
             <% end -%>
