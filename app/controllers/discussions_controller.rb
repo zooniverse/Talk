@@ -1,4 +1,5 @@
 class DiscussionsController < ApplicationController
+  before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:show]
   before_filter CASClient::Frameworks::Rails::Filter, :only => [:new, :create]
   before_filter :require_privileged_user, :only => :toggle_featured
   respond_to :js, :only => [:user_owned, :toggle_featured, :browse]

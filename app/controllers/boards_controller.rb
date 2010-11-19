@@ -1,4 +1,5 @@
 class BoardsController < ApplicationController
+  before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:science, :help, :chat]
   respond_to :js, :only => [:browse]
   
   def show

@@ -1,4 +1,5 @@
 class CollectionsController < ApplicationController
+  before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:show]
   before_filter CASClient::Frameworks::Rails::Filter, :only => [:new, :edit, :add]
   respond_to :js, :only => [:add, :remove, :browse]
   

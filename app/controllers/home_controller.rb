@@ -1,5 +1,5 @@
 class HomeController < ApplicationController 
-  before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => :index
+  before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:index, :browse]
   skip_before_filter :check_for_banned_user, :only => :index
   respond_to :js, :except => [:index]
   

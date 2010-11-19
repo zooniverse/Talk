@@ -1,4 +1,5 @@
 class AssetsController < ApplicationController
+  before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:show]
   before_filter :check_or_create_zooniverse_user
   respond_to :js, :only => [:browse]
   
