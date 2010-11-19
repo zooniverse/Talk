@@ -15,7 +15,7 @@
       <li><%= link_to t('sidenav.profile'), user_path(current_zooniverse_user) %></li>
       <li><%= link_to t('sidenav.logout'), logout_path %></li>
     <%- else -%>
-      <li><%= link_to t('sidenav.login'), cas_test_path %></li>
+      <li><%= link_to t('sidenav.login'), cas_login %></li>
     <% end -%>
   </ul>
 </div>

@@ -1,17 +1,12 @@
 class HomeController < ApplicationController 
-  before_filter CASClient::Frameworks::Rails::Filter, :only => :cas_test
   before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => :index
   skip_before_filter :check_for_banned_user, :only => :index
-  respond_to :js, :except => [:index, :cas_test]
+  respond_to :js, :except => [:index]
   
   def index
   end
   
   def browse
-  end
-  
-  def cas_test
-    @user = session[:cas_user]
   end
   
   %w(help science chat).each do |board|

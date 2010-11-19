@@ -78,8 +78,6 @@ Sellers::Application.routes.draw do
     end
   end
   
-  match '/cas_test' => 'home#cas_test'
-  
   resources :admin do
     member do
       post :ignore

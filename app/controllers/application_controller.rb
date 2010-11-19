@@ -104,6 +104,12 @@ class ApplicationController < ActionController::Base
   def cas_logout
     CASClient::Frameworks::Rails::Filter.logout(self)
   end
+  helper_method :cas_logout
+  
+  def cas_login
+    "#{CASClient::Frameworks::Rails::Filter.client.login_url}?service=http%3A%2F%2F#{ request.host_with_port }#{ request.fullpath }"
+  end
+  helper_method :cas_login
   
   protected
   

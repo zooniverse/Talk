@@ -51,14 +51,5 @@ class HomeControllerTest < ActionController::TestCase
       end
       
     end
-    
-    context "#cas_test logged in" do
-      setup do
-        standard_cas_login
-        get :cas_test
-      end
-
-      should respond_with :success
-    end
   end
 end
