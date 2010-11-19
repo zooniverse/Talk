@@ -19,7 +19,7 @@ class Comment
   many :events, :as => :eventable
   
   after_validation_on_create :parse_body
-  before_create :split_body, :set_focus
+  before_create :set_focus, :split_body
   after_create :create_tags
   
   TAG = /#([-\w\d]{3,40})/im
@@ -27,7 +27,8 @@ class Comment
   
   def self.search(*args)
     opts = { :page => 1, :operator => :$all, :per_page => 10, :order => :created_at.desc, :field => :_body }.update(args.extract_options!)
-    args = args.collect{ |arg| arg.split }.flatten
+    args = args.collect(&:split).flatten
+    args = args.map{ |arg| arg.downcase.gsub(/\W/, '') } if opts[:field] == :_body
     opts[:per_page] = opts[:limit] if opts.has_key?(:limit)
     
     criteria = opts[:criteria] || {}
@@ -84,7 +85,19 @@ class Comment
   end
   
   def split_body
-    self._body = self.body.split
+    self._body = self.body.gsub(/\W/, ' ').split
+    
+    if focus && focus_type != "Board"
+      [:name, :description, :zooniverse_id].each do |attr|
+        value = focus.send(attr) if focus.respond_to?(attr)
+        self._body << value.gsub(/\W/, ' ').split unless value.nil?
+      end
+      
+      self._body << discussion.subject.gsub(/\W/, ' ').split unless discussion.nil?
+      self._body << discussion.zooniverse_id unless discussion.zooniverse_id.nil?
+    end
+    
+    self._body = self._body.flatten.map(&:downcase).uniq
   end
   
   # Finds tags and mentions in the comment body
