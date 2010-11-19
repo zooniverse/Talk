@@ -4,7 +4,7 @@
     <div>
       <ul>
         <%- @mentions.each do |discussion| %>
-          <li class="item"><%= link_to discussion.subject, "#" %></li>
+          <li class="item"><%= link_to discussion.subject, discussion_url_for(discussion) %></li>
         <% end -%>
       </ul>
     </div>
