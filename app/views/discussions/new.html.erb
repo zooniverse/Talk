@@ -4,11 +4,11 @@
   <link rel="stylesheet" href="/stylesheets/jquery-ui-1.8.5.custom.css" type="text/css" media="all" />
 <% end -%>
 
-<div class="upper-row discussion-thread">
+<div class="upper-row discussion-thread<%= ' full-width' if @focus.is_a?(Board) %>">
   <div class="rhc">
     <%= render :partial => "shared/zooniverse_extras" %>
   </div>
-  <div class="lhc"<% if @discussion.focus_type == "Board" %>style="width:700px;"<% end %>>
+  <div class="lhc">
     <h1 class="discussion-title">
       <%= title_for(@focus) %>
     </h1>

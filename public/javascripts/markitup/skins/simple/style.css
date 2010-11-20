@@ -29,8 +29,12 @@
 	clear:both; 
 	line-height:18px;
 	overflow:auto;
-
 }
+
+.full-width .markItUpEditor {
+  width: 855px;
+}
+
 .markItUpPreviewFrame	{
 	overflow:auto;
 	background-color:#FFF;

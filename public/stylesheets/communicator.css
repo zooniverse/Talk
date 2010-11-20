@@ -144,6 +144,10 @@ h1.asset-name {margin-bottom: 20px;}
   border-right: solid 8px #C2D9E2;
 }
 
+.full-width .lhc {
+  width: 100%;
+}
+
 .discussion .rhc {padding:0 0 0 10px;width:226px;}
 
 /* Item */
@@ -509,7 +513,7 @@ h1.collection-title {
 .comment-form h2 {
   margin: 30px 0px 0;
   position: relative;
-  top: 19px;
+  top: 26px;
   padding: 2px;
 }
 
@@ -520,6 +524,10 @@ h1.collection-title {
 
 .comment-form .markItUp {
   width: 620px;
+}
+
+.full-width .comment-form .markItUp {
+  width: 855px;
 }
 
 .comment-form .markItUpHeader {
