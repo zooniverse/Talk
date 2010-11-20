@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
   
   def markdown(text)
-    formatted = text.gsub(/#/m, '\#').gsub(/[\r?\n]/, "\n\n")
+    formatted = text.gsub(/#/m, '\#').gsub(/[\r\n]/, "\n\n")
     output = BlueCloth::new(formatted, :escape_html => true, :auto_links => true).to_html
     tags = ["h1","h2","h3","h4","h5","h6"]
     tags.each do |tag|
