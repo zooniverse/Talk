@@ -80,11 +80,16 @@ class CommentTest < ActiveSupport::TestCase
     end
     
     context "parsing tags and mentions" do
+      setup do
+        comment = @comment1.to_mongo.update({ "body" => "blah #Mixed #CASE #tAgS #tag1 blah #tag2 blah #{ @asset.zooniverse_id } is awesome" })
+        @comment1 = Comment.create(comment)
+      end
+      
       should "#parse_body for tags and mentions" do
-        assert_same_elements ['tag1', 'tag2'], @comment1.tags
+        assert_same_elements %w(mixed case tags tag1 tag2 ), @comment1.tags
         assert_same_elements ['tag2', 'tag4'], @comment2.tags
         assert_same_elements ['tag2', 'tag4'], @comment3.tags
-
+        
         assert_equal [@asset.zooniverse_id], @comment1.mentions
         assert_equal [@asset.zooniverse_id], @comment2.mentions
         assert_equal [@asset.zooniverse_id], @comment3.mentions

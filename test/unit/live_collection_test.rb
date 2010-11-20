@@ -3,7 +3,7 @@ require 'test_helper'
 class LiveCollectionTest < ActiveSupport::TestCase
   context "A LiveCollection" do
     setup do 
-      @collection = Factory :live_collection
+      @collection = Factory :live_collection, :tags => ["Tag1", "TAG2"]
     end
   
     should_have_keys :zooniverse_id, :name, :description, :tags, :user_id

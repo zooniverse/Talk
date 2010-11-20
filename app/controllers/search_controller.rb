@@ -37,7 +37,7 @@ class SearchController < ApplicationController
   
   def live_collection_results
     @keywords = params[:keywords]
-    @assets = Asset.with_keywords(@keywords.split(','), :per_page => 49)
+    @assets = Asset.with_keywords(@keywords.split(',').map(&:downcase), :per_page => 49)
   end
   
   def parse_keywords

@@ -102,8 +102,8 @@ class Comment
   
   # Finds tags and mentions in the comment body
   def parse_body
-    self.tags = self.body.scan(TAG).flatten
-    self.mentions = self.body.scan(MENTION).flatten
+    self.tags = self.body.scan(TAG).flatten.map(&:downcase).uniq
+    self.mentions = self.body.scan(MENTION).flatten.uniq
   end
   
   # Sets the focus of this comment
@@ -119,7 +119,7 @@ class Comment
       klass.collection.update({ :_id => focus_id }, { :$addToSet => { :tags => { :$each => self.tags } } })
     end
     
-    self.tags.uniq.each do |tag_name|
+    self.tags.each do |tag_name|
       Tag.collection.update({ :name => tag_name }, { :$inc => { :count => 1 } }, :upsert => true)
       
       unless focus_id.nil?
