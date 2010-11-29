@@ -5,6 +5,7 @@ class Collection
   include ZooniverseId
   
   zoo_id :prefix => "C", :sub_id => "S"
+  key :_type, String
   key :name, String, :required => true
   key :description, String
   key :tags, Array

@@ -6,7 +6,7 @@ desc "Creates indexes on collections"
 task :ensure_indexes => :environment do
   puts "Building indexes for Asset"
   drop_indexes_on(Asset)
-  Asset.ensure_index [['zooniverse_id', 1]], :unique => true
+  Asset.ensure_index [['zooniverse_id', 1]]
   Asset.ensure_index [['tags', 1]]
   
   puts "Building indexes for Board"
@@ -15,10 +15,12 @@ task :ensure_indexes => :environment do
   
   puts "Building indexes for Collection"
   drop_indexes_on(Collection)
-  Collection.ensure_index [['zooniverse_id', 1]], :unique => true
+  Collection.ensure_index [['zooniverse_id', 1]]
   Collection.ensure_index [['user_id', 1], ['created_at', -1]]
   Collection.ensure_index [['asset_ids', 1], ['created_at', -1]]
-  Collection.ensure_index [['tags', 1]]
+  Collection.ensure_index [['tags', 1], ['created_at', -1]]
+  Collection.ensure_index [['_type', 1], ['created_at', -1]]
+  Collection.ensure_index [['_type', 1], ['tags', 1], ['created_at', -1]]
   Collection.ensure_index [['created_at', -1]]
   
   puts "Building indexes for Comment"
@@ -33,7 +35,7 @@ task :ensure_indexes => :environment do
   
   puts "Building indexes for Discussion"
   drop_indexes_on(Discussion)
-  Discussion.ensure_index [['zooniverse_id', 1]], :unique => true
+  Discussion.ensure_index [['zooniverse_id', 1]]
   Discussion.ensure_index [['slug', 1]]
   Discussion.ensure_index [['focus_id', 1], ['created_at', -1]]
   Discussion.ensure_index [['focus_type', 1], ['created_at', -1]]
@@ -47,12 +49,6 @@ task :ensure_indexes => :environment do
   drop_indexes_on(Event)
   Event.ensure_index [['state', 1], ['created_at', -1]]
   Event.ensure_index [['user_id', 1], ['created_at', -1]]
-  
-  puts "Building indexes for LiveCollection"
-  drop_indexes_on(LiveCollection)
-  LiveCollection.ensure_index [['zooniverse_id', 1]], :unique => true
-  LiveCollection.ensure_index [['tags', 1], ['created_at', -1]]
-  LiveCollection.ensure_index [['user_id', 1], ['created_at', -1]]
   
   puts "Building indexes for Message"
   drop_indexes_on(Message)
@@ -73,7 +69,7 @@ task :ensure_indexes => :environment do
   
   puts "Building indexes for User"
   drop_indexes_on(User)
-  User.ensure_index [['zooniverse_user_id', 1]], :unique => true
+  User.ensure_index [['zooniverse_user_id', 1]]
   User.ensure_index [['name', 1]]
   User.ensure_index [['moderator', 1]]
   User.ensure_index [['admin', 1]]

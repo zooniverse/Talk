@@ -7,7 +7,7 @@ class CollectionsControllerTest < ActionController::TestCase
       @request    = ActionController::TestRequest.new
       @response   = ActionController::TestResponse.new
     end
-
+    
     context "#show not logged in" do
       setup do
         @collection = build_collection
@@ -15,7 +15,7 @@ class CollectionsControllerTest < ActionController::TestCase
         conversation_for @collection
         get :show, { :id => @collection.zooniverse_id }
       end
-
+      
       should respond_with :success
       should render_template :show
       
@@ -60,7 +60,7 @@ class CollectionsControllerTest < ActionController::TestCase
         standard_cas_login(@collection.user)
         get :show, { :id => @collection.zooniverse_id }
       end
-
+      
       should respond_with :success
       should render_template :show
       
@@ -71,11 +71,11 @@ class CollectionsControllerTest < ActionController::TestCase
       should "display short comment form" do
         assert_select '.short-comment-form form'
       end
-
+      
       should "display upvoting" do
         assert_select '.vote-controls span a', :text => "RECOMMEND"
       end
-
+      
       should "display reporting" do
         assert_select '.vote-controls span a', :text => "REPORT"
       end
@@ -100,7 +100,7 @@ class CollectionsControllerTest < ActionController::TestCase
       should respond_with :success
       should render_template :new
     end
-      
+    
     context "#create Collection" do
       setup do
         @asset = Factory :asset

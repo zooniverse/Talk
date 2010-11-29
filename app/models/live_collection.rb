@@ -1,21 +1,10 @@
 # A dynamic collection of Asset built by tag and created by a User
-class LiveCollection
-  include MongoMapper::Document
-  include Focus
-  include ZooniverseId
-  
+class LiveCollection < Collection
   zoo_id :prefix => "C", :sub_id => "L"
-  key :name, String, :required => true
-  key :description, String
-  
-  # tag filters to build this collection
-  key :tags, Array, :required => true
-  timestamps!
-  
-  key :user_id, ObjectId, :required => true
-  belongs_to :user
-  
   before_save :downcase_tags
+  
+  # Since we're "overriding" this association, we need to make sure mongomapper doesn't try to reload it
+  self.associations.delete "assets"
   
   # Finds assets that match the tags in the LiveCollection
   #   e.g. live_collection.assets(:page => 1, :per_page => 5)

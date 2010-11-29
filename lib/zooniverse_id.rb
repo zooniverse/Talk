@@ -2,7 +2,13 @@
 module ZooniverseId
   # Extends a class with automatic zoo id generation
   def self.included(base)
-    base.cattr_accessor :zoo_id_options
+    base.class_eval do
+      class << self
+        # This must be set as a class instance variable since we're using STI
+        attr_accessor :zoo_id_options
+      end
+    end
+    
     base.extend ClassMethods
     base.send :include, InstanceMethods
   end
