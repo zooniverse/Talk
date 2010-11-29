@@ -17,6 +17,21 @@ class LiveCollection < Collection
     LiveCollection.limit(limit).sort(:created_at.desc).all
   end
   
+  # Freezes this live collection as a static collection
+  def convert_to_static!
+    self.asset_ids = assets(:per_page => 0).map(&:_id)
+    self.tags = self.keywords
+    self.zooniverse_id = nil
+    self.destroy
+    
+    new_self = Collection.create(self.to_mongo)
+    new_self.set_focus
+    Discussion.collection.update({ :_id => self.conversation_id }, { :$set => { :subject => new_self.zooniverse_id } })
+    Comment.collection.update({ :focus_id => self._id }, { :$set => { :focus_type => "Collection" } })
+    Tagging.collection.update({ :focus_id => self._id }, { :$set => { :focus_type => "Collection" } })
+    new_self
+  end
+  
   def downcase_tags
     self.tags = self.tags.map(&:downcase)
   end
