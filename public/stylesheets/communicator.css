@@ -270,6 +270,15 @@ h1.asset-name {
 .message-reply-form img{ float: left;}
 .message-reply-form .inner{ margin-left: 62px;}
 
+/* Collection Discussion Assets */
+.discussed.collection-info {
+  width: 215px !important;
+  float: none !important;
+}
+.discussed.col {
+  width: 215px !important;
+}
+
 /* Collection Assets */
 .asset-large {
   float: left;

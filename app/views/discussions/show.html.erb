@@ -18,9 +18,21 @@
         <%- if @discussion.collection? || @discussion.live_collection? %>
           <%- unless @discussion.focus.assets.empty? %>
             <%= image_tag @discussion.focus.assets.first.location, :class => "collection-large", :id => "asset-image", :height => 215, :width => 215 %>
-            <% @discussion.focus.assets.each do |item| %>
-              <%= link_to image_tag(item.thumbnail_location, :class => "collection-thumbnail", :height => 51, :width => 51), object_path(item.zooniverse_id) %>
-            <% end -%>
+            
+            <div class="discussed collection-info">
+              <div class="container">
+                <%- collected = @discussion.focus.is_a?(LiveCollection) ? @discussion.focus.assets(:per_page => 0) : @discussion.focus.assets %>
+                <%- collected.in_groups_of(12).each do |group| %>
+                  <div class="discussed col">
+                    <%- group.reject(&:nil?).each do |item| %>
+                      <%= link_to image_tag(item.thumbnail_location, :class => "collection-thumbnail", :height => 51, :width => 51), object_path(item.zooniverse_id) %>
+                    <% end -%>
+                  </div>
+                <% end -%>
+              </div>
+              
+              <div class="nav"></div>
+            </div>
           <%- else -%>
             <%= t 'discussion.meta.emptycollection' %>
           <% end -%>
@@ -85,6 +97,7 @@
 <script type="text/javascript" charset="utf-8">
   if(<%= @discussion.collection? %>) {
     $(document).ready(function() {
+      OCT.paginated_collection.init();
       OCT.collection_hover.init();
     });
   }
