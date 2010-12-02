@@ -42,15 +42,10 @@ class Collection
     args = args.collect{ |arg| arg.split }.flatten
     return [] if args.blank?
     
-    static = Collection.where(:tags.all => args).paginate(:page => opts[:page], :per_page => opts[:per_page] / 2)
-    live = LiveCollection.where(:tags.all => args).paginate(:page => opts[:page], :per_page => opts[:per_page] / 2)
-    combined = static | live
-    
-    %w(total_pages total_entries).each do |ivar|
-      combined.instance_variable_set("@#{ivar}", static.send(ivar) + live.send(ivar))
-      combined.define_singleton_method(ivar){ instance_variable_get "@#{ivar}" }
-    end
-    
-    combined
+    Collection.where(:tags.all => args).paginate(:page => opts[:page], :per_page => opts[:per_page])
+  end
+  
+  def asset_count
+    asset_ids.length
   end
 end

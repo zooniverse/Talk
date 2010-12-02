@@ -9,8 +9,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @per_page = 10
     @comment_page = @discussion_page = 1
-    @collections = Collection.all(:user_id => @user.id) + LiveCollection.all(:user_id => @user.id)
-    @collections = @collections.sort{ |a,b| b.created_at <=> a.created_at }
+    @collections = Collection.sort(:created_at.desc).all(:user_id => @user.id)
     @comments = @user.comments.paginate(:page => 1, :per_page => @per_page)
     @discussions = Discussion.where(:started_by_id => @user.id).sort(:popularity.desc).paginate(:page => 0, :per_page => @per_page)
   end
