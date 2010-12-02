@@ -94,9 +94,9 @@ $.fn.keywordHighlight = function(options) {
       var text = $this.html();
       var result = text.replace(/(<\s?a[^>]*>[^<]*)#([^<]*<\s?\/\s?a\s?>)/g, '$1$2')
       result = result.replace(/#([-\w\d]{3,40})/g, '<a title="Keyword $1" class="keyword" href="/search?search=keywords%3A$1">#$1</a>');
-      result = result.replace(/[^\/](AMZ\w{7})/g, '<a title="Object $1" class="keyword" href="/objects/$1">$1</a>');
-      result = result.replace(/[^\/](CMZ\w{7})/g, '<a title="Collection $1" class="keyword" href="/collections/$1">$1</a>');
-      result = result.replace(/[^\/](DMZ\w{7})/g, '<a title="Discussion $1" class="keyword" href="/discussions/$1">$1</a>');
+      result = result.replace(/(AMZ\w{7})/g, '<a title="Object $1" class="keyword" href="/objects/$1">$1</a>');
+      result = result.replace(/(CMZ\w{7})/g, '<a title="Collection $1" class="keyword" href="/collections/$1">$1</a>');
+      result = result.replace(/(DMZ\w{7})/g, '<a title="Discussion $1" class="keyword" href="/discussions/$1">$1</a>');
       $this.html(result);
       return $this;
   });
