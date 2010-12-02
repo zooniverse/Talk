@@ -20,7 +20,7 @@ class CollectionsControllerTest < ActionController::TestCase
       should render_template :show
       
       should "Display the collection name" do
-        assert_select 'h1.collection-title', :text => /.*#{ @collection.name}.*#{ @collection.user.name }.*/
+        assert_select 'h1.collection-title', :text => /.*#{ @collection.name}.*#{ @collection.user.name }.*/m
       end
       
       should "display discussions list" do
@@ -39,7 +39,7 @@ class CollectionsControllerTest < ActionController::TestCase
       end
       
       should "display collection assets" do
-        assert_select ".collection-viewer > a", @collection.assets.length
+        assert_select ".collection-asset-container .col > a", @collection.assets.length
       end
       
       should "display login" do
@@ -133,7 +133,7 @@ class CollectionsControllerTest < ActionController::TestCase
         
         options = {
           :collection_kind => {
-            :id => "Live Collection"
+            :id => "Keyword Set"
           },
           :keyword => {
             1 => 'tag1',

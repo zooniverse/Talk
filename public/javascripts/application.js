@@ -16,17 +16,17 @@ OCT.tabs = {
   }
 };
 
-
-OCT.collection = {
-  large          : '.collection-large',
-  thumbnail      : '.collection-thumbnail',
-
-  init: function () {
-    $(OCT.collection.thumbnail).mouseover(function() {
-      $(OCT.collection.large).attr("src", $(this).attr("src"));
+OCT.collection_hover = {
+  init: function() {
+    $('.collection-thumbnail').mouseover(function() {
+      $('.collection-large').attr("src", $(this).attr("src"));
     });
-    
-    OCT.collection.list();
+  }
+};
+
+OCT.paginated_collection = {
+  init: function () {
+    OCT.paginated_collection.list();
   },
   
   list: function() {
@@ -61,7 +61,7 @@ OCT.collection = {
         return false;
       });
       
-      OCT.collection.keybind();
+      OCT.paginated_collection.keybind();
     }
   },
   
@@ -72,14 +72,14 @@ OCT.collection = {
       if (e.keyCode == 39 || e.which == 39) {
         var current = parseInt($(".collection-info .nav a.current").attr("id").split("-")[1]);
         var next = current + 1;
-        OCT.collection.page(next);
+        OCT.paginated_collection.page(next);
       }
       
       // Prev
       if (e.keyCode == 37 || e.which == 37) {
         var current = parseInt($(".collection-info .nav a.current").attr("id").split("-")[1]);
         var previous = current - 1;
-        OCT.collection.page(previous);
+        OCT.paginated_collection.page(previous);
       }
     });
   },
@@ -336,7 +336,7 @@ OCT.menu = {
 
 $(document).ready(function(){
     // OCT.tabs.init();
-    // OCT.collection.init();
+    // OCT.paginated_collection.init();
     OCT.hover.init();
     OCT.loading.init();
     // OCT.textcount.init();
@@ -396,38 +396,94 @@ function reply_to(comment_id, author){
 }
 
 // Collection/live collection form JS
-
-function check_collection_type(){
-  if ($('#collection_kind_id').val() == "Live Collection"){
-    $('#live_collection_form').show();
-  } else if ($('#collection_kind_id').val() == "Collection"){
-    $('#live_collection_form').hide();
-  }
+function update_keyword_ands() {
+  $('.keyword-filter').each(function(i, elem) {
+    if(i < 1) {
+      $(elem).children('.keyword-and').remove();
+    }
+    else if(!$(elem).children('.keyword-and')[0]) {
+      $(elem).children('p').before('<span class="keyword-and">AND</span>');
+    }
+  });
 }
 
-function remove_keyword_field(field_id){
-  $('#'+field_id + '_wrapper').remove();
+function check_collection_type(){
+  var prefix = $('.new_collection')[0] == undefined ? 'Edit' : 'New';
+  var kind = $('#collection_kind_id').val();
+  
+  $('.collection-title').html(prefix + ' ' + kind);
+  $('#name-label').html('Name of ' + kind.toLowerCase());
+  $('#description-label').html('Description of ' + kind.toLowerCase());
+  
+  if(kind == "Keyword Set") {
+    $('#live_collection_form').show();
+    update_live_collection_results();
+  }
+  else {
+    $('#live_collection_form').hide();
+  }
+  
+  update_keyword_ands()
+}
+
+function remove_keyword_field(field_id) {
+  if(keyword_count() > 1) {
+    $('#' + field_id).remove();
+    update_live_collection_results();
+  }
+  
+  $('.keyword-filter').each(function(i, elem) {
+    var counter = i + 1;
+    $(elem).children('input').attr({ id: 'keyword_' + counter, name: 'keyword[' + counter + ']' });
+    $(elem).attr('id', 'keyword_' + counter + '_wrapper');
+    
+    var remove_link = $(elem).children('a:last');
+    remove_link.unbind();
+    remove_link.bind('click', function() {
+      remove_keyword_field('keyword_' + counter + '_wrapper');
+      return false;
+    });
+  });
+  
+  update_keyword_ands()
 }
 
 function add_keyword_field(){
-  var last = get_keyword_count();
+  var last = keyword_count();
   count = last + 1;
-  $("#keyword_" + last + "_wrapper").after("<div id='keyword_"+count+"_wrapper'><input class='keyword' id='keyword_"+ count + "' name='keyword["+count+"]' size='30' type='text' value='Add a keyword' onfocus='clear_this(this);' onblur='replace_this(this);' /> <a href='#' onclick='add_keyword_field();'><img alt='Add' height='13' src='/images/icons/add.png' width='13' /></a>" + " <a href='#' onclick=\"remove_keyword_field('keyword_"+count+"');\"><img alt='Cancel' height='13' src='/images/icons/cancel.png' width='13' /></div>");
+  var keyword_field = '<div id="keyword_' + count + '_wrapper" class="keyword-filter">' +
+                        '<p id="keyword-label" class="label">Include objects with keyword</p>' +
+                        '<input class="keyword" id="keyword_' + count + '" name="keyword[' + count + ']" size="30" type="text" />' +
+                        '&nbsp;<a href="#" onclick="add_keyword_field(); return false;" title="Add another keyword">' +
+                          '<img width="13" height="13" src="/images/icons/add.png" alt="Add" />' +
+                        '</a>' +
+                        '&nbsp;<a href="#" title="Remove this keyword">' +
+                          '<img width="13" height="13" src="/images/icons/cancel.png" alt="Cancel" />' +
+                        '</a>' +
+                      '</div>';
+                      
+  $('#keyword_' + last + '_wrapper').after(keyword_field);
+  $('#keyword_' + last + '_wrapper').children('a:last').bind('click', function() {
+    remove_keyword_field('keyword_' + count + '_wrapper');
+    return false;
+  });
+  
+  update_keyword_ands()
 }
 
-function get_keyword_count(){
+function keyword_count() {
   return $('.keyword').length;
 }
 
-function update_live_collection_results(){
+function update_live_collection_results() {
   var keywords = new Array();
-  $('.keyword').each(function(){
+  $('.keyword').each(function() {
     keywords.push($(this).val());
   });
   
   $.ajax({
      type: "POST",
      url: "/search/live_collection_results",
-     data: "keywords="+keywords.join(',')
+     data: "keywords=" + keywords.join(',')
    });
 }

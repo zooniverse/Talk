@@ -263,7 +263,23 @@ h1.asset-name {margin-bottom: 20px;}
 .message-reply-form img{ float: left;}
 .message-reply-form .inner{ margin-left: 62px;}
 
-/* Collection */
+/* Collection Assets */
+.asset-large {
+  float: left;
+  width: 279px;
+  height: 279px;
+}
+
+.collection-asset-container {
+  margin-left: 12px;
+  float: left !important;
+}
+
+.collection-asset-nav {
+  margin-left: 12px !important;
+}
+
+/* Asset Collections */
 #asset-as-focus img {
 	border: solid #000 1px;
 }

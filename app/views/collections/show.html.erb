@@ -4,7 +4,9 @@
 
 <div class="upper-row">
   <h1 class="collection-title">
-    COLLECTION <em>&#8220;<%= @collection.name %>&#8221;</em> by <%= link_to @collection.user.name, user_path(@collection.user) %>
+    <%= @collection.is_a?(LiveCollection) ? "Keyword Set" : "Collection" %>
+    <em>&#8220;<%= @collection.name %>&#8221;</em>
+    by <%= link_to @collection.user.name, user_path(@collection.user) %>
   </h1>
   
   <div class="rhc">
@@ -13,16 +15,29 @@
     <%= render :partial => "discussions/mentions" %>
   </div>
   
-  <div class="lhc">
+  <div class="lhc" style="width: 650px;">
     <p class="collection-description"><%= @collection.description %></p>
     <div class="collection-viewer rounded-panel">
       <%- unless @collection.assets.empty? %>
-        <%- @collection.assets.each do |item| %>
-          <%= link_to image_tag(item.location, :class => "collection-thumbnail", :width => 90, :height => 90), object_path(item.zooniverse_id) %>
-        <% end -%>
+        <%= image_tag(@collection.assets.first.location, :class => "collection-large asset-large", :width => 200, :height => 200) %>
+        
+        <div class="collection-info">
+          <div class="container collection-asset-container">
+            <%- @collection.assets.in_groups_of(9).each do |group| %>
+              <div class="col">
+                <%- group.reject(&:nil?).each do |item| %>
+                  <%= link_to image_tag(item.location, :class => "collection-thumbnail", :width => 90, :height => 90), object_path(item.zooniverse_id) %>
+                <% end -%>
+              </div>
+            <% end -%>
+          </div>
+          
+          <div class="nav collection-asset-nav"></div>
+        </div>
       <%- else -%>
         EMPTY COLLECTION
       <% end -%>
+      <div class="push" />
       
       <%- if @collection.user == current_zooniverse_user %>
         <div class="asset-actions">
@@ -48,3 +63,10 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    OCT.paginated_collection.init();
+    OCT.collection_hover.init();
+  });
+</script>
