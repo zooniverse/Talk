@@ -344,7 +344,6 @@ $(document).ready(function(){
     // OCT.home.init();
     OCT.menu.init();
     $('.highlight_annotations').highlightAnnotations();
-    $(".highlight_keywords").keywordHighlight();
     $(".highlight_keywords .body").keywordHighlight();
 });
 
