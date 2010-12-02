@@ -2,12 +2,12 @@
 <div class="collect-dialog" title="<%= "#{ t 'collection.collect' } #{ t 'asset.name' }" %>" style="display: none;">
   <p><%= t 'collection.choose' %></p>
   <ul>
-    <li>
+    <li class="new-collection">
       <%= link_to "#{ image_tag('icons/add.png') } #{ t 'collection.startnewcol' }".html_safe, new_collection_url(:object_id => @asset.zooniverse_id) %>
     </li>
     <%- current_zooniverse_user.collections.each do |collection| %>
       <li>
-        <%= link_to collection.name,
+        <%= link_to truncate(collection.name, :length => 35, :separator => ' '),
           { :controller => :collections, :action => :add, :format => :js, :id => collection.zooniverse_id, :asset_id => @asset.id },
           { :remote => true, :method => :post, :class => "collect-link" }
         %>

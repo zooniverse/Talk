@@ -162,8 +162,15 @@ OCT.textcount = {
 
 OCT.notice = {
   init: function () {
-    $('.notice').bind("click", function(){ $(this).hide()});    
+    $('.notice').bind("click", function() {
+      $(this).hide();
+    });
     setTimeout("$('.notice').fadeOut(1000);", 3000);
+    
+    $('.alert').bind("click", function() {
+      $(this).hide();
+    });
+    setTimeout("$('.alert').fadeOut(1000);", 5000);
   }
 };
 
