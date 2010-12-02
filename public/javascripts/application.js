@@ -108,6 +108,18 @@ OCT.loading = {
   }
 }
 
+OCT.button_press = {
+  init: function() {
+    $('.button').live('mousedown', function() {
+      $(this).addClass('pressed');
+      return false;
+    });
+    
+    $('.button').live('mouseup, mouseout', function() {
+      $(this).removeClass('pressed');
+    });
+  }
+};
 
 OCT.hover = {
     // container : '.short-comment, .comment, .collection-viewer',
@@ -131,12 +143,6 @@ OCT.hover = {
         $('.name.toggle a', this).css('color', '#990000');
       }, function() {
         $('.name.toggle a', this).css('color', '#999999');
-      });
-      
-      $('#asset-as-focus .rounded-panel').hover(function(){
-        $('.asset-actions', this).css('visibility', 'visible');
-      }, function() {
-        $('.asset-actions', this).css('visibility', 'hidden');        
       });
     }
 };
@@ -343,6 +349,7 @@ $(document).ready(function(){
     OCT.notice.init();    
     // OCT.home.init();
     OCT.menu.init();
+    OCT.button_press.init();
     $('.highlight_annotations').highlightAnnotations();
     $(".highlight_keywords .body").keywordHighlight();
 });

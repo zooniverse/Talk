@@ -110,12 +110,19 @@
 }
 
 /* Object */
-h1.asset-name {margin-bottom: 20px;}
-.asset-actions {height: 30px;}
+h1.asset-name {
+  margin-bottom: 20px;
+}
+
+.asset-actions {
+  height: 30px;
+}
+
 .asset-actions li {
   float: left;
   margin-right: 10px;
 }
+
 .asset-meta {/* display:none; */}
 
 .collect-asset {
@@ -585,7 +592,6 @@ h1.collection-title {
 .short-comment-form textarea {
   width: 525px;
   font-size: 1.3em;
-  color: #999;
   padding: 9px 8px;
 }
 
@@ -1294,12 +1300,13 @@ a.button span {
   padding: 3px 0px 3px 15px;
 }
 
-a.button:hover {
+
+a.button.pressed {
   background-position: 100% 100%;
   color:#000;
 }
 
-a.button:hover span{
+a.button.pressed span{
   background-position: 0% 100%;
   padding: 4px 0px 2px 15px;
 }
