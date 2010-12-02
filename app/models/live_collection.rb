@@ -9,7 +9,7 @@ class LiveCollection < Collection
   # Finds assets that match the tags in the LiveCollection
   #   e.g. live_collection.assets(:page => 1, :per_page => 5)
   def assets(*args)
-    Asset.with_keywords(self.tags, args.extract_options!.update(:per_page => 0) ) # this is temporary.  pagination will be in soon
+    Asset.with_keywords(self.tags, args.extract_options!)
   end
   
   # Finds the most recently created LiveCollections
