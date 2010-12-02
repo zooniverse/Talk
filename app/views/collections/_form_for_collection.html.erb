@@ -1,51 +1,63 @@
-<%- if @collection.new_record? %>
-  <%= form_for @collection do |f| %>
-    <%= hidden_field_tag('collection[asset_ids]', @asset.id) if @asset %>
+<%- form_class = (action == :new) ? "new_collection" : "edit_collection" %>
+<%- form_action = (action == :new) ? :create : :update %>
+
+<%= form_for @collection, :as => :collection, :url => { :controller => :collections, :action => form_action }, :html => { :class => form_class } do |f| %>
+  <%= hidden_field_tag('collection[asset_ids]', @asset.id) if @asset %>
+  <span>
+    <p id="name-label" class="label">Name of collection</p>
+    <%= f.text_field :name, :size => 30 %>
+  </span>
+  <span>
+    <p id="description-label" class="label">Description of collection</p>
+    <%= f.text_field :description, :size => 60 %>
+  </span>
+  <%- if @collection.new_record? && @kind.nil? %>
     <span>
-      <%= f.text_field :name, :size => 30,
-          :onfocus => "clear_input('collection_name');",
-          :onblur => "replace_input('collection_name', 'Name of new collection');",
-          :value => "Name of new collection" %>
+      <p id="kind-label" class="label">Collection type</p>
+      <%= select "collection_kind", "id", options_for_select(['Collection', 'Keyword Set'], 'Collection'), {}, { :onchange => 'check_collection_type();' } %>
     </span>
-    <br /><br />
-    <span>
-      <%= f.text_field :description, :size => 60,
-          :onfocus => "clear_input('collection_description');",
-          :onblur => "replace_input('collection_description', 'Brief description of collection');",
-          :value => "Brief description of collection" %>
-    </span>
-    <br /><br />
-    <span>
-      <%= select "collection_kind", "id", options_for_select(['Collection', 'Live Collection'], 'Collection'), {}, { :onchange => 'check_collection_type();' } %>
-    </span>
-    <br /><br />
-  
-    <div id="live_collection_form" style="display:none;">
-      <div id="keyword_1_wrapper">
-        <%= text_field "keyword", "1", :value => "Add a keyword", :class => "keyword", :onfocus => 'clear_this(this);', :onblur => 'replace_this(this);' %>
-        <%= link_to((image_tag "icons/add.png", :size => "13x13"), "#", :onclick => "add_keyword_field();" ) %>
-        <%= link_to((image_tag "icons/cancel.png", :size => "13x13"), "#", :onclick => "remove_keyword_field('keyword_1');") %>
-      </div>
-      <p><%= link_to "Preview &rarr;".html_safe, "#", :onclick => 'update_live_collection_results();' %></p>
-      <div id="live_collection_results"></div>
-      <br /><br />
-    </div>
-    
-    <%= submit_tag %>
+  <%- else -%>
+    <%= hidden_field_tag "collection_kind[id]", @kind %>
   <% end -%>
-<%- else -%>
-  <%= form_for @collection, :url => collection_path(@collection.zooniverse_id) do |f| %>
-    <span><%= f.text_field :name, :size => 30 %></span>
-    <br /><br />
-    <span><%= f.text_field :description, :size => 60 %></span>
-    <br /><br />
-    <span><%= select("collection_kind", "id", "<option>Collection</option>") %></span>
-    <br /><br />
   
+  <%- if @kind.nil? || @kind == "Keyword Set" %>
+    <div id="live_collection_form" style="display:none;">
+      <%- if @keywords && @keywords.any? %>
+        <%= render :partial => "keyword_filter", :collection => @keywords %>
+      <%- else -%>
+        <%= render :partial => "keyword_filter", :locals => { :keyword_filter_counter => 0 } %>
+      <% end -%>
+      
+      <p><%= link_to "Preview &rarr;".html_safe, "#", :onclick => 'update_live_collection_results(); return false;' %></p>
+      <div id="live_collection_results"></div>
+    </div>
+  <% end -%>
+  
+  <%- unless @collection.new_record? || @kind == "Keyword Set" %>
     <div id="collection-assets">
       <%= render :partial => "assets" %>
     </div>
-    
-    <%= submit_tag %>
   <% end -%>
+  
+  <%= hidden_field_tag "object_id", @asset.zooniverse_id unless @asset.nil? %>
+  <%= hidden_field_tag "keywords", @keywords unless @keywords.nil? %>
+  
+  <%= submit_tag %>
 <% end -%>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    OCT.notice.init();
+    
+    if(<%= @kind != "Collection" %>) {
+      check_collection_type();
+      
+      $('.keyword-filter').each(function(count, elem) {
+        $(elem).children('a:last').bind('click', function() {
+          remove_keyword_field('keyword_' + (count + 1) + '_wrapper');
+          return false;
+        });
+      });
+    }
+  });
+</script>

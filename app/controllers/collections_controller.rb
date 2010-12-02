@@ -19,15 +19,21 @@ class CollectionsController < ApplicationController
   
   def new
     @collection = Collection.new
-    @asset = Asset.find_by_zooniverse_id(params[:object_id]) if params[:object_id]
+    set_options
   end
   
   def edit
     find_collection
+    if @collection && @collection._type == "Collection"
+      @kind = "Collection"
+    elsif @collection && @collection._type == "LiveCollection"
+      @kind = "Keyword Set"
+      @keywords = @collection.tags
+    end
   end
   
   def create
-    if params[:collection_kind][:id] == "Live Collection"
+    if params[:collection_kind][:id] == "Keyword Set"
       @collection = LiveCollection.new(params[:collection])
       @collection.tags = params[:keyword].values
     elsif params[:collection_kind][:id] == "Collection"
@@ -40,7 +46,9 @@ class CollectionsController < ApplicationController
       flash[:notice] = I18n.t 'controllers.collections.flash_create'
       redirect_to collection_path(@collection.zooniverse_id)
     else
-      render :action => 'edit'
+      set_options
+      flash_model_errors_on(@collection)
+      render :action => 'new'
     end
   end
   
@@ -55,6 +63,8 @@ class CollectionsController < ApplicationController
       flash[:notice] = I18n.t 'controllers.collections.flash_updated'
       redirect_to collection_path(@collection.zooniverse_id)
     else
+      set_options
+      flash_model_errors_on(@collection)
       render :action => 'edit'
     end
   end
@@ -77,11 +87,11 @@ class CollectionsController < ApplicationController
     @asset = Asset.find(params[:asset_id])
     
     unless current_zooniverse_user == @collection.user
-      flash[:notice] = I18n.t 'controllers.collections.not_yours'
+      flash[:alert] = I18n.t 'controllers.collections.not_yours'
     end
     
     if @collection.asset_ids.include? @asset.id
-      flash[:notice] = I18n.t 'controllers.collections.already_added'
+      flash[:alert] = I18n.t 'controllers.collections.already_added'
     else
       @collection.asset_ids << @asset.id
       
@@ -115,6 +125,21 @@ class CollectionsController < ApplicationController
       @focus = @collection = Collection.find_by_zooniverse_id(params[:id])
     else
       @focus = @collection = LiveCollection.find_by_zooniverse_id(params[:id])
+    end
+  end
+  
+  def set_options
+    if params[:object_id]
+      @asset = Asset.find_by_zooniverse_id(params[:object_id])
+      @kind = "Collection"
+    elsif params[:keywords]
+      @keywords = params[:keywords].is_a?(Array) ? params[:keywords] : params[:keywords].split
+      @kind = "Keyword Set"
+    elsif @collection && @collection.zooniverse_id
+      @kind = (@collection.zooniverse_id =~ /^CMZS/) ? "Collection" : "Keyword Set"
+    elsif params[:collection_kind]
+      @kind = params[:collection_kind][:id]
+      @keywords = params[:keyword].values if params[:keyword].is_a?(Hash)
     end
   end
 end

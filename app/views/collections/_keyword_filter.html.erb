@@ -1,7 +1,7 @@
-<p>Live collection keywords:</p>
-<span>
-  <%= f.text_field :tags, :size => 60,
-      :onfocus => "clear_input('collection_tags');",
-      :onblur => "replace_input('collection_tags', 'e.g. big, purple, truck');",
-      :value => "e.g. big, purple, truck" %>
-</span>
+<%- index = keyword_filter_counter + 1 %>
+<div id="keyword_<%= index %>_wrapper" class="keyword-filter">
+  <p class="label">Include objects with keyword</p>
+  <%= text_field "keyword", index, :class => "keyword", :value => keyword_filter || "" %>
+  <%= link_to((image_tag "icons/add.png", :size => "13x13"), "#", :onclick => "add_keyword_field(); return false;", :title => "Add another keyword" ) %>
+  <%= link_to((image_tag "icons/cancel.png", :size => "13x13"), "#", :title => "Remove this keyword") %>
+</div>

@@ -111,6 +111,12 @@ class ApplicationController < ActionController::Base
   end
   helper_method :cas_login
   
+  def flash_model_errors_on(doc)
+    flash[:alert] = doc.errors.full_messages.join("\n") if doc.errors.respond_to?(:full_messages) && doc.errors.any?
+  end
+  
+  helper_method :flash_model_errors_on
+  
   protected
   
   def zooniverse_user

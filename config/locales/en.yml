@@ -82,9 +82,9 @@ en:
     choose: "Choose a collection or start a new one"
     name: "collection"
     collection: "Collection"
-    livecollection: "Live Collection"
+    livecollection: "Keyword Set"
     startnewcol: "New collection"
-    startnewlivecol: "New Live Collection"
+    startnewlivecol: "New Keyword Set"
   livecollection:
     name: "collection"
   asset:

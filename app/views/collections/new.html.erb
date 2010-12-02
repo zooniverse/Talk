@@ -3,7 +3,10 @@
     <%= render :partial => "shared/zooniverse_extras" %>
   </div>
   <div class="lhc">
-    <h1 class="collection-title"><%= t 'collection.startnewcol' %></h1>
-    <%= render :partial => "form_for_collection" %>
+    <h1 class="collection-title">
+      <%= t 'collection.startnewcol' %>
+      <%= " with #{ link_to(@asset.zooniverse_id, object_path(@asset.zooniverse_id)) }".html_safe if @asset %>
+    </h1>
+    <%= render :partial => "form_for_collection", :locals => { :action => :new } %>
   </div>
 </div>

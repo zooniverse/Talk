@@ -368,9 +368,15 @@ h1.collection-title {
 	text-align: center;
 }
 
+.edit_collection #collection-assets {
+  margin-top: 5px;
+  display: block;
+  clear: both;
+}
+
 .collection-asset {
-	float:left;
-	margin-right:5px;
+  float: left;
+  margin-right: 5px;
 }
 
 /* Comments */
@@ -949,6 +955,49 @@ div.more-results {text-align: center;}
 
 .collection .film img {
   margin-right: 2px;
+}
+
+.new_collection, .edit_collection,
+.new_live_collection, .edit_live_collection {
+  margin-top: 20px;
+}
+
+.new_collection span, .edit_collection span,
+.new_live_collection span, .edit_live_collection span {
+  line-height: 3.0em;
+  display: block;
+  clear: both;
+}
+
+.new_collection p.label, .edit_collection p.label,
+.new_live_collection p.label, .edit_live_collection p.label {
+  text-align: right;
+  margin-right: 10px;
+  width: 160px;
+  float: left;
+}
+
+#live_collection_form {
+  display: block;
+  clear: both;
+}
+
+#live_collection_form .keyword-filter {
+  display: block;
+  clear: both;
+}
+
+#live_collection_form .keyword-and {
+  margin: 10px;
+  font: normal normal bold 12px/normal arial, sans-serif;
+}
+
+.new_collection input[type="submit"], .edit_collection input[type="submit"],
+.new_live_collection input[type="submit"], .edit_live_collection input[type="submit"] {
+  float: right;
+  margin: 10px 40px 0 0;
+  display: block;
+  clear: both;
 }
 
 /* Homepage: Lower Panels*/

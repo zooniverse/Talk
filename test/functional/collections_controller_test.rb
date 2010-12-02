@@ -235,7 +235,7 @@ class CollectionsControllerTest < ActionController::TestCase
       setup do
         @collection = Factory :live_collection
         standard_cas_login(@collection.user)
-        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Live Collection" }
+        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Keyword Set" }
       end
       
       should set_the_flash.to(I18n.t('controllers.collections.flash_destroyed'))

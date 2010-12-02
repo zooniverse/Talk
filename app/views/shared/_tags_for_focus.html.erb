@@ -6,7 +6,17 @@
         <%- @focus.keywords.each do |keyword| %>
           <%- klass = @focus.class.name.underscore.pluralize %>
           <%- klass = klass.sub('assets', 'objects').sub('live_collections', 'collections') %>
-          <li class="item"><%= link_to keyword, search_url(:search => "keywords: #{keyword}", :for => klass) %></li>
+          <li class="item">
+            <%= link_to keyword, search_url(:search => "keywords: #{keyword}", :for => klass) %>
+          </li>
+        <% end -%>
+        
+        <%- if @focus.is_a?(Asset) %>
+          <li class="keyword-collect">
+            <a href="<%= new_collection_path(:keywords => @focus.tags) %>" class="keyword-link button">
+              <span>Create a Keyword Set of objects like this</span>
+            </a>
+          </li>
         <% end -%>
       </ul>
       <div class="push"></div>

@@ -3,11 +3,7 @@
     <%= render :partial => "shared/zooniverse_extras" %>
   </div>
   <div class="lhc">
-    <h1 class="collection-title">Edit Collection: <%= @collection.zooniverse_id %></h1>
-    <%- if @collection.is_a? Collection %>
-      <%= render :partial => "form_for_collection", :locals => { :collection => @collection } %>
-    <%- elsif @collection.is_a? LiveCollection %>
-      <%= render :partial => "form_for_live_collection", :locals => { :collection => @collection } %>
-    <% end -%>
+    <h1 class="collection-title">Edit Collection: <%= link_to @collection.zooniverse_id, collection_path(@collection.zooniverse_id) %></h1>
+    <%= render :partial => "form_for_collection", :locals => { :collection => @collection, :action => :edit } %>
   </div>
 </div>
