@@ -40,7 +40,7 @@ OCT.paginated_collection = {
       // Create dots
       var page = 0;
       $(".collection-info .col").each(function() {
-        $('.collection-info .nav').append('<a href="#" id="p-' + page+ '></a>');
+        $('.collection-info .nav').append('<a href="#" id="p-' + page + '"></a>');
         page++;
       });
       
@@ -70,16 +70,24 @@ OCT.paginated_collection = {
       // Next
       
       if (e.keyCode == 39 || e.which == 39) {
-        var current = parseInt($(".collection-info .nav a.current").attr("id").split("-")[1]);
-        var next = current + 1;
-        OCT.paginated_collection.page(next);
+        var page_id = $(".collection-info .nav a.current").attr("id");
+        
+        if(page_id) {
+          var current = parseInt(page_id.split("-")[1]);
+          var next = current + 1;
+          OCT.paginated_collection.page(next);
+        }
       }
       
       // Prev
       if (e.keyCode == 37 || e.which == 37) {
-        var current = parseInt($(".collection-info .nav a.current").attr("id").split("-")[1]);
-        var previous = current - 1;
-        OCT.paginated_collection.page(previous);
+        var page_id = $(".collection-info .nav a.current").attr("id");
+        
+        if(page_id) {
+          var current = parseInt(page_id.split("-")[1]);
+          var previous = current - 1;
+          OCT.paginated_collection.page(previous);
+        }
       }
     });
   },
@@ -382,6 +390,21 @@ function update_keyword_ands() {
   });
 }
 
+function update_keyword_ids() {
+  $('.keyword-filter').each(function(i, elem) {
+    var counter = i + 1;
+    $(elem).children('input').attr({ id: 'keyword_' + counter, name: 'keyword[' + counter + ']' });
+    $(elem).attr('id', 'keyword_' + counter + '_wrapper');
+    
+    var remove_link = $(elem).children('a:last');
+    remove_link.unbind();
+    remove_link.bind('click', function() {
+      remove_keyword_field('keyword_' + counter + '_wrapper');
+      return false;
+    });
+  });
+}
+
 function check_collection_type(){
   var prefix = $('.new_collection')[0] == undefined ? 'Edit' : 'New';
   var kind = $('#collection_kind_id').val();
@@ -398,7 +421,7 @@ function check_collection_type(){
     $('#live_collection_form').hide();
   }
   
-  update_keyword_ands()
+  update_keyword_ands();
 }
 
 function remove_keyword_field(field_id) {
@@ -407,20 +430,8 @@ function remove_keyword_field(field_id) {
     update_live_collection_results();
   }
   
-  $('.keyword-filter').each(function(i, elem) {
-    var counter = i + 1;
-    $(elem).children('input').attr({ id: 'keyword_' + counter, name: 'keyword[' + counter + ']' });
-    $(elem).attr('id', 'keyword_' + counter + '_wrapper');
-    
-    var remove_link = $(elem).children('a:last');
-    remove_link.unbind();
-    remove_link.bind('click', function() {
-      remove_keyword_field('keyword_' + counter + '_wrapper');
-      return false;
-    });
-  });
-  
-  update_keyword_ands()
+  update_keyword_ids();
+  update_keyword_ands();
 }
 
 function add_keyword_field(){
@@ -438,12 +449,13 @@ function add_keyword_field(){
                       '</div>';
                       
   $('#keyword_' + last + '_wrapper').after(keyword_field);
+  update_keyword_ids();
   $('#keyword_' + last + '_wrapper').children('a:last').bind('click', function() {
     remove_keyword_field('keyword_' + count + '_wrapper');
     return false;
   });
   
-  update_keyword_ands()
+  update_keyword_ands();
 }
 
 function keyword_count() {
