@@ -7,6 +7,7 @@ class Discussion
   key :subject, String, :required => true
   key :focus_id, ObjectId
   key :focus_type, String
+  key :focus_base_type, String
   key :slug, String
   key :started_by_id, ObjectId
   key :featured, Boolean, :default => false

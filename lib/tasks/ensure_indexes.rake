@@ -41,7 +41,7 @@ task :ensure_indexes => :environment do
   Discussion.ensure_index [['focus_type', 1], ['created_at', -1]]
   Discussion.ensure_index [['featured', 1], ['created_at', -1]]
   Discussion.ensure_index [['created_at', -1]]
-  Discussion.ensure_index [['focus_type', 1], ['popularity', -1]]
+  Discussion.ensure_index [['focus_base_type', 1], ['popularity', -1]]
   Discussion.ensure_index [['started_by_id', 1], ['popularity', -1]]
   Discussion.ensure_index [['popularity', -1]]
   

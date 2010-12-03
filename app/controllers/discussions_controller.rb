@@ -45,6 +45,7 @@ class DiscussionsController < ApplicationController
     if @discussion.valid? && @comment.valid? && @focus
       @discussion.focus_id = @focus.id
       @discussion.focus_type = @focus.class.name
+      @discussion.focus_base_type = @focus.is_a?(LiveCollection) ? "Collection" : @focus.class.name
       @focus.discussion_ids << @discussion.id
       @focus.save
       @discussion.comments << @comment

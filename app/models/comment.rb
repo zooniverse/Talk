@@ -12,6 +12,7 @@ class Comment
   key :mentions, Array # mentioned Focii, whether these make their way up to the discussion level is TBD
   key :focus_id, ObjectId
   key :focus_type, String
+  key :focus_base_type, String
   timestamps!
   
   belongs_to :discussion
@@ -110,6 +111,7 @@ class Comment
   def set_focus
     self.focus_id = discussion.focus_id unless discussion.nil?
     self.focus_type = discussion.focus_type unless discussion.nil?
+    self.focus_base_type = discussion.focus_base_type unless discussion.nil?
   end
   
   # Adds tags from this comment to the discussion and focus

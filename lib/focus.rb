@@ -25,7 +25,7 @@ module Focus
   module ClassMethods
     # selects the most 'popular' focii
     def trending(limit = 10)
-      cursor = Discussion.where(:focus_type => self.name).sort(:popularity.desc).only(:focus_id).find_each
+      cursor = Discussion.where(:focus_base_type => self.name).sort(:popularity.desc).only(:focus_id).find_each
       focii = {}
       
       while focii.length < limit && cursor.has_next?
@@ -56,12 +56,14 @@ module Focus
       unless conversation.nil?
         conversation.focus_id = self.id
         conversation.focus_type = self.class.name
+        conversation.focus_base_type = self.is_a?(LiveCollection) ? "Collection" : self.class.name
         conversation.save if conversation.changed?
       end
       
       discussions.each do |discussion|
         discussion.focus_id = self.id
         discussion.focus_type = self.class.name
+        discussion.focus_base_type = self.is_a?(LiveCollection) ? "Collection" : self.class.name
         discussion.save if discussion.changed?
       end
     end
@@ -71,12 +73,14 @@ module Focus
       unless conversation.nil?
         conversation.focus_id = nil
         conversation.focus_type = ""
+        conversation.focus_base_type = ""
         conversation.save if conversation.changed?
       end
       
       discussions.each do |discussion|
         discussion.focus_id = nil
         discussion.focus_type = ""
+        discussion.focus_base_type = ""
         discussion.save if discussion.changed?
       end
     end
