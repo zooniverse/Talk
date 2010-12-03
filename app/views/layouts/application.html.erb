@@ -14,6 +14,7 @@
     <%= javascript_include_tag 'application', 'rails' %>
     <%= yield :page_includes %>
     <%= csrf_meta_tag %>
+    <%- unread = current_zooniverse_user.messages.count(:unread => true) if current_zooniverse_user %>
   </head>
   <body>
     <div class="bar">
@@ -33,6 +34,7 @@
             <li class="main_link">
               <%- if current_zooniverse_user %>
                 <%= link_to "Account", user_path(current_zooniverse_user) %>
+                <%= link_to unread, messages_path, :class => "unread-messages-count#{ " active" if unread > 0 }" %>
               <%- else -%>
                 <%= link_to "Account", cas_login %>
               <% end -%>
@@ -41,7 +43,13 @@
             <%- if current_zooniverse_user %>
               <li><%= link_to(t('sidenav.moderation'), admin_index_path) if current_zooniverse_user.privileged? %></li>
               <li><%= link_to t('sidenav.profile'), user_path(current_zooniverse_user) %></li>
-              <li><%= link_to "Messages", messages_path %></li>
+              <li>
+                <%- if unread > 0 %>
+                <strong><%= link_to pluralize(unread, "Message"), messages_path %></strong>
+                <%- else -%>
+                  <%= link_to "Messages", messages_path %>
+                <% end -%>
+              </li>
               <li><%= link_to t('sidenav.logout'), logout_path %></li>
             <%- else -%>
               <li><%= link_to t('sidenav.login'), cas_login %></li>

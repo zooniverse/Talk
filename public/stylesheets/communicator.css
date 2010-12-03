@@ -17,6 +17,22 @@
 }
 
 /* Layout */
+.unread-messages-count {
+  background-color: #7F7F7F;
+  display: inline;
+  font-size: 10px;
+  font-weight: bold;
+  margin: 0 0px 0 5px;
+  padding: 2px 5px 1px 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.unread-messages-count.active {
+  background-color: #4F8C33;
+}
+
 .lower-row {
 	padding-top: 20px;
 }

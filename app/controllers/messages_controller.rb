@@ -62,7 +62,7 @@ class MessagesController < ApplicationController
   
   private
   def get_meta
-    @unread = current_zooniverse_user.messages.select{ |message| message.unread }
+    @unread = current_zooniverse_user.messages.all(:unread => true)
     @conversations = current_zooniverse_user.messages.collect{ |message| message.sender }.uniq
   end
 end
