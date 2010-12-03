@@ -10,6 +10,7 @@ class HomeController < ApplicationController
   end
   
   def status
+    render :layout => false
   end
   
   %w(help science chat).each do |board|
