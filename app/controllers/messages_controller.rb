@@ -43,8 +43,8 @@ class MessagesController < ApplicationController
       flash[:notice] = I18n.t 'controllers.messages.flash_create'
       redirect_to messages_path
     else
-      flash[:notice] = @message.errors.errors[:base].join("\n") if @message.errors.errors.has_key?(:base)
-      render :action => "edit"
+      flash_model_errors_on(@message)
+      render :action => "new"
     end
   end
   

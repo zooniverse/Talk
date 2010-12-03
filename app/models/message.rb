@@ -12,7 +12,7 @@ class Message
   belongs_to :sender, :class_name => "User"
   belongs_to :recipient, :class_name => "User"
   
-  validate :not_blocked
+  validate :custom_validations
   
   after_create :deliver_notification
   
@@ -66,11 +66,13 @@ class Message
   
   private
   # Validation ensuring that the sender is not blocked by the recipient
-  def not_blocked
-    if self.recipient.nil?
-      self.errors.add(:base, I18n.t('models.messages.no_recipient'))
-    elsif self.recipient.blocked_list.include? self.sender.id
+  def custom_validations
+    if !self.recipient.nil? && self.recipient.blocked_list.include?(self.sender.id)
       self.errors.add(:base, I18n.t('models.messages.blocked'))
     end
+    
+    self.errors.add(:base, I18n.t('models.messages.no_recipient')) if self.recipient.nil?
+    self.errors.add(:base, "Message can't be blank") if self.body.nil? || self.body.blank?
+    self.errors.add(:base, "Message title can't be blank") if self.title.nil? || self.title.blank?
   end
 end

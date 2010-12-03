@@ -103,8 +103,8 @@ class Comment
   
   # Finds tags and mentions in the comment body
   def parse_body
-    self.tags = self.body.scan(TAG).flatten.map(&:downcase).uniq
-    self.mentions = self.body.scan(MENTION).flatten.uniq
+    self.tags = self.body.scan(TAG).flatten.map(&:downcase).uniq if self.body
+    self.mentions = self.body.scan(MENTION).flatten.uniq if self.body
   end
   
   # Sets the focus of this comment

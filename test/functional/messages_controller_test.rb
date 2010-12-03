@@ -95,8 +95,12 @@ class MessagesControllerTest < ActionController::TestCase
       end
       
       should respond_with :success
-      should render_template :edit
-      should set_the_flash.to(I18n.t('models.messages.blocked'))
+      should render_template :new
+      
+      # FIXME: Why doesn't this work here?  should set_the_flash.to(I18n.t('models.messages.blocked'))
+      should "set the flash to \"You have been blocked by this user\"" do
+        assert_select "#alert ul", I18n.t('models.messages.blocked')
+      end
     end
     
     context "#create with no recipient" do
@@ -118,8 +122,12 @@ class MessagesControllerTest < ActionController::TestCase
       end
       
       should respond_with :success
-      should render_template :edit
-      should set_the_flash.to(I18n.t('models.messages.no_recipient'))
+      should render_template :new
+      
+      # FIXME: Why doesn't this work here?  should set_the_flash.to(I18n.t('models.messages.no_recipient'))
+      should "set the flash to \"Please select a recipient\"" do
+        assert_select "#alert ul", I18n.t('models.messages.no_recipient')
+      end
     end
     
     context "#destroy for sender" do
@@ -128,7 +136,7 @@ class MessagesControllerTest < ActionController::TestCase
         standard_cas_login(@message.sender)
         post :destroy, { :id => @message.id }
       end
-
+      
       should respond_with :found
       should set_the_flash.to(I18n.t('controllers.messages.flash_destroyed'))
       
@@ -151,7 +159,7 @@ class MessagesControllerTest < ActionController::TestCase
       
       should respond_with :found
       should set_the_flash.to(I18n.t('controllers.messages.flash_destroyed'))
-
+      
       should "destroy message" do
         assert_raise(MongoMapper::DocumentNotFound) { @message.reload }
       end

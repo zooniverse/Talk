@@ -111,8 +111,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :cas_login
   
-  def flash_model_errors_on(doc)
-    flash[:alert] = doc.errors.full_messages.join("\n") if doc.errors.respond_to?(:full_messages) && doc.errors.any?
+  def flash_model_errors_on(*docs)
+    messages = []
+    docs.each do |doc|
+      messages << doc.errors.full_messages.map{ |e| "<li>#{e}</li>" }.join if doc.errors.respond_to?(:full_messages) && doc.errors.any?
+    end
+    
+    flash[:alert] = "<ul>#{ messages.join }</ul>".html_safe if messages.any?
   end
   
   helper_method :flash_model_errors_on

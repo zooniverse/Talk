@@ -54,6 +54,8 @@ class DiscussionsController < ApplicationController
       flash[:notice] = I18n.t 'controllers.discussions.flash_create'
       redirect_to discussion_url_for(@discussion)
     else
+      @comment.valid?
+      flash_model_errors_on(@discussion, @comment)
       render :action => :new
     end
   end
