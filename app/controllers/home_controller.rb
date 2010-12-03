@@ -10,7 +10,6 @@ class HomeController < ApplicationController
   end
   
   def status
-    render :text => "Online!"
   end
   
   %w(help science chat).each do |board|
