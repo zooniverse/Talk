@@ -10,7 +10,7 @@
         <%- assets.each do |asset| %>
           <%= image_tag asset.location, :width => 39, :height => 39 %>
         <% end -%>
-        <%= "<div>Empty collection</div>" if assets.empty? %>
+        <%= "<div>Empty collection</div>".html_safe if assets.empty? %>
       </div>
     </div>
   <% end -%>

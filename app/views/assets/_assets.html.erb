@@ -1,4 +1,4 @@
-<div>
+<div class="panel">
   <%- @assets.each do |asset| %>
     <div class="item">
       <%= link_to image_tag(asset.thumbnail_location, :size => "40x40"), :controller => :assets, :action => :show, :id => asset.zooniverse_id %>
