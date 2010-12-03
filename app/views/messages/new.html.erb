@@ -1,37 +1,37 @@
 <%= content_for :page_includes do %>
   <link rel="stylesheet" href="/stylesheets/jquery-ui-1.8.5.custom.css" type="text/css" media="all" />
 <% end -%>
+<%= content_for(:content_class){ "messages" } %>
 
-<%= content_for :content_class do %>messages<% end %>
-<div class="upper-row">	
-	<div class="lhc">
-	  <h1>New Message</h1>
-		<div>
-		   <%= link_to t('messages.inbox'), messages_path %>
-		  &nbsp;|&nbsp;
-		  <%= link_to t('messages.sent'), sent_messages_path %>
-		</div>
+<div class="upper-row">
+  <div class="lhc">
+    <h1>New Message</h1>
+    <div>
+      <%= link_to t('messages.inbox'), messages_path %>
+      &nbsp;|&nbsp;
+      <%= link_to t('messages.sent'), sent_messages_path %>
+    </div>
   </div>
 </div>
 
 <div class="lower_row">
 <%= form_for @message do |f| %>
-  <p>
-    <%= f.text_field :recipient_name,
-        :onfocus => 'clear_input("message_recipient_name");',
-        :onblur => 'replace_input("message_recipient_name", "Recipient\'s login or email");',
-        :value => (@recipient_name || "Recipient's name") %>
-  </p>
-  <p>
-    <%= f.text_field :title,
-        :onfocus => "clear_input('message_title');",
-        :onblur => "replace_input('message_title', 'Message title');",
-        :value => "Message title" %>
-  </p>
-  <%= f.text_area :body, :rows => 4, :cols => 61 %>
-	<p>
-  	<%= submit_tag 'Send' %>
-	</p>
+  <span>
+    <p class="label">Recipient's name</p>
+    <%= f.text_field :recipient_name, :size => 30 %>
+  </span>
+  <span>
+    <p class="label">Message title</p>
+    <%= f.text_field :title, :size => 70 %>
+  </span>
+  
+  <span>
+    <p class="label">Message</p>
+    <%= f.text_area :body, :rows => 8, :cols => 61 %>
+  </span>
+  
+  <%= submit_tag 'Send' %>
 <% end -%>
 </div>
+
 <%= render :partial => "recipient_autocompleter.js" %>

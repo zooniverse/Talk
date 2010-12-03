@@ -8,12 +8,19 @@
   <link rel="stylesheet" href="/javascripts/markitup/sets/sellers/style.css" type="text/css" media="screen" charset="utf-8">
 <% end -%>
 
-<%= form_for @discussion do |f| %>
-  <span><%= f.text_field :subject, :size => 80, :onfocus => "clear_input('discussion_subject');", :onblur => "replace_input('discussion_subject','Subject of new discussion');", :value => "Subject" %></span>
-  <br /><br />
+<%- if @focus && @focus.is_a?(Asset) %>
+  <%= image_tag @focus.location, :id => "asset-image", :class => "discussed-asset", :title => @focus.zooniverse_id %>
+  <div id="comment-annotation" style="display: none;">
+    <%= image_tag @focus.location, :id => "comment-focus" %>
+  </div>
+<% end -%>
 
+<%= form_for @discussion do |f| %>
+  <span>
+    <p class="label">Subject</p>
+    <%= f.text_field :subject, :size => 80 %>
+  </span>
   
-  <%= f.fields_for :comments do |builder| %>
   <%= f.fields_for :comments, @comment do |builder| %>
     <div class="comment-form">
       <h2>First comment</h2>
@@ -27,12 +34,5 @@
     </div>
   <% end -%>
 <%- end %>
-
-<%- if @focus && @focus.is_a?(Asset) %>
-  <img id="asset-image" src="<%= @focus.location %>" style = "display: none;" />
-  <div id="comment-annotation" style="display: none;">
-    <%= image_tag @focus.location, :id => "comment-focus" %>
-  </div>
-<% end -%>
 
 <%= render :partial => "new.js" %>

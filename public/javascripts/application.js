@@ -168,14 +168,7 @@ OCT.textcount = {
 
 OCT.notice = {
   init: function () {
-    $('.notice').bind("click", function() {
-      $(this).hide();
-    });
     setTimeout("$('.notice').fadeOut(1000);", 3000);
-    
-    $('.alert').bind("click", function() {
-      $(this).hide();
-    });
     setTimeout("$('.alert').fadeOut(1000);", 5000);
   }
 };
@@ -362,30 +355,6 @@ function markitup_preview() {
   });
 }
 
-
-// Utility
-function clear_input(a){
-  myfield = document.getElementById(arguments[0]);
-  myfield.value = "";
-}
-
-function replace_input(a,b){
-  myfield = document.getElementById(arguments[0]);
-  if (myfield.value == "") {
-   myfield.value = arguments[1];
-  }
-}
-
-function clear_this(element){
-  element.value = "";
-}
-
-function replace_this(element){
-  if (element.value == ""){
-    element.value = "Add a keyword";
-  } 
-}
-
 /* 
  * @Reply to link helpers
  */
@@ -405,10 +374,10 @@ function reply_to(comment_id, author){
 function update_keyword_ands() {
   $('.keyword-filter').each(function(i, elem) {
     if(i < 1) {
-      $(elem).children('.keyword-and').remove();
+      $(elem).children('p:first').html('<p class="label">Include objects with keyword</p>')
     }
     else if(!$(elem).children('.keyword-and')[0]) {
-      $(elem).children('p').before('<span class="keyword-and">AND</span>');
+      $(elem).children('p:first').html('<p class="label"><strong>AND</strong> keyword</p>')
     }
   });
 }
@@ -458,7 +427,7 @@ function add_keyword_field(){
   var last = keyword_count();
   count = last + 1;
   var keyword_field = '<div id="keyword_' + count + '_wrapper" class="keyword-filter">' +
-                        '<p id="keyword-label" class="label">Include objects with keyword</p>' +
+                        '<p id="keyword-label" class="label"><strong>AND</strong> keyword</p>' +
                         '<input class="keyword" id="keyword_' + count + '" name="keyword[' + count + ']" size="30" type="text" />' +
                         '&nbsp;<a href="#" onclick="add_keyword_field(); return false;" title="Add another keyword">' +
                           '<img width="13" height="13" src="/images/icons/add.png" alt="Add" />' +

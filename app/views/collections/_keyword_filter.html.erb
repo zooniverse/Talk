@@ -1,6 +1,11 @@
 <%- index = keyword_filter_counter + 1 %>
 <div id="keyword_<%= index %>_wrapper" class="keyword-filter">
-  <p class="label">Include objects with keyword</p>
+  <%- if index > 1 %>
+    <p class="label"><strong>AND</strong> keyword</p>
+  <%- else -%>
+    <p class="label">Include objects with keyword</p>
+  <% end -%>
+  
   <%= text_field "keyword", index, :class => "keyword", :value => keyword_filter || "" %>
   <%= link_to((image_tag "icons/add.png", :size => "13x13"), "#", :onclick => "add_keyword_field(); return false;", :title => "Add another keyword" ) %>
   <%= link_to((image_tag "icons/cancel.png", :size => "13x13"), "#", :title => "Remove this keyword") %>

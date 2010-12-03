@@ -1,14 +1,15 @@
 <div class="message-reply-form">
-  <%= image_tag('interface/default_user.png', :class => "message-user", :height => 45) %>
-  <div class="inner">
-    <%= form_for Message.new do |f| %>
-      <%= f.text_field :title, :size => 55, :value => 'Subject',
-          :onfocus => "clear_input('message_title');",
-          :onblur => "replace_input('message_title', 'Subject');" %>
-      
-      <%= f.text_area :body, :rows => 10, :cols => 65, :value => "" %>
-      <%= hidden_field_tag('message[recipient_name]', @thread_with_user.name ) %>
-      <p><%= submit_tag 'Reply' %></p>
-    <% end -%>
-  </div>
+  <%= form_for Message.new do |f| %>
+    <span>
+      <p class="label">Message title</p>
+      <%= f.text_field :title, :size => 45 %>
+    </span>
+    <span>
+      <p class="label">Message</p>
+      <%= f.text_area :body, :rows => 10, :cols => 63 %>
+    </span>
+    
+    <%= hidden_field_tag('message[recipient_name]', @thread_with_user.name ) %>
+    <%= submit_tag 'Reply' %>
+  <% end -%>
 </div>

@@ -183,6 +183,13 @@ h1.asset-name {
   border-right: solid 8px #C2D9E2;
 }
 
+.discussed-asset {
+  float: right;
+  width: 150px;
+  height: 150px;
+  margin: -60px -30px -50px 0;
+}
+
 .full-width .lhc {
   width: 100%;
 }
@@ -581,7 +588,7 @@ h1.collection-title {
 
 /* Form */
 .comment-form h2 {
-  margin: 30px 0px 0;
+  margin: 10px 0 0 0;
   position: relative;
   top: 26px;
   padding: 2px;
@@ -1003,23 +1010,33 @@ div.more-results {text-align: center;}
 }
 
 .new_collection, .edit_collection,
-.new_live_collection, .edit_live_collection {
+.new_live_collection, .edit_live_collection,
+.new_discussion, .edit_discussion,
+.new_message {
   margin-top: 20px;
 }
 
 .new_collection span, .edit_collection span,
-.new_live_collection span, .edit_live_collection span {
+.new_live_collection span, .edit_live_collection span,
+.new_discussion span, .edit_discussion span,
+.new_message span {
   line-height: 3.0em;
   display: block;
   clear: both;
 }
 
 .new_collection p.label, .edit_collection p.label,
-.new_live_collection p.label, .edit_live_collection p.label {
+.new_live_collection p.label, .edit_live_collection p.label,
+.new_discussion p.label, .edit_discussion p.label,
+.new_message p.label {
   text-align: right;
   margin-right: 10px;
   width: 160px;
   float: left;
+}
+
+.new_discussion p.label, .edit_discussion p.label {
+  width: 40px;
 }
 
 #live_collection_form {
@@ -1032,18 +1049,27 @@ div.more-results {text-align: center;}
   clear: both;
 }
 
-#live_collection_form .keyword-and {
-  margin: 10px;
-  font: normal normal bold 12px/normal arial, sans-serif;
-}
-
 .new_collection input[type="submit"], .edit_collection input[type="submit"],
-.new_live_collection input[type="submit"], .edit_live_collection input[type="submit"] {
+.new_live_collection input[type="submit"], .edit_live_collection input[type="submit"],
+.new_message input[type="submit"] {
   float: right;
   margin: 10px 40px 0 0;
   display: block;
   clear: both;
 }
+
+.new_message input[type="submit"] {
+  margin-right: 200px;
+}
+
+.message-reply-form .new_message input[type="submit"] {
+  margin-right: 10px;
+}
+
+.message-reply-form .new_message p.label {
+  width: 70px;
+}
+
 
 /* Homepage: Lower Panels*/
 .home .rhc h2 {
