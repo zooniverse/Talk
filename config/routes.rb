@@ -91,6 +91,7 @@ Sellers::Application.routes.draw do
   
   root :to => "home#index"
   match "/browse" => "home#browse"
+  match "/status" => "home#status"
   
   match '/home/trending_keywords' => 'home#trending_keywords'
   %w(comments assets objects collections discussions).each do |kind|

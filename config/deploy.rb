@@ -34,13 +34,13 @@ namespace :deploy do
 end
 
 task :disable_web, :roles => :app do
-  on_rollback { delete "#{current_path}/public/maintenance.html" }
+  on_rollback { delete "#{current_path}/public/index.html" }
   maintenance = File.read("app/views/layouts/maintenance.html")
-  put maintenance, "#{current_path}/public/maintenance.html", :mode => 0644
+  put maintenance, "#{current_path}/public/index.html", :mode => 0644
 end
 
 task :enable_web, :roles => :app do
-  run "rm #{current_path}/public/maintenance.html"
+  run "rm #{current_path}/public/index.html"
 end
 
 desc "Run all tasks that need to be run before application restart"

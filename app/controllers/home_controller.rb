@@ -9,6 +9,10 @@ class HomeController < ApplicationController
   def browse
   end
   
+  def status
+    render :text => "Online!"
+  end
+  
   %w(help science chat).each do |board|
     define_method "recent_#{board}".to_sym do
       @title = board
