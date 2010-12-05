@@ -162,6 +162,17 @@ h1.asset-name {
 }
 
 /* Collection */
+.keyword-listing {
+  min-height: 20px;
+  padding: 10px 10px 10px 0px;
+  list-style: none inside url('/images/icons/small_arrows.png');
+}
+
+.keyword-listing li {
+  float: left;
+  margin-right: 15px;
+}
+
 .collection-thumbnail {cursor: pointer;}
 .lhc .collection-viewer {
   margin-top: 14px;
@@ -169,7 +180,6 @@ h1.asset-name {
 
 .collection-description{
   color: #A9A9A9;
-  width: 50%;
 }
 
 /* Boards */
