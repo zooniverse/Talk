@@ -95,7 +95,7 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-  if(<%= @discussion.collection? %>) {
+  if(<%= @discussion.collection? || @discussion.live_collection? %>) {
     $(document).ready(function() {
       OCT.paginated_collection.init();
       OCT.collection_hover.init();
