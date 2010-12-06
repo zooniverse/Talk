@@ -311,7 +311,7 @@ OCT.home = {
        
        $.ajax({
          url: '/home/' + OCT.home.mode + '_' + kind,
-         datakind: 'js',
+         dataType: 'js',
          success: function(response) {
            $('.' + kind + ' h2').html(kind.toUpperCase());
            $(elem).html(response);
