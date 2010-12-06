@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   respond_to :js, :except => [:index]
   
   def index
+    @featured = Discussion.featured.limit(5).all
   end
   
   def browse

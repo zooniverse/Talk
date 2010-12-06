@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   helper_method :markdown
   
   def get_featured_discussions
-    @featured_list = Discussion.featured.all
+    @featured_list = Discussion.featured.limit(5).all
   end
   
   helper_method :get_featured_discussions

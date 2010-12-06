@@ -1,0 +1,24 @@
+<%- if @featured && @featured.any? %>
+  <div class="featured">
+    <h2>Featured</h2>
+    <%- @featured.each do |feature| %>
+      <div class="list">
+        <%- if feature.focus_base_type == "Asset" %>
+          <div class="red ribbon"></div>
+          <%= link_to(image_tag(feature.focus.location, :width => 130, :height => 130), object_path(feature.focus.zooniverse_id)) %>
+          <div class="box_shadow"></div>
+        <%- elsif feature.focus_base_type == "Collection" %>
+          <div class="gold ribbon"></div>
+          <%= link_to(image_tag(feature.focus.assets.first.location, :width => 130, :height => 130), collection_path(feature.focus.zooniverse_id)) %>
+          <div class="box_shadow"></div>
+        <%- else -%>
+          <div class="ribbon" style="background-color: #B5D4E3;"></div>
+          <!--  It would be handy to have an icon for other featured discussions.  Anybody feeling graphically inclined?  -->
+          <%= link_to image_tag("moonzoo/interface/menu_active.png", :width => 130, :height => 130), discussion_url_for(feature) %>
+          <div class="box_shadow"></div>
+        <% end -%>
+        <p><%= link_to feature.subject, discussion_url_for(feature) %></p>
+      </div>
+    <% end -%>
+  </div>
+<% end -%>

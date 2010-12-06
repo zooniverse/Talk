@@ -927,16 +927,18 @@ div.more-results {text-align: center;}
 
 .featured {
   margin-bottom: 20px;
-  position:relative;
+}
+
+.featured .list {
+  position: relative;
 }
 
 .featured .ribbon {
-  background: #E0EBCD;
   height: 55px;
   width: 100%;
   position: absolute;
   left: 0;
-  top: 104px;
+  top: 40px;
   z-index: 100;
 }
 
@@ -947,9 +949,8 @@ div.more-results {text-align: center;}
 }
 
 .featured p {
-  top: 130px;
   display: block;
-  padding: 25px 20px 0;
+  padding: 15px 20px 0;
 }
 
 .featured .box_shadow {
@@ -1113,9 +1114,9 @@ div.more-results {text-align: center;}
   background: #e6f1f5;
   border: none;	
   border-right: solid #b5d4e3 12px;
-  padding: 8px 3px;	
-  margin: 5px 0;
-  font-size: 1.2em;	
+  padding: 8px 3px;
+  margin: 5px 0px;
+  font-size: 1.2em;
   font-family: 'Gill Sans', "Gill Sans MT", sans-serif;
   left: 0;
   height: 50px;
@@ -1125,11 +1126,11 @@ div.more-results {text-align: center;}
 .home .discussions .discussion,  .home .comments .comment {
 	color: #787e7f;
 	background: #e6f1f5;
-	border: none;	
+	border: none;
 	border-right: solid #b5d4e3 12px;
-	padding: 8px 3px;	
+	padding: 8px 3px;
 	margin-bottom: 10px;
-	font-size: 1.2em;	
+	font-size: 1.2em;
 	font-family: 'Gill Sans', "Gill Sans MT", sans-serif;
 	left: 0;
   height: 50px;
