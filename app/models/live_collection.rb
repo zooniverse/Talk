@@ -33,7 +33,7 @@ class LiveCollection < Collection
   end
   
   def downcase_tags
-    self.tags = self.tags.map(&:downcase)
+    self.tags = self.tags.map{ |tag| tag.downcase.strip }
   end
   
   def asset_count
