@@ -19,7 +19,7 @@ task :ensure_indexes => :environment do
   Collection.ensure_index [['user_id', 1], ['created_at', -1]]
   Collection.ensure_index [['asset_ids', 1], ['created_at', -1]]
   Collection.ensure_index [['tags', 1], ['created_at', -1]]
-  Collection.ensure_index [['_type', 1], ['created_at', -1]]
+  Collection.ensure_index [['_type', 1], ['user_id', 1], ['created_at', -1]]
   Collection.ensure_index [['_type', 1], ['tags', 1], ['created_at', -1]]
   Collection.ensure_index [['created_at', -1]]
   
