@@ -1,4 +1,6 @@
 <%= content_for :page_includes do %>
+  <%= javascript_include_tag "jquery.colorbox-min" %>
+  <%= stylesheet_link_tag "colorbox" %>
   <link rel="stylesheet" href="/stylesheets/jquery-ui-1.8.5.custom.css" type="text/css" media="all" />
 <% end -%>
 
@@ -15,7 +17,7 @@
         <div class="collection-info">
           <h2 class="asset-collections">COLLECTIONS WITH THIS OBJECT</h2>
           <div class="container">
-            <%- @collections.in_groups_of(4).each do |group| %>
+            <%- @collections.in_groups_of(3).each do |group| %>
               <div class="col">
                 <%- group.reject{ |c| c.nil? }.each do |collection| %>
                   <div class="collection">
@@ -23,7 +25,7 @@
                     <div class="film">
                       <%- assets = collection.is_a?(LiveCollection) ? collection.assets(:per_page => 8) : collection.asset_ids[0, 8].map{ |id| Asset.find(id) } %>
                       <%- assets.each do |asset| %>
-                        <%= image_tag(asset.location, :width => 29, :height => 29) %>
+                        <%= link_to image_tag(asset.thumbnail_location, :width => 29, :height => 29), collection_path(collection.zooniverse_id) %>
                       <% end -%>
                     </div>
                   </div>
@@ -34,7 +36,7 @@
           <div class="nav"></div>
         </div>
         
-        <%= image_tag(@asset.location, :class => "focus-main-image", :id => "asset-image", :height => 225, :width => 225) %>
+        <%= link_to image_tag(@asset.location, :class => "focus-main-image", :id => "asset-image", :width => 225, :height => 225), @asset.location, :class => 'lightbox', :title => @asset.zooniverse_id %>
         <div class="asset-meta">
           <ul>
             <li><%= @asset.coords.first.to_s %>, <%= @asset.coords.last.to_s %></li>
@@ -43,7 +45,8 @@
         
         <div class="asset-actions">
           <ul>
-            <li><%= link_to "Examine", "http://www.moonzoo.org/examine/#{ @asset.zooniverse_id }", :target => :blank %></li>
+            <li><%= link_to "View Image", "#{ @asset.location }", :target => '_blank', :class => 'lightbox' %></li>
+            <li><%= link_to "Examine", "http://www.moonzoo.org/examine/#{ @asset.zooniverse_id }", :target => "_blank" %></li>
             <%= render :partial => "collect" if current_zooniverse_user %>
           </ul>
         </div>
@@ -68,5 +71,6 @@
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
     OCT.paginated_collection.init();
+    $('.lightbox').colorbox();
   });
 </script>
