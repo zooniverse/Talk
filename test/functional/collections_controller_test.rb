@@ -291,7 +291,12 @@ class CollectionsControllerTest < ActionController::TestCase
       end
       
       should respond_with :success
-      should set_the_flash.to(I18n.t('controllers.collections.removed'))
+      
+      # should set_the_flash.to(I18n.t('controllers.collections.removed'))
+      should "set the flash to \"The object has been removed\"" do
+        assert_match /.*notice.*#{ I18n.t('controllers.collections.removed') }.*/, response.body
+      end
+      
       should "remove asset" do
         assert_does_not_contain @collection.reload.asset_ids, @asset.id
       end

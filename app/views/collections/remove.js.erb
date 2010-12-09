@@ -1,1 +1,4 @@
 $('#collection-assets').html("<%= escape_javascript(render(:partial => "assets")) %>")
+$('.wrapper').prepend("<%= escape_javascript(render(:partial => "shared/flash", :locals => { :flash => flash })) %>");
+<%- flash.clear %>
+OCT.notice.init();
