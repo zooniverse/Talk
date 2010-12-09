@@ -1,4 +1,6 @@
 <%= content_for :page_includes do %>
+  <%= javascript_include_tag 'jquery.colorbox-min' %>
+  <%= stylesheet_link_tag 'colorbox' %>
   <link rel="stylesheet" href="/stylesheets/jquery-ui-1.8.5.custom.css" type="text/css" media="all" />
 <% end -%>
 
@@ -36,6 +38,7 @@
               <div class="col">
                 <%- group.reject(&:nil?).each do |item| %>
                   <%= link_to image_tag(item.location, :class => "collection-thumbnail", :width => 90, :height => 90), object_path(item.zooniverse_id) %>
+                  <%= link_to image_tag(item.location), item.location, :rel => 'lightbox', :title => item.zooniverse_id, :style => 'display: none;' %>
                 <% end -%>
               </div>
             <% end -%>
@@ -77,5 +80,6 @@
   $(document).ready(function() {
     OCT.paginated_collection.init();
     OCT.collection_hover.init();
+    OCT.collection_lightbox.init();
   });
 </script>

@@ -69,7 +69,7 @@ class DiscussionsControllerTest < ActionController::TestCase
       should "Display the collection images" do
         assert_select ".discussion-items", :html => /src="#{@asset.location}"/
         assert_select ".collection-thumbnail", 1
-        assert_select ".container .discussed.col > a", :html => /src="#{@asset.thumbnail_location}"/
+        assert_select ".container .discussed.col > a", :html => /src="#{ @asset.location }"/
       end
     end
     

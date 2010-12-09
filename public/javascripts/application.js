@@ -20,39 +20,60 @@ OCT.collection_hover = {
   init: function() {
     $('.collection-thumbnail').mouseover(function() {
       $('.collection-large').attr("src", $(this).attr("src"));
+      $('.collection-thumbnail').removeClass('current');
+      $(this).addClass('current');
     });
   }
 };
 
+OCT.collection_lightbox = {
+  init: function() {
+    $('.collection-large').css('cursor', 'pointer')
+    $("a[rel='lightbox']").colorbox({ title: function() {
+        var url = $('.collection-thumbnail.current').parent().attr('href');
+        return '<a href="' + url + '">' + $(this).attr('title') + '</a>';
+      }
+    });
+    
+    $('.collection-large').click(function() {
+      $('.collection-thumbnail.current').parent().next().trigger('click');
+    });
+    
+    $('.collection-thumbnail:first').addClass('current');
+  }
+};
+
 OCT.paginated_collection = {
-  init: function () {
-    OCT.paginated_collection.list();
+  init: function() {
+    $(".collection-info").each(function() {
+      OCT.paginated_collection.list($(this));
+    });
   },
   
-  list: function() {
-    if($(".collection-info .col").length > 0) {
-      var new_width = $('.collection-info .col').length * $('.collection-info .col').width();
-      $('.collection-info .container').css("width", new_width + "px");
+  list: function(container) {
+    if($(".col", container).length > 0) {
+      var new_width = $('.col', container).length * $('.col', container).width();
+      $('.container', container).css("width", new_width + "px");
     }
     
-    $('.collection-info .nav').html('');
-    if($(".collection-info .col").length > 1) {
+    $('.nav', container).html('');
+    if($(".col", container).length > 1) {
       // Create dots
       var page = 0;
-      $(".collection-info .col").each(function() {
-        $('.collection-info .nav').append('<a href="#" id="p-' + page + '"></a>');
+      $(".col", container).each(function() {
+        $('.nav', container).append('<a href="#" id="p-' + page + '"></a>');
         page++;
       });
       
-      $('.collection-info .nav a').first().addClass("current");
+      $('.nav a', container).first().addClass("current");
       // Dot nav
       
-      $(".collection-info .nav a").live("click", function() {
-        $(".collection-info .nav a").removeClass("current");
+      $(".nav a", container).live("click", function() {
+        $(".nav a", container).removeClass("current");
         var dot = $(this);
-        var leftPosition = 0-(parseInt($(dot).attr("id").split("-")[1])*$(".collection-info .col").width())+"px";
+        var leftPosition = 0 - (parseInt($(dot).attr("id").split("-")[1]) * $(".col", container).width()) + "px";
         
-        $(".collection-info .container").animate({
+        $(".container", container).animate({
           left: leftPosition
         }, function() {
           $(dot).addClass("current");

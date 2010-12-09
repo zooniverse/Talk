@@ -2,6 +2,7 @@
   var focus_annotation = null;
   
   $(document).ready(function() {
+    $('.lightbox').colorbox();
     $("#discussion_comments_body").markItUp(mySettings);
     
     if($('#comment-annotation').length == 0) {

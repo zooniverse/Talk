@@ -39,7 +39,7 @@ class CollectionsControllerTest < ActionController::TestCase
       end
       
       should "display collection assets" do
-        assert_select ".collection-asset-container .col > a", @collection.assets.length
+        assert_select ".collection-asset-container .col > a", 2 * @collection.assets.length
       end
       
       should "display login" do

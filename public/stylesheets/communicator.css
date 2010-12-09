@@ -173,7 +173,10 @@ h1.asset-name {
   margin-right: 15px;
 }
 
-.collection-thumbnail {cursor: pointer;}
+.collection-thumbnail {
+  cursor: pointer;
+}
+
 .lhc .collection-viewer {
   margin-top: 14px;
 }
@@ -354,11 +357,18 @@ h1.asset-name {
 
 #asset-as-focus .collection-info {
   margin-top: -22px;
+  float: right;
+  width: 300px;
+}
+
+#asset-as-focus .col {
+  width: 300px;
 }
 
 #asset-as-focus h2.asset-collections {
   color: #999999;
   font-size: 1.3em;
+  margin: 0;
 }
 
 h1.collection-title {
@@ -367,14 +377,14 @@ h1.collection-title {
 }
 
 .collection-info {
-  width:300px;
-  float:right;
-  overflow:hidden;
-  position:relative;
+  width: 300px;
+  float: right;
+  overflow: hidden;
+  position: relative;
 }
 
 .collection-info .collection {
-  padding: 0 5px 8px 5px;
+  padding: 0px 5px;
   font-size: 0.7em;
 }
 
@@ -401,6 +411,7 @@ h1.collection-title {
   height: 15px;
   margin: 0;
   margin-left: 5px;
+  padding: 5px 0px 0px 5px;
   clear:both;
   position: relative;
   top:5px;

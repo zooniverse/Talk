@@ -1,6 +1,8 @@
 <%= content_for :page_includes do %>
   <%= javascript_include_tag "jquery.annotate" %>
+  <%= javascript_include_tag "jquery.colorbox-min" %>
   <%= stylesheet_link_tag "annotation" %>
+  <%= stylesheet_link_tag "colorbox" %>
   <link rel="stylesheet" href="/stylesheets/jquery-ui-1.8.5.custom.css" type="text/css" media="all" />
 <% end -%>
 
@@ -26,6 +28,7 @@
                   <div class="discussed col">
                     <%- group.reject(&:nil?).each do |item| %>
                       <%= link_to image_tag(item.thumbnail_location, :class => "collection-thumbnail", :height => 51, :width => 51), object_path(item.zooniverse_id) %>
+                      <%= link_to image_tag(item.location), item.location, :rel => 'lightbox', :title => item.zooniverse_id, :style => 'display: none;' %>
                     <% end -%>
                   </div>
                 <% end -%>
@@ -95,10 +98,11 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-  if(<%= @discussion.collection? || @discussion.live_collection? %>) {
-    $(document).ready(function() {
+  $(document).ready(function() {
+    if(<%= @discussion.collection? || @discussion.live_collection? %>) {
       OCT.paginated_collection.init();
       OCT.collection_hover.init();
-    });
-  }
+      OCT.collection_lightbox.init();
+    }
+  });
 </script>
