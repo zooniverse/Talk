@@ -936,6 +936,20 @@ div.more-results {text-align: center;}
   margin-bottom: 15px;
 }
 
+.home .featured .board_info {
+  position: absolute;
+  top: 50px;
+  left: 25px;
+  text-align: left;
+  z-index: 250;
+}
+
+.home .featured .board_info h2 {
+  color: #DDDDDD;
+  text-transform: none;
+  text-shadow: 1px 1px #333333;
+}
+
 .featured {
   margin-bottom: 20px;
 }
@@ -1064,6 +1078,20 @@ div.more-results {text-align: center;}
 .home .collection .title-bar a {
   color: #FFFFFF;
   text-transform: uppercase;
+}
+
+.home .collection .nav a {
+  background-color: #E5E5E5;
+  border: 1px solid #999999;
+}
+
+.home .collection .nav a:link:hover {
+  background-color: #CCCCCC;
+  border: 1px solid #777777;
+}
+
+.home .collection .nav a.current {
+  background-color: #B2B2B2;
 }
 
 .collection h2 {

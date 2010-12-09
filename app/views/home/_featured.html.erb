@@ -11,10 +11,13 @@
           <div class="gold ribbon"></div>
           <%= link_to(image_tag(feature.focus.assets.first.location, :width => 130, :height => 130), collection_path(feature.focus.zooniverse_id)) %>
           <div class="box_shadow"></div>
-        <%- else -%>
+        <%- elsif feature.focus_base_type == "Board" %>
           <div class="ribbon" style="background-color: #B5D4E3;"></div>
           <!--  It would be handy to have an icon for other featured discussions.  Anybody feeling graphically inclined?  -->
           <%= link_to image_tag("moonzoo/interface/menu_active.png", :width => 130, :height => 130), discussion_url_for(feature) %>
+          <div class="board_info">
+            <h2><%= feature.focus.title %></h2>
+          </div>
           <div class="box_shadow"></div>
         <% end -%>
         <p><%= link_to feature.subject, discussion_url_for(feature) %></p>
