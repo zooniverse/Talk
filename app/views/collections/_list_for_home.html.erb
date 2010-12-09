@@ -1,15 +1,34 @@
 <%- @collections.each do |collection| %>
   <div class="collection">
-    <div class="gold circle">
+    <div class="translucent gold circle">
       <p><%= link_to short_id_for(collection), collection_path(collection.zooniverse_id) %></p>
     </div>
-    <h2><%= link_to truncate(collection.name, :length => 30, :separator => ' '), collection_path(collection.zooniverse_id) %></h2>
+    <div class="translucent gold title-bar">
+      <p><%= link_to truncate(collection.name, :length => 25, :separator => ' '), collection_path(collection.zooniverse_id) %></p>
+    </div>
+    <div class="translucent gold stats-wrapper">
+      <div class="stat">
+        <%= "#{ pluralize collection.asset_count, 'object' }" %>
+      </div>
+    </div>
     
     <%- assets = collection.is_a?(LiveCollection) ? collection.assets(:per_page => 5) : collection.asset_ids[0, 5].map{ |id| Asset.find(id) } %>
-    <div class="film">
-      <%- assets.each do |asset| %>
-        <%= link_to image_tag(asset.location, :width => 39, :height => 39), object_path(asset.zooniverse_id) %>
-      <% end -%>
+    <div class="collection-info">
+      <div class="container">
+        <%- assets.each do |asset| %>
+          <div class="col">
+            <%= link_to image_tag(asset.location, :class => "collection-thumbnail", :width => 260, :height => 100), collection_path(collection.zooniverse_id) %>
+          </div>
+        <% end -%>
+      </div>
+      
+      <div class="nav"></div>
     </div>
   </div>
 <% end -%>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    OCT.paginated_collection.init();
+  });
+</script>

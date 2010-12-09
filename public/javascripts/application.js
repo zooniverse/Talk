@@ -82,46 +82,49 @@ OCT.paginated_collection = {
         return false;
       });
       
-      OCT.paginated_collection.keybind();
+      OCT.paginated_collection.keybind(container);
     }
   },
   
-  keybind: function() {
+  keybind: function(container) {
     $('*').keyup(function(e) {
-      // Next
+      if($('#colorbox :visible').length > 0 || document.activeElement != document.body) {
+        return;
+      }
       
+      // Next
       if (e.keyCode == 39 || e.which == 39) {
-        var page_id = $(".collection-info .nav a.current").attr("id");
+        var page_id = $(".nav a.current", container).attr("id");
         
         if(page_id) {
           var current = parseInt(page_id.split("-")[1]);
           var next = current + 1;
-          OCT.paginated_collection.page(next);
+          OCT.paginated_collection.page(next, container);
         }
       }
       
       // Prev
       if (e.keyCode == 37 || e.which == 37) {
-        var page_id = $(".collection-info .nav a.current").attr("id");
+        var page_id = $(".nav a.current", container).attr("id");
         
         if(page_id) {
           var current = parseInt(page_id.split("-")[1]);
           var previous = current - 1;
-          OCT.paginated_collection.page(previous);
+          OCT.paginated_collection.page(previous, container);
         }
       }
     });
   },
   
-  page: function(page) {
-    if (page >= 0 && page < $(".collection-info .col").length) {
-      $(".collection-info .nav a").removeClass("current");
-      var leftPosition = 0 - (page * $(".collection-info .col").width()) + "px";
+  page: function(page, container) {
+    if (page >= 0 && page < $(".col", container).length) {
+      $(".nav a", container).removeClass("current");
+      var leftPosition = 0 - (page * $(".col", container).width()) + "px";
       
-      $(".collection-info .container").animate({
+      $(".container", container).animate({
         left: leftPosition
       }, function() {
-        $("#p-" + page).addClass("current");
+        $("#p-" + page, container).addClass("current");
       });
     }
   }

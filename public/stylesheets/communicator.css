@@ -987,59 +987,100 @@ div.more-results {text-align: center;}
 .home .collection {
   background: #fff;
   float: left;
-  width: 273px !important;
-  border-right: solid 3px #dfdfdf;
-  margin: 0 0 10px 0;
-  padding: 0 0 10px 18px;
-  position:relative;
+  width: 260px !important;
+  margin: 0 0 10px 16px;
+  padding: 0 0 10px 0px;
+  position: relative;
   height: 100px;
 }
 
+.home .collection .collection-info {
+  width: 260px;
+  position: relative;
+}
+
+.home .collection .col {
+  width: 260px;
+  margin-right: 0;
+}
+
+.home .collection .nav {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  z-index: 3;
+}
+
+.home .collection .stat {
+  color: #FFFFFF;
+}
+
 .home #collections .list .collection h2 {
-  margin-left: 0;
+  margin-left: 0px;
 }
 
 .home .collection .circle {
   position: absolute;
-  top: -45px;
-  right: 0px;
+  left: 3px;
+  top: -23px;
   width: 50px;
   height: 50px;
   -webkit-border-radius: 25px;
-  -moz-border-radius: 25px;  
+  -moz-border-radius: 25px;
   border-radius: 25px;
+  z-index: 2;
 }
 
 .home .collection .circle p {
-  margin-top:18px;
+  margin-top: 18px;
 }
 
+.home .collection img {
+  z-index: 1;
+}
 
-.home .collection .statbar {
-  color: #afafaf;
-  font-size: 0.3em;
-  padding: 0px 26px 0px 0px;
+.home .collection .stats-wrapper {
+  left: 0;
+  top: 63px;
+  height: 33px;
+}
+
+.home .collection .title-bar {
   position: absolute;
-  text-align: right;
-  top: 86px;
-  width: 275px;
-  z-index: 109;
+  top: 0;
+  right: 0;
+  width: 160px;
+  height: 20px;
+  padding: 2px 5px;
+  overflow: hidden;
+  z-index: 2;
+  text-align: center;
+  
+  -moz-border-radius-bottomleft: 15px;
+  -webkit-border-bottom-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.home .collection .title-bar a {
+  color: #FFFFFF;
+  text-transform: uppercase;
 }
 
 .collection h2 {
   margin: 0 0 12px 0px;
-  font-weight:normal;
+  font-weight: normal;
   font-family: 'HelveticaNeue-Light',Helvetica, verdana, sans-serif;
 }
   
 .collection h2 a {
-  font-size: 0.8em;    
+  font-size: 0.8em;
 }
+
 .collection .large {
-	float: left;
+  float: left;
   margin-right: 0;
-  position:relative;
-  z-index:110;
+  position: relative;
+  z-index: 110;
   border-right: solid #fff 1px;
 }
 
@@ -1248,37 +1289,53 @@ div.more-results {text-align: center;}
   right: 0;
 }
 
-.home .asset .stats, .home .asset .comment_stats {
-	width: 120px;
-	display: inline;
-	position: absolute;
-	top: 73px;
-	left: 0;
-	text-align:right
+.stats-wrapper {
+  position: absolute;
+  top: 62px;
+  left: 17px;
+  width: 90px;
+  text-align: left;
+  padding: 2px;
+  z-index: 2;
+  
+  -moz-border-radius-topright: 25px;
+  -webkit-border-top-right-radius: 25px;
+  border-top-right-radius: 25px;
 }
 
-.home .asset .comment_stats {
-	top: 50px;
-	text-align: right;
+.translucent.red {
+  background: rgb(153, 0, 0);
+  background: rgba(153, 0, 0, 0.6);
 }
 
-.home .asset .comment_stats .progress {
-	width: 40px;
-	float:right;
+.translucent.gold {
+  background: rgb(164, 158, 103);
+  background: rgba(164, 158, 103, 0.6);
 }
 
-.home .asset .progress {
-	background: #dedede;
-	height: 5px;
-	width: 85px;	
-		float:right;
+.home .asset .stats {
+  position: relative;
+  width: 100%;
+  display: block;
+  text-align: left;
+  margin-left: 2px;
+  color: #FFFFFF;
 }
 
 .home .asset .circle {
-	position:absolute;
-	top: 0;
-	left: 110px;
-	margin-top:0;
+  position: absolute;
+  top: 2px;
+  left: 20px;
+  margin-top:0;
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+}
+
+.home .asset .circle p {
+  margin-top: 18px;
 }
 
 .home .comment .author {
