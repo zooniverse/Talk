@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_filter CASClient::Frameworks::Rails::Filter, :only => [:create, :markitup_parser]
+  before_filter CASClient::Frameworks::Rails::Filter, :only => [:create, :markitup_parser, :vote_up, :report]
   respond_to :html, :only => :create
   respond_to :js, :only => [:vote_up, :report, :user_owned, :preview, :browse]
   

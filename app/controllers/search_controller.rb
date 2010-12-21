@@ -1,5 +1,4 @@
 class SearchController < ApplicationController
-  before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:index]
   respond_to :html, :js
   
   def index
