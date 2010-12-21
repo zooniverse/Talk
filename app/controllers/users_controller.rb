@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :require_privileged_user, :only => [:activate, :ban]
   before_filter CASClient::Frameworks::Rails::Filter, :except => [:comments, :discussions]
+  before_filter :require_privileged_user, :only => [:activate, :ban, :watch]
   
   respond_to :js, :except => [:show]
   respond_to :html, :only => [:show]

@@ -108,14 +108,19 @@ class ActiveSupport::TestCase
   
   def build_discussions_for(focus)
     user = Factory(:user)
-    discussion = Discussion.new(:subject => "Monkey is an OIII emission", :started_by_id => user.id)
+    discussion = Discussion.new :subject => "Monkey is an OIII emission"
+    discussion.started_by_id = user.id
+    
     focus.discussions << discussion
     focus.save
     discussion.reload
     
-    @comment1 = Comment.new(:body => "blah #tag1 blah #tag2 blah #{focus.zooniverse_id} is awesome", :author => user)
-    @comment2 = Comment.new(:body => "blah #tag2 blah #tag4 blah #{focus.zooniverse_id} is awesome", :author => Factory(:user))
-    @comment3 = Comment.new(:body => "blah #tag2 blah #tag4 blah #{focus.zooniverse_id} is awesome", :author => Factory(:user))
+    @comment1 = Comment.new :body => "blah #tag1 blah #tag2 blah #{focus.zooniverse_id} is awesome"
+    @comment1.author = user
+    @comment2 = Comment.new :body => "blah #tag2 blah #tag4 blah #{focus.zooniverse_id} is awesome"
+    @comment2.author = Factory :user
+    @comment3 = Comment.new :body => "blah #tag2 blah #tag4 blah #{focus.zooniverse_id} is awesome"
+    @comment3.author = Factory :user
     
     [@comment1, @comment2, @comment3].each do |comment|
       discussion.comments << comment
@@ -128,24 +133,36 @@ class ActiveSupport::TestCase
   end
   
   def collection_for(asset)
-    @collection = Collection.create(:name => "Collection", :asset_ids => [asset.id], :user => Factory(:user))
+    @collection = Collection.new :name => "Collection", :asset_ids => [asset.id]
+    @collection.user = Factory :user
+    @collection.save
+    @collection
   end
   
   def build_collection(assets = 5)
-    collection = Collection.create(:name => "Collection", :user => Factory(:user))
+    collection = Collection.new :name => "Collection"
+    collection.user = Factory :user
+    collection.save
+    
     assets.times{ collection.assets << Factory(:asset) }
     collection
   end
   
   def build_live_collection(assets = 5)
-    collection = LiveCollection.create(:name => "LiveCollection", :user => Factory(:user), :tags => ['tag1'])
+    collection = LiveCollection.new :name => "LiveCollection"
+    collection.user = Factory :user
+    collection.tags = ['tag1']
+    collection.save
+    
     assets.times{ Factory(:asset, :tags => ['tag1']) }
     collection
   end
   
   def conversation_for(focus)
     conversation = focus.conversation
-    comment1 = Comment.new(:body => "blah #tag1 blah #tag2 blah #{focus.zooniverse_id} is awesome", :author => Factory(:user))
+    comment1 = Comment.new :body => "blah #tag1 blah #tag2 blah #{focus.zooniverse_id} is awesome"
+    comment1.author = Factory :user
+    
     conversation.comments << comment1
     conversation.reload
     conversation.save
@@ -155,11 +172,21 @@ class ActiveSupport::TestCase
   
   def board_discussions_in(board, limit=8)
     1.upto(limit) do |i|
-      discussion = Discussion.new(:subject => "Topic ##{i}", :started_by_id => Factory(:user).id, :focus_type => "Board", :focus_id => board.id)
+      discussion = Discussion.new :subject => "Topic ##{i}"
+      discussion.started_by_id = Factory(:user).id
+      discussion.focus_type = "Board"
+      discussion.focus_id = board.id
+      
       board.discussion_ids << discussion.id
       
-      discussion.comments << Comment.new(:body => "blah #tag1 blah #tag2 blah", :author => Factory(:user))
-      discussion.comments << Comment.new(:body => "blah #tag2 blah #tag4 blah", :author => Factory(:user))
+      comment1 = Comment.new :body => "blah #tag1 blah #tag2 blah"
+      comment1.author = Factory :user
+      
+      comment2 = Comment.new :body => "blah #tag2 blah #tag4 blah"
+      comment2.author = Factory :user
+      
+      discussion.comments << comment1
+      discussion.comments << comment2
       discussion.save
       board.save
     end

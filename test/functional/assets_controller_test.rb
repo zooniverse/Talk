@@ -7,7 +7,7 @@ class AssetsControllerTest < ActionController::TestCase
       @request    = ActionController::TestRequest.new
       @response   = ActionController::TestResponse.new
     end
-
+    
     context "When requesting an Asset not logged in" do
       setup do
         @asset = Factory :asset
@@ -63,7 +63,7 @@ class AssetsControllerTest < ActionController::TestCase
         
         get :show, { :id => @asset.zooniverse_id }
       end
-
+      
       should respond_with :success
       should render_template :show
       

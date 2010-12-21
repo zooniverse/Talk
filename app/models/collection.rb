@@ -3,6 +3,7 @@ class Collection
   include MongoMapper::Document
   include Focus
   include ZooniverseId
+  attr_accessible :name, :description, :asset_ids
   
   zoo_id :prefix => "C", :sub_id => "S"
   key :_type, String

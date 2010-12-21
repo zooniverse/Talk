@@ -1,6 +1,7 @@
 # A private Message between User
 class Message
   include MongoMapper::Document
+  attr_accessible :title, :body
   
   key :title, String
   key :body, String

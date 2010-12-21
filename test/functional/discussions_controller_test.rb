@@ -14,7 +14,7 @@ class DiscussionsControllerTest < ActionController::TestCase
         @discussion = Board.science.discussions.first
         get :show, { :id => @discussion.zooniverse_id }
       end
-
+      
       should respond_with :success
       should render_template :show
       
@@ -22,17 +22,17 @@ class DiscussionsControllerTest < ActionController::TestCase
         assert_select ".discussion-items", false
       end
     end
-
+    
     context "When requesting an Asset Discussion" do
       setup do
         @focus = Factory :asset
         build_focus_for @focus
         get :show, { :id => @discussion.zooniverse_id }
       end
-
+      
       should respond_with :success
       should render_template :show
-            
+      
       should "Display the asset image" do
         assert_select ".discussion-items img.focus-main-image"
       end
@@ -62,7 +62,7 @@ class DiscussionsControllerTest < ActionController::TestCase
         build_focus_for @focus
         get :show, { :id => @discussion.zooniverse_id }
       end
-
+      
       should respond_with :success
       should render_template :show
             
@@ -80,7 +80,7 @@ class DiscussionsControllerTest < ActionController::TestCase
         moderator_cas_login
         get :show, { :id => @discussion.zooniverse_id }
       end
-
+      
       should respond_with :success
       should render_template :show
       
@@ -96,7 +96,7 @@ class DiscussionsControllerTest < ActionController::TestCase
         
         get :show, { :id => @discussion.zooniverse_id }
       end
-
+      
       should respond_with :success
       
       should "not see any links to vote up own comment" do
@@ -129,7 +129,7 @@ class DiscussionsControllerTest < ActionController::TestCase
       
       should respond_with :found
       should set_the_flash.to(I18n.t('controllers.discussions.flash_create'))
-
+      
       should "redirect to asset discussion page" do
         assert_redirected_to object_discussion_path(@asset.zooniverse_id, assigns(:discussion).zooniverse_id)
       end
@@ -139,7 +139,8 @@ class DiscussionsControllerTest < ActionController::TestCase
       end
       
       should "#create comment" do
-        comment = Comment.first(:body => "Hi", :author_id => @user.id)
+        comment = Comment.first(:body => "Hi")
+        comment.author = @user
         discussion = Discussion.find(@asset.reload.discussions.first.id)
         
         assert comment
@@ -164,8 +165,7 @@ class DiscussionsControllerTest < ActionController::TestCase
             :subject => "Blah",
             :description => "blah",
             :comments => {
-              :body => "Hi",
-              :author_id => @user.id
+              :body => "Hi"
             }
           }
         }
@@ -174,7 +174,7 @@ class DiscussionsControllerTest < ActionController::TestCase
       
       should respond_with :found
       should set_the_flash.to(I18n.t('controllers.discussions.flash_create'))
-
+      
       should "redirect to board discussion page" do
         assert_redirected_to science_board_discussion_path(assigns(:discussion).zooniverse_id)
       end
@@ -188,7 +188,7 @@ class DiscussionsControllerTest < ActionController::TestCase
       end
       
       should respond_with :success
-
+      
       should "be featured" do
         assert @discussion.reload.featured
       end
@@ -197,7 +197,7 @@ class DiscussionsControllerTest < ActionController::TestCase
         setup do
           post :toggle_featured, { :id => @discussion.id, :format => :js }
         end
-
+        
         should "be unfeatured" do
           assert !@discussion.reload.featured
         end

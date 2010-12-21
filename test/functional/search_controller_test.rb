@@ -56,7 +56,9 @@ class SearchControllerTest < ActionController::TestCase
       setup do
         @asset = Factory :asset
         build_focus_for @asset
-        @asset.conversation.comments << Comment.new(:author => @comment1.author, :body => "it's #awesome")
+        comment = Comment.new :body => "it's #awesome"
+        comment.author = @comment1.author
+        @asset.conversation.comments << comment
         
         get :index, { :search => "keywords: #tag1, awesome", :for => "objects" }
       end
@@ -99,7 +101,9 @@ class SearchControllerTest < ActionController::TestCase
         @collection2 = collection_for @asset
         build_focus_for @collection
         build_focus_for @collection2
-        @collection.conversation.comments << Comment.new(:author => @comment1.author, :body => "it's #awesome")
+        comment = Comment.new :body => "it's #awesome"
+        comment.author = @comment1.author
+        @collection.conversation.comments << comment
         
         get :index, { :search => "keywords: #tag1, awesome", :for => "collections" }
       end

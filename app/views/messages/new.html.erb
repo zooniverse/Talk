@@ -18,7 +18,7 @@
 <%= form_for @message do |f| %>
   <span>
     <p class="label">Recipient's name</p>
-    <%= f.text_field :recipient_name, :size => 30 %>
+    <%= f.text_field :recipient_name, :size => 30, :value => @recipient_name %>
   </span>
   <span>
     <p class="label">Message title</p>

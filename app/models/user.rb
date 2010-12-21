@@ -1,4 +1,3 @@
-# Users can have their own set of Discussion (private messages)
 class User
   include MongoMapper::Document
   

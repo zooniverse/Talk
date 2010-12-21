@@ -98,7 +98,9 @@ class UsersControllerTest < ActionController::TestCase
       setup do
         @author = Factory :user
         20.times do |i|
-          Discussion.create(:started_by_id => @author.id, :subject => "blah")
+          discussion = Discussion.new :subject => "blah"
+          discussion.started_by_id = @author.id
+          discussion.save
         end
         
         post :discussions, { :id => @author.id, :page => 2, :format => :js }
@@ -121,7 +123,10 @@ class UsersControllerTest < ActionController::TestCase
         @author = Factory :user
         
         20.times do |i|
-          Comment.create(:author => @author, :discussion_id => @asset.conversation_id, :body => "blah")
+          comment = Comment.new :body => "blah"
+          comment.author = @author
+          comment.discussion_id = @asset.conversation_id
+          comment.save
         end
         
         post :comments, { :id => @author.id, :page => 2, :format => :js }

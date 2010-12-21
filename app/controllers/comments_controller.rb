@@ -1,13 +1,15 @@
 class CommentsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter, :only => [:create, :markitup_parser, :vote_up, :report]
   respond_to :html, :only => :create
-  respond_to :js, :only => [:vote_up, :report, :user_owned, :preview, :browse]
+  respond_to :js, :only => [:vote_up, :report, :preview, :browse]
   
   def create
     default_params :page => 1
     @discussion = Discussion.find(params[:discussion_id])
-    @discussion.comments.build(params[:comment])
-
+    comment = Comment.new(params[:comment])
+    comment.author = current_zooniverse_user
+    @discussion.comments << comment
+    
     if @discussion.save
       flash[:notice] = t 'controllers.comments.flash_create'
       redirect_to discussion_url_for(@discussion, :page => @page)
@@ -37,14 +39,17 @@ class CommentsController < ApplicationController
       @event = @comment.events.build(:user => current_zooniverse_user,
                                      :target_user => @comment.author,
                                      :title => "#{ @comment.author.name }#{ I18n.t('controllers.comments.reported') } #{ current_zooniverse_user.name }")
-
+      
       @event.save
     end
   end
   
   def markitup_parser
-    @comments = [Comment.new(:author => current_zooniverse_user, :body => params[:data] || "")]
+    comment = Comment.new(:body => params[:data] || "")
+    comment.author = current_zooniverse_user
+    @comments = [comment]
     @comments.first.update_timestamps
+    
     respond_with(@comments) do |format|
       format.js do
         render :update do |page|

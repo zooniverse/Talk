@@ -1,6 +1,7 @@
 # A Comment on a Discussion by a User
 class Comment
   include MongoMapper::Document
+  attr_accessible :response_to_id, :body
   
   key :discussion_id, ObjectId
   key :response_to_id, ObjectId

@@ -36,20 +36,18 @@ class ApplicationController < ActionController::Base
   def get_featured_discussions
     @featured_list = Discussion.featured.limit(5).all
   end
-  
   helper_method :get_featured_discussions
   
   def new_discussion_url_for(focus)
-      case focus.class.to_s
-      when "Asset"
-        new_object_discussion_path(focus.zooniverse_id)
-      when "Board"
-        new_board_discussion_path(focus.title)
-      when "Collection", "LiveCollection"
-        new_collection_discussion_path(focus.zooniverse_id)
-      end
+    case focus.class.to_s
+    when "Asset"
+      new_object_discussion_path(focus.zooniverse_id)
+    when "Board"
+      new_board_discussion_path(focus.title)
+    when "Collection", "LiveCollection"
+      new_collection_discussion_path(focus.zooniverse_id)
+    end
   end
-  
   helper_method :new_discussion_url_for
   
   def discussion_url_for(*args)
@@ -77,6 +75,7 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+  helper_method :discussion_url_for
   
   def parent_url_for(discussion)
     focus = discussion.focus
@@ -89,10 +88,7 @@ class ApplicationController < ActionController::Base
       collection_path(focus.zooniverse_id)
     end
   end
-  
   helper_method :parent_url_for
-  
-  helper_method :discussion_url_for
   
   def require_privileged_user
     unless current_zooniverse_user && (current_zooniverse_user.moderator? || current_zooniverse_user.admin?)
@@ -139,11 +135,9 @@ class ApplicationController < ActionController::Base
     
     flash[:alert] = "<ul>#{ messages.join }</ul>".html_safe if messages.any?
   end
-  
   helper_method :flash_model_errors_on
   
   protected
-  
   def zooniverse_user
     session[:cas_user]
   end
@@ -159,6 +153,7 @@ class ApplicationController < ActionController::Base
   def current_zooniverse_user
     @current_zooniverse_user ||= (User.find_by_zooniverse_user_id(zooniverse_user_id) if zooniverse_user)
   end
+  helper_method :current_zooniverse_user
   
   def check_or_create_zooniverse_user
     if zooniverse_user
@@ -178,6 +173,4 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-  
-  helper_method :current_zooniverse_user
 end

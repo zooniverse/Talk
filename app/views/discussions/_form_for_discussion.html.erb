@@ -27,7 +27,6 @@
     <div class="comment-form">
       <h2>First comment</h2>
       <%= builder.text_area :body, :rows => 6, :cols => 40, :style => "display: inline;" %>
-      <%= hidden_field_tag('discussion[comments][author_id]', current_zooniverse_user.id) %>
       <%= hidden_field_tag('discussion[focus_type]', @focus.class.name) if @focus %>
       <%= hidden_field_tag('discussion[focus_id]', @focus.id) if @focus %>
       <%= hidden_field_tag('board_id', @board) if @board %>

@@ -2,6 +2,7 @@
 class Discussion
   include MongoMapper::Document
   include ZooniverseId
+  attr_accessible :subject
   
   zoo_id :prefix => "D"
   key :subject, String, :required => true

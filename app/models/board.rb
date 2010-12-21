@@ -1,7 +1,7 @@
 # A collection of Discussion which may or may not have a Focus
 class Board
   include MongoMapper::Document
-  attr_accessor :current_page, :total_pages
+  attr_accessible :title, :description
   
   key :title, String, :required => true
   key :description, String, :required => true

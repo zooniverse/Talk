@@ -2,7 +2,7 @@ class DiscussionsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:show]
   before_filter CASClient::Frameworks::Rails::Filter, :only => [:new, :create, :toggle_featured]
   before_filter :require_privileged_user, :only => :toggle_featured
-  respond_to :js, :only => [:user_owned, :toggle_featured, :browse]
+  respond_to :js, :only => [:toggle_featured, :browse]
   
   def show
     default_params :page => 1, :per_page => 10
@@ -39,6 +39,7 @@ class DiscussionsController < ApplicationController
     find_focus
     comment_params = params[:discussion].delete :comments
     @comment = Comment.new(comment_params) if params.has_key? :discussion
+    @comment.author = current_zooniverse_user if @comment
     @discussion = Discussion.new(params[:discussion])
     @discussion.started_by_id = current_zooniverse_user.id
     

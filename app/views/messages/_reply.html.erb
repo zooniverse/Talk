@@ -2,7 +2,7 @@
   <%= form_for Message.new do |f| %>
     <span>
       <p class="label">Message title</p>
-      <%= f.text_field :title, :size => 45 %>
+      <%= f.text_field :title, :size => 45, :value => @last_title %>
     </span>
     <span>
       <p class="label">Message</p>

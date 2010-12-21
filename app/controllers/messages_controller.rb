@@ -21,6 +21,7 @@ class MessagesController < ApplicationController
       @message.mark_as_read
       @thread_with_user = @message.sender
       @messages = current_zooniverse_user.messages_with(@message.sender)
+      @last_title = @messages.any? ? @messages.last.title : ""
     end
   end
   
@@ -30,14 +31,10 @@ class MessagesController < ApplicationController
   end
   
   def create
+    @message = Message.new(params[:message])
     @recipient = User.find_by_name(params[:message][:recipient_name])
-    if @recipient.nil?
-      options = {}
-    else
-      options = { :sender_id => current_zooniverse_user.id, :recipient_id => @recipient.id }
-    end
-    
-    @message = Message.new(params[:message].merge(options))
+    @message.sender = current_zooniverse_user
+    @message.recipient = @recipient
     
     if @message.save
       flash[:notice] = I18n.t 'controllers.messages.flash_create'
