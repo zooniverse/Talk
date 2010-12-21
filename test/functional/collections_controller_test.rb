@@ -256,10 +256,10 @@ class CollectionsControllerTest < ActionController::TestCase
         post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Collection" }
       end
       
-      should set_the_flash.to(I18n.t('controllers.collections.not_yours'))
+      should set_the_flash.to(I18n.t('controllers.application.not_yours'))
       should respond_with :found
       should "redirect to collections" do
-        assert_redirected_to collections_path
+        assert_redirected_to root_path
       end
       
       should "not destroy collection" do

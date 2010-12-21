@@ -18,6 +18,7 @@ en:
       flash_create: "Discussion created"
     application:
       not_authorised: "You don't have permissions to view this page"
+      not_yours: "You can't modify this because it's not yours"
     messages:
       flash_create: "Message sent"
       flash_destroyed: "Message deleted"
@@ -25,7 +26,6 @@ en:
       flash_create: "Collection created"
       flash_updated: "Collection updated"
       flash_destroyed: "Collection deleted"
-      not_yours: "You can't add to this collection because it's not yours"
       already_added: "You've already added this object to this collection"
       added: "You've added this object to your collection"
       removed: "The object has been removed"
