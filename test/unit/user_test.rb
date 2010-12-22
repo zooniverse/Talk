@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  context "A user" do 
-    setup do 
+  context "A user" do
+    setup do
       @user = Factory :user
       @admin = Factory :user, :admin => true
       @moderator = Factory :user, :moderator => true
@@ -34,7 +34,7 @@ class UserTest < ActiveSupport::TestCase
       @user = Factory :user, :state => 'banned'
       @moderator = Factory :user, :moderator => true
     end
-
+    
     should "fail" do
       assert !@user.ban(@moderator)
     end
@@ -46,7 +46,7 @@ class UserTest < ActiveSupport::TestCase
       @moderator = Factory :user, :moderator => true
       @user.ban(@moderator)
     end
-
+    
     should have_sent_email
   end
   
@@ -56,7 +56,65 @@ class UserTest < ActiveSupport::TestCase
       @moderator = Factory :user, :moderator => true
       @user.redeem(@moderator)
     end
-
+    
     should have_sent_email
+  end
+  
+  context "When determining if a user can modify" do
+    setup do
+      @asset = Factory :asset
+      build_focus_for @asset
+      collection_for @asset
+      @live_collection = build_live_collection(2)
+      
+      @user = Factory :user
+      @moderator = Factory :user, :moderator => true
+    end
+    
+    context "an asset" do
+      should "deny everybody" do
+        assert_not @user.can_modify?(@asset)
+        assert_not @moderator.can_modify?(@asset)
+      end
+    end
+    
+    context "a board" do
+      should "deny everybody" do
+        assert_not @user.can_modify?(Board.science)
+        assert_not @moderator.can_modify?(Board.science)
+      end
+    end
+    
+    context "a comment" do
+      should "allow only moderators and the owner" do
+        assert @comment1.author.can_modify?(@comment1)
+        assert @moderator.can_modify?(@comment1)
+        assert_not @user.can_modify?(@comment1)
+      end
+    end
+    
+    context "a discussion" do
+      should "allow only moderators and the owner" do
+        assert @discussion.started_by.can_modify?(@discussion)
+        assert @moderator.can_modify?(@discussion)
+        assert_not @user.can_modify?(@discussion)
+      end
+    end
+    
+    context "a collection" do
+      should "allow only moderators and the owner" do
+        assert @collection.user.can_modify?(@collection)
+        assert @moderator.can_modify?(@collection)
+        assert_not @user.can_modify?(@collection)
+      end
+    end
+    
+    context "a live_collection" do
+      should "allow only moderators and the owner" do
+        assert @live_collection.user.can_modify?(@live_collection)
+        assert @moderator.can_modify?(@live_collection)
+        assert_not @user.can_modify?(@live_collection)
+      end
+    end
   end
 end

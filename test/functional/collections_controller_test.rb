@@ -81,10 +81,36 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
       
-    context "#edit" do
+    context "#edit as the owner" do
       setup do
         @collection = build_collection
         standard_cas_login(@collection.user)
+        get :edit, { :id => @collection.zooniverse_id }
+      end
+      
+      should respond_with :success
+      should render_template :edit
+    end
+    
+    context "#edit as a different user" do
+      setup do
+        @collection = build_collection
+        standard_cas_login
+        get :edit, { :id => @collection.zooniverse_id }
+      end
+      
+      should set_the_flash.to(I18n.t('controllers.application.not_yours'))
+      should respond_with :found
+      
+      should "redirect to front page" do
+        assert_redirected_to root_path
+      end
+    end
+    
+    context "#edit as a moderator" do
+      setup do
+        @collection = build_collection
+        moderator_cas_login
         get :edit, { :id => @collection.zooniverse_id }
       end
       
@@ -155,7 +181,7 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
-    context "#update Collection" do
+    context "#update Collection as the owner" do
       setup do
         @collection = Factory :collection
         standard_cas_login(@collection.user)
@@ -183,10 +209,128 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
-    context "#update LiveCollection" do
+    context "#update Collection as a different user" do
+      setup do
+        @collection = Factory :collection
+        standard_cas_login
+        
+        options = {
+          :id => @collection.zooniverse_id,
+          :collection_kind => {
+            :id => "Collection"
+          },
+          :collection => {
+            :description => "Is more awesome"
+          }
+        }
+        post :update, options
+      end
+      
+      should set_the_flash.to(I18n.t('controllers.application.not_yours'))
+      should respond_with :found
+      
+      should "redirect to front page" do
+        assert_redirected_to root_path
+      end
+      
+      should "not update values" do
+        assert_equal "This is collection", @collection.reload.description
+      end
+    end
+    
+    context "#update Collection as a moderator" do
+      setup do
+        @collection = Factory :collection
+        moderator_cas_login
+        
+        options = {
+          :id => @collection.zooniverse_id,
+          :collection_kind => {
+            :id => "Collection"
+          },
+          :collection => {
+            :description => "Is more awesome"
+          }
+        }
+        post :update, options
+      end
+      
+      should set_the_flash.to(I18n.t('controllers.collections.flash_updated'))
+      should respond_with :found
+      should "redirect to collection page" do
+        assert_redirected_to collection_path(assigns(:collection).zooniverse_id)
+      end
+      
+      should "update values" do
+        assert_equal "Is more awesome", @collection.reload.description
+      end
+    end
+    
+    context "#update LiveCollection as the owner" do
       setup do
         @collection = Factory :live_collection
         standard_cas_login(@collection.user)
+        
+        options = {
+          :id => @collection.zooniverse_id,
+          :collection_kind => {
+            :id => "Live Collection"
+          },
+          :keyword => {
+            1 => 'big',
+            2 => 'purple',
+            3 => 'truck'
+          }
+        }
+        post :update, options
+      end
+      
+      should set_the_flash.to(I18n.t('controllers.collections.flash_updated'))
+      should respond_with :found
+      should "redirect to collection page" do
+        assert_redirected_to collection_path(assigns(:collection).zooniverse_id)
+      end
+      
+      should "update values" do
+        assert_same_elements %w(big purple truck), @collection.reload.tags
+      end
+    end
+    
+    context "#update LiveCollection as a different user" do
+      setup do
+        @collection = Factory :live_collection
+        standard_cas_login
+        
+        options = {
+          :id => @collection.zooniverse_id,
+          :collection_kind => {
+            :id => "Live Collection"
+          },
+          :keyword => {
+            1 => 'big',
+            2 => 'purple',
+            3 => 'truck'
+          }
+        }
+        post :update, options
+      end
+      
+      should set_the_flash.to(I18n.t('controllers.application.not_yours'))
+      should respond_with :found
+      
+      should "redirect to front page" do
+        assert_redirected_to root_path
+      end
+      
+      should "not update values" do
+        assert_same_elements %w(tag2 tag4), @collection.reload.tags
+      end
+    end
+    
+    context "#update LiveCollection as a moderator" do
+      setup do
+        @collection = Factory :live_collection
+        moderator_cas_login
         
         options = {
           :id => @collection.zooniverse_id,
@@ -231,6 +375,42 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
+    context "#destroy Collection by other user" do
+      setup do
+        @collection = Factory :collection
+        standard_cas_login
+        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Collection" }
+      end
+      
+      should set_the_flash.to(I18n.t('controllers.application.not_yours'))
+      should respond_with :found
+      should "redirect to front page" do
+        assert_redirected_to root_path
+      end
+      
+      should "not destroy collection" do
+        assert !@collection.reload.destroyed?
+      end
+    end
+    
+    context "#destroy Collection by moderator" do
+      setup do
+        @collection = Factory :collection
+        moderator_cas_login
+        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Collection" }
+      end
+      
+      should set_the_flash.to(I18n.t('controllers.collections.flash_destroyed'))
+      should respond_with :found
+      should "redirect to collections" do
+        assert_redirected_to collections_path
+      end
+      
+      should "destroy collection" do
+        assert_raise(MongoMapper::DocumentNotFound) { @collection.reload }
+      end
+    end
+    
     context "#destroy LiveCollection by owner" do
       setup do
         @collection = Factory :live_collection
@@ -249,16 +429,17 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
-    context "#destroy by other user" do
+    context "#destroy LiveCollection by other user" do
       setup do
-        @collection = Factory :collection
+        @collection = Factory :live_collection
         standard_cas_login
-        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Collection" }
+        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Keyword Set" }
       end
       
       should set_the_flash.to(I18n.t('controllers.application.not_yours'))
       should respond_with :found
-      should "redirect to collections" do
+      
+      should "redirect to front page" do
         assert_redirected_to root_path
       end
       
@@ -267,7 +448,25 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
-    context "#add" do
+    context "#destroy LiveCollection by moderator" do
+      setup do
+        @collection = Factory :live_collection
+        moderator_cas_login
+        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Keyword Set" }
+      end
+      
+      should set_the_flash.to(I18n.t('controllers.collections.flash_destroyed'))
+      should respond_with :found
+      should "redirect to collections" do
+        assert_redirected_to collections_path
+      end
+      
+      should "destroy collection" do
+        assert_raise(MongoMapper::DocumentNotFound) { @collection.reload }
+      end
+    end
+    
+    context "#add as owner" do
       setup do
         @asset = Factory :asset
         @collection = build_collection
@@ -282,7 +481,27 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
-    context "#remove" do
+    context "#add as other user" do
+      setup do
+        @asset = Factory :asset
+        @collection = build_collection
+        standard_cas_login
+        post :add, { :id => @collection.zooniverse_id, :asset_id => @asset.id, :format => :js }
+      end
+      
+      should set_the_flash.to(I18n.t('controllers.application.not_yours'))
+      should respond_with :found
+      
+      should "redirect to front page" do
+        assert_redirected_to root_path
+      end
+      
+      should "not add asset" do
+        assert_does_not_contain @collection.reload.asset_ids, @asset.id
+      end
+    end
+    
+    context "#remove as owner" do
       setup do
         @asset = Factory :asset
         @collection = Factory :collection, :asset_ids => [ @asset.id ]
@@ -299,6 +518,26 @@ class CollectionsControllerTest < ActionController::TestCase
       
       should "remove asset" do
         assert_does_not_contain @collection.reload.asset_ids, @asset.id
+      end
+    end
+    
+    context "#remove as other user" do
+      setup do
+        @asset = Factory :asset
+        @collection = Factory :collection, :asset_ids => [ @asset.id ]
+        standard_cas_login
+        post :remove, { :id => @collection.zooniverse_id, :asset_id => @asset.zooniverse_id, :format => :js }
+      end
+      
+      should set_the_flash.to(I18n.t('controllers.application.not_yours'))
+      should respond_with :found
+      
+      should "redirect to front page" do
+        assert_redirected_to root_path
+      end
+      
+      should "not remove asset" do
+        assert_contains @collection.reload.asset_ids, @asset.id
       end
     end
   end

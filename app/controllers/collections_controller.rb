@@ -24,7 +24,7 @@ class CollectionsController < ApplicationController
   
   def edit
     find_collection
-    return unless require_owner_of(@collection)
+    return unless moderator_or_owner_of @collection
     
     if @collection && @collection._type == "Collection"
       @kind = "Collection"
@@ -56,7 +56,7 @@ class CollectionsController < ApplicationController
   
   def update
     find_collection
-    return unless require_owner_of(@collection)
+    return unless moderator_or_owner_of @collection
     
     if @collection.is_a?(LiveCollection)
       @collection.tags = params[:keyword].values
@@ -74,7 +74,7 @@ class CollectionsController < ApplicationController
   
   def destroy
     find_collection
-    return unless require_owner_of(@collection)
+    return unless moderator_or_owner_of @collection
     
     if @collection.destroy
       flash[:notice] = I18n.t 'controllers.collections.flash_destroyed'
@@ -84,7 +84,7 @@ class CollectionsController < ApplicationController
   
   def add
     find_collection
-    return unless require_owner_of(@collection)
+    return unless moderator_or_owner_of @collection
     @asset = Asset.find(params[:asset_id])
     
     if @collection.asset_ids.include? @asset.id
@@ -101,7 +101,7 @@ class CollectionsController < ApplicationController
   
   def remove
     find_collection
-    return unless require_owner_of(@collection)
+    return unless moderator_or_owner_of @collection
     @asset = Asset.find_by_zooniverse_id(params[:asset_id])
     @collection.asset_ids.delete_if { |id| id == @asset.id }
     

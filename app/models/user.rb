@@ -44,6 +44,19 @@ class User
     self.admin? || self.moderator?
   end
   
+  def can_modify?(document)
+    case document
+    when Comment
+      self == document.author || self.privileged?
+    when Discussion
+      self == document.started_by || self.privileged?
+    when Collection, LiveCollection
+      self == document.user || self.privileged?
+    else
+      false
+    end
+  end
+  
   def ban(moderator)
     return false if self.state == "banned"
     self.state = "banned"

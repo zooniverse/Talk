@@ -34,7 +34,6 @@ class CommentsControllerTest < ActionController::TestCase
       end
     end
     
-    
     context "When voting on a comment in a discussion logged in" do
       setup do
         standard_cas_login
@@ -73,7 +72,7 @@ class CommentsControllerTest < ActionController::TestCase
       should respond_with :success
       should respond_with_content_type(:js)
       should render_template :report
-
+      
       should "increase the numner of events on the comment" do
         assert_equal 1, @comment.reload.events.size
       end
@@ -88,7 +87,7 @@ class CommentsControllerTest < ActionController::TestCase
       should respond_with_content_type(:js)
       should render_template :action_denied
       should set_the_flash.to(I18n.t('controllers.comments.not_logged_in'))
-
+      
       should "not increase the numner of events on the comment" do
         assert_equal 0, @comment.reload.events.size
       end

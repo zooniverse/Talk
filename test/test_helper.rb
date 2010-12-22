@@ -63,6 +63,10 @@ class ActiveSupport::TestCase
     Board.create(:title => "chat", :description => "awesome")
   end
   
+  def assert_not(assertion)
+    assert !assertion
+  end
+  
   def standard_cas_login(user = nil)
     @user = user ||= Factory(:user)
     @request.session[:cas_user] = @user.name

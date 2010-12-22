@@ -97,18 +97,8 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def require_owner_of(doc)
-    return if doc.nil?
-    
-    owner = if doc.respond_to?(:author)
-      doc.author
-    elsif doc.respond_to?(:started_by)
-      doc.started_by
-    else
-      doc.user
-    end
-    
-    unless current_zooniverse_user && owner && owner == current_zooniverse_user
+  def moderator_or_owner_of(document)
+    unless current_zooniverse_user && current_zooniverse_user.can_modify?(@collection)
       flash[:notice] = t 'controllers.application.not_yours'
       redirect_to root_url
       return false
