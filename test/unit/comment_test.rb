@@ -96,12 +96,14 @@ class CommentTest < ActiveSupport::TestCase
       end
       
       should "match tags" do
-        assert_equal "tag1", "#tag1".scan(Comment::TAG).flatten.first
-        assert_equal "tag-1", "#tag-1".scan(Comment::TAG).flatten.first
-        assert_equal "tag_1", "#tag_1".scan(Comment::TAG).flatten.first
-        assert_equal nil, "#t".scan(Comment::TAG).flatten.first
-        assert_equal nil, "#t@g1".scan(Comment::TAG).flatten.first
-        assert_equal "tag", "#tag 1".scan(Comment::TAG).flatten.first
+        bodies = ['#tag1' '#tag-1' '#tag_1' '#t' '#t@g1' '#tag 1']
+        tags = ['tag1', 'tag-1', 'tag_1', nil, nil, 'tag']
+        
+        bodies.zip(tags).each do |body, tag|
+          c = Comment.new(:body => body)
+          c.parse_body
+          assert_equal tag, c.tags.first
+        end
       end
       
       should "match mentions" do

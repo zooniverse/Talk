@@ -59,10 +59,13 @@ $.fn.highlightAnnotations = function() {
         else {
           dialog.dialog({
             title: "Annotations by " + body.children('.name').text(),
-            width: 635,
-            height: 465,
-            show: 'clip',
-            resizable: false
+            width: Math.min(635, $(window).width()),
+            height: Math.min(465, $(window).height()),
+            show: 'fade',
+            hide: 'fade',
+            modal: false,
+            draggable: true,
+            resizable: true
           });
           
           var comment_annotation = dialog.children('.annotated-comment-image').annotateImage({
@@ -92,12 +95,11 @@ $.fn.keywordHighlight = function(options) {
   return this.each(function(){
       $this = $(this);
       var text = $this.html();
-      var result = text.replace(/(<\s?a[^>]*>[^<]*)#([^<]*<\s?\/\s?a\s?>)/g, '$1$2')
-      result = result.replace(/#([-\w\d]{3,40})/g, '<a title="Keyword $1" class="keyword" href="/search?search=keywords%3A$1">#$1</a>');
-      result = result.replace(/(AMZ\w{7})/g, '<a title="Object $1" class="keyword" href="/objects/$1">$1</a>');
-      result = result.replace(/(CMZL\w{6})/g, '<a title="Keyword Set $1" class="keyword" href="/collections/$1">$1</a>');
-      result = result.replace(/(CMZS\w{6})/g, '<a title="Collection $1" class="keyword" href="/collections/$1">$1</a>');
-      result = result.replace(/(DMZ\w{7})/g, '<a title="Discussion $1" class="keyword" href="/discussions/$1">$1</a>');
+      var result = text.replace(/[^\w]#([-\w\d]{3,40})/g, ' <a title="Keyword $1" class="keyword" href="/search?search=keywords%3A$1">#$1</a>');
+      result = result.replace(/[^\/](AMZ\w{7})/g, ' <a title="Object $1" class="keyword" href="/objects/$1">$1</a>');
+      result = result.replace(/[^\/](CMZL\w{6})/g, ' <a title="Keyword Set $1" class="keyword" href="/collections/$1">$1</a>');
+      result = result.replace(/[^\/](CMZS\w{6})/g, ' <a title="Collection $1" class="keyword" href="/collections/$1">$1</a>');
+      result = result.replace(/[^\/](DMZ\w{7})/g, ' <a title="Discussion $1" class="keyword" href="/discussions/$1">$1</a>');
       $this.html(result);
       return $this;
   });

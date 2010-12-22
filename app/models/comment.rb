@@ -24,7 +24,7 @@ class Comment
   before_create :set_focus, :split_body
   after_create :create_tags
   
-  TAG = /#([-\w\d]{3,40})/im
+  TAG = /[^\w]#([-\w\d]{3,40})/im
   MENTION = /([A|C|D]MZ\w{7})/m
   
   def self.search(*args)
@@ -104,8 +104,9 @@ class Comment
   
   # Finds tags and mentions in the comment body
   def parse_body
-    self.tags = self.body.scan(TAG).flatten.map(&:downcase).uniq if self.body
-    self.mentions = self.body.scan(MENTION).flatten.uniq if self.body
+    parsable = " #{ self.body }"
+    self.tags = parsable.scan(TAG).flatten.map(&:downcase).uniq if self.body
+    self.mentions = parsable.scan(MENTION).flatten.uniq if self.body
   end
   
   # Sets the focus of this comment
