@@ -136,8 +136,9 @@ class SearchControllerTest < ActionController::TestCase
       setup do
         @asset = Factory :asset
         build_focus_for @asset
-        @comment1.tags << "awesome"
+        @comment1.body += " #awesome"
         @comment1.save
+        
         get :index, { :search => "keywords: #tag1, #tag2, awesome", :for => "comments" }
       end
       
@@ -172,7 +173,7 @@ class SearchControllerTest < ActionController::TestCase
       setup do
         @asset = Factory :asset
         build_focus_for @asset
-        @comment1._body << "awesomeness"
+        @comment1.body += " awesomeness"
         @comment1.save
         get :index, { :search => "#{ @asset.zooniverse_id} awesomeness" }
       end
@@ -209,10 +210,10 @@ class SearchControllerTest < ActionController::TestCase
         @asset = Factory :asset
         build_focus_for @asset
         
-        @comment1._body << "awesomeness"
+        @comment1.body += " awesomeness"
         @comment1.save
         other = @asset2.discussions.first.comments.first
-        other._body << "awesomeness"
+        other.body += " awesomeness"
         other.save
         
         get :index, { :search => "#{ @asset.zooniverse_id } awesomeness", :for => "objects" }
@@ -249,10 +250,10 @@ class SearchControllerTest < ActionController::TestCase
         @collection = collection_for @asset
         build_focus_for @collection
         
-        @comment1._body << "awesomeness"
+        @comment1.body += " awesomeness"
         @comment1.save
         other = @collection2.discussions.first.comments.first
-        other._body << "awesomeness"
+        other.body += " awesomeness"
         other.save
         
         get :index, { :search => "#{ @collection.zooniverse_id } awesomeness", :for => "collections" }

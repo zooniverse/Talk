@@ -136,5 +136,198 @@ class CommentTest < ActiveSupport::TestCase
         end
       end
     end
+    
+    context "being modified" do
+      setup do
+        @comment1.body += " #new_tag"
+        @comment1.save
+        @comment1.reload
+        
+        @comment2.body += " #tag1"
+        @comment2.save
+        @comment2.reload
+        
+        @comment3.body = "#tag3 #tag2"
+        @comment3.save
+        @comment3.reload
+        
+        @asset.reload
+        
+        @new_tagging = Tagging.first(:name => 'new_tag', :focus_id => @comment1.focus_id)
+        @tag1_tagging = Tagging.first(:name => 'tag1', :focus_id => @comment1.focus_id)
+        @tag2_tagging = Tagging.first(:name => 'tag2', :focus_id => @comment1.focus_id)
+        @tag3_tagging = Tagging.first(:name => 'tag3', :focus_id => @comment1.focus_id)
+        @tag4_tagging = Tagging.first(:name => 'tag4', :focus_id => @comment1.focus_id)
+        
+        @new_tag = Tag.find_by_name "new_tag"
+        @tag1 = Tag.find_by_name "tag1"
+        @tag2 = Tag.find_by_name "tag2"
+        @tag3 = Tag.find_by_name "tag3"
+        @tag4 = Tag.find_by_name "tag4"
+      end
+      
+      should "update comment tags" do
+        assert_same_elements %w(tag1 tag2 new_tag), @comment1.tags
+        assert_same_elements %w(tag1 tag2 tag4), @comment2.tags
+        assert_same_elements %w(tag2 tag3), @comment3.tags
+      end
+      
+      should "update taggings" do
+        assert_same_elements %w(tag1 tag2 tag3 tag4 new_tag), Tag.for_discussion(@comment1.discussion).collect{ |t| t.name }
+        assert_same_elements %w(tag1 tag2 tag3 tag4 new_tag), Tag.for_focus(@comment1.focus).collect{ |t| t.name }
+        
+        assert_equal 1, @new_tagging.count
+        assert_same_elements [@comment1.id], @new_tagging.comment_ids
+        assert_same_elements [@comment1.discussion.id], @new_tagging.discussion_ids
+        
+        assert_equal 2, @tag1_tagging.count
+        assert_same_elements [@comment1.id, @comment2.id], @tag1_tagging.comment_ids
+        assert_same_elements [@comment1.discussion.id], @tag1_tagging.discussion_ids
+        
+        assert_equal 3, @tag2_tagging.count
+        assert_same_elements [@comment1.id, @comment2.id, @comment3.id], @tag2_tagging.comment_ids
+        assert_same_elements [@comment1.discussion.id], @tag2_tagging.discussion_ids
+        
+        assert_equal 1, @tag3_tagging.count
+        assert_same_elements [@comment3.id], @tag3_tagging.comment_ids
+        assert_same_elements [@comment3.discussion.id], @tag3_tagging.discussion_ids
+        
+        assert_equal 1, @tag4_tagging.count
+        assert_same_elements [@comment2.id], @tag4_tagging.comment_ids
+        assert_same_elements [@comment2.discussion.id], @tag4_tagging.discussion_ids
+      end
+      
+      should "update tags" do
+        assert_equal 1, @new_tag.count
+        assert_equal 4, @tag1.count
+        assert_equal 9, @tag2.count
+        assert_equal 1, @tag3.count
+        assert_equal 5, @tag4.count
+      end
+      
+      should "update asset tags" do
+        assert_same_elements %w(tag1 tag2 tag3 tag4 new_tag), @asset.tags
+      end
+      
+      context "by removing tags" do
+        setup do
+          conversation_for @asset
+          @asset.reload
+          @comment4 = @asset.conversation.comments.first
+          
+          @comment1.body = "gone!"
+          @comment1.save
+          @comment1.reload
+          
+          @comment2.body = "#tag4"
+          @comment2.save
+          @comment2.reload
+          
+          @comment3.body = "#tag2"
+          @comment3.save
+          @comment3.reload
+          
+          @asset.reload
+          
+          @tag1_tagging.reload
+          @tag2_tagging.reload
+          @tag4_tagging.reload
+          
+          @tag1.reload
+          @tag2.reload
+          @tag4.reload
+        end
+        
+        should "update comment tags" do
+          assert_same_elements [], @comment1.tags
+          assert_same_elements ['tag4'], @comment2.tags
+          assert_same_elements ['tag2'], @comment3.tags
+        end
+        
+        should "update taggings" do
+          assert_same_elements %w(tag2 tag4), Tag.for_discussion(@comment1.discussion).collect{ |t| t.name }
+          assert_same_elements %w(tag1 tag2 tag4), Tag.for_focus(@comment1.focus).collect{ |t| t.name }
+          
+          assert_raise(MongoMapper::DocumentNotFound) { @new_tagging.reload }
+          
+          assert_equal 1, @tag1_tagging.count
+          assert_same_elements [@comment4.id], @tag1_tagging.comment_ids
+          assert_same_elements [@comment4.discussion.id], @tag1_tagging.discussion_ids
+          
+          assert_equal 2, @tag2_tagging.count
+          assert_same_elements [@comment3.id, @comment4.id], @tag2_tagging.comment_ids
+          assert_same_elements [@comment3.discussion.id, @comment4.discussion.id], @tag2_tagging.discussion_ids
+          
+          assert_raise(MongoMapper::DocumentNotFound) { @tag3_tagging.reload }
+          
+          assert_equal 1, @tag4_tagging.count
+          assert_same_elements [@comment2.id], @tag4_tagging.comment_ids
+          assert_same_elements [@comment2.discussion.id], @tag4_tagging.discussion_ids
+        end
+        
+        should "update tags" do
+          assert_raise(MongoMapper::DocumentNotFound) { @new_tag.reload }
+          assert_equal 3, @tag1.count
+          assert_equal 8, @tag2.count
+          assert_raise(MongoMapper::DocumentNotFound) { @tag3.reload }
+          assert_equal 5, @tag4.count
+        end
+        
+        should "update asset_tags" do
+          assert_same_elements %w(tag1 tag2 tag4), @asset.tags
+        end
+      end
+      
+      context "by destroying" do
+        setup do
+          conversation_for @asset
+          @comment4 = @asset.conversation.comments.first
+          
+          @comment1.destroy
+          @comment2.destroy
+          
+          @asset.reload
+          
+          @tag1_tagging.reload
+          @tag2_tagging.reload
+          @tag3_tagging.reload
+          
+          @tag1.reload
+          @tag2.reload
+          @tag3.reload
+          @tag4.reload
+        end
+        
+        should "update taggings" do
+          assert_same_elements %w(tag2 tag3), Tag.for_discussion(@comment1.discussion).collect{ |t| t.name }
+          assert_same_elements %w(tag1 tag2 tag3), Tag.for_focus(@comment1.focus).collect{ |t| t.name }
+          
+          assert_raise(MongoMapper::DocumentNotFound) { @new_tagging.reload }
+          
+          assert_equal 1, @tag1_tagging.count
+          assert_same_elements [@comment4.id], @tag1_tagging.comment_ids
+          assert_same_elements [@comment4.discussion.id], @tag1_tagging.discussion_ids
+          
+          assert_equal 2, @tag2_tagging.count
+          assert_same_elements [@comment3.id, @comment4.id], @tag2_tagging.comment_ids
+          assert_same_elements [@comment3.discussion.id, @comment4.discussion.id], @tag2_tagging.discussion_ids
+          
+          assert_equal 1, @tag3_tagging.count
+          assert_same_elements [@comment3.id], @tag3_tagging.comment_ids
+          assert_same_elements [@comment3.discussion.id], @tag3_tagging.discussion_ids
+          
+          assert_raise(MongoMapper::DocumentNotFound) { @tag4_tagging.reload }
+        end
+        
+        should "update tags" do
+          assert_raise(MongoMapper::DocumentNotFound) { @new_tag.reload }
+          assert_equal 3, @tag1.count
+          assert_equal 8, @tag2.count
+          assert_equal 1, @tag3.count
+          assert_equal 4, @tag4.count
+        end
+      end
+      
+    end
   end
 end
