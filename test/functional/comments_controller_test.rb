@@ -34,6 +34,163 @@ class CommentsControllerTest < ActionController::TestCase
       end
     end
     
+    context "#update not logged in" do
+      setup do
+        options = {
+          :format => :js,
+          :id => @comment.id,
+          :comment => {
+            :body => "nope"
+          }
+        }
+        
+        post :update, options
+      end
+      
+      should respond_with_content_type :html
+      should respond_with :found
+      should set_the_flash.to(I18n.t('controllers.application.not_yours'))
+      
+      should "not update attributes" do
+        before = @comment.to_mongo
+        assert_equal before, @comment.reload.to_mongo
+      end
+    end
+    
+    context "#update logged in as owner" do
+      setup do
+        standard_cas_login(@comment.author)
+        
+        options = {
+          :format => :js,
+          :id => @comment.id,
+          :comment => {
+            :body => "updated!"
+          }
+        }
+        
+        post :update, options
+      end
+      
+      should respond_with_content_type :js
+      should respond_with :success
+      
+      should "update attributes" do
+        @comment.reload
+        assert_equal "updated!", @comment.body
+        assert @comment.tags.empty?
+        assert @comment.mentions.empty?
+      end
+    end
+    
+    context "#update logged in as moderator" do
+      setup do
+        moderator_cas_login
+        
+        options = {
+          :format => :js,
+          :id => @comment.id,
+          :comment => {
+            :body => "updated!"
+          }
+        }
+        
+        post :update, options
+      end
+      
+      should respond_with_content_type :js
+      should respond_with :success
+      
+      should "update attributes" do
+        @comment.reload
+        assert_equal "updated!", @comment.body
+        assert @comment.tags.empty?
+        assert @comment.mentions.empty?
+      end
+    end
+    
+    context "#update logged in as somebody else" do
+      setup do
+        standard_cas_login
+        
+        options = {
+          :format => :js,
+          :id => @comment.id,
+          :comment => {
+            :body => "nope"
+          }
+        }
+        
+        post :update, options
+      end
+      
+      should respond_with_content_type :html
+      should respond_with :found
+      should set_the_flash.to(I18n.t('controllers.application.not_yours'))
+      
+      should "not update attributes" do
+        before = @comment.to_mongo
+        assert_equal before, @comment.reload.to_mongo
+      end
+    end
+    
+    context "#destroy not logged in" do
+      setup do
+        post :destroy, { :id => @comment.id, :format => :js }
+      end
+      
+      should respond_with_content_type :html
+      should respond_with :found
+      should set_the_flash.to(I18n.t('controllers.application.not_yours'))
+      
+      should "not destroy comment" do
+        assert_nothing_raised{ @comment.reload }
+      end
+    end
+    
+    context "#destroy logged in as owner" do
+      setup do
+        standard_cas_login(@comment.author)
+        post :destroy, { :id => @comment.id, :format => :js }
+      end
+      
+      should respond_with_content_type :js
+      should respond_with :success
+      
+      should "destroy comment" do
+        assert_raise(MongoMapper::DocumentNotFound) { @comment.reload }
+      end
+    end
+    
+    context "#destroy logged in as moderator" do
+      setup do
+        moderator_cas_login
+        post :destroy, { :id => @comment.id, :format => :js }
+      end
+      
+      should respond_with_content_type :js
+      should respond_with :success
+      
+      should "destroy comment" do
+        assert_raise(MongoMapper::DocumentNotFound) { @comment.reload }
+      end
+    end
+    
+    context "#destroy logged in as somebody else" do
+      setup do
+        standard_cas_login
+        post :destroy, { :id => @comment.id, :format => :js }
+      end
+      
+      should respond_with_content_type :html
+      should respond_with :found
+      should set_the_flash.to(I18n.t('controllers.application.not_yours'))
+      
+      should "not destroy comment" do
+        assert_nothing_raised{ @comment.reload }
+      end
+    end
+    
     context "When voting on a comment in a discussion logged in" do
       setup do
         standard_cas_login
