@@ -1,0 +1,5 @@
+<div class="subtext">
+  <% discussion.keywords.each do |keyword| %>
+    <%= link_to keyword, search_url(:search => "keywords: #{keyword}") %>
+  <% end -%>
+</div>

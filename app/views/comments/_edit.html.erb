@@ -1,0 +1,28 @@
+<%= form_for(@comment, :remote => true) do |f| %>
+  <div class="comment-form">
+    <%= f.text_area :body, :rows => 6, :cols => 40, :class => "comment_body" %>
+    <%= hidden_field_tag('comment[response_to_id]', @comment.response_to_id || "") %>
+    
+    <div class="comment-preview"></div>
+    <%= button_to_function 'Cancel', "cancel_comment_edit_on('#{ @comment.id }', false);", :class => 'right-edit-cancel' %>
+    <%= submit_tag 'Update', :class => 'right-submit' %>
+    <div class="push"></div>
+  </div>
+<% end -%>
+
+<%- if @comment.focus && @comment.focus.is_a?(Asset) %>
+  <div id="<%= @comment.id %>-comment-annotation" style="display: none;">
+    <%= image_tag @comment.focus.location, :class => "comment-focus" %>
+  </div>
+<% end -%>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $("#<%= @comment.id %> .comment_body").markItUp(mySettings);
+    
+    var width = <%= @comment.focus.is_a?(Asset) ? @comment.focus.size[0] : 0 %>;
+    var height = <%= @comment.focus.is_a?(Asset) ? @comment.focus.size[1] : 0 %>;
+    
+    OCT.annotater.init('#edit_comment_<%= @comment.id %>', '#<%= @comment.id %>-comment-annotation', width, height);
+  });
+</script>

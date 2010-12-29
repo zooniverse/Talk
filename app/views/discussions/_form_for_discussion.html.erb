@@ -12,8 +12,8 @@
 
 <%- if @focus && @focus.is_a?(Asset) %>
   <%= link_to image_tag(@focus.location, :id => "asset-image", :class => "discussed-asset", :title => @focus.zooniverse_id), @focus.location, :class => 'lightbox' %>
-  <div id="comment-annotation" style="display: none;">
-    <%= image_tag @focus.location, :id => "comment-focus" %>
+  <div id="new-comment-annotation" style="display: none;">
+    <%= image_tag @focus.location, :class => "comment-focus" %>
   </div>
 <% end -%>
 
@@ -26,14 +26,12 @@
   <%= f.fields_for :comments, @comment do |builder| %>
     <div class="comment-form">
       <h2>First comment</h2>
-      <%= builder.text_area :body, :rows => 6, :cols => 40, :style => "display: inline;" %>
+      <%= builder.text_area :body, :rows => 6, :cols => 40, :class => "comment_body", :style => "display: inline;" %>
       <%= hidden_field_tag('discussion[focus_type]', @focus.class.name) if @focus %>
       <%= hidden_field_tag('discussion[focus_id]', @focus.id) if @focus %>
       <%= hidden_field_tag('board_id', @board) if @board %>
-      <div id="comment-preview"></div>
+      <div class="comment-preview in-use"></div>
       <%= submit_tag 'Submit' %>
     </div>
   <% end -%>
 <%- end %>
-
-<%= render :partial => "new.js" %>

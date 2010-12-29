@@ -1,0 +1,18 @@
+if(<%= !@comment.nil? %>) {
+  if(<%= @short_display %>) {
+    $('#<%= @comment.id %>').html("<%= escape_javascript(render(:partial => "short_comment", :locals => { :short_comment => @comment })) if @short_display %>");
+    $('#tags-for-focus').html("<%= escape_javascript(render(:partial => "shared/tags_for_focus")) if @short_display %>");
+  }
+  else {
+    $('#edit_comment_<%= @comment.id %>').parent().replaceWith("<%= escape_javascript(render(:partial => "comment", :locals => { :comment => @comment })) unless @short_display %>");
+    $('.subtext').html("<%= escape_javascript(render(:partial => "discussions/keywords", :locals => { :discussion => @comment.discussion })) unless @short_display %>");
+    $('.new_comment .comment-preview').addClass('in-use');
+    $('#<%= @comment.id %>.highlight_annotations').highlightAnnotations();
+  }
+  
+  $('#<%= @comment.id %> .body').keywordHighlight();
+  $('.wrapper').prepend("<%= escape_javascript(render(:partial => "shared/flash", :locals => { :flash => flash })) %>");
+  <%- flash.clear %>
+  OCT.notice.init();
+  OCT.hover.init();
+}

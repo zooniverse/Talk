@@ -26,6 +26,62 @@ OCT.collection_hover = {
   }
 };
 
+OCT.annotater = {
+  annotations : {},
+  
+  init: function(form, annotation, width, height) {
+    if($(annotation).length == 0) {
+      $(form + ' .annotate-button').hide();
+    }
+    else {
+      $(form + ' .annotate-button').bind('click', function() {
+        OCT.annotater.create_annotation(form, annotation, width, height);
+      });
+    }
+  },
+  
+  create_annotation: function(form, annotation, width, height) {
+    var dialog = $(annotation);
+    
+    if(dialog.length == 1) {
+      if(dialog.hasClass('initialized')) {
+        OCT.annotater.annotations[annotation].addAnnotations(form + ' .comment_body');
+        dialog.dialog('open');
+      }
+      else {
+        dialog.dialog({
+          title: "Add an annotation",
+          width: width + 35,
+          height: height + 105,
+          show: 'fade',
+          hide: 'fade',
+          modal: false,
+          draggable: true,
+          resizable: true
+        });
+        
+        OCT.annotater.annotations[annotation] = $(annotation + ' .comment-focus').annotateImage({
+          editable: true,
+          useAjax: false,
+          markupField: form + ' .comment_body'
+        });
+        
+       OCT.annotater.annotations[annotation].addAnnotations(form + ' .comment_body');
+        
+        dialog.bind('dialogclose', function() {
+          $('.image-annotate-edit-close').click();
+        });
+        
+        $('.image-annotate-view').show();
+        
+        dialog.addClass('initialized');
+      }
+      
+      $('.image-annotate-view').show();
+    }
+  }
+};
+
 OCT.collection_lightbox = {
   init: function() {
     $('.collection-large').css('cursor', 'pointer')
@@ -159,41 +215,40 @@ OCT.hover = {
     targets : '.date, .toggle,',
     
     init: function () {
+      $(OCT.hover.container).unbind('mouseenter mouseleave');
+      
       $(OCT.hover.container).hover(function() {
         $(OCT.hover.targets, this).css('color', '#000000');
+        $('.toolbar', this).css('visibility', 'visible');
+        $('.name.toggle a', this).css('color', '#990000');
+        $('a.comment-edit-link.toggle', this).css('color', '#990000');
+        $('a.comment-remove-link.toggle', this).css('color', '#990000');
       }, function() {
         $(OCT.hover.targets, this).css('color', '#999999');
-      });
-      
-      $(OCT.hover.container).hover(function() {
-        $('.toolbar', this).css('visibility', 'visible');
-      }, function() {
         $('.toolbar', this).css('visibility', 'hidden');
-      });
-      
-      $(OCT.hover.container).hover(function() {
-        $('.name.toggle a', this).css('color', '#990000');
-      }, function() {
         $('.name.toggle a', this).css('color', '#999999');
+        $('a.comment-edit-link.toggle', this).css('color', '#999999');
+        $('a.comment-remove-link.toggle', this).css('color', '#999999');
       });
     }
 };
 
 
 OCT.textcount = {
-  short_text : '#short-text',
-  short_counter : "#short-counter",
-  short_max : 140,
-  
-  init: function() {
-    $(OCT.textcount.short_text).live('keydown keyup focus input paste', function() {
-      var remaining = OCT.textcount.short_max - $(OCT.textcount.short_text).val().length;
-      $(OCT.textcount.short_counter).html(Math.max(remaining, 0));
-      $(OCT.textcount.short_text).val($(OCT.textcount.short_text).val().substr(0, OCT.textcount.short_max));
+  init: function(editing) {
+    var short_text = editing ? '#' + editing + ' .edit-short-text' : '#short-text';
+    var short_counter = editing ? '#' + editing + ' .edit-counter' : '#short-counter';
+    var short_max = 140;
+    
+    $(short_text).live('keydown keyup focus input paste', function() {
+      var remaining = short_max - $(short_text).val().length;
+      $(short_counter).html(Math.max(remaining, 0));
+      $(short_text).val($(short_text).val().substr(0, short_max));
     });
     
-    $(OCT.textcount.short_counter).html(OCT.textcount.short_max);
-    $(OCT.textcount.short_text).attr("maxlength", OCT.textcount.short_max);
+    $(short_counter).html(short_max);
+    $(short_text).attr("maxlength", short_max);
+    $(short_text).trigger('input');
   }
 };
 
@@ -497,4 +552,25 @@ function update_live_collection_results() {
      url: "/search/live_collection_results",
      data: "keywords=" + keywords.join(',')
    });
+}
+
+function cancel_comment_edit_on(comment_id, short_display) {
+  $('#' + comment_id + ' .edit_comment').remove();
+  
+  if(short_display) {
+    $('#' + comment_id).children().show();
+  }
+  else {
+    var parent = $('#edit_comment_' + comment_id).parent();
+    parent.empty();
+    
+    $('#original_' + comment_id).attr('id', comment_id);
+    parent.append($('#edit-in-progress').children());
+    $('#edit-in-progress').remove();
+    
+    $('#' + comment_id).show();
+    $('#' + comment_id + ' .body').show();
+    $('#' + comment_id + ' .toolbar').show();
+    $('.new_comment .comment-preview').addClass('in-use');
+  }
 }

@@ -1,13 +1,14 @@
-<%= render :partial => "list" %>
+<%= render :partial => "comment", :locals => { :comment => @comment } %>
 
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
-    $('#comment-preview .comment').css('border-bottom', 'none');
-    if($('#asset-image')) {
-      $('#comment-preview .comment .comment-container').highlightAnnotations();
-      $('#comment-preview .comment .comment-container').keywordHighlight();
-    }
+    $('.comment-preview.in-use .comment').css('border-bottom', 'none');
+    $('.comment-preview.in-use').outerWidth($('#comment_body').outerWidth());
+    $('.comment-preview.in-use .comment .comment-container').keywordHighlight();
     
-    $('#comment-preview').addClass('active');
+    if($('#asset-image')) {
+      $('.comment-preview.in-use .comment .comment-container').addClass('highlight_annotations');
+      $('.comment-preview.in-use .comment .comment-container').highlightAnnotations();
+    }
   });
 </script>

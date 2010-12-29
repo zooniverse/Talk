@@ -470,7 +470,7 @@ h1.collection-title {
 }
 
 /* Comments */
-#comment-preview .comment {
+.comment-preview .comment {
   left: 0px;
 }
 .comment {
@@ -569,7 +569,7 @@ h1.collection-title {
   margin-left: 20px;
 }
 
-#comment-preview .comment {
+.comment-preview .comment {
   min-height: 50px;
 }
 
@@ -599,6 +599,20 @@ h1.collection-title {
 }
 
 .comment_status{font-family:georgia, serif;color:#d3d3d3;margin-left:10px;font-size:1.5em;font-style:italic;}
+
+.comments-list .comment-edit-link {
+  color: #999999;
+  position: relative;
+  float: right;
+  margin: 2px 8px;
+}
+
+.comments-list .comment-remove-link {
+  color: #999999;
+  position: relative;
+  float: right;
+  margin: 2px 8px;
+}
 
 /* Voting */
 .toolbar{visibility:hidden;}
@@ -654,6 +668,34 @@ h1.collection-title {
 
 .short-comment-form {
   width: 545px;
+}
+
+.comment-edit.short-comment-form {
+  text-align: right;
+}
+
+form.edit_comment input.left-submit {
+  float: left;
+  margin-left: 65px;
+}
+
+form.edit_comment input.right-submit {
+  position: relative;
+  left: 50px;
+}
+
+form.edit_comment .left-edit-cancel {
+  float: left;
+  margin-left: 15px;
+}
+
+form.edit_comment .right-edit-cancel {
+  position: relative;
+  left: 65px;
+}
+
+form.edit_comment .edit-short-text {
+  width: 460px;
 }
 
 .short-comment-form textarea {

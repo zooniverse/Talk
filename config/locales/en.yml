@@ -13,6 +13,8 @@ en:
       own_comment: "You can't vote on your own comment!"
       not_logged_in: "You must log in first"
       flash_create: "Comment created"
+      flash_updated: "Comment updated"
+      flash_destroyed: "Your comment has been removed"
       reported: "'s comment reported by"
     discussions:
       flash_create: "Discussion created"
@@ -54,6 +56,7 @@ en:
   comments:
     by: "Comment by"
     report_comment_confirm: "Are you sure you want to report this comment?"
+    destroy_confirm: "Are you sure you want to remove this comment?\nThere is no undo."
     report: "REPORT"
     reported: "REPORTED"
     recommend: "RECOMMEND"

@@ -46,17 +46,27 @@ $.fn.highlightAnnotations = function() {
     var body = $(this).children('.comment .body');
     var comment_id = $(this).attr('id');
     var annotations = body.parseAnnotations();
+    
     if(annotations.length > 0) {
       var src = $('#asset-image').attr('src');
       body.after('<div id="' + comment_id + '-annotations" class="annotated-comment" style="display: none;"><img class="annotated-comment-image" src="' + src + '" /></div>');
       body.html(body.html().replace(/\"([^\"]*)\"\:\(\d+x\d+@\d+,\d+\)/gm, '<a title="Annotation" class="annotated-comment-link" href="#">$1</a>'));
       
+      $('#' + comment_id + ' .annotated-comment-link').die();
       $('#' + comment_id + ' .annotated-comment-link').live('click', function() {
         var dialog = $('#' + comment_id + '-annotations');
+        
         if(dialog.hasClass('initialized')) {
-          dialog.dialog('open');
+          try {
+            dialog.dialog('open');
+          }
+          catch(error) {
+            dialog.removeClass('initialized');
+            $('#' + comment_id + '-annotations .image-annotate-canvas').remove();
+          }
         }
-        else {
+        
+        if(!dialog.hasClass('initialized')) {
           dialog.dialog({
             title: "Annotations by " + body.children('.name').text(),
             width: Math.min(635, $(window).width()),

@@ -1,4 +1,4 @@
-<%- unless @focus.keywords.empty? %>
+<%- unless @focus.nil? || @focus.is_a?(Board) || @focus.keywords.empty? %>
   <div id="tags-for-focus" class="panel collection-list">
     <h2><%= t 'homepage.keywords' %></h2>
     <div>

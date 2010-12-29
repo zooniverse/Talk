@@ -1,0 +1,14 @@
+if(<%= @comment.destroyed? %>) {
+  if(<%= @short_display %>) {
+    $('#<%= @comment.id %>').remove();
+    $('#tags-for-focus').html("<%= escape_javascript(render(:partial => "shared/tags_for_focus")) %>");
+  }
+  else {
+    $('#<%= @comment.id %>').parent().remove();
+    $('.subtext').html("<%= escape_javascript(render(:partial => "discussions/keywords", :locals => { :discussion => @comment.discussion })) unless @short_display %>");
+  }
+  
+  $('.wrapper').prepend("<%= escape_javascript(render(:partial => "shared/flash", :locals => { :flash => flash })) %>");
+  <%- flash.clear %>
+  OCT.notice.init();
+}

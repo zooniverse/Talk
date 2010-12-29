@@ -12,3 +12,14 @@
     <%= render :partial => "form_for_discussion" %>
   </div>
 </div>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('.lightbox').colorbox();
+    $("#discussion_comments_body").markItUp(mySettings);
+    
+    var width = <%= @focus.is_a?(Asset) ? @focus.size[0] : 0 %>;
+    var height = <%= @focus.is_a?(Asset) ? @focus.size[1] : 0 %>;
+    OCT.annotater.init('#new_discussion', '#new-comment-annotation', width, height);
+  });
+</script>

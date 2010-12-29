@@ -1,0 +1,17 @@
+<div class="comment-edit short-comment-form">
+  <%= form_for(@comment, :remote => true) do |f| %>
+    <div class="edit-counter"></div>
+    <%= f.text_area :body, :rows => 3, :cols => 40, :maxlength => 140, :class => "edit-short-text" %>
+    <p>
+      <%= submit_tag 'Update', :class => 'left-submit' %>
+      <%= button_to_function 'Cancel', "cancel_comment_edit_on('#{ @comment.id }', true);", :class => 'left-edit-cancel' %>
+    </p>
+    <div class="push"></div>
+  <% end -%>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    OCT.textcount.init('<%= @comment.id %>');
+  });
+</script>

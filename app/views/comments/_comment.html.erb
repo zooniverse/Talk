@@ -1,0 +1,48 @@
+<div class="comment">
+  <%= image_tag('interface/default_user.png', :class => "user", :size => "40x40") %>
+  
+  <div id="<%= comment.id %>" class="comment-container highlight_keywords<%= ' highlight_annotations' if @focus.is_a?(Asset) %>">
+    <div class="body">
+      <div class="date"><%= time_ago_in_words(comment.created_at) %> ago</div>
+      <div class="name">
+        <%= link_to comment.author.name, user_path(comment.author.id) %>
+        <%- if comment.response? %>
+          <%= t 'comments.in_response_to' %>
+          <%= link_to comment.response_to.author.name, preview_comment_path(comment.response_to), { :remote => true, :method => :post } %>
+        <% end -%>
+      </div>
+      <%= raw markdown(comment.body) %>
+    </div>
+    
+    <%- unless comment.new_record? %>
+      <div class="toolbar">
+        <div class="vote-controls">
+          <%- if current_zooniverse_user && comment.author != current_zooniverse_user %>
+            <%= link_to t('comments.reply'), "#", :onclick => "reply_to('#{comment.id}', '#{comment.author.name}');" %>&nbsp;&nbsp;|&nbsp;
+            <span id="comment-vote-<%= comment.id %>">
+              <%- unless comment.upvotes.include?(current_zooniverse_user.id) %>
+                <%= link_to(t('comments.recommend'), vote_up_comment_path(comment), {:remote => true, :method => :post}) %>
+              <%- else -%>
+                RECOMMENDED
+              <% end -%>
+            </span>&nbsp;|&nbsp;
+            <span id="report-link-<%= comment.id %>">
+              <%- if comment.events.select{ |event| event.user_id == current_zooniverse_user.id }.empty? %>
+                <%= link_to(t('comments.report'), report_comment_path(comment), {:remote => true, :method => :post, :confirm => (t 'comments.report_comment_confirm') }) %>
+              <%- else -%>
+                REPORTED!
+              <% end -%>
+            </span>
+            
+            <%= "&nbsp;|&nbsp;".html_safe if current_zooniverse_user.can_modify?(comment) %>
+          <% end -%>
+          
+          <%- if current_zooniverse_user && current_zooniverse_user.can_modify?(comment) %>
+            <%= link_to "EDIT", edit_comment_path(comment), :remote => true, :method => :get %>&nbsp;&nbsp;|&nbsp;
+            <%= link_to "REMOVE", comment_path(comment), :remote => true, :method => :delete, :confirm => (t 'comments.destroy_confirm') %>
+          <% end -%>
+        </div>
+      </div>
+    <% end -%>
+  </div>
+</div>

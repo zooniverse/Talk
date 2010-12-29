@@ -22,7 +22,7 @@ mySettings = {
     {separator:'---------------' },
     {name:'Picture', key:'P', replaceWith:'![[![Alternative text]!]]([![Url:!:http://]!] "[![Title]!]")'},
     {name:'Link', key:'L', openWith:'[', closeWith:']([![Url:!:http://]!] "[![Title]!]")', placeHolder:'Your text to link here...' },
-    {name:'Annotate', key:'A', className:"annotate-button", call:"new_annotation"},
+    {name:'Annotate', key:'A', className:"annotate-button" },
     {separator:'---------------'},
     {name:'Preview', call:'markitup_preview', className:"preview"}
   ]

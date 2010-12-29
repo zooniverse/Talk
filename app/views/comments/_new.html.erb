@@ -2,7 +2,7 @@
   <%= javascript_include_tag "markitup/jquery.markitup" %>
   <%= javascript_include_tag "markitup/sets/sellers/set" %>
   <%= javascript_include_tag "jquery.a-tools" %>
-
+  
   <link rel="stylesheet" href="/javascripts/markitup/skins/simple/style.css" type="text/css" media="screen" charset="utf-8">
   <link rel="stylesheet" href="/javascripts/markitup/sets/sellers/style.css" type="text/css" media="screen" charset="utf-8">
 <% end -%>
@@ -10,20 +10,26 @@
 <%= form_for [@discussion, @comment] do |f| %>
   <div class="comment-form">
     <h2>Comment</h2>
-    <%= f.text_area :body, :rows => 6, :cols => 40 %>
-    <%= hidden_field_tag('comment[author_id]', current_zooniverse_user.id) %>
+    <%= f.text_area :body, :rows => 6, :cols => 40, :class => "comment_body" %>
     <%= hidden_field_tag('comment[response_to_id]', "") %>
     <%= hidden_field_tag('page', @page) %>
     
-    <div id="comment-preview"></div>
+    <div class="comment-preview in-use"></div>
       <%= submit_tag 'Submit' %>
   </div>
 <% end -%>
 
 <%- if @focus && @focus.is_a?(Asset) %>
-  <div id="comment-annotation" style="display: none;">
-    <%= image_tag @focus.location, :id => "comment-focus" %>
+  <div id="new-comment-annotation" style="display: none;">
+    <%= image_tag @focus.location, :class => "comment-focus" %>
   </div>
 <% end -%>
 
-<%= render :partial => "comments/new.js" %>
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $(".new_comment #comment_body").markItUp(mySettings);
+    var width = <%= @focus.is_a?(Asset) ? @focus.size[0] : 0 %>;
+    var height = <%= @focus.is_a?(Asset) ? @focus.size[1] : 0 %>;
+    OCT.annotater.init('#new_comment', '#new-comment-annotation', width, height);
+  });
+</script>

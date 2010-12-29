@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
-  before_filter CASClient::Frameworks::Rails::Filter, :only => [:create, :markitup_parser, :vote_up, :report]
+  before_filter CASClient::Frameworks::Rails::Filter, :only => [:create, :update, :destroy, :markitup_parser, :vote_up, :report]
   respond_to :html, :only => :create
-  respond_to :js, :only => [:vote_up, :report, :preview, :browse]
+  respond_to :js, :only => [:edit, :update, :destroy, :vote_up, :report, :preview, :browse]
   
   def create
     default_params :page => 1
@@ -14,6 +14,39 @@ class CommentsController < ApplicationController
       flash[:notice] = t 'controllers.comments.flash_create'
       redirect_to discussion_url_for(@discussion, :page => @page)
     end
+  end
+  
+  def edit
+    @comment = Comment.find(params[:id])
+    @short_display = @comment.discussion.conversation?
+  end
+  
+  def update
+    @comment = Comment.find(params[:id])
+    return unless moderator_or_owner_of @comment
+    @focus = @comment.focus
+    @short_display = @comment.discussion.conversation?
+    
+    if @comment.update_attributes(params[:comment])
+      flash[:notice] = I18n.t 'controllers.comments.flash_updated'
+    else
+      flash_model_errors_on(@comment)
+    end
+    
+    respond_with @comment
+  end
+  
+  def destroy
+    @comment = Comment.find(params[:id])
+    return unless moderator_or_owner_of @comment
+    @focus = @comment.focus
+    @short_display = @comment.discussion.conversation?
+    
+    if @comment.destroy
+      flash[:notice] = I18n.t 'controllers.comments.flash_destroyed'
+    end
+    
+    respond_with @comment
   end
   
   def vote_up
@@ -45,15 +78,14 @@ class CommentsController < ApplicationController
   end
   
   def markitup_parser
-    comment = Comment.new(:body => params[:data] || "")
-    comment.author = current_zooniverse_user
-    @comments = [comment]
-    @comments.first.update_timestamps
+    @comment = Comment.new(:body => params[:data] || "")
+    @comment.author = current_zooniverse_user
+    @comment.update_timestamps
     
-    respond_with(@comments) do |format|
+    respond_with(@comment) do |format|
       format.js do
         render :update do |page|
-          page['#comment-preview'].html(render :partial => "comments/markitup_parser")
+          page[".comment-preview.in-use"].html(render :partial => "comments/markitup_parser")
         end
       end
     end

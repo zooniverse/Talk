@@ -1,0 +1,43 @@
+<div id="<%= short_comment.id %>" class="short-comment">
+  <div class="avatar">
+    <div class="arrow"></div>
+    <%= image_tag('interface/default_user.png', :class => "user", :size => "40x40") %>
+  </div>
+  
+  <%- if current_zooniverse_user && current_zooniverse_user.can_modify?(short_comment) %>
+    <%= link_to "Remove", comment_path(short_comment), :class => "comment-remove-link toggle", :remote => true, :method => :delete, :confirm => (t 'comments.destroy_confirm') %>
+    <%= link_to "Edit", edit_comment_path(short_comment), :class => "comment-edit-link toggle", :remote => true, :method => :get %>
+  <% end -%>
+  
+  <div class="highlight_keywords">
+    <div class="body">
+      <%= raw markdown(short_comment.body) %>
+      <div class="name toggle"><%= link_to short_comment.author.name, user_path(short_comment.author.id) %></div>
+      <div class="date toggle"><%= time_ago_in_words(short_comment.created_at) %> ago</div>
+    </div>
+    
+    <div class="toolbar">
+      <div class="vote-controls">
+        <%- if current_zooniverse_user && short_comment.author != current_zooniverse_user %>
+          <span id="comment-vote-<%= short_comment.id %>">
+            <%- unless short_comment.upvotes.include?(current_zooniverse_user.id) %>
+              <%= link_to("RECOMMEND", vote_up_comment_path(short_comment), {:remote => true, :method => :post}) %>
+            <%- else -%>
+              RECOMMENDED
+            <% end -%>
+          </span>&nbsp;|&nbsp;
+          
+          <span id="report-link-<%= short_comment.id %>">
+            <%- if short_comment.events.select{ |event| event.user_id == current_zooniverse_user.id }.empty? %>
+              <%= link_to("REPORT", report_comment_path(short_comment), {:remote => true, :method => :post, :confirm => (t 'comments.report_comment_confirm') }) %>
+            <%- else -%>
+              REPORTED!
+            <% end -%>
+          </span>
+        <% end -%>
+      </div>
+    </div>
+    
+    <div class="push"></div>
+  </div>
+</div>
