@@ -25,6 +25,7 @@ class Comment
   after_create :create_tags
   after_validation_on_update :split_body, :parse_body, :synchronize_tags
   before_destroy :destroy_tags
+  after_destroy :denormalize_counts
   
   TAG = /[^\w]#([-\w\d]{3,40})/im
   MENTION = /([A|C|D]MZ\w{7})/m
@@ -125,6 +126,10 @@ class Comment
   
   def destroy_tags
     pull_tags self.tags
+  end
+  
+  def denormalize_counts
+    self.discussion.update_counts
   end
   
   def synchronize_tags

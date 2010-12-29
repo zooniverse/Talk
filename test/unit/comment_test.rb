@@ -326,6 +326,18 @@ class CommentTest < ActiveSupport::TestCase
           assert_equal 1, @tag3.count
           assert_equal 4, @tag4.count
         end
+        
+        should "update discussion counts" do
+          assert_equal 3, @discussion.number_of_comments
+          assert_equal 3, @discussion.number_of_users
+          assert_equal 9, @discussion.popularity
+          
+          @discussion.reload
+          
+          assert_equal 1, @discussion.number_of_comments
+          assert_equal 1, @discussion.number_of_users
+          assert_equal 1, @discussion.popularity
+        end
       end
       
     end
