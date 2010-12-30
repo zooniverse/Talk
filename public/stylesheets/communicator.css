@@ -600,26 +600,15 @@ h1.collection-title {
 
 .comment_status{font-family:georgia, serif;color:#d3d3d3;margin-left:10px;font-size:1.5em;font-style:italic;}
 
-.comments-list .comment-edit-link {
-  color: #999999;
-  position: relative;
-  float: right;
-  margin: 2px 8px;
-}
-
-.comments-list .comment-remove-link {
-  color: #999999;
-  position: relative;
-  float: right;
-  margin: 2px 8px;
-}
-
 /* Voting */
-.toolbar{visibility:hidden;}
+.toolbar{
+  visibility: hidden;
+}
+
 .vote-controls {
-	font-size: 70%;
-	float: right;
-	position: relative;
+  font-size: 70%;
+  float: right;
+  position: relative;
   top: 0;
   right: 5px;
 }
@@ -863,10 +852,17 @@ div.more-results {text-align: center;}
 	color: #fff;
 }
 
-.circle p a {color: #fff;}
-.red{background: #900;}
-.blue{background: #67a4a2;}
-.gold{background: #a49e67;}
+.circle p a {
+  color: #fff;
+}
+
+.red{
+  background: #900;
+}
+
+.gold{
+  background: #a49e67;
+}
 
 .type_toolbar {
 	position:absolute;

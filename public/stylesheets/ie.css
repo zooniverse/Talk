@@ -44,14 +44,21 @@ a.galaxyzoo_logo{
 .home .asset .progress {padding:0;display:none;height:1px;}
 .lower_home{margin-top:20px;}
 
-/* Comment bubble */
-.short-comment .body {
-  width: 329px;
+.discussed.collection-info .collection-thumbnail {
+  margin-left: -0.5px;
 }
 
-.short-comment {width: 440px;}
+/* Comment bubble */
 .short-comment .body {
-  float:right;
+  width: 434px;
+}
+
+.short-comment {
+  width: 545px;
+}
+
+.short-comment .body {
+  float: right;
   margin-left: 0;
 }
 

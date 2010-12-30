@@ -24,7 +24,6 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     return unless moderator_or_owner_of @comment
-    @focus = @comment.focus
     @short_display = @comment.discussion.conversation?
     
     if @comment.update_attributes(params[:comment])
@@ -33,19 +32,20 @@ class CommentsController < ApplicationController
       flash_model_errors_on(@comment)
     end
     
+    @focus = @comment.focus
     respond_with @comment
   end
   
   def destroy
     @comment = Comment.find(params[:id])
     return unless moderator_or_owner_of @comment
-    @focus = @comment.focus
     @short_display = @comment.discussion.conversation?
     
     if @comment.destroy
       flash[:notice] = I18n.t 'controllers.comments.flash_destroyed'
     end
     
+    @focus = @comment.focus
     respond_with @comment
   end
   

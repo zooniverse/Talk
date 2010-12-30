@@ -4,11 +4,6 @@
     <%= image_tag('interface/default_user.png', :class => "user", :size => "40x40") %>
   </div>
   
-  <%- if current_zooniverse_user && current_zooniverse_user.can_modify?(short_comment) %>
-    <%= link_to "Remove", comment_path(short_comment), :class => "comment-remove-link toggle", :remote => true, :method => :delete, :confirm => (t 'comments.destroy_confirm') %>
-    <%= link_to "Edit", edit_comment_path(short_comment), :class => "comment-edit-link toggle", :remote => true, :method => :get %>
-  <% end -%>
-  
   <div class="highlight_keywords">
     <div class="body">
       <%= raw markdown(short_comment.body) %>
@@ -34,6 +29,15 @@
               REPORTED!
             <% end -%>
           </span>
+          
+          <%= "&nbsp;|&nbsp;".html_safe if current_zooniverse_user.can_modify?(short_comment) %>
+        <%- else -%>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <% end -%>
+        
+        <%- if current_zooniverse_user && current_zooniverse_user.can_modify?(short_comment) %>
+          <%= link_to "EDIT", edit_comment_path(short_comment), :remote => true, :method => :get %>&nbsp;&nbsp;|&nbsp;
+          <%= link_to "REMOVE", comment_path(short_comment), :remote => true, :method => :delete, :confirm => (t 'comments.destroy_confirm') %>
         <% end -%>
       </div>
     </div>
