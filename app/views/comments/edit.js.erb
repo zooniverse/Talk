@@ -7,15 +7,14 @@ if(<%= !@comment.nil? %>) {
   else {
     $('.edit_comment .right-edit-cancel').click();
     var removed_avatar = $('#<%= @comment.id %>').parent().children('img.user').remove();
-    $('#<%= @comment.id %>').children().hide();
-    $('#<%= @comment.id %>-comment-annotation').remove();
-    var removed_annotations = $('#<%= @comment.id %>-annotations').remove();
+    var detached_annotations = $('#<%= @comment.id %> #<%= @comment.id %>-annotations').detach();
     $('#<%= @comment.id %>').append("<%= escape_javascript(render(:partial => "edit")) unless @short_display %>");
     $('.comment-preview.in-use').removeClass('in-use');
     $('#<%= @comment.id %> .comment-preview').addClass('in-use');
     $('#<%= @comment.id %> .markItUpButton a').text('');
     
     var moved_annotations = $('#<%= @comment.id %>-comment-annotation').remove();
+    var detached_body = $('#<%= @comment.id %> .body').detach();
     var removed_comment = $('#<%= @comment.id %>');
     $('#<%= @comment.id %>').replaceWith($('#<%= @comment.id %> .edit_comment'));
     $('#edit_comment_<%= @comment.id %>').parent('.comment').append(moved_annotations);
@@ -24,6 +23,7 @@ if(<%= !@comment.nil? %>) {
     $('#edit-in-progress').append(removed_avatar);
     removed_comment.attr('id', 'original_<%= @comment.id %>');
     $('#edit-in-progress').append(removed_comment);
-    $('#original_<%= @comment.id %>').append(removed_annotations);
+    $('#original_<%= @comment.id %>').prepend(detached_body);
+    $('#original_<%= @comment.id %>').append(detached_annotations);
   }
 }

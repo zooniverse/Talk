@@ -1,14 +1,15 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0'
+gem 'rails', '3.0.3'
+gem 'jquery-rails', '>= 0.2.6'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'mongo', '1.1'
-gem 'bson_ext', '1.1'
-gem 'mongo_mapper', '0.8.4'
+gem 'mongo', '1.1.5'
+gem 'bson_ext', '1.1.5'
+gem 'mongo_mapper', '0.8.6'
 gem 'rubycas-client', '2.2.1'
 gem 'state_machine', '0.9.4'
 gem 'bluecloth', '2.0.9'
@@ -16,7 +17,7 @@ gem "will_paginate", :git => 'http://github.com/mislav/will_paginate.git', :bran
 # gem 'paperclip'
 
 group :production do
-  gem 'newrelic_rpm', '2.13.1'
+  gem 'newrelic_rpm', '2.13.4'
 end
 
 group :development do

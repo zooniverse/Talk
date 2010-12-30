@@ -421,17 +421,13 @@ OCT.menu = {
 };
 
 $(document).ready(function(){
-    // OCT.tabs.init();
-    // OCT.paginated_collection.init();
     OCT.hover.init();
     OCT.loading.init();
-    // OCT.textcount.init();
-    OCT.notice.init();    
-    // OCT.home.init();
+    OCT.notice.init();
     OCT.menu.init();
     OCT.button_press.init();
-    $('.highlight_annotations').highlightAnnotations();
     $(".highlight_keywords .body").keywordHighlight();
+    $('.highlight_annotations').highlightAnnotations();
 });
 
 function markitup_preview() {
@@ -567,10 +563,6 @@ function cancel_comment_edit_on(comment_id, short_display) {
     $('#original_' + comment_id).attr('id', comment_id);
     parent.append($('#edit-in-progress').children());
     $('#edit-in-progress').remove();
-    
-    $('#' + comment_id).show();
-    $('#' + comment_id + ' .body').show();
-    $('#' + comment_id + ' .toolbar').show();
     $('.new_comment .comment-preview').addClass('in-use');
   }
 }

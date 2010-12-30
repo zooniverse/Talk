@@ -21,11 +21,11 @@ $.fn.parseAnnotations = function(editable) {
           top: parseInt(parts[3].split(',')[0]),
           left: parseInt(parts[3].split(',')[1])
         };
-      
+        
         if(editable) {
           annotation['editable'] = true;
         }
-      
+        
         annotations.push(annotation);
       }
     });
@@ -52,10 +52,9 @@ $.fn.highlightAnnotations = function() {
       body.after('<div id="' + comment_id + '-annotations" class="annotated-comment" style="display: none;"><img class="annotated-comment-image" src="' + src + '" /></div>');
       body.html(body.html().replace(/\"([^\"]*)\"\:\(\d+x\d+@\d+,\d+\)/gm, '<a title="Annotation" class="annotated-comment-link" href="#">$1</a>'));
       
-      $('#' + comment_id + ' .annotated-comment-link').die();
-      $('#' + comment_id + ' .annotated-comment-link').live('click', function() {
+      $('#' + comment_id + ' .annotated-comment-link').unbind();
+      $('#' + comment_id + ' .annotated-comment-link').bind('click', function() {
         var dialog = $('#' + comment_id + '-annotations');
-        
         if(dialog.hasClass('initialized')) {
           try {
             dialog.dialog('open');
@@ -96,12 +95,7 @@ $.fn.highlightAnnotations = function() {
   });
 };
 
-$.fn.keywordHighlight = function(options) {
-  var defaults = {
-  
-  };
-  var opts = $.extend({}, $.fn.keywordHighlight.defaults, options);
-  
+$.fn.keywordHighlight = function() {
   return this.each(function(){
       $this = $(this);
       var text = $this.html();
