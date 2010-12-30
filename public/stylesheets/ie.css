@@ -1,17 +1,17 @@
 /* Moonzoo overrides */
 a.zooniverse_logo{
   background: none;
-  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/moonzoo/interface/zooniverse_logo.png', sizingMethod='crop');
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/moonzoo/interface/zooniverse_logo.png', sizingMethod='crop');
 }
 
 a.galaxyzoo_logo{
   background: none;
-  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/moonzoo/interface/galaxyzoo_logo.png', sizingMethod='crop');
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/moonzoo/interface/galaxyzoo_logo.png', sizingMethod='crop');
 }
 
 .logo {
   background: none;
-  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/moonzoo/header/logo.png', sizingMethod='crop');
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/moonzoo/header/logo.png', sizingMethod='crop');
 }
 
 /* Communicator overrides */
@@ -19,26 +19,48 @@ a.galaxyzoo_logo{
 .lhc{float:left;}
 
 /* Home */
-.circle {
+.circle.red {
   background: none;
-  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/interface/circle_red.png', sizingMethod='crop');
-	height: 45px;
-	width: 45px;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/interface/circle_red.png', sizingMethod='crop');
+  height: 45px;
+  width: 45px;
 }
-.blue {
-  background: none;
-  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/interface/circle_blue.png', sizingMethod='crop');
-}
-.gold {
-  background: none;
-  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/interface/circle_gold.png', sizingMethod='crop');
-}
-.circle p a:link,.circle p a:visited {color:#fff;}
 
-.home .collection .circle p{margin-top:15px;}
-.home .collection .gold{
+.circle.gold {
   background: none;
-  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/interface/circle_gold_large.png', sizingMethod='crop');  
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/interface/circle_gold.png', sizingMethod='crop');
+  height: 45px;
+  width: 45px;
+}
+
+.translucent.red.stats-wrapper {
+  background: none;
+  top: 65px;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/interface/stat_bar_red.png', sizingMethod='crop');
+}
+
+.translucent.gold.stats-wrapper {
+  background: none;
+  top: 65px;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/interface/stat_bar_gold.png', sizingMethod='crop');
+}
+
+.translucent.red.title-bar {
+  background: none;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/interface/title_bar_red.png', sizingMethod='crop');
+}
+
+.translucent.gold.title-bar {
+  background: none;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/interface/title_bar_gold.png', sizingMethod='crop');
+}
+
+.circle p a:link,.circle p a:visited {
+  color:#fff;
+}
+
+.home .collection .circle p{
+  margin-top: 15px;
 }
 
 .home .asset .progress {padding:0;display:none;height:1px;}
