@@ -97,8 +97,8 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def moderator_or_owner_of(document)
-    unless current_zooniverse_user && current_zooniverse_user.can_modify?(document)
+  def moderator_or_owner(method, document)
+    unless current_zooniverse_user && current_zooniverse_user.send(method, document)
       flash[:notice] = t 'controllers.application.not_yours'
       redirect_to root_url
       return false

@@ -23,4 +23,10 @@ class Board
   def number_of_comments
     Comment.count(:discussion_id.in => self.discussion_ids)
   end
+  
+  def pull_discussion(discussion)
+    Board.collection.update({ :_id => self.id }, {
+      :$pull => { :discussion_ids => discussion.id }
+    })
+  end
 end

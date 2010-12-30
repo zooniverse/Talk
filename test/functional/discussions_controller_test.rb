@@ -38,7 +38,7 @@ class DiscussionsControllerTest < ActionController::TestCase
       end
       
       should "Display the author of the discussion" do
-        assert_select ".question .started_by", :text => "Started by #{@discussion.started_by.name}"
+        assert_select ".discussion-header .started_by", :text => "Started by #{@discussion.started_by.name}"
       end
       
       should "Display the discussion tags" do
@@ -67,9 +67,9 @@ class DiscussionsControllerTest < ActionController::TestCase
       should render_template :show
             
       should "Display the collection images" do
-        assert_select ".discussion-items", :html => /src="#{@asset.location}"/
+        assert_select ".discussion-items", :html => /src="#{@asset.thumbnail_location}"/
         assert_select ".collection-thumbnail", 1
-        assert_select ".container .discussed.col > a", :html => /src="#{ @asset.location }"/
+        assert_select ".container .discussed.col > a", :html => /src="#{ @asset.thumbnail_location }"/
       end
     end
     
@@ -177,6 +177,292 @@ class DiscussionsControllerTest < ActionController::TestCase
       
       should "redirect to board discussion page" do
         assert_redirected_to science_board_discussion_path(assigns(:discussion).zooniverse_id)
+      end
+    end
+    
+    context "#update" do
+      setup do
+        build_focus_for Factory(:asset)
+      end
+      
+      context "when not logged in" do
+        setup do
+          options = {
+            :format => :js,
+            :id => @discussion.id,
+            :discussion => {
+              :subject => "nope"
+            }
+          }
+          
+          post :update, options
+        end
+        
+        should respond_with_content_type :html
+        should respond_with :found
+        should set_the_flash.to(I18n.t('controllers.application.not_yours'))
+        
+        should "not update attributes" do
+          before = @discussion.to_mongo
+          assert_equal before, @discussion.reload.to_mongo
+        end
+      end
+      
+      context "when logged in as owner" do
+        setup do
+          standard_cas_login(@discussion.started_by)
+          
+          options = {
+            :format => :js,
+            :id => @discussion.id,
+            :discussion => {
+              :subject => "updated!"
+            }
+          }
+          
+          post :update, options
+        end
+        
+        should respond_with_content_type :js
+        should respond_with :success
+        
+        should "update attributes" do
+          @discussion.reload
+          assert_equal "updated!", @discussion.subject
+        end
+      end
+      
+      context "when logged in as moderator" do
+        setup do
+          moderator_cas_login
+          
+          options = {
+            :format => :js,
+            :id => @discussion.id,
+            :discussion => {
+              :subject => "updated!"
+            }
+          }
+          
+          post :update, options
+        end
+        
+        should respond_with_content_type :js
+        should respond_with :success
+        
+        should "update attributes" do
+          @discussion.reload
+          assert_equal "updated!", @discussion.subject
+        end
+      end
+      
+      context "when logged in as somebody else" do
+        setup do
+          standard_cas_login
+          
+          options = {
+            :format => :js,
+            :id => @discussion.id,
+            :discussion => {
+              :subject => "nope"
+            }
+          }
+          
+          post :update, options
+        end
+        
+        should respond_with_content_type :html
+        should respond_with :found
+        should set_the_flash.to(I18n.t('controllers.application.not_yours'))
+        
+        should "not update attributes" do
+          before = @discussion.to_mongo
+          assert_equal before, @discussion.reload.to_mongo
+        end
+      end
+    end
+    
+    context "#destroy" do
+      setup do
+        @asset = Factory :asset
+        build_focus_for @asset
+        board_discussions_in Board.science, 2
+        @board_discussion = Board.science.discussions.first
+      end
+      
+      context "when not logged in" do
+        setup do
+          post :destroy, { :id => @discussion.id }
+        end
+        
+        should respond_with_content_type :html
+        should respond_with :found
+        should set_the_flash.to(I18n.t('controllers.application.not_yours'))
+        
+        should "not destroy discussion" do
+          assert_nothing_raised{ @discussion.reload }
+        end
+        
+        should "be redirected to the front page" do
+          assert_redirected_to root_path
+        end
+      end
+      
+      context "when logged in as owner and comments still exist" do
+        setup do
+          standard_cas_login(@discussion.started_by)
+          @comments = @discussion.comments
+          post :destroy, { :id => @discussion.id }
+        end
+        
+        should respond_with_content_type :html
+        should respond_with :found
+        should set_the_flash.to(I18n.t('controllers.application.not_yours'))
+        
+        should "not destroy discussion" do
+          assert_nothing_raised{ @discussion.reload }
+        end
+        
+        should "not destroy comments" do
+          @comments.each do |comment|
+            assert_nothing_raised{ comment.reload }
+          end
+        end
+        
+        should "be redirected to the front page" do
+          assert_redirected_to root_path
+        end
+      end
+      
+      context "when logged in as owner and no comments exist" do
+        setup do
+          standard_cas_login(@board_discussion.started_by)
+          @board_discussion.comments.map(&:destroy)
+          @board_discussion.reload
+          post :destroy, { :id => @board_discussion.id }
+        end
+        
+        should respond_with_content_type :html
+        should respond_with :found
+        should set_the_flash.to(I18n.t('controllers.discussions.flash_destroyed'))
+        
+        should "destroy discussion" do
+          assert_raise(MongoMapper::DocumentNotFound) { @board_discussion.reload }
+        end
+        
+        should "be redirected to focus" do
+          assert_redirected_to science_board_path
+        end
+        
+        should "be removed from board" do
+          assert_does_not_contain Board.science.discussion_ids, @board_discussion.id
+        end
+      end
+      
+      context "when logged in as moderator" do
+        setup do
+          moderator_cas_login
+        end
+        
+        context "when comments still exist" do
+          setup do
+            @comments = @discussion.comments
+            post :destroy, { :id => @discussion.id }
+          end
+          
+          should respond_with_content_type :html
+          should respond_with :found
+          should set_the_flash.to(I18n.t('controllers.discussions.flash_destroyed'))
+          
+          should "destroy discussion" do
+            assert_raise(MongoMapper::DocumentNotFound) { @discussion.reload }
+          end
+          
+          should "destroy comments" do
+            @comments.each do |comment|
+              assert_raise(MongoMapper::DocumentNotFound) { comment.reload }
+            end
+          end
+          
+          should "be redirected to focus" do
+            assert_redirected_to object_path(@asset.zooniverse_id)
+          end
+        end
+        
+        context "when no comments exist" do
+          setup do
+            @board_discussion.comments.map(&:destroy)
+            @board_discussion.reload
+            post :destroy, { :id => @board_discussion.id }
+          end
+          
+          should respond_with_content_type :html
+          should respond_with :found
+          should set_the_flash.to(I18n.t('controllers.discussions.flash_destroyed'))
+          
+          should "destroy discussion" do
+            assert_raise(MongoMapper::DocumentNotFound) { @board_discussion.reload }
+          end
+          
+          should "be redirected to focus" do
+            assert_redirected_to science_board_path
+          end
+          
+          should "be removed from board" do
+            assert_does_not_contain Board.science.discussion_ids, @board_discussion.id
+          end
+        end
+      end
+      
+      context "when logged in as somebody else and comments still exist" do
+        setup do
+          standard_cas_login
+          @comments = @discussion.comments
+          post :destroy, { :id => @discussion.id }
+        end
+        
+        should respond_with_content_type :html
+        should respond_with :found
+        should set_the_flash.to(I18n.t('controllers.application.not_yours'))
+        
+        should "not destroy discussion" do
+          assert_nothing_raised{ @discussion.reload }
+        end
+        
+        should "not destroy comments" do
+          @comments.each do |comment|
+            assert_nothing_raised{ comment.reload }
+          end
+        end
+        
+        should "be redirected to the front page" do
+          assert_redirected_to root_path
+        end
+      end
+      
+      context "when logged in as somebody else and no comments exist" do
+        setup do
+          standard_cas_login
+          @board_discussion.comments.map(&:destroy)
+          @board_discussion.reload
+          post :destroy, { :id => @board_discussion.id }
+        end
+        
+        should respond_with_content_type :html
+        should respond_with :found
+        should set_the_flash.to(I18n.t('controllers.application.not_yours'))
+        
+        should "not destroy discussion" do
+          assert_nothing_raised{ @board_discussion.reload }
+        end
+        
+        should "be redirected to the front page" do
+          assert_redirected_to root_path
+        end
+        
+        should "not remove the discussion from the board" do
+          assert_contains Board.science.discussion_ids, @board_discussion.id
+        end
       end
     end
     

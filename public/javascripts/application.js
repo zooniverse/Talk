@@ -566,3 +566,9 @@ function cancel_comment_edit_on(comment_id, short_display) {
     $('.new_comment .comment-preview').addClass('in-use');
   }
 }
+
+function cancel_discussion_edit() {
+  $('.edit_discussion').remove();
+  $('.edit-discussion-link').show();
+  $('#discussion-subject h1').show();
+}

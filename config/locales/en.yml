@@ -14,10 +14,12 @@ en:
       not_logged_in: "You must log in first"
       flash_create: "Comment created"
       flash_updated: "Comment updated"
-      flash_destroyed: "Your comment has been removed"
+      flash_destroyed: "Comment removed"
       reported: "'s comment reported by"
     discussions:
       flash_create: "Discussion created"
+      flash_updated: "Discussion updated"
+      flash_destroyed: "Discussion removed"
     application:
       not_authorised: "You don't have permissions to view this page"
       not_yours: "You can't modify this because it's not yours"
@@ -65,6 +67,7 @@ en:
     in_response_to: "in response to"
   discussion:
     name: "discussion"
+    destroy_confirm: "Are you sure you want to remove this discussion and all comments in it?\nThere is no undo."
     startnew: "Start a discussion"
     about: "about this"
     board:

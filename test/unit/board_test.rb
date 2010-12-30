@@ -6,6 +6,10 @@ class BoardTest < ActiveSupport::TestCase
       @help = Board.find_by_title("help")
       @science = Board.find_by_title("science")
       @chat = Board.find_by_title("chat")
+      
+      board_discussions_in @science, 2
+      @discussion1 = Board.science.discussions[0]
+      @discussion2 = Board.science.discussions[1]
     end
     
     should_have_keys :title, :description, :discussion_ids
@@ -22,6 +26,16 @@ class BoardTest < ActiveSupport::TestCase
       assert_equal @help, Board.help
       assert_equal @science, Board.science
       assert_equal @chat, Board.chat
+    end
+    
+    context "when removing a discussion" do
+      setup do
+        Board.science.pull_discussion @discussion1
+      end
+      
+      should "correctly #pull_discussion from discussion_ids" do
+        assert_equal [@discussion2.id], Board.science.discussion_ids
+      end
     end
   end
 end

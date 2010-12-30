@@ -57,6 +57,19 @@ class User
     end
   end
   
+  def can_destroy?(document)
+    case document
+    when Comment
+      self == document.author || self.privileged?
+    when Discussion
+      self.privileged? || (self == document.started_by && document.number_of_comments == 0)
+    when Collection, LiveCollection
+      self == document.user || self.privileged?
+    else
+      false
+    end
+  end
+  
   def ban(moderator)
     return false if self.state == "banned"
     self.state = "banned"

@@ -19,10 +19,11 @@ class Discussion
   
   timestamps!
   
-  many :comments
+  many :comments, :dependent => :destroy
   
   before_create :set_slug
   before_create :set_started_by
+  before_destroy :remove_from_board
   after_save :update_counts
   
   scope :featured, :featured => true
@@ -81,6 +82,10 @@ class Discussion
     focus_type == "Collection"
   end
   
+  def board?
+    focus_type == "Board"
+  end
+  
   # True if this is a focus conversation (live comment stream)
   def conversation?
     (focus_id.nil? || focus_type == "Board" ) ? false : focus.conversation == self
@@ -126,5 +131,9 @@ class Discussion
         :popularity => n_users * n_comments
       }
     })
+  end
+  
+  def remove_from_board
+    self.focus.pull_discussion(self) if self.board?
   end
 end

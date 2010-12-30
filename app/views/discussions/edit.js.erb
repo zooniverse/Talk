@@ -1,0 +1,4 @@
+$('.edit-discussion-link').hide();
+$('#discussion-subject form').remove();
+$('#discussion-subject h1').hide();
+$('#discussion-subject').append("<%= escape_javascript(render(:partial => "edit")) %>");

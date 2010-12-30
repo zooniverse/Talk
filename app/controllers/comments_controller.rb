@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
   
   def update
     @comment = Comment.find(params[:id])
-    return unless moderator_or_owner_of @comment
+    return unless moderator_or_owner :can_modify?, @comment
     @short_display = @comment.discussion.conversation?
     
     if @comment.update_attributes(params[:comment])
@@ -38,7 +38,7 @@ class CommentsController < ApplicationController
   
   def destroy
     @comment = Comment.find(params[:id])
-    return unless moderator_or_owner_of @comment
+    return unless moderator_or_owner :can_destroy?, @comment
     @short_display = @comment.discussion.conversation?
     
     if @comment.destroy

@@ -199,11 +199,29 @@ h1.asset-name {
 }
 
 /* Discussion */
+.discussion-header p {
+  line-height: 25px;
+  margin: 0;
+}
+
+.discussion-header form {
+  margin: 0 0 20px 0;
+}
+
+.discussion-header input[type="submit"],
+.discussion-header input[type="button"] {
+  margin-left: 5px;
+}
+
+.discussion-header .started_by {
+  clear: both;
+}
+
 .discussion {}
 .discussion-title {font-size:1.8em;margin-bottom:15px;}
 .discussion-items img {margin-bottom: 5px;}
-.question .subtext {font-size: 85%;}
-.discussion .question {
+.discussion-header .subtext {font-size: 85%;}
+.discussion .discussion-header {
   padding: 20px 40px;
   overflow: hidden;
   background: #d5eff7;	

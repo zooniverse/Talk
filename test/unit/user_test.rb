@@ -60,7 +60,7 @@ class UserTest < ActiveSupport::TestCase
     should have_sent_email
   end
   
-  context "When determining if a user can modify" do
+  context "When determining if a user #can_modify? or #can_destroy?" do
     setup do
       @asset = Factory :asset
       build_focus_for @asset
@@ -74,46 +74,85 @@ class UserTest < ActiveSupport::TestCase
     context "an asset" do
       should "deny everybody" do
         assert_not @user.can_modify?(@asset)
+        assert_not @user.can_destroy?(@asset)
+        
         assert_not @moderator.can_modify?(@asset)
+        assert_not @moderator.can_destroy?(@asset)
       end
     end
     
     context "a board" do
       should "deny everybody" do
         assert_not @user.can_modify?(Board.science)
+        assert_not @user.can_destroy?(Board.science)
+        
         assert_not @moderator.can_modify?(Board.science)
+        assert_not @moderator.can_destroy?(Board.science)
       end
     end
     
     context "a comment" do
       should "allow only moderators and the owner" do
         assert @comment1.author.can_modify?(@comment1)
+        assert @comment1.author.can_destroy?(@comment1)
+        
         assert @moderator.can_modify?(@comment1)
+        assert @moderator.can_destroy?(@comment1)
+        
         assert_not @user.can_modify?(@comment1)
+        assert_not @user.can_destroy?(@comment1)
       end
     end
     
     context "a discussion" do
       should "allow only moderators and the owner" do
         assert @discussion.started_by.can_modify?(@discussion)
+        assert_not @discussion.started_by.can_destroy?(@discussion)
+        
         assert @moderator.can_modify?(@discussion)
+        assert @moderator.can_destroy?(@discussion)
+        
         assert_not @user.can_modify?(@discussion)
+        assert_not @user.can_destroy?(@discussion)
       end
+      
+      context "#destroy with no comments" do
+        setup do
+          @discussion.comments.map(&:destroy)
+          @discussion.reload
+        end
+        
+        should "allow only the owner" do
+          assert @discussion.started_by.can_destroy?(@discussion)
+          assert_not @user.can_destroy?(@discussion)
+        end
+      end
+      
     end
     
     context "a collection" do
       should "allow only moderators and the owner" do
         assert @collection.user.can_modify?(@collection)
+        assert @collection.user.can_destroy?(@collection)
+        
         assert @moderator.can_modify?(@collection)
+        assert @moderator.can_destroy?(@collection)
+        
         assert_not @user.can_modify?(@collection)
+        assert_not @user.can_destroy?(@collection)
       end
     end
     
     context "a live_collection" do
       should "allow only moderators and the owner" do
         assert @live_collection.user.can_modify?(@live_collection)
+        assert @live_collection.user.can_destroy?(@live_collection)
+        
         assert @moderator.can_modify?(@live_collection)
+        assert @moderator.can_destroy?(@live_collection)
+        
         assert_not @user.can_modify?(@live_collection)
+        assert_not @user.can_destroy?(@live_collection)
       end
     end
   end

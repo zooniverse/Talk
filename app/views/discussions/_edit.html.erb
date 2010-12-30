@@ -1,0 +1,8 @@
+<%= form_for(@discussion, :remote => true) do |f| -%>
+  <span>
+    <p class="label">Subject</p>
+    <%= f.text_field :subject, :size => 50 %>
+    <%= submit_tag 'Update' %>
+    <%= button_to_function 'Cancel', "cancel_discussion_edit();" %>
+  </span>
+<% end -%>

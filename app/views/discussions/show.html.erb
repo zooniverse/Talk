@@ -55,12 +55,22 @@
   
   <!-- Main Discussion panel -->
   <div class="lhc">
-    <div class="question">
-      <h1><%= @discussion.subject %></h1>
+    <div class="discussion-header">
+      <div id="discussion-subject">
+        <h1><%= @discussion.subject %></h1>
+      </div>
       <div class="started_by">
         <%= t 'discussion.meta.startedby' %> <%= @discussion.started_by.name unless @discussion.started_by.nil? %>
       </div>
       <%= render :partial => "keywords", :locals => { :discussion => @discussion } %>
+      
+      <%- if current_zooniverse_user && current_zooniverse_user.can_modify?(@discussion) %>
+        <p><%= link_to "Edit", edit_discussion_path(@discussion.zooniverse_id), :class => 'edit-discussion-link', :remote => true, :method => :get %></p>
+      <% end -%>
+      
+      <%- if current_zooniverse_user && current_zooniverse_user.can_destroy?(@discussion) %>
+        <p><%= link_to "Remove", discussion_path(@discussion), :method => :delete, :confirm => (t 'discussion.destroy_confirm') %></p>
+      <% end -%>
       
       <%- if current_zooniverse_user && current_zooniverse_user.privileged? %>
         <div id="admin-tools">

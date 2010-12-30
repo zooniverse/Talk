@@ -48,6 +48,9 @@ class DiscussionTest < ActiveSupport::TestCase
     
     context "being conveniently introspective" do
       setup do
+        board_discussions_in Board.science, 1
+        @b_discussion = Board.science.discussions.first
+        
         @live_collection = Factory :live_collection
         build_focus_for @live_collection
         @lc_discussion = @live_collection.discussions.first
@@ -58,7 +61,11 @@ class DiscussionTest < ActiveSupport::TestCase
         
         @discussion = @asset.discussions.first
       end
-
+      
+      should "know when it belongs to a board" do
+        assert @b_discussion.board?
+      end
+      
       should "know when it belongs to a live collection" do
         assert @lc_discussion.live_collection?
       end
@@ -77,5 +84,36 @@ class DiscussionTest < ActiveSupport::TestCase
       end
     end
     
+    context "#destroy" do
+      setup do
+        @comments = @discussion.comments
+        @discussion.destroy
+      end
+      
+      should "destroy comments" do
+        @comments.each do |comment|
+          assert_raise(MongoMapper::DocumentNotFound) { comment.reload }
+        end
+      end
+      
+      should "be destroyed" do
+        assert_raise(MongoMapper::DocumentNotFound) { @discussion.reload }
+      end
+      
+      context "when it belongs to a board" do
+        setup do
+          board_discussions_in Board.science, 2
+          @board_discussion = Board.science.discussions[0]
+          @other_discussion = Board.science.discussions[1]
+          @board_discussion.destroy
+        end
+        
+        should "remove itself from the board" do
+          assert_raise(MongoMapper::DocumentNotFound) { @board_discussion.reload }
+          assert_nothing_raised { @other_discussion.reload }
+          assert_equal [@other_discussion.id], Board.science.discussion_ids
+        end
+      end
+    end
   end
 end
