@@ -5,7 +5,7 @@ class MessagesControllerTest < ActionController::TestCase
     setup do
       @controller = MessagesController.new
       @request    = ActionController::TestRequest.new
-      @response   = ActionController::TestResponse.new   
+      @response   = ActionController::TestResponse.new
     end
     
     context "#index" do

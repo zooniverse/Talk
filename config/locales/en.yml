@@ -65,6 +65,10 @@ en:
     recommended: "RECOMMENDED"
     reply: "REPLY"
     in_response_to: "in response to"
+  users:
+    report_confirm: "Are you sure you want to report this user?"
+    ban_confirm: "Are you sure you want to ban this user?"
+    redeem_confirm: "Are you sure you want to redeem this user?"
   discussion:
     name: "discussion"
     destroy_confirm: "Are you sure you want to remove this discussion and all comments in it?\nThere is no undo."
@@ -107,7 +111,7 @@ en:
     conversations: "conversations"
     startnew: "New Message"
     none: "No messages"
-    back_to_inbox: "back to inbox"    
+    back_to_inbox: "back to inbox"
   admin:
     title: "Moderation"
   sidenav:

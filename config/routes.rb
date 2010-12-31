@@ -81,6 +81,7 @@ Sellers::Application.routes.draw do
   resources :admin do
     member do
       post :ignore
+      post :remove_comment
       post :ban
       post :redeem
       post :watch

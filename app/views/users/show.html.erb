@@ -10,7 +10,7 @@
             <div class="user-actions" id="report-user-link-<%= @user.id %>">
               <ul>
                 <li><%= link_to t('messages.send_to').upcase, new_message_url(:recipient_name => @user.name) %></li>
-                <li><%= link_to("REPORT THIS USER", report_user_path(@user), { :remote => true, :method => :post, :method => :post, :style => "color:#2276BB;" }) %></li>
+                <li><%= link_to "REPORT THIS USER", report_user_path(@user), :remote => true, :method => :post, :method => :post, :confirm => t('users.report_confirm') %></li>
               </ul>
             </div>
           <% end -%>

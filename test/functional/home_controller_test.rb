@@ -5,7 +5,7 @@ class HomeControllerTest < ActionController::TestCase
     setup do
       @controller = HomeController.new
       @request    = ActionController::TestRequest.new
-      @response   = ActionController::TestResponse.new   
+      @response   = ActionController::TestResponse.new
     end
     
     context "#index not logged in" do
@@ -49,7 +49,6 @@ class HomeControllerTest < ActionController::TestCase
           should render_template kind.to_sym
         end
       end
-      
     end
   end
 end

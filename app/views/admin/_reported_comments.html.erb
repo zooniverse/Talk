@@ -7,7 +7,8 @@
     <%- else -%>
       <%- @reported_comments.each do |event| %>
         <li>
-          <%= link_to "#{ event.target.author.name }'s comment", preview_comment_path(event.target), { :remote => true, :method => :post } %>
+          <%= link_to event.target.author.name, event.target.author %><%= link_to "'s comment", preview_comment_path(event.target), :remote => true, :method => :post %>
+          in <%= link_to event.target.discussion.subject, discussion_url_for(event.target.discussion) %>
           reported by: <%=  link_to event.user.name, user_path(event.user) %>
           <%= render :partial => "moderation", :locals => { :event => event, :redeemable => false } %>
       <% end -%>

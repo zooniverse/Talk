@@ -5,13 +5,13 @@ class NotifierTest < ActionMailer::TestCase
     setup do
       @mailer = Notifier
     end
-
+    
     context "#notify_banned_user" do
       setup do
         @user = Factory :user
         @email = @mailer.notify_banned_user(@user).deliver
       end
-
+      
       should "send email" do
         assert ActionMailer::Base.deliveries.any?, "email didn't send"
         assert_equal [@user.email], @email.to
@@ -24,7 +24,7 @@ class NotifierTest < ActionMailer::TestCase
         @user = Factory :user
         @email = @mailer.notify_redeemed_user(@user).deliver
       end
-
+      
       should "send email" do
         assert ActionMailer::Base.deliveries.any?, "email didn't send"
         assert_equal [@user.email], @email.to
@@ -37,7 +37,7 @@ class NotifierTest < ActionMailer::TestCase
         @message = Factory :message
         @email = @mailer.message_received(@message).deliver
       end
-
+      
       should "send email" do
         assert ActionMailer::Base.deliveries.any?, "email didn't send"
         assert_equal [@message.recipient.email], @email.to
@@ -52,7 +52,7 @@ class NotifierTest < ActionMailer::TestCase
         @reporter = Factory :user
         @email = @mailer.notify_reported_user(@user, @moderator, @reporter).deliver
       end
-
+      
       should "send email" do
         assert ActionMailer::Base.deliveries.any?, "email didn't send"
         assert_equal [@moderator.email], @email.to

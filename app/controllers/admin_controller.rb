@@ -22,16 +22,19 @@ class AdminController < ApplicationController
     set_page "reported_users", Event.pending_for_users
     set_page "reported_comments", Event.pending_for_comments
     set_page "logged", Event.actioned.ignored
+  end
+  
+  def remove_comment
+    @event = Event.find(params[:id])
     
-    respond_with(@event) do |format|
-      format.js do
-        render :update do |page|
-          page['#reported-users'].replaceWith(render :partial => "reported_users")
-          page['#reported-comments'].replaceWith(render :partial => "reported_comments")
-          page['#logged'].replaceWith(render :partial => "logged")
-        end
-      end
+    if @event.eventable.is_a?(Comment) && @event.eventable.destroy
+      @event.moderator = current_zooniverse_user
+      @event.state = "actioned"
+      @event.save
     end
+    
+    set_page "reported_comments", Event.pending_for_comments
+    set_page "logged", Event.actioned.ignored
   end
   
   def ban
@@ -44,17 +47,6 @@ class AdminController < ApplicationController
     set_page "reported_comments", Event.pending_for_comments
     set_page "banned", User.banned
     set_page "logged", Event.actioned.ignored
-    
-    respond_with(@event) do |format|
-      format.js do
-        render :update do |page|
-          page['#reported-users'].replaceWith(render :partial => "reported_users")
-          page['#reported-comments'].replaceWith(render :partial => "reported_comments")
-          page['#banned'].replaceWith(render :partial => "banned")
-          page['#logged'].replaceWith(render :partial => "logged")
-        end
-      end
-    end
   end
   
   def redeem
@@ -64,15 +56,6 @@ class AdminController < ApplicationController
     
     set_page "banned", User.banned
     set_page "logged", Event.actioned.ignored
-    
-    respond_with(@event) do |format|
-      format.js do
-        render :update do |page|
-          page['#banned'].replaceWith(render :partial => "banned")
-          page['#logged'].replaceWith(render :partial => "logged")
-        end
-      end
-    end
   end
   
   def watch
@@ -87,15 +70,6 @@ class AdminController < ApplicationController
     @user.save
     set_page "watched", User.watched
     set_page "logged", Event.actioned.ignored
-    
-    respond_with(@user) do |format|
-      format.js do
-        render :update do |page|
-          page['#watched'].replaceWith(render :partial => "watched")
-          page['#logged'].replaceWith(render :partial => "logged")
-        end
-      end
-    end
   end
   
   protected

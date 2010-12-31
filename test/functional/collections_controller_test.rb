@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CollectionsControllerTest < ActionController::TestCase 
+class CollectionsControllerTest < ActionController::TestCase
   context "Collections controller" do
     setup do
       @controller = CollectionsController.new
