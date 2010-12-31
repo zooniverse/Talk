@@ -357,6 +357,24 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
+    context "#destroy Collection not logged in" do
+      setup do
+        @collection = Factory :collection
+        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Collection" }
+      end
+      
+      should set_the_flash.to(I18n.t('controllers.application.not_yours'))
+      should respond_with :found
+      
+      should "redirect to front page" do
+        assert_redirected_to root_path
+      end
+      
+      should "not destroy collection" do
+        assert_nothing_raised { @collection.reload }
+      end
+    end
+    
     context "#destroy Collection by owner" do
       setup do
         @collection = Factory :collection
@@ -366,8 +384,9 @@ class CollectionsControllerTest < ActionController::TestCase
       
       should set_the_flash.to(I18n.t('controllers.collections.flash_destroyed'))
       should respond_with :found
-      should "redirect to collections" do
-        assert_redirected_to collections_path
+      
+      should "redirect to user profile" do
+        assert_redirected_to user_path(@collection.user)
       end
       
       should "destroy collection" do
@@ -384,12 +403,13 @@ class CollectionsControllerTest < ActionController::TestCase
       
       should set_the_flash.to(I18n.t('controllers.application.not_yours'))
       should respond_with :found
+      
       should "redirect to front page" do
         assert_redirected_to root_path
       end
       
       should "not destroy collection" do
-        assert !@collection.reload.destroyed?
+        assert_nothing_raised { @collection.reload }
       end
     end
     
@@ -402,12 +422,31 @@ class CollectionsControllerTest < ActionController::TestCase
       
       should set_the_flash.to(I18n.t('controllers.collections.flash_destroyed'))
       should respond_with :found
-      should "redirect to collections" do
-        assert_redirected_to collections_path
+      
+      should "redirect to user profile" do
+        assert_redirected_to user_path(@user)
       end
       
       should "destroy collection" do
         assert_raise(MongoMapper::DocumentNotFound) { @collection.reload }
+      end
+    end
+    
+    context "#destroy LiveCollection not logged in" do
+      setup do
+        @collection = Factory :live_collection
+        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Keyword Set" }
+      end
+      
+      should set_the_flash.to(I18n.t('controllers.application.not_yours'))
+      should respond_with :found
+      
+      should "redirect to front page" do
+        assert_redirected_to root_path
+      end
+      
+      should "destroy collection" do
+        assert_nothing_raised { @collection.reload }
       end
     end
     
@@ -420,8 +459,9 @@ class CollectionsControllerTest < ActionController::TestCase
       
       should set_the_flash.to(I18n.t('controllers.collections.flash_destroyed'))
       should respond_with :found
-      should "redirect to collections" do
-        assert_redirected_to collections_path
+      
+      should "redirect to user profile" do
+        assert_redirected_to user_path(@collection.user)
       end
       
       should "destroy collection" do
@@ -444,7 +484,7 @@ class CollectionsControllerTest < ActionController::TestCase
       end
       
       should "not destroy collection" do
-        assert !@collection.reload.destroyed?
+        assert_nothing_raised { @collection.reload }
       end
     end
     
@@ -457,8 +497,9 @@ class CollectionsControllerTest < ActionController::TestCase
       
       should set_the_flash.to(I18n.t('controllers.collections.flash_destroyed'))
       should respond_with :found
-      should "redirect to collections" do
-        assert_redirected_to collections_path
+      
+      should "redirect to user profile" do
+        assert_redirected_to user_path(@user)
       end
       
       should "destroy collection" do

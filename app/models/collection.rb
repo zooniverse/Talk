@@ -60,6 +60,9 @@ class Collection
     archive.conversation_archive = self.conversation.to_embedded_hash
     archive.discussions_archive = self.discussions.collect(&:to_embedded_hash)
     
-    archive.save
+    if archive.save
+      self.conversation.destroy
+      self.discussions.each(&:destroy)
+    end
   end
 end

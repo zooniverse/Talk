@@ -84,6 +84,7 @@ en:
       emptycollection: "Empty Collection"
       startedby: "Started by"
   collection:
+    destroy_confirm: "Are you sure you want to delete this collection and all comments in it?\nThere is no undo."
     collect: "Collect this"
     choose: "Choose a collection or start a new one"
     name: "collection"

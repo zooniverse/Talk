@@ -14,7 +14,6 @@ module Focus
       
       after_create :build_conversation
       before_save :set_focus
-      before_destroy :remove_focus
     end
     
     base.extend ClassMethods
@@ -64,23 +63,6 @@ module Focus
         discussion.focus_id = self.id
         discussion.focus_type = self.class.name
         discussion.focus_base_type = self.is_a?(LiveCollection) ? "Collection" : self.class.name
-        discussion.save if discussion.changed?
-      end
-    end
-    
-    # Sets orphaned discussions to be unfocused (could become dependent-destroy)
-    def remove_focus
-      unless conversation.nil?
-        conversation.focus_id = nil
-        conversation.focus_type = ""
-        conversation.focus_base_type = ""
-        conversation.save if conversation.changed?
-      end
-      
-      discussions.each do |discussion|
-        discussion.focus_id = nil
-        discussion.focus_type = ""
-        discussion.focus_base_type = ""
         discussion.save if discussion.changed?
       end
     end

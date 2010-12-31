@@ -51,10 +51,20 @@
       <% end -%>
       <div class="push" />
       
-      <%- if @collection.user == current_zooniverse_user %>
+      <%- if current_zooniverse_user %>
         <div class="asset-actions">
           <ul>
-            <li><%= link_to "Edit", edit_collection_path(@collection.zooniverse_id) %></li>
+            <%- if current_zooniverse_user.can_modify?(@collection) %>
+              <li>
+                <%= link_to "Edit", edit_collection_path(@collection.zooniverse_id) %>
+              </li>
+            <% end -%>
+            
+            <%- if current_zooniverse_user.can_destroy?(@collection) %>
+              <li>
+                <%= link_to "Remove", collection_path(@collection.zooniverse_id), :method => :delete, :confirm => (t 'collection.destroy_confirm') %>
+              </li>
+            <% end -%>
           </ul>
         </div>
       <% end -%>

@@ -78,8 +78,11 @@ class CollectionsController < ApplicationController
     
     if @collection.destroy
       flash[:notice] = I18n.t 'controllers.collections.flash_destroyed'
-      redirect_to collections_path
+    else
+      flash_model_errors_on(@collection)
     end
+    
+    redirect_to user_path(current_zooniverse_user)
   end
   
   def add

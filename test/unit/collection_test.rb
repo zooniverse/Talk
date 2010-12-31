@@ -2,12 +2,13 @@ require 'test_helper'
 
 class CollectionTest < ActiveSupport::TestCase
   context "A Collection" do
-    setup do 
-      @collection = Factory :collection
+    setup do
+      @asset1 = Factory :asset
+      collection_for @asset1
       build_focus_for @collection
       
-      1.upto(5) do |i|
-        asset = Factory(:asset)
+      2.upto(5) do |i|
+        asset = Factory :asset
         instance_variable_set "@asset#{i}", asset
         @collection.asset_ids << asset.id
         @collection.save
@@ -33,19 +34,41 @@ class CollectionTest < ActiveSupport::TestCase
     context "#destroy" do
       setup do
         3.times{ conversation_for @collection }
+        
+        @collection_hash = @collection.to_mongo
+        
+        @conversation = @collection.conversation
+        @conversation_hash = @conversation.to_embedded_hash
+        
+        @discussions = @collection.discussions
+        @discussions_hash = @collection.discussions.collect(&:to_embedded_hash)
+        
         @collection.destroy
         @archive = ArchivedCollection.find_by_zooniverse_id(@collection.zooniverse_id)
       end
       
-      should "remove collection" do
+      should "remove collection, discussions, and comments" do
         assert_raise(MongoMapper::DocumentNotFound) { @collection.reload }
+        
+        assert_raise(MongoMapper::DocumentNotFound) { @conversation.reload }
+        @conversation.comments.each do |comment|
+          assert_raise(MongoMapper::DocumentNotFound) { comment.reload }
+        end
+        
+        @discussions.each do |discussion|
+          assert_raise(MongoMapper::DocumentNotFound) { discussion.reload }
+          
+          discussion.comments.each do |comment|
+            assert_raise(MongoMapper::DocumentNotFound) { comment.reload }
+          end
+        end
       end
       
       should "create ArchivedCollection" do
         assert_equal @collection.user_id, @archive.user_id
-        assert_equal @collection.to_mongo, @archive.collection_archive
-        assert_equal @collection.conversation.to_embedded_hash, @archive.conversation_archive
-        assert_same_elements @collection.discussions.collect(&:to_embedded_hash), @archive.discussions_archive
+        assert_equal @collection_hash, @archive.collection_archive
+        assert_equal @conversation_hash, @archive.conversation_archive
+        assert_same_elements @discussions_hash, @archive.discussions_archive
       end
     end
   end
