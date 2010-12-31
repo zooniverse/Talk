@@ -106,6 +106,12 @@ class Discussion
     Tag.for_discussion(self, limit).collect{ |t| t.name }
   end
   
+  def to_embedded_hash
+    hash = self.to_mongo
+    hash['comments'] = comments.collect(&:to_mongo)
+    hash
+  end
+  
   private
   # Creates a prettyfied slug for the URL
   def set_slug

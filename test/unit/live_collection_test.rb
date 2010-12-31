@@ -5,7 +5,7 @@ class LiveCollectionTest < ActiveSupport::TestCase
     setup do 
       @collection = Factory :live_collection, :tags => ["Tag1", "TAG2"]
     end
-  
+    
     should_have_keys :zooniverse_id, :name, :description, :tags, :user_id
     should_associate :user
     should_include_modules :focus, :zooniverse_id, 'MongoMapper::Document'
@@ -31,7 +31,7 @@ class LiveCollectionTest < ActiveSupport::TestCase
         @asset = Factory :asset
         build_focus_for @asset
       end
-
+      
       should "find tag-matched assets" do
         assert_same_elements [@asset, @asset2, @asset3], @collection.assets
       end
@@ -39,6 +39,27 @@ class LiveCollectionTest < ActiveSupport::TestCase
     
     should "find #most_recent" do
       assert_equal [@collection], LiveCollection.most_recent
+    end
+    
+    context "#destroy" do
+      setup do
+        build_focus_for @collection
+        3.times{ conversation_for @collection }
+        @collection.reload
+        @collection.destroy
+        @archive = ArchivedCollection.find_by_zooniverse_id(@collection.zooniverse_id)
+      end
+      
+      should "remove collection" do
+        assert_raise(MongoMapper::DocumentNotFound) { @collection.reload }
+      end
+      
+      should "create ArchivedCollection" do
+        assert_equal @collection.user_id, @archive.user_id
+        assert_equal @collection.to_mongo, @archive.collection_archive
+        assert_equal @collection.conversation.to_embedded_hash, @archive.conversation_archive
+        assert_same_elements @collection.discussions.collect(&:to_embedded_hash), @archive.discussions_archive
+      end
     end
   end
 end

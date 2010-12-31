@@ -115,5 +115,23 @@ class DiscussionTest < ActiveSupport::TestCase
         end
       end
     end
+    
+    context "serializing #to_embedded_hash" do
+      setup do
+        @hash = @discussion.to_embedded_hash
+      end
+      
+      should "have values set correctly" do
+        assert @hash.is_a?(Hash)
+        assert_equal @discussion.number_of_comments, @hash['comments'].length
+        
+        @discussion.comments.each do |comment|
+          assert_contains @hash['comments'], comment.to_mongo
+        end
+        
+        @hash.delete 'comments'
+        assert_equal @discussion.to_mongo, @hash
+      end
+    end
   end
 end
