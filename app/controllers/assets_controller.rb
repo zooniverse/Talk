@@ -6,6 +6,8 @@ class AssetsController < ApplicationController
   def show
     default_params :page => 1, :per_page => 10
     @asset = Asset.find_by_zooniverse_id(params[:id])
+    return not_found unless @asset
+    
     @focus = @asset
     @mentions = Discussion.mentioning(@asset)
     @collections = Collection.with_asset @asset, :page => 1, :per_page => 20
@@ -22,5 +24,4 @@ class AssetsController < ApplicationController
       format.js { render :partial => "browse" }
     end
   end
-  
 end

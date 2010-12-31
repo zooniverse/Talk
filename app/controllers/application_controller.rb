@@ -3,6 +3,13 @@ class ApplicationController < ActionController::Base
   before_filter :check_or_create_zooniverse_user
   before_filter :check_for_banned_user, :except => :cas_logout
   
+  rescue_from BSON::InvalidObjectId, :with => :not_found
+  rescue_from MongoMapper::DocumentNotFound, :with => :not_found
+  
+  def not_found
+    render :file => "#{ Rails.root }/public/404.html", :status => :not_found
+  end
+  
   def default_params(*args)
     hash = args.extract_options!
     

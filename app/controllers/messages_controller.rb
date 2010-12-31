@@ -16,6 +16,7 @@ class MessagesController < ApplicationController
   def show
     @listing = false
     @message = Message.find(params[:id])
+    return not_found unless @message
         
     if !@message.nil? && @message.visible_to?(current_zooniverse_user)
       @message.mark_as_read
@@ -47,6 +48,8 @@ class MessagesController < ApplicationController
   
   def destroy
     @message = Message.find(params[:id])
+    return not_found unless @message
+    
     @message.destroy_for(current_zooniverse_user)
     flash[:notice] = I18n.t 'controllers.messages.flash_destroyed'
     redirect_to messages_path

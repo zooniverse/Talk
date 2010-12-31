@@ -6,8 +6,9 @@ class DiscussionsController < ApplicationController
   
   def show
     default_params :page => 1, :per_page => 10
-    
     @discussion = Discussion.find_by_zooniverse_id(params[:id])
+    return not_found unless @discussion
+    
     @comments = Comment.sort(:created_at.asc).where(:discussion_id => @discussion.id).paginate(:page => @page, :per_page => @per_page)
     @focus = @discussion.focus
     
@@ -33,12 +34,15 @@ class DiscussionsController < ApplicationController
   
   def edit
     @discussion = Discussion.find_by_zooniverse_id(params[:id])
+    return not_found unless @discussion
     return unless moderator_or_owner :can_modify?, @discussion
+    
     respond_with @discussion
   end
   
   def update
     @discussion = Discussion.find(params[:id])
+    return not_found unless @discussion
     return unless moderator_or_owner :can_modify?, @discussion
     
     if @discussion.update_attributes(params[:discussion])
@@ -52,6 +56,7 @@ class DiscussionsController < ApplicationController
   
   def destroy
     @discussion = Discussion.find(params[:id])
+    return not_found unless @discussion
     return unless moderator_or_owner :can_destroy?, @discussion
     
     if @discussion.destroy
@@ -91,6 +96,8 @@ class DiscussionsController < ApplicationController
   
   def toggle_featured
     @discussion = Discussion.find(params[:id])
+    return not_found unless @discussion
+    
     @discussion.featured = !@discussion.featured
     @discussion.save
   end

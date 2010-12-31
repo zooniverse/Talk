@@ -15,8 +15,9 @@ class BoardsController < ApplicationController
   def show_by_title(title)
     default_params :page => 1, :per_page => 9
     @board = Board.by_title(title)
-    @discussions = @board.discussions.paginate :page => @page, :per_page => @per_page
+    return not_found unless @board
     
+    @discussions = @board.discussions.paginate :page => @page, :per_page => @per_page
     render "show"
   end
   
@@ -25,6 +26,6 @@ class BoardsController < ApplicationController
     
     respond_with(@boards) do |format|
        format.js { render :partial => "browse" }
-     end    
+     end
   end
 end

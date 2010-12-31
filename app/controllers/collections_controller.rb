@@ -6,6 +6,7 @@ class CollectionsController < ApplicationController
   def show
     default_params :page => 1, :per_page => 10
     find_collection
+    return not_found unless @collection
     
     @discussion = @collection.conversation
     @mentions = Discussion.mentioning(@collection)
@@ -24,6 +25,7 @@ class CollectionsController < ApplicationController
   
   def edit
     find_collection
+    return not_found unless @collection
     return unless moderator_or_owner :can_modify?, @collection
     
     if @collection && @collection._type == "Collection"
@@ -56,6 +58,7 @@ class CollectionsController < ApplicationController
   
   def update
     find_collection
+    return not_found unless @collection
     return unless moderator_or_owner :can_modify?, @collection
     
     if @collection.is_a?(LiveCollection)
@@ -74,6 +77,7 @@ class CollectionsController < ApplicationController
   
   def destroy
     find_collection
+    return not_found unless @collection
     return unless moderator_or_owner :can_destroy?, @collection
     
     if @collection.destroy
@@ -87,6 +91,7 @@ class CollectionsController < ApplicationController
   
   def add
     find_collection
+    return not_found unless @collection
     return unless moderator_or_owner :can_modify?, @collection
     @asset = Asset.find(params[:asset_id])
     
@@ -104,6 +109,7 @@ class CollectionsController < ApplicationController
   
   def remove
     find_collection
+    return not_found unless @collection
     return unless moderator_or_owner :can_modify?, @collection
     @asset = Asset.find_by_zooniverse_id(params[:asset_id])
     @collection.asset_ids.delete_if { |id| id == @asset.id }

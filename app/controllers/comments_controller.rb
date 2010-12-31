@@ -18,12 +18,17 @@ class CommentsController < ApplicationController
   
   def edit
     @comment = Comment.find(params[:id])
+    return not_found unless @comment
+    return unless moderator_or_owner :can_modify?, @comment
+    
     @short_display = @comment.discussion.conversation?
   end
   
   def update
     @comment = Comment.find(params[:id])
+    return not_found unless @comment
     return unless moderator_or_owner :can_modify?, @comment
+    
     @short_display = @comment.discussion.conversation?
     
     if @comment.update_attributes(params[:comment])
@@ -38,7 +43,9 @@ class CommentsController < ApplicationController
   
   def destroy
     @comment = Comment.find(params[:id])
+    return not_found unless @comment
     return unless moderator_or_owner :can_destroy?, @comment
+    
     @short_display = @comment.discussion.conversation?
     
     if @comment.destroy
@@ -51,6 +58,7 @@ class CommentsController < ApplicationController
   
   def vote_up
     @comment = Comment.find(params[:id])
+    return not_found unless @comment
     
     if current_zooniverse_user.nil?
       flash[:alert] = I18n.t('controllers.comments.not_logged_in')
@@ -69,6 +77,8 @@ class CommentsController < ApplicationController
       render :action_denied
     else
       @comment = Comment.find(params[:id])
+      return not_found unless @comment
+      
       @event = @comment.events.build(:user => current_zooniverse_user,
                                      :target_user => @comment.author,
                                      :title => "#{ @comment.author.name }#{ I18n.t('controllers.comments.reported') } #{ current_zooniverse_user.name }")
@@ -93,6 +103,8 @@ class CommentsController < ApplicationController
   
   def preview
     @comment = Comment.find(params[:id])
+    return not_found unless @comment
+    
     respond_with @comment
   end
   
