@@ -27,6 +27,26 @@ class UserTest < ActiveSupport::TestCase
       assert_equal [@mod_message], @user.messages_with(@moderator)
       assert_equal [@mod_message], @moderator.messages_with(@user)
     end
+    
+    context "being active" do
+      setup do
+        @user.update_active!
+        @user.reload
+        
+        @admin.last_active_at = 1.day.ago
+        @admin.save
+        
+        @moderator.last_active_at = 30.minutes.ago
+        @moderator.save
+      end
+      
+      should "find #active" do
+        assert_in_delta Time.now.utc.to_f, @user.last_active_at.to_f, 1
+        assert_same_elements [@user, @moderator], User.active.all
+        assert_not @admin.online?
+        [@user, @moderator].each{ |user| assert user.online? }
+      end
+    end
   end
   
   context "When banning a user that is already banned" do

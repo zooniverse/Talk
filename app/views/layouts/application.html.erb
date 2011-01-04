@@ -15,6 +15,7 @@
     <%= yield :page_includes %>
     <%= csrf_meta_tag %>
     <%- unread = current_zooniverse_user.messages.count(:unread => true) if current_zooniverse_user %>
+    <%- current_zooniverse_user.update_active! if current_zooniverse_user %>
   </head>
   <body>
     <div class="bar">

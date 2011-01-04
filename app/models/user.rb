@@ -3,12 +3,14 @@ class User
   
   key :zooniverse_user_id, Integer, :required => true
   key :name, String, :required => true
+  key :last_active_at, Time
   key :email, String
   key :blocked_list, Array
   key :moderator, Boolean, :default => false
   key :admin, Boolean, :default => false
   key :state, String
   
+  scope :active, :last_active_at.gt => 1.hour.ago
   scope :watched, :state => 'watched'
   scope :banned, :state => 'banned'
   scope :moderators, :moderator => true
@@ -38,6 +40,10 @@ class User
   many :messages, :foreign_key => :recipient_id
   many :sent_messages, :class_name => "Message", :foreign_key => :sender_id
   many :events, :as => :eventable
+  
+  def online?
+    self.last_active_at > 1.hour.ago
+  end
   
   # True if user is an admin or moderator
   def privileged?
@@ -127,5 +133,9 @@ class User
     sent_by_me = Message.all(:sender_id => id, :recipient_id => user.id)
     combined = sent_by_me + sent_by_them
     combined.sort{ |a, b| b.created_at <=> a.created_at }
+  end
+  
+  def update_active!
+    User.collection.update({ :_id => self._id }, { :$set => { :last_active_at => Time.now.utc } })
   end
 end
