@@ -12,7 +12,8 @@ class UserTest < ActiveSupport::TestCase
       @mod_message = Factory :message, :sender => @moderator, :recipient => @user
     end
     
-    should_have_keys :zooniverse_user_id, :name, :email, :blocked_list, :moderator, :admin, :state, :created_at, :updated_at
+    should_have_keys :zooniverse_user_id, :name, :email, :blocked_list, :moderator, :admin, :state,
+                     :created_at, :updated_at, :last_active_at, :last_login_at, :current_login_at
     should_associate :comments, :collections, :live_collections, :messages, :sent_messages
     
     should "be #privileged?" do
@@ -45,6 +46,40 @@ class UserTest < ActiveSupport::TestCase
         assert_same_elements [@user, @moderator], User.active.all
         assert_not @admin.online?
         [@user, @moderator].each{ |user| assert user.online? }
+      end
+    end
+    
+    context "logging in" do
+      setup do
+        @user.last_login_at = nil
+        @user.current_login_at = nil
+        @user.save
+      end
+      
+      context "for the first time" do
+        setup do
+          @user.update_login!
+          @user.reload
+        end
+        
+        should "have proper timestamps" do
+          assert @user.last_login_at.nil?
+          assert_in_delta Time.now.utc.to_f, @user.current_login_at.to_f, 1
+        end
+      end
+      
+      context "for the second time" do
+        setup do
+          @user.current_login_at = 1.hour.ago.utc
+          @user.save
+          @user.update_login!
+          @user.reload
+        end
+        
+        should "have proper timestamps" do
+          assert_in_delta 1.hour.ago.utc.to_f, @user.last_login_at.to_f, 1
+          assert_in_delta Time.now.utc.to_f, @user.current_login_at.to_f, 1
+        end
       end
     end
   end

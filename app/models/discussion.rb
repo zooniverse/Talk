@@ -67,6 +67,21 @@ class Discussion
     comments.collect{ |c| c.discussion_id }.uniq.length
   end
   
+  def self.with_new_comments(*args)
+    opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
+    last_login = args.first ? args.first.last_login_at : nil
+    last_login ||= Time.now.utc.beginning_of_day
+    
+    Discussion.sort(:updated_at.desc).where(:updated_at.gte => last_login).paginate(opts)
+  end
+  
+  def count_new_comments(user = nil)
+    last_login = user.nil? ? nil : user.last_login_at
+    last_login ||= Time.now.utc.beginning_of_day
+    
+    self.comments.count(:created_at.gt => last_login)
+  end
+  
   # True if discussing LiveCollections
   def live_collection?
     focus_type == "LiveCollection"

@@ -4,6 +4,8 @@ class User
   key :zooniverse_user_id, Integer, :required => true
   key :name, String, :required => true
   key :last_active_at, Time
+  key :current_login_at, Time
+  key :last_login_at, Time
   key :email, String
   key :blocked_list, Array
   key :moderator, Boolean, :default => false
@@ -137,6 +139,21 @@ class User
   end
   
   def update_active!
-    User.collection.update({ :_id => self._id }, { :$set => { :last_active_at => Time.now.utc } })
+    User.collection.update({ :_id => self._id }, {
+      :$set => {
+        :last_active_at => Time.now.utc
+      }
+    })
+  end
+  
+  def update_login!
+    last_login = self.current_login_at.nil? ? nil : self.current_login_at.utc
+    
+    User.collection.update({ :_id => self._id }, {
+      :$set => {
+        :last_login_at => last_login,
+        :current_login_at => Time.now.utc
+      }
+    })
   end
 end

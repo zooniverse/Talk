@@ -46,6 +46,72 @@ class DiscussionTest < ActiveSupport::TestCase
       assert_equal 9, @discussion.popularity
     end
     
+    context "#count_new_comments" do
+      setup do
+        @comment1.set :created_at => 30.minutes.ago
+        @comment2.set :created_at => 1.hour.ago
+        @comment3.set :created_at => Time.now.utc
+        
+        @comment1.author.set :last_login_at => 1.hour.ago
+        @comment1.author.reload
+      end
+      
+      should "#count_new_comments for a user" do
+        assert_equal 2, @discussion.count_new_comments(@comment1.author)
+      end
+      
+      should "#count_new_comments for a new user" do
+        assert_equal 3, @discussion.count_new_comments(Factory(:user))
+      end
+      
+      should "#count_new_comments without a user" do
+        assert_equal 3, @discussion.count_new_comments
+      end
+    end
+    
+    context "finding discussions with new comments" do
+      setup do
+        2.times{ build_discussions_for @asset }
+        @discussion2 = @asset.discussions[1]
+        @discussion3 = @asset.discussions[2]
+        
+        @conversation.set :updated_at => 30.minutes.ago
+        @conversation.reload
+        
+        @discussion2.set :updated_at => 45.minutes.ago
+        @discussion2.reload
+        
+        @discussion3.set :updated_at => 2.days.ago
+        @discussion3.reload
+        
+        Discussion.collection.update({
+          :focus_id => { :$ne => @asset.id }
+        }, {
+          :$set => { :updated_at => 1.year.ago.utc }
+        }, :multi => true)
+      end
+      
+      should "find discussions #with_new_comments for an existing user" do
+        assert_equal [@discussion, @conversation, @discussion2], Discussion.with_new_comments(Factory(:user, :last_login_at => 1.day.ago))
+        assert_equal [@discussion, @conversation], Discussion.with_new_comments(Factory(:user, :last_login_at => 1.day.ago), :per_page => 2)
+        assert_equal [@conversation], Discussion.with_new_comments(Factory(:user, :last_login_at => 1.day.ago), :per_page => 1, :page => 2)
+      end
+      
+      should "find discussions #with_new_comments for a new user" do
+        assert_equal [@discussion, @conversation, @discussion2], Discussion.with_new_comments(Factory(:user))
+        assert_equal [@discussion], Discussion.with_new_comments(Factory(:user), :per_page => 1)
+        assert_equal [@discussion, @conversation], Discussion.with_new_comments(Factory(:user), :per_page => 2)
+        assert_equal [@conversation], Discussion.with_new_comments(Factory(:user), :per_page => 1, :page => 2)
+      end
+      
+      should "find discussions #with_new_comments without a user" do
+        assert_equal [@discussion, @conversation, @discussion2], Discussion.with_new_comments
+        assert_equal [@discussion], Discussion.with_new_comments(:per_page => 1)
+        assert_equal [@discussion, @conversation], Discussion.with_new_comments(:per_page => 2)
+        assert_equal [@conversation], Discussion.with_new_comments(:per_page => 1, :page => 2)
+      end
+    end
+    
     context "being conveniently introspective" do
       setup do
         board_discussions_in Board.science, 1
