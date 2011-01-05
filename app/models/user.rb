@@ -42,6 +42,7 @@ class User
   many :events, :as => :eventable
   
   def online?
+    return false if last_active_at.nil?
     self.last_active_at > 1.hour.ago
   end
   

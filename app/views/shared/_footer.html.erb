@@ -1,0 +1,27 @@
+<div class="footer">
+  <div class="inner">
+    <div id="active-users">
+      <div id="count">
+        <%= pluralize User.active.count, 'user' %> online:
+      </div>
+      <div id="users-wrapper">
+        <div id="users">
+          <%- User.active.sort(:last_active_at.desc).only(:name, :id).limit(80).all.in_groups_of(8).each do |group| %>
+            <div class="user-page">
+              <%- group.compact.each do |user| %>
+                <div class="user">
+                  <%= link_to user.name, user_path(user) %>
+                </div>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+      </div>
+      <div class="push"></div>
+    </div>
+    <div class="copyright">
+      Zooniverse<br/>&copy;&nbsp;2010
+    </div>
+    <div class="push"></div>
+  </div>
+</div>

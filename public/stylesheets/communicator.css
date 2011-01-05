@@ -4,7 +4,55 @@
 
 .wrapper {
   font-family: verdana, sans-serif;
-	font-size: 80%;
+  font-size: 80%;
+}
+
+.footer .copyright {
+  float: right;
+}
+
+#active-users {
+  float: left;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 850px;
+  height: 20px;
+  text-align: left;
+  color: #AAAAAA;
+  line-height: 20px;
+  font-size: 1.5em;
+  font-family: "Gill Sans Light", "GillSans-Light", "Gill Sans", "Gill Sans MT", sans-serif;
+}
+
+#active-users #count {
+  float: left;
+  max-width: 110px;
+  text-align: right;
+  padding: 0 10px 0 5px;
+}
+
+#active-users #users-wrapper {
+  float: left;
+  position: relative;
+  overflow: hidden;
+  margin: 0 10px;
+  width: 700px;
+  height: 20px;
+}
+
+#active-users #users {
+  position: relative;
+  text-align: center;
+  height: 20px;
+}
+
+#active-users .user {
+  display: inline;
+  clear: none;
+  padding-left: 15px;
+  margin-right: 5px;
+  background: url('/images/icons/bullet_green.png') no-repeat left center;
 }
 
 /* Headings */
@@ -441,39 +489,86 @@ h1.collection-title {
   width: 6px;
   float: left;
   margin-right: 5px;
-  -moz-border-radius: 3px;    
-  -webkit-border-radius: 3px;  
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
   border-radius: 3px;
 }
 
-.collection-info .nav .current{
+.collection-info .nav .current {
   background: #999;
 }
 
 /* Profile */
-.profile-detail .info h1 {margin-bottom: 0;}
-.profile-detail img {float: left;} 
-.profile-detail .info {margin-left: 50px;}
-.profile-detail {margin-bottom:20px;}
+.profile-detail .user-status {
+  margin-left: -5px;
+  padding-left: 15px;
+}
 
-.profile .popular-discussions{float:left;width: 47%;margin-right: 20px;}
-.profile .popular-discussions .item .stats {height: 20px;}
-.profile .user-comments{float:left;width:49%;}
-.profile .item {padding: 10px 20px 10px 20px;}
-.profile .rhc{padding-top:0;}
+.profile-detail .user-status.online {
+  background: url('/images/icons/bullet_green.png') no-repeat left center;
+}
+
+.profile-detail .user-status.offline {
+  background: url('/images/icons/bullet_red.png') no-repeat left center;
+}
+
+.profile-detail .info h1 {
+  margin-bottom: 0;
+}
+
+.profile-detail img {
+  float: left;
+}
+
+.profile-detail .info {
+  margin-left: 50px;
+}
+
+.profile-detail {
+  margin-bottom:20px;
+}
+
+.profile .popular-discussions {
+  float: left;
+  width: 47%;
+  margin-right: 20px;
+}
+
+.profile .popular-discussions .item .stats {
+  height: 20px;
+}
+
+.profile .user-comments {
+  float: left;
+  width: 49%;
+}
+
+.profile .item {
+  padding: 10px 20px 10px 20px;
+}
+
+.profile .rhc{
+  padding-top: 0;
+}
 
 /* My collections on profile page */
-.profile .my-collections {margin-left: 15px;}
-.profile .my-collections .item {padding: 20px;}
+.profile .my-collections {
+  margin-left: 15px;
+}
+
+.profile .my-collections .item {
+  padding: 20px;
+}
+
 .profile .my-collections .toolbar {
-	margin-top: 10px;
-	text-align: right;
+  margin-top: 10px;
+  text-align: right;
 }
 
 /* Collection viewer */
 #not-logged-in {
-	width: 99%;
-	text-align: center;
+  width: 99%;
+  text-align: center;
 }
 
 .edit_collection #collection-assets {
@@ -492,13 +587,13 @@ h1.collection-title {
   left: 0px;
 }
 .comment {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
   border-bottom: dotted #afafaf 1px;
-	padding-bottom: 10px;
-	position: relative;
-	left: -40px;
-	background: #fff;
-	padding: 20px 30px 20px 40px;
+  padding-bottom: 10px;
+  position: relative;
+  left: -40px;
+  background: #fff;
+  padding: 20px 30px 20px 40px;
 }
 
 .short-comment {

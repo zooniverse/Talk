@@ -5,6 +5,8 @@
         <%= image_tag "interface/default_user.png" %>
         <div class="info">
           <h1><%= @user.name %></h1>
+          <%- status = @user.online? ? 'online' : 'offline' %>
+          <div class="user-status <%= status %>"><%= status.capitalize %></div>
           
           <%- unless current_zooniverse_user == @user %>
             <div class="user-actions" id="report-user-link-<%= @user.id %>">
