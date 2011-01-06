@@ -14,15 +14,35 @@
 #active-users {
   float: left;
   position: relative;
-  top: 0;
+  top: -25px;
+  padding-top: 25px;
   left: 0;
   width: 850px;
-  height: 20px;
+  height: 60px;
   text-align: left;
   color: #AAAAAA;
   line-height: 20px;
   font-size: 1.5em;
   font-family: "Gill Sans Light", "GillSans-Light", "Gill Sans", "Gill Sans MT", sans-serif;
+}
+
+#active-users .handle {
+  position: absolute;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  left: 467px;
+  z-index: 2;
+}
+
+#active-users #handle-up {
+  background: url('/images/icons/up_arrow.png') no-repeat center center;
+  top: 0;
+}
+
+#active-users #handle-down {
+  background: url('/images/icons/down_arrow.png') no-repeat center center;
+  top: 47px;
 }
 
 #active-users #count {

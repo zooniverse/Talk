@@ -4,10 +4,13 @@
       <div id="count">
         <%= pluralize User.active.count, 'user' %> online:
       </div>
+      
+      <div id="handle-up" class="handle" style="display: none;"></div>
+      <div id="handle-down" class="handle" style="display: none;"></div>
       <div id="users-wrapper">
         <div id="users">
-          <%- User.active.sort(:last_active_at.desc).only(:name, :id).limit(80).all.in_groups_of(8).each do |group| %>
-            <div class="user-page">
+          <%- User.active.sort(:last_active_at.desc).only(:name, :id).limit(80).all.in_groups_of(8).each.with_index do |group, i| %>
+            <div id="group<%= i %>" class="user-page">
               <%- group.compact.each do |user| %>
                 <div class="user">
                   <%= link_to user.name, user_path(user) %>
