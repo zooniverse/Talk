@@ -10,12 +10,14 @@ class User
   key :blocked_list, Array
   key :moderator, Boolean, :default => false
   key :admin, Boolean, :default => false
+  key :scientist, Boolean, :default => false
   key :state, String
   
   scope :active, :last_active_at.gt => 1.hour.ago
   scope :watched, :state => 'watched'
   scope :banned, :state => 'banned'
   scope :moderators, :moderator => true
+  scope :science_team, :scientist => true
   
   state_machine :initial => :active do
     after_transition :on => :ban, :do => :notify_banned_user
@@ -51,6 +53,22 @@ class User
   # True if user is an admin or moderator
   def privileged?
     self.admin? || self.moderator?
+  end
+  
+  def is_scientist?
+    self.scientist
+  end
+  
+  def formatted_name
+    if self.scientist
+      return "#{self.name} (science team)"
+    elsif self.admin
+      return "#{self.name} (admin)"
+    elsif self.moderator
+      return "#{self.name} (moderator)"
+    else
+      return "#{self.name}"
+    end
   end
   
   def can_modify?(document)

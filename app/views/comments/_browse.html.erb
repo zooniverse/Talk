@@ -2,7 +2,7 @@
   <div class="item" style="cursor: auto;">
     <%= image_tag('interface/default_user.png', :class => "user", :size => "40x40") %>
     <div class="item-container">
-      <div class="name"><%= link_to comment.author.name, user_path(comment.author.id) %></div>
+      <div class="<%= name_class_for(comment.author) %>"><%= link_to comment.author.formatted_name, user_path(comment.author.id) %></div>
       <div class="date"><%= time_ago_in_words(comment.created_at) %> ago</div>
       <div class="body"><%= comment.body %></div>
     </div>

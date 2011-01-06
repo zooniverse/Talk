@@ -4,7 +4,7 @@
     <p><%= truncate(comment.body, :length => 35, :separator => ' ') %></p>
     <div class="in">
       <span><%= link_to truncate(comment.discussion.subject, :length => 45, :separator => ' '), discussion_url_for(comment.discussion) %></span>
-      <span class="author"><%= link_to comment.author.name, user_path(comment.author.id) %></span>
+      <span class="author"><%= link_to comment.author.formatted_name, user_path(comment.author.id) %></span>
     </div>
   </div>
 <% end -%>

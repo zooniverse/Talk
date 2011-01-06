@@ -4,11 +4,11 @@
   <div id="<%= comment.id %>" class="comment-container highlight_keywords<%= ' highlight_annotations' if @focus.is_a?(Asset) %>">
     <div class="body">
       <div class="date"><%= time_ago_in_words(comment.created_at) %> ago</div>
-      <div class="name">
-        <%= link_to comment.author.name, user_path(comment.author.id) %>
+      <div class="<%= name_class_for(comment.author) %>">
+        <%= link_to comment.author.formatted_name, user_path(comment.author.id) %>
         <%- if comment.response? %>
           <%= t 'comments.in_response_to' %>
-          <%= link_to comment.response_to.author.name, preview_comment_path(comment.response_to), { :remote => true, :method => :post } %>
+          <%= link_to comment.response_to.author.formatted_name, preview_comment_path(comment.response_to), { :remote => true, :method => :post } %>
         <% end -%>
       </div>
       <%= raw markdown(comment.body) %>

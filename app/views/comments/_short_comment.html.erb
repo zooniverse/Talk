@@ -7,7 +7,7 @@
   <div class="highlight_keywords">
     <div class="body">
       <%= raw markdown(short_comment.body) %>
-      <div class="name toggle"><%= link_to short_comment.author.name, user_path(short_comment.author.id) %></div>
+      <div class="<%= name_class_for(short_comment.author) %> toggle"><%= link_to short_comment.author.formatted_name, user_path(short_comment.author.id) %></div>
       <div class="date toggle"><%= time_ago_in_words(short_comment.created_at) %> ago</div>
     </div>
     

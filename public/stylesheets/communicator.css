@@ -637,6 +637,18 @@ h1.collection-title {
   color: #999999;
 }
 
+.admin a{
+  color: green !important;
+}
+
+.moderator a{
+  color: blue !important;
+}
+
+.scientist a{
+  color: #FF8C00 !important;
+}
+
 .short-comment .toggle a {
   color: #999999;
 }
@@ -645,7 +657,6 @@ h1.collection-title {
 .short-comment .toggle a:hover {
   color: #990000;
 }
-
 
 /* Body */
 .comment .body {

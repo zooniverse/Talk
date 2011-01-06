@@ -6,20 +6,21 @@ class UserTest < ActiveSupport::TestCase
       @user = Factory :user
       @admin = Factory :user, :admin => true
       @moderator = Factory :user, :moderator => true
+      @scientist = Factory :user, :scientist => true
       
       @user_message = Factory :message, :sender => @user, :recipient => @admin
       @admin_message = Factory :message, :sender => @admin, :recipient => @user
       @mod_message = Factory :message, :sender => @moderator, :recipient => @user
     end
     
-    should_have_keys :zooniverse_user_id, :name, :email, :blocked_list, :moderator, :admin, :state,
-                     :created_at, :updated_at, :last_active_at, :last_login_at, :current_login_at
+    should_have_keys :zooniverse_user_id, :name, :email, :blocked_list, :moderator, :admin, :state, :created_at, :updated_at, :scientist
     should_associate :comments, :collections, :live_collections, :messages, :sent_messages
     
     should "be #privileged?" do
       assert !@user.privileged?
       assert @admin.privileged?
       assert @moderator.privileged?
+      assert @scientist.is_scientist?
     end
     
     should "find #messages_with a user" do
