@@ -346,8 +346,12 @@ class DiscussionsControllerTest < ActionController::TestCase
         should respond_with :found
         should set_the_flash.to(I18n.t('controllers.discussions.flash_destroyed'))
         
-        should "destroy discussion" do
+        should "archive and destroy discussion" do
           assert_raise(MongoMapper::DocumentNotFound) { @board_discussion.reload }
+          archive = Archive.first(:kind => "Discussion", :original_id => @board_discussion.id)
+          
+          assert archive
+          assert_equal @user.id, archive.destroying_user_id
         end
         
         should "be redirected to focus" do
@@ -374,8 +378,12 @@ class DiscussionsControllerTest < ActionController::TestCase
           should respond_with :found
           should set_the_flash.to(I18n.t('controllers.discussions.flash_destroyed'))
           
-          should "destroy discussion" do
+          should "archive and destroy discussion" do
             assert_raise(MongoMapper::DocumentNotFound) { @discussion.reload }
+            archive = Archive.first(:kind => "Discussion", :original_id => @discussion.id)
+            
+            assert archive
+            assert_equal @user.id, archive.destroying_user_id
           end
           
           should "destroy comments" do
@@ -400,8 +408,12 @@ class DiscussionsControllerTest < ActionController::TestCase
           should respond_with :found
           should set_the_flash.to(I18n.t('controllers.discussions.flash_destroyed'))
           
-          should "destroy discussion" do
+          should "archive and destroy discussion" do
             assert_raise(MongoMapper::DocumentNotFound) { @board_discussion.reload }
+            archive = Archive.first(:kind => "Discussion", :original_id => @board_discussion.id)
+            
+            assert archive
+            assert_equal @user.id, archive.destroying_user_id
           end
           
           should "be redirected to focus" do

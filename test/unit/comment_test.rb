@@ -8,7 +8,9 @@ class CommentTest < ActiveSupport::TestCase
       @comment = @comment1
     end
     
-    should_have_keys :discussion_id, :response_to_id, :author_id, :upvotes, :body, :_body, :tags, :mentions, :created_at, :updated_at
+    should_have_keys :discussion_id, :response_to_id, :author_id, :upvotes, :edit_count, 
+                     :body, :_body, :tags, :mentions, :created_at, :updated_at, :focus_id,
+                     :focus_type, :focus_base_type
     should_associate :author, :discussion, :events
     should_include_modules 'MongoMapper::Document'
     
@@ -21,7 +23,7 @@ class CommentTest < ActiveSupport::TestCase
         assert @comment2.response?
         assert !@comment.response?
       end
-
+      
       should "store the #response_to_id" do
         assert_equal @comment.id, @comment2.response_to_id
       end
@@ -30,7 +32,7 @@ class CommentTest < ActiveSupport::TestCase
         assert_equal @comment, @comment2.response_to
       end
     end
-
+    
     context "when upvoting" do
       setup do
         @user = Factory :user
@@ -139,17 +141,21 @@ class CommentTest < ActiveSupport::TestCase
     
     context "being modified" do
       setup do
-        @comment1.body += " #new_tag"
-        @comment1.save
+        @original1 = @comment1.body
+        @comment1.update_attributes({ :body => @comment1.body + " #new_tag" }, :revising_user => @comment1.author)
         @comment1.reload
+        @revision1 = Revision.first(:original_id => @comment1.id)
         
-        @comment2.body += " #tag1"
-        @comment2.save
+        @moderator = Factory :user, :moderator => true
+        @original2 = @comment2.body
+        @comment2.update_attributes({ :body => @comment2.body + " #tag1" }, :revising_user => @moderator)
         @comment2.reload
+        @revision2 = Revision.first(:original_id => @comment2.id)
         
-        @comment3.body = "#tag3 #tag2"
-        @comment3.save
+        @original3 = @comment3.body
+        @comment3.update_attributes({ :body => " #tag3 #tag2" }, :revising_user => @comment3.author)
         @comment3.reload
+        @revision3 = Revision.first(:original_id => @comment3.id)
         
         @asset.reload
         
@@ -164,6 +170,26 @@ class CommentTest < ActiveSupport::TestCase
         @tag2 = Tag.find_by_name "tag2"
         @tag3 = Tag.find_by_name "tag3"
         @tag4 = Tag.find_by_name "tag4"
+      end
+      
+      should "update edit_counts" do
+        assert_equal 1, @comment1.edit_count
+        assert_equal 1, @comment2.edit_count
+        assert_equal 1, @comment3.edit_count
+      end
+      
+      should "#create_revision_as the updating user" do
+        assert_equal @original1, @revision1.body
+        assert_equal @comment1.author_id, @revision1.author_id
+        assert_equal @comment1.author_id, @revision1.revising_user_id
+        
+        assert_equal @original2, @revision2.body
+        assert_equal @comment2.author_id, @revision2.author_id
+        assert_equal @moderator.id, @revision2.revising_user_id
+        
+        assert_equal @original3, @revision3.body
+        assert_equal @comment3.author_id, @revision3.author_id
+        assert_equal @comment3.author_id, @revision3.revising_user_id
       end
       
       should "update comment tags" do
@@ -284,7 +310,8 @@ class CommentTest < ActiveSupport::TestCase
           @comment4 = @asset.conversation.comments.first
           
           @comment1.destroy
-          @comment2.destroy
+          @comment2.archive_and_destroy_as @comment2.author
+          @archive2 = Archive.first(:kind => "Comment", :original_id => @comment2.id)
           
           @asset.reload
           
@@ -296,6 +323,14 @@ class CommentTest < ActiveSupport::TestCase
           @tag2.reload
           @tag3.reload
           @tag4.reload
+        end
+        
+        should "create archive and destroy comment" do
+          assert_raise(MongoMapper::DocumentNotFound) { @comment2.reload }
+          assert_equal @comment2.body, @archive2.original_document['body']
+          assert_equal @comment2.edit_count, @archive2.original_document['revisions'].length
+          assert_equal "blah #tag2 blah #tag4 blah #{ @comment2.focus.zooniverse_id } is awesome", @archive2.original_document['revisions'].first['body']
+          assert_equal 1, Archive.count
         end
         
         should "update taggings" do

@@ -192,7 +192,7 @@ class DiscussionTest < ActiveSupport::TestCase
         assert_equal @discussion.number_of_comments, @hash['comments'].length
         
         @discussion.comments.each do |comment|
-          assert_contains @hash['comments'], comment.to_mongo
+          assert_contains @hash['comments'], comment.to_embedded_hash
         end
         
         @hash.delete 'comments'

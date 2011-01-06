@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
     
     @short_display = @comment.discussion.conversation?
     
-    if @comment.update_attributes(params[:comment])
+    if @comment.update_attributes(params[:comment], :revising_user => current_zooniverse_user)
       flash[:notice] = I18n.t 'controllers.comments.flash_updated'
     else
       flash_model_errors_on(@comment)
@@ -48,7 +48,7 @@ class CommentsController < ApplicationController
     
     @short_display = @comment.discussion.conversation?
     
-    if @comment.destroy
+    if @comment.archive_and_destroy_as(current_zooniverse_user)
       flash[:notice] = I18n.t 'controllers.comments.flash_destroyed'
     end
     

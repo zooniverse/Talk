@@ -59,7 +59,7 @@ class DiscussionsController < ApplicationController
     return not_found unless @discussion
     return unless moderator_or_owner :can_destroy?, @discussion
     
-    if @discussion.destroy
+    if @discussion.archive_and_destroy_as(current_zooniverse_user)
       flash[:notice] = I18n.t 'controllers.discussions.flash_destroyed'
     else
       flash_model_errors_on(@discussion)

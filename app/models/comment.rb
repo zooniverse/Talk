@@ -7,6 +7,7 @@ class Comment
   key :response_to_id, ObjectId
   key :author_id, ObjectId, :required => true
   key :upvotes, Array
+  key :edit_count, Integer, :default => 0
   key :body, String, :required => true
   key :_body, Array
   key :tags, Array
@@ -110,6 +111,45 @@ class Comment
     parsable = " #{ self.body }"
     self.tags = parsable.scan(TAG).flatten.map(&:downcase).uniq if self.body
     self.mentions = parsable.scan(MENTION).flatten.uniq if self.body
+  end
+  
+  def update_attributes(*args)
+    opts = { :revising_user => self.author }.update(args.extract_options!)
+    
+    self.attributes = args.first
+    create_revision_as opts[:revising_user]
+    self.save
+  end
+  
+  def create_revision_as(revising_user)
+    return unless changes['body']
+    
+    Revision.create({
+      :original_id => self.id,
+      :author_id => self.author_id,
+      :revising_user_id => revising_user.id,
+      :body => changes['body'][0]
+    })
+    
+    self.edit_count += 1
+  end
+  
+  def to_embedded_hash
+    hash = self.to_mongo
+    hash['revisions'] = Revision.all(:original_id => self.id).collect(&:to_mongo)
+    hash
+  end
+  
+  def archive_and_destroy_as(destroying_user)
+    Archive.create({
+      :kind => "Comment",
+      :original_id => self.id,
+      :user_id => self.author_id,
+      :destroying_user_id => destroying_user.id,
+      :original_document => self.to_embedded_hash
+    })
+    
+    self.destroy
   end
   
   # Sets the focus of this comment

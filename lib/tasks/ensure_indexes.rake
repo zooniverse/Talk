@@ -4,6 +4,10 @@ end
 
 desc "Creates indexes on collections"
 task :ensure_indexes => :environment do
+  puts "Building indexes for Archive"
+  drop_indexes_on(Archive)
+  Archive.ensure_index [['kind', 1], ['original_id', 1]]
+  
   puts "Building indexes for Asset"
   drop_indexes_on(Asset)
   Asset.ensure_index [['zooniverse_id', 1]]
@@ -54,6 +58,10 @@ task :ensure_indexes => :environment do
   drop_indexes_on(Message)
   Message.ensure_index [['sender_id', 1], ['recipient_id', 1], ['created_at', -1]]
   Message.ensure_index [['recipient_id', 1], ['created_at', -1]]
+  
+  puts "Building indexes for Revision"
+  drop_indexes_on(Revision)
+  Revision.ensure_index [['original_id', 1]]
   
   puts "Building indexes for Tag"
   drop_indexes_on(Tag)

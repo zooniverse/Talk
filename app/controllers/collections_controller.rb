@@ -80,7 +80,7 @@ class CollectionsController < ApplicationController
     return not_found unless @collection
     return unless moderator_or_owner :can_destroy?, @collection
     
-    if @collection.destroy
+    if @collection.archive_and_destroy_as(current_zooniverse_user)
       flash[:notice] = I18n.t 'controllers.collections.flash_destroyed'
     else
       flash_model_errors_on(@collection)

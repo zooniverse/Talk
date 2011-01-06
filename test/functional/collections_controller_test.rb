@@ -389,8 +389,12 @@ class CollectionsControllerTest < ActionController::TestCase
         assert_redirected_to user_path(@collection.user)
       end
       
-      should "destroy collection" do
+      should "destroy and archive collection" do
         assert_raise(MongoMapper::DocumentNotFound) { @collection.reload }
+        archive = Archive.first(:kind => "Collection", :original_id => @collection.id)
+        
+        assert archive
+        assert_equal @user.id, archive.destroying_user_id
       end
     end
     
@@ -427,8 +431,12 @@ class CollectionsControllerTest < ActionController::TestCase
         assert_redirected_to user_path(@user)
       end
       
-      should "destroy collection" do
+      should "destroy and archive collection" do
         assert_raise(MongoMapper::DocumentNotFound) { @collection.reload }
+        archive = Archive.first(:kind => "Collection", :original_id => @collection.id)
+        
+        assert archive
+        assert_equal @user.id, archive.destroying_user_id
       end
     end
     
@@ -464,8 +472,12 @@ class CollectionsControllerTest < ActionController::TestCase
         assert_redirected_to user_path(@collection.user)
       end
       
-      should "destroy collection" do
+      should "destroy and archive collection" do
         assert_raise(MongoMapper::DocumentNotFound) { @collection.reload }
+        archive = Archive.first(:kind => "LiveCollection", :original_id => @collection.id)
+        
+        assert archive
+        assert_equal @user.id, archive.destroying_user_id
       end
     end
     
@@ -502,8 +514,12 @@ class CollectionsControllerTest < ActionController::TestCase
         assert_redirected_to user_path(@user)
       end
       
-      should "destroy collection" do
+      should "destroy and archive collection" do
         assert_raise(MongoMapper::DocumentNotFound) { @collection.reload }
+        archive = Archive.first(:kind => "LiveCollection", :original_id => @collection.id)
+        
+        assert archive
+        assert_equal @user.id, archive.destroying_user_id
       end
     end
     

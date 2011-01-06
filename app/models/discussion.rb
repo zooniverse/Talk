@@ -123,8 +123,21 @@ class Discussion
   
   def to_embedded_hash
     hash = self.to_mongo
-    hash['comments'] = comments.collect(&:to_mongo)
+    hash['comments'] = comments.collect(&:to_embedded_hash)
     hash
+  end
+  
+  def archive_and_destroy_as(destroying_user)
+    Archive.create({
+      :kind => "Discussion",
+      :original_id => self.id,
+      :zooniverse_id => self.zooniverse_id,
+      :user_id => self.started_by_id,
+      :destroying_user_id => destroying_user.id,
+      :original_document => self.to_embedded_hash
+    })
+    
+    self.destroy
   end
   
   private

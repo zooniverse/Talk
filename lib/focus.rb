@@ -76,5 +76,26 @@ module Focus
     def keywords(limit = 10)
       Tag.for_focus(self, limit).collect{ |t| t.name }
     end
+    
+    def archive_and_destroy_as(destroying_user)
+      archive = Archive.new({
+        :kind => self.class.name,
+        :original_id => self.id,
+        :zooniverse_id => self.zooniverse_id,
+        :user_id => self.user_id,
+        :destroying_user_id => destroying_user.id
+      })
+      
+      original = self.to_mongo
+      original['conversation'] = self.conversation.to_embedded_hash
+      original['discussions'] = self.discussions.collect(&:to_embedded_hash)
+      archive.original_document = original
+      
+      if archive.save
+        self.conversation.destroy
+        self.discussions.each(&:destroy)
+        self.destroy
+      end
+    end
   end
 end

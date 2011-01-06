@@ -81,6 +81,11 @@ class CommentsControllerTest < ActionController::TestCase
         assert @comment.tags.empty?
         assert @comment.mentions.empty?
       end
+      
+      should "#create_revision and increment edit_count" do
+        assert Revision.first(:original_id => @comment.id)
+        assert_equal 1, @comment.reload.edit_count
+      end
     end
     
     context "#update logged in as moderator" do
@@ -106,6 +111,11 @@ class CommentsControllerTest < ActionController::TestCase
         assert_equal "updated!", @comment.body
         assert @comment.tags.empty?
         assert @comment.mentions.empty?
+      end
+      
+      should "#create_revision and increment edit_count" do
+        assert Revision.first(:original_id => @comment.id)
+        assert_equal 1, @comment.reload.edit_count
       end
     end
     
@@ -157,8 +167,12 @@ class CommentsControllerTest < ActionController::TestCase
       should respond_with_content_type :js
       should respond_with :success
       
-      should "destroy comment" do
+      should "destroy and archive comment" do
         assert_raise(MongoMapper::DocumentNotFound) { @comment.reload }
+        archive = Archive.first(:kind => "Comment", :original_id => @comment.id)
+        
+        assert archive
+        assert_equal @user.id, archive.destroying_user_id
       end
     end
     
@@ -171,8 +185,12 @@ class CommentsControllerTest < ActionController::TestCase
       should respond_with_content_type :js
       should respond_with :success
       
-      should "destroy comment" do
+      should "destroy and archive comment" do
         assert_raise(MongoMapper::DocumentNotFound) { @comment.reload }
+        archive = Archive.first(:kind => "Comment", :original_id => @comment.id)
+        
+        assert archive
+        assert_equal @user.id, archive.destroying_user_id
       end
     end
     

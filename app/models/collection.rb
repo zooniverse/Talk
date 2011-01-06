@@ -18,8 +18,6 @@ class Collection
   key :user_id, ObjectId, :required => true
   belongs_to :user
   
-  before_destroy :archive_collection
-  
   # Finds the most recent Collections
   def self.most_recent(*args)
     opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
@@ -50,19 +48,5 @@ class Collection
   
   def asset_count
     asset_ids.length
-  end
-  
-  protected
-  def archive_collection
-    archive = ArchivedCollection.new(:zooniverse_id => self.zooniverse_id, :user_id => self.user_id)
-    
-    archive.collection_archive = self.to_mongo
-    archive.conversation_archive = self.conversation.to_embedded_hash
-    archive.discussions_archive = self.discussions.collect(&:to_embedded_hash)
-    
-    if archive.save
-      self.conversation.destroy
-      self.discussions.each(&:destroy)
-    end
   end
 end

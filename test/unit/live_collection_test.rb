@@ -46,16 +46,18 @@ class LiveCollectionTest < ActiveSupport::TestCase
         build_focus_for @collection
         3.times{ conversation_for @collection }
         
-        @collection_hash = @collection.to_mongo
-        
         @conversation = @collection.conversation
-        @conversation_hash = @conversation.to_embedded_hash
-        
         @discussions = @collection.discussions
-        @discussions_hash = @collection.discussions.collect(&:to_embedded_hash)
+        @document_hash = @collection.to_mongo
         
-        @collection.destroy
-        @archive = ArchivedCollection.find_by_zooniverse_id(@collection.zooniverse_id)
+        @conversation.comments.first.body = "Edited"
+        @conversation.comments.first.save
+        
+        @document_hash['conversation'] = @conversation.to_embedded_hash
+        @document_hash['discussions'] = @collection.discussions.collect(&:to_embedded_hash)
+        
+        @collection.archive_and_destroy_as @collection.user
+        @archive = Archive.first(:kind => "LiveCollection", :original_id => @collection.id)
       end
       
       should "remove collection, discussions, and comments" do
@@ -75,11 +77,19 @@ class LiveCollectionTest < ActiveSupport::TestCase
         end
       end
       
-      should "create ArchivedCollection" do
+      should "Archive collection" do
+        assert_equal "LiveCollection", @archive.kind
+        assert_equal @collection.id, @archive.original_id
+        assert_equal @collection.zooniverse_id, @archive.zooniverse_id
         assert_equal @collection.user_id, @archive.user_id
-        assert_equal @collection_hash, @archive.collection_archive
-        assert_equal @conversation_hash, @archive.conversation_archive
-        assert_same_elements @discussions_hash, @archive.discussions_archive
+        assert_equal @collection.user_id, @archive.destroying_user_id
+        assert_equal @document_hash, @archive.original_document
+      end
+      
+      should "not Archive discussions and comments separately" do
+        assert_not Archive.exists?(:kind => "Comment")
+        assert_not Archive.exists?(:kind => "Discussion")
+        assert_equal 1, Archive.count
       end
     end
   end
