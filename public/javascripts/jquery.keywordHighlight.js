@@ -92,6 +92,13 @@ $.fn.highlightAnnotations = function() {
         return false;
       });
     }
+    
+    if($this.hasClass('highlight_annotations')) {
+      $this.removeClass('highlight_annotations');
+    }
+    else {
+      $this.closest('.highlight_annotations').removeClass('highlight_annotations');
+    }
   });
 };
 
@@ -105,6 +112,14 @@ $.fn.keywordHighlight = function() {
       result = result.replace(/[^\/](CMZS\w{6})/g, ' <a title="Collection $1" class="keyword" href="/collections/$1">$1</a>');
       result = result.replace(/[^\/](DMZ\w{7})/g, ' <a title="Discussion $1" class="keyword" href="/discussions/$1">$1</a>');
       $this.html(result);
+      
+      if($this.hasClass('highlight_keywords')) {
+        $this.removeClass('highlight_keywords');
+      }
+      else {
+        $this.closest('.highlight_keywords').removeClass('highlight_keywords');
+      }
+      
       return $this;
   });
 };
