@@ -11,6 +11,7 @@ class Discussion
   key :focus_base_type, String
   key :slug, String
   key :started_by_id, ObjectId
+  key :author_ids, Array
   key :featured, Boolean, :default => false
   
   key :popularity, Integer
@@ -68,18 +69,29 @@ class Discussion
   end
   
   def self.with_new_comments(*args)
-    opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
-    last_login = args.first ? args.first.last_login_at : nil
-    last_login ||= Time.now.utc.beginning_of_day
+    opts = { :page => 1,
+             :per_page => 10,
+             :read_list => [],
+             :for_user => nil,
+             :by_user => false,
+             :since => Time.now.utc.beginning_of_day
+           }.update(args.extract_options!)
     
-    Discussion.sort(:updated_at.desc).where(:updated_at.gte => last_login).paginate(opts)
+    since_time = opts[:for_user].last_login_at if opts[:for_user] && opts[:for_user].last_login_at
+    since_time = opts[:since].utc if opts[:since]
+    
+    cursor = Discussion.sort(:updated_at.desc).where(:updated_at.gte => since_time)
+    cursor = cursor.where(:author_ids => opts[:for_user].id) if opts[:for_user] && opts[:by_user]
+    cursor = cursor.where(:_id.nin => opts[:read_list]) if opts[:read_list].any?
+    cursor.paginate(:page => opts[:page], :per_page => opts[:per_page])
   end
   
-  def count_new_comments(user = nil)
-    last_login = user.nil? ? nil : user.last_login_at
-    last_login ||= Time.now.utc.beginning_of_day
+  def count_new_comments(*args)
+    opts = { :since => Time.now.utc.beginning_of_day, :for_user => nil }.update(args.extract_options!)
+    since_time = opts[:for_user].last_login_at if opts[:for_user] && opts[:for_user].last_login_at
+    since_time = opts[:since].utc if opts[:since]
     
-    self.comments.count(:created_at.gt => last_login)
+    self.comments.count(:created_at.gte => since_time)
   end
   
   # True if discussing LiveCollections
@@ -156,13 +168,14 @@ class Discussion
   def update_counts
     fresh_comments = Comment.collection.find(:discussion_id => id).to_a
     n_comments = fresh_comments.length
-    n_users = fresh_comments.collect{ |c| c["author_id"] }.uniq.length
+    authors = fresh_comments.collect{ |c| c["author_id"] }.uniq
     
     Discussion.collection.update({:_id => id}, {
       '$set' => {
         :number_of_comments => n_comments,
-        :number_of_users => n_users,
-        :popularity => n_users * n_comments
+        :number_of_users => authors.length,
+        :popularity => authors.length * n_comments,
+        :author_ids => authors
       }
     })
   end

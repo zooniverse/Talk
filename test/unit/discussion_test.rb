@@ -57,15 +57,19 @@ class DiscussionTest < ActiveSupport::TestCase
       end
       
       should "#count_new_comments for a user" do
-        assert_equal 2, @discussion.count_new_comments(@comment1.author)
+        assert_equal 3, @discussion.count_new_comments(:for_user => @comment1.author)
+        assert_equal 2, @discussion.count_new_comments(:for_user => @comment1.author, :since => 1.hour.ago)
       end
       
       should "#count_new_comments for a new user" do
-        assert_equal 3, @discussion.count_new_comments(Factory(:user))
+        assert_equal 3, @discussion.count_new_comments(:for_user => Factory(:user))
+        assert_equal 2, @discussion.count_new_comments(:for_user => Factory(:user), :since => 1.hour.ago)
       end
       
       should "#count_new_comments without a user" do
         assert_equal 3, @discussion.count_new_comments
+        assert_equal 2, @discussion.count_new_comments(:since => 1.hour.ago)
+        assert_equal 2, @discussion.count_new_comments(:for_user => nil, :since => 1.hour.ago)
       end
     end
     
@@ -74,6 +78,16 @@ class DiscussionTest < ActiveSupport::TestCase
         2.times{ build_discussions_for @asset }
         @discussion2 = @asset.discussions[1]
         @discussion3 = @asset.discussions[2]
+        
+        @comment1 = @discussion.comments.first
+        @comment2 = @discussion2.comments.first
+        @comment1.author.set :last_login_at => 1.hour.ago
+        @comment1.author.reload
+        
+        @comment2.author_id = @comment1.author.id
+        @comment2.save
+        @discussion2.save
+        @discussion2.reload
         
         @conversation.set :updated_at => 30.minutes.ago
         @conversation.reload
@@ -92,16 +106,25 @@ class DiscussionTest < ActiveSupport::TestCase
       end
       
       should "find discussions #with_new_comments for an existing user" do
-        assert_equal [@discussion, @conversation, @discussion2], Discussion.with_new_comments(Factory(:user, :last_login_at => 1.day.ago))
-        assert_equal [@discussion, @conversation], Discussion.with_new_comments(Factory(:user, :last_login_at => 1.day.ago), :per_page => 2)
-        assert_equal [@conversation], Discussion.with_new_comments(Factory(:user, :last_login_at => 1.day.ago), :per_page => 1, :page => 2)
+        assert_equal [@discussion, @conversation, @discussion2], Discussion.with_new_comments(:for_user => Factory(:user, :last_login_at => 1.day.ago))
+        assert_equal [@discussion, @conversation], Discussion.with_new_comments(:for_user => Factory(:user, :last_login_at => 1.day.ago), :per_page => 2)
+        assert_equal [@conversation], Discussion.with_new_comments(:for_user => Factory(:user, :last_login_at => 1.day.ago), :per_page => 1, :page => 2)
+        
+        assert_equal [@discussion, @discussion2], Discussion.with_new_comments(:for_user => @comment1.author, :by_user => true)
+        assert_equal [@discussion], Discussion.with_new_comments(:for_user => @comment1.author, :by_user => true, :read_list => [@discussion2.id])
+        assert_equal [], Discussion.with_new_comments(:for_user => @comment1.author, :by_user => true, :since => 30.minutes.ago, :read_list => [@discussion.id])
       end
       
       should "find discussions #with_new_comments for a new user" do
-        assert_equal [@discussion, @conversation, @discussion2], Discussion.with_new_comments(Factory(:user))
-        assert_equal [@discussion], Discussion.with_new_comments(Factory(:user), :per_page => 1)
-        assert_equal [@discussion, @conversation], Discussion.with_new_comments(Factory(:user), :per_page => 2)
-        assert_equal [@conversation], Discussion.with_new_comments(Factory(:user), :per_page => 1, :page => 2)
+        assert_equal [@discussion, @conversation, @discussion2], Discussion.with_new_comments(:for_user => Factory(:user))
+        assert_equal [@discussion], Discussion.with_new_comments(:for_user => Factory(:user), :per_page => 1)
+        assert_equal [@discussion, @conversation], Discussion.with_new_comments(:for_user => Factory(:user), :per_page => 2)
+        assert_equal [@conversation], Discussion.with_new_comments(:for_user => Factory(:user), :per_page => 1, :page => 2)
+        
+        assert_equal [], Discussion.with_new_comments(:for_user => Factory(:user), :by_user => true)
+        assert_equal [@conversation], Discussion.with_new_comments(:for_user => Factory(:user), :read_list => [@discussion.id], :per_page => 1)
+        assert_equal [@conversation], Discussion.with_new_comments(:for_user => Factory(:user), :read_list => [@discussion2.id], :per_page => 1, :page => 2)
+        assert_equal [@discussion, @conversation, @discussion2], Discussion.with_new_comments(:for_user => Factory(:user), :since => 1.day.ago)
       end
       
       should "find discussions #with_new_comments without a user" do
@@ -109,6 +132,9 @@ class DiscussionTest < ActiveSupport::TestCase
         assert_equal [@discussion], Discussion.with_new_comments(:per_page => 1)
         assert_equal [@discussion, @conversation], Discussion.with_new_comments(:per_page => 2)
         assert_equal [@conversation], Discussion.with_new_comments(:per_page => 1, :page => 2)
+        assert_equal [@discussion, @conversation], Discussion.with_new_comments(:since => 40.minutes.ago)
+        assert_equal [@discussion, @conversation], Discussion.with_new_comments(:since => 40.minutes.ago, :by_user => true)
+        assert_equal [@conversation], Discussion.with_new_comments(:since => 40.minutes.ago, :read_list => [@discussion.id])
       end
     end
     
