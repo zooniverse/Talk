@@ -453,6 +453,7 @@ OCT.active_ticker = {
   },
   
   init_timer: function() {
+    clearTimeout(OCT.active_ticker.timer);
     OCT.active_ticker.timer = setTimeout(OCT.active_ticker.slide, 3000);
   },
   
