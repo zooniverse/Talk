@@ -5,6 +5,7 @@ module Focus
     base.class_eval do
       key :conversation_id, ObjectId
       key :discussion_ids, Array
+      key :popularity, Integer, :default => 0
       
       # this is the primary thread for a target
       # one :conversation, :class_name => "Discussion"
@@ -23,16 +24,9 @@ module Focus
   # Class Methods!
   module ClassMethods
     # selects the most 'popular' focii
-    def trending(limit = 10)
-      cursor = Discussion.where(:focus_base_type => self.name).sort(:popularity.desc).only(:focus_id).find_each
-      focii = {}
-      
-      while focii.length < limit && cursor.has_next?
-        doc = cursor.next_document
-        focii[ doc['focus_id'] ] = 1
-      end
-      
-      focii.keys.map{ |f_id| self.find(f_id) }
+    def trending(*args)
+      opts = { :page => 1, :per_page => 5 }.update(args.extract_options!)
+      self.sort(:popularity.desc).paginate(opts)
     end
   end
   
@@ -75,6 +69,12 @@ module Focus
     
     def keywords(limit = 10)
       Tag.for_focus(self, limit).collect{ |t| t.name }
+    end
+    
+    def update_popularity
+      fresh_discussions = Discussion.collection.find({ :focus_id => self.id }, { :fields => :popularity }).to_a
+      new_popularity = fresh_discussions.collect{ |d| d['popularity'] }.sum
+      self.set(:popularity => new_popularity) unless new_popularity == self.popularity
     end
     
     def archive_and_destroy_as(destroying_user)

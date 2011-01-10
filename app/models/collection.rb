@@ -21,7 +21,7 @@ class Collection
   # Finds the most recent Collections
   def self.most_recent(*args)
     opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
-    Collection.sort(:created_at.desc).paginate :page => opts[:page], :per_page => opts[:per_page]
+    self.sort(:created_at.desc).paginate(opts)
   end
   
   # Finds the most recent assets added to this Collection
@@ -35,15 +35,15 @@ class Collection
   def self.with_asset(*args)
     opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
     opts[:per_page] = opts[:limit] if opts.has_key?(:limit)
-    Collection.sort(:created_at.desc).where(:asset_ids => args.first.id).paginate :page => opts[:page], :per_page => opts[:per_page]
+    self.sort(:created_at.desc).where(:asset_ids => args.first.id).paginate(opts)
   end
   
   def self.with_keywords(*args)
-    opts = { :per_page => 20, :page => 1, :order => :created_at.desc }.update(args.extract_options!)
+    opts = { :per_page => 20, :page => 1 }.update(args.extract_options!)
     args = args.collect{ |arg| arg.split }.flatten
     return [] if args.blank?
     
-    Collection.where(:tags.all => args).paginate(:page => opts[:page], :per_page => opts[:per_page])
+    self.sort(:created_at.desc).where(:tags.all => args).paginate(opts)
   end
   
   def asset_count

@@ -159,17 +159,33 @@ class Discussion
   # Updates the denormalized counts
   def update_counts
     fresh_comments = Comment.collection.find(:discussion_id => id).to_a
-    n_comments = fresh_comments.length
-    authors = fresh_comments.collect{ |c| c["author_id"] }.uniq
+    
+    authors = []
+    recent_authors = []
+    n_recent_comments = n_recent_upvotes = 0
+    
+    fresh_comments.each do |comment|
+      if comment['created_at'].utc > 1.week.ago.utc
+        recent_authors << comment['author_id']
+        n_recent_comments += 1
+        n_recent_upvotes += comment['upvotes'].length
+      end
+      
+      authors << comment['author_id']
+    end
+    
+    new_popularity = recent_authors.uniq.length + n_recent_comments + n_recent_upvotes
     
     Discussion.collection.update({:_id => id}, {
       '$set' => {
-        :number_of_comments => n_comments,
+        :number_of_comments => fresh_comments.length,
         :number_of_users => authors.length,
-        :popularity => authors.length * n_comments,
-        :author_ids => authors
+        :popularity => new_popularity,
+        :author_ids => authors.uniq
       }
     })
+    
+    focus.update_popularity unless focus.nil? || focus.is_a?(Board)
   end
   
   def remove_from_board

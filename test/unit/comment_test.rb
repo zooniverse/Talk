@@ -309,6 +309,9 @@ class CommentTest < ActiveSupport::TestCase
           conversation_for @asset
           @comment4 = @asset.conversation.comments.first
           
+          @comment3.cast_vote_by(Factory(:user))
+          @discussion.reload
+          
           @comment1.destroy
           @comment2.archive_and_destroy_as @comment2.author
           @archive2 = Archive.first(:kind => "Comment", :original_id => @comment2.id)
@@ -365,13 +368,13 @@ class CommentTest < ActiveSupport::TestCase
         should "update discussion counts" do
           assert_equal 3, @discussion.number_of_comments
           assert_equal 3, @discussion.number_of_users
-          assert_equal 9, @discussion.popularity
+          assert_equal 7, @discussion.popularity
           
           @discussion.reload
           
           assert_equal 1, @discussion.number_of_comments
           assert_equal 1, @discussion.number_of_users
-          assert_equal 1, @discussion.popularity
+          assert_equal 3, @discussion.popularity
         end
       end
       

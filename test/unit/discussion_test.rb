@@ -39,7 +39,7 @@ class DiscussionTest < ActiveSupport::TestCase
     should "#update_counts" do
       assert_equal 3, @discussion.number_of_comments
       assert_equal 3, @discussion.number_of_users
-      assert_equal 9, @discussion.popularity
+      assert_equal 6, @discussion.popularity
     end
     
     context "#count_new_comments" do
@@ -143,7 +143,7 @@ class DiscussionTest < ActiveSupport::TestCase
         build_focus_for @live_collection
         @lc_discussion = @live_collection.discussions.first
         
-        @collection = Factory :collection
+        @collection = collection_for(@asset)
         build_focus_for @collection
         @c_discussion = @collection.discussions.first
         

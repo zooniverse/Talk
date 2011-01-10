@@ -105,6 +105,7 @@ class ActiveSupport::TestCase
     build_discussions_for @focus2
     build_discussions_for @focus3
     build_discussions_for @focus1
+    [@focus1, @focus2, @focus3].each{ |f| f.conversation.focus.reload }
     
     @discussion = focus.discussions.first
     @conversation = focus.conversation

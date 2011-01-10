@@ -65,6 +65,7 @@ class Comment
   def cast_vote_by(user)
     return if author.id == user.id
     Comment.collection.update({ '_id' => self.id }, {'$addToSet' => { 'upvotes' => user.id } })
+    self.discussion.update_counts
   end
   
   # The most recent comments

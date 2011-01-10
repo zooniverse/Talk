@@ -151,7 +151,7 @@ class DiscussionsControllerTest < ActionController::TestCase
         discussion = Discussion.find(@asset.reload.discussions.first.id)
         assert_equal 1, discussion.number_of_users
         assert_equal 1, discussion.number_of_comments
-        assert_equal 1, discussion.popularity
+        assert_equal 2, discussion.popularity
       end
     end
     

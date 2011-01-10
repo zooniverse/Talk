@@ -11,7 +11,9 @@ task :ensure_indexes => :environment do
   puts "Building indexes for Asset"
   drop_indexes_on(Asset)
   Asset.ensure_index [['zooniverse_id', 1]]
-  Asset.ensure_index [['tags', 1]]
+  Asset.ensure_index [['popularity', -1]]
+  Asset.ensure_index [['updated_at', -1]]
+  Asset.ensure_index [['tags', 1], ['updated_at', -1]]
   
   puts "Building indexes for Board"
   drop_indexes_on(Board)
@@ -25,6 +27,7 @@ task :ensure_indexes => :environment do
   Collection.ensure_index [['tags', 1], ['created_at', -1]]
   Collection.ensure_index [['_type', 1], ['user_id', 1], ['created_at', -1]]
   Collection.ensure_index [['_type', 1], ['tags', 1], ['created_at', -1]]
+  Collection.ensure_index [['popularity', -1]]
   Collection.ensure_index [['created_at', -1]]
   
   puts "Building indexes for Comment"
