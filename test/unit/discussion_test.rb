@@ -11,12 +11,8 @@ class DiscussionTest < ActiveSupport::TestCase
     
     should_associate :comments
     should_include_modules :zooniverse_id, 'MongoMapper::Document'
-    should_have_keys :zooniverse_id, :subject, :focus_id, :focus_type, :slug, :started_by_id,
+    should_have_keys :zooniverse_id, :subject, :focus_id, :focus_type, :started_by_id,
                      :featured, :number_of_users, :number_of_comments, :popularity, :created_at, :updated_at
-    
-    should "#set_slug correctly" do
-      assert_equal "monkey_is_an_oiii_emission", @discussion.slug
-    end
     
     should "find the #focus" do
       assert_equal @asset, @discussion.focus

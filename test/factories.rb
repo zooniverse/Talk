@@ -43,6 +43,5 @@ end
 
 Factory.define :conversation, :class => Discussion do |c|
   c.subject             "Monkey is an OIII emission"
-  c.slug                "monkey-is-an-oiii-emission"
 end
 

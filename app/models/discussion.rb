@@ -9,7 +9,6 @@ class Discussion
   key :focus_id, ObjectId
   key :focus_type, String
   key :focus_base_type, String
-  key :slug, String
   key :started_by_id, ObjectId
   key :author_ids, Array
   key :featured, Boolean, :default => false
@@ -22,7 +21,6 @@ class Discussion
   
   many :comments, :dependent => :destroy
   
-  before_create :set_slug
   before_create :set_started_by
   before_destroy :remove_from_board
   after_save :update_counts
@@ -150,12 +148,6 @@ class Discussion
     })
     
     self.destroy
-  end
-  
-  private
-  # Creates a prettyfied slug for the URL
-  def set_slug
-    self.slug = self.subject.parameterize('_')
   end
   
   # Sets the user that started this discussion
