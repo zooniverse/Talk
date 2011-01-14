@@ -175,13 +175,14 @@ class Discussion
     end
     
     new_popularity = recent_authors.uniq.length + n_recent_comments + n_recent_upvotes
+    authors.uniq!
     
     Discussion.collection.update({:_id => id}, {
       '$set' => {
         :number_of_comments => fresh_comments.length,
         :number_of_users => authors.length,
         :popularity => new_popularity,
-        :author_ids => authors.uniq
+        :author_ids => authors
       }
     })
     
