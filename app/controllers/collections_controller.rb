@@ -120,7 +120,9 @@ class CollectionsController < ApplicationController
   end
   
   def browse
-    @collections = Collection.trending(5)
+    default_params :page => 1, :per_page => 10
+    @collections = Collection.trending :page => @page, :per_page => @per_page
+    
     respond_with(@collections) do |format|
       format.js { render :partial => "browse" }
     end

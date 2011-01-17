@@ -18,14 +18,14 @@ class DiscussionTest < ActiveSupport::TestCase
       assert_equal @asset, @discussion.focus
     end
     
-    should "find the #most_recent" do
-      assert_contains Discussion.most_recent, @discussion
-      assert_contains Discussion.most_recent, @discussion2
-      assert_contains Discussion.most_recent, @discussion3
+    should "find the #recent" do
+      assert_contains Discussion.recent, @discussion
+      assert_contains Discussion.recent, @discussion2
+      assert_contains Discussion.recent, @discussion3
     end
     
     should "find #trending" do
-      assert_same_elements [@discussion, @discussion2, @discussion3], Discussion.trending(3)
+      assert_same_elements [@discussion, @discussion2, @discussion3], Discussion.trending(:per_page => 3)
     end
     
     should "find #mentioning" do
@@ -85,6 +85,7 @@ class DiscussionTest < ActiveSupport::TestCase
         @discussion2.save
         @discussion2.reload
         
+        conversation_for @conversation.focus
         @conversation.set :updated_at => 30.minutes.ago
         @conversation.reload
         

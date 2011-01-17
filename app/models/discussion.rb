@@ -33,15 +33,10 @@ class Discussion
     @cached_focus ||= focus_type.constantize.find(focus_id)
   end
   
-  # Finds the most recent discussions
-  def self.most_recent(*args)
-    opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
-    Discussion.sort(:created_at.desc).paginate :page => opts[:page], :per_page => opts[:per_page]
-  end
-  
   # Finds popular discussions
-  def self.trending(limit = 10)
-    Discussion.limit(limit).sort(:popularity.desc).all
+  def self.trending(*args)
+    opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
+    Discussion.sort(:popularity.desc).where(:number_of_comments.gt => 0).paginate :page => opts[:page], :per_page => opts[:per_page]
   end
   
   # Finds discussions mentioning a focus
@@ -76,12 +71,17 @@ class Discussion
            }.update(args.extract_options!)
     
     since_time = opts[:for_user].last_login_at if opts[:for_user] && opts[:for_user].last_login_at
+    since_time = Time.parse(opts[:since]) if opts[:since] && opts[:since].is_a?(String)
     since_time = opts[:since].utc if opts[:since]
     
-    cursor = Discussion.sort(:updated_at.desc).where(:updated_at.gte => since_time)
+    cursor = Discussion.sort(:updated_at.desc).where(:updated_at.gte => since_time, :number_of_comments.gt => 0)
     cursor = cursor.where(:author_ids => opts[:for_user].id) if opts[:for_user] && opts[:by_user]
     cursor = cursor.where(:_id.nin => opts[:read_list]) if opts[:read_list].any?
     cursor.paginate(:page => opts[:page], :per_page => opts[:per_page])
+  end
+  
+  class << self
+    alias_method :recent, :with_new_comments
   end
   
   def count_new_comments(*args)

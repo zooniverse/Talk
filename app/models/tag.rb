@@ -15,8 +15,9 @@ class Tag
   end
   
   # Gets the top most used tags
-  def self.trending(limit = 10)
-    Tag.sort(:count.desc).limit(limit).all.collect{ |tag| tag.name }
+  def self.trending(*args)
+    opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
+    Tag.sort(:count.desc).paginate(opts).collect{ |tag| tag.name }
   end
   
   # Normalizes and interpolates trending_tags onto a range

@@ -69,7 +69,7 @@ class Comment
   end
   
   # The most recent comments
-  def self.most_recent(*args)
+  def self.recent(*args)
     opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
     Comment.sort(:created_at.desc).paginate :page => opts[:page], :per_page => opts[:per_page]
   end

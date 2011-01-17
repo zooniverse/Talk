@@ -12,7 +12,7 @@ class Asset
   timestamps!
   
   # selects the most recently mentioned (ie AM0000BLAH was mentioned in a comment) assets
-  def self.most_recently_mentioned(limit = 10)
+  def self.recently_mentioned(limit = 10)
     cursor = Comment.collection.find({ :mentions => { "$type" => 2 } }).sort([:created_at, :desc])
     asset_ids = {}
     
@@ -27,7 +27,7 @@ class Asset
   end
   
   # selects the most recently discussed assets (ie the assets with the newest comments )
-  def self.most_recent(*args)
+  def self.recent(*args)
     opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
     self.sort(:updated_at.desc).paginate(opts)
   end

@@ -50,10 +50,10 @@ class CommentTest < ActiveSupport::TestCase
       end
     end
     
-    should "find #most_recent" do
-      assert_contains Comment.most_recent, @comment1
-      assert_contains Comment.most_recent, @comment2
-      assert_contains Comment.most_recent, @comment3
+    should "find #recent" do
+      assert_contains Comment.recent, @comment1
+      assert_contains Comment.recent, @comment2
+      assert_contains Comment.recent, @comment3
     end
     
     should "find #mentioning" do

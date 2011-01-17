@@ -19,13 +19,13 @@ class Collection
   belongs_to :user
   
   # Finds the most recent Collections
-  def self.most_recent(*args)
+  def self.recent(*args)
     opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
     self.sort(:created_at.desc).paginate(opts)
   end
   
   # Finds the most recent assets added to this Collection
-  def most_recent_assets(limit = 10)
+  def recent_assets(limit = 10)
     return [] if asset_ids.empty?
     self.asset_ids.reverse[0, limit].map{ |id| Asset.find(id) }
   end

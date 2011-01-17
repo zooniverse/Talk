@@ -19,7 +19,9 @@ class AssetsController < ApplicationController
   end
   
   def browse
-    @assets = Asset.trending(5)
+    default_params :page => 1, :per_page => 10
+    @assets = Asset.trending :page => @page, :per_page => @per_page
+    
     respond_with(@assets) do |format|
       format.js { render :partial => "browse" }
     end

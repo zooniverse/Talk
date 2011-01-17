@@ -19,12 +19,12 @@ class CollectionTest < ActiveSupport::TestCase
     should_associate :assets, :user
     should_include_modules :focus, :zooniverse_id, 'MongoMapper::Document'
     
-    should "find #most_recent" do
-      assert_same_elements [@collection, @collection2, @collection3], Collection.most_recent
+    should "find #recent" do
+      assert_same_elements [@collection, @collection2, @collection3], Collection.recent
     end
     
-    should "find #most_recent_assets" do
-      assert_equal [@asset5, @asset4, @asset3], @collection.most_recent_assets(3)
+    should "find #recent_assets" do
+      assert_equal [@asset5, @asset4, @asset3], @collection.recent_assets(3)
     end
     
     should "find collections #with_asset" do

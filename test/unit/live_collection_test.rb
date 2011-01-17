@@ -37,8 +37,8 @@ class LiveCollectionTest < ActiveSupport::TestCase
       end
     end
     
-    should "find #most_recent" do
-      assert_equal [@collection], LiveCollection.most_recent
+    should "find #recent" do
+      assert_equal [@collection], LiveCollection.recent
     end
     
     context "#destroy" do

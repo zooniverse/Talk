@@ -13,7 +13,7 @@ class LiveCollection < Collection
   end
   
   # Finds the most recently created LiveCollections
-  def self.most_recent(limit = 10)
+  def self.recent(limit = 10)
     LiveCollection.limit(limit).sort(:created_at.desc).all
   end
   

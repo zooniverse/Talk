@@ -30,12 +30,12 @@ class AssetTest < ActiveSupport::TestCase
       assert_same_elements comment_tags, @asset.tags
     end
     
-    should "find #most_recently_mentioned" do
-      assert_same_elements [@asset, @asset2, @asset3], Asset.most_recently_mentioned(3)
+    should "find #recently_mentioned" do
+      assert_same_elements [@asset, @asset2, @asset3], Asset.recently_mentioned(3)
     end
     
-    should "find #most_recently_commented_on" do
-      assert_same_elements [@asset, @asset2, @asset3], Asset.most_recent(3)
+    should "find #recently_commented_on" do
+      assert_same_elements [@asset, @asset2, @asset3], Asset.recent(3)
     end
     
     should "find #trending" do
