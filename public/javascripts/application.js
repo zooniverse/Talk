@@ -572,8 +572,13 @@ function cancel_discussion_edit() {
 
 function page_loading(nav) {
   nav.css('background', 'url("/images/icons/loading.gif") no-repeat center center');
-  if(nav.closest('.list').parent().attr('id') == "discussions") {
-    $('.page-loader', nav).replaceWith($('<div class="more">Next page</div>'));
+  var container = nav.closest('.list').parent();
+  
+  if(container.attr('id') == "discussions" && container.hasClass('recent')) {
+    $('.page-loader', nav).replaceWith($('<div class="more">Older</div>'));
+  }
+  else if(container.attr('id') == "discussions" && container.hasClass('trending')) {
+    $('.page-loader', nav).replaceWith($('<div class="more">Less popular</div>'));
   }
   else {
     $('.page-loader', nav).replaceWith($('<div class="more"></div>'));

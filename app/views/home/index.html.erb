@@ -34,7 +34,7 @@
     <div class="push"></div>
   </div>
   
-  <div id="discussions">
+  <div id="discussions" class="<%= @showing %>">
     <h2><%= @showing.upcase %> DISCUSSIONS</h2>
     <%= render :partial => "form_for_discussions" %>
     

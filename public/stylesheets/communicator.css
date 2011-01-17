@@ -1211,13 +1211,17 @@ div.more-results {text-align: center;}
   margin: 2px 0 0 0;
 }
 
+.home #discussions.trending .page-nav .more {
+  text-indent: -95px;
+}
+
 .home .page-nav .more {
   float: right;
   cursor: pointer;
   background: url(/images/colorbox/controls.png) no-repeat -50px 0px;
   width: 25px;
   height: 25px;
-  text-indent: -80px;
+  text-indent: -55px;
   line-height: 25px;
   color: #990000;
 }

@@ -36,8 +36,10 @@
   
   <div class="page-nav">
     <%= page_listing :collection => @discussions, :per_page => @discussions_options[:per_page] %>
-    <div class="less" style="display: none;"><span style="position: absolute;">Previous page</span></div>
-    <%= link_to_more('<div class="more">Next page</div>'.html_safe, :showing => @showing, :kinds => :discussions, :since => @since, :by_user => @by_user, :discussions_page => @discussions_options[:page] + 1) if @discussions.total_pages > @discussions.current_page %>
+    <div class="less" style="display: none;">
+      <span style="position: absolute;"><%= @showing == "recent" ? "Newer" : "More popular" %></span>
+    </div>
+    <%= link_to_more("<div class=\"more\">#{ @showing == 'recent' ? 'Older' : 'Less popular' }</div>".html_safe, :showing => @showing, :kinds => :discussions, :since => @since, :by_user => @by_user, :discussions_page => @discussions_options[:page] + 1) if @discussions.total_pages > @discussions.current_page %>
     <div class="push"></div>
   </div>
 </div>

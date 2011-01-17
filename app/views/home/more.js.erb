@@ -1,6 +1,7 @@
 if(<%= @switching %>) {
   $('.home .mode_switch').css('background', 'none');
   $('.home .mode_switch').html($("<%= escape_javascript(render :partial => 'mode_switch') if @switching %>"));
+  $('.home #discussions').removeClass('recent').removeClass('trending').addClass('<%= @showing %>');
 }
 
 <%- @kinds.each do |kind| %>
