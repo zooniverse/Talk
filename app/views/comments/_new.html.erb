@@ -30,6 +30,6 @@
     $(".new_comment #comment_body").markItUp(mySettings);
     var width = <%= @focus.is_a?(Asset) ? @focus.size[0] : 0 %>;
     var height = <%= @focus.is_a?(Asset) ? @focus.size[1] : 0 %>;
-    OCT.annotater.init('#new_comment', '#new-comment-annotation', width, height);
+    Talk.annotater.init('#new_comment', '#new-comment-annotation', width, height);
   });
 </script>

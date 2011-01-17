@@ -5,4 +5,4 @@ $('#discussion-subject h1').show();
 
 $('.wrapper').prepend("<%= escape_javascript(render(:partial => "shared/flash", :locals => { :flash => flash })) %>");
 <%- flash.clear %>
-OCT.notice.init();
+Talk.notice.init();

@@ -1,0 +1,33 @@
+<div id="assets_page_<%= @assets.current_page %>" class="page">
+  <%- @assets.each do |asset| %>
+    <div class="asset">
+      <%= link_to image_tag(asset.thumbnail_location, :width => 260, :height => 100), object_path(asset.zooniverse_id) %>
+      <div class="translucent red circle">
+        <p><%= link_to short_id_for(asset), object_path(asset.zooniverse_id) %></p>
+      </div>
+      <div class="translucent red stats-wrapper">
+        <div class="stats">
+          <%= "#{ pluralize asset.count_collections, 'collection' }" %>
+        </div>
+        <div class="stats">
+          <%= "#{ pluralize asset.count_mentions, 'mention' }" %>
+        </div>
+      </div>
+    </div>
+  <% end -%>
+  
+  <div class="page-nav">
+    <div class="less" style="display: none;"></div>
+    <%= page_listing :type => @showing, :collection => @assets, :per_page => @assets_options[:per_page] %>
+    <%= link_to_more('<div class="more"></div>'.html_safe, :showing => @showing, :kinds => :assets, :assets_page => @assets_options[:page] + 1) if @assets.total_pages > @assets.current_page %>
+    <div class="push"></div>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('#assets_page_<%= @assets.current_page %> .page-loader').live('click', function() {
+      page_loading($(this).closest('.page-nav'));
+    });
+  });
+</script>

@@ -1,0 +1,47 @@
+<div id="collections_page_<%= @collections.current_page %>" class="page">
+  <%- @collections.each do |collection| %>
+    <div class="collection">
+      <div class="translucent gold circle">
+        <p><%= link_to short_id_for(collection), collection_path(collection.zooniverse_id) %></p>
+      </div>
+      <div class="translucent gold title-bar">
+        <p><%= link_to truncate(collection.name, :length => 25, :separator => ' '), collection_path(collection.zooniverse_id) %></p>
+      </div>
+      <div class="translucent gold stats-wrapper">
+        <div class="stat">
+          <%= "#{ pluralize collection.asset_count, 'object' }" %>
+        </div>
+      </div>
+      
+      <%- assets = collection.is_a?(LiveCollection) ? collection.assets(:per_page => 5) : collection.asset_ids[0, 5].map{ |id| Asset.find(id) } %>
+      <div class="collection-info paginatable_collection">
+        <div class="container">
+          <%- assets.each do |asset| %>
+            <div class="col">
+              <%= link_to image_tag(asset.location, :class => "collection-thumbnail", :width => 260, :height => 100), collection_path(collection.zooniverse_id) %>
+            </div>
+          <% end -%>
+        </div>
+        
+        <div class="nav"></div>
+      </div>
+    </div>
+  <% end -%>
+  
+  <div class="page-nav">
+    <div class="less" style="display: none;"></div>
+    <%= page_listing :type => @showing, :collection => @collections, :per_page => @collections_options[:per_page] %>
+    <%= link_to_more('<div class="more"></div>'.html_safe, :showing => @showing, :kinds => :collections, :collections_page => @collections_options[:page] + 1) if @collections.total_pages > @collections.current_page %>
+    <div class="push"></div>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    Talk.paginated_collection.init();
+    
+    $('#collections_page_<%= @collections.current_page %> .page-loader').live('click', function() {
+      page_loading($(this).closest('.page-nav'));
+    });
+  });
+</script>

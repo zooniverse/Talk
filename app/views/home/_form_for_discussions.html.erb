@@ -1,0 +1,70 @@
+<div id="discussions-selector">
+  <%= form_tag url_for(:action => :more, :showing => @showing, :kinds => "discussions", :selecting => true), :remote => true do %>
+    <span>
+      <p class="label">Updated</p>
+      <%= select_tag "since", options_for_select(@since_options) %>
+      <%- if current_zooniverse_user %>
+        <p class="label">Including posts by</p>
+        <%= select_tag "by_user", options_for_select(@by_user_options) %>
+      <% end -%>
+    </span>
+    
+    <input id="selected_date" type="text" style="display: none;" />
+  <% end -%>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $("#selected_date").datepicker({
+      dateFormat: 'yy-mm-dd',
+      maxDate: 0,
+      onSelect: function(selected) {
+        var new_option = $('<option id="chosen" value="' + selected + '">since ' + selected + '</option>');
+        
+        if($('#since #chosen').length == 0) {
+          $('#discussions-selector #since').append(new_option);
+        }
+        else {
+          $('#since #chosen').replaceWith(new_option);
+        }
+        
+        $('#discussions-selector #since option.current').removeClass('current');
+        $('#discussions-selector #since').val(selected);
+        $('#discussions-selector #since option:selected').addClass('current');
+        $('#discussions-selector form').submit();
+      },
+      onClose: function(selected) {
+        if($('#discussions-selector #since option:selected').val() == 'selector') {
+          last_selection = $('#discussions-selector #since option.current');
+          $('#discussions-selector #since').val(last_selection.val());
+        }
+      }
+    });
+    
+    $('#discussions-selector select').live('change', function() {
+      var $this = $(this);
+      var id = $this.attr('id');
+      var value = $this.val();
+      var selected = $('option:selected', $this);
+      
+      if(selected.val() == 'selector') {
+        $("#selected_date").trigger('focus');
+        $('#ui-datepicker-div').css('zIndex', 1000);
+        $('#ui-datepicker-div').position({
+          my: "left top",
+          at: "left bottom",
+          of: "#discussions-selector #since"
+        });
+      }
+      else {
+        $('option.current', $this).removeClass('current');
+        selected.addClass('current');
+        $('#discussions-selector form').submit();
+      }
+    });
+    
+    $('#discussions-selector form').live('submit', function() {
+      $('#discussions').css('background', '#FFFFFF url("/images/icons/loading.gif") no-repeat 200px 7px');
+    });
+  });
+</script>

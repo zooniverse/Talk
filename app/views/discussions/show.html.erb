@@ -3,7 +3,7 @@
   <%= javascript_include_tag "jquery.colorbox-min" %>
   <%= stylesheet_link_tag "annotation" %>
   <%= stylesheet_link_tag "colorbox" %>
-  <link rel="stylesheet" href="/stylesheets/jquery-ui-1.8.7.custom.css" type="text/css" media="all" />
+  <%= stylesheet_link_tag "jquery-ui-1.8.7.custom.css" %>
 <% end -%>
 
 <%= content_for :content_class do %>discussion<% end %>
@@ -21,7 +21,7 @@
           <%- unless @discussion.focus.assets.empty? %>
             <%= image_tag @discussion.focus.assets.first.location, :class => "collection-large", :id => "asset-image", :height => 215, :width => 215 %>
             
-            <div class="discussed collection-info">
+            <div class="discussed collection-info paginatable_collection">
               <div class="container">
                 <%- collected = @discussion.focus.is_a?(LiveCollection) ? @discussion.focus.assets(:per_page => 0) : @discussion.focus.assets %>
                 <%- collected.in_groups_of(12).each do |group| %>
@@ -106,9 +106,9 @@
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
     if(<%= @discussion.collection? || @discussion.live_collection? %>) {
-      OCT.paginated_collection.init();
-      OCT.collection_hover.init();
-      OCT.collection_lightbox.init();
+      Talk.paginated_collection.init();
+      Talk.collection_hover.init();
+      Talk.collection_lightbox.init();
     }
   });
 </script>

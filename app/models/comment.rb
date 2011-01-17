@@ -91,6 +91,11 @@ class Comment
     self.focus_type.constantize.find(self.focus_id)
   end
   
+  def position
+    direction = self.discussion.conversation? ? :created_at.gt : :created_at.lt
+    self.discussion.comments.sort(:created_at.desc).count(direction => self.created_at)
+  end
+  
   def split_body
     self._body = self.body.gsub(/\W/, ' ').split
     

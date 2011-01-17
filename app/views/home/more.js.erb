@@ -1,0 +1,47 @@
+if(<%= @switching %>) {
+  $('.home .mode_switch').css('background', 'none');
+  $('.home .mode_switch').html($("<%= escape_javascript(render :partial => 'mode_switch') if @switching %>"));
+}
+
+<%- @kinds.each do |kind| %>
+  var current_page_number = <%= instance_variable_get("@#{ kind }_options")[:page] %>;
+  
+  if(<%= @switching || @selecting %> || $('#<%= kind %>_page_' + current_page_number).length == 0) {
+    var container = $('#<%= kind %>');
+    var new_page = $("<%= escape_javascript(render :partial => kind) %>");
+    
+    if(<%= @switching || @selecting %>) {
+      $('.list .page-container', container).html(new_page);
+      $('h2', container).text('<%= "#{ @showing } #{ kind.sub(/assets/, "objects") }".upcase %>');
+    }
+    else {
+      new_page.attr('style', 'margin-left: <%= kind == "discussion" ? -650 : -350 %>px;');
+      $('.page-nav', new_page).hide();
+      
+      $('.list .page-container', container).prepend(new_page);
+      
+      var previous_page = $('#<%= kind %>_page_' + (current_page_number - 1));
+      var current_page = $('#<%= kind %>_page_' + current_page_number);
+      
+      $('.more', previous_page).click(function() {
+        page_more(this);
+        return false;
+      });
+      
+      $('.less', current_page).show();
+      $('.less', current_page).click(function() {
+        page_less(this);
+        return false;
+      });
+      
+      page_done_loading($('.page-nav', previous_page));
+      
+      $('.page-nav', previous_page).hide();
+      current_page.animate({
+        marginLeft: 0
+      }, 600, 'linear', function() {
+        $('.page-nav', current_page).show();
+      });
+    }
+  }
+<% end -%>

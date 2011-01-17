@@ -16,11 +16,12 @@ class ApplicationController < ActionController::Base
     hash.each_pair do |param, default|
       value = params[param] ? params[param] : default
       
-      if default.is_a?(Integer)
+      case default
+      when TrueClass, FalseClass
+        value = (value == "true")
+      when Integer, Fixnum
         value = value.to_i
-      elsif default.is_a?(Fixnum)
-        value = value.to_i
-      elsif default.is_a?(Float)
+      when Float
         value = value.to_f
       end
       
@@ -83,6 +84,21 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :discussion_url_for
+  
+  def comment_url_for(*args)
+    opts = { :per_page => 10 }.update(args.extract_options!)
+    
+    comment = args.first
+    position = comment.position
+    page = (position / opts[:per_page]) + 1
+    
+    if comment.discussion.conversation?
+      "#{ discussion_url_for(comment.discussion) }?per_page=#{ [position + 1, 10].max }##{ comment.id }"
+    else
+      "#{ discussion_url_for(comment.discussion, opts) }&page=#{ page }##{ comment.id }"
+    end
+  end
+  helper_method :comment_url_for
   
   def parent_url_for(discussion)
     focus = discussion.focus

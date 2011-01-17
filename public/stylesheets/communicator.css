@@ -15,7 +15,7 @@
   float: left;
   position: relative;
   top: -25px;
-  padding-top: 25px;
+  padding-top: 30px;
   left: 0;
   width: 850px;
   height: 60px;
@@ -29,20 +29,29 @@
 #active-users .handle {
   position: absolute;
   cursor: pointer;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   left: 467px;
   z-index: 2;
+  background: url('/images/icons/vertical_arrows.png') no-repeat 0 0;
 }
 
 #active-users #handle-up {
-  background: url('/images/icons/up_arrow.png') no-repeat center center;
-  top: 0;
+  background-position: -25px -25px;
+  top: 5px;
 }
 
 #active-users #handle-down {
-  background: url('/images/icons/down_arrow.png') no-repeat center center;
-  top: 47px;
+  background-position: -25px 0;
+  top: 55px;
+}
+
+#active-users #handle-up:hover {
+  background-position: 0 -25px;
+}
+
+#active-users #handle-down:hover {
+  background-position: 0 0;
 }
 
 #active-users #count {
@@ -152,7 +161,6 @@
 }
 .push {height:1px;clear:both;}
 .last {border-bottom: none !important;}
-.loading {display:none;font-size:80%;margin-left:10px;color:#afafaf;}
 .left {float:left;}
 .right {float:right;}
 
@@ -339,16 +347,49 @@ h1.asset-name {
 }
 
 /* Item info */
-.comment-total {background: url(/images/icons/comment.gif) no-repeat left;}
-.views-total {background: url(/images/icons/views.png) no-repeat left;}
-.views-total, .comment-total {
-	padding-left: 16px;
-	color: #000;
-	font-size: 85%;
-	margin-right: 10px;
-	float: left;
+.comment-total {
+  background: url(/images/icons/comment.png) no-repeat left;
 }
 
+.users-total {
+  background: url(/images/icons/users.png) no-repeat left;
+}
+
+.comments-total {
+  background: url(/images/icons/comments.png) no-repeat left;
+}
+
+.collections-total {
+  background: url(/images/icons/collection.png) no-repeat left;
+}
+
+.discussion .last-post, .discussion .started-by {
+  float: right;
+  height: 18px;
+  font-size: 90%;
+  margin-right: 10px;
+}
+
+.discussion .stats {
+  display: block;
+  clear: both;
+  margin-top: 10px;
+}
+
+.discussion .title {
+  float: left;
+  width: 425px;
+  height: 18px;
+  overflow: hidden;
+}
+
+.comment-total, .users-total, .comments-total, .collections-total {
+  padding-left: 16px;
+  color: #000;
+  font-size: 85%;
+  margin-right: 10px;
+  float: left;
+}
 
 /* Item Lists */
 .rhc .item {
@@ -373,13 +414,12 @@ h1.asset-name {
 
 /* Tag Cloud */
 #keyword-cloud {
-  padding: 2px;
   line-height: 3em;
   text-align: center;
   margin: 0;
-  padding: 25px;
-  height: 300px;
+  padding: 10px;
 }
+
 #keyword-cloud a {padding: 0px;}
 #keyword-cloud li {display: inline;}
 #keyword-cloud li.level1 { font-size: 0.7em; font-weight: 100; }
@@ -1062,45 +1102,161 @@ div.more-results {text-align: center;}
   border: 0;
 }
 
-.home h1 {
-  color: #c5c4c4;
-  font-size: 3.0em;
-  text-shadow: #fff 1px 1px;
-  margin-bottom: 35px;
-  font-family: "HelveticaNeue-Light", Helvetica, "Arial Narrow", Arial,sans-serif;
-}
-
-.home h2, #objects h2, .featured h2 {
+.home h2, #assets h2, .featured h2 {
   font-family: "Gill Sans Light", "GillSans-Light", "Gill Sans", "Gill Sans MT", sans-serif;
 }
 
 .home .mode_switch {
-  float: right; position: relative;
+  color: #c5c4c4;
+  font-size: 2.5em;
+  text-shadow: #fff 1px 1px;
+  margin-bottom: 20px;
+  height: 35px;
+  font-family: "HelveticaNeue-Light", Helvetica, "Arial Narrow", Arial,sans-serif;
 }
 
 .home .mode_switch .current, .home .mode_switch .current:hover {
-  color: #afafaf; cursor: default;
+  color: #3C3C3C;
+  cursor: default;
 }
 
-.home #objects, .home #discussions {
+.home #discussions-selector {
+  margin-bottom: 10px;
+}
+
+.home #discussions-selector select {
+  margin-right: 10px;
+}
+
+.home #discussions-selector p.label {
+  display: inline;
+  margin-right: 10px;
+}
+
+.home #discussions h2 {
+  color: #AAAAAA;
+  font-size: 1.8em;
+}
+
+.home #discussions .discussion {
+  border: 1px dotted #AFAFAF;
+  border-top: none;
+  padding: 5px;
+  height: 47px;
+}
+
+.home #discussions .discussion.alt {
+  background-color: #F5F5F5;
+}
+
+.home #discussions {
+  width: 588px;
+  clear: both;
+  padding: 15px;
+  background: #FFFFFF;
+}
+
+.home #assets, .home #collections {
   width: 277px;
+  height: 528px;
   float: left;
   display: inline;
   padding: 10px 16px 0 0;
-  background: #fff;
+  background: #FFFFFF;
 }
 
-.home #collections, .home #comments-or-keywords {
+.home #assets .page, .home #collections .page {
+  float: left;
+  position: relative;
   width: 277px;
+  height: 505px;
+  left: 0;
+  top: 0;
+}
+
+.home #discussions .page {
+  float: left;
+  position: relative;
+  width: 588px;
+  height: 490px;
+  left: 0;
+  top: 0;
+}
+
+.home #assets .list, .home #collections .list {
+  width: 277px;
+  height: 505px;
+  overflow: hidden;
+}
+
+.home #discussions .list {
+  width: 588px;
+  height: 490px;
+  overflow: hidden;
+}
+
+.home .page-container, .home .page-container {
+  width: 1500px;
+}
+
+.home .page-nav {
+  display: block;
+  clear: both;
+  height: 25px;
+  margin: -10px 0 0 15px;
+  text-align: center;
+}
+
+.home #discussions .page-nav {
+  margin: 2px 0 0 0;
+}
+
+.home .page-nav .more {
+  float: right;
+  cursor: pointer;
+  background: url(/images/colorbox/controls.png) no-repeat -50px 0px;
+  width: 25px;
+  height: 25px;
+  text-indent: -80px;
+  line-height: 25px;
+  color: #990000;
+}
+
+.home .page-nav .less {
+  float: left;
+  cursor: pointer;
+  background: url(/images/colorbox/controls.png) no-repeat -75px 0px;
+  width: 25px;
+  height: 25px;
+  text-indent: 10px;
+  line-height: 25px;
+  color: #990000;
+}
+
+.home .page-nav .more:hover {
+  background-position: -50px -25px;
+  color: #FF0000;
+}
+
+.home .page-nav .less:hover {
+  background-position: -75px -25px;
+  color: #FF0000;
+}
+
+.home #collections {
   margin-left: 32px;
-  float: left;
-  display: inline;
-  padding: 10px 16px 0 0;
-  background: #fff;
 }
 
-#comments-or-keywords {
-  height: 401px;
+.home #keywords {
+  background: #FFFFFF;
+  width: 228px;
+  padding: 10px 8px;
+}
+
+.home #keywords h2 {
+  font-size: 1.7em;
+  margin-bottom: 0;
+  margin-left: 0;
 }
 
 .featured {
@@ -1173,16 +1329,15 @@ div.more-results {text-align: center;}
 
 /*  Collections */
 
-.home .lower_home {
+.home .upper {
   width: 100%;
   display: block;
   clear: both;
-  padding-top: 30px;
+  padding-bottom: 20px;
 }
 
 .home .collection {
   background: #fff;
-  float: left;
   width: 260px !important;
   margin: 0 0 10px 16px;
   padding: 0 0 10px 0px;
@@ -1362,13 +1517,13 @@ div.more-results {text-align: center;}
 
 /* Homepage: Lower Panels*/
 .home .rhc h2 {
-	color: #aaa;
-	font-size: 1.8em;
-	margin-bottom: 20px;
+  color: #aaa;
+  font-size: 1.8em;
+  margin-bottom: 20px;
 }
 
 .discussion .stats {
-	height: 20px;
+  height: 18px;
 }
 
 .rhc .discussions .discussion, .lhc .discussions .discussion {
@@ -1405,16 +1560,6 @@ div.more-results {text-align: center;}
 	color: #666;
 }
 
-.discussions .loading, .comments .loading{
-  margin: 0 20px;
-}
-
-.list .loading{
-  font-style: italic;
-  display: inline;
-  font-size: 100%;
-}
-
 .board .discussions {
 	background: #fff;
 	padding: 20px 30px 10px 0;
@@ -1422,7 +1567,7 @@ div.more-results {text-align: center;}
 	float: left;
 }
 
-.home #objects h2, .home #collections h2, .home #discussions h2, .home #comments-or-keywords h2 {
+.home #assets h2, .home #collections h2 {
   margin-left: 16px;
   color: #aaa;
   font-size: 1.8em;

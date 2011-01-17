@@ -21,6 +21,6 @@ if(<%= !@comment.nil? %>) {
   
   $('.wrapper').prepend("<%= escape_javascript(render(:partial => "shared/flash", :locals => { :flash => flash })) %>");
   <%- flash.clear %>
-  OCT.notice.init();
-  OCT.hover.init();
+  Talk.notice.init();
+  Talk.hover.init();
 }

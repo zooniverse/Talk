@@ -5,7 +5,7 @@
       <div class="discussion">
         <p><%= link_to truncate(discussion.subject, :length => 33, :separator => ' '), discussion_url_for(discussion) %></p>
         <div class="stats">
-          <div class="views-total"><%= pluralize(discussion.number_of_users, "user") %></div>
+          <div class="users-total"><%= pluralize(discussion.number_of_users, "user") %></div>
           <div class="comment-total"><%= pluralize(discussion.number_of_comments, "comment") %> </div>
         </div>
       </div>

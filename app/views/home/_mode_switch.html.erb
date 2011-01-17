@@ -1,0 +1,17 @@
+<span>
+  <%- if @showing == 'recent' %>
+    <%= link_to "Recent", "#", :class => 'current' %>
+    &nbsp;|&nbsp;
+    <%= link_to_more "Trending", :showing => 'trending', :switching => true %>
+  <%- else -%>
+    <%= link_to_more "Recent", :showing => 'recent', :switching => true %>
+    &nbsp;|&nbsp;
+    <%= link_to "Trending", "#", :class => 'current' %>
+  <% end -%>
+</span>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('.mode_switch a').unbind('click');
+  });
+</script>

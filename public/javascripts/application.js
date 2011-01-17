@@ -1,22 +1,6 @@
-// 
-// Oxford Communication Tool
-// 
-//
-var OCT = window.OCT || {};
+var Talk = window.Talk || {};
 
-OCT.tabs = {
-  trends      : '#trends-tabs',
-  recents      : '#recents-tabs',
-  
-  init: function () {
-    $('#home-tabs').tabs();
-    $('#boards-tabs').tabs({ cache: true });
-    $(OCT.tabs.trends).tabs({ cache: true });
-    $(OCT.tabs.recents).tabs({ cache: true });
-  }
-};
-
-OCT.collection_hover = {
+Talk.collection_hover = {
   init: function() {
     $('.collection-thumbnail').mouseover(function() {
       $('.collection-large').attr("src", $(this).attr("src"));
@@ -26,7 +10,7 @@ OCT.collection_hover = {
   }
 };
 
-OCT.annotater = {
+Talk.annotater = {
   annotations : {},
   
   init: function(form, annotation, width, height) {
@@ -35,7 +19,7 @@ OCT.annotater = {
     }
     else {
       $(form + ' .annotate-button').bind('click', function() {
-        OCT.annotater.create_annotation(form, annotation, width, height);
+        Talk.annotater.create_annotation(form, annotation, width, height);
       });
     }
   },
@@ -45,7 +29,7 @@ OCT.annotater = {
     
     if(dialog.length == 1) {
       if(dialog.hasClass('initialized')) {
-        OCT.annotater.annotations[annotation].addAnnotations(form + ' .comment_body');
+        Talk.annotater.annotations[annotation].addAnnotations(form + ' .comment_body');
         dialog.dialog('open');
       }
       else {
@@ -60,13 +44,13 @@ OCT.annotater = {
           resizable: true
         });
         
-        OCT.annotater.annotations[annotation] = $(annotation + ' .comment-focus').annotateImage({
+        Talk.annotater.annotations[annotation] = $(annotation + ' .comment-focus').annotateImage({
           editable: true,
           useAjax: false,
           markupField: form + ' .comment_body'
         });
         
-       OCT.annotater.annotations[annotation].addAnnotations(form + ' .comment_body');
+       Talk.annotater.annotations[annotation].addAnnotations(form + ' .comment_body');
         
         dialog.bind('dialogclose', function() {
           $('.image-annotate-edit-close').click();
@@ -82,7 +66,7 @@ OCT.annotater = {
   }
 };
 
-OCT.collection_lightbox = {
+Talk.collection_lightbox = {
   init: function() {
     $('.collection-large').css('cursor', 'pointer')
     $("a[rel='lightbox']").colorbox({ title: function() {
@@ -99,10 +83,12 @@ OCT.collection_lightbox = {
   }
 };
 
-OCT.paginated_collection = {
+Talk.paginated_collection = {
   init: function() {
-    $(".collection-info").each(function() {
-      OCT.paginated_collection.list($(this));
+    $(".collection-info.paginatable_collection").each(function() {
+      Talk.paginated_collection.list($(this));
+      $(this).removeClass('paginatable_collection');
+      $(this).addClass('paginated_collection');
     });
   },
   
@@ -138,37 +124,48 @@ OCT.paginated_collection = {
         return false;
       });
       
-      OCT.paginated_collection.keybind(container);
+      Talk.paginated_collection.keybind();
     }
   },
   
-  keybind: function(container) {
+  keybind: function() {
+    if($('*').data('events') && $('*').data('events').keyup != 'undefined') {
+      $('*').unbind('keyup');
+    }
+    
     $('*').keyup(function(e) {
-      if($('#colorbox :visible').length > 0 || document.activeElement != document.body) {
+      if(!(e.keyCode == 37 || e.which == 37 || e.keyCode == 39 || e.which == 39)) {
+        return;
+      }
+      else if($('#colorbox :visible').length > 0 || document.activeElement != document.body) {
         return;
       }
       
-      // Next
-      if (e.keyCode == 39 || e.which == 39) {
-        var page_id = $(".nav a.current", container).attr("id");
+      jQuery.each($('.collection-info.paginated_collection:has(.nav a)'), function() {
+        var container = $(this);
         
-        if(page_id) {
-          var current = parseInt(page_id.split("-")[1]);
-          var next = current + 1;
-          OCT.paginated_collection.page(next, container);
+        // Next
+        if(e.keyCode == 39 || e.which == 39) {
+          var page_id = $(".nav a.current", container).attr("id");
+          
+          if(page_id) {
+            var current = parseInt(page_id.split("-")[1]);
+            var next = current + 1;
+            Talk.paginated_collection.page(next, container);
+          }
         }
-      }
-      
-      // Prev
-      if (e.keyCode == 37 || e.which == 37) {
-        var page_id = $(".nav a.current", container).attr("id");
         
-        if(page_id) {
-          var current = parseInt(page_id.split("-")[1]);
-          var previous = current - 1;
-          OCT.paginated_collection.page(previous, container);
+        // Prev
+        if(e.keyCode == 37 || e.which == 37) {
+          var page_id = $(".nav a.current", container).attr("id");
+          
+          if(page_id) {
+            var current = parseInt(page_id.split("-")[1]);
+            var previous = current - 1;
+            Talk.paginated_collection.page(previous, container);
+          }
         }
-      }
+      });
     });
   },
   
@@ -186,17 +183,7 @@ OCT.paginated_collection = {
   }
 };
 
-
-OCT.loading = {  
-  init: function() {
-      var toggleLoading = function() { $(".loading").toggle() };
-      $(".show-more")
-        .bind("ajax:loading",  toggleLoading)
-        .bind("ajax:complete", toggleLoading);
-  }
-}
-
-OCT.button_press = {
+Talk.button_press = {
   init: function() {
     $('.button').live('mousedown', function() {
       $(this).addClass('pressed');
@@ -209,22 +196,22 @@ OCT.button_press = {
   }
 };
 
-OCT.hover = {
+Talk.hover = {
     // container : '.short-comment, .comment, .collection-viewer',
     container : '.short-comment, .comment,',
     targets : '.date, .toggle,',
     
     init: function () {
-      $(OCT.hover.container).unbind('mouseenter mouseleave');
+      $(Talk.hover.container).unbind('mouseenter mouseleave');
       
-      $(OCT.hover.container).hover(function() {
-        $(OCT.hover.targets, this).css('color', '#000000');
+      $(Talk.hover.container).hover(function() {
+        $(Talk.hover.targets, this).css('color', '#000000');
         $('.toolbar', this).css('visibility', 'visible');
         $('.name.toggle a', this).css('color', '#990000');
         $('a.comment-edit-link.toggle', this).css('color', '#990000');
         $('a.comment-remove-link.toggle', this).css('color', '#990000');
       }, function() {
-        $(OCT.hover.targets, this).css('color', '#999999');
+        $(Talk.hover.targets, this).css('color', '#999999');
         $('.toolbar', this).css('visibility', 'hidden');
         $('.name.toggle a', this).css('color', '#999999');
         $('a.comment-edit-link.toggle', this).css('color', '#999999');
@@ -234,7 +221,7 @@ OCT.hover = {
 };
 
 
-OCT.textcount = {
+Talk.textcount = {
   init: function(editing) {
     var short_text = editing ? '#' + editing + ' .edit-short-text' : '#short-text';
     var short_counter = editing ? '#' + editing + ' .edit-counter' : '#short-counter';
@@ -253,7 +240,7 @@ OCT.textcount = {
 };
 
 
-OCT.notice = {
+Talk.notice = {
   init: function () {
     setTimeout("$('.notice').fadeOut(1000);", 3000);
     setTimeout("$('.alert').fadeOut(1000);", 5000);
@@ -261,7 +248,7 @@ OCT.notice = {
 };
 
 
-OCT.browse = {
+Talk.browse = {
   init:function() {
     $.ajax({
       url: '/objects/browse',
@@ -347,66 +334,9 @@ OCT.browse = {
   }
 };
 
-OCT.home = {
-  mode : 'trending',
-  
-  init: function() {    
-    $('.mode_switch a').bind("click", function() {
-      if(!$(this).hasClass('current')) {
-        OCT.home.mode = $(this).attr("id");
-        
-        if(this.id == 'recent') {
-          $('#comments-or-keywords').removeClass('keywords');
-          $('#comments-or-keywords').addClass('comments');
-        }
-        else {
-          $('#comments-or-keywords').removeClass('comments');
-          $('#comments-or-keywords').addClass('keywords');
-        }
-        
-        OCT.home.load();
-        $('.mode_switch a').removeClass('current');
-        $(this).addClass('current');
-      }
-      
-      return false;
-    });
-    
-    /* This looks like it's supposed to show a larger version of the collection image but it's not selecting any dom elements.
-       
-    $('.film img').live("mouseover", function() {
-      $('.large', $(this).parent().parent()).attr("src", $(this).attr("src"));
-    });
-    */
-    
-    OCT.home.load();
-   },
-   
-   load: function() {
-     var kinds = ['objects', 'collections', 'discussions', (OCT.home.mode == 'recent') ? 'comments' : 'keywords'];
-      
-     $(kinds).each(function(i, kind) {
-       var elem = $('.' + kind + ' .list')[0];
-       
-       $.ajax({
-         url: '/home/' + OCT.home.mode + '_' + kind,
-         dataType: 'js',
-         success: function(response) {
-           $('.' + kind + ' h2').html(kind.toUpperCase());
-           $(elem).html(response);
-         },
-         error: function(response) {
-           $('.' + kind + ' h2').html(kind.toUpperCase());
-           $(elem).html('<div>Unable to retrieve ' + kind + '</div>');
-         }
-       });
-     });
-   }
-};
-
 var t;
 
-OCT.menu = {
+Talk.menu = {
   init: function() {
     $('.menu').live("mouseover", function() {
       clearTimeout(t);
@@ -421,7 +351,7 @@ OCT.menu = {
   }
 };
 
-OCT.active_ticker = {
+Talk.active_ticker = {
   timer: null,
   is_hovered: false,
   
@@ -432,33 +362,33 @@ OCT.active_ticker = {
     
     $('#active-users').hover(function() {
       $('#active-users .handle').fadeIn();
-      OCT.active_ticker.is_hovered = true;
+      Talk.active_ticker.is_hovered = true;
     }, function() {
       $('#active-users .handle').fadeOut();
-      OCT.active_ticker.is_hovered = false;
-      OCT.active_ticker.init_timer();
+      Talk.active_ticker.is_hovered = false;
+      Talk.active_ticker.init_timer();
     });
     
     $('#active-users #handle-up').click( function(event) {
-      OCT.active_ticker.slide('up', true);
+      Talk.active_ticker.slide('up', true);
       return false;
     });
     
     $('#active-users #handle-down').click( function(event) {
-      OCT.active_ticker.slide('down', true);
+      Talk.active_ticker.slide('down', true);
       return false;
     });
     
-    OCT.active_ticker.init_timer();
+    Talk.active_ticker.init_timer();
   },
   
   init_timer: function() {
-    clearTimeout(OCT.active_ticker.timer);
-    OCT.active_ticker.timer = setTimeout(OCT.active_ticker.slide, 3000);
+    clearTimeout(Talk.active_ticker.timer);
+    Talk.active_ticker.timer = setTimeout(Talk.active_ticker.slide, 3000);
   },
   
   slide: function(direction, force) {
-    if(!OCT.active_ticker.is_hovered || force) {
+    if(!Talk.active_ticker.is_hovered || force) {
       var amount = direction == 'down' ? 0 : -20;
       
       if(direction == 'down') {
@@ -481,19 +411,18 @@ OCT.active_ticker = {
       });
       
       if(!force) {
-        OCT.active_ticker.init_timer();
+        Talk.active_ticker.init_timer();
       }
     }
   }
 };
 
 $(document).ready(function(){
-    OCT.hover.init();
-    OCT.loading.init();
-    OCT.notice.init();
-    OCT.menu.init();
-    OCT.button_press.init();
-    OCT.active_ticker.init();
+    Talk.hover.init();
+    Talk.notice.init();
+    Talk.menu.init();
+    Talk.button_press.init();
+    Talk.active_ticker.init();
     $(".highlight_keywords .body").keywordHighlight();
     $('.highlight_annotations').highlightAnnotations();
 });
@@ -639,4 +568,44 @@ function cancel_discussion_edit() {
   $('.edit_discussion').remove();
   $('.edit-discussion-link').show();
   $('#discussion-subject h1').show();
+}
+
+function page_loading(nav) {
+  nav.css('background', 'url("/images/icons/loading.gif") no-repeat center center');
+  if(nav.closest('.list').parent().attr('id') == "discussions") {
+    $('.page-loader', nav).replaceWith($('<div class="more">Next page</div>'));
+  }
+  else {
+    $('.page-loader', nav).replaceWith($('<div class="more"></div>'));
+  }
+}
+
+function page_done_loading(nav) {
+  nav.css('background', 'none');
+}
+
+function page_more(link) {
+  var current_page = $(link).closest('.page');
+  var next_page = current_page.prev('.page');
+  
+  $('.page-nav', current_page).hide();
+  
+  next_page.animate({
+    marginLeft: 0
+  }, 600, 'linear', function() {
+    $('.page-nav', next_page).show();
+  });
+}
+
+function page_less(link) {
+  var current_page = $(link).closest('.page');
+  var previous_page = current_page.next('.page');
+  
+  $('.page-nav', current_page).hide();
+  
+  current_page.animate({
+    marginLeft: -650
+  }, 600, 'linear', function() {
+    $('.page-nav', previous_page).show();
+  });
 }

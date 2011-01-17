@@ -1,4 +1,5 @@
-<div>
+<div id="keywords">
+  <h2>TRENDING KEYWORDS</h2>
   <ul id="keyword-cloud">
     <%- @tags.each_pair do |tag, count| %>
       <li class="level<%= count %>" ><%= link_to tag, search_url(:search => "keywords:#{ tag }") %></li>

@@ -6,7 +6,7 @@
         <div class="item-container">
           <div class="name"><%= link_to d.subject, discussion_url(d.zooniverse_id) %></div>
           <div class="date"><%= long_date(d.updated_at) %></div>
-          <div class="views-total"><%= pluralize(d.number_of_users, "user") %></div>
+          <div class="users-total"><%= pluralize(d.number_of_users, "user") %></div>
           <div class="comment-total"><%= pluralize(d.number_of_comments, "comment") %></div>
           <div class="push"></div>
         </div>

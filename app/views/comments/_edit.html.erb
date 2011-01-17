@@ -23,6 +23,6 @@
     var width = <%= @comment.focus.is_a?(Asset) ? @comment.focus.size[0] : 0 %>;
     var height = <%= @comment.focus.is_a?(Asset) ? @comment.focus.size[1] : 0 %>;
     
-    OCT.annotater.init('#edit_comment_<%= @comment.id %>', '#<%= @comment.id %>-comment-annotation', width, height);
+    Talk.annotater.init('#edit_comment_<%= @comment.id %>', '#<%= @comment.id %>-comment-annotation', width, height);
   });
 </script>

@@ -31,7 +31,7 @@
       <%- unless @collection.assets.empty? %>
         <%= image_tag(@collection.assets.first.location, :class => "collection-large asset-large", :width => 200, :height => 200) %>
         
-        <div class="collection-info">
+        <div class="collection-info paginatable_collection">
           <div class="container collection-asset-container">
             <%- collected = @collection.is_a?(LiveCollection) ? @collection.assets(:per_page => 0) : @collection.assets %>
             <%- collected.in_groups_of(9).each do |group| %>
@@ -88,8 +88,8 @@
 
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
-    OCT.paginated_collection.init();
-    OCT.collection_hover.init();
-    OCT.collection_lightbox.init();
+    Talk.paginated_collection.init();
+    Talk.collection_hover.init();
+    Talk.collection_lightbox.init();
   });
 </script>

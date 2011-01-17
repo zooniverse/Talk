@@ -1,50 +1,64 @@
 <%= content_for :content_class do %>home<% end %>
-<div>
-  <div class="mode_switch">
-    <a href="#" class="current" id="trending">Trending</a>&nbsp;|&nbsp;<a href="#" id="recent">Recent</a>
-  </div>
-  <h1>Community</h1>
+<%= content_for :page_includes do %>
+  <%= stylesheet_link_tag "jquery-ui-1.8.7.custom.css" %>
+<% end -%>
+
+<div class="mode_switch">
+  <%= render :partial => "mode_switch" %>
 </div>
 
 <div class="rhc">
   <%= render :partial => "featured" %>
+  <%= render :partial => "keywords" %>
 </div>
 
 <div class="lhc" style="float: left;">
-  <div id="objects" class="assets objects">
-    <h2>OBJECTS</h2>
-    <div class="list">
-      <p class="loading">Loading..</p>
-    </div>
-  </div>
-  
-  <div id="collections" class="collections">
-    <h2>COLLECTIONS</h2>
-    <div class="list">
-      <p class="loading">Loading..</p>
-    </div>
-  </div>
-  
-  <div class="lower_home">
-    <div id="discussions" class="discussions">
-      <h2>DISCUSSIONS</h2>
+  <div class="upper">
+    <div id="assets">
+      <h2><%= @showing.upcase %> OBJECTS</h2>
       <div class="list">
-        <p class="loading">Loading..</p>
+        <div class="page-container">
+          <%= render :partial => "assets" %>
+        </div>
+      </div>
+    </div>
+    <div id="collections">
+      <h2><%= @showing.upcase %> COLLECTIONS</h2>
+      <div class="list">
+        <div class="page-container">
+          <%= render :partial => "collections" %>
+        </div>
       </div>
     </div>
     
-    <div id="comments-or-keywords" class="keywords last">
-      <h2>KEYWORDS</h2>
-      <div class="list">
-        <p class="loading">Loading..</p>
+    <div class="push"></div>
+  </div>
+  
+  <div id="discussions">
+    <h2><%= @showing.upcase %> DISCUSSIONS</h2>
+    <%= render :partial => "form_for_discussions" %>
+    
+    <div class="list">
+      <div class="page-container">
+        <%= render :partial => "discussions" %>
       </div>
     </div>
   </div>
-  <div class="push"></div>
 </div>
 
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
-    OCT.home.init();
+    $('#ui-datepicker-div').hide();
+    $('.mode_switch a:not(.current)').live('click', function() {
+      $('.mode_switch a').click(function() {
+        return false;
+      });
+      
+      $('.home .mode_switch span').fadeTo('fast', 0.2);
+    });
+    
+    $('#discussions-selector #since').val('<%= @since_options.first %>');
+    $('#discussions-selector #since option:selected').addClass('current');
+    $('#discussions-selector #by_user').val('Anybody');
   });
 </script>
