@@ -50,6 +50,19 @@
             <%= render :partial => "collect" if current_zooniverse_user %>
           </ul>
         </div>
+        <%- if current_zooniverse_user && current_zooniverse_user.privileged? %>
+          <div id="admin-tools">
+            <%- unless @discussion.featured %>
+              <p id="featured-link">
+                <%= link_to "Feature this object", toggle_featured_discussion_path(@discussion), { :remote => true, :method => :post } %>
+              </p>
+            <%- else -%>
+              <p id="featured-link">
+                <%= link_to "Remove this object from featured", toggle_featured_discussion_path(@discussion), { :remote => true, :method => :post } %>
+              </p>
+            <% end -%>
+          </div>
+        <% end -%>
       </div>
     </div>
   </div>

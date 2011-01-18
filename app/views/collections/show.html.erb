@@ -67,6 +67,19 @@
             <% end -%>
           </ul>
         </div>
+        <%- if current_zooniverse_user.privileged? %>
+          <div id="admin-tools">
+            <%- unless @discussion.featured %>
+              <p id="featured-link">
+                <%= link_to "Feature this collection", toggle_featured_discussion_path(@discussion), { :remote => true, :method => :post } %>
+              </p>
+            <%- else -%>
+              <p id="featured-link">
+                <%= link_to "Remove this collection from featured", toggle_featured_discussion_path(@discussion), { :remote => true, :method => :post } %>
+              </p>
+            <% end -%>
+          </div>
+        <% end -%>
       <% end -%>
       
     </div>
