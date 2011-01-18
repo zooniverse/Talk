@@ -32,7 +32,11 @@ class HomeController < ApplicationController
                    :selecting => false
     
     @kinds = @kinds.split
-    @since = Time.parse(params[:since]).utc if params[:since]
+    if params[:since].blank?
+      @since = Time.now.utc.beginning_of_day
+    elsif params[:since]
+      @since = Time.parse(params[:since]).utc
+    end
     
     @kinds.each do |kind|
       page = params["#{ kind }_page"] ? params["#{ kind }_page"].to_i : 1
