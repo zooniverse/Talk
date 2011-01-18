@@ -45,7 +45,7 @@ task :ensure_indexes => :environment do
   Discussion.ensure_index [['zooniverse_id', 1]]
   Discussion.ensure_index [['focus_id', 1], ['created_at', -1]]
   Discussion.ensure_index [['focus_type', 1], ['created_at', -1]]
-  Discussion.ensure_index [['featured', 1], ['created_at', -1]]
+  Discussion.ensure_index [['featured', 1], ['updated_at', -1]]
   Discussion.ensure_index [['created_at', -1]]
   Discussion.ensure_index [['updated_at', -1]]
   Discussion.ensure_index [['number_of_comments', -1], ['author_ids', 1], ['updated_at', -1]]

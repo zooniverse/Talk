@@ -25,12 +25,14 @@ class Discussion
   before_destroy :remove_from_board
   after_save :update_counts
   
-  scope :featured, :featured => true
-  
   # Fetches the Focus of this Discussion if it exists
   def focus
     return nil if focus_id.nil? || focus_type.nil?
     @cached_focus ||= focus_type.constantize.find(focus_id)
+  end
+  
+  def self.featured
+    sort(:updated_at.desc).where(:featured => true)
   end
   
   # Finds popular discussions
