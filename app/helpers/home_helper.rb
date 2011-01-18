@@ -13,7 +13,10 @@ module HomeHelper
     
     link = link_to name.underscore.split('_').map(&:capitalize).join(" "), parent_url_for(discussion), :class => "parent-link"
     link += ": "
-    link += link_to truncate(discussion.subject, :length => 60, :separator => ' '), discussion_url_for(discussion), :class => "discussion-link"
+    
+    subject = discussion.focus_base_type == "Collection" ? " #{ discussion.focus.name }" : discussion.subject
+    
+    link += link_to truncate(subject, :length => 60, :separator => ' '), discussion_url_for(discussion), :class => "discussion-link"
     link.html_safe
   end
   
