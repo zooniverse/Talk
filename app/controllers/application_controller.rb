@@ -171,7 +171,8 @@ class ApplicationController < ActionController::Base
   def check_or_create_zooniverse_user
     if zooniverse_user
       if user = User.find_by_zooniverse_user_id(zooniverse_user_id)
-        user.update_attributes(:name => zooniverse_user, :email => zooniverse_user_email)
+        user.attributes.update(:name => zooniverse_user, :email => zooniverse_user_email)
+        user.save if user.changed?
       else
         User.create(:zooniverse_user_id => zooniverse_user_id, :name => zooniverse_user, :email => zooniverse_user_email)
       end
