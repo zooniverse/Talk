@@ -13,7 +13,7 @@ class User
   key :scientist, Boolean, :default => false
   key :state, String
   
-  scope :active, :last_active_at.gt => 1.hour.ago
+  scope :active, :last_active_at.gt => 1.hour.ago.utc
   scope :watched, :state => 'watched'
   scope :banned, :state => 'banned'
   scope :moderators, :moderator => true
@@ -46,8 +46,8 @@ class User
   many :events, :as => :eventable
   
   def online?
-    return false if last_active_at.nil?
-    self.last_active_at > 1.hour.ago
+    return false if self.last_active_at.nil?
+    self.last_active_at > 1.hour.ago.utc
   end
   
   # True if user is an admin or moderator
