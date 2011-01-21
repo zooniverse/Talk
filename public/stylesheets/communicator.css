@@ -362,6 +362,15 @@ h1.asset-name {
   height: 18px;
   font-size: 90%;
   margin-right: 10px;
+  overflow: hidden;
+}
+
+.discussion .last-post {
+  max-width: 300px;
+}
+
+.discussion .started-by {
+  max-width: 160px;
 }
 
 .discussion .stats {
@@ -372,7 +381,7 @@ h1.asset-name {
 
 .discussion .title {
   float: left;
-  width: 425px;
+  max-width: 400px;
   height: 18px;
   overflow: hidden;
 }

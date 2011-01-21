@@ -5,7 +5,7 @@
     </div>
     <span class="started-by">
       <%- unless discussion.conversation? || discussion.started_by_id.nil? %>
-        started by <%= link_to discussion.started_by.name, user_path(discussion.started_by) %>
+        started by <%= link_to truncate(discussion.started_by.name, :length => 20), user_path(discussion.started_by) %>
       <% end -%>
     </span>
     <div class="push"></div>
