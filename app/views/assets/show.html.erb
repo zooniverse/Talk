@@ -15,7 +15,7 @@
       <h1><p>OBJECT <%= link_to @asset.zooniverse_id, object_path(@asset.zooniverse_id) %></p></h1>
       <div class="rounded-panel">
         <div class="collection-info paginatable_collection">
-          <h2 class="asset-collections">COLLECTIONS WITH THIS OBJECT</h2>
+          <h2 class="asset-collections" style="<%= @collections.blank? ? 'display: none' : '' %>">COLLECTIONS WITH THIS OBJECT</h2>
           <div class="container">
             <%- @collections.in_groups_of(3).each do |group| %>
               <div class="col">

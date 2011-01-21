@@ -1366,6 +1366,7 @@ div.more-results {text-align: center;}
   top: auto;
   bottom: 0;
   z-index: 3;
+  height: 15px;
 }
 
 .home .collection .stat {
