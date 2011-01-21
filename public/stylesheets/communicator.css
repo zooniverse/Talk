@@ -537,13 +537,11 @@ h1.collection-title {
 }
 
 .collection-info .nav {
-  height: 15px;
-  margin: 0;
-  margin-left: 5px;
+  height: 35px;
   padding: 5px 0px 0px 5px;
-  clear:both;
+  clear: both;
   position: relative;
-  top:5px;
+  top: 5px;
 }
 
 .collection-info .nav a {
@@ -551,7 +549,7 @@ h1.collection-title {
   height: 6px;
   width: 6px;
   float: left;
-  margin-right: 5px;
+  margin: 0px 5px 5px 0px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
@@ -1025,14 +1023,15 @@ div.more-results {text-align: center;}
 }
 
 .circle {
-	-webkit-border-radius: 22px;
-	-moz-border-radius: 22px;	
-	border-radius: 22px;
-	height: 44px;
-	width: 44px;
-	float: right;
-	margin-top: 25px;
+  -webkit-border-radius: 22px;
+  -moz-border-radius: 22px;
+  border-radius: 22px;
+  height: 44px;
+  width: 44px;
+  float: right;
+  margin-top: 25px;
 }
+
 .circle p{
 	margin:14px 0;
 	text-align: center;
