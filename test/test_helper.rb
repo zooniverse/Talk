@@ -175,6 +175,18 @@ class ActiveSupport::TestCase
     focus.save
   end
   
+  def response_for(comment)
+    discussion = comment.discussion
+    comment1 = Comment.new :body => "blah blah blah"
+    comment1.response_to_id = comment.id
+    comment1.author = Factory :user
+    
+    discussion.comments << comment1
+    discussion.reload
+    discussion.save
+    comment1
+  end
+  
   def board_discussions_in(board, limit=8)
     1.upto(limit) do |i|
       discussion = Discussion.new :subject => "Topic ##{i}"

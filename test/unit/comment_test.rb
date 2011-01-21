@@ -308,6 +308,8 @@ class CommentTest < ActiveSupport::TestCase
         setup do
           conversation_for @asset
           @comment4 = @asset.conversation.comments.first
+          @response1 = response_for @comment1
+          @response2 = response_for @comment1
           
           @comment3.cast_vote_by(Factory(:user))
           @discussion.reload
@@ -334,6 +336,11 @@ class CommentTest < ActiveSupport::TestCase
           assert_equal @comment2.edit_count, @archive2.original_document['revisions'].length
           assert_equal "blah #tag2 blah #tag4 blah #{ @comment2.focus.zooniverse_id } is awesome", @archive2.original_document['revisions'].first['body']
           assert_equal 1, Archive.count
+        end
+        
+        should "#nullify_responses" do
+          assert_not @response1.reload.response_to
+          assert_not @response2.reload.response_to
         end
         
         should "update taggings" do
@@ -366,15 +373,15 @@ class CommentTest < ActiveSupport::TestCase
         end
         
         should "update discussion counts" do
-          assert_equal 3, @discussion.number_of_comments
-          assert_equal 3, @discussion.number_of_users
-          assert_equal 7, @discussion.popularity
+          assert_equal 5, @discussion.number_of_comments
+          assert_equal 5, @discussion.number_of_users
+          assert_equal 11, @discussion.popularity
           
           @discussion.reload
           
-          assert_equal 1, @discussion.number_of_comments
-          assert_equal 1, @discussion.number_of_users
-          assert_equal 3, @discussion.popularity
+          assert_equal 3, @discussion.number_of_comments
+          assert_equal 3, @discussion.number_of_users
+          assert_equal 7, @discussion.popularity
         end
       end
       

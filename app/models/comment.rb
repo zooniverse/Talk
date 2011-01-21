@@ -25,7 +25,7 @@ class Comment
   before_create :set_focus, :split_body
   after_create :create_tags
   after_validation_on_update :split_body, :parse_body, :synchronize_tags
-  before_destroy :destroy_tags
+  before_destroy :destroy_tags, :nullify_responses
   after_destroy :denormalize_counts
   
   TAG = /[^\w]#([-\w\d]{3,40})/im
@@ -168,6 +168,16 @@ class Comment
   # Adds tags from this comment to the discussion and focus
   def create_tags
     push_tags self.tags
+  end
+  
+  def nullify_responses
+    Comment.collection.update({
+      :response_to_id => self.id
+    }, {
+      :$set => {
+        :response_to_id => nil
+      }
+    }, :multi => true)
   end
   
   def destroy_tags
