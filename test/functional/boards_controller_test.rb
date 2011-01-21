@@ -18,7 +18,7 @@ class BoardsControllerTest < ActionController::TestCase
       should render_template :show
       
       should "show the science board" do
-        assert_select '#board-heading h1', :text => @board.title
+        assert_select '.lhc h2.title', :text => /#{ @board.title }/i
       end
     end
     
@@ -32,7 +32,7 @@ class BoardsControllerTest < ActionController::TestCase
       should render_template :show
       
       should "show the chat board" do
-        assert_select '#board-heading h1', :text => @board.title
+        assert_select '.lhc h2.title', :text => /#{ @board.title }/i
       end
     end
     
@@ -46,15 +46,14 @@ class BoardsControllerTest < ActionController::TestCase
       should render_template :show
       
       should "show the help board" do
-        assert_select '#board-heading h1', :text => @board.title
+        assert_select '.lhc h2.title', :text => /#{ @board.title }/i
       end
     end
     
     context "#show" do
       setup do
         @board = Board.science
-        @discussions = 12
-        board_discussions_in @board, @discussions
+        board_discussions_in @board, 12
         @discussion = @board.discussions.first
         @discussion.featured = true
         @discussion.save
@@ -62,22 +61,16 @@ class BoardsControllerTest < ActionController::TestCase
         get 'science', { :page => 2, :per_page => 5 }
       end
       
-      should "display meta information" do
-        assert_select "#meta-for-discussions", :text => "#{@discussions} Discussions / #{@discussions * 2} Comments"
-      end
-      
       should "display discussions" do
-        assert_select ".discussions .discussion", 5
-      end
-      
-      should "display zooniverse ad" do
-        assert_select "#zooniverse-extras"
+        assert_select "#discussions .discussion", 5
       end
       
       should "display pagination links" do
-        assert_select "div.pagination", 1
-        assert_select "div.pagination > a", 4
-        assert_select "div.pagination", :text => /Previous 1 2 3 Next/
+        assert_select ".page-nav .less", 1
+        assert_select ".page-nav .pages", 1
+        assert_select ".page-nav .more", 1
+        
+        assert_select ".page-nav .pages > a", 4
       end
     end
   end

@@ -1,6 +1,6 @@
 class BoardsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:science, :help, :chat]
-  respond_to :js, :only => [:browse]
+  respond_to :js, :only => [:browse, :show]
   
   def show
     show_by_title(params[:board_id])
@@ -13,12 +13,21 @@ class BoardsController < ApplicationController
   end
   
   def show_by_title(title)
-    default_params :page => 1, :per_page => 9
+    default_params :page => 1, :per_page => 10, :by_user => false
     @board = Board.by_title(title)
     return not_found unless @board
     
-    @discussions = @board.discussions.paginate :page => @page, :per_page => @per_page
-    render "show"
+    @board_options = { :page => @page, :per_page => @per_page, :by_user => @by_user }
+    @discussions = @board.recent_discussions({ :for_user => current_zooniverse_user }.merge(@board_options))
+    
+    respond_with(@board) do |format|
+      format.html { render "show" }
+      format.js do
+        render :update do |page|
+          page['#discussions .list'].html(render :partial => "discussions")
+        end
+      end
+    end
   end
   
   def browse

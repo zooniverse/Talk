@@ -1,0 +1,22 @@
+<div id="discussions-selector">
+  <%= form_tag "/#{ @board.title }.js", :remote => true, :method => :get do %>
+    <span>
+      <p class="label">Including posts by</p>
+      <%= select_tag "by_user", options_for_select({ "Anybody" => false, "Me" => true }) %>
+    </span>
+  <% end -%>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('#discussions-selector #by_user').val('<%= @by_user %>');
+    
+    $('#discussions-selector select').live('change', function() {
+      $('.lhc h2.title').css('background', 'url("/images/icons/loading.gif") no-repeat center center');
+      
+      var $this = $(this);
+      var value = $this.val();
+      $('#discussions-selector form').submit();
+    });
+  });
+</script>

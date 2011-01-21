@@ -1,7 +1,4 @@
 <div class="upper-row">
-  <div class="rhc">
-    <%= render :partial => "shared/zooniverse_extras" %>
-  </div>
   <div class="lhc">
     <h1 class="collection-title">Edit Collection: <%= link_to @collection.zooniverse_id, collection_path(@collection.zooniverse_id) %></h1>
     <%= render :partial => "form_for_collection", :locals => { :collection => @collection, :action => :edit } %>

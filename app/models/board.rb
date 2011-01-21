@@ -24,6 +24,18 @@ class Board
     Comment.count(:discussion_id.in => self.discussion_ids)
   end
   
+  def recent_discussions(*args)
+    opts = { :page => 1,
+             :per_page => 10,
+             :for_user => nil,
+             :by_user => false
+           }.update(args.extract_options!)
+    
+    cursor = Discussion.sort(:updated_at.desc).where(:_id.in => self.discussion_ids)
+    cursor = cursor.where(:author_ids => opts[:for_user].id) if opts[:for_user] && opts[:by_user]
+    cursor.paginate(:page => opts[:page], :per_page => opts[:per_page])
+  end
+  
   def pull_discussion(discussion)
     Board.collection.update({ :_id => self.id }, {
       :$pull => { :discussion_ids => discussion.id }

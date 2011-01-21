@@ -185,7 +185,7 @@ class ActiveSupport::TestCase
       board.discussion_ids << discussion.id
       
       comment1 = Comment.new :body => "blah #tag1 blah #tag2 blah"
-      comment1.author = Factory :user
+      comment1.author = discussion.started_by
       
       comment2 = Comment.new :body => "blah #tag2 blah #tag4 blah"
       comment2.author = Factory :user

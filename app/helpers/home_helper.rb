@@ -4,22 +4,6 @@ module HomeHelper
     link_to args.first, { :controller => :home, :action => :more }.merge(options), { :remote => true, :method => :post, :class => 'page-loader' }
   end
   
-  def title_link_for(discussion)
-    name = if discussion.board?
-      discussion.focus.title
-    else
-      discussion.focus_type.sub(/LiveCollection/, 'KeywordSet').sub(/Asset/, 'Object')
-    end
-    
-    link = link_to name.underscore.split('_').map(&:capitalize).join(" "), parent_url_for(discussion), :class => "parent-link"
-    link += ": "
-    
-    subject = discussion.focus_base_type == "Collection" ? " #{ discussion.focus.name }" : discussion.subject
-    
-    link += link_to truncate(subject, :length => 60, :separator => ' '), discussion_url_for(discussion), :class => "discussion-link"
-    link.html_safe
-  end
-  
   def page_listing(*args)
     opts = { :collection => nil, :type => 'page', :per_page => 10 }.update(args.extract_options!)
     return "" unless opts[:collection] && opts[:collection].any?

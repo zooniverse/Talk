@@ -28,6 +28,33 @@ class BoardTest < ActiveSupport::TestCase
       assert_equal @chat, Board.chat
     end
     
+    context "listing #recent_discussions" do
+      setup do
+        board_discussions_in @help, 50
+        @help.reload.discussions.each{ |d| d.set :updated_at => 1.hour.ago }
+        
+        @discussion1 = @help.discussions[0]
+        @discussion1.set :updated_at => 1.minute.ago.utc
+        
+        @discussion2 = @help.discussions[1]
+        @discussion2.set :updated_at => 2.minutes.ago.utc
+        
+        @discussion3 = @help.discussions[2]
+        @discussion3.set :updated_at => 3.minutes.ago.utc
+      end
+      
+      should "paginate correctly" do
+        assert_equal [@discussion1, @discussion2, @discussion3], @help.recent_discussions(:per_page => 3)
+        assert_equal [@discussion2], @help.recent_discussions(:per_page => 1, :page => 2)
+      end
+      
+      should "filter by_user correctly" do
+        assert_equal [@discussion1, @discussion2, @discussion3], @help.recent_discussions(:per_page => 3, :by_user => true)
+        assert_equal [@discussion1, @discussion2, @discussion3], @help.recent_discussions(:per_page => 3, :for_user => @discussion1.started_by)
+        assert_equal [@discussion1], @help.recent_discussions(:for_user => @discussion1.started_by, :by_user => true)
+      end
+    end
+    
     context "when removing a discussion" do
       setup do
         Board.science.pull_discussion @discussion1

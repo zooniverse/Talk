@@ -261,11 +261,6 @@ h1.asset-name {
   color: #A9A9A9;
 }
 
-/* Boards */
-.boards h1 {
-	font-size: 2.5em;
-	text-transform: uppercase;
-}
 #meta-for-discussions {
 	font-family: georgia;
 	font-size: 1.6em;
@@ -293,7 +288,6 @@ h1.asset-name {
   clear: both;
 }
 
-.discussion {}
 .discussion-title {font-size:1.8em;margin-bottom:15px;}
 .discussion-items img {margin-bottom: 5px;}
 .discussion-header .subtext {font-size: 85%;}
@@ -1120,15 +1114,15 @@ div.more-results {text-align: center;}
   cursor: default;
 }
 
-.home #discussions-selector {
+#discussions-selector {
   margin-bottom: 10px;
 }
 
-.home #discussions-selector select {
+#discussions-selector select {
   margin-right: 10px;
 }
 
-.home #discussions-selector p.label {
+#discussions-selector p.label {
   display: inline;
   margin-right: 10px;
 }
@@ -1138,14 +1132,14 @@ div.more-results {text-align: center;}
   font-size: 1.8em;
 }
 
-.home #discussions .discussion {
+.home #discussions .discussion, .board #discussions .discussion {
   border: 1px dotted #AFAFAF;
   border-top: none;
   padding: 5px;
   height: 47px;
 }
 
-.home #discussions .discussion.alt {
+.home #discussions .discussion.alt, .board #discussions .discussion.alt {
   background-color: #F5F5F5;
 }
 
@@ -1199,7 +1193,7 @@ div.more-results {text-align: center;}
   width: 1500px;
 }
 
-.home .page-nav {
+.home .page-nav, .board #discussions .page-nav {
   display: block;
   clear: both;
   height: 25px;
@@ -1207,7 +1201,7 @@ div.more-results {text-align: center;}
   text-align: center;
 }
 
-.home #discussions .page-nav {
+.home #discussions .page-nav, .board #discussions .page-nav {
   margin: 2px 0 0 0;
 }
 
@@ -1215,7 +1209,7 @@ div.more-results {text-align: center;}
   text-indent: -95px;
 }
 
-.home .page-nav .more {
+.home .page-nav .more, .board #discussions .page-nav .more {
   float: right;
   cursor: pointer;
   background: url(/images/colorbox/controls.png) no-repeat -50px 0px;
@@ -1226,7 +1220,7 @@ div.more-results {text-align: center;}
   color: #990000;
 }
 
-.home .page-nav .less {
+.home .page-nav .less, .board #discussions .page-nav .less {
   float: left;
   cursor: pointer;
   background: url(/images/colorbox/controls.png) no-repeat -75px 0px;
@@ -1237,12 +1231,12 @@ div.more-results {text-align: center;}
   color: #990000;
 }
 
-.home .page-nav .more:hover {
+.home .page-nav .more:hover, .board #discussions .page-nav .more:hover {
   background-position: -50px -25px;
   color: #FF0000;
 }
 
-.home .page-nav .less:hover {
+.home .page-nav .less:hover, .board #discussions .page-nav .less:hover {
   background-position: -75px -25px;
   color: #FF0000;
 }
@@ -1564,13 +1558,6 @@ div.more-results {text-align: center;}
 	color: #666;
 }
 
-.board .discussions {
-	background: #fff;
-	padding: 20px 30px 10px 0;
-	display: block;
-	float: left;
-}
-
 .home #assets h2, .home #collections h2 {
   margin-left: 16px;
   color: #aaa;
@@ -1739,7 +1726,7 @@ div.more-results {text-align: center;}
   background: #fff;
   left: -39px;
   margin-top: 14px;
-  padding: 39px 10px 39px 40px; 
+  padding: 39px 10px 39px 40px;
   position: relative;
   -webkit-border-top-right-radius: 7px;
   -webkit-border-bottom-right-radius: 7px;
@@ -1750,42 +1737,69 @@ div.more-results {text-align: center;}
 }
 
 /* Boards */
+.board.content {
+  padding: 20px 39px 39px 39px;
+}
+
 .board .rhc {
+  float: right;
   padding-top: 0;
-  width: 200px;
+  width: 225px;
+  margin-right: -30px;
+}
+
+.board .rhc .item {
+  padding: 10px;
+}
+
+.board .rhc .item .name {
+  margin-bottom: 8px;
 }
 
 .board .lhc {
-  left: -39px;
-  padding: 20px 0px 20px 15px;
-  background: #fff;
-  position: relative;
-  min-width: 650px;
-}
-
-.board .lhc .discussions {
-  padding:0;
-}
-
-.board .lhc .discussion {
-  margin-right: 15px;
   float: left;
-  width: 180px;
+  margin-left: -30px;
+  padding: 15px;
+  background: #FFFFFF;
+  width: 650px;
 }
 
-#board-heading {
-  padding-bottom: 20px;
+.board h2.title {
+  color: #AAAAAA;
+  line-height: 26px;
+  font-size: 2.0em;
+  font-family: "Gill Sans Light", "GillSans-Light", "Gill Sans", "Gill Sans MT", sans-serif;
 }
 
-#board-heading p {
+.board #discussions .discussion {
+  display: block;
+  clear: both;
+}
+
+.board #discussions .page-nav .more {
+  text-indent: -40px;
+}
+
+.board #discussions .page-nav .label {
+  position: absolute;
+}
+
+.board #discussions .page-nav .pages {
+  position: relative;
+  display: inline;
+  clear: none;
   width: 400px;
-  color: #999;
+  top: 5px;
+}
+
+.board #discussions .page-nav .pages .previous_page, .board #discussions .page-nav .pages .next_page {
+  display: none;
 }
 
 /* Shaded button */
 a.button {
-  background: transparent url(/images/interface/button_bg_right.png) no-repeat scroll 100% 0%;    
-  color: #666;
+  background: transparent url(/images/interface/button_bg_right.png) no-repeat scroll 100% 0%;
+  color: #666666;
   display: block;
   font: normal normal bold 12px/normal arial, sans-serif;
   height: 20px;
@@ -1803,10 +1817,9 @@ a.button span {
   padding: 3px 0px 3px 15px;
 }
 
-
 a.button.pressed {
   background-position: 100% 100%;
-  color:#000;
+  color: #000000;
 }
 
 a.button.pressed span{

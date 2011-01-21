@@ -1,29 +1,27 @@
 <%= content_for :content_class do %>messages<% end %>
 <div class="upper-row">
-	<div class="rhc">
-		<div class="right">
-			<%= render :partial => "new_button" %>	
-		</div>	
+  <div class="rhc">
+    <div class="right">
+      <%= render :partial => "new_button" %>
+    </div>
   </div>
-
+  
   <div class="lhc">
-  	<h1><%= t 'messages.messages' %></h1>
-		<div>
-			<%= link_to t('messages.inbox'), messages_path %>
-			&nbsp;|&nbsp;
-			<span class="current"><%= t('messages.sent') %></span>
-		</div>
+    <h1><%= t 'messages.messages' %></h1>
+    <div>
+      <%= link_to t('messages.inbox'), messages_path %>
+      &nbsp;|&nbsp;
+      <span class="current"><%= t('messages.sent') %></span>
+    </div>
   </div>
-
 </div>
 
 <div class="lower-row">
-	<div class="rhc">
-    <%= render :partial => "meta_for_messages" %>	
-    <%= render :partial => "shared/zooniverse_extras" %>
+  <div class="rhc">
+    <%= render :partial => "meta_for_messages" %>
     <%= render :partial => "shared/help_wanted" %>
   </div>
-
+  
   <div class="lhc">
     <div class="message-list">
       <%= render :partial => "message", :collection => @messages %>

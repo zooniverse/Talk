@@ -41,11 +41,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :markdown
   
-  def get_featured_discussions
-    @featured_list = Discussion.featured.limit(5).all
-  end
-  helper_method :get_featured_discussions
-  
   def new_discussion_url_for(focus)
     case focus.class.to_s
     when "Asset"

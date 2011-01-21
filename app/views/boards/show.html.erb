@@ -1,31 +1,22 @@
 <%= content_for :content_class do %>board<% end %>
 
-<div id="board-heading" class="boards">
-  <div class="right">
-    <a href="<%= new_board_discussion_url(@board.title) %>" class="button">
-      <span><%= t('controllers.boards.new_discussion') %></span>
-    </a>
-  </div>
-  <h1><%= @board.title %></h1>
-  <div id="meta-for-discussions" style="display:none;">
-    <%= "#{ @board.discussion_ids.length } #{ t('discussion.meta.discussions') } / #{ @board.number_of_comments } #{ t('discussion.meta.comments') }" %>
-  </div>
-  <p><%= @board.description %></p>
-</div>
-
 <div class="rhc">
-  <%= render :partial => "shared/zooniverse_extras" %>
   <%= render :partial => "shared/help_wanted" %>
 </div>
 
 <div class="lhc">
-  <div class="discussions">
-    <%- unless @discussions.empty? %>
-      <%= render :partial => "discussions/discussions" %>
-    <%- else -%>
-      <div class="engraved">No Discussions</div>
-    <% end -%>
+  <h2 class="title">
+    <%= @board.title.upcase %>
+    <div class="right">
+      <a href="<%= new_board_discussion_url(@board.title) %>" class="button">
+        <span><%= t('controllers.boards.new_discussion') %></span>
+      </a>
+    </div>
+  </h2>
+  <div id="discussions">
+    <%= render(:partial => "discussion_selector") if current_zooniverse_user %>
+    <div class="list">
+      <%= render :partial => "discussions" %>
+    </div>
   </div>
-  <%= will_paginate @discussions %>
-  <div class="push"></div>
 </div>

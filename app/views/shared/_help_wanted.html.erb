@@ -1,16 +1,14 @@
-<%- unless get_featured_discussions.empty? %>
-  <div id="help-wanted">
-    <h2><%= t 'homepage.featured' %></h2>
-    <%- get_featured_discussions.each do |d| %>
-      <div class="item">
-        <div class="item-container">
-          <div class="name"><%= link_to d.subject, discussion_url(d.zooniverse_id) %></div>
-          <div class="date"><%= long_date(d.updated_at) %></div>
-          <div class="users-total"><%= pluralize(d.number_of_users, "user") %></div>
-          <div class="comment-total"><%= pluralize(d.number_of_comments, "comment") %></div>
-          <div class="push"></div>
-        </div>
+<div id="help-wanted">
+  <h2><%= t 'homepage.featured' %></h2>
+  
+  <%- Discussion.featured.all.each do |feature| %>
+    <div class="item">
+      <div class="item-container">
+        <div class="name"><%= title_link_for feature %></div>
+        <div class="users-total"><%= pluralize(feature.number_of_users, "user") %></div>
+        <div class="comment-total"><%= pluralize(feature.number_of_comments, "comment") %></div>
+        <div class="push"></div>
       </div>
-    <% end -%>
-  </div>
-<% end -%>
+    </div>
+  <% end -%>
+</div>
