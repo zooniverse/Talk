@@ -41,6 +41,13 @@ $.fn.addAnnotations = function(elem) {
   $.fn.annotateImage.load(this);
 };
 
+$.fn.stripAnnotations = function() {
+  this.each(function() {
+    var body = $(this).children('.body');
+    body.html(body.html().replace(/\"([^\"]*)\"\:\(\d+x\d+@\d+,\d+\)/gm, '$1'));
+  });
+};
+
 $.fn.highlightAnnotations = function() {
   this.each(function() {
     var body = $(this).children('.comment .body');
