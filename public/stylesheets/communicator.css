@@ -447,11 +447,6 @@ h1.asset-name {
   box-shadow: 0px 0px 15px #4F8C33;
 }
 
-.messages .low_link {
-  top: 30px;
-  position: relative;
-}
-
 .message {
   background: #FFFFFF;
   padding: 15px;
@@ -1534,6 +1529,8 @@ div.more-results {text-align: center;}
 }
 
 #new_message .field {
+  display: block;
+  clear: both;
   margin-bottom: 15px;
 }
 

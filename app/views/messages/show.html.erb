@@ -9,12 +9,12 @@
   
   <div class="lhc">
     <h1><%= t 'messages.thread_with' %> <%= @thread_with_user.name %></h1>
-    <span class="low_link">&larr;&nbsp;<%= link_to t('messages.back_to_inbox'), messages_path %></span>
   </div>
 </div>
 
 <div class="lower-row">
   <div class="lhc" style="width: auto;">
+    &larr;&nbsp;<%= link_to t('messages.back_to_inbox'), messages_path %>
     <div class="message-list">
       <%= render :partial => "message", :collection => @messages %>
       <%= render :partial => "new_message" %>

@@ -230,7 +230,12 @@ Talk.textcount = {
     $(short_text).live('keydown keyup focus input paste', function() {
       var remaining = short_max - $(short_text).val().length;
       $(short_counter).html(Math.max(remaining, 0));
-      $(short_text).val($(short_text).val().substr(0, short_max));
+      
+      var text = $(short_text).val();
+      
+      if(text.length > short_max) {
+        $(short_text).val(text.substr(0, short_max));
+      }
     });
     
     $(short_counter).html(short_max);
