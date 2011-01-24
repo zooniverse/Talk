@@ -155,6 +155,12 @@ class Comment
       :original_document => self.to_embedded_hash
     })
     
+    self.events.each do |event|
+      event.moderator = destroying_user
+      event.state = "actioned"
+      event.save
+    end
+    
     self.destroy
   end
   

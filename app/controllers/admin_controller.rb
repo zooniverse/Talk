@@ -27,10 +27,12 @@ class AdminController < ApplicationController
   def remove_comment
     @event = Event.find(params[:id])
     
-    if @event.eventable.is_a?(Comment) && @event.eventable.destroy
-      @event.moderator = current_zooniverse_user
-      @event.state = "actioned"
-      @event.save
+    if @event.eventable.is_a?(Comment)
+      @event.eventable.events.each do |event|
+        event.moderator = current_zooniverse_user
+        event.state = "actioned"
+        event.save
+      end
     end
     
     set_page "reported_comments", Event.pending_for_comments

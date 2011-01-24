@@ -315,6 +315,10 @@ class CommentTest < ActiveSupport::TestCase
           @discussion.reload
           
           @comment1.destroy
+          
+          @event1 = Event.new(:user => Factory(:user), :target_user => @comment2.author, :title => "reported")
+          @comment2.events << @event1
+          @event1.save
           @comment2.archive_and_destroy_as @comment2.author
           @archive2 = Archive.first(:kind => "Comment", :original_id => @comment2.id)
           
@@ -341,6 +345,10 @@ class CommentTest < ActiveSupport::TestCase
         should "#nullify_responses" do
           assert_not @response1.reload.response_to
           assert_not @response2.reload.response_to
+        end
+        
+        should "action pending events" do
+          assert_equal "actioned", @event1.reload.state
         end
         
         should "update taggings" do
