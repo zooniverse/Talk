@@ -11,6 +11,9 @@
           <%= link_to comment.response_to.author.formatted_name, preview_comment_path(comment.response_to), { :remote => true, :method => :post } %>
         <% end -%>
       </div>
+      <pre class="raw" style="display: none;">
+        <%= comment.body %>
+      </pre>
       <%= raw markdown(comment.body) %>
     </div>
     
@@ -18,7 +21,7 @@
       <div class="toolbar">
         <div class="vote-controls">
           <%- if current_zooniverse_user && comment.author != current_zooniverse_user %>
-            <%= link_to t('comments.reply'), "#", :onclick => "reply_to('#{comment.id}', '#{comment.author.name}');" %>&nbsp;&nbsp;|&nbsp;
+            <%= link_to t('comments.reply'), "#", :onclick => "reply_to('#{comment.id}', '#{comment.author.name}', '#{comment.author.id}');" %>&nbsp;&nbsp;|&nbsp;
             <span id="comment-vote-<%= comment.id %>">
               <%- unless comment.upvotes.include?(current_zooniverse_user.id) %>
                 <%= link_to(t('comments.recommend'), vote_up_comment_path(comment), {:remote => true, :method => :post}) %>

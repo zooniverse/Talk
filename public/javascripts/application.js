@@ -453,7 +453,12 @@ function markitup_preview() {
  * @Reply to link helpers
  */
 
-function reply_to(comment_id, author){
+function reply_to(comment_id, author, author_id) {
+  var reply_text = $('#' + comment_id + ' .raw').text();
+  reply_text = reply_text.replace(/([\r\n]+\s*)/ig, "\n> ");
+  reply_text = reply_text.replace(/^\s*/, "");
+  reply_text = '\n> [' + author + '](' + '/users/' + author_id + ' "' + author + '"):\n> ' + reply_text + "\n\n";
+  $('#comment_body').insertAtCaretPos(reply_text);
   $('.comment-form h2').html('Response to '+ author + '<ul id="cancel-response"><li></li></ul>');
   $('#comment_response_to_id').val(comment_id);
   $('html,body').animate({ scrollTop: $('#new_comment').offset().top }, { duration: 'medium', easing: 'swing'});
