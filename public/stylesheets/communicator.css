@@ -1229,7 +1229,7 @@ div.more-results {text-align: center;}
   width: 1500px;
 }
 
-.home .page-nav, .board #discussions .page-nav {
+.home .page-nav, .board #discussions .page-nav, .discussion .page-nav {
   display: block;
   clear: both;
   height: 25px;
@@ -1237,15 +1237,23 @@ div.more-results {text-align: center;}
   text-align: center;
 }
 
-.home #discussions .page-nav, .board #discussions .page-nav {
+.home #discussions .page-nav, .board #discussions .page-nav, .discussion .page-nav {
   margin: 2px 0 0 0;
+}
+
+.discussion .page-nav {
+  position: relative;
+  left: -40px;
+  background: #FFFFFF;
+  padding: 15px 2px;
+  border-bottom: 1px dotted #AFAFAF;
 }
 
 .home #discussions.trending .page-nav .more {
   text-indent: -95px;
 }
 
-.home .page-nav .more, .board #discussions .page-nav .more {
+.home .page-nav .more, .board #discussions .page-nav .more, .discussion .page-nav .more {
   float: right;
   cursor: pointer;
   background: url(/images/colorbox/controls.png) no-repeat -50px 0px;
@@ -1256,10 +1264,10 @@ div.more-results {text-align: center;}
   color: #990000;
 }
 
-.home .page-nav .less, .board #discussions .page-nav .less {
+.home .page-nav .less, .board #discussions .page-nav .less, .discussion .page-nav .less {
   float: left;
   cursor: pointer;
-  background: url(/images/colorbox/controls.png) no-repeat -75px 0px;
+  background: url(/images/colorbox/controls.png) no-repeat -74px 0px;
   width: 25px;
   height: 25px;
   text-indent: 10px;
@@ -1838,15 +1846,15 @@ div.more-results {text-align: center;}
   clear: both;
 }
 
-.board #discussions .page-nav .more {
+.board #discussions .page-nav .more, .discussion .page-nav .more {
   text-indent: -40px;
 }
 
-.board #discussions .page-nav .label {
+.board #discussions .page-nav .label, .discussion .page-nav .label {
   position: absolute;
 }
 
-.board #discussions .page-nav .pages {
+.board #discussions .page-nav .pages, .discussion .page-nav .pages {
   position: relative;
   display: inline;
   clear: none;
@@ -1854,7 +1862,10 @@ div.more-results {text-align: center;}
   top: 5px;
 }
 
-.board #discussions .page-nav .pages .previous_page, .board #discussions .page-nav .pages .next_page {
+.board #discussions .page-nav .pages .previous_page,
+.board #discussions .page-nav .pages .next_page,
+.discussion .page-nav .pages .previous_page,
+.discussion .page-nav .pages .next_page {
   display: none;
 }
 

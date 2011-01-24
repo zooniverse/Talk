@@ -63,6 +63,14 @@ a.galaxyzoo_logo{
   margin-top: 15px;
 }
 
+.home .page-nav .less, .board #discussions .page-nav .less, .discussion .page-nav .less {
+  text-indent: 12px;
+}
+
+.board #discussions .page-nav .more, .discussion .page-nav .more {
+  text-indent: -25px;
+}
+
 .home .asset .progress {padding:0;display:none;height:1px;}
 .lower_home{margin-top:20px;}
 

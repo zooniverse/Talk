@@ -1,2 +1,20 @@
 <%= render :partial => "comments/comment", :collection => @comments %>
-<%= will_paginate @comments if @comments.respond_to?(:total_pages) %>
+
+<%- if @comments.total_pages > 1 %>
+  <div class="page-nav">
+    <div class="pages">
+      Page&nbsp;&nbsp;<%= will_paginate @comments, :container => false, :params => { :per_page => @per_page } %>
+    </div>
+    <div class="less page-loader" style="<%= @page == 1 ? 'display: none;' : '' %>">
+      <span class="label">
+        <%= link_to "Page #{ @page - 1 }", discussion_url_for(@discussion, :per_page => @per_page, :page => @page - 1) %>
+      </span>
+    </div>
+    <div class="more page-loader" style="<%= @page == @comments.total_pages ? 'display: none;' : '' %>">
+      <span class="label">
+        <%= link_to "Page #{ @page + 1 }", discussion_url_for(@discussion, :per_page => @per_page, :page => @page + 1) %>
+      </span>
+    </div>
+    <div class="push"></div>
+  </div>
+<% end -%>
