@@ -32,8 +32,8 @@ class HomeController < ApplicationController
                    :selecting => false
     
     @kinds = @kinds.split
-    if params[:since].blank?
-      @since = Time.now.utc.beginning_of_day
+    if params[:since].blank? && current_zooniverse_user && current_zooniverse_user.last_login_at
+      @since = current_zooniverse_user.last_login_at
     elsif params[:since]
       @since = Time.parse(params[:since]).utc
     end

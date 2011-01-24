@@ -17,7 +17,7 @@
         <%= pluralize(discussion.number_of_comments, "comment") %>
       </div>
       <div class="comments-total">
-        <%= pluralize(discussion.count_new_comments(:for_user => current_zooniverse_user, :since => @since), "new comment") %>
+        <%= pluralize(discussion.count_new_comments(:for_user => current_zooniverse_user), "new comment") %>
       </div>
       <div class="last-post">
         <%- last_comment = Comment.sort(:created_at.desc).first(:discussion_id => discussion.id) %>
