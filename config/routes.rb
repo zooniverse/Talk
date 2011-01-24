@@ -52,6 +52,7 @@ Sellers::Application.routes.draw do
   
   resources :messages do
     collection do
+      post :preview
       get :sent
       get :recipient_search
     end

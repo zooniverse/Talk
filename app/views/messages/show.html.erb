@@ -14,13 +14,21 @@
 </div>
 
 <div class="lower-row">
-  <div class="lhc">
+  <div class="lhc" style="width: auto;">
     <div class="message-list">
       <%= render :partial => "message", :collection => @messages %>
-      <%= render :partial => "reply" %>
+      <%= render :partial => "new_message" %>
     </div>
   </div>
-  <div class="rhc">
-    <%= render :partial => "shared/help_wanted" %>
-  </div>
 </div>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('html,body').animate({
+      scrollTop: $('#<%= @showing.id %>').offset().top
+    }, {
+      duration: 'slow',
+      easing: 'swing'
+    });
+  });
+</script>

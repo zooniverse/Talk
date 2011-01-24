@@ -4,7 +4,7 @@
 <%= content_for(:content_class){ "messages" } %>
 
 <div class="upper-row">
-  <div class="lhc">
+  <div class="lhc" style="width: auto;">
     <h1>New Message</h1>
     <div>
       <%= link_to t('messages.inbox'), messages_path %>
@@ -15,23 +15,7 @@
 </div>
 
 <div class="lower_row">
-<%= form_for @message do |f| %>
-  <span>
-    <p class="label">Recipient's name</p>
-    <%= f.text_field :recipient_name, :size => 30, :value => @recipient_name %>
-  </span>
-  <span>
-    <p class="label">Message title</p>
-    <%= f.text_field :title, :size => 70 %>
-  </span>
-  
-  <span>
-    <p class="label">Message</p>
-    <%= f.text_area :body, :rows => 8, :cols => 61 %>
-  </span>
-  
-  <%= submit_tag 'Send' %>
-<% end -%>
+  <%= render :partial => "new_message" %>
 </div>
 
 <%= render :partial => "recipient_autocompleter.js" %>

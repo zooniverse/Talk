@@ -1,0 +1,35 @@
+<%= content_for :page_includes do %>
+  <%= javascript_include_tag "markitup/jquery.markitup" %>
+  <%= javascript_include_tag "markitup/sets/sellers/set" %>
+  
+  <link rel="stylesheet" href="/javascripts/markitup/skins/simple/style.css" type="text/css" media="screen" charset="utf-8">
+  <link rel="stylesheet" href="/javascripts/markitup/sets/sellers/style.css" type="text/css" media="screen" charset="utf-8">
+<% end -%>
+
+<%= form_for @message do |f| %>
+  <%- unless @thread_with_user %>
+    <div class="field">
+      <h2>Recipient's name</h2>
+      <%= f.text_field :recipient_name, :size => 45, :value => @recipient_name %>
+    </div>
+  <% end -%>
+  <div class="field">
+    <h2>Title</h2>
+    <%= f.text_field :title, :size => 45, :value => @last_title %>
+  </div>
+  <div class="new-message-body">
+    <h2><%= @thread_with_user ? 'Reply' : 'Message' %></h2>
+    <%= f.text_area :body, :rows => 10, :cols => 63 %>
+    <div class="new-message-preview"></div>
+  </div>
+  
+  <%= hidden_field_tag('message[recipient_name]', @thread_with_user.name) if @thread_with_user %>
+  <%= submit_tag(@thread_with_user ? 'Reply' : 'Send') %>
+<% end -%>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('.new_message #message_body').markItUp(mySettings);
+    $('.annotate-button').hide();
+  });
+</script>

@@ -428,11 +428,25 @@ $(document).ready(function(){
 });
 
 function markitup_preview() {
-  $.ajax({
-    url: '/comments/markitup_parser',
-    data: { data: $('#comment_body').val() || $('#discussion_comments_body').val() },
-    type: 'post'
-  });
+  if($('#comment_body').length > 0 || $('#discussion_comments_body').length > 0) {
+    $.ajax({
+      url: '/comments/markitup_parser',
+      data: {
+        body: $('#comment_body').val() || $('#discussion_comments_body').val()
+      },
+      type: 'post'
+    });
+  }
+  else if($('.new-message-body #message_body').length > 0) {
+    $.ajax({
+      url: '/messages/preview.js',
+      data: {
+        body: $('#message_body').val(),
+        recipient: $('#message_recipient_name').val()
+      },
+      type: 'post'
+    });
+  }
 }
 
 /* 

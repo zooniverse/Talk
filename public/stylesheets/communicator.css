@@ -436,18 +436,49 @@ h1.asset-name {
 #keyword-cloud li.level9 { font-size: 2.2em; font-weight: 900; }
 
 /* Messages */
-.messages .rhc {padding-top:0px;}
-.messages .low_link {top: 30px;position:relative;}
-.message {background: #fff; padding:15px; margin-right: 20px;margin-bottom:5px;}
-.message img {float:left;}
-.message .inner {margin-left: 62px;}
-.message .date {float:right;color:#999;}
-.message .subject {font-size:1.3em;}
-.message .preview {margin-top:5px;}
+.messages .rhc {
+  padding-top: 0px;
+}
 
-.message-reply-form{ padding:15px;}
-.message-reply-form img{ float: left;}
-.message-reply-form .inner{ margin-left: 62px;}
+.messages .unread {
+  border: 1px solid #999999;
+  -moz-box-shadow: 0px 0px 15px #4F8C33;
+  -webkit-box-shadow: 0px 0px 15px #4F8C33;
+  box-shadow: 0px 0px 15px #4F8C33;
+}
+
+.messages .low_link {
+  top: 30px;
+  position: relative;
+}
+
+.message {
+  background: #FFFFFF;
+  padding: 15px;
+  margin-right: 20px;
+  margin-bottom: 5px;
+}
+
+.message img {
+  float: left;
+}
+
+.message .inner {
+  margin-left: 62px;
+}
+
+.message .date {
+  float: right;
+  color: #999999;
+}
+
+.message .subject {
+  font-size: 1.3em;
+}
+
+.message .preview {
+  margin-top: 5px;
+}
 
 /* Collection Discussion Assets */
 .discussed.collection-info {
@@ -722,34 +753,36 @@ h1.collection-title {
 /* Body */
 .comment .body {
   margin-left: 56px;
-  max-height: 400px;
+  max-height: 800px;
   overflow-y: auto;
   overflow-x: hidden;
   padding-right: 5px;
 }
 
-.comment .body blockquote {
+.comment .body blockquote, .message .body blockquote {
   padding: 5px;
   border: 1px solid #afafaf;
   background-color: #eeeeee;
 }
 
-.comment .body blockquote p {
+.comment .body blockquote p, .message .body blockquote p {
   margin: 0;
 }
 
 .comment .body ul,
-.comment .body ol {
+.comment .body ol,
+.message .body ul,
+.message .body ol {
   margin: 5px 5px 5px 20px;
   padding: 0;
 }
 
-.comment .body ul li {
+.comment .body ul li, .message .body ul li {
   list-style: disc;
   margin-left: 20px;
 }
 
-.comment .body ol li {
+.comment .body ol li, .message .body ol li {
   list-style: decimal;
   margin-left: 20px;
 }
@@ -1500,6 +1533,33 @@ div.more-results {text-align: center;}
   clear: both;
 }
 
+#new_message .field {
+  margin-bottom: 15px;
+}
+
+#new_message .new-message-body .markItUpHeader {
+  float: right;
+}
+
+#new_message .new-message-body .markItUpEditor, #new_message .new-message-body .markItUp {
+  width: 857px;
+}
+
+#new_message .new-message-body h2 {
+  margin: 10px 0px 0px 0px;
+  padding: 2px;
+  position: relative;
+  top: 26px;
+}
+
+.new-message-preview {
+  width: 887px;
+}
+
+.new-message-preview .message {
+  min-height: 60px;
+}
+
 .new_collection input[type="submit"], .edit_collection input[type="submit"],
 .new_live_collection input[type="submit"], .edit_live_collection input[type="submit"],
 .new_message input[type="submit"] {
@@ -1510,11 +1570,7 @@ div.more-results {text-align: center;}
 }
 
 .new_message input[type="submit"] {
-  margin-right: 200px;
-}
-
-.message-reply-form .new_message input[type="submit"] {
-  margin-right: 10px;
+  margin: 10px 0px 0px 0px;
 }
 
 .message-reply-form .new_message p.label {

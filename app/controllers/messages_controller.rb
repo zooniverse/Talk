@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
-  respond_to :html, :json
-  before_filter CASClient::Frameworks::Rails::Filter, :except => [:recipient_search]
-  before_filter :get_meta, :except => :recipient_search
+  respond_to :html, :json, :js
+  before_filter CASClient::Frameworks::Rails::Filter, :except => [:recipient_search, :preview]
+  before_filter :get_meta, :except => [:recipient_search, :preview]
   
   def index
     @listing = true
@@ -15,14 +15,15 @@ class MessagesController < ApplicationController
   
   def show
     @listing = false
-    @message = Message.find(params[:id])
-    return not_found unless @message
-        
-    if !@message.nil? && @message.visible_to?(current_zooniverse_user)
-      @message.mark_as_read
-      @thread_with_user = @message.sender
-      @messages = current_zooniverse_user.messages_with(@message.sender)
-      @last_title = @messages.any? ? @messages.last.title : ""
+    @showing = Message.find(params[:id])
+    return not_found unless @showing
+    @message = Message.new
+    
+    if !@showing.nil? && @showing.visible_to?(current_zooniverse_user)
+      @showing.mark_as_read
+      @thread_with_user = @showing.sender
+      @messages = current_zooniverse_user.messages_with(@showing.sender)
+      @last_title = @messages.any? ? @messages.first.title : ""
     end
   end
   
@@ -33,7 +34,8 @@ class MessagesController < ApplicationController
   
   def create
     @message = Message.new(params[:message])
-    @recipient = User.find_by_name(params[:message][:recipient_name])
+    @recipient_name = params[:message][:recipient_name]
+    @recipient = User.find_by_name(@recipient_name)
     @message.sender = current_zooniverse_user
     @message.recipient = @recipient
     
@@ -56,8 +58,25 @@ class MessagesController < ApplicationController
   end
   
   def recipient_search
-    @names = User.limit(5).only(:name).all(:name => /^#{ params[:term] }/)
+    @names = User.limit(5).only(:name).all(:name => /^#{ params[:term] }/i)
     respond_with(@names.collect{ |u| u.name }.to_json)
+  end
+  
+  def preview
+    message = Message.new(:body => params[:body] || "")
+    message.recipient = User.first(:name => params[:recipient]) if params[:recipient] && !params[:recipient].blank?
+    message.sender = current_zooniverse_user
+    message.update_timestamps
+    
+    @listing = false
+    
+    respond_with(@message) do |format|
+      format.js do
+        render :update do |page|
+          page[".new-message-preview"].html(render :partial => "message", :locals => { :message => message })
+        end
+      end
+    end
   end
   
   private

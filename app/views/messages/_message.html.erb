@@ -1,15 +1,20 @@
 <%- direction = (@thread_with_user.nil? || message.sent_to?(current_zooniverse_user)) ? "incoming" : "outgoing" %>
 
-<div class="<%= "message #{direction}" %>">
-	<div class="date"><%= time_ago_in_words message.created_at %> ago</div>
-	<%= image_tag('interface/default_user.png', :class => "message-user #{direction} ", :height => 45) %>
-	<div class="inner">
-	  <%- title = @listing ? truncate(message.title, :length => 50) : message.title %>
-	  <%- subject = @listing ? link_to(title, message) : title %>
-	  <%- body = @listing ? truncate(message.body, :length => 50) : message.body %>
-  
-	  <div class="subject"><%= subject %></div>
-	  <div class="user"><%= link_to message.sender.name, user_path(message.sender) %> to <%= link_to message.recipient.name, user_path(message.recipient) %></div>
-	  <div class="preview"><%= body %></div>
-	</div>
+<div id="<%= message.id %>" class="message <%= "#{ direction } #{ message.unread? && @listing ? 'unread' : 'read'}" %>">
+  <div class="date"><%= time_ago_in_words message.created_at %> ago</div>
+  <%= image_tag('interface/default_user.png', :class => "message-user #{direction} ", :height => 45) %>
+  <div class="inner">
+    <%- title = @listing ? truncate(message.title, :length => 50) : message.title %>
+    <%- subject = @listing ? link_to(title, message) : title %>
+    <%- body = @listing ? truncate(message.body, :length => 50) : message.body %>
+    
+    <div class="subject"><%= subject %></div>
+    <div class="user">
+      <%= link_to message.sender.name, user_path(message.sender) %>
+      <%- unless message.recipient.nil? %>
+        to <%= link_to message.recipient.name, user_path(message.recipient) %>
+      <% end -%>
+    </div>
+    <div class="body"><%= raw markdown(body) %></div>
+  </div>
 </div>

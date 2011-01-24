@@ -88,7 +88,7 @@ class CommentsController < ApplicationController
   end
   
   def markitup_parser
-    @comment = Comment.new(:body => params[:data] || "")
+    @comment = Comment.new(:body => params[:body] || "")
     @comment.author = current_zooniverse_user
     @comment.update_timestamps
     
