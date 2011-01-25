@@ -4,11 +4,13 @@ class MessagesController < ApplicationController
   before_filter :get_meta, :except => [:recipient_search, :preview]
   
   def index
+    @page_title = "Messages | Inbox"
     @listing = true
     @messages = current_zooniverse_user.messages
   end
   
   def sent
+    @page_title = "Messages | Sent"
     @listing = false
     @messages = current_zooniverse_user.sent_messages
   end
@@ -17,6 +19,7 @@ class MessagesController < ApplicationController
     @listing = false
     @showing = Message.find(params[:id])
     return not_found unless @showing
+    @page_title = "Messages | Conversation with #{ @showing.sender.name }"
     @message = Message.new
     
     if !@showing.nil? && @showing.visible_to?(current_zooniverse_user)
@@ -28,6 +31,7 @@ class MessagesController < ApplicationController
   end
   
   def new
+    @page_title = "Messages | New Message"
     @message = Message.new
     @recipient_name = params[:recipient_name] if params[:recipient_name]
   end

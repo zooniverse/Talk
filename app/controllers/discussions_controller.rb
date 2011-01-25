@@ -12,6 +12,9 @@ class DiscussionsController < ApplicationController
     @comments = Comment.sort(:created_at.asc).where(:discussion_id => @discussion.id).paginate(:page => @page, :per_page => @per_page)
     @focus = @discussion.focus
     
+    set_title_prefix
+    @page_title += " | #{ @discussion.subject }"
+    
     @comment = Comment.new
     if @discussion.focus_type == "Board"
       @title = @discussion.focus.title
@@ -30,6 +33,9 @@ class DiscussionsController < ApplicationController
     @board = params[:board_id]
     @discussion = Discussion.new
     @discussion.comments.build
+    
+    set_title_prefix
+    @page_title += " | New Discussion"
   end
   
   def edit
@@ -127,5 +133,16 @@ class DiscussionsController < ApplicationController
     klass = focus_key.sub('_id', '').sub('object', 'asset').camelize.constantize
     klass = LiveCollection if focus_key == 'collection_id' && focus_id =~ /^CMZL/
     @focus = (klass == Board) ? klass.find_by_title(focus_id) : klass.find_by_zooniverse_id(focus_id)
+  end
+  
+  def set_title_prefix
+    @page_title = case @focus
+    when Asset
+      @focus.zooniverse_id
+    when Collection, LiveCollection
+      @focus.name
+    when Board
+      @focus.title.capitalize
+    end
   end
 end

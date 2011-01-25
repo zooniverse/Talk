@@ -4,6 +4,7 @@ class AdminController < ApplicationController
   respond_to :html, :js
   
   def index
+    @page_title = "Administration"
     @more = params[:more]
     ivars = %w(reported_users reported_comments watched banned logged)
     cursors = [Event.pending_for_users, Event.pending_for_comments, User.watched, User.banned, Event.actioned.ignored]

@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     return not_found unless @user
+    @page_title = "Users | #{ @user.name }"
     
     @per_page = 10
     @comment_page = @discussion_page = 1

@@ -8,6 +8,9 @@ class SearchController < ApplicationController
     parse_keywords
     search_terms = @keywords || @search
     
+    @page_title = "Search | #{ @for.capitalize }"
+    @page_title += " | \"#{ @search }\"" unless @search.blank?
+    
     case @for
     when 'collections'
       if @keywords.nil?

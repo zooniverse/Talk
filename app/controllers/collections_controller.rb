@@ -7,6 +7,7 @@ class CollectionsController < ApplicationController
     default_params :page => 1, :per_page => 10
     find_collection
     return not_found unless @collection
+    @page_title = "#{ @collection.name } by #{ @collection.user.name }"
     
     @discussion = @collection.conversation
     @mentions = Discussion.mentioning(@collection)
@@ -19,6 +20,7 @@ class CollectionsController < ApplicationController
   end
   
   def new
+    @page_title = "Collections | New Collection"
     @collection = Collection.new
     set_options
   end
@@ -27,6 +29,7 @@ class CollectionsController < ApplicationController
     find_collection
     return not_found unless @collection
     return unless moderator_or_owner :can_modify?, @collection
+    @page_title = "Collections | Edit Collection"
     
     if @collection && @collection._type == "Collection"
       @kind = "Collection"
