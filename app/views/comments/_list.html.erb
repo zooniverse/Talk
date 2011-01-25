@@ -18,3 +18,10 @@
     <div class="push"></div>
   </div>
 <% end -%>
+
+<script type="text/javascript" charset="utf-8">
+  $('.page-loader').live('click', function() {
+    window.location.href = $('a', this).attr('href');
+    return false;
+  });
+</script>

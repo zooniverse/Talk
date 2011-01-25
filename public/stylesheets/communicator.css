@@ -1275,12 +1275,12 @@ div.more-results {text-align: center;}
   color: #990000;
 }
 
-.home .page-nav .more:hover, .board #discussions .page-nav .more:hover {
+.home .page-nav .more:hover, .board #discussions .page-nav .more:hover, .discussion .page-nav .more:hover {
   background-position: -50px -25px;
   color: #FF0000;
 }
 
-.home .page-nav .less:hover, .board #discussions .page-nav .less:hover {
+.home .page-nav .less:hover, .board #discussions .page-nav .less:hover, .discussion .page-nav .less:hover {
   background-position: -74px -25px;
   color: #FF0000;
 }
