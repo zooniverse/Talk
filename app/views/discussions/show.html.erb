@@ -14,7 +14,7 @@
     <div class="rhc">
       <div class="discussion-items">
         <%- if @discussion.asset? %>
-          <%= image_tag(@discussion.focus.location, :class => "focus-main-image", :id => "asset-image", :height => 200, :width => 200) %>
+          <%= link_to image_tag(@discussion.focus.location, :class => "focus-main-image", :id => "asset-image", :height => 200, :width => 200), @discussion.focus.location, :class => 'lightbox' %>
         <% end -%>
         
         <%- if @discussion.collection? || @discussion.live_collection? %>
@@ -109,6 +109,9 @@
       Talk.paginated_collection.init();
       Talk.collection_hover.init();
       Talk.collection_lightbox.init();
+    }
+    else if(<%= @discussion.asset? %>) {
+      $('.lightbox').colorbox();
     }
   });
 </script>
