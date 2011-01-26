@@ -14,7 +14,7 @@ class TagTest < ActiveSupport::TestCase
     should "find tags #for_discussion" do
       assert_equal ['tag2', 'tag4', 'tag1'], Tag.for_discussion(@discussion).collect{ |tag| tag.name }
     end
-
+    
     should "find #trending" do
       assert_equal ['tag2', 'tag4', 'tag1'], Tag.trending
     end

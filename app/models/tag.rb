@@ -31,10 +31,10 @@ class Tag
     return {} if trended.empty?
     
     min, max = trended.values.minmax
-    old_range = [0.1, max - min.to_f].max
+    old_range = [0.1, Math.log(max) - Math.log(min)].max
     
     trended.each_pair do |tag, count|
-      trended[tag] = (opts[:from] + ((count - min) / old_range) * new_range).round
+      trended[tag] = (opts[:from] + (( Math.log(count) - Math.log(min) ) / old_range) * new_range).round
     end
   end
 end
