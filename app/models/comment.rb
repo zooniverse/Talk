@@ -29,7 +29,7 @@ class Comment
   after_destroy :denormalize_counts
   
   TAG = /[^\w]#([-\w\d]{3,40})/im
-  MENTION = /([A|C|D]MZ\w{7})/m
+  MENTION = /([A|C|D|S]MZ\w{7})/m
   
   def self.search(*args)
     opts = { :page => 1, :operator => :$all, :per_page => 10, :order => :created_at.desc, :field => :_body }.update(args.extract_options!)
