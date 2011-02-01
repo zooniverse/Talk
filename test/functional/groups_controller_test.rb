@@ -21,7 +21,7 @@ class GroupsControllerTest < ActionController::TestCase
       should render_template :show
       
       should "Display the group zooniverse_id" do
-        assert_select '.collection-title', :text => /Star.*#{ @group.zooniverse_id }.*/m
+        assert_select '.collection-title', :text => /Group.*#{ @group.zooniverse_id }.*/m
       end
       
       should "display group tags" do
