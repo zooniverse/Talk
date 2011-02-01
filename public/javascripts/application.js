@@ -222,9 +222,12 @@ Talk.hover = {
 
 
 Talk.textcount = {
-  init: function(editing) {
-    var short_text = editing ? '#' + editing + ' .edit-short-text' : '#short-text';
-    var short_counter = editing ? '#' + editing + ' .edit-counter' : '#short-counter';
+  init: function() {
+    Talk.textcount.init_on('.edit-counter', '.edit-short-text');
+    Talk.textcount.init_on('#short-counter', '#short-text');
+  },
+  
+  init_on: function(short_counter, short_text) {
     var short_max = 140;
     
     $(short_text).live('keydown keyup focus input paste', function() {
