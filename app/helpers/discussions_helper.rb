@@ -19,6 +19,8 @@ module DiscussionsHelper
     case focus.class.name
     when "Asset"
       object_path(focus.zooniverse_id)
+    when "Group"
+      group_path(focus.zooniverse_id)
     when "Collection", "LiveCollection"
       collection_path(focus.zooniverse_id)
     when "Board"

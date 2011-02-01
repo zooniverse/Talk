@@ -114,6 +114,10 @@ class Discussion
     focus_type == "Collection"
   end
   
+  def group?
+    focus_type == "Group"
+  end
+  
   # True if this is a focus conversation (live comment stream)
   def conversation?
     (focus_id.nil? || focus_type == "Board" ) ? false : focus.conversation == self

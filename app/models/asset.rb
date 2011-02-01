@@ -9,8 +9,11 @@ class Asset
   key :thumbnail_location, String, :required => true
   key :coords, Array
   key :size, Array
+  key :group_id, ObjectId
   key :tags, Array
   timestamps!
+  
+  belongs_to :group
   
   # selects the most recently mentioned (ie AM0000BLAH was mentioned in a comment) assets
   def self.recently_mentioned(limit = 10)

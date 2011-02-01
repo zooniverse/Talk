@@ -124,7 +124,7 @@ class DiscussionsController < ApplicationController
   end
   
   def find_show_focus
-    focus_key = params.keys.select{ |key| %w(object_id collection_id board_id).include? key }.first
+    focus_key = params.keys.select{ |key| %w(object_id collection_id board_id group_id).include? key }.first
     focus_id = params[focus_key]
     return unless focus_key and focus_id
     klass = focus_key.sub('_id', '').sub('object', 'asset').camelize.constantize
@@ -134,7 +134,7 @@ class DiscussionsController < ApplicationController
   
   def set_title_prefix
     @page_title = case @focus
-    when Asset
+    when Asset, Group
       @focus.zooniverse_id
     when Collection, LiveCollection
       @focus.name

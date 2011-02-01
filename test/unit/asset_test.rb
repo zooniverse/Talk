@@ -7,10 +7,10 @@ class AssetTest < ActiveSupport::TestCase
       build_focus_for @asset
     end
     
-    should_associate :discussions
+    should_associate :discussions, :group
     should_include_modules :focus, 'MongoMapper::Document'
     should_have_keys :zooniverse_id, :location, :thumbnail_location, :coords, :size, :tags,
-                     :conversation_id, :discussion_ids, :created_at, :updated_at
+                     :conversation_id, :discussion_ids, :created_at, :updated_at, :group_id
     
     should "include a working Focus" do
       [:conversation_id, :discussion_ids].each{ |key| assert @asset.respond_to?(key) }

@@ -42,6 +42,10 @@ Sellers::Application.routes.draw do
     end
   end
   
+  resources :groups do
+    resources :discussions
+  end
+  
   resources :objects, :controller => :assets do 
     resources :discussions
     

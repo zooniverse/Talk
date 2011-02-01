@@ -14,6 +14,7 @@ task :ensure_indexes => :environment do
   Asset.ensure_index [['popularity', -1]]
   Asset.ensure_index [['updated_at', -1]]
   Asset.ensure_index [['tags', 1], ['updated_at', -1]]
+  Asset.ensure_index [['group_id', 1], ['created_at', 1]]
   
   puts "Building indexes for Board"
   drop_indexes_on(Board)
@@ -57,6 +58,10 @@ task :ensure_indexes => :environment do
   drop_indexes_on(Event)
   Event.ensure_index [['state', 1], ['created_at', -1]]
   Event.ensure_index [['user_id', 1], ['created_at', -1]]
+  
+  puts "Building indexes for Group"
+  drop_indexes_on(Group)
+  Group.ensure_index [['zooniverse_id', 1]]
   
   puts "Building indexes for Message"
   drop_indexes_on(Message)

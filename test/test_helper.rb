@@ -137,6 +137,14 @@ class ActiveSupport::TestCase
     focus.save
   end
   
+  def build_group(assets = 5)
+    @group = Factory :group
+    
+    1.upto(assets) do |i|
+      Factory :asset, :group_id => @group.id
+    end
+  end
+  
   def collection_for(asset)
     @collection = Collection.new :name => "Collection", :asset_ids => [asset.id]
     @collection.user = Factory :user

@@ -1,0 +1,75 @@
+<%= content_for :page_includes do %>
+  <%= javascript_include_tag 'jquery.colorbox-min' %>
+  <%= stylesheet_link_tag 'colorbox' %>
+  <link rel="stylesheet" href="/stylesheets/jquery-ui-1.8.7.custom.css" type="text/css" media="all" />
+<% end -%>
+
+<div class="upper-row">
+  <h1 class="collection-title">
+    Group <%= link_to @group.zooniverse_id, group_path(@group.zooniverse_id) %>
+    <div class="push"></div>
+  </h1>
+  
+  <div class="rhc">
+    <%= render :partial => "discussions/list_for_focus" %>
+    <%= render :partial => "shared/tags_for_focus" %>
+    <%= render :partial => "discussions/mentions" %>
+  </div>
+  
+  <div class="lhc" style="width: 650px;">
+    <div class="collection-viewer rounded-panel">
+      <%= image_tag(@group.assets.first.location, :class => "collection-large asset-large", :width => 580) %>
+      
+      <div class="collection-info paginatable_collection">
+        <div class="container collection-asset-container">
+          <%- @group.assets.sort(:created_at.asc).all.in_groups_of(6).each do |group| %>
+            <div class="col">
+              <%- group.compact.each do |asset| %>
+                <%= link_to image_tag(asset.thumbnail_location, :class => "collection-thumbnail", :width => 188), object_path(asset.zooniverse_id) %>
+                <%= link_to image_tag(asset.thumbnail_location), asset.location, :rel => 'lightbox', :title => asset.zooniverse_id, :style => 'display: none;' %>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+        
+        <div class="nav collection-asset-nav"></div>
+      </div>
+      <div class="push"></div>
+      
+      <%- if current_zooniverse_user && current_zooniverse_user.privileged? %>
+        <div id="admin-tools">
+          <%- unless @discussion.featured %>
+            <p id="featured-link">
+              <%= link_to "Feature this group", toggle_featured_discussion_path(@discussion), { :remote => true, :method => :post } %>
+            </p>
+          <%- else -%>
+            <p id="featured-link">
+              <%= link_to "Remove this group from featured", toggle_featured_discussion_path(@discussion), { :remote => true, :method => :post } %>
+            </p>
+          <% end -%>
+        </div>
+      <% end -%>
+    </div>
+  </div>
+</div>
+
+<div class="lower-row">
+  <div class="lhc">
+    <%- if current_zooniverse_user %>
+      <%= render :partial => "comments/new_short" %>
+    <%- else -%>
+      <%= render :partial => "shared/please_log_in" %>
+    <% end -%>
+    <div class="comments-list rounded-panel short-comments">
+      <%= render :partial => "comments/list_short" %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    Talk.paginated_collection.init();
+    Talk.collection_hover.init(true);
+    Talk.collection_lightbox.init();
+  });
+</script>

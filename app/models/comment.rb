@@ -217,7 +217,7 @@ class Comment
   end
   
   def push_tags(new_tags)
-    if ["Asset", "Collection"].include?(focus_type) && new_tags.any?
+    if %w(Asset Collection Group).include?(focus_type) && new_tags.any?
       klass = focus_type.constantize
       klass.collection.update({ :_id => focus_id }, { :$addToSet => { :tags => { :$each => new_tags } } })
     end
@@ -253,7 +253,7 @@ class Comment
         # remove the tagging if the count would just go to 0
         Tagging.collection.remove(selector)
         
-        if ["Asset", "Collection"].include?(focus_type)
+        if %w(Asset Collection Group).include?(focus_type)
           klass = focus_type.constantize
           
           # remove the tag from the focus if it's not in use anymore

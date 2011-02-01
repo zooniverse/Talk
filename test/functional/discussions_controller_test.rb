@@ -38,7 +38,7 @@ class DiscussionsControllerTest < ActionController::TestCase
       end
       
       should "Display the author of the discussion" do
-        assert_select ".discussion-header .started_by", :text => "Started by #{@discussion.started_by.name}"
+        assert_select ".discussion-header .started_by", :text => /Started by.*#{@discussion.started_by.name}/m
       end
       
       should "Display the discussion tags" do
