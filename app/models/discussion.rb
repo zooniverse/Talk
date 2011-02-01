@@ -1,5 +1,6 @@
 # A collection of Comment about a Focus
 class Discussion
+  include Rails.application.routes.url_helpers
   include MongoMapper::Document
   include ZooniverseId
   attr_accessible :subject
@@ -104,13 +105,13 @@ class Discussion
     focus_type == "Asset"
   end
   
+  def board?
+    focus_type == "Board"
+  end
+  
   # True if discussing Collections
   def collection?
     focus_type == "Collection"
-  end
-  
-  def board?
-    focus_type == "Board"
   end
   
   # True if this is a focus conversation (live comment stream)
@@ -193,5 +194,34 @@ class Discussion
   
   def remove_from_board
     self.focus.pull_discussion(self) if self.board?
+  end
+  
+  def path(*args)
+    return discussion_path(self.zooniverse_id) unless focus.present?
+    opts = args.extract_options!
+    
+    if self.conversation?
+      self.focus.conversation_path self, opts
+    else
+      self.focus.discussion_path self, opts
+    end
+  end
+  
+  def parent_path(*args)
+    return root_path unless focus.present?
+    opts = args.extract_options!
+    
+    case self.focus.class.to_s
+    when "Asset"
+      object_path(focus.zooniverse_id, opts)
+    when "Board"
+      opts.delete(:page) if opts[:page] == 1
+      query_string = opts.any? ? "?#{ opts.to_query }" : ""
+      "/#{focus.title.downcase}#{ query_string }"
+    when "Collection", "LiveCollection"
+      collection_path(focus.zooniverse_id, opts)
+    when "Group"
+      group_path(focus.zooniverse_id, opts)
+    end
   end
 end

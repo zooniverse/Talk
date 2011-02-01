@@ -18,13 +18,10 @@ class DiscussionsController < ApplicationController
     @comment = Comment.new
     if @discussion.focus_type == "Board"
       @title = @discussion.focus.title
-      @bns_path = "/#{@title}"
     elsif @discussion.focus_type == "Collection"
       @title = @discussion.focus.name
-      @bns_path = parent_url_for(@discussion)
     else
       @title = @discussion.focus.zooniverse_id
-      @bns_path = parent_url_for(@discussion)
     end 
   end
   
@@ -71,7 +68,7 @@ class DiscussionsController < ApplicationController
       flash_model_errors_on(@discussion)
     end
     
-    redirect_to parent_url_for @discussion
+    redirect_to @discussion.parent_path
   end
   
   def create
@@ -92,7 +89,7 @@ class DiscussionsController < ApplicationController
       @discussion.save
       
       flash[:notice] = I18n.t 'controllers.discussions.flash_create'
-      redirect_to discussion_url_for(@discussion)
+      redirect_to @discussion.path
     else
       @comment.valid?
       flash_model_errors_on(@discussion, @comment)

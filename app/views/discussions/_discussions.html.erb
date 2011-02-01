@@ -1,6 +1,6 @@
 <%- @discussions.each do |discussion| %>
   <div class="discussion">
-    <p><%= link_to truncate(discussion.subject, :length => 60, :separator => ' '), discussion_url_for(discussion) %></p>
+    <p><%= link_to truncate(discussion.subject, :length => 60, :separator => ' '), discussion.path %></p>
     <div class="stats">
       <div class="users-total"><%= pluralize(discussion.number_of_users, "user") %></div>
       <div class="comment-total"><%= pluralize(discussion.number_of_comments, "comment") %> </div>

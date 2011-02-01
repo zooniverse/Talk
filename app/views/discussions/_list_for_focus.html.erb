@@ -3,7 +3,7 @@
     <h2>DISCUSSIONS</h2>
     <%- @focus.discussions.each do |discussion| %>
       <div class="discussion">
-        <p><%= link_to truncate(discussion.subject, :length => 33, :separator => ' '), discussion_url_for(discussion) %></p>
+        <p><%= link_to truncate(discussion.subject, :length => 33, :separator => ' '), discussion.path %></p>
         <div class="stats">
           <div class="users-total"><%= pluralize(discussion.number_of_users, "user") %></div>
           <div class="comment-total"><%= pluralize(discussion.number_of_comments, "comment") %> </div>
@@ -12,7 +12,7 @@
     <% end -%>
   </div>
   <div class="new">
-    <a href="<%=  new_discussion_url_for(@focus) %>" class="button">
+    <a href="<%= @focus.new_discussion_path %>" class="button">
       <span><%= t('discussion.startnew') %></span>
     </a>
   </div>
@@ -21,7 +21,7 @@
     <h2>No Discussions Yet</h2>
   </div>
   <div class="new">
-    <a href="<%=  new_discussion_url_for(@focus) %>" class="button">
+    <a href="<%=  @focus.new_discussion_path %>" class="button">
       <span><%= t('discussion.startnew') %></span>
     </a>
   </div>

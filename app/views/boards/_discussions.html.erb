@@ -22,7 +22,7 @@
       <div class="last-post">
         <%- last_comment = Comment.sort(:created_at.desc).first(:discussion_id => discussion.id) %>
         <%- if last_comment %>
-          <%= link_to "last post", comment_url_for(last_comment) %>
+          <%= link_to "last post", last_comment.path %>
           <%= time_ago_in_words last_comment.created_at %> ago
           by <%= link_to last_comment.author.name, user_path(last_comment.author) %>
         <% end -%>

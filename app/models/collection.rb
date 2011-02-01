@@ -1,5 +1,6 @@
 # A user owned and curated collection of Asset
 class Collection
+  include Rails.application.routes.url_helpers
   include MongoMapper::Document
   include Focus
   include ZooniverseId
@@ -48,5 +49,23 @@ class Collection
   
   def asset_count
     asset_ids.length
+  end
+  
+  def new_discussion_path(*args)
+    new_collection_discussion_path(self.zooniverse_id, args.extract_options!)
+  end
+  
+  def discussion_path(*args)
+    options = args.extract_options!
+    raise ArgumentError unless args.first.respond_to?(:zooniverse_id)
+    
+    options.delete(:page) if options[:page] == 1
+    collection_discussion_path(self.zooniverse_id, args.first.zooniverse_id, options)
+  end
+  
+  def conversation_path(*args)
+    options = args.extract_options!
+    options.delete(:page) if options[:page] == 1
+    collection_path(self.zooniverse_id, options)
   end
 end

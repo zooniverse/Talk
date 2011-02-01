@@ -42,13 +42,13 @@
         <% end -%>
       </div>
       <div>
-        <%= link_to @title, @bns_path %>
+        <%= link_to @title, @discussion.parent_path %>
       </div>
     </div>
   <%- else -%>
     <div class="rhc">
       <div class="board_info">
-        <h2><%= link_to @title, @bns_path %></h2> discussion
+        <h2><%= link_to @title, @discussion.parent_path %></h2> discussion
       </div>
     </div>
   <% end -%>

@@ -38,12 +38,12 @@ module ApplicationHelper
         discussion.focus_type.sub(/LiveCollection/, 'KeywordSet').sub(/Asset/, 'Object')
       end
       
-      link += link_to name.underscore.split('_').map(&:capitalize).join(" "), parent_url_for(discussion), :class => "parent-link"
+      link += link_to name.underscore.split('_').map(&:capitalize).join(" "), discussion.parent_path, :class => "parent-link"
       link += ": "
     end
     
     subject = discussion.focus_base_type == "Collection" ? " #{ discussion.focus.name }: #{ discussion.subject }" : discussion.subject
-    link += link_to truncate(subject, :length => 60, :separator => ' '), discussion_url_for(discussion), :class => "discussion-link"
+    link += link_to truncate(subject, :length => 60, :separator => ' '), discussion.path, :class => "discussion-link"
     link.html_safe
   end
 end

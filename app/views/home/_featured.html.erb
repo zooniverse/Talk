@@ -5,23 +5,23 @@
       <div class="list">
         <%- if feature.focus_base_type == "Asset" %>
           <div class="red ribbon"></div>
-          <%= link_to(image_tag(feature.focus.location, :width => 130, :height => 130), object_path(feature.focus.zooniverse_id)) %>
+          <%= link_to image_tag(feature.focus.location, :size => "130x130"), feature.path %>
           <div class="box_shadow"></div>
-          <p><%= link_to feature.subject, discussion_url_for(feature) %></p>
+          <p><%= link_to feature.subject, feature.path %></p>
         <%- elsif feature.focus_base_type == "Collection" %>
           <div class="gold ribbon"></div>
-          <%= link_to(image_tag(feature.focus.assets.first.location, :width => 130, :height => 130), collection_path(feature.focus.zooniverse_id)) %>
+          <%= link_to image_tag(feature.focus.assets.first.location, :size => "130x130"), feature.path %>
           <div class="box_shadow"></div>
-          <p><%= link_to "#{ feature.subject } - #{ feature.focus.name }", discussion_url_for(feature) %></p>
+          <p><%= link_to "#{ feature.subject } - #{ feature.focus.name }", feature.path %></p>
         <%- elsif feature.focus_base_type == "Board" %>
           <div class="ribbon" style="background-color: #B5D4E3;"></div>
           <!--  It would be handy to have an icon for other featured discussions.  Anybody feeling graphically inclined?  -->
-          <%= link_to image_tag("moonzoo/interface/menu_active.png", :width => 130, :height => 130), discussion_url_for(feature) %>
+          <%= link_to image_tag("moonzoo/interface/menu_active.png", :size => "130x130"), feature.path %>
           <div class="board_info">
             <h2><%= feature.focus.title %></h2>
           </div>
           <div class="box_shadow"></div>
-          <p><%= link_to feature.subject, discussion_url_for(feature) %></p>
+          <p><%= link_to feature.subject, feature.path %></p>
         <% end -%>
       </div>
     <% end -%>

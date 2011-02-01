@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     
     if @discussion.save
       flash[:notice] = t 'controllers.comments.flash_create'
-      redirect_to discussion_url_for(@discussion, :page => @page)
+      redirect_to @discussion.path(:page => @page)
     end
   end
   

@@ -5,7 +5,7 @@
       <%= image_tag('interface/default_user.png', :class => "user", :size => "40x40") %>
       <div class="comment_container">
         <div class="name">
-          <%= link_to truncate(discussion.subject, :length => 25, :separator => ' '), discussion_url_for(discussion) %>
+          <%= link_to truncate(discussion.subject, :length => 25, :separator => ' '), discussion.path %>
         </div>
         <div class="body" style="overflow: hidden;">
           <%= raw markdown(truncate(comment.body, :length => 300, :separator => ' ')).gsub(/<\/?[^>]*>/,"") %>

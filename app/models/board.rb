@@ -1,5 +1,6 @@
 # A collection of Discussion which may or may not have a Focus
 class Board
+  include Rails.application.routes.url_helpers
   include MongoMapper::Document
   attr_accessible :title, :description
   
@@ -40,5 +41,22 @@ class Board
     Board.collection.update({ :_id => self.id }, {
       :$pull => { :discussion_ids => discussion.id }
     })
+  end
+  
+  def new_discussion_path(*args)
+    new_board_discussion_path(self.title, args.extract_options!)
+  end
+  
+  def discussion_path(*args)
+    options = args.extract_options!
+    raise ArgumentError unless args.first.respond_to?(:zooniverse_id)
+    
+    options.delete(:page) if options[:page] == 1
+    query_string = options.any? ? "?#{ options.to_query }" : ""
+    "/#{ self.title.downcase }/discussions/#{ args.first.zooniverse_id }#{ query_string }"
+  end
+  
+  def conversation_path(*args)
+    raise NotImplementedError
   end
 end

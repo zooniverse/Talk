@@ -3,7 +3,7 @@
     <div class="item">
       <div class="item-container">
         <div class="name">
-          <%= link_to truncate(discussion.subject, :length => 45, :separator => ' '), discussion_url_for(discussion) %>
+          <%= link_to truncate(discussion.subject, :length => 45, :separator => ' '), discussion.path %>
         </div>
         <div class="stats">
           <div class="users-total"><%= pluralize(discussion.number_of_users, "user") %></div>

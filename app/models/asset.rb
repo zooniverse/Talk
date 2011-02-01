@@ -1,5 +1,6 @@
 # The object being classified
 class Asset
+  include Rails.application.routes.url_helpers
   include MongoMapper::Document
   include Focus
   
@@ -60,5 +61,23 @@ class Asset
   # Counts collections with this asset
   def count_collections
     Collection.count(:asset_ids => self.id)
+  end
+  
+  def new_discussion_path(*args)
+    new_object_discussion_path(self.zooniverse_id, args.extract_options!)
+  end
+  
+  def discussion_path(*args)
+    options = args.extract_options!
+    raise ArgumentError unless args.first.respond_to?(:zooniverse_id)
+    
+    options.delete(:page) if options[:page] == 1
+    object_discussion_path(self.zooniverse_id, args.first.zooniverse_id, options)
+  end
+  
+  def conversation_path(*args)
+    options = args.extract_options!
+    options.delete(:page) if options[:page] == 1
+    object_path(self.zooniverse_id, options)
   end
 end

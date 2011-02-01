@@ -5,7 +5,7 @@
       <div class="item-container strip_annotations">
         <div class="<%= name_class_for(comment.author) %>"><%= link_to comment.author.formatted_name, user_path(comment.author.id) %></div>
         <div class="date">
-           <%= time_ago_in_words(comment.created_at) %> ago in <%= link_to truncate(comment.discussion.subject), discussion_url_for(comment.discussion) %>
+           <%= time_ago_in_words(comment.created_at) %> ago in <%= link_to truncate(comment.discussion.subject), comment.discussion.path %>
         </div>
         <div class="body">
           <%= raw markdown(truncate(comment.body, :length => 300, :separator => ' ')) %>

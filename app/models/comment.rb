@@ -96,6 +96,18 @@ class Comment
     self.discussion.comments.sort(:created_at.desc).count(direction => self.created_at)
   end
   
+  def path(*args)
+    opts = { :per_page => 10 }.update(args.extract_options!)
+    position = self.position
+    page = (position / opts[:per_page]) + 1
+    
+    if self.discussion.conversation?
+      "#{ self.discussion.path(:per_page => [position + 1, 10].max) }##{ self._id }"
+    else
+      "#{ self.discussion.path(:per_page => opts[:per_page], :page => page) }##{ self._id }"
+    end
+  end
+  
   def split_body
     self._body = self.body.gsub(/\W/, ' ').split
     

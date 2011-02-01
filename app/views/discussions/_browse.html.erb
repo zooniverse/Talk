@@ -3,7 +3,7 @@
     <div class="item" id="<%= discussion.id %>">
       <div class="item-container">
         <%- subject = discussion.conversation? ? "Recent comments" : discussion.subject %>
-        <div class="name"><%= link_to truncate(subject, :length => 50, :separator => ' '), discussion_url_for(discussion) %></div>
+        <div class="name"><%= link_to truncate(subject, :length => 50, :separator => ' '), discussion.path %></div>
         <div class="date">Updated <%= time_ago_in_words(discussion.updated_at) %> ago</div>
         <div class="info">
           <div class="users-total"><%= pluralize(discussion.number_of_users, "user") %></div>
