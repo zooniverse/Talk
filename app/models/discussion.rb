@@ -74,7 +74,7 @@ class Discussion
            }.update(args.extract_options!)
     
     since_time = opts[:for_user].last_login_at if opts[:for_user] && opts[:for_user].last_login_at
-    since_time = Time.parse(opts[:since]) if opts[:since] && opts[:since].is_a?(String)
+    since_time = Time.parse(opts[:since]) if opts[:since] && opts[:since].is_a?(String) && opts[:since].present?
     since_time = opts[:since].utc if opts[:since]
     
     cursor = Discussion.sort(:updated_at.desc).where(:updated_at.gte => since_time, :number_of_comments.gt => 0)

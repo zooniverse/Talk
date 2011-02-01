@@ -34,9 +34,11 @@ class HomeController < ApplicationController
     @kinds = @kinds.split
     if params[:since].blank? && current_zooniverse_user && current_zooniverse_user.last_login_at
       @since = current_zooniverse_user.last_login_at
-    elsif params[:since]
+    elsif params[:since].present?
       @since = Time.parse(params[:since]).utc
     end
+    
+    @since = Time.now.utc.beginning_of_day if @since.blank?
     
     @kinds.each do |kind|
       page = params["#{ kind }_page"] ? params["#{ kind }_page"].to_i : 1
