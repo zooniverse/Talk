@@ -23,7 +23,6 @@ class Discussion
   many :comments, :dependent => :destroy
   
   before_create :set_started_by
-  before_destroy :remove_from_board
   after_save :update_counts
   
   # Fetches the Focus of this Discussion if it exists
@@ -194,10 +193,6 @@ class Discussion
     })
     
     focus.update_popularity unless focus.nil? || focus.is_a?(Board)
-  end
-  
-  def remove_from_board
-    self.focus.pull_discussion(self) if self.board?
   end
   
   def path(*args)

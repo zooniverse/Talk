@@ -12,7 +12,7 @@ class BoardTest < ActiveSupport::TestCase
       @discussion2 = Board.science.discussions[1]
     end
     
-    should_have_keys :title, :description, :discussion_ids
+    should_have_keys :title, :description
     should_associate :discussions
     should_include_modules 'MongoMapper::Document'
     
@@ -52,16 +52,6 @@ class BoardTest < ActiveSupport::TestCase
         assert_equal [@discussion1, @discussion2, @discussion3], @help.recent_discussions(:per_page => 3, :by_user => true)
         assert_equal [@discussion1, @discussion2, @discussion3], @help.recent_discussions(:per_page => 3, :for_user => @discussion1.started_by)
         assert_equal [@discussion1], @help.recent_discussions(:for_user => @discussion1.started_by, :by_user => true)
-      end
-    end
-    
-    context "when removing a discussion" do
-      setup do
-        Board.science.pull_discussion @discussion1
-      end
-      
-      should "correctly #pull_discussion from discussion_ids" do
-        assert_equal [@discussion2.id], Board.science.discussion_ids
       end
     end
   end

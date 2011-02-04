@@ -202,7 +202,7 @@ class ActiveSupport::TestCase
       discussion.focus_type = "Board"
       discussion.focus_id = board.id
       
-      board.discussion_ids << discussion.id
+      board.discussions << discussion
       
       comment1 = Comment.new :body => "blah #tag1 blah #tag2 blah"
       comment1.author = discussion.started_by

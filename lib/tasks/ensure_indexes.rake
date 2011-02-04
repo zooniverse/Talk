@@ -44,6 +44,7 @@ task :ensure_indexes => :environment do
   puts "Building indexes for Discussion"
   drop_indexes_on(Discussion)
   Discussion.ensure_index [['zooniverse_id', 1]]
+  Discussion.ensure_index [['focus_id', 1], ['updated_at', -1]]
   Discussion.ensure_index [['focus_id', 1], ['created_at', -1]]
   Discussion.ensure_index [['focus_type', 1], ['created_at', -1]]
   Discussion.ensure_index [['featured', 1], ['updated_at', -1]]

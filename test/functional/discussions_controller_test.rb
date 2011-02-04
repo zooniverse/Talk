@@ -359,7 +359,7 @@ class DiscussionsControllerTest < ActionController::TestCase
         end
         
         should "be removed from board" do
-          assert_does_not_contain Board.science.discussion_ids, @board_discussion.id
+          assert_does_not_contain Board.science.discussions, @board_discussion
         end
       end
       
@@ -421,7 +421,7 @@ class DiscussionsControllerTest < ActionController::TestCase
           end
           
           should "be removed from board" do
-            assert_does_not_contain Board.science.discussion_ids, @board_discussion.id
+            assert_does_not_contain Board.science.discussions, @board_discussion
           end
         end
       end
@@ -473,7 +473,7 @@ class DiscussionsControllerTest < ActionController::TestCase
         end
         
         should "not remove the discussion from the board" do
-          assert_contains Board.science.discussion_ids, @board_discussion.id
+          assert_contains Board.science.discussions, @board_discussion
         end
       end
     end

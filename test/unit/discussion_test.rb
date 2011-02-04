@@ -200,7 +200,7 @@ class DiscussionTest < ActiveSupport::TestCase
         should "remove itself from the board" do
           assert_raise(MongoMapper::DocumentNotFound) { @board_discussion.reload }
           assert_nothing_raised { @other_discussion.reload }
-          assert_equal [@other_discussion.id], Board.science.discussion_ids
+          assert_equal [@other_discussion], Board.science.discussions
         end
       end
     end
