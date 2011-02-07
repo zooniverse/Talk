@@ -8,7 +8,7 @@
   <h2 class="title">
     <%= @board.title.upcase %>
     <div class="right">
-      <a href="<%= new_board_discussion_url(@board.title) %>" class="button">
+      <a href="<%= @board.new_discussion_path %>" class="button">
         <span><%= t('controllers.boards.new_discussion') %></span>
       </a>
     </div>

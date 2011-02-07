@@ -16,9 +16,9 @@ class DiscussionsController < ApplicationController
     @page_title += " | #{ @discussion.subject }"
     
     @comment = Comment.new
-    if @discussion.focus_type == "Board"
+    if @discussion.focus_base_type == "Board"
       @title = @discussion.focus.title
-    elsif @discussion.focus_type == "Collection"
+    elsif @discussion.focus_base_type == "Collection"
       @title = @discussion.focus.name
     else
       @title = @discussion.focus.zooniverse_id
@@ -27,7 +27,7 @@ class DiscussionsController < ApplicationController
   
   def new
     find_show_focus
-    @board = params[:board_id]
+    @board = params[:sub_board_id] || params[:board_id]
     @discussion = Discussion.new
     @discussion.comments.build
     
@@ -82,7 +82,15 @@ class DiscussionsController < ApplicationController
     if @discussion.valid? && @comment.valid? && @focus
       @discussion.focus_id = @focus.id
       @discussion.focus_type = @focus.class.name
-      @discussion.focus_base_type = @focus.is_a?(LiveCollection) ? "Collection" : @focus.class.name
+      
+      @discussion.focus_base_type = if @focus.is_a?(LiveCollection)
+        "Collection"
+      elsif @focus.is_a?(SubBoard)
+        "Board"
+      else
+        @focus.class.name
+      end
+      
       @focus.discussions << @discussion
       @focus.save
       @discussion.comments << @comment
@@ -125,11 +133,12 @@ class DiscussionsController < ApplicationController
   
   def find_show_focus
     focus_key = params.keys.select{ |key| %w(object_id collection_id board_id group_id).include? key }.first
+    focus_key = "sub_board_id" if params[:sub_board_id].present?
     focus_id = params[focus_key]
     return unless focus_key and focus_id
     klass = focus_key.sub('_id', '').sub('object', 'asset').camelize.constantize
     klass = LiveCollection if focus_key == 'collection_id' && focus_id =~ /^CMZL/
-    @focus = (klass == Board) ? klass.find_by_title(focus_id) : klass.find_by_zooniverse_id(focus_id)
+    @focus = ([Board, SubBoard].include? klass) ? klass.find_by_title(focus_id) : klass.find_by_zooniverse_id(focus_id)
   end
   
   def set_title_prefix
@@ -138,6 +147,8 @@ class DiscussionsController < ApplicationController
       @focus.zooniverse_id
     when Collection, LiveCollection
       @focus.name
+    when SubBoard
+      "#{ @focus.board.title.capitalize } | #{ @focus.title.capitalize }"
     when Board
       @focus.title.capitalize
     end

@@ -19,6 +19,7 @@ task :ensure_indexes => :environment do
   puts "Building indexes for Board"
   drop_indexes_on(Board)
   Board.ensure_index [['title', 1]]
+  Board.ensure_index [['board_id', 1]]
   
   puts "Building indexes for Collection"
   drop_indexes_on(Collection)

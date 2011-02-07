@@ -1,13 +1,14 @@
-# A collection of Discussion which may or may not have a Focus
 class Board
   include Rails.application.routes.url_helpers
   include MongoMapper::Document
   attr_accessible :title, :description
   
+  key :_type, String
   key :title, String, :required => true
   key :description, String, :required => true
   
   many :discussions, :foreign_key => :focus_id
+  many :sub_boards, :foreign_key => :board_id
   
   %w(help science chat).each do |title|
     self.class.send(:define_method, title.to_sym) do
@@ -40,8 +41,12 @@ class Board
     raise ArgumentError unless args.first.respond_to?(:zooniverse_id)
     
     options.delete(:page) if options[:page] == 1
-    query_string = options.any? ? "?#{ options.to_query }" : ""
-    "/#{ self.title.downcase }/discussions/#{ args.first.zooniverse_id }#{ query_string }"
+    options.delete(:per_page) if options[:per_page] == 10
+    send("#{ self.title.downcase }_board_discussion_path", nil, args.first.zooniverse_id, options)
+  end
+  
+  def path(*args)
+    send("#{ self.title.downcase }_board_path", args.extract_options!)
   end
   
   def conversation_path(*args)

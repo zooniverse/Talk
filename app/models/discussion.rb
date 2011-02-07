@@ -105,7 +105,7 @@ class Discussion
   end
   
   def board?
-    focus_type == "Board"
+    focus_base_type == "Board"
   end
   
   # True if discussing Collections
@@ -119,7 +119,7 @@ class Discussion
   
   # True if this is a focus conversation (live comment stream)
   def conversation?
-    (focus_id.nil? || focus_type == "Board" ) ? false : focus.conversation == self
+    (focus_id.nil? || focus_base_type == "Board" ) ? false : focus.conversation == self
   end
   
   # Finds the user that started this discussion
@@ -210,14 +210,12 @@ class Discussion
     return root_path unless focus.present?
     opts = args.extract_options!
     
-    case self.focus.class.to_s
+    case self.focus_base_type
     when "Asset"
       object_path(focus.zooniverse_id, opts)
     when "Board"
-      opts.delete(:page) if opts[:page] == 1
-      query_string = opts.any? ? "?#{ opts.to_query }" : ""
-      "/#{focus.title.downcase}#{ query_string }"
-    when "Collection", "LiveCollection"
+      self.focus.path(self.zooniverse_id, opts)
+    when "Collection"
       collection_path(focus.zooniverse_id, opts)
     when "Group"
       group_path(focus.zooniverse_id, opts)

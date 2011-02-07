@@ -138,8 +138,9 @@
 }
 
 .rhc h2 {
-  color: #999;  
-  font-size: 1.3em;  
+  color: #999999;
+  font-size: 1.3em;
+  line-height: 1.3em;
 }
 
 .rhc .new {
@@ -1903,14 +1904,14 @@ a.button.pressed span{
 /* Showing board discussion thread*/
 .board_info h2 {
   background: transparent;
-  padding:0;
+  padding: 0;
 }
 
 .board_info h2 a, .board_info { 
   color: #B3B3B3;
-  text-shadow: 1px 1px #fff;
+  text-shadow: 1px 1px #FFFFFF;
   font-size: 2.0em;
-  text-transform:none;  
+  text-transform:none;
 }
 
 .board_info {

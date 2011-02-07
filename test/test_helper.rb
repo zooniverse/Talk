@@ -200,6 +200,7 @@ class ActiveSupport::TestCase
       discussion = Discussion.new :subject => "Topic ##{i}"
       discussion.started_by_id = Factory(:user).id
       discussion.focus_type = "Board"
+      discussion.focus_base_type = "Board"
       discussion.focus_id = board.id
       
       board.discussions << discussion

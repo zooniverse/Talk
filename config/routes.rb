@@ -101,11 +101,11 @@ Sellers::Application.routes.draw do
   match "/status" => "home#status"
   
   # mapping for boards
-  match "/:board_id/discussions/new" => "discussions#new", :as => :new_board_discussion
+  match "/:board_id(/:sub_board_id)/discussions/new" => "discussions#new", :as => :new_board_discussion
   %w(help science chat).each do |board|
-    match "/#{board}" => "boards##{board}", :as => "#{board}_board".to_sym
-    match "/#{board}/discussions" => "boards##{board}"
-    match "/#{board}/discussions/:id" => "discussions#show", :as => "#{board}_board_discussion".to_sym
+    match "/#{board}(/:sub_board_id)" => "boards##{board}", :as => "#{board}_board".to_sym
+    match "/#{board}(/:sub_board_id)/discussions" => "boards##{board}"
+    match "/#{board}(/:sub_board_id)/discussions/:id" => "discussions#show", :as => "#{board}_board_discussion".to_sym
   end
   
   match '/search(.:format)' => 'search#index', :as => :search

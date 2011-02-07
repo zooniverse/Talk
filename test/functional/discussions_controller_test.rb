@@ -176,7 +176,7 @@ class DiscussionsControllerTest < ActionController::TestCase
       should set_the_flash.to(I18n.t('controllers.discussions.flash_create'))
       
       should "redirect to board discussion page" do
-        assert_redirected_to science_board_discussion_path(assigns(:discussion).zooniverse_id)
+        assert_redirected_to science_board_discussion_path(nil, assigns(:discussion).zooniverse_id)
       end
     end
     

@@ -10,7 +10,7 @@
 
 <div class="upper-row">
   <!-- Show RHC images -->
-  <%- unless @discussion.focus_type == "Board" %>
+  <%- unless @discussion.board? %>
     <div class="rhc">
       <div class="discussion-items">
         <%- if @discussion.asset? %>
@@ -92,7 +92,7 @@
   </div>
 </div>
 
-<div class="lower-row discussion-thread<%= ' full-width' if @discussion.focus_type == "Board" %>">
+<div class="lower-row discussion-thread<%= ' full-width' if @discussion.board? %>">
   <div class="lhc">
     <div class="comments-list">
       <%= render :partial => "comments/list" %>

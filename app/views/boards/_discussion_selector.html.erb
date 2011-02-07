@@ -1,5 +1,5 @@
 <div id="discussions-selector">
-  <%= form_tag "/#{ @board.title }.js", :remote => true, :method => :get do %>
+  <%= form_tag "#{ @board.path }.js", :remote => true, :method => :get do %>
     <span>
       <p class="label">Including posts by</p>
       <%= select_tag "by_user", options_for_select({ "Anybody" => false, "Me" => true }) %>

@@ -1,18 +1,12 @@
 module DiscussionsHelper
   def title_for(focus)
-    title = ""
-    
-    if focus.is_a? Board
-      title = "#{ I18n.t('discussion.board.new') } " +
-      link_to(I18n.t("discussion.board.#{ focus.title }"), focus_url_for(focus)) +
-      " #{ I18n.t('discussion.board.discussion') }"
+    if focus.is_a?(Board) || focus.is_a?(SubBoard)
+      link = link_to focus.title, focus_url_for(focus)
+      "#{ I18n.t('discussion.board.new') } #{ link } #{ I18n.t('discussion.board.discussion') }".html_safe
     else
-      title = "#{ I18n.t('discussion.startnew') } " +
-      "#{ I18n.t('discussion.about') } " +
-      link_to(I18n.t("#{ focus.class.name.downcase }.name"), focus_url_for(focus))
+      link = link_to I18n.t("#{ focus.class.name.downcase }.name"), focus_url_for(focus)
+      "#{ I18n.t('discussion.startnew') } #{ I18n.t('discussion.about') } #{ link }".html_safe
     end
-    
-    title.html_safe
   end
   
   def focus_url_for(focus)
@@ -24,7 +18,7 @@ module DiscussionsHelper
     when "Collection", "LiveCollection"
       collection_path(focus.zooniverse_id)
     when "Board"
-      "/#{focus.title}"
+      focus.path
     end
   end
 end
