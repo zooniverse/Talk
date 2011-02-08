@@ -10,6 +10,8 @@ class Board
   many :discussions, :foreign_key => :focus_id
   many :sub_boards, :foreign_key => :board_id
   
+  before_save :slugify_title
+  
   %w(help science chat).each do |title|
     self.class.send(:define_method, title.to_sym) do
       by_title title
@@ -32,6 +34,15 @@ class Board
     cursor.paginate(:page => opts[:page], :per_page => opts[:per_page])
   end
   
+  def slugify_title
+    return unless changed? && changes.include?('title')
+    self.title = self.title.parameterize('_')
+  end
+  
+  def pretty_title
+    self.title.titleize
+  end
+  
   def new_discussion_path(*args)
     new_board_discussion_path(self.title, args.extract_options!)
   end
@@ -39,17 +50,25 @@ class Board
   def discussion_path(*args)
     options = args.extract_options!
     raise ArgumentError unless args.first.respond_to?(:zooniverse_id)
-    
-    options.delete(:page) if options[:page] == 1
-    options.delete(:per_page) if options[:per_page] == 10
-    send("#{ self.title.downcase }_board_discussion_path", nil, args.first.zooniverse_id, options)
+    erase_default_options_from(options)
+    send("#{ self.title }_board_discussion_path", nil, args.first.zooniverse_id, options)
   end
   
   def path(*args)
-    send("#{ self.title.downcase }_board_path", args.extract_options!)
+    options = args.extract_options!
+    erase_default_options_from(options)
+    send("#{ self.title }_board_path", options)
   end
   
   def conversation_path(*args)
     raise NotImplementedError
+  end
+  
+  protected
+  
+  def erase_default_options_from(options)
+    options.delete(:page) if options[:page] == 1
+    options.delete(:per_page) if options[:per_page] == 10
+    options
   end
 end

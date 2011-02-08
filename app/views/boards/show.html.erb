@@ -6,7 +6,7 @@
 
 <div class="lhc">
   <h2 class="title">
-    <%= @board.title.upcase %>
+    <%= @board.pretty_title.upcase %>
     <div class="right">
       <a href="<%= @board.new_discussion_path %>" class="button">
         <span><%= t('controllers.boards.new_discussion') %></span>

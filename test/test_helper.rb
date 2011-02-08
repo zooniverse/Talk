@@ -199,7 +199,7 @@ class ActiveSupport::TestCase
     1.upto(limit) do |i|
       discussion = Discussion.new :subject => "Topic ##{i}"
       discussion.started_by_id = Factory(:user).id
-      discussion.focus_type = "Board"
+      discussion.focus_type = board.is_a?(SubBoard) ? "SubBoard" : "Board"
       discussion.focus_base_type = "Board"
       discussion.focus_id = board.id
       

@@ -1,7 +1,7 @@
 module DiscussionsHelper
   def title_for(focus)
     if focus.is_a?(Board) || focus.is_a?(SubBoard)
-      link = link_to focus.title, focus_url_for(focus)
+      link = link_to focus.pretty_title, focus_url_for(focus)
       "#{ I18n.t('discussion.board.new') } #{ link } #{ I18n.t('discussion.board.discussion') }".html_safe
     else
       link = link_to I18n.t("#{ focus.class.name.downcase }.name"), focus_url_for(focus)
@@ -17,7 +17,7 @@ module DiscussionsHelper
       group_path(focus.zooniverse_id)
     when "Collection", "LiveCollection"
       collection_path(focus.zooniverse_id)
-    when "Board"
+    when "Board", "SubBoard"
       focus.path
     end
   end

@@ -6,6 +6,14 @@ class BoardsControllerTest < ActionController::TestCase
       @controller = BoardsController.new
       @request    = ActionController::TestRequest.new
       @response   = ActionController::TestResponse.new
+      
+      # Not sure if this has always been happening, but this test suite fails to gateway correctly when ran individually
+      # ie rake test:functionals TEST=test/functionals/boards_controller_test.rb
+      # but works fine when ran with all tests and in development/production.
+      # 
+      # Uncomment these lines if you're running this test by itself:
+      # CASClient::Frameworks::Rails::Filter.stubs(:filter).returns(false)
+      # CASClient::Frameworks::Rails::GatewayFilter.stubs(:filter).returns(false)
     end
     
     context "When the science board" do
@@ -61,6 +69,9 @@ class BoardsControllerTest < ActionController::TestCase
         get 'science', { :page => 2, :per_page => 5 }
       end
       
+      should respond_with :success
+      should render_template :show
+      
       should "display discussions" do
         assert_select "#discussions .discussion", 5
       end
@@ -71,6 +82,31 @@ class BoardsControllerTest < ActionController::TestCase
         assert_select ".page-nav .more", 1
         
         assert_select ".page-nav .pages > a", 4
+      end
+    end
+    
+    context "#show with a SubBoard" do
+      setup do
+        @parent = Board.science
+        @sub_board = SubBoard.new :title => "A science sub-board", :description => "Test"
+        @sub_board.board = @parent
+        @sub_board.save
+        
+        board_discussions_in @sub_board
+        @discussion = @sub_board.discussions.first
+        
+        get 'science', { :sub_board_id => 'a_science_sub-board' }
+      end
+      
+      should respond_with :success
+      should render_template :show
+      
+      should "show the sub board" do
+        assert_select '.lhc h2.title', :text => /#{ @sub_board.pretty_title }/i
+      end
+      
+      should "display discussions" do
+        assert_select "#discussions .discussion", 8
       end
     end
   end

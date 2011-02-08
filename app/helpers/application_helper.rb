@@ -33,7 +33,7 @@ module ApplicationHelper
     
     if opts[:focus_prefix]
       name = if discussion.board?
-        discussion.focus.title
+        discussion.focus.pretty_title
       else
         discussion.focus_type.sub(/LiveCollection/, 'KeywordSet').sub(/Asset/, 'Object')
       end

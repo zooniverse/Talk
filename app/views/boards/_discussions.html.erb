@@ -33,7 +33,8 @@
 
 <div class="page-nav">
   <%- @board_options.delete :by_user unless @board_options[:by_user] %>
-  <%- paginate_options = @board_options[:by_user] ? { :by_user => true, :utf8 => nil } : { } %>
+  <%- paginate_options = @board_options[:by_user] ? { :by_user => true } : { :by_user => nil } %>
+  <%- paginate_options.update({ :utf8 => nil, :format => nil }) %>
   
   <div class="pages">
     <%- if @discussions.total_pages > 1 %>
@@ -42,12 +43,12 @@
   </div>
   <div class="less page-loader" style="<%= @page == 1 ? 'display: none;' : '' %>">
     <span class="label">
-      <%= link_to "Page #{ @page - 1 }", current_board_path(@board_options.update({ :page => @page - 1 })) %>
+      <%= link_to "Page #{ @page - 1 }", @board.path(@board_options.update({ :page => @page - 1 })) %>
     </span>
   </div>
   <div class="more page-loader" style="<%= @page == @discussions.total_pages ? 'display: none;' : '' %>">
     <span class="label">
-      <%= link_to "Page #{ @page + 1 }", current_board_path(@board_options.update({ :page => @page + 1 })) %>
+      <%= link_to "Page #{ @page + 1 }", @board.path(@board_options.update({ :page => @page + 1 })) %>
     </span>
   </div>
   <div class="push"></div>

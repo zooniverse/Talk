@@ -17,7 +17,7 @@ class DiscussionsController < ApplicationController
     
     @comment = Comment.new
     if @discussion.focus_base_type == "Board"
-      @title = @discussion.focus.title
+      @title = @discussion.focus.pretty_title
     elsif @discussion.focus_base_type == "Collection"
       @title = @discussion.focus.name
     else
@@ -148,9 +148,9 @@ class DiscussionsController < ApplicationController
     when Collection, LiveCollection
       @focus.name
     when SubBoard
-      "#{ @focus.board.title.capitalize } | #{ @focus.title.capitalize }"
+      "#{ @focus.board.pretty_title } | #{ @focus.pretty_title }"
     when Board
-      @focus.title.capitalize
+      @focus.pretty_title
     end
   end
 end

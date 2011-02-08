@@ -19,10 +19,10 @@ class BoardsController < ApplicationController
   def sub_board(sub_title, parent_title)
     @board = Board.by_title sub_title
     @parent = Board.by_title parent_title
-    return not_found unless @board.board == @parent
+    return not_found unless @board.parent == @parent
     return not_found unless @board && @parent
     
-    @page_title = "#{ @parent.title.capitalize } | #{ @board.title.capitalize }"
+    @page_title = "#{ @parent.pretty_title } | #{ @board.pretty_title }"
     show_by_title @board.title
   end
   
@@ -30,7 +30,7 @@ class BoardsController < ApplicationController
     default_params :page => 1, :per_page => 10, :by_user => false
     @board = Board.by_title(title)
     return not_found unless @board
-    @page_title ||= @board.title.capitalize
+    @page_title ||= @board.pretty_title
     
     @board_options = { :page => @page, :per_page => @per_page, :by_user => @by_user }
     @discussions = @board.recent_discussions({ :for_user => current_zooniverse_user }.merge(@board_options))

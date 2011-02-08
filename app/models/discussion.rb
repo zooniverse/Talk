@@ -108,6 +108,10 @@ class Discussion
     focus_base_type == "Board"
   end
   
+  def sub_board?
+    focus_type == "SubBoard"
+  end
+  
   # True if discussing Collections
   def collection?
     focus_type == "Collection"
