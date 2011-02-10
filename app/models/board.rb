@@ -1,16 +1,15 @@
 class Board
   include Rails.application.routes.url_helpers
   include MongoMapper::Document
-  attr_accessible :title, :description
+  attr_accessible :title
   
   key :_type, String
   key :title, String, :required => true
-  key :description, String, :required => true
   
   many :discussions, :foreign_key => :focus_id
   many :sub_boards, :foreign_key => :board_id
   
-  before_save :slugify_title
+  before_validation :slugify_title
   
   %w(help science chat).each do |title|
     self.class.send(:define_method, title.to_sym) do

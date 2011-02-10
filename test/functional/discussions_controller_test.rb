@@ -163,7 +163,6 @@ class DiscussionsControllerTest < ActionController::TestCase
           :board_id => "science",
           :discussion => {
             :subject => "Blah",
-            :description => "blah",
             :comments => {
               :body => "Hi"
             }

@@ -1,0 +1,58 @@
+<div id="arrange-board" style="display: none;">
+  <%= form_tag "/boards/#{ board.id }/arrange", :remote => true do |f| -%>
+    <%= button_to_function "Save changes", "submit_arranged_boards()", :id => "submit" %>
+    <%= button_to_function "Cancel", "stop_arranging_boards(true)" %>
+  <% end -%>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  function start_arranging_boards() {
+    $('#boards #original').html($('#boards .parent .children').clone());
+    $('#arrange-board').show();
+    $('#boards .arrange-link').hide();
+    $('#boards .edit-link').hide();
+    
+    $('#boards .parent .children').sortable({
+      items: '.sortable',
+      revert: 100,
+      containment: '#boards .parent .children'
+    });
+    
+    $('#boards .sub-board').css('cursor', 'move');
+    $('#boards .sub-board').addClass('arrangeable');
+    
+    $('#boards .sub-board').click(function() {
+      return false;
+    });
+  }
+  
+  function stop_arranging_boards(revert) {
+    $('#arrange-board').hide();
+    $('#boards .arrange-link').show();
+    $('#boards .edit-link').show();
+    $('#boards .parent .children').sortable('destroy');
+    
+    $('#boards .sub-board').css('cursor', 'pointer');
+    $('#boards .sub-board').removeClass('arrangeable');
+    
+    $('#boards .sub-board').unbind('click');
+    
+    if(revert) {
+      $('#boards .parent .children').html($('#boards #original .children').clone().children());
+    }
+    
+    $('#boards #original').empty();
+  }
+  
+  function submit_arranged_boards() {
+    var form = $('#arrange-board form');
+    $('.position', form).remove();
+    
+    $('#boards .parent .children > .sortable').each(function(index, elem) {
+      form.append('<input class="position" type="hidden" name="positions[]" value="' + elem.id + '"');
+    });
+    
+    form.submit();
+    stop_arranging_boards();
+  }
+</script>

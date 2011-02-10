@@ -46,7 +46,7 @@
       <%= link_to "Page #{ @page - 1 }", @board.path(@board_options.update({ :page => @page - 1 })) %>
     </span>
   </div>
-  <div class="more page-loader" style="<%= @page == @discussions.total_pages ? 'display: none;' : '' %>">
+  <div class="more page-loader" style="<%= @page >= @discussions.total_pages ? 'display: none;' : '' %>">
     <span class="label">
       <%= link_to "Page #{ @page + 1 }", @board.path(@board_options.update({ :page => @page + 1 })) %>
     </span>

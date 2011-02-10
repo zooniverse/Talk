@@ -26,7 +26,7 @@ class BoardsControllerTest < ActionController::TestCase
       should render_template :show
       
       should "show the science board" do
-        assert_select '.lhc h2.title', :text => /#{ @board.title }/i
+        assert_select '#boards .current', :text => /#{ @board.title }/i
       end
     end
     
@@ -40,7 +40,7 @@ class BoardsControllerTest < ActionController::TestCase
       should render_template :show
       
       should "show the chat board" do
-        assert_select '.lhc h2.title', :text => /#{ @board.title }/i
+        assert_select '#boards .current', :text => /#{ @board.title }/i
       end
     end
     
@@ -54,7 +54,7 @@ class BoardsControllerTest < ActionController::TestCase
       should render_template :show
       
       should "show the help board" do
-        assert_select '.lhc h2.title', :text => /#{ @board.title }/i
+        assert_select '#boards .current', :text => /#{ @board.title }/i
       end
     end
     
@@ -88,7 +88,7 @@ class BoardsControllerTest < ActionController::TestCase
     context "#show with a SubBoard" do
       setup do
         @parent = Board.science
-        @sub_board = SubBoard.new :title => "A science sub-board", :description => "Test"
+        @sub_board = SubBoard.new :title => "A science sub-board"
         @sub_board.board = @parent
         @sub_board.save
         
@@ -102,7 +102,7 @@ class BoardsControllerTest < ActionController::TestCase
       should render_template :show
       
       should "show the sub board" do
-        assert_select '.lhc h2.title', :text => /#{ @sub_board.pretty_title }/i
+        assert_select '#boards .current', :text => /#{ @sub_board.pretty_title }/i
       end
       
       should "display discussions" do

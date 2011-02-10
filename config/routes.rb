@@ -78,6 +78,10 @@ Sellers::Application.routes.draw do
   resources :boards do
     resources :discussions
     
+    member do
+      post :arrange
+    end
+    
     collection do
       get :browse
     end

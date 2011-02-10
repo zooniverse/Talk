@@ -42,7 +42,6 @@ end
 
 Factory.define :board do |m|
   m.title               { "#{ Factory.next(:name) }" }
-  m.description         { "Board description" }
 end
 
 Factory.define :conversation, :class => Discussion do |c|

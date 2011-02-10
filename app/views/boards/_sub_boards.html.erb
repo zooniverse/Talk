@@ -1,0 +1,27 @@
+<%- top = @parent.present? ? @parent : @board %>
+<%- privileged = current_zooniverse_user && current_zooniverse_user.privileged? %>
+
+<%- if privileged %>
+  <%= link_to_function "Arrange", "start_arranging_boards()", :class => "arrange-link" %>
+  <%= link_to_function "Edit", "start_editing_boards()", :class => "edit-link" %>
+<% end -%>
+
+<ul class="parent">
+  <li><%= link_to top.pretty_title, top.path, :class => "parent-board#{ ' current' if top == @board }", :id => top.id %></li>
+  
+  <ul class="children">
+    <%- top.sub_boards.sort(:position.asc).each do |sub_board| %>
+      <li class="sortable" id="<%= sub_board.id %>">
+        <div class="wrap">
+          <%= link_to sub_board.pretty_title, sub_board.path, :class => "sub-board#{ ' current' if sub_board == @board }" %>
+        </div>
+      </li>
+    <% end -%>
+  </ul>
+</ul>
+
+<%- if privileged %>
+  <%= render :partial => "arrange", :locals => { :board => top } %>
+  <%= render :partial => "edit", :locals => { :board => top } %>
+  <div id="original" style="display: none;"></div>
+<% end -%>

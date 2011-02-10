@@ -250,8 +250,8 @@ Talk.textcount = {
 
 Talk.notice = {
   init: function () {
-    setTimeout("$('.notice').fadeOut(1000);", 3000);
-    setTimeout("$('.alert').fadeOut(1000);", 5000);
+    setTimeout("$('.notice').fadeOut(1000);", 10000);
+    setTimeout("$('.alert').fadeOut(1000);", 10000);
   }
 };
 

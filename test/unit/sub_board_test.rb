@@ -4,7 +4,7 @@ class SubBoardTest < ActiveSupport::TestCase
   context "A SubBoard" do
     setup do
       @parent = Board.science
-      @sub_board = SubBoard.new :title => "A science sub-board", :description => "Test"
+      @sub_board = SubBoard.new :title => "A science sub-board"
       @sub_board.board = @parent
       @sub_board.save
       
@@ -12,7 +12,7 @@ class SubBoardTest < ActiveSupport::TestCase
       @discussion = @sub_board.discussions.first
     end
     
-    should_have_keys :_type, :title, :description
+    should_have_keys :_type, :title
     should_associate :discussions, :board
     
     should "#slugify_title" do

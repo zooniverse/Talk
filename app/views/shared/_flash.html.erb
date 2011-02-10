@@ -10,4 +10,16 @@
   <% end -%>
 <% end -%>
 
+<script type="text/javascript" charset="utf-8">
+  if(<%= flash[:notice].present? && flash[:alert].present? %>) {
+    $(document).ready(function() {
+      $('#alert').position({
+        my: 'top',
+        at: 'bottom',
+        of: '#notice'
+      });
+    });
+  }
+</script>
+
 <%- flash.clear %>

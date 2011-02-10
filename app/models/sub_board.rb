@@ -1,5 +1,8 @@
 class SubBoard < Board
   key :board_id, ObjectId, :required => true
+  key :position, Integer, :default => 0
+  
+  validates_uniqueness_of :title, :scope => :board_id
   
   belongs_to :board
   

@@ -1,22 +1,23 @@
 <%= content_for :content_class do %>board<% end %>
 
-<div class="rhc">
-  <%= render :partial => "shared/help_wanted" %>
-</div>
-
 <div class="lhc">
-  <h2 class="title">
-    <%= @board.pretty_title.upcase %>
-    <div class="right">
-      <a href="<%= @board.new_discussion_path %>" class="button">
-        <span><%= t('controllers.boards.new_discussion') %></span>
-      </a>
-    </div>
-  </h2>
+  <div id="boards">
+    <%= render :partial => "sub_boards" %>
+  </div>
   <div id="discussions">
-    <%= render(:partial => "discussion_selector") if current_zooniverse_user %>
+    <%- if current_zooniverse_user %>
+      <%= render :partial => "discussion_selector" %>
+    <%- else -%>
+      <div style="height: 30px;">
+        <%= render :partial => "new_discussion" %>
+      </div>
+    <% end -%>
     <div class="list">
       <%= render :partial => "discussions" %>
     </div>
   </div>
+</div>
+
+<div class="rhc">
+  <%= render :partial => "shared/help_wanted" %>
 </div>

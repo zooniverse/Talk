@@ -168,7 +168,7 @@
 /* Flash notice*/
 .notice {
   background: #A7DE9F;
-  height: 25px;  
+  min-height: 25px;
   top: -25px;
   border-bottom: solid 2px #008000;
   left: 0;
@@ -187,7 +187,7 @@
 
 .alert {
   background: #FF312C;
-  height: 25px;
+  min-height: 25px;
   top: -25px;
   border-bottom: solid 2px #B00B00;
   left: 0;
@@ -204,15 +204,12 @@
   text-align: right;
 }
 
-.flash.alert ul,
-.flash.notice ul {
-  float: right;
+.flash ul, .flash li {
+  margin-left: 30px;
+  list-style: disc outside none;
 }
 
-.flash.alert ul li,
-.flash.notice ul li {
-  display: inline;
-  margin-left: 30px;
+.flash li {
   font-size: 1.4em;
 }
 
@@ -1809,7 +1806,7 @@ div.more-results {text-align: center;}
 
 /* Boards */
 .board.content {
-  padding: 20px 39px 39px 39px;
+  padding: 0px 39px 39px 39px;
 }
 
 .board .rhc {
@@ -1840,6 +1837,118 @@ div.more-results {text-align: center;}
   line-height: 26px;
   font-size: 2.0em;
   font-family: "Gill Sans Light", "GillSans-Light", "Gill Sans", "Gill Sans MT", sans-serif;
+}
+
+.board #boards {
+  display: block;
+  clear: none;
+  padding: 10px;
+  margin: 0px auto 15px auto;
+  font-family: "Gill Sans Light", "GillSans-Light", "Gill Sans", "Gill Sans MT", sans-serif;
+}
+
+#boards .arrange-link {
+  margin: -20px -20px 0px 0px;
+  padding: 2px 8px;
+  float: right;
+}
+
+#boards .edit-link {
+  margin: -20px 10px 0px 0px;
+  padding: 2px 8px;
+  float: right;
+}
+
+#boards .remove, #boards .add, #boards .accept, #boards .cancel {
+  display: inline;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+#boards .remove {
+  margin-left: 5px;
+  background: url('/images/icons/delete.png') no-repeat;
+}
+
+#boards .add {
+  margin-left: 26px;
+  background: url('/images/icons/add.png') no-repeat;
+}
+
+#boards .accept {
+  margin-left: 5px;
+  background: url('/images/icons/accept.png') no-repeat;
+}
+
+#boards .cancel {
+  margin-left: 26px;
+  background: url('/images/icons/cancel.png') no-repeat;
+}
+
+.board #boards form {
+  text-align: center;
+}
+
+.board #boards input {
+  margin: 0px 20px;
+}
+
+.board #boards .current {
+  color: #343534;
+  text-shadow: 1px 1px #FFFFFF;
+  
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  
+  -moz-box-shadow: 0px 0px 5px #979797;
+  -webkit-box-shadow: 0px 0px 5px #979797;
+  box-shadow: 0px 0px 5px #979797;
+}
+
+.board #boards .arrangeable,
+.board #boards .arrange-link,
+.board #boards .edit-link {
+  background: #DCDCDC;
+  color: #2075AF;
+  text-shadow: 1px 1px #FFFFFF;
+  
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  
+  -moz-box-shadow: 0px 0px 5px #979797;
+  -webkit-box-shadow: 0px 0px 5px #979797;
+  box-shadow: 0px 0px 5px #979797;
+}
+
+.board #boards .parent li {
+  height: 18px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.board #boards .parent-board {
+  font-size: 25px;
+  padding: 0px 8px;
+}
+
+.board #boards .parent .children {
+  margin-left: 25px;
+  list-style: disc outside;
+}
+
+.board #boards .parent .children li {
+  height: 17px;
+  padding: 5px;
+  margin-bottom: 0px;
+}
+
+.board #boards .parent .children .sub-board {
+  font-size: 13px;
+  padding: 1px 4px;
 }
 
 .board #discussions .discussion {

@@ -74,6 +74,11 @@ task :ensure_indexes => :environment do
   drop_indexes_on(Revision)
   Revision.ensure_index [['original_id', 1]]
   
+  puts "Building indexes for SubBoard"
+  drop_indexes_on(SubBoard)
+  SubBoard.ensure_index [['_type', 1], ['board_id', 1], ['position', 1]]
+  SubBoard.ensure_index [['_type', 1], ['board_id', 1], ['title', 1]]
+  
   puts "Building indexes for Tag"
   drop_indexes_on(Tag)
   Tag.ensure_index [['name', 1], ['count', -1]]

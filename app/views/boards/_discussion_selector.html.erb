@@ -1,4 +1,5 @@
 <div id="discussions-selector">
+  <%= render :partial => "new_discussion" %>
   <%= form_tag "#{ @board.path }.js", :remote => true, :method => :get do %>
     <span>
       <p class="label">Including posts by</p>

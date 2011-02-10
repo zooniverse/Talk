@@ -58,9 +58,9 @@ class ActiveSupport::TestCase
       collection.remove
     end
     
-    Board.create(:title => "science", :description => "awesome")
-    Board.create(:title => "help", :description => "awesome")
-    Board.create(:title => "chat", :description => "awesome")
+    Board.create(:title => "science")
+    Board.create(:title => "help")
+    Board.create(:title => "chat")
   end
   
   def assert_not(assertion)

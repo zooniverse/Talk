@@ -6,14 +6,14 @@ class BoardTest < ActiveSupport::TestCase
       @help = Board.find_by_title("help")
       @science = Board.find_by_title("science")
       @chat = Board.find_by_title("chat")
-      @test = Board.create :title => " A TITLE with Mixed CAse", :description => "Test"
+      @test = Board.create :title => " A TITLE with Mixed CAse"
       
       board_discussions_in @science, 2
       @discussion1 = Board.science.discussions[0]
       @discussion2 = Board.science.discussions[1]
     end
     
-    should_have_keys :_type, :title, :description
+    should_have_keys :_type, :title
     should_associate :discussions, :sub_boards
     should_include_modules 'MongoMapper::Document'
     

@@ -42,10 +42,13 @@ class ApplicationController < ActionController::Base
   helper_method :markdown
   
   def require_privileged_user
-    unless current_zooniverse_user && (current_zooniverse_user.moderator? || current_zooniverse_user.admin?)
+    unless current_zooniverse_user && current_zooniverse_user.privileged?
       flash[:notice] = t 'controllers.application.not_authorised'
       redirect_to root_url
+      return false
     end
+    
+    true
   end
   
   def moderator_or_owner(method, document)

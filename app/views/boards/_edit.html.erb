@@ -1,0 +1,122 @@
+<div id="edit-board" style="display: none;">
+  <%= form_for board, :remote => true do |f| -%>
+    <%= button_to_function "Save changes", "submit_edited_boards()", :id => "submit" %>
+    <%= button_to_function "Cancel", "stop_editing_boards(true)" %>
+  <% end -%>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  function start_editing_boards() {
+    $('#boards #original').html($('#boards .parent .children').clone());
+    $('#edit-board').show();
+    $('#boards .arrange-link').hide();
+    $('#boards .edit-link').hide();
+    
+    $('#edit-board form .edits').remove();
+    
+    $('#boards .parent .children > li .wrap').append(remove_board_button_html());
+    add_board_button();
+    
+    $('#boards .parent .children .sub-board').live('click', function() {
+      add_edit_in($(this).closest('.wrap'));
+      return false;
+    });
+  }
+  
+  function stop_editing_boards(revert) {
+    $('#edit-board').hide();
+    $('#boards .arrange-link').show();
+    $('#boards .edit-link').show();
+    
+    $('#boards .parent .children .add').remove();
+    $('#boards .parent .children .remove').remove();
+    $('#boards .parent .children .sub-board').die('click');
+    
+    if(revert) {
+      $('#boards .parent .children').html($('#boards #original .children').clone().children());
+    }
+    
+    $('#boards #original').empty();
+  }
+  
+  function submit_edited_boards() {
+    var form = $('#edit-board form');
+    form.submit();
+    stop_editing_boards();
+  }
+  
+  function remove_board(elem) {
+    var form = $('#edit-board form');
+    var item = $(elem).closest('li');
+    
+    form.append('<input class="edits" type="hidden" name="sub_boards[' + item.attr('id') + '][destroy]" value="true"');
+    
+    if(item.attr('id') == last_sub_board().attr('id')) {
+      item.remove();
+      add_board_button();
+    }
+    else {
+      item.remove();
+    }
+  }
+  
+  function add_board_button() {
+    $('.wrap', last_sub_board()).append('<div class="add" onclick="add_board(this);"></div>');
+  }
+  
+  function remove_board_button_html() {
+    return '<div class="remove" onclick="remove_board(this);"></div>';
+  }
+  
+  function last_sub_board() {
+    return $('#boards .parent .children > li:last');
+  }
+  
+  function add_board(elem) {
+    var form = $('#edit-board form');
+    var new_id = 'new_' + new Date().getTime();
+    var new_elem = '<li id="' + new_id + '" class="sortable">' +
+                     '<div class="wrap">' +
+                       '<a class="sub-board" href="#">New Board</a>' +
+                     '</div>' +
+                   '</li>';
+    
+    $(elem).remove();
+    $('#boards .parent .children').append(new_elem);
+    new_elem = $('#' + new_id + ' .wrap');
+    new_elem.append(remove_board_button_html());
+    add_board_button();
+    add_edit_in(new_elem);
+    
+    form.append('<input class="edits" type="hidden" name="sub_boards[' + new_id + '][create]" value="true"');
+  }
+  
+  function remove_edit_from(wrap) {
+    $('input', wrap).remove();
+    $('.accept', wrap).remove();
+    $('.cancel', wrap).remove();
+    $('.sub-board', wrap).show();
+  }
+  
+  function add_edit_in(wrap) {
+    $('.sub-board', wrap).hide();
+    wrap.prepend('<input type="text" value="' + $('.sub-board', wrap).text() + '" style="margin: 0;">');
+    wrap.append('<div class="accept" onclick="accept_title(this);"></div>');
+    wrap.append('<div class="cancel" onclick="cancel_title(this);"></div>');
+  }
+  
+  function accept_title(elem) {
+    var wrap = $(elem).closest('.wrap');
+    var name = 'sub_boards[' + $(elem).closest('li').attr('id') + '][title]';
+    var input = $('input', wrap);
+    
+    $('#edit-board form .edits[name="' + name + '"]').remove();
+    $('#edit-board form').append('<input class="edits" type="hidden" name="' + name + '" value="' + input.val() + '"');
+    $('.sub-board', wrap).text(input.val());
+    remove_edit_from(wrap);
+  }
+  
+  function cancel_title(elem) {
+    remove_edit_from($(elem).closest('.wrap'));
+  }
+</script>
