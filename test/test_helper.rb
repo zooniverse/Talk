@@ -61,6 +61,9 @@ class ActiveSupport::TestCase
     Board.create(:title => "science")
     Board.create(:title => "help")
     Board.create(:title => "chat")
+    
+    CASClient::Frameworks::Rails::Filter.stubs(:filter).returns(false)
+    CASClient::Frameworks::Rails::GatewayFilter.stubs(:filter).returns(false)
   end
   
   def assert_not(assertion)

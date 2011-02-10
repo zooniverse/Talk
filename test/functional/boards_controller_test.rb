@@ -6,14 +6,6 @@ class BoardsControllerTest < ActionController::TestCase
       @controller = BoardsController.new
       @request    = ActionController::TestRequest.new
       @response   = ActionController::TestResponse.new
-      
-      # Not sure if this has always been happening, but this test suite fails to gateway correctly when ran individually
-      # ie rake test:functionals TEST=test/functionals/boards_controller_test.rb
-      # but works fine when ran with all tests and in development/production.
-      # 
-      # Uncomment these lines if you're running this test by itself:
-      # CASClient::Frameworks::Rails::Filter.stubs(:filter).returns(false)
-      # CASClient::Frameworks::Rails::GatewayFilter.stubs(:filter).returns(false)
     end
     
     context "When the science board" do
