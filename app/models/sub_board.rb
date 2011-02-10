@@ -26,4 +26,26 @@ class SubBoard < Board
     erase_default_options_from(options)
     send("#{ self.board.title }_board_path", self.title, options)
   end
+  
+  def archive_and_destroy_as(destroying_user)
+    archive = Archive.new({
+      :kind => "SubBoard",
+      :original_id => self.id,
+      :zooniverse_id => nil,
+      :user_id => nil,
+      :destroying_user_id => destroying_user.id
+    })
+    
+    original = self.to_mongo
+    original['discussions'] = self.discussions.collect(&:to_embedded_hash)
+    archive.original_document = original
+    
+    if archive.save
+      self.discussions.each(&:destroy)
+      self.destroy
+      return true
+    end
+    
+    false
+  end
 end

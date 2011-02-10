@@ -1,7 +1,7 @@
 <div id="edit-board" style="display: none;">
   <%= form_for board, :remote => true do |f| -%>
     <%= button_to_function "Save changes", "submit_edited_boards()", :id => "submit" %>
-    <%= button_to_function "Cancel", "stop_editing_boards(true)" %>
+    <%= button_to_function "Cancel", "stop_editing_boards" %>
   <% end -%>
 </div>
 
@@ -23,7 +23,7 @@
     });
   }
   
-  function stop_editing_boards(revert) {
+  function stop_editing_boards() {
     $('#edit-board').hide();
     $('#boards .arrange-link').show();
     $('#boards .edit-link').show();
@@ -32,17 +32,18 @@
     $('#boards .parent .children .remove').remove();
     $('#boards .parent .children .sub-board').die('click');
     
-    if(revert) {
-      $('#boards .parent .children').html($('#boards #original .children').clone().children());
-    }
-    
+    $('#boards .parent .children').html($('#boards #original .children').clone().children());
     $('#boards #original').empty();
   }
   
   function submit_edited_boards() {
     var form = $('#edit-board form');
-    form.submit();
-    stop_editing_boards();
+    
+    if($('.edits[name$="[destroy]"]', form).length > 0) {
+      if(confirm("You've chosen to remove a board.\nAll discussions and comments in it will be removed!\nAre you sure you want to do this?")) {
+        form.submit();
+      }
+    }
   }
   
   function remove_board(elem) {

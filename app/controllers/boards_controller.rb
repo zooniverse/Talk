@@ -75,7 +75,7 @@ class BoardsController < ApplicationController
             flash[:alert] << [sub_board, "#{ changes[:title] } could not be created"]
           end
         elsif changes.has_key?(:destroy) && !changes.has_key?(:create)
-          if sub_board.destroy
+          if sub_board.archive_and_destroy_as(current_zooniverse_user)
             flash[:notice] << "#{ sub_board.pretty_title } was removed"
           else
             flash[:alert] << [sub_board, "#{ sub_board.pretty_title } could not be destroyed"]
