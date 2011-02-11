@@ -18,7 +18,7 @@ class BoardsControllerTest < ActionController::TestCase
       should render_template :show
       
       should "show the science board" do
-        assert_select '#boards .current', :text => /#{ @board.title }/i
+        assert_select '#boards .current', :text => /#{ @board.pretty_title }/i
         assert_select '#boards .arrange-link', 0
         assert_select '#boards #arrange-board', 0
         assert_select '#boards .edit-link', 0
@@ -37,7 +37,7 @@ class BoardsControllerTest < ActionController::TestCase
       should render_template :show
       
       should "show the chat board" do
-        assert_select '#boards .current', :text => /#{ @board.title }/i
+        assert_select '#boards .current', :text => /#{ @board.pretty_title }/i
       end
     end
     
@@ -51,7 +51,7 @@ class BoardsControllerTest < ActionController::TestCase
       should render_template :show
       
       should "show the help board" do
-        assert_select '#boards .current', :text => /#{ @board.title }/i
+        assert_select '#boards .current', :text => /#{ @board.pretty_title }/i
       end
     end
     
@@ -223,14 +223,14 @@ class BoardsControllerTest < ActionController::TestCase
         
         should "set the flash correctly" do
           assert_match /.*notice.*Renamed was updated.*/, response.body
-          assert_match /.*notice.*Sub Board 4 was removed.*/, response.body
-          assert_match /.*notice.*Shouldcreate was created.*/, response.body
-          assert_match /.*alert.*Sub Board 2's title could not be changed to \\\"Sub Board 3\\\".*Title has already been taken.*/, response.body
+          assert_match /.*notice.*sub board 4 was removed.*/, response.body
+          assert_match /.*notice.*ShouldCreate was created.*/, response.body
+          assert_match /.*alert.*sub board 2's title could not be changed to \\\"Sub Board 3\\\".*Title has already been taken.*/, response.body
         end
         
         should "update boards correctly" do
           assert_equal "Renamed", @sub_boards[0].reload.pretty_title
-          assert_equal "Sub Board 2", @sub_boards[1].reload.pretty_title
+          assert_equal "sub board 2", @sub_boards[1].reload.pretty_title
           assert_raise(MongoMapper::DocumentNotFound) { @sub_boards[3].reload }
           assert SubBoard.exists?(:title => "shouldcreate")
           assert_not SubBoard.exists?(:title => "dontcreate")
@@ -252,8 +252,8 @@ class BoardsControllerTest < ActionController::TestCase
         end
         
         should "not update boards" do
-          assert_equal "Sub Board 1", @sub_boards[0].reload.pretty_title
-          assert_equal "Sub Board 2", @sub_boards[1].reload.pretty_title
+          assert_equal "sub board 1", @sub_boards[0].reload.pretty_title
+          assert_equal "sub board 2", @sub_boards[1].reload.pretty_title
           assert_nothing_raised { @sub_boards[3].reload }
           assert_not SubBoard.exists?(:title => "shouldcreate")
           assert_not SubBoard.exists?(:title => "dontcreate")

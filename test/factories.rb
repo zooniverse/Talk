@@ -41,6 +41,7 @@ Factory.define :message do |m|
 end
 
 Factory.define :board do |m|
+  m.pretty_title        { "#{ Factory.next(:name) }" }
   m.title               { "#{ Factory.next(:name) }" }
 end
 

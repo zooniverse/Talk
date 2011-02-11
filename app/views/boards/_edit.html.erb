@@ -41,10 +41,12 @@
     
     if($('.edits[name$="[destroy]"]', form).length > 0) {
       if(confirm("You've chosen to remove a board.\nAll discussions and comments in it will be removed!\nAre you sure you want to do this?")) {
+        $('#boards .parent .children .sub-board').die('click');
         form.submit();
       }
     }
     else {
+      $('#boards .parent .children .sub-board').die('click');
       form.submit();
     }
   }
@@ -65,7 +67,12 @@
   }
   
   function add_board_button() {
-    $('.wrap', last_sub_board()).append('<div class="add" onclick="add_board(this);"></div>');
+    if($('#boards .parent .children .sub-board').length == 0) {
+      $('#boards .parent .wrap').append('<div class="add" onclick="add_board(this);"></div>')
+    }
+    else {
+      $('.wrap', last_sub_board()).append('<div class="add" onclick="add_board(this);"></div>');
+    }
   }
   
   function remove_board_button_html() {

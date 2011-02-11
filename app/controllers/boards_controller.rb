@@ -65,7 +65,7 @@ class BoardsController < ApplicationController
         validated = []
         
         if changes.has_key?(:create) && changes.has_key?(:title) && !changes.has_key?(:destroy)
-          sub_board = SubBoard.new(:title => changes[:title])
+          sub_board = SubBoard.new(:pretty_title => changes[:title])
           sub_board.parent = @board
           sub_board.position = SubBoard.count(:board_id => @board.id)
           
@@ -81,7 +81,7 @@ class BoardsController < ApplicationController
             flash[:alert] << [sub_board, "#{ sub_board.pretty_title } could not be destroyed"]
           end
         elsif changes.has_key?(:title) && !changes.has_key?(:create)
-          sub_board.title = changes[:title]
+          sub_board.pretty_title = changes[:title]
           
           if sub_board.save
             flash[:notice] << "#{ sub_board.pretty_title } was updated"

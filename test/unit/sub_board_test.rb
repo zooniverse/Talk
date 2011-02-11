@@ -4,7 +4,7 @@ class SubBoardTest < ActiveSupport::TestCase
   context "A SubBoard" do
     setup do
       @parent = Board.science
-      @sub_board = SubBoard.new :title => "A science sub-board"
+      @sub_board = SubBoard.new :pretty_title => "A science sub-board"
       @sub_board.board = @parent
       @sub_board.save
       
@@ -12,15 +12,11 @@ class SubBoardTest < ActiveSupport::TestCase
       @discussion = @sub_board.discussions.first
     end
     
-    should_have_keys :_type, :title
+    should_have_keys :_type, :title, :pretty_title
     should_associate :discussions, :board
     
     should "#slugify_title" do
       assert_equal "a_science_sub-board", @sub_board.reload.title
-    end
-    
-    should "format a #pretty_title" do
-      assert_equal "A Science Sub Board", @sub_board.reload.pretty_title
     end
     
     should "have path helpers" do

@@ -58,9 +58,9 @@ class ActiveSupport::TestCase
       collection.remove
     end
     
-    Board.create(:title => "science")
-    Board.create(:title => "help")
-    Board.create(:title => "chat")
+    Board.create(:pretty_title => "science")
+    Board.create(:pretty_title => "help")
+    Board.create(:pretty_title => "chat")
     
     CASClient::Frameworks::Rails::Filter.stubs(:filter).returns(false)
     CASClient::Frameworks::Rails::GatewayFilter.stubs(:filter).returns(false)
@@ -227,7 +227,7 @@ class ActiveSupport::TestCase
     sub_boards = []
     
     1.upto(limit) do |i|
-      sub_board = SubBoard.new :title => "sub board #{i}"
+      sub_board = SubBoard.new :pretty_title => "sub board #{i}"
       sub_board.board = board
       sub_board.save
       board_discussions_in sub_board

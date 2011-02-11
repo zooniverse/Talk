@@ -1,10 +1,11 @@
 class Board
   include Rails.application.routes.url_helpers
   include MongoMapper::Document
-  attr_accessible :title
+  attr_accessible :pretty_title
   
   key :_type, String
   key :title, String, :required => true
+  key :pretty_title, String, :required => true
   
   many :discussions, :foreign_key => :focus_id
   many :sub_boards, :foreign_key => :board_id
@@ -34,12 +35,8 @@ class Board
   end
   
   def slugify_title
-    return unless changed? && changes.include?('title')
-    self.title = self.title.parameterize('_')
-  end
-  
-  def pretty_title
-    self.title.titleize
+    return unless changed? && changes.include?('pretty_title')
+    self.title = self.pretty_title.parameterize('_')
   end
   
   def new_discussion_path(*args)

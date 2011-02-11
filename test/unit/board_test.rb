@@ -6,14 +6,14 @@ class BoardTest < ActiveSupport::TestCase
       @help = Board.find_by_title("help")
       @science = Board.find_by_title("science")
       @chat = Board.find_by_title("chat")
-      @test = Board.create :title => " A TITLE with Mixed CAse"
+      @test = Board.create :pretty_title => " A TITLE with Mixed CAse"
       
       board_discussions_in @science, 2
       @discussion1 = Board.science.discussions[0]
       @discussion2 = Board.science.discussions[1]
     end
     
-    should_have_keys :_type, :title
+    should_have_keys :_type, :title, :pretty_title
     should_associate :discussions, :sub_boards
     should_include_modules 'MongoMapper::Document'
     
@@ -31,10 +31,6 @@ class BoardTest < ActiveSupport::TestCase
     
     should "#slugify_title" do
       assert_equal "a_title_with_mixed_case", @test.reload.title
-    end
-    
-    should "format a #pretty_title" do
-      assert_equal "A Title With Mixed Case", @test.reload.pretty_title
     end
     
     should "have path helpers" do

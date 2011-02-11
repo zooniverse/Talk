@@ -2019,8 +2019,9 @@ a.button.pressed span{
 .board_info h2 a, .board_info { 
   color: #B3B3B3;
   text-shadow: 1px 1px #FFFFFF;
-  font-size: 2.0em;
-  text-transform:none;
+  font-size: 1.2em;
+  line-height: 1.2em;
+  text-transform: none;
 }
 
 .board_info {
