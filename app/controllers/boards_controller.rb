@@ -80,7 +80,7 @@ class BoardsController < ApplicationController
           else
             flash[:alert] << [sub_board, "#{ sub_board.pretty_title } could not be destroyed"]
           end
-        elsif changes.has_key?(:title)
+        elsif changes.has_key?(:title) && !changes.has_key?(:create)
           sub_board.title = changes[:title]
           
           if sub_board.save

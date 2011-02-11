@@ -222,4 +222,19 @@ class ActiveSupport::TestCase
     
     board
   end
+  
+  def sub_boards_in(board, limit=1)
+    sub_boards = []
+    
+    1.upto(limit) do |i|
+      sub_board = SubBoard.new :title => "sub board #{i}"
+      sub_board.board = board
+      sub_board.save
+      board_discussions_in sub_board
+      
+      sub_boards << sub_board
+    end
+    
+    sub_boards
+  end
 end

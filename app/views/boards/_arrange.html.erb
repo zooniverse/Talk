@@ -49,7 +49,7 @@
     $('.position', form).remove();
     
     $('#boards .parent .children > .sortable').each(function(index, elem) {
-      form.append('<input class="position" type="hidden" name="positions[]" value="' + elem.id + '"');
+      form.append('<input class="position" type="hidden" name="positions[]" value="' + elem.id + '">');
     });
     
     form.submit();

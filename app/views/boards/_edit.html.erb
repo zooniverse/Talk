@@ -1,7 +1,7 @@
 <div id="edit-board" style="display: none;">
   <%= form_for board, :remote => true do |f| -%>
     <%= button_to_function "Save changes", "submit_edited_boards()", :id => "submit" %>
-    <%= button_to_function "Cancel", "stop_editing_boards" %>
+    <%= button_to_function "Cancel", "stop_editing_boards()" %>
   <% end -%>
 </div>
 
@@ -44,13 +44,16 @@
         form.submit();
       }
     }
+    else {
+      form.submit();
+    }
   }
   
   function remove_board(elem) {
     var form = $('#edit-board form');
     var item = $(elem).closest('li');
     
-    form.append('<input class="edits" type="hidden" name="sub_boards[' + item.attr('id') + '][destroy]" value="true"');
+    form.append('<input class="edits" type="hidden" name="sub_boards[' + item.attr('id') + '][destroy]" value="true">');
     
     if(item.attr('id') == last_sub_board().attr('id')) {
       item.remove();
@@ -89,7 +92,7 @@
     add_board_button();
     add_edit_in(new_elem);
     
-    form.append('<input class="edits" type="hidden" name="sub_boards[' + new_id + '][create]" value="true"');
+    form.append('<input class="edits" type="hidden" name="sub_boards[' + new_id + '][create]" value="true">');
   }
   
   function remove_edit_from(wrap) {
@@ -112,7 +115,7 @@
     var input = $('input', wrap);
     
     $('#edit-board form .edits[name="' + name + '"]').remove();
-    $('#edit-board form').append('<input class="edits" type="hidden" name="' + name + '" value="' + input.val() + '"');
+    $('#edit-board form').append('<input class="edits" type="hidden" name="' + name + '" value="' + input.val() + '">');
     $('.sub-board', wrap).text(input.val());
     remove_edit_from(wrap);
   }
