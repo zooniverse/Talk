@@ -21,10 +21,10 @@ class Comment
   belongs_to :author, :class_name => "User"
   many :events, :as => :eventable
   
-  after_validation_on_create :parse_body
+  after_validation :parse_body, :on => :create
   before_create :set_focus, :split_body
   after_create :create_tags
-  after_validation_on_update :split_body, :parse_body, :synchronize_tags
+  after_validation :synchronize, :on => :update
   before_destroy :destroy_tags, :nullify_responses
   after_destroy :denormalize_counts
   
@@ -106,6 +106,13 @@ class Comment
     else
       "#{ self.discussion.path(:per_page => opts[:per_page], :page => page) }##{ self._id }"
     end
+  end
+  
+  def synchronize
+    return if new_record? # Apparently in Rails 3.0.7 after_validation_on_update callbacks are triggered on new records
+    split_body
+    parse_body
+    synchronize_tags
   end
   
   def split_body
