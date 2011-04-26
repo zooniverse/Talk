@@ -1,13 +1,11 @@
 .bundle
 .rvmrc
+config/*.yml
 db/*.sqlite3
 db/*
 log/*.log
 tmp/**/*
 doc/
-index/*
 *.DS_Store
-ids.yaml
-sellers.rb
 dump
 

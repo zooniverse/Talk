@@ -13,7 +13,8 @@ class UserTest < ActiveSupport::TestCase
       @mod_message = Factory :message, :sender => @moderator, :recipient => @user
     end
     
-    should_have_keys :zooniverse_user_id, :name, :email, :blocked_list, :moderator, :admin, :state, :created_at, :updated_at, :scientist
+    should_have_keys :zooniverse_user_id, :name, :email, :blocked_list, :moderator, :admin, :scientist,
+                     :state, :created_at, :updated_at, :last_active_at, :last_login_at, :current_login_at
     should_associate :comments, :collections, :live_collections, :messages, :sent_messages
     
     should "be #privileged?" do

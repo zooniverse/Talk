@@ -8,7 +8,6 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
-    BlueCloth (1.0.1)
     abstract (1.0.0)
     actionmailer (3.0.3)
       actionpack (= 3.0.3)

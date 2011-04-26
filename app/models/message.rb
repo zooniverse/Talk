@@ -9,7 +9,11 @@ class Message
   timestamps!
   
   key :sender_id, ObjectId
+  key :destroyed_by_sender, Boolean, :default => false
+  
   key :recipient_id, ObjectId
+  key :destroyed_by_recipient, Boolean, :default => false
+  
   belongs_to :sender, :class_name => "User"
   belongs_to :recipient, :class_name => "User"
   
