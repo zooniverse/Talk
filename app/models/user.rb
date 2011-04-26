@@ -39,7 +39,7 @@ class User
   timestamps!
   
   many :collections
-  many :live_collections
+  many :keyword_sets
   many :comments, :foreign_key => :author_id
   many :messages, :foreign_key => :recipient_id
   many :sent_messages, :class_name => "Message", :foreign_key => :sender_id
@@ -77,7 +77,7 @@ class User
       self == document.author || self.privileged?
     when Discussion
       self == document.started_by || self.privileged?
-    when Collection, LiveCollection
+    when Collection, KeywordSet
       self == document.user || self.privileged?
     else
       false
@@ -90,7 +90,7 @@ class User
       self == document.author || self.privileged?
     when Discussion
       self.privileged? || (self == document.started_by && document.number_of_comments == 0)
-    when Collection, LiveCollection
+    when Collection, KeywordSet
       self == document.user || self.privileged?
     else
       false

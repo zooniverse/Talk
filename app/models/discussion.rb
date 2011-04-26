@@ -94,9 +94,9 @@ class Discussion
     self.comments.count(:created_at.gte => since_time)
   end
   
-  # True if discussing LiveCollections
-  def live_collection?
-    focus_type == "LiveCollection"
+  # True if discussing KeywordSets
+  def keyword_set?
+    focus_type == "KeywordSet"
   end
   
   # True if discussing Assets

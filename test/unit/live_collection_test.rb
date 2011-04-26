@@ -1,9 +1,9 @@
 require 'test_helper'
 
-class LiveCollectionTest < ActiveSupport::TestCase
-  context "A LiveCollection" do
+class KeywordSetTest < ActiveSupport::TestCase
+  context "A KeywordSet" do
     setup do 
-      @collection = Factory :live_collection, :tags => ["Tag1", "TAG2"]
+      @collection = Factory :keyword_set, :tags => ["Tag1", "TAG2"]
     end
     
     should_have_keys :zooniverse_id, :name, :description, :tags, :user_id
@@ -14,7 +14,7 @@ class LiveCollectionTest < ActiveSupport::TestCase
       setup do
         @collections = []
         
-        1.upto(35){ |i| @collections << Factory(:live_collection) }
+        1.upto(35){ |i| @collections << Factory(:keyword_set) }
       end
       
       should "increment 9 to a" do
@@ -38,7 +38,7 @@ class LiveCollectionTest < ActiveSupport::TestCase
     end
     
     should "find #recent" do
-      assert_equal [@collection], LiveCollection.recent
+      assert_equal [@collection], KeywordSet.recent
     end
     
     context "#destroy" do
@@ -57,7 +57,7 @@ class LiveCollectionTest < ActiveSupport::TestCase
         @document_hash['discussions'] = @collection.discussions.collect(&:to_embedded_hash)
         
         @collection.archive_and_destroy_as @collection.user
-        @archive = Archive.first(:kind => "LiveCollection", :original_id => @collection.id)
+        @archive = Archive.first(:kind => "KeywordSet", :original_id => @collection.id)
       end
       
       should "remove collection, discussions, and comments" do
@@ -78,7 +78,7 @@ class LiveCollectionTest < ActiveSupport::TestCase
       end
       
       should "Archive collection" do
-        assert_equal "LiveCollection", @archive.kind
+        assert_equal "KeywordSet", @archive.kind
         assert_equal @collection.id, @archive.original_id
         assert_equal @collection.zooniverse_id, @archive.zooniverse_id
         assert_equal @collection.user_id, @archive.user_id

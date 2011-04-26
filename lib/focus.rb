@@ -49,14 +49,14 @@ module Focus
       unless conversation.nil?
         conversation.focus_id = self.id
         conversation.focus_type = self.class.name
-        conversation.focus_base_type = self.is_a?(LiveCollection) ? "Collection" : self.class.name
+        conversation.focus_base_type = self.is_a?(KeywordSet) ? "Collection" : self.class.name
         conversation.save if conversation.changed?
       end
       
       discussions.each do |discussion|
         discussion.focus_id = self.id
         discussion.focus_type = self.class.name
-        discussion.focus_base_type = self.is_a?(LiveCollection) ? "Collection" : self.class.name
+        discussion.focus_base_type = self.is_a?(KeywordSet) ? "Collection" : self.class.name
         discussion.save if discussion.changed?
       end
     end

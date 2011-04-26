@@ -83,7 +83,7 @@ class DiscussionsController < ApplicationController
       @discussion.focus_id = @focus.id
       @discussion.focus_type = @focus.class.name
       
-      @discussion.focus_base_type = if @focus.is_a?(LiveCollection)
+      @discussion.focus_base_type = if @focus.is_a?(KeywordSet)
         "Collection"
       elsif @focus.is_a?(SubBoard)
         "Board"
@@ -137,7 +137,7 @@ class DiscussionsController < ApplicationController
     focus_id = params[focus_key]
     return unless focus_key and focus_id
     klass = focus_key.sub('_id', '').sub('object', 'asset').camelize.constantize
-    klass = LiveCollection if focus_key == 'collection_id' && focus_id =~ /^CMZL/
+    klass = KeywordSet if focus_key == 'collection_id' && focus_id =~ /^CMZL/
     @focus = ([Board, SubBoard].include? klass) ? klass.find_by_title(focus_id) : klass.find_by_zooniverse_id(focus_id)
   end
   
@@ -145,7 +145,7 @@ class DiscussionsController < ApplicationController
     @page_title = case @focus
     when Asset, Group
       @focus.zooniverse_id
-    when Collection, LiveCollection
+    when Collection, KeywordSet
       @focus.name
     when SubBoard
       "#{ @focus.board.pretty_title } | #{ @focus.pretty_title }"

@@ -140,9 +140,9 @@ class DiscussionTest < ActiveSupport::TestCase
         board_discussions_in Board.science, 1
         @b_discussion = Board.science.discussions.first
         
-        @live_collection = Factory :live_collection
-        build_focus_for @live_collection
-        @lc_discussion = @live_collection.discussions.first
+        @keyword_set = Factory :keyword_set
+        build_focus_for @keyword_set
+        @lc_discussion = @keyword_set.discussions.first
         
         @collection = collection_for(@asset)
         build_focus_for @collection
@@ -156,7 +156,7 @@ class DiscussionTest < ActiveSupport::TestCase
       end
       
       should "know when it belongs to a live collection" do
-        assert @lc_discussion.live_collection?
+        assert @lc_discussion.keyword_set?
       end
       
       should "know when it belongs to a collection" do

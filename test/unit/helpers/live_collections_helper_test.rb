@@ -1,4 +1,4 @@
 require 'test_helper'
 
-class LiveCollectionsHelperTest < ActionView::TestCase
+class KeywordSetsHelperTest < ActionView::TestCase
 end

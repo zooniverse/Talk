@@ -3,7 +3,7 @@ class SearchController < ApplicationController
   
   def index
     default_params :search => "", :page => 1, :per_page => 10, :for => "comments"
-    @for.sub('live_collections', 'collections')
+    @for.sub('keyword_sets', 'collections')
     
     parse_keywords
     search_terms = @keywords || @search
@@ -14,7 +14,7 @@ class SearchController < ApplicationController
     case @for
     when 'collections'
       if @keywords.nil?
-        selector = { :criteria => { :$or => [{ :focus_type => "Collection" }, { :focus_type => "LiveCollection" }] } }
+        selector = { :criteria => { :$or => [{ :focus_type => "Collection" }, { :focus_type => "KeywordSet" }] } }
         @collections = focus_results(search_terms, selector)
       else
         @results = @collections = Collection.with_keywords(search_terms, :page => @page, :per_page => @per_page)
@@ -37,7 +37,7 @@ class SearchController < ApplicationController
     end
   end
   
-  def live_collection_results
+  def keyword_set_results
     @keywords = params[:keywords]
     @assets = Asset.with_keywords(@keywords.split(',').map(&:downcase), :per_page => 44)
     render :nothing => true if @keywords.split(',').blank?

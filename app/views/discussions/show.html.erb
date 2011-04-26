@@ -17,13 +17,13 @@
           <%= link_to image_tag(@discussion.focus.location, :class => "focus-main-image", :id => "asset-image", :height => 200, :width => 200), @discussion.focus.location, :class => 'lightbox' %>
         <% end -%>
         
-        <%- if @discussion.collection? || @discussion.live_collection? || @discussion.group? %>
+        <%- if @discussion.collection? || @discussion.keyword_set? || @discussion.group? %>
           <%- unless @discussion.focus.assets.empty? %>
             <%= image_tag @discussion.focus.assets.first.location, :class => "collection-large", :id => "asset-image", :height => 215, :width => 215 %>
             
             <div class="discussed collection-info paginatable_collection">
               <div class="container">
-                <%- collected = @discussion.focus.assets(:per_page => 0) if @discussion.focus.is_a?(LiveCollection) %>
+                <%- collected = @discussion.focus.assets(:per_page => 0) if @discussion.focus.is_a?(KeywordSet) %>
                 <%- collected = @discussion.focus.assets.sort(:created_at.asc).all if @discussion.focus.is_a?(Group) %>
                 <%- collected ||= @discussion.focus.assets %>
                 <%- collected.in_groups_of(12).each do |group| %>
@@ -108,7 +108,7 @@
 
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
-    if(<%= @discussion.collection? || @discussion.live_collection? || @discussion.group? %>) {
+    if(<%= @discussion.collection? || @discussion.keyword_set? || @discussion.group? %>) {
       Talk.paginated_collection.init();
       Talk.collection_hover.init();
       Talk.collection_lightbox.init();

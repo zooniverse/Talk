@@ -21,15 +21,15 @@
   <% end -%>
   
   <%- if @kind.nil? || @kind == "Keyword Set" %>
-    <div id="live_collection_form" style="display:none;">
+    <div id="keyword_set_form" style="display:none;">
       <%- if @keywords && @keywords.any? %>
         <%= render :partial => "keyword_filter", :collection => @keywords %>
       <%- else -%>
         <%= render :partial => "keyword_filter", :locals => { :keyword_filter_counter => 0 } %>
       <% end -%>
       
-      <p><%= link_to "Preview &rarr;".html_safe, "#", :onclick => 'update_live_collection_results(); return false;' %></p>
-      <div id="live_collection_results"></div>
+      <p><%= link_to "Preview &rarr;".html_safe, "#", :onclick => 'update_keyword_set_results(); return false;' %></p>
+      <div id="keyword_set_results"></div>
     </div>
   <% end -%>
   

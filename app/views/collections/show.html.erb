@@ -6,10 +6,10 @@
 
 <div class="upper-row">
   <h1 class="collection-title">
-    <%= @collection.is_a?(LiveCollection) ? "Keyword Set" : "Collection" %>
+    <%= @collection.is_a?(KeywordSet) ? "Keyword Set" : "Collection" %>
     <em>&#8220;<%= @collection.name %>&#8221;</em>
     by <%= link_to @collection.user.name, user_path(@collection.user) %>
-    <%- if @collection.is_a?(LiveCollection) %>
+    <%- if @collection.is_a?(KeywordSet) %>
       <ul class="keyword-listing">
         <%- @collection.tags.each do |tag| %>
           <%= content_tag "li", link_to("##{tag}", search_url(:search => "keywords: #{tag}", :for => "objects")) %>
@@ -33,7 +33,7 @@
         
         <div class="collection-info paginatable_collection">
           <div class="container collection-asset-container">
-            <%- collected = @collection.is_a?(LiveCollection) ? @collection.assets(:per_page => 0) : @collection.assets %>
+            <%- collected = @collection.is_a?(KeywordSet) ? @collection.assets(:per_page => 0) : @collection.assets %>
             <%- collected.in_groups_of(9).each do |group| %>
               <div class="col">
                 <%- group.reject(&:nil?).each do |item| %>

@@ -33,7 +33,7 @@ class CollectionsController < ApplicationController
     
     if @collection && @collection._type == "Collection"
       @kind = "Collection"
-    elsif @collection && @collection._type == "LiveCollection"
+    elsif @collection && @collection._type == "KeywordSet"
       @kind = "Keyword Set"
       @keywords = @collection.tags
     end
@@ -41,7 +41,7 @@ class CollectionsController < ApplicationController
   
   def create
     if params[:collection_kind][:id] == "Keyword Set"
-      @collection = LiveCollection.new(params[:collection])
+      @collection = KeywordSet.new(params[:collection])
       @collection.tags = params[:keyword].values
     elsif params[:collection_kind][:id] == "Collection"
       @collection = Collection.new(params[:collection])
@@ -64,7 +64,7 @@ class CollectionsController < ApplicationController
     return not_found unless @collection
     return unless moderator_or_owner :can_modify?, @collection
     
-    if @collection.is_a?(LiveCollection)
+    if @collection.is_a?(KeywordSet)
       @collection.tags = params[:keyword].values
     end
     
@@ -136,7 +136,7 @@ class CollectionsController < ApplicationController
     if params[:id] =~ /^CMZS/
       @focus = @collection = Collection.find_by_zooniverse_id(params[:id])
     else
-      @focus = @collection = LiveCollection.find_by_zooniverse_id(params[:id])
+      @focus = @collection = KeywordSet.find_by_zooniverse_id(params[:id])
     end
   end
   

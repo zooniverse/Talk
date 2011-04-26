@@ -153,7 +153,7 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
-    context "#create LiveCollection" do
+    context "#create KeywordSet" do
       setup do
         standard_cas_login
         
@@ -266,15 +266,15 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
-    context "#update LiveCollection as the owner" do
+    context "#update KeywordSet as the owner" do
       setup do
-        @collection = Factory :live_collection
+        @collection = Factory :keyword_set
         standard_cas_login(@collection.user)
         
         options = {
           :id => @collection.zooniverse_id,
           :collection_kind => {
-            :id => "Live Collection"
+            :id => "KeywordSet"
           },
           :keyword => {
             1 => 'big',
@@ -296,15 +296,15 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
-    context "#update LiveCollection as a different user" do
+    context "#update KeywordSet as a different user" do
       setup do
-        @collection = Factory :live_collection
+        @collection = Factory :keyword_set
         standard_cas_login
         
         options = {
           :id => @collection.zooniverse_id,
           :collection_kind => {
-            :id => "Live Collection"
+            :id => "KeywordSet"
           },
           :keyword => {
             1 => 'big',
@@ -327,15 +327,15 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
-    context "#update LiveCollection as a moderator" do
+    context "#update KeywordSet as a moderator" do
       setup do
-        @collection = Factory :live_collection
+        @collection = Factory :keyword_set
         moderator_cas_login
         
         options = {
           :id => @collection.zooniverse_id,
           :collection_kind => {
-            :id => "Live Collection"
+            :id => "KeywordSet"
           },
           :keyword => {
             1 => 'big',
@@ -440,9 +440,9 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
-    context "#destroy LiveCollection not logged in" do
+    context "#destroy KeywordSet not logged in" do
       setup do
-        @collection = Factory :live_collection
+        @collection = Factory :keyword_set
         post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Keyword Set" }
       end
       
@@ -458,9 +458,9 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
-    context "#destroy LiveCollection by owner" do
+    context "#destroy KeywordSet by owner" do
       setup do
-        @collection = Factory :live_collection
+        @collection = Factory :keyword_set
         standard_cas_login(@collection.user)
         post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Keyword Set" }
       end
@@ -474,16 +474,16 @@ class CollectionsControllerTest < ActionController::TestCase
       
       should "destroy and archive collection" do
         assert_raise(MongoMapper::DocumentNotFound) { @collection.reload }
-        archive = Archive.first(:kind => "LiveCollection", :original_id => @collection.id)
+        archive = Archive.first(:kind => "KeywordSet", :original_id => @collection.id)
         
         assert archive
         assert_equal @user.id, archive.destroying_user_id
       end
     end
     
-    context "#destroy LiveCollection by other user" do
+    context "#destroy KeywordSet by other user" do
       setup do
-        @collection = Factory :live_collection
+        @collection = Factory :keyword_set
         standard_cas_login
         post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Keyword Set" }
       end
@@ -500,9 +500,9 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
-    context "#destroy LiveCollection by moderator" do
+    context "#destroy KeywordSet by moderator" do
       setup do
-        @collection = Factory :live_collection
+        @collection = Factory :keyword_set
         moderator_cas_login
         post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Keyword Set" }
       end
@@ -516,7 +516,7 @@ class CollectionsControllerTest < ActionController::TestCase
       
       should "destroy and archive collection" do
         assert_raise(MongoMapper::DocumentNotFound) { @collection.reload }
-        archive = Archive.first(:kind => "LiveCollection", :original_id => @collection.id)
+        archive = Archive.first(:kind => "KeywordSet", :original_id => @collection.id)
         
         assert archive
         assert_equal @user.id, archive.destroying_user_id

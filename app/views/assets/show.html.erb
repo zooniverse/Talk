@@ -23,7 +23,7 @@
                   <div class="collection">
                     <h2><%= link_to truncate(collection.name, :length => 60, :separator => ' '), collection_path(collection.zooniverse_id) %></h2>
                     <div class="film">
-                      <%- assets = collection.is_a?(LiveCollection) ? collection.assets(:per_page => 8) : collection.asset_ids[0, 8].map{ |id| Asset.find(id) } %>
+                      <%- assets = collection.is_a?(KeywordSet) ? collection.assets(:per_page => 8) : collection.asset_ids[0, 8].map{ |id| Asset.find(id) } %>
                       <%- assets.each do |asset| %>
                         <%= link_to image_tag(asset.thumbnail_location, :width => 29, :height => 29), collection_path(collection.zooniverse_id) %>
                       <% end -%>

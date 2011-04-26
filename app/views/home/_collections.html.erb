@@ -13,7 +13,7 @@
         </div>
       </div>
       
-      <%- assets = collection.is_a?(LiveCollection) ? collection.assets(:per_page => 5) : collection.asset_ids[0, 5].map{ |id| Asset.find(id) } %>
+      <%- assets = collection.is_a?(KeywordSet) ? collection.assets(:per_page => 5) : collection.asset_ids[0, 5].map{ |id| Asset.find(id) } %>
       <div class="collection-info paginatable_collection">
         <div class="container">
           <%- assets.each do |asset| %>

@@ -26,7 +26,7 @@ Factory.define :collection do |c|
   c.user                { |user| user.association(:user) }
 end
 
-Factory.define :live_collection do |c|
+Factory.define :keyword_set do |c|
   c.name                { "#{ Factory.next(:name) }" }
   c.description         { "This is a live collection" }
   c.tags                [ "tag2", "tag4" ]

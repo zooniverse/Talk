@@ -513,11 +513,11 @@ function check_collection_type(){
   $('#description-label').html('Description of ' + kind.toLowerCase());
   
   if(kind == "Keyword Set") {
-    $('#live_collection_form').show();
-    update_live_collection_results();
+    $('#keyword_set_form').show();
+    update_keyword_set_results();
   }
   else {
-    $('#live_collection_form').hide();
+    $('#keyword_set_form').hide();
   }
   
   update_keyword_ands();
@@ -526,7 +526,7 @@ function check_collection_type(){
 function remove_keyword_field(field_id) {
   if(keyword_count() > 1) {
     $('#' + field_id).remove();
-    update_live_collection_results();
+    update_keyword_set_results();
   }
   
   update_keyword_ids();
@@ -561,7 +561,7 @@ function keyword_count() {
   return $('.keyword').length;
 }
 
-function update_live_collection_results() {
+function update_keyword_set_results() {
   var keywords = new Array();
   $('.keyword').each(function() {
     keywords.push($(this).val());
@@ -569,7 +569,7 @@ function update_live_collection_results() {
   
   $.ajax({
      type: "POST",
-     url: "/search/live_collection_results",
+     url: "/search/keyword_set_results",
      data: "keywords=" + keywords.join(',')
    });
 }

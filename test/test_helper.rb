@@ -9,7 +9,7 @@ module Shoulda
       
       keys.each do |key|
         should "have key #{key}" do
-          assert klass.key?(key), "#{klass.name} does not have key #{key}"
+          assert klass.key?(key.to_sym), "#{klass.name} does not have key #{key}"
         end
       end
     end
@@ -164,8 +164,8 @@ class ActiveSupport::TestCase
     collection
   end
   
-  def build_live_collection(assets = 5)
-    collection = LiveCollection.new :name => "LiveCollection"
+  def build_keyword_set(assets = 5)
+    collection = KeywordSet.new :name => "KeywordSet"
     collection.user = Factory :user
     collection.tags = ['tag1']
     collection.save

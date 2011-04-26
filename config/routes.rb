@@ -12,7 +12,7 @@ Talk::Application.routes.draw do
     end
   end
   
-  resources :live_collections do
+  resources :keyword_sets do
     resources :discussions
   end
   
@@ -113,5 +113,5 @@ Talk::Application.routes.draw do
   end
   
   match '/search(.:format)' => 'search#index', :as => :search
-  match '/search/live_collection_results' => 'search#live_collection_results', :as => :live_collection_results
+  match '/search/keyword_set_results' => 'search#keyword_set_results', :as => :keyword_set_results
 end

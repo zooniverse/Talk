@@ -35,7 +35,7 @@ module ApplicationHelper
       name = if discussion.board?
         discussion.focus.pretty_title
       else
-        discussion.focus_type.sub(/LiveCollection/, 'KeywordSet').sub(/Asset/, 'Object')
+        discussion.focus_type.sub(/KeywordSet/, 'KeywordSet').sub(/Asset/, 'Object')
       end
       
       link += link_to name.underscore.split('_').map(&:capitalize).join(" "), discussion.parent_path, :class => "parent-link"
