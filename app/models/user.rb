@@ -13,7 +13,7 @@ class User
   key :scientist, Boolean, :default => false
   key :state, String
   
-  scope :active, :last_active_at.gt => 1.hour.ago.utc
+  scope :active, lambda { { :last_active_at.gt => 1.hour.ago.utc } }
   scope :watched, :state => 'watched'
   scope :banned, :state => 'banned'
   scope :moderators, :moderator => true
