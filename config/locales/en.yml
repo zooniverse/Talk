@@ -1,7 +1,7 @@
 en:
-  title: "Sellers"
+  title: "Talk"
   topbar:
-    left1: "Sellers is a"
+    left1: "Talk is a"
     left2: "application"
     right1: "We're talking about"
   controllers:
@@ -53,8 +53,8 @@ en:
     boards: "Boards"
   panels:
     about:
-      title1: "What is Sellers?"
-      body1a: "Sellers is a collaboration tool that lets you learn to stop worrying and love the bomb.. er I mean the Zooniverse."
+      title1: "What is Talk?"
+      body1a: "Talk is a collaboration tool that lets you learn to stop worrying and love the bomb.. er I mean the Zooniverse."
   comments:
     by: "Comment by"
     report_comment_confirm: "Are you sure you want to report this comment?"

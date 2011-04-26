@@ -3,7 +3,7 @@
 desc "Loads a database"
 task :load_data, :load_from, :restore_to, :needs => :environment do |t, args|
   args.with_defaults(:load_from => Rails.env, :restore_to => Rails.env)
-  `mongorestore --drop --objcheck dump/sellers-beta-#{ args[:load_from] } #{ connection_for(args[:restore_to]) }`
+  `mongorestore --drop --objcheck dump/talk-#{ args[:load_from] } #{ connection_for(args[:restore_to]) }`
 end
 
 # Dump the development database to the development directory:   rake dump_data[development]
@@ -11,8 +11,8 @@ end
 desc "Dumps a database"
 task :dump_data, :load_from, :dump_to, :needs => :environment do |t, args|
   args.with_defaults(:load_from => Rails.env, :dump_to => Rails.env)
-  load_dir = "sellers-beta-#{ args[:load_from] }"
-  dump_dir = "sellers-beta-#{ args[:dump_to] }"
+  load_dir = "talk-beta-#{ args[:load_from] }"
+  dump_dir = "talk-beta-#{ args[:dump_to] }"
   options = connection_for args[:load_from]
   options.delete '--db'
   

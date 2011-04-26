@@ -1,4 +1,4 @@
-Sellers::Application.routes.draw do
+Talk::Application.routes.draw do
   resources :collections do 
     resources :discussions
     
