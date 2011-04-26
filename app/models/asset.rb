@@ -48,7 +48,7 @@ class Asset
   
   # Find collections containing this asset
   def collections(limit = 10)
-    collections = Collection.with_asset self, :limit => limit
+    collections = AssetSet.with_asset self, :limit => limit
   end
   
   # Finds comments mentioning this asset
@@ -63,7 +63,7 @@ class Asset
   
   # Counts collections with this asset
   def count_collections
-    Collection.count(:asset_ids => self.id)
+    AssetSet.count(:asset_ids => self.id)
   end
   
   def new_discussion_path(*args)

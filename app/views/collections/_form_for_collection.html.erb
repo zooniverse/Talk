@@ -14,7 +14,7 @@
   <%- if @collection.new_record? && @kind.nil? %>
     <span>
       <p id="kind-label" class="label">Collection type</p>
-      <%= select "collection_kind", "id", options_for_select(['Collection', 'Keyword Set'], 'Collection'), {}, { :onchange => 'check_collection_type();' } %>
+      <%= select "collection_kind", "id", options_for_select(['AssetSet', 'Keyword Set'], 'AssetSet'), {}, { :onchange => 'check_collection_type();' } %>
     </span>
   <%- else -%>
     <%= hidden_field_tag "collection_kind[id]", @kind %>
@@ -49,7 +49,7 @@
   $(document).ready(function() {
     Talk.notice.init();
     
-    if(<%= @kind != "Collection" %>) {
+    if(<%= @kind != "AssetSet" %>) {
       check_collection_type();
       
       $('.keyword-filter').each(function(count, elem) {

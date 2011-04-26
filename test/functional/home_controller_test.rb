@@ -15,7 +15,7 @@ class HomeControllerTest < ActionController::TestCase
         1.upto(5) do
           asset = Factory :asset
           build_focus_for asset
-          collection_for asset
+          asset_set_for asset
           conversation_for asset
         end
       end
@@ -77,7 +77,7 @@ class HomeControllerTest < ActionController::TestCase
         1.upto(5) do
           asset = Factory :asset
           build_focus_for asset
-          collection_for asset
+          asset_set_for asset
           conversation_for asset
         end
       end

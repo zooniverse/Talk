@@ -1,5 +1,5 @@
 # A user owned and curated collection of Asset
-class Collection
+class AssetSet
   include Rails.application.routes.url_helpers
   include MongoMapper::Document
   include Focus
@@ -19,20 +19,20 @@ class Collection
   key :user_id, ObjectId, :required => true
   belongs_to :user
   
-  # Finds the most recent Collections
+  # Finds the most recent AssetSets
   def self.recent(*args)
     opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
     self.sort(:created_at.desc).paginate(opts)
   end
   
-  # Finds the most recent assets added to this Collection
+  # Finds the most recent assets added to this AssetSet
   def recent_assets(limit = 10)
     return [] if asset_ids.empty?
     self.asset_ids.reverse[0, limit].map{ |id| Asset.find(id) }
   end
   
   # Finds collections containing an asset
-  #  Collection.with_asset asset, :page => 2, :per_page => 8
+  #  AssetSet.with_asset asset, :page => 2, :per_page => 8
   def self.with_asset(*args)
     opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
     opts[:per_page] = opts[:limit] if opts.has_key?(:limit)

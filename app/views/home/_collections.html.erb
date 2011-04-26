@@ -1,5 +1,5 @@
-<div id="collections_page_<%= @collections.current_page %>" class="page">
-  <%- @collections.each do |collection| %>
+<div id="collections_page_<%= @asset_sets.current_page %>" class="page">
+  <%- @asset_sets.each do |collection| %>
     <div class="collection">
       <div class="translucent gold circle">
         <p><%= link_to short_id_for(collection), collection_path(collection.zooniverse_id) %></p>
@@ -30,8 +30,8 @@
   
   <div class="page-nav">
     <div class="less" style="display: none;"></div>
-    <%= page_listing :type => @showing, :collection => @collections, :per_page => @collections_options[:per_page] %>
-    <%= link_to_more('<div class="more"></div>'.html_safe, :showing => @showing, :kinds => :collections, :collections_page => @collections_options[:page] + 1) if @collections.total_pages > @collections.current_page %>
+    <%= page_listing :type => @showing, :collection => @asset_sets, :per_page => @asset_sets_options[:per_page] %>
+    <%= link_to_more('<div class="more"></div>'.html_safe, :showing => @showing, :kinds => :asset_sets, :asset_sets_page => @asset_sets_options[:page] + 1) if @asset_sets.total_pages > @asset_sets.current_page %>
     <div class="push"></div>
   </div>
 </div>
@@ -40,7 +40,7 @@
   $(document).ready(function() {
     Talk.paginated_collection.init();
     
-    $('#collections_page_<%= @collections.current_page %> .page-loader').live('click', function() {
+    $('#collections_page_<%= @asset_sets.current_page %> .page-loader').live('click', function() {
       page_loading($(this).closest('.page-nav'));
     });
   });

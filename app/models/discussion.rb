@@ -112,9 +112,9 @@ class Discussion
     focus_type == "SubBoard"
   end
   
-  # True if discussing Collections
+  # True if discussing AssetSets
   def collection?
-    focus_type == "Collection"
+    focus_type == "AssetSet"
   end
   
   def group?
@@ -219,7 +219,7 @@ class Discussion
       object_path(focus.zooniverse_id, opts)
     when "Board"
       self.focus.path(self.zooniverse_id, opts)
-    when "Collection"
+    when "AssetSet"
       collection_path(focus.zooniverse_id, opts)
     when "Group"
       group_path(focus.zooniverse_id, opts)

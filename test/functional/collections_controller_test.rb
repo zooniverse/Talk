@@ -10,7 +10,7 @@ class CollectionsControllerTest < ActionController::TestCase
     
     context "#show not logged in" do
       setup do
-        @collection = build_collection
+        @collection = build_asset_set
         build_focus_for @collection
         conversation_for @collection
         get :show, { :id => @collection.zooniverse_id }
@@ -54,7 +54,7 @@ class CollectionsControllerTest < ActionController::TestCase
       
     context "#show logged in as creator" do
       setup do
-        @collection = build_collection
+        @collection = build_asset_set
         build_focus_for @collection
         conversation_for @collection
         standard_cas_login(@collection.user)
@@ -83,7 +83,7 @@ class CollectionsControllerTest < ActionController::TestCase
       
     context "#edit as the owner" do
       setup do
-        @collection = build_collection
+        @collection = build_asset_set
         standard_cas_login(@collection.user)
         get :edit, { :id => @collection.zooniverse_id }
       end
@@ -94,7 +94,7 @@ class CollectionsControllerTest < ActionController::TestCase
     
     context "#edit as a different user" do
       setup do
-        @collection = build_collection
+        @collection = build_asset_set
         standard_cas_login
         get :edit, { :id => @collection.zooniverse_id }
       end
@@ -109,7 +109,7 @@ class CollectionsControllerTest < ActionController::TestCase
     
     context "#edit as a moderator" do
       setup do
-        @collection = build_collection
+        @collection = build_asset_set
         moderator_cas_login
         get :edit, { :id => @collection.zooniverse_id }
       end
@@ -127,14 +127,14 @@ class CollectionsControllerTest < ActionController::TestCase
       should render_template :new
     end
     
-    context "#create Collection" do
+    context "#create AssetSet" do
       setup do
         @asset = Factory :asset
         standard_cas_login
         
         options = {
           :collection_kind => {
-            :id => "Collection"
+            :id => "AssetSet"
           },
           :collection => {
             :name => "My Collection",
@@ -181,15 +181,15 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
-    context "#update Collection as the owner" do
+    context "#update AssetSet as the owner" do
       setup do
-        @collection = Factory :collection
+        @collection = Factory :asset_set
         standard_cas_login(@collection.user)
         
         options = {
           :id => @collection.zooniverse_id,
           :collection_kind => {
-            :id => "Collection"
+            :id => "AssetSet"
           },
           :collection => {
             :description => "Is more awesome"
@@ -209,15 +209,15 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
-    context "#update Collection as a different user" do
+    context "#update AssetSet as a different user" do
       setup do
-        @collection = Factory :collection
+        @collection = Factory :asset_set
         standard_cas_login
         
         options = {
           :id => @collection.zooniverse_id,
           :collection_kind => {
-            :id => "Collection"
+            :id => "AssetSet"
           },
           :collection => {
             :description => "Is more awesome"
@@ -234,19 +234,19 @@ class CollectionsControllerTest < ActionController::TestCase
       end
       
       should "not update values" do
-        assert_equal "This is collection", @collection.reload.description
+        assert_equal "This is an asset set", @collection.reload.description
       end
     end
     
-    context "#update Collection as a moderator" do
+    context "#update AssetSet as a moderator" do
       setup do
-        @collection = Factory :collection
+        @collection = Factory :asset_set
         moderator_cas_login
         
         options = {
           :id => @collection.zooniverse_id,
           :collection_kind => {
-            :id => "Collection"
+            :id => "AssetSet"
           },
           :collection => {
             :description => "Is more awesome"
@@ -357,10 +357,10 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
-    context "#destroy Collection not logged in" do
+    context "#destroy AssetSet not logged in" do
       setup do
-        @collection = Factory :collection
-        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Collection" }
+        @collection = Factory :asset_set
+        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "AssetSet" }
       end
       
       should set_the_flash.to(I18n.t('controllers.application.not_yours'))
@@ -375,11 +375,11 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
-    context "#destroy Collection by owner" do
+    context "#destroy AssetSet by owner" do
       setup do
-        @collection = Factory :collection
+        @collection = Factory :asset_set
         standard_cas_login(@collection.user)
-        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Collection" }
+        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "AssetSet" }
       end
       
       should set_the_flash.to(I18n.t('controllers.collections.flash_destroyed'))
@@ -391,18 +391,18 @@ class CollectionsControllerTest < ActionController::TestCase
       
       should "destroy and archive collection" do
         assert_raise(MongoMapper::DocumentNotFound) { @collection.reload }
-        archive = Archive.first(:kind => "Collection", :original_id => @collection.id)
+        archive = Archive.first(:kind => "AssetSet", :original_id => @collection.id)
         
         assert archive
         assert_equal @user.id, archive.destroying_user_id
       end
     end
     
-    context "#destroy Collection by other user" do
+    context "#destroy AssetSet by other user" do
       setup do
-        @collection = Factory :collection
+        @collection = Factory :asset_set
         standard_cas_login
-        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Collection" }
+        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "AssetSet" }
       end
       
       should set_the_flash.to(I18n.t('controllers.application.not_yours'))
@@ -417,11 +417,11 @@ class CollectionsControllerTest < ActionController::TestCase
       end
     end
     
-    context "#destroy Collection by moderator" do
+    context "#destroy AssetSet by moderator" do
       setup do
-        @collection = Factory :collection
+        @collection = Factory :asset_set
         moderator_cas_login
-        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Collection" }
+        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "AssetSet" }
       end
       
       should set_the_flash.to(I18n.t('controllers.collections.flash_destroyed'))
@@ -433,7 +433,7 @@ class CollectionsControllerTest < ActionController::TestCase
       
       should "destroy and archive collection" do
         assert_raise(MongoMapper::DocumentNotFound) { @collection.reload }
-        archive = Archive.first(:kind => "Collection", :original_id => @collection.id)
+        archive = Archive.first(:kind => "AssetSet", :original_id => @collection.id)
         
         assert archive
         assert_equal @user.id, archive.destroying_user_id
@@ -526,7 +526,7 @@ class CollectionsControllerTest < ActionController::TestCase
     context "#add as owner" do
       setup do
         @asset = Factory :asset
-        @collection = build_collection
+        @collection = build_asset_set
         standard_cas_login(@collection.user)
         post :add, { :id => @collection.zooniverse_id, :asset_id => @asset.id, :format => :js }
       end
@@ -541,7 +541,7 @@ class CollectionsControllerTest < ActionController::TestCase
     context "#add as other user" do
       setup do
         @asset = Factory :asset
-        @collection = build_collection
+        @collection = build_asset_set
         standard_cas_login
         post :add, { :id => @collection.zooniverse_id, :asset_id => @asset.id, :format => :js }
       end
@@ -561,7 +561,7 @@ class CollectionsControllerTest < ActionController::TestCase
     context "#remove as owner" do
       setup do
         @asset = Factory :asset
-        @collection = Factory :collection, :asset_ids => [ @asset.id ]
+        @collection = Factory :asset_set, :asset_ids => [ @asset.id ]
         standard_cas_login(@collection.user)
         post :remove, { :id => @collection.zooniverse_id, :asset_id => @asset.zooniverse_id, :format => :js }
       end
@@ -581,7 +581,7 @@ class CollectionsControllerTest < ActionController::TestCase
     context "#remove as other user" do
       setup do
         @asset = Factory :asset
-        @collection = Factory :collection, :asset_ids => [ @asset.id ]
+        @collection = Factory :asset_set, :asset_ids => [ @asset.id ]
         standard_cas_login
         post :remove, { :id => @collection.zooniverse_id, :asset_id => @asset.zooniverse_id, :format => :js }
       end

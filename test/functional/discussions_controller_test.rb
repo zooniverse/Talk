@@ -55,10 +55,10 @@ class DiscussionsControllerTest < ActionController::TestCase
       end
     end
     
-    context "When requesting a Collection Discussion" do
+    context "When requesting a AssetSet Discussion" do
       setup do
         @asset = Factory :asset
-        @focus = collection_for @asset
+        @focus = asset_set_for @asset
         build_focus_for @focus
         get :show, { :id => @discussion.zooniverse_id }
       end

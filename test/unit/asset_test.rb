@@ -47,7 +47,7 @@ class AssetTest < ActiveSupport::TestCase
     end
     
     should "find #collections containing this asset" do
-      collection = Factory :collection
+      collection = Factory :asset_set
       collection.assets << @asset
       collection.save
       assert_equal [collection], @asset.collections

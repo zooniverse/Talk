@@ -1,17 +1,17 @@
 require 'test_helper'
 
-class CollectionTest < ActiveSupport::TestCase
-  context "A Collection" do
+class AssetSetTest < ActiveSupport::TestCase
+  context "A AssetSet" do
     setup do
       @asset1 = Factory :asset
-      collection_for @asset1
-      build_focus_for @collection
+      asset_set_for @asset1
+      build_focus_for @asset_set
       
       2.upto(5) do |i|
         asset = Factory :asset
         instance_variable_set "@asset#{i}", asset
-        @collection.asset_ids << asset.id
-        @collection.save
+        @asset_set.asset_ids << asset.id
+        @asset_set.save
       end
     end
     
@@ -20,37 +20,37 @@ class CollectionTest < ActiveSupport::TestCase
     should_include_modules :focus, :zooniverse_id, 'MongoMapper::Document'
     
     should "find #recent" do
-      assert_same_elements [@collection, @collection2, @collection3], Collection.recent
+      assert_same_elements [@asset_set, @asset_set2, @asset_set3], AssetSet.recent
     end
     
     should "find #recent_assets" do
-      assert_equal [@asset5, @asset4, @asset3], @collection.recent_assets(3)
+      assert_equal [@asset5, @asset4, @asset3], @asset_set.recent_assets(3)
     end
     
     should "find collections #with_asset" do
-      assert_equal [@collection], Collection.with_asset(@asset1)
+      assert_equal [@asset_set], AssetSet.with_asset(@asset1)
     end
     
     context "#destroy" do
       setup do
-        3.times{ conversation_for @collection }
+        3.times{ conversation_for @asset_set }
         
-        @conversation = @collection.conversation
-        @discussions = @collection.discussions
-        @document_hash = @collection.to_mongo
+        @conversation = @asset_set.conversation
+        @discussions = @asset_set.discussions
+        @document_hash = @asset_set.to_mongo
         
         @conversation.comments.first.body = "Edited"
         @conversation.comments.first.save
         
         @document_hash['conversation'] = @conversation.to_embedded_hash
-        @document_hash['discussions'] = @collection.discussions.collect(&:to_embedded_hash)
+        @document_hash['discussions'] = @asset_set.discussions.collect(&:to_embedded_hash)
         
-        @collection.archive_and_destroy_as @collection.user
-        @archive = Archive.first(:kind => "Collection", :original_id => @collection.id)
+        @asset_set.archive_and_destroy_as @asset_set.user
+        @archive = Archive.first(:kind => "AssetSet", :original_id => @asset_set.id)
       end
       
       should "remove collection, discussions, and comments" do
-        assert_raise(MongoMapper::DocumentNotFound) { @collection.reload }
+        assert_raise(MongoMapper::DocumentNotFound) { @asset_set.reload }
         
         assert_raise(MongoMapper::DocumentNotFound) { @conversation.reload }
         @conversation.comments.each do |comment|
@@ -67,11 +67,11 @@ class CollectionTest < ActiveSupport::TestCase
       end
       
       should "Archive collection" do
-        assert_equal "Collection", @archive.kind
-        assert_equal @collection.id, @archive.original_id
-        assert_equal @collection.zooniverse_id, @archive.zooniverse_id
-        assert_equal @collection.user_id, @archive.user_id
-        assert_equal @collection.user_id, @archive.destroying_user_id
+        assert_equal "AssetSet", @archive.kind
+        assert_equal @asset_set.id, @archive.original_id
+        assert_equal @asset_set.zooniverse_id, @archive.zooniverse_id
+        assert_equal @asset_set.user_id, @archive.user_id
+        assert_equal @asset_set.user_id, @archive.destroying_user_id
         assert_equal @document_hash, @archive.original_document
       end
       

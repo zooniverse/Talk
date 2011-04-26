@@ -76,11 +76,11 @@ class SearchControllerTest < ActionController::TestCase
     context "#index with keywords for collections" do
       setup do
         @asset = Factory :asset
-        @collection = collection_for @asset
-        @collection2 = collection_for @asset
+        @asset_set = asset_set_for @asset
+        @asset_set2 = asset_set_for @asset
         
-        build_focus_for @collection
-        build_focus_for @collection2
+        build_focus_for @asset_set
+        build_focus_for @asset_set2
         
         get :index, { :search => "keywords: #tag1", :for => "collections" }
       end
@@ -89,21 +89,21 @@ class SearchControllerTest < ActionController::TestCase
       should render_template :index
       
       should "list collections" do
-        assert_select "a[href='/collections/#{@collection.zooniverse_id}']", 1
-        assert_select "a[href='/collections/#{@collection2.zooniverse_id}']", 1
+        assert_select "a[href='/collections/#{@asset_set.zooniverse_id}']", 1
+        assert_select "a[href='/collections/#{@asset_set2.zooniverse_id}']", 1
       end
     end
     
     context "#index with multiple keywords for collections" do
       setup do
         @asset = Factory :asset
-        @collection = collection_for @asset
-        @collection2 = collection_for @asset
-        build_focus_for @collection
-        build_focus_for @collection2
+        @asset_set = asset_set_for @asset
+        @asset_set2 = asset_set_for @asset
+        build_focus_for @asset_set
+        build_focus_for @asset_set2
         comment = Comment.new :body => "it's #awesome"
         comment.author = @comment1.author
-        @collection.conversation.comments << comment
+        @asset_set.conversation.comments << comment
         
         get :index, { :search => "keywords: #tag1, awesome", :for => "collections" }
       end
@@ -112,8 +112,8 @@ class SearchControllerTest < ActionController::TestCase
       should render_template :index
       
       should "list collections" do
-        assert_select "a[href='/collections/#{@collection.zooniverse_id}']", 1
-        assert_select "a[href='/collections/#{@collection2.zooniverse_id}']", false
+        assert_select "a[href='/collections/#{@asset_set.zooniverse_id}']", 1
+        assert_select "a[href='/collections/#{@asset_set2.zooniverse_id}']", false
       end
     end
     
@@ -230,40 +230,40 @@ class SearchControllerTest < ActionController::TestCase
     context "#index with text search for collections" do
       setup do
         @asset = Factory :asset
-        @collection = collection_for @asset
-        build_focus_for @collection
+        @asset_set = asset_set_for @asset
+        build_focus_for @asset_set
         
-        get :index, { :search => @collection.zooniverse_id, :for => "collections" }
+        get :index, { :search => @asset_set.zooniverse_id, :for => "collections" }
       end
       
       should respond_with :success
       should render_template :index
       
       should "list collections" do
-        assert_select "a[href='/collections/#{@collection.zooniverse_id}']", 1
+        assert_select "a[href='/collections/#{@asset_set.zooniverse_id}']", 1
       end
     end
     
     context "#index with multiple text search terms for collections" do
       setup do
         @asset = Factory :asset
-        @collection = collection_for @asset
-        build_focus_for @collection
+        @asset_set = asset_set_for @asset
+        build_focus_for @asset_set
         
         @comment1.body += " awesomeness"
         @comment1.save
-        other = @collection2.discussions.first.comments.first
+        other = @asset_set2.discussions.first.comments.first
         other.body += " awesomeness"
         other.save
         
-        get :index, { :search => "#{ @collection.zooniverse_id } awesomeness", :for => "collections" }
+        get :index, { :search => "#{ @asset_set.zooniverse_id } awesomeness", :for => "collections" }
       end
       
       should respond_with :success
       should render_template :index
       
       should "list collections" do
-        assert_select "a[href='/collections/#{@collection.zooniverse_id}']", 1
+        assert_select "a[href='/collections/#{@asset_set.zooniverse_id}']", 1
       end
     end
   end

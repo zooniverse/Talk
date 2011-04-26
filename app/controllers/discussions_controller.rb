@@ -18,7 +18,7 @@ class DiscussionsController < ApplicationController
     @comment = Comment.new
     if @discussion.focus_base_type == "Board"
       @title = @discussion.focus.pretty_title
-    elsif @discussion.focus_base_type == "Collection"
+    elsif @discussion.focus_base_type == "AssetSet"
       @title = @discussion.focus.name
     else
       @title = @discussion.focus.zooniverse_id
@@ -84,7 +84,7 @@ class DiscussionsController < ApplicationController
       @discussion.focus_type = @focus.class.name
       
       @discussion.focus_base_type = if @focus.is_a?(KeywordSet)
-        "Collection"
+        "AssetSet"
       elsif @focus.is_a?(SubBoard)
         "Board"
       else
@@ -145,7 +145,7 @@ class DiscussionsController < ApplicationController
     @page_title = case @focus
     when Asset, Group
       @focus.zooniverse_id
-    when Collection, KeywordSet
+    when AssetSet, KeywordSet
       @focus.name
     when SubBoard
       "#{ @focus.board.pretty_title } | #{ @focus.pretty_title }"

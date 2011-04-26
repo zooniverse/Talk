@@ -15,7 +15,7 @@ class UserTest < ActiveSupport::TestCase
     
     should_have_keys :zooniverse_user_id, :name, :email, :blocked_list, :moderator, :admin, :scientist,
                      :state, :created_at, :updated_at, :last_active_at, :last_login_at, :current_login_at
-    should_associate :comments, :collections, :keyword_sets, :messages, :sent_messages
+    should_associate :comments, :asset_sets, :messages, :sent_messages
     
     should "be #privileged?" do
       assert !@user.privileged?
@@ -121,7 +121,7 @@ class UserTest < ActiveSupport::TestCase
     setup do
       @asset = Factory :asset
       build_focus_for @asset
-      collection_for @asset
+      asset_set_for @asset
       @keyword_set = build_keyword_set(2)
       
       @user = Factory :user
@@ -187,16 +187,16 @@ class UserTest < ActiveSupport::TestCase
       
     end
     
-    context "a collection" do
+    context "an asset_set" do
       should "allow only moderators and the owner" do
-        assert @collection.user.can_modify?(@collection)
-        assert @collection.user.can_destroy?(@collection)
+        assert @asset_set.user.can_modify?(@asset_set)
+        assert @asset_set.user.can_destroy?(@asset_set)
         
-        assert @moderator.can_modify?(@collection)
-        assert @moderator.can_destroy?(@collection)
+        assert @moderator.can_modify?(@asset_set)
+        assert @moderator.can_destroy?(@asset_set)
         
-        assert_not @user.can_modify?(@collection)
-        assert_not @user.can_destroy?(@collection)
+        assert_not @user.can_modify?(@asset_set)
+        assert_not @user.can_destroy?(@asset_set)
       end
     end
     

@@ -148,30 +148,30 @@ class ActiveSupport::TestCase
     end
   end
   
-  def collection_for(asset)
-    @collection = Collection.new :name => "Collection", :asset_ids => [asset.id]
-    @collection.user = Factory :user
-    @collection.save
-    @collection
+  def asset_set_for(asset)
+    @asset_set = AssetSet.new :name => "Collection", :asset_ids => [asset.id]
+    @asset_set.user = Factory :user
+    @asset_set.save
+    @asset_set
   end
   
-  def build_collection(assets = 5)
-    collection = Collection.new :name => "Collection"
-    collection.user = Factory :user
-    collection.save
+  def build_asset_set(assets = 5)
+    asset_set = AssetSet.new :name => "Collection"
+    asset_set.user = Factory :user
+    asset_set.save
     
-    assets.times{ collection.assets << Factory(:asset) }
-    collection
+    assets.times{ asset_set.assets << Factory(:asset) }
+    asset_set
   end
   
   def build_keyword_set(assets = 5)
-    collection = KeywordSet.new :name => "KeywordSet"
-    collection.user = Factory :user
-    collection.tags = ['tag1']
-    collection.save
+    keyword_set = KeywordSet.new :name => "KeywordSet"
+    keyword_set.user = Factory :user
+    keyword_set.tags = ['tag1']
+    keyword_set.save
     
     assets.times{ Factory(:asset, :tags => ['tag1']) }
-    collection
+    keyword_set
   end
   
   def conversation_for(focus)

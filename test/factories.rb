@@ -20,15 +20,15 @@ Factory.define :user do |u|
   u.email               { "#{Factory.next(:name)}@localhost" }
 end
 
-Factory.define :collection do |c|
+Factory.define :asset_set do |c|
   c.name                { "#{ Factory.next(:name) }" }
-  c.description         { "This is collection" }
+  c.description         { "This is an asset set" }
   c.user                { |user| user.association(:user) }
 end
 
 Factory.define :keyword_set do |c|
   c.name                { "#{ Factory.next(:name) }" }
-  c.description         { "This is a live collection" }
+  c.description         { "This is a keyword set" }
   c.tags                [ "tag2", "tag4" ]
   c.user                { |user| user.association(:user) }
 end

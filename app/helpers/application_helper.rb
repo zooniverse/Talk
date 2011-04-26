@@ -42,7 +42,7 @@ module ApplicationHelper
       link += ": "
     end
     
-    subject = discussion.focus_base_type == "Collection" ? " #{ discussion.focus.name }: #{ discussion.subject }" : discussion.subject
+    subject = discussion.focus_base_type == "AssetSet" ? " #{ discussion.focus.name }: #{ discussion.subject }" : discussion.subject
     link += link_to truncate(subject, :length => 60, :separator => ' '), discussion.path, :class => "discussion-link"
     link.html_safe
   end

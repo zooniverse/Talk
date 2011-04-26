@@ -38,12 +38,13 @@ class User
   
   timestamps!
   
-  many :collections
-  many :keyword_sets
+  many :asset_sets
   many :comments, :foreign_key => :author_id
   many :messages, :foreign_key => :recipient_id
   many :sent_messages, :class_name => "Message", :foreign_key => :sender_id
   many :events, :as => :eventable
+  
+  alias_method :collections, :asset_sets
   
   def online?
     return false if self.last_active_at.nil?
@@ -77,7 +78,7 @@ class User
       self == document.author || self.privileged?
     when Discussion
       self == document.started_by || self.privileged?
-    when Collection, KeywordSet
+    when AssetSet, KeywordSet
       self == document.user || self.privileged?
     else
       false
@@ -90,7 +91,7 @@ class User
       self == document.author || self.privileged?
     when Discussion
       self.privileged? || (self == document.started_by && document.number_of_comments == 0)
-    when Collection, KeywordSet
+    when AssetSet, KeywordSet
       self == document.user || self.privileged?
     else
       false

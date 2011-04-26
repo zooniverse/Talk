@@ -21,7 +21,7 @@ class CollectionsController < ApplicationController
   
   def new
     @page_title = "Collections | New Collection"
-    @collection = Collection.new
+    @collection = AssetSet.new
     set_options
   end
   
@@ -31,8 +31,8 @@ class CollectionsController < ApplicationController
     return unless moderator_or_owner :can_modify?, @collection
     @page_title = "Collections | Edit Collection"
     
-    if @collection && @collection._type == "Collection"
-      @kind = "Collection"
+    if @collection && @collection._type == "AssetSet"
+      @kind = "AssetSet"
     elsif @collection && @collection._type == "KeywordSet"
       @kind = "Keyword Set"
       @keywords = @collection.tags
@@ -43,8 +43,8 @@ class CollectionsController < ApplicationController
     if params[:collection_kind][:id] == "Keyword Set"
       @collection = KeywordSet.new(params[:collection])
       @collection.tags = params[:keyword].values
-    elsif params[:collection_kind][:id] == "Collection"
-      @collection = Collection.new(params[:collection])
+    elsif params[:collection_kind][:id] == "AssetSet"
+      @collection = AssetSet.new(params[:collection])
     end
     
     @collection.user = current_zooniverse_user
@@ -124,7 +124,7 @@ class CollectionsController < ApplicationController
   
   def browse
     default_params :page => 1, :per_page => 10
-    @collections = Collection.trending :page => @page, :per_page => @per_page
+    @collections = AssetSet.trending :page => @page, :per_page => @per_page
     
     respond_with(@collections) do |format|
       format.js { render :partial => "browse" }
@@ -134,7 +134,7 @@ class CollectionsController < ApplicationController
   private
   def find_collection
     if params[:id] =~ /^CMZS/
-      @focus = @collection = Collection.find_by_zooniverse_id(params[:id])
+      @focus = @collection = AssetSet.find_by_zooniverse_id(params[:id])
     else
       @focus = @collection = KeywordSet.find_by_zooniverse_id(params[:id])
     end
@@ -143,12 +143,12 @@ class CollectionsController < ApplicationController
   def set_options
     if params[:object_id]
       @asset = Asset.find_by_zooniverse_id(params[:object_id])
-      @kind = "Collection"
+      @kind = "AssetSet"
     elsif params[:keywords]
       @keywords = params[:keywords].is_a?(Array) ? params[:keywords] : params[:keywords].split
       @kind = "Keyword Set"
     elsif @collection && @collection.zooniverse_id
-      @kind = (@collection.zooniverse_id =~ /^CMZS/) ? "Collection" : "Keyword Set"
+      @kind = (@collection.zooniverse_id =~ /^CMZS/) ? "AssetSet" : "Keyword Set"
     elsif params[:collection_kind]
       @kind = params[:collection_kind][:id]
       @keywords = params[:keyword].values if params[:keyword].is_a?(Hash)

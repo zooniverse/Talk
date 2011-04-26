@@ -11,7 +11,7 @@ class AssetsController < ApplicationController
     
     @focus = @asset
     @mentions = Discussion.mentioning(@asset)
-    @collections = Collection.with_asset @asset, :page => 1, :per_page => 20
+    @collections = AssetSet.with_asset @asset, :page => 1, :per_page => 20
     @comment = Comment.new
     
     @discussion = @asset.conversation

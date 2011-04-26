@@ -21,16 +21,16 @@ task :ensure_indexes => :environment do
   Board.ensure_index [['title', 1]]
   Board.ensure_index [['board_id', 1]]
   
-  puts "Building indexes for Collection"
-  drop_indexes_on(Collection)
-  Collection.ensure_index [['zooniverse_id', 1]]
-  Collection.ensure_index [['user_id', 1], ['created_at', -1]]
-  Collection.ensure_index [['asset_ids', 1], ['created_at', -1]]
-  Collection.ensure_index [['tags', 1], ['created_at', -1]]
-  Collection.ensure_index [['_type', 1], ['user_id', 1], ['created_at', -1]]
-  Collection.ensure_index [['_type', 1], ['tags', 1], ['created_at', -1]]
-  Collection.ensure_index [['popularity', -1]]
-  Collection.ensure_index [['created_at', -1]]
+  puts "Building indexes for AssetSet"
+  drop_indexes_on(AssetSet)
+  AssetSet.ensure_index [['zooniverse_id', 1]]
+  AssetSet.ensure_index [['user_id', 1], ['created_at', -1]]
+  AssetSet.ensure_index [['asset_ids', 1], ['created_at', -1]]
+  AssetSet.ensure_index [['tags', 1], ['created_at', -1]]
+  AssetSet.ensure_index [['_type', 1], ['user_id', 1], ['created_at', -1]]
+  AssetSet.ensure_index [['_type', 1], ['tags', 1], ['created_at', -1]]
+  AssetSet.ensure_index [['popularity', -1]]
+  AssetSet.ensure_index [['created_at', -1]]
   
   puts "Building indexes for Comment"
   drop_indexes_on(Comment)

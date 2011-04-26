@@ -15,7 +15,7 @@ module DiscussionsHelper
       object_path(focus.zooniverse_id)
     when "Group"
       group_path(focus.zooniverse_id)
-    when "Collection", "KeywordSet"
+    when "AssetSet", "KeywordSet"
       collection_path(focus.zooniverse_id)
     when "Board", "SubBoard"
       focus.path

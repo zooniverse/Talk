@@ -144,7 +144,7 @@ class DiscussionTest < ActiveSupport::TestCase
         build_focus_for @keyword_set
         @lc_discussion = @keyword_set.discussions.first
         
-        @collection = collection_for(@asset)
+        @collection = asset_set_for(@asset)
         build_focus_for @collection
         @c_discussion = @collection.discussions.first
         

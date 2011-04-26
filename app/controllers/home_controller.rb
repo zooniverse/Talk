@@ -25,7 +25,7 @@ class HomeController < ApplicationController
   protected
   def set_options
     default_params :showing => "recent",
-                   :kinds => "assets collections discussions",
+                   :kinds => "assets asset_sets discussions",
                    :by_user => false,
                    :since => Time.now.utc.beginning_of_day,
                    :switching => false,

@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     
     @per_page = 10
     @comment_page = @discussion_page = 1
-    @collections = Collection.sort(:created_at.desc).all(:user_id => @user.id)
+    @collections = AssetSet.sort(:created_at.desc).all(:user_id => @user.id)
     @comments = @user.comments.paginate(:page => 1, :per_page => @per_page)
     @discussions = Discussion.where(:started_by_id => @user.id).sort(:popularity.desc).paginate(:page => 0, :per_page => @per_page)
   end

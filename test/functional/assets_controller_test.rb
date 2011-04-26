@@ -13,7 +13,7 @@ class AssetsControllerTest < ActionController::TestCase
         @asset = Factory :asset
         build_focus_for @asset
         conversation_for @asset
-        collection_for @asset
+        asset_set_for @asset
         
         get :show, { :id => @asset.zooniverse_id }
       end
@@ -44,7 +44,7 @@ class AssetsControllerTest < ActionController::TestCase
       end
       
       should "display collection list" do
-        assert_select '.rounded-panel .collection:nth-child(1) h2 a', :text => @collection.name
+        assert_select '.rounded-panel .collection:nth-child(1) h2 a', :text => @asset_set.name
       end
       
       should "display discussions list" do

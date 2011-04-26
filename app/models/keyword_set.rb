@@ -1,5 +1,5 @@
 # A dynamic collection of Asset built by tag and created by a User
-class KeywordSet < Collection
+class KeywordSet < AssetSet
   zoo_id :prefix => "C", :sub_id => "L"
   before_save :downcase_tags
   
@@ -24,11 +24,11 @@ class KeywordSet < Collection
     self.zooniverse_id = nil
     self.destroy
     
-    new_self = Collection.create(self.to_mongo)
+    new_self = AssetSet.create(self.to_mongo)
     new_self.set_focus
     Discussion.collection.update({ :_id => self.conversation_id }, { :$set => { :subject => new_self.zooniverse_id } })
-    Comment.collection.update({ :focus_id => self._id }, { :$set => { :focus_type => "Collection" } })
-    Tagging.collection.update({ :focus_id => self._id }, { :$set => { :focus_type => "Collection" } })
+    Comment.collection.update({ :focus_id => self._id }, { :$set => { :focus_type => "AssetSet" } })
+    Tagging.collection.update({ :focus_id => self._id }, { :$set => { :focus_type => "AssetSet" } })
     new_self
   end
   

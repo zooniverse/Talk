@@ -1,5 +1,7 @@
 Talk::Application.routes.draw do
-  resources :collections do 
+  resources :collections, :as => "asset_sets"
+  
+  resources :collections do
     resources :discussions
     
     member do

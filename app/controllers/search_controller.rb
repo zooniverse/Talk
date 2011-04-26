@@ -14,10 +14,10 @@ class SearchController < ApplicationController
     case @for
     when 'collections'
       if @keywords.nil?
-        selector = { :criteria => { :$or => [{ :focus_type => "Collection" }, { :focus_type => "KeywordSet" }] } }
+        selector = { :criteria => { :$or => [{ :focus_type => "AssetSet" }, { :focus_type => "KeywordSet" }] } }
         @collections = focus_results(search_terms, selector)
       else
-        @results = @collections = Collection.with_keywords(search_terms, :page => @page, :per_page => @per_page)
+        @results = @collections = AssetSet.with_keywords(search_terms, :page => @page, :per_page => @per_page)
       end
     when 'comments'
       selector = { :per_page => @per_page, :page => @page }
