@@ -210,7 +210,7 @@ class Comment
   end
   
   def denormalize_counts
-    self.discussion.update_counts
+    self.discussion.update_counts if self.discussion
   end
   
   def synchronize_tags

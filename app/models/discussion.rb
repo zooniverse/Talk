@@ -24,6 +24,7 @@ class Discussion
   
   before_create :set_started_by
   after_save :update_counts
+  before_destroy :update_counts
   
   # Fetches the Focus of this Discussion if it exists
   def focus

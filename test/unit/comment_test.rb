@@ -83,8 +83,8 @@ class CommentTest < ActiveSupport::TestCase
     
     context "parsing tags and mentions" do
       setup do
-        comment = @comment1.to_mongo.update({ "body" => "blah #Mixed #CASE #tAgS #tag1 blah #tag2 blah #{ @asset.zooniverse_id } is awesome" })
-        @comment1 = Comment.create(comment)
+        @comment1.body = "blah #Mixed #CASE #tAgS #tag1 blah #tag2 blah #{ @asset.zooniverse_id } is awesome"
+        @comment1.save
       end
       
       should "#parse_body for tags and mentions" do

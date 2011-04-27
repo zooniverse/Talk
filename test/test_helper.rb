@@ -19,7 +19,7 @@ module Shoulda
       
       klasses.each do |other_klass|
         should "have associated #{other_klass}" do
-          assert_contains klass.associations.keys, other_klass.to_s
+          assert_contains klass.associations.keys, other_klass.to_sym
         end
       end
     end
