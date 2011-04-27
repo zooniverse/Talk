@@ -966,44 +966,6 @@ div.more-results {text-align: center;}
   padding: 0;
 }
 
-
-/* Browse */
-.browse {
-  padding: 40px 0;
-}
-
-.browse .titles {
-  display: block;
-  clear: both;
-  height: 20px;
-  margin-bottom: 5px;
-}
-
-.browse .titles .engraved {
-  text-align: center;
-  font-family: georgia;
-  font-style: italic;
-  font-size: 1.5em;
-  color: #afafaf;
-  text-shadow: #fff 1px 1px;
-}
-
-.browse .titles .focus,  .browse .titles .discussions, .browse .titles .comments {
-  float: left;
-}
-
-.browse .titles .focus {
-  width: 195px;
-}
-
-.browse .titles .discussions {
-  width: 350px;
-}
-
-.browse .titles .comments {
-  width: 385px;
-}
-
 .col {
   float: left;
   display: block;

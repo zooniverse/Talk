@@ -134,7 +134,7 @@ class CollectionsControllerTest < ActionController::TestCase
         
         options = {
           :collection_kind => {
-            :id => "AssetSet"
+            :id => "Asset Set"
           },
           :collection => {
             :name => "My Collection",
@@ -189,7 +189,7 @@ class CollectionsControllerTest < ActionController::TestCase
         options = {
           :id => @collection.zooniverse_id,
           :collection_kind => {
-            :id => "AssetSet"
+            :id => "Asset Set"
           },
           :collection => {
             :description => "Is more awesome"
@@ -217,7 +217,7 @@ class CollectionsControllerTest < ActionController::TestCase
         options = {
           :id => @collection.zooniverse_id,
           :collection_kind => {
-            :id => "AssetSet"
+            :id => "Asset Set"
           },
           :collection => {
             :description => "Is more awesome"
@@ -246,7 +246,7 @@ class CollectionsControllerTest < ActionController::TestCase
         options = {
           :id => @collection.zooniverse_id,
           :collection_kind => {
-            :id => "AssetSet"
+            :id => "Asset Set"
           },
           :collection => {
             :description => "Is more awesome"
@@ -274,7 +274,7 @@ class CollectionsControllerTest < ActionController::TestCase
         options = {
           :id => @collection.zooniverse_id,
           :collection_kind => {
-            :id => "KeywordSet"
+            :id => "Keyword Set"
           },
           :keyword => {
             1 => 'big',
@@ -304,7 +304,7 @@ class CollectionsControllerTest < ActionController::TestCase
         options = {
           :id => @collection.zooniverse_id,
           :collection_kind => {
-            :id => "KeywordSet"
+            :id => "Keyword Set"
           },
           :keyword => {
             1 => 'big',
@@ -335,7 +335,7 @@ class CollectionsControllerTest < ActionController::TestCase
         options = {
           :id => @collection.zooniverse_id,
           :collection_kind => {
-            :id => "KeywordSet"
+            :id => "Keyword Set"
           },
           :keyword => {
             1 => 'big',
@@ -360,7 +360,7 @@ class CollectionsControllerTest < ActionController::TestCase
     context "#destroy AssetSet not logged in" do
       setup do
         @collection = Factory :asset_set
-        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "AssetSet" }
+        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Asset Set" }
       end
       
       should set_the_flash.to(I18n.t('controllers.application.not_yours'))
@@ -379,7 +379,7 @@ class CollectionsControllerTest < ActionController::TestCase
       setup do
         @collection = Factory :asset_set
         standard_cas_login(@collection.user)
-        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "AssetSet" }
+        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Asset Set" }
       end
       
       should set_the_flash.to(I18n.t('controllers.collections.flash_destroyed'))
@@ -402,7 +402,7 @@ class CollectionsControllerTest < ActionController::TestCase
       setup do
         @collection = Factory :asset_set
         standard_cas_login
-        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "AssetSet" }
+        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Asset Set" }
       end
       
       should set_the_flash.to(I18n.t('controllers.application.not_yours'))
@@ -421,7 +421,7 @@ class CollectionsControllerTest < ActionController::TestCase
       setup do
         @collection = Factory :asset_set
         moderator_cas_login
-        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "AssetSet" }
+        post :destroy, { :id => @collection.zooniverse_id, :collection_kind => "Asset Set" }
       end
       
       should set_the_flash.to(I18n.t('controllers.collections.flash_destroyed'))

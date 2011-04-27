@@ -1,6 +1,6 @@
 class BoardsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:science, :help, :chat]
-  respond_to :js, :only => [:browse, :show, :arrange, :update]
+  respond_to :js, :only => [:show, :arrange, :update]
   before_filter :require_privileged_user, :only => [:arrange, :update]
   
   def show
@@ -122,14 +122,6 @@ class BoardsController < ApplicationController
         end
       end
     end
-  end
-  
-  def browse
-    @boards = [Board.help, Board.science, Board.chat]
-    
-    respond_with(@boards) do |format|
-       format.js { render :partial => "browse" }
-     end
   end
   
   protected

@@ -2,7 +2,7 @@ class DiscussionsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:show]
   before_filter CASClient::Frameworks::Rails::Filter, :only => [:new, :create, :edit, :update, :toggle_featured]
   before_filter :require_privileged_user, :only => :toggle_featured
-  respond_to :js, :only => [:edit, :update, :toggle_featured, :browse]
+  respond_to :js, :only => [:edit, :update, :toggle_featured]
   
   def show
     default_params :page => 1, :per_page => 10
@@ -113,13 +113,6 @@ class DiscussionsController < ApplicationController
     @discussion.save
   end
   
-  def browse
-    @discussions = Discussion.limit(10).sort(:created_at.desc).all(:focus_id => params[:id]) if params[:id]
-    respond_with(@discussions) do |format|
-      format.js { render :partial => "browse" }
-    end
-  end
-  
   protected
   def find_focus
     if params.has_key? :board_id
@@ -136,7 +129,7 @@ class DiscussionsController < ApplicationController
     focus_key = "sub_board_id" if params[:sub_board_id].present?
     focus_id = params[focus_key]
     return unless focus_key and focus_id
-    klass = focus_key.sub('_id', '').sub('object', 'asset').camelize.constantize
+    klass = focus_key.sub('_id', '').sub('object', 'asset').sub('collection', 'asset_set').camelize.constantize
     klass = KeywordSet if focus_key == 'collection_id' && focus_id =~ /^CMZL/
     @focus = ([Board, SubBoard].include? klass) ? klass.find_by_title(focus_id) : klass.find_by_zooniverse_id(focus_id)
   end

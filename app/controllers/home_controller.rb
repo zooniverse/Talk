@@ -1,5 +1,5 @@
 class HomeController < ApplicationController 
-  before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:index, :browse]
+  before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:index]
   skip_before_filter :check_for_banned_user, :only => :index
   respond_to :html
   respond_to :js
@@ -14,9 +14,6 @@ class HomeController < ApplicationController
   def more
     set_options
     set_documents @showing
-  end
-  
-  def browse
   end
   
   def status

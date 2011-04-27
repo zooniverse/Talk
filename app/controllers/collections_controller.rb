@@ -1,7 +1,7 @@
 class CollectionsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:show]
   before_filter CASClient::Frameworks::Rails::Filter, :only => [:new, :edit, :add]
-  respond_to :js, :only => [:add, :remove, :browse]
+  respond_to :js, :only => [:add, :remove]
   
   def show
     default_params :page => 1, :per_page => 10
@@ -32,7 +32,7 @@ class CollectionsController < ApplicationController
     @page_title = "Collections | Edit Collection"
     
     if @collection && @collection._type == "AssetSet"
-      @kind = "AssetSet"
+      @kind = "Asset Set"
     elsif @collection && @collection._type == "KeywordSet"
       @kind = "Keyword Set"
       @keywords = @collection.tags
@@ -43,7 +43,7 @@ class CollectionsController < ApplicationController
     if params[:collection_kind][:id] == "Keyword Set"
       @collection = KeywordSet.new(params[:collection])
       @collection.tags = params[:keyword].values
-    elsif params[:collection_kind][:id] == "AssetSet"
+    elsif params[:collection_kind][:id] == "Asset Set"
       @collection = AssetSet.new(params[:collection])
     end
     
@@ -122,15 +122,6 @@ class CollectionsController < ApplicationController
     end
   end
   
-  def browse
-    default_params :page => 1, :per_page => 10
-    @collections = AssetSet.trending :page => @page, :per_page => @per_page
-    
-    respond_with(@collections) do |format|
-      format.js { render :partial => "browse" }
-    end
-  end
-  
   private
   def find_collection
     if params[:id] =~ /^CMZS/
@@ -143,12 +134,12 @@ class CollectionsController < ApplicationController
   def set_options
     if params[:object_id]
       @asset = Asset.find_by_zooniverse_id(params[:object_id])
-      @kind = "AssetSet"
+      @kind = "Asset Set"
     elsif params[:keywords]
       @keywords = params[:keywords].is_a?(Array) ? params[:keywords] : params[:keywords].split
       @kind = "Keyword Set"
     elsif @collection && @collection.zooniverse_id
-      @kind = (@collection.zooniverse_id =~ /^CMZS/) ? "AssetSet" : "Keyword Set"
+      @kind = (@collection.zooniverse_id =~ /^CMZS/) ? "Asset Set" : "Keyword Set"
     elsif params[:collection_kind]
       @kind = params[:collection_kind][:id]
       @keywords = params[:keyword].values if params[:keyword].is_a?(Hash)

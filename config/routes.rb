@@ -8,10 +8,6 @@ Talk::Application.routes.draw do
       post :add
       post :remove
     end
-    
-    collection do
-      get :browse
-    end
   end
   
   resources :keyword_sets do
@@ -28,7 +24,6 @@ Talk::Application.routes.draw do
     
     collection do
       post :markitup_parser
-      get :browse
     end
   end
   
@@ -38,10 +33,6 @@ Talk::Application.routes.draw do
     member do
       post :toggle_featured
     end
-    
-    collection do
-      get :browse
-    end
   end
   
   resources :groups do
@@ -50,10 +41,6 @@ Talk::Application.routes.draw do
   
   resources :objects, :controller => :assets do 
     resources :discussions
-    
-    collection do
-      get :browse
-    end
   end
   
   resources :messages do
@@ -83,10 +70,6 @@ Talk::Application.routes.draw do
     member do
       post :arrange
     end
-    
-    collection do
-      get :browse
-    end
   end
   
   resources :admin do
@@ -103,7 +86,6 @@ Talk::Application.routes.draw do
   
   root :to => "home#index"
   match "/more" => "home#more"
-  match "/browse" => "home#browse"
   match "/status" => "home#status"
   
   # mapping for boards

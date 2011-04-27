@@ -8,6 +8,7 @@ if(<%= @switching %>) {
   var current_page_number = <%= instance_variable_get("@#{ kind }_options")[:page] %>;
   
   if(<%= @switching || @selecting %> || $('#<%= kind %>_page_' + current_page_number).length == 0) {
+    <%- kind = kind.sub('asset_sets', 'collections') %>
     var container = $('#<%= kind %>');
     var new_page = $("<%= escape_javascript(render :partial => kind) %>");
     
