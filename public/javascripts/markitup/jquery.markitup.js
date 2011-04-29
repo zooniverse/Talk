@@ -512,7 +512,6 @@
 							setTimeout(function() {
 								li.triggerHandler('mousedown');
 							},1);
-							alert('triggerHandler');
 							return false;
 						}
 					}
