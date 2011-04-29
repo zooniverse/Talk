@@ -8,4 +8,6 @@ tmp/**/*
 doc/
 *.DS_Store
 dump
+public/stylesheets/.sass-cache/
+*.sassc
 

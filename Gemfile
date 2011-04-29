@@ -13,7 +13,6 @@ gem 'state_machine', '0.10.4'
 gem 'bluecloth', '2.0.9'
 gem "will_paginate", :git => 'http://github.com/mislav/will_paginate.git', :branch => 'rails3'
 
-
 group :production do
   gem 'newrelic_rpm', '2.14.1'
 end
@@ -21,6 +20,7 @@ end
 group :development do
   gem 'mysql'
   gem 'mongrel', '1.2.0.pre2'
+  gem 'sass', '3.1.1'
 end
 
 group :test do

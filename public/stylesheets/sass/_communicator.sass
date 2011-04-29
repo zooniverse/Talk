@@ -1,0 +1,1550 @@
+a.button
+  background: transparent url(/images/interface/button_bg_right.png) no-repeat scroll 100% 0%
+  color: #666666
+  display: block
+  font: normal normal bold 12px / normal arial, sans-serif
+  height: 20px
+  margin-right: 6px
+  margin-top: 3px
+  padding-right: 15px
+  text-decoration: none
+  cursor: pointer
+  span
+    background: transparent url(/images/interface/button_bg_left.png) no-repeat
+    display: block
+    line-height: 14px
+    padding: 3px 0px 3px 15px
+  &.pressed
+    background-position: 100% 100%
+    color: #000000
+    span
+      background-position: 0% 100%
+      padding: 4px 0px 2px 15px
+
+.admin a
+  color: green !important
+
+.alert
+  background: #FF312C
+  min-height: 25px
+  top: -25px
+  border-bottom: solid 2px #B00B00
+  left: 0
+  padding: 5px 10px 0px
+  position: absolute
+  width: 925px
+  z-index: 9999
+  cursor: pointer
+  p
+    font-size: 1.4em
+    padding: 2px 10px
+    text-align: right
+
+#asset-as-focus
+  img
+    border: solid #000 1px
+  h1
+    font-size: 1.8em
+    margin: 0
+  .collection-info
+    margin-top: -22px
+    float: right
+    width: 300px
+  .col
+    width: 300px
+  h2.asset-collections
+    color: #999999
+    font-size: 1.3em
+    margin: 0
+
+.asset-large
+  float: left
+  width: 279px
+  height: 279px
+
+h1.asset-name
+  margin-bottom: 20px
+
+.asset-actions
+  height: 30px
+  li
+    float: left
+    margin-right: 10px
+
+#assets h2, .featured h2
+  font-family: "Gill Sans Light", "GillSans-Light", "Gill Sans", "Gill Sans MT", sans-serif
+
+.board
+  &.content
+    padding: 0px 39px 39px 39px
+  .rhc
+    float: right
+    padding-top: 0
+    width: 225px
+    margin-right: -30px
+    .item
+      padding: 10px
+      .name
+        margin-bottom: 8px
+  .lhc
+    float: left
+    margin-left: -30px
+    padding: 15px
+    background: #FFFFFF
+    width: 650px
+  h2.title
+    color: #AAAAAA
+    line-height: 26px
+    font-size: 2.0em
+    font-family: "Gill Sans Light", "GillSans-Light", "Gill Sans", "Gill Sans MT", sans-serif
+  #boards
+    display: block
+    clear: none
+    padding: 10px
+    margin: 0px auto 15px auto
+    font-family: "Gill Sans Light", "GillSans-Light", "Gill Sans", "Gill Sans MT", sans-serif
+
+.board
+  #boards
+    form
+      text-align: center
+    input
+      margin: 0px 20px
+    .current
+      color: #343534
+      text-shadow: 1px 1px #FFFFFF
+      -moz-border-radius: 2px
+      -webkit-border-radius: 2px
+      border-radius: 2px
+      -moz-box-shadow: 0px 0px 5px #979797
+      -webkit-box-shadow: 0px 0px 5px #979797
+      box-shadow: 0px 0px 5px #979797
+    .arrangeable, .arrange-link, .edit-link
+      background: #DCDCDC
+      color: #2075AF
+      text-shadow: 1px 1px #FFFFFF
+      -moz-border-radius: 2px
+      -webkit-border-radius: 2px
+      border-radius: 2px
+      -moz-box-shadow: 0px 0px 5px #979797
+      -webkit-box-shadow: 0px 0px 5px #979797
+      box-shadow: 0px 0px 5px #979797
+    .parent li
+      height: 18px
+      padding: 5px
+      margin-bottom: 5px
+    .parent-board
+      font-size: 25px
+      padding: 0px 8px
+    .parent .children
+      margin-left: 25px
+      list-style: disc outside
+      li
+        height: 17px
+        padding: 5px
+        margin-bottom: 0px
+      .sub-board
+        font-size: 13px
+        padding: 1px 4px
+  #discussions
+    .discussion
+      display: block
+      clear: both
+    .page-nav .more
+      text-indent: -40px
+
+.board #discussions .discussion
+  border: 1px dotted #AFAFAF
+  border-top: none
+  padding: 5px
+  height: 47px
+
+.board #discussions .page-nav, .discussion .page-nav
+  display: block
+  clear: both
+  height: 25px
+  margin: -10px 0 0 15px
+  text-align: center
+
+.board #discussions .page-nav .more, .discussion .page-nav .more
+  float: right
+  cursor: pointer
+  background: url(/images/colorbox/controls.png) no-repeat -50px 0px
+  width: 25px
+  height: 25px
+  text-indent: -55px
+  line-height: 25px
+  color: #990000
+
+.board #discussions .page-nav .label, .discussion .page-nav .label
+  position: absolute
+
+.board #discussions .page-nav .pages, .discussion .page-nav .pages
+  position: relative
+  display: inline
+  clear: none
+  width: 400px
+  top: 5px
+
+.board #discussions .page-nav .pages
+  .previous_page, .next_page
+    display: none
+
+.board_info
+  h2
+    background: transparent
+    padding: 0
+    a
+      color: #B3B3B3
+      text-shadow: 1px 1px #FFFFFF
+      font-size: 1.2em
+      line-height: 1.2em
+      text-transform: none
+  color: #B3B3B3
+  text-shadow: 1px 1px #FFFFFF
+  font-size: 1.2em
+  line-height: 1.2em
+  text-transform: none
+  font-size: 2.0em
+  text-align: right
+
+#boards
+  .arrange-link
+    margin: -20px -20px 0px 0px
+    padding: 2px 8px
+    float: right
+  .edit-link
+    margin: -20px 40px 0px 0px
+    padding: 2px 8px
+    float: right
+  .remove, .add, .accept, .cancel
+    display: inline
+    position: absolute
+    width: 16px
+    height: 16px
+    cursor: pointer
+  .remove
+    margin-left: 5px
+    background: url('/images/icons/delete.png') no-repeat
+  .add
+    margin-left: 26px
+    background: url('/images/icons/add.png') no-repeat
+  .accept
+    margin-left: 5px
+    background: url('/images/icons/accept.png') no-repeat
+  .cancel
+    margin-left: 26px
+    background: url('/images/icons/cancel.png') no-repeat
+
+#cancel-response
+  float: left
+  margin-right: 3px
+  li
+    background-image: url('/images/icons/cancel.png')
+    background-repeat: no-repeat
+    width: 16px
+    height: 16px
+    cursor: pointer
+
+.circle
+  -webkit-border-radius: 22px
+  -moz-border-radius: 22px
+  border-radius: 22px
+  height: 44px
+  width: 44px
+  float: right
+  margin-top: 25px
+  p
+    margin: 14px 0
+    text-align: center
+    color: #fff
+    a
+      color: #fff
+
+.col
+  float: left
+  display: block
+  margin: 0
+  .item
+    cursor: pointer
+
+.col .engraved
+  text-align: center
+  font-family: georgia
+  font-style: italic
+  font-size: 1.5em
+  color: #afafaf
+  text-shadow: #fff 1px 1px
+  margin-top: 50px
+
+.col1
+  width: 195px
+  min-height: 300px
+
+.col2
+  width: 350px
+
+.col2 .item
+  background: #ebebeb
+  border-left: solid #dbdbdb 2px
+  &:hover
+    background: #fff
+    border-left: solid #cbcbcb 2px
+    cursor: pointer
+
+.col3
+  width: 385px
+
+.collect-asset
+  cursor: pointer
+  color: #990000
+  text-decoration: none
+
+.collect-dialog
+  max-height: 450px
+  overflow-y: auto
+  li
+    &.new-collection img
+      margin: 3px 2px 0px -8px
+    margin: 0px 0px 1px 0px
+    padding: 5px 5px 5px 12px
+    background-color: #F6F6F6
+    border-bottom: 1px dotted #AFAFAF
+    &:hover
+      background: #FFFFFF
+  ul li a
+    color: #990000
+
+.collection
+  h2
+    margin: 0 0 12px 0px
+    font-weight: normal
+    font-family: 'HelveticaNeue-Light',Helvetica, verdana, sans-serif
+    a
+      font-size: 0.8em
+  .large
+    float: left
+    margin-right: 0
+    position: relative
+    z-index: 110
+    border-right: solid #fff 1px
+  .film img
+    margin-right: 2px
+
+.collection
+  .progress
+    background: #dedede
+    height: 5px
+    width: 85px
+    float: right
+  .stats
+    margin-right: 20px
+    height: 22px
+    float: right
+    width: 150px
+    text-align: right
+    top: 113px
+    right: 0px
+
+.collection-asset
+  float: left
+  margin-right: 5px
+
+.collection-asset-container
+  margin-left: 12px
+  float: left !important
+
+.collection-asset-nav
+  margin-left: 12px !important
+
+.collection-thumbnail
+  cursor: pointer
+
+.collection-description
+  color: #A9A9A9
+
+.collection-info
+  width: 300px
+  float: right
+  overflow: hidden
+  position: relative
+  .collection
+    padding: 0px 5px
+    font-size: 0.7em
+    h2
+      margin: 0
+      text-transform: uppercase
+      font-family: 'Gill Sans', 'Gill Sans MT', verdana, sans-serif
+    .film img
+      margin: 0
+  .container
+    width: 1500px
+    position: relative
+  .col
+    width: 300px
+  .nav
+    height: 35px
+    padding: 5px 0px 0px 5px
+    clear: both
+    position: relative
+    top: 5px
+    a
+      background: #dfdfdf
+      height: 6px
+      width: 6px
+      float: left
+      margin: 0px 5px 5px 0px
+      -moz-border-radius: 3px
+      -webkit-border-radius: 3px
+      border-radius: 3px
+    .current
+      background: #999
+
+h1.collection-title
+  font-size: 1.8em
+  margin: 0
+
+.collections-total
+  background: url(/images/icons/collection.png) no-repeat left
+
+.comment
+  margin-bottom: 10px
+  border-bottom: dotted #afafaf 1px
+  padding-bottom: 10px
+  position: relative
+  left: -40px
+  background: #fff
+  padding: 20px 30px 20px 40px
+
+.comment
+  img.user
+    float: left
+    margin-top: 3px
+    margin-right: 10px
+  .date
+    color: #B3B3B3
+    float: right
+    font-family: georgia
+    font-size: 1.1em
+    font-style: italic
+    right: -15px
+    top: -11px
+
+.comment .body
+  margin-left: 56px
+  max-height: 800px
+  overflow-y: auto
+  overflow-x: hidden
+  padding-right: 5px
+  blockquote
+    padding: 5px
+    border: 1px solid #afafaf
+    background-color: #eeeeee
+
+.comment .body
+  ul, ol
+    margin: 5px 5px 5px 20px
+    padding: 0
+
+.comment .body ul li, .message .body ul li
+  list-style: disc
+  margin-left: 20px
+
+.comment .body ol li, .message .body ol li
+  list-style: decimal
+  margin-left: 20px
+
+.comment .body blockquote p, .message .body blockquote p
+  margin: 0
+
+.comment_container
+  margin-left: 50px
+
+.comment-edit.short-comment-form
+  text-align: right
+
+.comment-form
+  .markItUpHeader, input
+    float: right
+
+.comment-form
+  h2
+    margin: 10px 0 0 0
+    position: relative
+    top: 26px
+    padding: 2px
+  position: relative
+  left: -40px
+  .markItUp
+    width: 620px
+
+.comment-preview .comment
+  min-height: 50px
+
+.comment-preview .comment
+  left: 0px
+
+.comment_status
+  font-family: georgia, serif
+  color: #d3d3d3
+  margin-left: 10px
+  font-size: 1.5em
+  font-style: italic
+
+.comment-total
+  background: url(/images/icons/comment.png) no-repeat left
+
+.comment-total, .users-total, .comments-total, .collections-total
+  padding-left: 16px
+  color: #000
+  font-size: 85%
+  margin-right: 10px
+  float: left
+
+.comments .comment
+  background: #e0ebcd
+  border-right: solid #c6d5ac 12px
+  overflow: hidden
+  img
+    display: block
+    margin-bottom: 10px
+    float: right
+  p
+    margin: 0 55px 0 0
+    font-family: georgia, serif
+    font-style: italic
+  .in
+    color: #000
+    margin-top: 25px
+
+.comments-total
+  background: url(/images/icons/comments.png) no-repeat left
+
+.content
+  padding: 39px
+
+.ct
+  h1
+    margin: 0 0 10px 0
+  h2
+    margin: 0 0 5px 0
+
+.discussed
+  &.collection-info
+    width: 215px !important
+    float: none !important
+  &.col
+    width: 215px !important
+
+.discussed-asset
+  float: right
+  width: 150px
+  height: 150px
+  margin: -60px -30px -50px 0
+
+.discussion
+  .last-post, .started-by
+    float: right
+    height: 18px
+    font-size: 90%
+    margin-right: 10px
+    overflow: hidden
+  .last-post
+    max-width: 300px
+  .started-by
+    max-width: 160px
+  .stats
+    display: block
+    clear: both
+    margin-top: 10px
+  .title
+    float: left
+    max-width: 400px
+    height: 18px
+    overflow: hidden
+
+.discussion .discussion-header
+  padding: 20px 40px
+  overflow: hidden
+  background: #d5eff7
+  left: -40px
+  position: relative
+  border-right: solid 8px #C2D9E2
+
+.discussion .page-nav
+  margin: 2px 0 0 0
+  position: relative
+  left: -40px
+  background: #FFFFFF
+  padding: 15px 2px
+  border-bottom: 1px dotted #AFAFAF
+
+.discussion .page-nav .more
+  text-indent: -40px
+
+.discussion .page-nav .pages
+  .previous_page, .next_page
+    display: none
+
+.discussion .rhc
+  padding: 0 0 0 10px
+  width: 226px
+
+.discussion .stats
+  height: 18px
+
+.discussion-header
+  p
+    line-height: 25px
+    margin: 0
+  form
+    margin: 0 0 20px 0
+  input
+    &[type="submit"], &[type="button"]
+      margin-left: 5px
+  .started_by
+    clear: both
+
+.discussion-header .subtext
+  font-size: 85%
+
+.discussion-items img
+  margin-bottom: 5px
+
+.discussion-title
+  font-size: 1.8em
+  margin-bottom: 15px
+
+.discussions .discussion p
+  font-family: 'Lucida Grande', verdana, sans-serif
+  font-size: 0.9em
+  color: #666
+
+#discussions-selector
+  margin-bottom: 10px
+  select
+    margin-right: 10px
+  p.label
+    display: inline
+    margin-right: 10px
+
+div.more-results
+  text-align: center
+
+.edit_collection #collection-assets
+  margin-top: 5px
+  display: block
+  clear: both
+
+.featured
+  width: 228px
+  padding: 10px 16px 20px 0
+  background: #fff
+
+.featured
+  margin-bottom: 20px
+  .list
+    position: relative
+  .ribbon
+    height: 55px
+    width: 100%
+    position: absolute
+    left: 0
+    top: 40px
+    z-index: 100
+  img
+    position: absolute
+    z-index: 200
+    left: 20px
+  p
+    display: block
+    padding: 15px 20px 0
+  .box_shadow
+    background: #000
+    height: 130px
+    left: 28px
+    opacity: 0.2
+    position: relative
+    top: 10px
+    width: 130px
+    z-index: 150
+
+.flash
+  ul
+    margin-left: 30px
+    list-style: disc outside none
+  li
+    margin-left: 30px
+    list-style: disc outside none
+    font-size: 1.4em
+
+form.edit_comment
+  input
+    &.left-submit
+      float: left
+      margin-left: 65px
+    &.right-submit
+      position: relative
+      left: 50px
+  .left-edit-cancel
+    float: left
+    margin-left: 15px
+  .right-edit-cancel
+    position: relative
+    left: 65px
+  .edit-short-text
+    width: 460px
+
+.full-width .comment-form .markItUp
+  width: 855px
+
+.full-width .lhc
+  width: 100%
+
+.gold
+  background: #a49e67
+
+.home
+  .asset
+    .stats
+      position: relative
+      width: 100%
+      display: block
+      text-align: left
+      margin-left: 2px
+      color: #FFFFFF
+    .circle
+      position: absolute
+      top: 2px
+      left: 20px
+      margin-top: 0
+      width: 50px
+      height: 50px
+      -webkit-border-radius: 25px
+      -moz-border-radius: 25px
+      border-radius: 25px
+      p
+        margin-top: 18px
+  .comment
+    .author
+      float: right
+      right: -2px
+      background: none
+      border-bottom: 3px solid #AEBC99
+      padding: 2px 5px
+      position: absolute
+      text-align: right
+    .in a
+      color: #999999
+    .author a:link
+      font-size: 0.7em
+      text-transform: uppercase
+      &:hover
+        font-size: 0.7em
+        text-transform: uppercase
+
+.home
+  padding: 40px 26px 20px 26px
+  .rhc
+    width: auto
+    padding: 0
+    h2
+      margin-left: 5px
+      border: 0
+  h2
+    font-family: "Gill Sans Light", "GillSans-Light", "Gill Sans", "Gill Sans MT", sans-serif
+
+.home
+  #discussions
+    width: 588px
+    clear: both
+    padding: 15px
+    background: #FFFFFF
+  #assets, #collections
+    width: 277px
+    height: 528px
+    float: left
+    display: inline
+    padding: 10px 16px 0 0
+    background: #FFFFFF
+  #assets .page, #collections .page
+    float: left
+    position: relative
+    width: 277px
+    height: 505px
+    left: 0
+    top: 0
+  #discussions .page
+    float: left
+    position: relative
+    width: 588px
+    height: 490px
+    left: 0
+    top: 0
+  #assets .list, #collections .list
+    width: 277px
+    height: 505px
+    overflow: hidden
+  #discussions .list
+    width: 588px
+    height: 490px
+    overflow: hidden
+  .page-container
+    width: 1500px
+  .page-nav
+    display: block
+    clear: both
+    height: 25px
+    margin: -10px 0 0 15px
+    text-align: center
+
+.home
+  #discussions.trending .page-nav .more
+    text-indent: -95px
+  .page-nav .more
+    float: right
+    cursor: pointer
+    background: url(/images/colorbox/controls.png) no-repeat -50px 0px
+    width: 25px
+    height: 25px
+    text-indent: -55px
+    line-height: 25px
+    color: #990000
+
+.home #discussions
+  h2
+    color: #AAAAAA
+    font-size: 1.8em
+  .discussion
+    border: 1px dotted #AFAFAF
+    border-top: none
+    padding: 5px
+    height: 47px
+
+.home
+  #collections
+    margin-left: 32px
+  #keywords
+    background: #FFFFFF
+    width: 228px
+    padding: 10px 8px
+    h2
+      font-size: 1.7em
+      margin-bottom: 0
+      margin-left: 0
+
+.home
+  .upper
+    width: 100%
+    display: block
+    clear: both
+    padding-bottom: 20px
+  .collection
+    background: #fff
+    width: 260px !important
+    margin: 0 0 10px 16px
+    padding: 0 0 10px 0px
+    position: relative
+    height: 100px
+    .collection-info
+      width: 260px
+      position: relative
+    .col
+      width: 260px
+      margin-right: 0
+    .nav
+      position: absolute
+      top: auto
+      bottom: 0
+      z-index: 3
+      height: 15px
+    .stat
+      color: #FFFFFF
+  #collections .list .collection h2
+    margin-left: 0px
+  .collection
+    .circle
+      position: absolute
+      left: 3px
+      top: -23px
+      width: 50px
+      height: 50px
+      -webkit-border-radius: 25px
+      -moz-border-radius: 25px
+      border-radius: 25px
+      z-index: 2
+      p
+        margin-top: 18px
+    img
+      z-index: 1
+    .stats-wrapper
+      left: 0
+      top: 63px
+      height: 33px
+    .title-bar
+      position: absolute
+      top: 0
+      right: 0
+      width: 160px
+      height: 20px
+      padding: 2px 5px
+      overflow: hidden
+      z-index: 2
+      text-align: center
+      -moz-border-radius-bottomleft: 15px
+      -webkit-border-bottom-left-radius: 15px
+      border-bottom-left-radius: 15px
+      a
+        color: #FFFFFF
+        text-transform: uppercase
+    .nav a
+      background-color: #E5E5E5
+      border: 1px solid #999999
+      &:link:hover
+        background-color: #CCCCCC
+        border: 1px solid #777777
+      &.current
+        background-color: #B2B2B2
+
+.home
+  .discussions .discussion, .comments .comment
+    color: #787e7f
+    background: #e6f1f5
+    border: none
+    border-right: solid #b5d4e3 12px
+    padding: 8px 3px
+    margin-bottom: 10px
+    font-size: 1.2em
+    font-family: 'Gill Sans', "Gill Sans MT", sans-serif
+    left: 0
+    height: 50px
+    width: 275px
+
+.home
+  #assets h2, #collections h2
+    margin-left: 16px
+    color: #aaa
+    font-size: 1.8em
+
+.home .asset
+  position: relative
+  height: 100px
+  border-bottom: 0
+  padding-bottom: 10px
+  margin-bottom: 10px
+  img
+    position: absolute
+    right: 0
+
+.home .comments .comment
+  background: #e0ebcd
+  border-right: solid #c6d5ac 12px
+  overflow: hidden
+
+.home #discussions .discussion.alt, .board #discussions .discussion.alt
+  background-color: #F5F5F5
+
+.home #discussions .page-nav, .board #discussions .page-nav
+  margin: 2px 0 0 0
+
+.home .featured
+  h2
+    margin-bottom: 15px
+  .board_info
+    position: absolute
+    top: 50px
+    left: 25px
+    text-align: left
+    z-index: 250
+    h2
+      color: #DDDDDD
+      text-transform: none
+      text-shadow: 1px 1px #333333
+
+.home .mode_switch
+  color: #c5c4c4
+  font-size: 2.5em
+  text-shadow: #fff 1px 1px
+  margin-bottom: 20px
+  height: 35px
+  font-family: "HelveticaNeue-Light", Helvetica, "Arial Narrow", Arial,sans-serif
+  .current
+    color: #3C3C3C
+    cursor: default
+    &:hover
+      color: #3C3C3C
+      cursor: default
+
+.home .page-nav .less, .board #discussions .page-nav .less, .discussion .page-nav .less
+  float: left
+  cursor: pointer
+  background: url(/images/colorbox/controls.png) no-repeat -74px 0px
+  width: 25px
+  height: 25px
+  text-indent: 10px
+  line-height: 25px
+  color: #990000
+
+.home .page-nav .more:hover, .board #discussions .page-nav .more:hover, .discussion .page-nav .more:hover
+  background-position: -50px -25px
+  color: #FF0000
+
+.home .page-nav .less:hover, .board #discussions .page-nav .less:hover, .discussion .page-nav .less:hover
+  background-position: -74px -25px
+  color: #FF0000
+
+.home .rhc h2
+  color: #aaa
+  font-size: 1.8em
+  margin-bottom: 20px
+
+.item
+  border-bottom: dotted #afafaf 1px
+  background: #F6F6F6
+  padding: 20px 20px 20px 20px
+  &:hover
+    background: #fff
+  .name
+    margin: 5px 0 4px
+    font-weight: normal
+  .date
+    color: #999
+
+.item
+  h3
+    margin-top: 0
+  h2
+    margin-top: 0
+    text-transform: uppercase
+
+.item img.user
+  float: left
+  margin-top: 3px
+  margin-right: 10px
+
+.item-container
+  .date
+    color: #888
+    margin-bottom: 3px
+  .body
+    margin-left: 51px
+    overflow: hidden
+  .info
+    display: block
+    height: 15px
+
+#keyword-cloud
+  line-height: 3em
+  text-align: center
+  margin: 0
+  padding: 10px
+  a
+    padding: 0px
+  li
+    display: inline
+    &.level1
+      font-size: 0.7em
+      font-weight: 100
+    &.level2
+      font-size: 0.8em
+      font-weight: 200
+    &.level3
+      font-size: 0.9em
+      font-weight: 300
+    &.level4
+      font-size: 1.0em
+      font-weight: 400
+    &.level5
+      font-size: 1.2em
+      font-weight: 500
+    &.level6
+      font-size: 1.4em
+      font-weight: 600
+    &.level7
+      font-size: 1.6em
+      font-weight: 700
+    &.level8
+      font-size: 1.8em
+      font-weight: 800
+    &.level9
+      font-size: 2.2em
+      font-weight: 900
+
+.keyword-listing
+  min-height: 20px
+  padding: 10px 10px 10px 0px
+  list-style: none inside url('/images/icons/small_arrows.png')
+  li
+    float: left
+    margin-right: 15px
+
+#keyword_set_form
+  display: block
+  clear: both
+  .keyword-filter
+    display: block
+    clear: both
+
+.last
+  border-bottom: none !important
+
+.last
+  margin-right: 0
+
+.left
+  float: left
+
+.lhc
+  width: 600px
+
+.lhc
+  width: 631px
+  padding: 0 0 20px 0
+
+.lhc .collection-viewer
+  margin-top: 14px
+
+.lhc .item-list
+  position: relative
+  left: -40px
+  padding: 20px 20px 20px 40px
+
+li
+  &.search-for-comments
+    background: url(/images/icons/search_comments.png) no-repeat left
+    padding-left: 20px
+  &.search-for-objects
+    background: url(/images/icons/search_objects.png) no-repeat left
+  &.search-for-collections
+    background: url(/images/icons/search_collections.png) no-repeat left
+
+.lower-row
+  padding-top: 20px
+  .lhc
+    float: left
+
+.markItUpHeader
+  height: 22px
+
+.message
+  background: #FFFFFF
+  padding: 15px
+  margin-right: 20px
+  margin-bottom: 5px
+  img
+    float: left
+  .inner
+    margin-left: 62px
+  .date
+    float: right
+    color: #999999
+  .subject
+    font-size: 1.3em
+  .preview
+    margin-top: 5px
+
+.message .body
+  ul, ol
+    margin: 5px 5px 5px 20px
+    padding: 0
+
+.message .body
+  ul, ol
+    margin: 5px 5px 5px 20px
+    padding: 0
+
+.message .body blockquote
+  padding: 5px
+  border: 1px solid #afafaf
+  background-color: #eeeeee
+
+.message-reply-form .new_message p.label
+  width: 70px
+
+.messages
+  .rhc
+    padding-top: 0px
+  .unread
+    border: 1px solid #999999
+    -moz-box-shadow: 0px 0px 15px #4F8C33
+    -webkit-box-shadow: 0px 0px 15px #4F8C33
+    box-shadow: 0px 0px 15px #4F8C33
+
+#meta-for-discussions
+  font-family: georgia
+  font-size: 1.6em
+  font-style: italic
+  color: #afafaf
+  margin-bottom: 20px
+
+.moderator a
+  color: blue !important
+
+.moderator-actions
+  float: right
+  ul li
+    display: inline
+    margin: 0
+    float: left
+    padding-right: 10px
+
+.new_collection, .edit_collection, .new_keyword_set, .edit_keyword_set, .new_discussion, .edit_discussion, .new_message
+  margin-top: 20px
+
+.new_collection span, .edit_collection span, .new_keyword_set span, .edit_keyword_set span, .new_discussion span, .edit_discussion span, .new_message span
+  line-height: 3.0em
+  display: block
+  clear: both
+
+.new_collection p.label, .edit_collection p.label, .new_keyword_set p.label, .edit_keyword_set p.label, .new_discussion p.label, .edit_discussion p.label, .new_message p.label
+  text-align: right
+  margin-right: 10px
+  width: 160px
+  float: left
+
+.new_collection input[type="submit"], .edit_collection input[type="submit"], .new_keyword_set input[type="submit"], .edit_keyword_set input[type="submit"]
+  float: right
+  margin: 10px 40px 0 0
+  display: block
+  clear: both
+
+.new_discussion p.label, .edit_discussion p.label
+  width: 40px
+
+#new_message
+  .field
+    display: block
+    clear: both
+    margin-bottom: 15px
+  .new-message-body
+    .markItUpHeader
+      float: right
+    .markItUpEditor, .markItUp
+      width: 857px
+    h2
+      margin: 10px 0px 0px 0px
+      padding: 2px
+      position: relative
+      top: 26px
+
+.new_message input[type="submit"]
+  float: right
+  margin: 10px 40px 0 0
+  display: block
+  clear: both
+  margin: 10px 0px 0px 0px
+
+.new-message-preview
+  width: 887px
+  .message
+    min-height: 60px
+
+#not-logged-in
+  width: 99%
+  text-align: center
+
+.notice
+  background: #A7DE9F
+  min-height: 25px
+  top: -25px
+  border-bottom: solid 2px #008000
+  left: 0
+  padding: 5px 10px 0px
+  position: absolute
+  width: 925px
+  z-index: 9999
+  cursor: pointer
+  p
+    font-size: 1.4em
+    padding: 2px 10px
+    text-align: right
+
+.pagination
+  display: block
+  clear: both
+  padding-top: 20px
+
+.profile
+  .popular-discussions
+    float: left
+    width: 47%
+    margin-right: 20px
+    .item .stats
+      height: 20px
+  .user-comments
+    float: left
+    width: 49%
+  .item
+    padding: 10px 20px 10px 20px
+  .rhc
+    padding-top: 0
+  .my-collections
+    margin-left: 15px
+    .item
+      padding: 20px
+    .toolbar
+      margin-top: 10px
+      text-align: right
+
+.profile-detail
+  .user-status
+    margin-left: -5px
+    padding-left: 15px
+    &.online
+      background: url('/images/icons/bullet_green.png') no-repeat left center
+    &.offline
+      background: url('/images/icons/bullet_red.png') no-repeat left center
+  .info h1
+    margin-bottom: 0
+  img
+    float: left
+  .info
+    margin-left: 50px
+  margin-bottom: 20px
+
+.profile h2
+  background: #fff
+  color: #24231D
+  font-family: 'Gill Sans','Gill Sans MT', sans-serif
+  font-size: 1em
+  margin-bottom: 0px
+  padding: 12px 14px 8px 15px
+  text-transform: uppercase
+
+.push
+  height: 1px
+  clear: both
+
+.red
+  background: #900
+
+.rhc
+  float: right
+  width: 236px
+  padding-top: 35px
+  h2
+    background: #fff
+    color: #24231D
+    font-family: 'Gill Sans','Gill Sans MT', sans-serif
+    font-size: 1em
+    margin-bottom: 0px
+    padding: 12px 14px 8px 15px
+    text-transform: uppercase
+
+.rhc
+  h2
+    color: #999999
+    font-size: 1.3em
+    line-height: 1.3em
+  .new
+    position: relative
+    height: 25px
+    margin-top: 10px
+    margin-bottom: 20px
+    a.button
+      margin: 0 auto
+      width: 120px
+
+      .rhc .collection
+        width: auto
+        padding: 10px 10px 10px 15px
+        float: none
+        border-bottom: 0
+        margin-right: 0
+        h2
+          margin-bottom: 0
+          margin-left: 0
+          padding: 4px 14px 5px 1px
+          background: transparent
+          font-style: normal
+          font-family: 'Gill Sans', 'Gill Sans MT', verdana, sans-serif
+          border-bottom: 0
+
+.rhc .discussions
+  background: #fff
+  padding: 12px 30px 10px 0
+  display: block
+
+.rhc .discussions .discussion, .lhc .discussions .discussion
+  color: #787e7f
+  background: #e6f1f5
+  border: none
+  border-right: solid #b5d4e3 12px
+  padding: 8px 3px
+  margin: 5px 0px
+  font-size: 1.2em
+  font-family: 'Gill Sans', "Gill Sans MT", sans-serif
+  left: 0
+  height: 50px
+  width: 218px
+
+.rhc .item
+  padding: 10px 10px 10px 15px
+  margin-bottom: 1px
+
+.right
+  float: right
+
+.rounded-panel
+  background: #fff
+  left: -39px
+  margin-top: 14px
+  padding: 39px 10px 39px 40px
+  position: relative
+  -webkit-border-top-right-radius: 7px
+  -webkit-border-bottom-right-radius: 7px
+  -moz-border-radius-topright: 7px
+  -moz-border-radius-bottomright: 7px
+  border-top-right-radius: 7px
+  border-bottom-right-radius: 7px
+
+.scientist a
+  color: #FF8C00 !important
+
+.short-comment
+  padding: 10px 0
+  width: 545px
+  .avatar
+    width: 71px
+    height: 40px
+    float: left
+    img.user
+      display: block
+    .arrow
+      background: transparent url(/images/interface/arrow_bubble.png) no-repeat
+      position: relative
+      width: 18px
+      height: 28px
+      float: right
+      margin-top: 6px
+  .body
+    background: #ECF4E6
+    border-bottom: solid #d3dbce 3px
+    padding: 15px 20px 5px
+    width: 430px
+    margin-left: 70px
+    overflow: hidden
+  .name
+    float: left
+  .toggle
+    color: #999999
+
+.short-comment .date
+  color: #999999
+  float: right
+
+.short-comment .toggle a
+  color: #999999
+  &:hover
+    color: #990000
+
+.short-comment-form
+  width: 545px
+
+.short-comment-form textarea
+  width: 525px
+  font-size: 1.3em
+  padding: 9px 8px
+
+#short-counter
+  float: right
+  color: #afafaf
+  font-size: 1.4em
+  width: 100px
+  text-align: right
+  padding-right: 5px
+
+.stats .no
+  color: #900900
+  font-style: italic
+
+.stats-wrapper
+  position: absolute
+  top: 62px
+  left: 17px
+  width: 90px
+  text-align: left
+  padding: 2px
+  z-index: 2
+  -moz-border-radius-topright: 25px
+  -webkit-border-top-right-radius: 25px
+  border-top-right-radius: 25px
+
+#tags-for-focus
+  .keyword-link
+    font: normal normal bold 10px / normal arial, sans-serif
+    text-align: center
+  .keyword-collect
+    margin: 10px 0px
+    padding: 0
+
+.toolbar
+  visibility: hidden
+
+.translucent
+  &.red
+    background: rgb(153, 0, 0)
+    background: rgba(153, 0, 0, 0.6)
+  &.gold
+    background: rgb(164, 158, 103)
+    background: rgba(164, 158, 103, 0.6)
+
+.type_toolbar
+  position: absolute
+  top: 30px
+  left: -80px
+  .type
+    margin-top: 20px
+    height: 60px
+    width: 60px
+    cursor: pointer
+  .type_bg
+    position: absolute
+    background: #000
+    height: 60px
+    width: 60px
+    background: transparent url(/images/interface/circle_black_light.png) no-repeat
+    z-index: 400
+  .type p
+    position: relative
+    top: 22px
+    color: #fff
+    z-index: 500
+    text-align: center
+  .current .type_bg
+    background: transparent url(/images/interface/circle_black_dark.png) no-repeat
+  .type:hover .type_bg
+    opacity: 0.8
+
+.unread-messages-count
+  background-color: #7F7F7F
+  display: inline
+  font-size: 10px
+  font-weight: bold
+  margin: 0 0px 0 5px
+  padding: 2px 5px 1px 5px
+  -moz-border-radius: 5px
+  -webkit-border-radius: 5px
+  border-radius: 5px
+  &.active
+    background-color: #4F8C33
+
+ul.search-kinds
+  margin-left: 40px
+  font-size: 14px
+  li
+    padding-left: 20px
+
+.users-total
+  background: url(/images/icons/users.png) no-repeat left
+
+.vote-controls
+  font-size: 70%
+  float: right
+  position: relative
+  top: 0
+  right: 5px
+
+.wrapper
+  font-family: verdana, sans-serif
+  font-size: 80%
