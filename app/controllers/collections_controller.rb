@@ -45,6 +45,7 @@ class CollectionsController < ApplicationController
       @collection.tags = params[:keyword].values
     elsif params[:collection_kind][:id] == "Asset Set"
       @collection = AssetSet.new(params[:collection])
+      @collection.asset_ids.map!{ |id| id_for(id) }
     end
     
     @collection.user = current_zooniverse_user

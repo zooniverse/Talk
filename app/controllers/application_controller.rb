@@ -29,6 +29,10 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def id_for(id)
+    id.is_a?(String) ? BSON::ObjectId(id) : id
+  end
+  
   def markdown(text)
     formatted = text.gsub(/#/m, '\#').gsub(/[\r\n]/, "\n\n")
     output = BlueCloth::new(formatted, :escape_html => true, :auto_links => true).to_html
