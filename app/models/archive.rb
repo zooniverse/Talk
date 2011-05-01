@@ -1,3 +1,4 @@
+# An Archive of a removed Document
 class Archive
   include MongoMapper::Document
   

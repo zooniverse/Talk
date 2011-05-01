@@ -1,3 +1,4 @@
+# A revision history for Comments
 class Revision
   include MongoMapper::Document
   

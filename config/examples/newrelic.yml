@@ -1,0 +1,36 @@
+common: &default_settings
+  license_key: '123'
+  app_name: Talk
+  monitor_mode: true
+  developer_mode: false
+  log_level: info
+  ssl: false
+  apdex_t: 0.5
+  capture_params: false
+  transaction_tracer:
+    enabled: true
+    transaction_threshold: apdex_f
+    record_sql: obfuscated
+    stack_trace_threshold: 0.500
+  error_collector:
+    enabled: true
+    capture_source: true
+    ignore_errors: ActionController::RoutingError
+
+development:
+  <<: *default_settings
+  monitor_mode: true
+  developer_mode: true
+
+test:
+  <<: *default_settings
+  monitor_mode: false
+
+production:
+  <<: *default_settings
+  monitor_mode: true
+
+staging:
+  <<: *default_settings
+  monitor_mode: true
+  app_name: My Application (Staging)

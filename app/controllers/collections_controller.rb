@@ -1,8 +1,10 @@
+# AssetSets and KeywordSets (Collections)
 class CollectionsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:show]
   before_filter CASClient::Frameworks::Rails::Filter, :only => [:new, :edit, :add]
   respond_to :js, :only => [:add, :remove]
   
+  # Show Collection
   def show
     default_params :page => 1, :per_page => 10
     find_collection
@@ -19,12 +21,14 @@ class CollectionsController < ApplicationController
     @comments = Comment.sort(:created_at.desc).where(:discussion_id => @discussion_id).paginate(:page => @page, :per_page => @per_page)
   end
   
+  # New Collection
   def new
     @page_title = "Collections | New Collection"
     @collection = AssetSet.new
     set_options
   end
   
+  # Edit a Collection
   def edit
     find_collection
     return not_found unless @collection
@@ -39,6 +43,7 @@ class CollectionsController < ApplicationController
     end
   end
   
+  # Create a new Collection
   def create
     if params[:collection_kind][:id] == "Keyword Set"
       @collection = KeywordSet.new(params[:collection])
@@ -60,6 +65,7 @@ class CollectionsController < ApplicationController
     end
   end
   
+  # Update the Collection
   def update
     find_collection
     return not_found unless @collection
@@ -79,6 +85,7 @@ class CollectionsController < ApplicationController
     end
   end
   
+  # Destroy a Collection
   def destroy
     find_collection
     return not_found unless @collection
@@ -93,6 +100,7 @@ class CollectionsController < ApplicationController
     redirect_to user_path(current_zooniverse_user)
   end
   
+  # Add an Asset to the Collection
   def add
     find_collection
     return not_found unless @collection
@@ -111,6 +119,7 @@ class CollectionsController < ApplicationController
     end
   end
   
+  # Remove an Asset from the Collection
   def remove
     find_collection
     return not_found unless @collection
@@ -124,6 +133,7 @@ class CollectionsController < ApplicationController
   end
   
   private
+  # Find the Collection
   def find_collection
     if params[:id] =~ /^CMZS/
       @focus = @collection = AssetSet.find_by_zooniverse_id(params[:id])
@@ -132,6 +142,7 @@ class CollectionsController < ApplicationController
     end
   end
   
+  # Set ivars dynamically
   def set_options
     if params[:object_id]
       @asset = Asset.find_by_zooniverse_id(params[:object_id])

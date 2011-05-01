@@ -1,0 +1,629 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: SearchController</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (S)</a> &raquo; 
+    
+    
+    <span class="title">SearchController</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: SearchController
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActionController::Base</li>
+          
+            <li class="next"><span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></li>
+          
+            <li class="next">SearchController</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/controllers/search_controller.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Search
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+  
+  
+  
+  
+  
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#total_pages-class_method" title="total_pages (class method)">+ (Object) <strong>total_pages</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#focus_results-instance_method" title="#focus_results (instance method)">- (Object) <strong>focus_results</strong>(search_terms, options) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Selects Focii from the query.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#index-instance_method" title="#index (instance method)">- (Object) <strong>index</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+The Search.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#keyword_set_results-instance_method" title="#keyword_set_results (instance method)">- (Object) <strong>keyword_set_results</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Preview Assets for a KeywordSet.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_keywords-instance_method" title="#parse_keywords (instance method)">- (Object) <strong>parse_keywords</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Parse keywords from a query.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#cas_login-instance_method" title="ApplicationController#cas_login (method)">#cas_login</a></span>, <span class='object_link'><a href="ApplicationController.html#cas_logout-instance_method" title="ApplicationController#cas_logout (method)">#cas_logout</a></span>, <span class='object_link'><a href="ApplicationController.html#default_params-instance_method" title="ApplicationController#default_params (method)">#default_params</a></span>, <span class='object_link'><a href="ApplicationController.html#flash_model_errors_on-instance_method" title="ApplicationController#flash_model_errors_on (method)">#flash_model_errors_on</a></span>, <span class='object_link'><a href="ApplicationController.html#id_for-instance_method" title="ApplicationController#id_for (method)">#id_for</a></span>, <span class='object_link'><a href="ApplicationController.html#markdown-instance_method" title="ApplicationController#markdown (method)">#markdown</a></span>, <span class='object_link'><a href="ApplicationController.html#moderator_or_owner-instance_method" title="ApplicationController#moderator_or_owner (method)">#moderator_or_owner</a></span>, <span class='object_link'><a href="ApplicationController.html#not_found-instance_method" title="ApplicationController#not_found (method)">#not_found</a></span>, <span class='object_link'><a href="ApplicationController.html#require_privileged_user-instance_method" title="ApplicationController#require_privileged_user (method)">#require_privileged_user</a></span></p>
+
+  
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="total_pages-class_method">
+  
+    + (<tt>Object</tt>) <strong>total_pages</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+75</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/search_controller.rb', line 75</span>
+
+<span class='kw'>def</span> <span class='ivar'>@results</span><span class='period'>.</span><span class='id total_pages'>total_pages</span><span class='semicolon'>;</span> <span class='ivar'>@total_pages</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="focus_results-instance_method">
+  
+    - (<tt>Object</tt>) <strong>focus_results</strong>(search_terms, options) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Selects Focii from the query
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>search_terms</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The query
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <span class='name'>options</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Search options
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <h3>Options Hash (<tt>options</tt>):</h3>
+    <ul class="option">
+      
+        <li>
+          <span class="type">(<tt>Integer</tt>)</span>
+          <span class="name">:page</span>
+          <span class="default">
+            
+          </span>
+          &mdash; <div class='inline'><p>
+The page of results to find
+</p>
+</div>
+        </tr>
+      
+        <li>
+          <span class="type">(<tt>Integer</tt>)</span>
+          <span class="name">:per_page</span>
+          <span class="default">
+            
+          </span>
+          &mdash; <div class='inline'><p>
+The number of results per page
+</p>
+</div>
+        </tr>
+      
+    </ul>
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/search_controller.rb', line 61</span>
+
+<span class='kw'>def</span> <span class='id focus_results'>focus_results</span><span class='lparen'>(</span><span class='id search_terms'>search_terms</span><span class='comma'>,</span> <span class='id options'>options</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id search_terms'>search_terms</span><span class='period'>.</span><span class='id blank?'>blank?</span>
+  <span class='id options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='symbol'>:per_page</span> <span class='op'>=&gt;</span> <span class='ivar'>@per_page</span><span class='comma'>,</span> <span class='symbol'>:page</span> <span class='op'>=&gt;</span> <span class='ivar'>@page</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id merge'>merge</span><span class='lparen'>(</span><span class='id options'>options</span><span class='rparen'>)</span>
+  <span class='ivar'>@results</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  
+  <span class='kw'>begin</span>
+    <span class='ivar'>@page</span> <span class='op'>=</span> <span class='id options'>options</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span>
+    <span class='ivar'>@comments</span> <span class='op'>=</span> <span class='const'>Comment</span><span class='period'>.</span><span class='id search'>search</span> <span class='id search_terms'>search_terms</span><span class='comma'>,</span> <span class='id options'>options</span>
+    <span class='ivar'>@comments</span><span class='period'>.</span><span class='id each'>each</span><span class='lbrace'>{</span> <span class='op'>|</span><span class='id comment'>comment</span><span class='op'>|</span> <span class='ivar'>@results</span><span class='lbracket'>[</span><span class='id comment'>comment</span><span class='period'>.</span><span class='id focus'>focus</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>1</span> <span class='rbrace'>}</span>
+    <span class='id options'>options</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='int'>1</span>
+  <span class='kw'>end</span> <span class='kw'>while</span> <span class='ivar'>@results</span><span class='period'>.</span><span class='id length'>length</span> <span class='op'>&lt;</span> <span class='ivar'>@per_page</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@comments</span><span class='period'>.</span><span class='id next_page'>next_page</span>
+  
+  <span class='ivar'>@results</span> <span class='op'>=</span> <span class='ivar'>@results</span><span class='period'>.</span><span class='id keys'>keys</span>
+  <span class='ivar'>@results</span><span class='period'>.</span><span class='id instance_variable_set'>instance_variable_set</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>@total_pages</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@comments</span><span class='period'>.</span><span class='id total_pages'>total_pages</span><span class='rparen'>)</span>
+  <span class='kw'>def</span> <span class='ivar'>@results</span><span class='period'>.</span><span class='id total_pages'>total_pages</span><span class='semicolon'>;</span> <span class='ivar'>@total_pages</span><span class='semicolon'>;</span> <span class='kw'>end</span>
+  <span class='ivar'>@results</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="index-instance_method">
+  
+    - (<tt>Object</tt>) <strong>index</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+The Search
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/search_controller.rb', line 6</span>
+
+<span class='kw'>def</span> <span class='id index'>index</span>
+  <span class='id default_params'>default_params</span> <span class='symbol'>:search</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:page</span> <span class='op'>=&gt;</span> <span class='int'>1</span><span class='comma'>,</span> <span class='symbol'>:per_page</span> <span class='op'>=&gt;</span> <span class='int'>10</span><span class='comma'>,</span> <span class='symbol'>:for</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>comments</span><span class='tstring_end'>&quot;</span></span>
+  <span class='ivar'>@for</span><span class='period'>.</span><span class='id sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>keyword_sets</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>collections</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  
+  <span class='id parse_keywords'>parse_keywords</span>
+  <span class='id search_terms'>search_terms</span> <span class='op'>=</span> <span class='ivar'>@keywords</span> <span class='op'>||</span> <span class='ivar'>@search</span>
+  
+  <span class='ivar'>@page_title</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Search | </span><span class='embexpr_beg'>#{</span> <span class='ivar'>@for</span><span class='period'>.</span><span class='id capitalize'>capitalize</span> <span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='ivar'>@page_title</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> | \&quot;</span><span class='embexpr_beg'>#{</span> <span class='ivar'>@search</span> <span class='rbrace'>}</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='ivar'>@search</span><span class='period'>.</span><span class='id blank?'>blank?</span>
+  
+  <span class='kw'>case</span> <span class='ivar'>@for</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>collections</span><span class='tstring_end'>'</span></span>
+    <span class='kw'>if</span> <span class='ivar'>@keywords</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+      <span class='id selector'>selector</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='symbol'>:criteria</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:$or</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='lbrace'>{</span> <span class='symbol'>:focus_type</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>AssetSet</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='symbol'>:focus_type</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>KeywordSet</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rbracket'>]</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span>
+      <span class='ivar'>@collections</span> <span class='op'>=</span> <span class='id focus_results'>focus_results</span><span class='lparen'>(</span><span class='id search_terms'>search_terms</span><span class='comma'>,</span> <span class='id selector'>selector</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='ivar'>@results</span> <span class='op'>=</span> <span class='ivar'>@collections</span> <span class='op'>=</span> <span class='const'>AssetSet</span><span class='period'>.</span><span class='id with_keywords'>with_keywords</span><span class='lparen'>(</span><span class='id search_terms'>search_terms</span><span class='comma'>,</span> <span class='symbol'>:page</span> <span class='op'>=&gt;</span> <span class='ivar'>@page</span><span class='comma'>,</span> <span class='symbol'>:per_page</span> <span class='op'>=&gt;</span> <span class='ivar'>@per_page</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>comments</span><span class='tstring_end'>'</span></span>
+    <span class='id selector'>selector</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='symbol'>:per_page</span> <span class='op'>=&gt;</span> <span class='ivar'>@per_page</span><span class='comma'>,</span> <span class='symbol'>:page</span> <span class='op'>=&gt;</span> <span class='ivar'>@page</span> <span class='rbrace'>}</span>
+    
+    <span class='kw'>unless</span> <span class='ivar'>@keywords</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+      <span class='id selector'>selector</span><span class='lbracket'>[</span><span class='symbol'>:field</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='symbol'>:tags</span>
+      <span class='id search_terms'>search_terms</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    
+    <span class='ivar'>@comments</span> <span class='op'>=</span> <span class='ivar'>@results</span> <span class='op'>=</span> <span class='const'>Comment</span><span class='period'>.</span><span class='id search'>search</span><span class='lparen'>(</span><span class='id search_terms'>search_terms</span><span class='comma'>,</span> <span class='id selector'>selector</span><span class='rparen'>)</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>objects</span><span class='tstring_end'>'</span></span>
+    <span class='kw'>if</span> <span class='ivar'>@keywords</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+      <span class='ivar'>@objects</span> <span class='op'>=</span> <span class='ivar'>@assets</span> <span class='op'>=</span> <span class='id focus_results'>focus_results</span><span class='lparen'>(</span><span class='id search_terms'>search_terms</span><span class='comma'>,</span> <span class='symbol'>:focus_type</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Asset</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='ivar'>@results</span> <span class='op'>=</span> <span class='ivar'>@assets</span> <span class='op'>=</span> <span class='ivar'>@objects</span> <span class='op'>=</span> <span class='const'>Asset</span><span class='period'>.</span><span class='id with_keywords'>with_keywords</span><span class='lparen'>(</span><span class='id search_terms'>search_terms</span><span class='comma'>,</span> <span class='symbol'>:page</span> <span class='op'>=&gt;</span> <span class='ivar'>@page</span><span class='comma'>,</span> <span class='symbol'>:per_page</span> <span class='op'>=&gt;</span> <span class='ivar'>@per_page</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="keyword_set_results-instance_method">
+  
+    - (<tt>Object</tt>) <strong>keyword_set_results</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Preview Assets for a KeywordSet
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45
+46
+47</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/search_controller.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id keyword_set_results'>keyword_set_results</span>
+  <span class='ivar'>@keywords</span> <span class='op'>=</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:keywords</span><span class='rbracket'>]</span>
+  <span class='ivar'>@assets</span> <span class='op'>=</span> <span class='const'>Asset</span><span class='period'>.</span><span class='id with_keywords'>with_keywords</span><span class='lparen'>(</span><span class='ivar'>@keywords</span><span class='period'>.</span><span class='id split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:downcase</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:per_page</span> <span class='op'>=&gt;</span> <span class='int'>44</span><span class='rparen'>)</span>
+  <span class='id render'>render</span> <span class='symbol'>:nothing</span> <span class='op'>=&gt;</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='ivar'>@keywords</span><span class='period'>.</span><span class='id split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id blank?'>blank?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="parse_keywords-instance_method">
+  
+    - (<tt>Object</tt>) <strong>parse_keywords</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Parse keywords from a query
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+50
+51
+52
+53
+54</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/search_controller.rb', line 50</span>
+
+<span class='kw'>def</span> <span class='id parse_keywords'>parse_keywords</span>
+  <span class='kw'>if</span> <span class='ivar'>@search</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^keywords:</span><span class='regexp_end'>/</span></span>
+    <span class='ivar'>@keywords</span> <span class='op'>=</span> <span class='ivar'>@search</span><span class='period'>.</span><span class='id gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>#|keywords:|,</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id split'>split</span><span class='period'>.</span><span class='id collect'>collect</span><span class='lbrace'>{</span> <span class='op'>|</span><span class='id tag'>tag</span><span class='op'>|</span> <span class='id tag'>tag</span><span class='period'>.</span><span class='id strip'>strip</span><span class='period'>.</span><span class='id downcase'>downcase</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun May  1 16:07:48 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.7 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

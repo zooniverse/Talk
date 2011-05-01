@@ -1,4 +1,4 @@
-# A collection of Comment about a Focus
+# A list of Comments about a Focus
 class Discussion
   include Rails.application.routes.url_helpers
   include MongoMapper::Document
@@ -32,17 +32,22 @@ class Discussion
     @cached_focus ||= focus_type.constantize.find(focus_id)
   end
   
+  # Selects featured Discussions
   def self.featured
     sort(:updated_at.desc).where(:featured => true)
   end
   
-  # Finds popular discussions
+  # Selects popular Discussions
+  # @option *args [Fixnum] :page (1) The page of Discussions to find
+  # @option *args [Fixnum] :per_page (10) The number of Discussions per page
   def self.trending(*args)
     opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
     Discussion.sort(:popularity.desc).where(:number_of_comments.gt => 0).paginate :page => opts[:page], :per_page => opts[:per_page]
   end
   
-  # Finds discussions mentioning a focus
+  # Selects Discussions mentioning a Focus
+  # @param focus The focus to find mentions of
+  # @param limit [Fixnum] The number of Discussions to find
   def self.mentioning(focus, limit = 10)
     return [] if Comment.count == 0
     collected = Hash.new(0)
@@ -58,12 +63,19 @@ class Discussion
     collected[0, limit].map{ |id| find(id) }
   end
   
-  # Finds the number of discussions mentioning a focus
+  # Counts the number of Discussions mentioning a Focus
   def self.count_mentions(focus)
     comments = Comment.where(:mentions => focus.zooniverse_id).only(:discussion_id).all
     comments.collect{ |c| c.discussion_id }.uniq.length
   end
   
+  # Selects Discussions with new Comments
+  # @option *args [Fixnum] :page (1) The page of Discussions to find
+  # @option *args [Fixnum] :per_page (10) The number of Discussions per page
+  # @option *args [Array] :read_list ([]) The list of Discussions recently read (for exclusion)
+  # @option *args [Fixnum] :by_user (false) Limit selection to Discussions with Comments by a given User
+  # @option *args [Fixnum] :for_user The User for which Discussions are being found
+  # @option *args [Fixnum] :since (Time.now.utc.beginning_of_day) Limit selection to Discussions updated since this time
   def self.with_new_comments(*args)
     opts = { :page => 1,
              :per_page => 10,
@@ -87,6 +99,9 @@ class Discussion
     alias_method :recent, :with_new_comments
   end
   
+  # Count the number of new Comments for this Discussion
+  # @option *args [Fixnum] :for_user The User for which Discussions are being found
+  # @option *args [Fixnum] :since (Time.now.utc.beginning_of_day) Limit selection to Discussions updated since this time
   def count_new_comments(*args)
     opts = { :since => Time.now.utc.beginning_of_day, :for_user => nil }.update(args.extract_options!)
     since_time = opts[:for_user].last_login_at if opts[:for_user] && opts[:for_user].last_login_at
@@ -95,59 +110,68 @@ class Discussion
     self.comments.count(:created_at.gte => since_time)
   end
   
-  # True if discussing KeywordSets
+  # True if this is a KeywordSet Discussion
   def keyword_set?
     focus_type == "KeywordSet"
   end
   
-  # True if discussing Assets
+  # True if this is an Asset Discussion
   def asset?
     focus_type == "Asset"
   end
   
+  # True if this is a Board Discussion
   def board?
     focus_base_type == "Board"
   end
   
+  # True if this is a SubBoard Discussion
   def sub_board?
     focus_type == "SubBoard"
   end
   
-  # True if discussing AssetSets
+  # True if this is an AssetSet Discussion
   def collection?
     focus_type == "AssetSet"
   end
   
+  # True if this is a Group Discussion
   def group?
     focus_type == "Group"
   end
   
-  # True if this is a focus conversation (live comment stream)
+  # True if this is a Focus conversation
   def conversation?
     (focus_id.nil? || focus_base_type == "Board" ) ? false : focus.conversation == self
   end
   
-  # Finds the user that started this discussion
+  # Finds the User that started this Discussion
   def started_by
     @cached_started_by ||= User.find(self.started_by_id)
   end
   
-  # Sets the user that started this discussion
+  # Sets the User that started this Discussion
+  # @param user [User] The User that started this Discussion
   def started_by=(user)
     @cached_started_by = user
     self.started_by_id = user.id
   end
   
+  # Selects the Tags for this Discussion
+  # @param limit [Fixnum] The number of Tags to find
   def keywords(limit = 10)
     Tag.for_discussion(self, limit).collect{ |t| t.name }
   end
   
+  # Serialize this Discussion to an embedded Hash
   def to_embedded_hash
     hash = self.to_mongo
     hash['comments'] = comments.collect(&:to_embedded_hash)
     hash
   end
   
+  # Destroy and Archive this Discussion and all Comments in it
+  # @param destroying_user [User] The User destroying this Discussion
   def archive_and_destroy_as(destroying_user)
     Archive.create({
       :kind => "Discussion",
@@ -200,6 +224,8 @@ class Discussion
     focus.update_popularity unless focus.nil? || focus.is_a?(Board)
   end
   
+  # The path to this Discussion
+  # @option *args [Hash] * Arguments to pass into the url helper
   def path(*args)
     return discussion_path(self.zooniverse_id) unless focus.present?
     opts = args.extract_options!
@@ -211,6 +237,8 @@ class Discussion
     end
   end
   
+  # The path to the Focus of this Discussion
+  # @option *args [Hash] * Arguments to pass into the url helper
   def parent_path(*args)
     return root_path unless focus.present?
     opts = args.extract_options!

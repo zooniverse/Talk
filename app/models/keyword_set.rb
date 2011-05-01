@@ -1,4 +1,4 @@
-# A dynamic collection of Asset built by tag and created by a User
+# A dynamic collection of Asset built by Tag and created by a User
 class KeywordSet < AssetSet
   zoo_id :prefix => "C", :sub_id => "L"
   before_save :downcase_tags
@@ -6,18 +6,20 @@ class KeywordSet < AssetSet
   # Since we're "overriding" this association, we need to make sure mongomapper doesn't try to reload it
   self.associations.delete "assets"
   
-  # Finds assets that match the tags in the KeywordSet
-  #   e.g. keyword_set.assets(:page => 1, :per_page => 5)
+  # Replaces a static 1-to-many associations by selecting assets that match the Tags in the KeywordSet
+  # @option *args [Fixnum] :page (1) The page of Assets to find
+  # @option *args [Fixnum] :per_page (10) The number of Assets per page
   def assets(*args)
     Asset.with_keywords(self.tags, args.extract_options!)
   end
   
-  # Finds the most recently created KeywordSets
+  # Selects the most recently created KeywordSets
+  # @param [Fixnum] limit The number of KeywordSets to find
   def self.recent(limit = 10)
     KeywordSet.limit(limit).sort(:created_at.desc).all
   end
   
-  # Freezes this live collection as a static collection
+  # Freezes this KeywordSet to a static AssetSet
   def convert_to_static!
     self.asset_ids = assets(:per_page => 0).map(&:_id)
     self.tags = self.keywords
@@ -32,10 +34,12 @@ class KeywordSet < AssetSet
     new_self
   end
   
+  # Ensures the keywords are cleanly formatted
   def downcase_tags
     self.tags = self.tags.map{ |tag| tag.downcase.strip }
   end
   
+  # Counts the number of Assets in this KeywordSet
   def asset_count
     assets(:per_page => 1).total_entries
   end

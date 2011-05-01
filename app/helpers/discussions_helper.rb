@@ -1,4 +1,7 @@
+# Helpers for Discussions
 module DiscussionsHelper
+  # Pretty titled link for a Focus
+  # @param focus The Focus to link to
   def title_for(focus)
     if focus.is_a?(Board) || focus.is_a?(SubBoard)
       link = link_to focus.pretty_title, focus_url_for(focus)
@@ -9,6 +12,8 @@ module DiscussionsHelper
     end
   end
   
+  # Find the path to a Focus
+  # @param focus The Focus for the path
   def focus_url_for(focus)
     case focus.class.name
     when "Asset"

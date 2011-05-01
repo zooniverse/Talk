@@ -1,4 +1,6 @@
-# The object being classified
+# The classification object
+# 
+# Generally referred to as an "Object"
 class Asset
   include Rails.application.routes.url_helpers
   include MongoMapper::Document
@@ -15,7 +17,8 @@ class Asset
   
   belongs_to :group
   
-  # selects the most recently mentioned (ie AM0000BLAH was mentioned in a comment) assets
+  # Selects the most recently mentioned Assets (ie AM0000BLAH was mentioned in a Comment)
+  # @param [Fixnum] limit The number of Assets to find
   def self.recently_mentioned(limit = 10)
     cursor = Comment.collection.find({ :mentions => { "$type" => 2 } }).sort([:created_at, :desc])
     asset_ids = {}
@@ -30,14 +33,19 @@ class Asset
     asset_ids.map{ |zoo_id, d_id | Asset.find_by_zooniverse_id(zoo_id) }
   end
   
-  # selects the most recently discussed assets (ie the assets with the newest comments )
+  # Selects the most recently discussed Assets (ie the Assets with the newest Comments)
+  # @param *args [Array] Pagination options
+  # @option *args [Fixnum] :page (1) The page of Assets to find
+  # @option *args [Fixnum] :per_page (10) The number of Assets per page
   def self.recent(*args)
     opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
     self.sort(:updated_at.desc).paginate(opts)
   end
   
-  # Finds assets that match the given keywords
-  #   e.g. Asset.by_keywords('tag1', 'tag2', :page => 1, :per_page => 5)
+  # Selects Assets that match all given keywords (boolean AND)
+  # @param *args [Array] Pagination options
+  # @option *args [Fixnum] :page (1) The page of Assets to find
+  # @option *args [Fixnum] :per_page (10) The number of Assets per page
   def self.with_keywords(*args)
     opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
     args = args.first if args.first.is_a? Array
@@ -46,30 +54,37 @@ class Asset
     self.sort(:updated_at.desc).where(:tags.all => args).paginate(opts)
   end
   
-  # Find collections containing this asset
+  # Selects AssetSets that contain this collection
+  # @param [Fixnum] limit The number of AssetSets to find
   def collections(limit = 10)
     collections = AssetSet.with_asset self, :limit => limit
   end
   
-  # Finds comments mentioning this asset
+  # Selects Comments mentioning this asset
+  # @param [Fixnum] limit The number of Comments to find
   def mentions(limit = 10)
-    mentions = Comment.mentioning(self, limit)
+    Comment.mentioning(self, limit)
   end
   
-  # Counts comments mentioning this asset
+  # Counts Comments mentioning this Asset
   def count_mentions
     Comment.count_mentions(self)
   end
   
-  # Counts collections with this asset
+  # Counts AssetSets that contain this Asset
   def count_collections
     AssetSet.count(:asset_ids => self.id)
   end
   
+  # The path to start a new discussion about this Asset
+  # @param [Array] *args Arguments to pass into the url helper
   def new_discussion_path(*args)
     new_object_discussion_path(self.zooniverse_id, args.extract_options!)
   end
   
+  # The path to a discussion about this Asset
+  # @param [Array] *args The Discussion
+  # @option *args [Hash] * Arguments to pass into the url helper
   def discussion_path(*args)
     options = args.extract_options!
     raise ArgumentError unless args.first.respond_to?(:zooniverse_id)
@@ -78,6 +93,8 @@ class Asset
     object_discussion_path(self.zooniverse_id, args.first.zooniverse_id, options)
   end
   
+  # The path to the conversation about this Asset
+  # @param [Array] *args Arguments to pass into the url helper
   def conversation_path(*args)
     options = args.extract_options!
     options.delete(:page) if options[:page] == 1

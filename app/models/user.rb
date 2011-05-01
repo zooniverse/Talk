@@ -1,3 +1,4 @@
+# A Zooniverse User
 class User
   include MongoMapper::Document
   
@@ -46,20 +47,23 @@ class User
   
   alias_method :collections, :asset_sets
   
+  # True if the User has been active within the last hour
   def online?
     return false if self.last_active_at.nil?
     self.last_active_at > 1.hour.ago.utc
   end
   
-  # True if user is an admin or moderator
+  # True if User is an admin or moderator
   def privileged?
     self.admin? || self.moderator?
   end
   
+  # True if the User is a scientist
   def is_scientist?
     self.scientist
   end
   
+  # User name with role
   def formatted_name
     if self.scientist
       return "#{self.name} (science team)"
@@ -72,6 +76,8 @@ class User
     end
   end
   
+  # Rules for when a User can modify a document
+  # @param document the document being modified
   def can_modify?(document)
     case document
     when Comment
@@ -85,6 +91,8 @@ class User
     end
   end
   
+  # Rules for when a User can destroy a document
+  # @param document the document being destroyed
   def can_destroy?(document)
     case document
     when Comment
@@ -98,6 +106,8 @@ class User
     end
   end
   
+  # Ban this User
+  # @param moderator [User] The User banning this User
   def ban(moderator)
     return false if self.state == "banned"
     self.state = "banned"
@@ -114,12 +124,16 @@ class User
     end
   end
   
+  # Revoke a ban on this User
+  # @param moderator [User] The User redeeming this User
   def redeem(moderator)
     return false if self.state == "active"
     self.state = "active"
     Event.create(:user => moderator, :moderator => moderator, :target_user => self, :state => "actioned", :title => "#{ self.name } redeemed by #{ moderator.name }")
   end
   
+  # Initiate a watch on this User
+  # @param moderator [User] The User adding a watch for this User
   def watch(moderator)
     return false if self.state == "watched"
     self.state = "watched"
@@ -133,23 +147,26 @@ class User
     Event.create(:user => moderator, :moderator => moderator, :target_user => self, :state => "actioned", :title => "#{ self.name } watched by #{ moderator.name }")
   end
   
+  # Remove a watch on this User
+  # @param moderator [User] The User removing the watch for this User
   def unwatch(moderator)
     return false if self.state == "active"
     self.state = "active"
     Event.create(:user => moderator, :moderator => moderator, :target_user => self, :state => "actioned", :title => "#{ self.name } no longer watched by #{ moderator.name }")
   end
   
-  # Emails a user when banned
+  # Emails a User when banned
   def notify_banned_user
     Notifier.notify_banned_user(self).deliver
   end
   
-  # Emails a user when un-banned
+  # Emails a User when redeemed
   def notify_redeemed_user
     Notifier.notify_redeemed_user(self).deliver
   end
   
-  # Finds messages between this user and another
+  # Finds messages between this User and another User
+  # @param user [User] The other User
   def messages_with(user)
     sent_by_them = Message.all(:sender_id => user.id, :recipient_id => id)
     sent_by_me = Message.all(:sender_id => id, :recipient_id => user.id)
@@ -157,6 +174,7 @@ class User
     combined.sort{ |a, b| b.created_at <=> a.created_at }
   end
   
+  # Marks this User as active (`last_active_at`)
   def update_active!
     User.collection.update({ :_id => self._id }, {
       :$set => {
@@ -165,6 +183,7 @@ class User
     })
   end
   
+  # Updates the `last_login_at` and `current_login_at` for this User
   def update_login!
     last_login = self.current_login_at.nil? ? nil : self.current_login_at.utc
     

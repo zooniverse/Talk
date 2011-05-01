@@ -1,3 +1,4 @@
+# Users
 class UsersController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter, :except => [:comments, :discussions]
   before_filter :require_privileged_user, :only => [:activate, :ban, :watch]
@@ -5,6 +6,7 @@ class UsersController < ApplicationController
   respond_to :js, :except => [:show]
   respond_to :html, :only => [:show]
   
+  # User profile
   def show
     @user = User.find(params[:id])
     return not_found unless @user
@@ -17,6 +19,7 @@ class UsersController < ApplicationController
     @discussions = Discussion.where(:started_by_id => @user.id).sort(:popularity.desc).paginate(:page => 0, :per_page => @per_page)
   end
   
+  # Reports a User to the moderators
   def report
     @user = User.find(params[:id])
     return not_found unless @user
@@ -30,6 +33,7 @@ class UsersController < ApplicationController
     end
   end
   
+  # Ban a User
   def ban
     @user = User.find(params[:id])
     return not_found unless @user
@@ -47,6 +51,7 @@ class UsersController < ApplicationController
     end
   end
   
+  # Redeem a User
   def activate
     @user = User.find(params[:id])
     return not_found unless @user
@@ -63,6 +68,7 @@ class UsersController < ApplicationController
     end
   end
   
+  # Watch a User
   def watch
     @user = User.find(params[:id])
     return not_found unless @user
@@ -84,6 +90,7 @@ class UsersController < ApplicationController
     end
   end
   
+  # A User's comments (for profile)
   def comments
     @user = User.find(params[:id])
     return not_found unless @user
@@ -92,6 +99,7 @@ class UsersController < ApplicationController
     @comments = Comment.where(:author_id => @user.id).sort(:created_at.desc).paginate(:page => @comment_page, :per_page => 10)
   end
   
+  # Discussions started by a User (for profile)
   def discussions
     @user = User.find(params[:id])
     return not_found unless @user

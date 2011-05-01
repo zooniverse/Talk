@@ -1,9 +1,11 @@
+# Home
 class HomeController < ApplicationController 
   before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:index]
   skip_before_filter :check_for_banned_user, :only => :index
   respond_to :html
   respond_to :js
   
+  # root
   def index
     set_options
     set_documents @showing
@@ -11,15 +13,18 @@ class HomeController < ApplicationController
     @tags = Tag.rank_tags :from => 1, :to => 9, :limit => 50
   end
   
+  # Show more documents
   def more
     set_options
     set_documents @showing
   end
   
+  # For pingdom
   def status
   end
   
   protected
+  # Sets ivars dynamically
   def set_options
     default_params :showing => "recent",
                    :kinds => "assets asset_sets discussions",
@@ -64,6 +69,8 @@ class HomeController < ApplicationController
     end
   end
   
+  # Sets documents to ivars
+  # @param method [Symbol] The method finding the documents
   def set_documents(method)
     @kinds.each do |kind|
       options = instance_variable_get "@#{ kind }_options"

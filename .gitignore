@@ -1,11 +1,11 @@
 .bundle
 .rvmrc
+.yardoc
 config/*.yml
 db/*.sqlite3
 db/*
 log/*.log
 tmp/**/*
-doc/
 *.DS_Store
 dump
 public/stylesheets/.sass-cache/

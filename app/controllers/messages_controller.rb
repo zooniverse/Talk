@@ -1,20 +1,24 @@
+# Messaging
 class MessagesController < ApplicationController
   respond_to :html, :json, :js
   before_filter CASClient::Frameworks::Rails::Filter, :except => [:recipient_search, :preview]
   before_filter :get_meta, :except => [:recipient_search, :preview]
   
+  # Inbox
   def index
     @page_title = "Messages | Inbox"
     @listing = true
     @messages = current_zooniverse_user.messages
   end
   
+  # Outbox
   def sent
     @page_title = "Messages | Sent"
     @listing = false
     @messages = current_zooniverse_user.sent_messages
   end
   
+  # Show a Message thread
   def show
     @listing = false
     @showing = Message.find(params[:id])
@@ -30,12 +34,14 @@ class MessagesController < ApplicationController
     end
   end
   
+  # New Message
   def new
     @page_title = "Messages | New Message"
     @message = Message.new
     @recipient_name = params[:recipient_name] if params[:recipient_name]
   end
   
+  # Create a Message
   def create
     @message = Message.new(params[:message])
     @recipient_name = params[:message][:recipient_name]
@@ -52,6 +58,7 @@ class MessagesController < ApplicationController
     end
   end
   
+  # Destroy for the recipient or sender
   def destroy
     @message = Message.find(params[:id])
     return not_found unless @message
@@ -61,11 +68,13 @@ class MessagesController < ApplicationController
     redirect_to messages_path
   end
   
+  # Autocomplete search
   def recipient_search
     @names = User.limit(5).only(:name).all(:name => /^#{ params[:term] }/i)
     respond_with(@names.collect{ |u| u.name }.to_json)
   end
   
+  # Messaging markdown preview
   def preview
     message = Message.new(:body => params[:body] || "")
     message.recipient = User.first(:name => params[:recipient]) if params[:recipient] && !params[:recipient].blank?
@@ -84,6 +93,7 @@ class MessagesController < ApplicationController
   end
   
   private
+  # Inbox stats
   def get_meta
     @unread = current_zooniverse_user.messages.all(:unread => true)
     @conversations = current_zooniverse_user.messages.collect{ |message| message.sender }.uniq

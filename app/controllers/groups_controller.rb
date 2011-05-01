@@ -1,6 +1,8 @@
+# Groups
 class GroupsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:show]
   
+  # Show the Group
   def show
     default_params :page => 1, :per_page => 10
     @focus = @group = Group.find_by_zooniverse_id(params[:id])

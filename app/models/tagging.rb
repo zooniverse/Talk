@@ -1,3 +1,4 @@
+# A Tag applied to a Focus
 class Tagging
   include MongoMapper::Document
   

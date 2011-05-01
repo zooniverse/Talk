@@ -28,9 +28,19 @@ class Comment
   before_destroy :destroy_tags, :nullify_responses
   after_destroy :denormalize_counts
   
+  # The Regexp used to parse Tags from Comments
   TAG = /[^\w]#([-\w\d]{3,40})/im
+  
+  # The Regexp used to parse mentions from Comments
   MENTION = /([A|C|D|S]MZ\w{7})/m
   
+  # Until MongoMapper includes full-text search, this is how searching is implemented
+  # @param *args [Array] The search terms
+  # @option *args [Fixnum] :page (1) The page of results to find
+  # @option *args [Fixnum] :per_page (10) The number of results per page
+  # @option *args [Symbol] :operator (:$all) The MM operator logic to use
+  # @option *args [Symbol] :order (:created_at.desc) The sort order to use
+  # @option *args [Symbol] :field (:_body) The Document key to search on
   def self.search(*args)
     opts = { :page => 1, :operator => :$all, :per_page => 10, :order => :created_at.desc, :field => :_body }.update(args.extract_options!)
     args = args.collect(&:split).flatten
@@ -44,43 +54,53 @@ class Comment
     where(criteria).sort(opts[:order]).paginate(:page => opts[:page], :per_page => opts[:per_page])
   end
   
-  # Sets the comment being responded to
+  # Sets the Comment being responded to
+  # @param Comment [Comment] The Comment being responded to
   def response_to=(comment)
     self.response_to_id = comment.id
     self.save if self.changed?
     @cached_response_to = comment
   end
   
-  # The comment being responded to
+  # The Comment being responded to
   def response_to
     @cached_response_to ||= Comment.find(self.response_to_id)
   end
   
-  # True if this comment is a response
+  # True if this Comment is a response to another
   def response?
     self.response_to_id.nil? ? false : true
   end
   
   # Atomic operation to let a User vote for a Comment
+  # @param user [User] The User upvoting this Comment
   def cast_vote_by(user)
     return if author.id == user.id
     Comment.collection.update({ '_id' => self.id }, {'$addToSet' => { 'upvotes' => user.id } })
     self.discussion.update_counts
   end
   
-  # The most recent comments
+  # The most recent Comments
+  # @param *args [Array] Pagination options
+  # @option *args [Fixnum] :page (1) The page of Comments to find
+  # @option *args [Fixnum] :per_page (10) The number of Comments per page
   def self.recent(*args)
     opts = { :page => 1, :per_page => 10 }.update(args.extract_options!)
     Comment.sort(:created_at.desc).paginate :page => opts[:page], :per_page => opts[:per_page]
   end
   
-  # Finds comments mentioning a focus
+  # Finds Comments mentioning a Focus
+  # @param focus The Focus to search for
+  # @option *args [Fixnum] :page (1) The page of results to find
+  # @option *args [Fixnum] :per_page (10) The number of results per page
+  # @option *args [Symbol] :order (:created_at.desc) The sort order to use
   def self.mentioning(focus, *args)
     opts = { :page => 1, :per_page => 10, :order => :created_at.desc }.update(args.extract_options!)
     Comment.sort(opts[:order]).where(:mentions => focus.zooniverse_id).paginate :page => opts[:page], :per_page => opts[:per_page]
   end
   
-  # Finds the number of comments mentioning a focus
+  # Counts the number of Comments that mention a Focus
+  # @param focus The Focus to search for
   def self.count_mentions(focus)
     Comment.where(:mentions => focus.zooniverse_id).count
   end
@@ -91,11 +111,15 @@ class Comment
     self.focus_type.constantize.find(self.focus_id)
   end
   
+  # Counts how many Comments came before this one.
+  # @return [Fixnum] List position
   def position
     direction = self.discussion.conversation? ? :created_at.gt : :created_at.lt
     self.discussion.comments.sort(:created_at.desc).count(direction => self.created_at)
   end
   
+  # Returns a targeted path to this Comment
+  # @option *args [Fixnum] :per_page (10) The number of Comments per page
   def path(*args)
     opts = { :per_page => 10 }.update(args.extract_options!)
     position = self.position
@@ -108,6 +132,7 @@ class Comment
     end
   end
   
+  # Synchronizes denormalized values
   def synchronize
     return if new_record? # Apparently in Rails 3.0.7 after_validation_on_update callbacks are triggered on new records
     split_body
@@ -115,6 +140,7 @@ class Comment
     synchronize_tags
   end
   
+  # Splits the body into an array and appends some metadata for searching
   def split_body
     self._body = self.body.gsub(/\W/, ' ').split
     
@@ -138,6 +164,9 @@ class Comment
     self.mentions = parsable.scan(MENTION).flatten.uniq if self.body
   end
   
+  # Updates attributes with Revision history
+  # @param *args [Array] The change Hash
+  # @option *args [User] :revising_user (author) The User invoking the change.  Could also being a moderator or admin
   def update_attributes(*args)
     opts = { :revising_user => self.author }.update(args.extract_options!)
     
@@ -146,6 +175,8 @@ class Comment
     self.save
   end
   
+  # Create a revision by a User
+  # @param revising_user [User] The User revising the Comment
   def create_revision_as(revising_user)
     return unless changes['body']
     
@@ -159,12 +190,15 @@ class Comment
     self.edit_count += 1
   end
   
+  # Serialize to an embedded hash that also contains a serialized revision history
   def to_embedded_hash
     hash = self.to_mongo
     hash['revisions'] = Revision.all(:original_id => self.id).collect(&:to_mongo)
     hash
   end
   
+  # Archive and destroy this Comment
+  # @param destroying_user [User] The User destroying this Comment
   def archive_and_destroy_as(destroying_user)
     Archive.create({
       :kind => "Comment",
@@ -183,18 +217,19 @@ class Comment
     self.destroy
   end
   
-  # Sets the focus of this comment
+  # Sets the Focus of this Comment
   def set_focus
     self.focus_id = discussion.focus_id unless discussion.nil?
     self.focus_type = discussion.focus_type unless discussion.nil?
     self.focus_base_type = discussion.focus_base_type unless discussion.nil?
   end
   
-  # Adds tags from this comment to the discussion and focus
+  # Denormalize Tags from this Comment to the Discussion and Focus
   def create_tags
     push_tags self.tags
   end
   
+  # Clean up responses referring to this Comment (on destroy)
   def nullify_responses
     Comment.collection.update({
       :response_to_id => self.id
@@ -205,14 +240,17 @@ class Comment
     }, :multi => true)
   end
   
+  # Removes tags created by this Comment (on destroy)
   def destroy_tags
     pull_tags self.tags
   end
   
+  # Trigger the Discussion's denormalized counter
   def denormalize_counts
     self.discussion.update_counts if self.discussion
   end
   
+  # Denormalize Tags from this Comment to the Discussion and Focus
   def synchronize_tags
     if changes["tags"]
       added = changes["tags"][1] - changes["tags"][0]
@@ -223,6 +261,7 @@ class Comment
     end
   end
   
+  # Adds new Tags to the Discussion and Focus
   def push_tags(new_tags)
     if %w(Asset AssetSet Group).include?(focus_type) && new_tags.any?
       klass = focus_type.constantize
@@ -241,6 +280,7 @@ class Comment
     end
   end
   
+  # Removes tags from the Discussion and Focus
   def pull_tags(old_tags)
     old_tags.each do |old_tag|
       selector = {

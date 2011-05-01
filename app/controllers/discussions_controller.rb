@@ -1,9 +1,11 @@
+# Discussions
 class DiscussionsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:show]
   before_filter CASClient::Frameworks::Rails::Filter, :only => [:new, :create, :edit, :update, :toggle_featured]
   before_filter :require_privileged_user, :only => :toggle_featured
   respond_to :js, :only => [:edit, :update, :toggle_featured]
   
+  # Show the Discussion
   def show
     default_params :page => 1, :per_page => 10
     @discussion = Discussion.find_by_zooniverse_id(params[:id])
@@ -25,6 +27,7 @@ class DiscussionsController < ApplicationController
     end 
   end
   
+  # Create a new Discussion
   def new
     find_show_focus
     @board = params[:sub_board_id] || params[:board_id]
@@ -35,6 +38,7 @@ class DiscussionsController < ApplicationController
     @page_title += " | New Discussion"
   end
   
+  # Edit the Discussion
   def edit
     @discussion = Discussion.find_by_zooniverse_id(params[:id])
     return not_found unless @discussion
@@ -43,6 +47,7 @@ class DiscussionsController < ApplicationController
     respond_with @discussion
   end
   
+  # Update the Discussion
   def update
     @discussion = Discussion.find(params[:id])
     return not_found unless @discussion
@@ -57,6 +62,7 @@ class DiscussionsController < ApplicationController
     respond_with @discussion
   end
   
+  # Destroy the Discussion
   def destroy
     @discussion = Discussion.find(params[:id])
     return not_found unless @discussion
@@ -71,6 +77,7 @@ class DiscussionsController < ApplicationController
     redirect_to @discussion.parent_path
   end
   
+  # Create the Discussion
   def create
     find_focus
     comment_params = params[:discussion].delete :comments
@@ -105,6 +112,7 @@ class DiscussionsController < ApplicationController
     end
   end
   
+  # Toggle Discussion featuring (on/off)
   def toggle_featured
     @discussion = Discussion.find(params[:id])
     return not_found unless @discussion
@@ -114,6 +122,7 @@ class DiscussionsController < ApplicationController
   end
   
   protected
+  # Find the Focus of this Discussion
   def find_focus
     if params.has_key? :board_id
       @focus = Board.find_by_title(params[:board_id])
@@ -124,6 +133,7 @@ class DiscussionsController < ApplicationController
     end
   end
   
+  # Find the Discussion Focus
   def find_show_focus
     focus_key = params.keys.select{ |key| %w(object_id collection_id board_id group_id).include? key }.first
     focus_key = "sub_board_id" if params[:sub_board_id].present?
@@ -134,6 +144,7 @@ class DiscussionsController < ApplicationController
     @focus = ([Board, SubBoard].include? klass) ? klass.find_by_title(focus_id) : klass.find_by_zooniverse_id(focus_id)
   end
   
+  # Helper for setting the Discussion page title
   def set_title_prefix
     @page_title = case @focus
     when Asset, Group

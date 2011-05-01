@@ -1,8 +1,10 @@
+# Administration
 class AdminController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter
   before_filter :require_privileged_user
   respond_to :html, :js
   
+  # The Admin page
   def index
     @page_title = "Administration"
     @more = params[:more]
@@ -14,6 +16,7 @@ class AdminController < ApplicationController
     end
   end
   
+  # Ignore an Event and reload
   def ignore
     @event = Event.find(params[:id])
     @event.moderator = current_zooniverse_user
@@ -25,6 +28,7 @@ class AdminController < ApplicationController
     set_page "logged", Event.actioned.ignored
   end
   
+  # Remove a Comment and any Events attached to it
   def remove_comment
     @event = Event.find(params[:id])
     
@@ -40,6 +44,7 @@ class AdminController < ApplicationController
     set_page "logged", Event.actioned.ignored
   end
   
+  # Ban a User
   def ban
     @event = Event.find(params[:id])
     @user = @event.target_user
@@ -52,6 +57,7 @@ class AdminController < ApplicationController
     set_page "logged", Event.actioned.ignored
   end
   
+  # Redeem a User
   def redeem
     @user = User.find(params[:id])
     @user.redeem(current_zooniverse_user)
@@ -61,6 +67,7 @@ class AdminController < ApplicationController
     set_page "logged", Event.actioned.ignored
   end
   
+  # Watch/Unwatch a User
   def watch
     @user = User.find(params[:id])
     
@@ -76,6 +83,7 @@ class AdminController < ApplicationController
   end
   
   protected
+  # Reload instance variables
   def set_page(ivar, cursor)
     page = "#{ ivar }_page"
     per_page = "#{ ivar }_per_page"

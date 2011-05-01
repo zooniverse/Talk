@@ -1,0 +1,899 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: ApplicationController</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (A)</a> &raquo; 
+    
+    
+    <span class="title">ApplicationController</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: ApplicationController
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">ActionController::Base</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActionController::Base</li>
+          
+            <li class="next">ApplicationController</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/controllers/application_controller.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Application-wide methods
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="AdminController.html" title="AdminController (class)">AdminController</a></span>, <span class='object_link'><a href="AssetsController.html" title="AssetsController (class)">AssetsController</a></span>, <span class='object_link'><a href="BoardsController.html" title="BoardsController (class)">BoardsController</a></span>, <span class='object_link'><a href="CollectionsController.html" title="CollectionsController (class)">CollectionsController</a></span>, <span class='object_link'><a href="CommentsController.html" title="CommentsController (class)">CommentsController</a></span>, <span class='object_link'><a href="DiscussionsController.html" title="DiscussionsController (class)">DiscussionsController</a></span>, <span class='object_link'><a href="GroupsController.html" title="GroupsController (class)">GroupsController</a></span>, <span class='object_link'><a href="HomeController.html" title="HomeController (class)">HomeController</a></span>, <span class='object_link'><a href="MessagesController.html" title="MessagesController (class)">MessagesController</a></span>, <span class='object_link'><a href="SearchController.html" title="SearchController (class)">SearchController</a></span>, <span class='object_link'><a href="UsersController.html" title="UsersController (class)">UsersController</a></span></p>
+</div>
+
+
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cas_login-instance_method" title="#cas_login (instance method)">- (Object) <strong>cas_login</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Log in.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cas_logout-instance_method" title="#cas_logout (instance method)">- (Object) <strong>cas_logout</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Log out.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#default_params-instance_method" title="#default_params (instance method)">- (Object) <strong>default_params</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Handy for setting default ivar values.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#flash_model_errors_on-instance_method" title="#flash_model_errors_on (instance method)">- (Object) <strong>flash_model_errors_on</strong>(*docs) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Displays flash errors for documents.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#id_for-instance_method" title="#id_for (instance method)">- (Object) <strong>id_for</strong>(id) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Ensure Id&#8217;s are stored as BSON::ObjectId&#8217;s.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#markdown-instance_method" title="#markdown (instance method)">- (Object) <strong>markdown</strong>(text) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Render text as markdown.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#moderator_or_owner-instance_method" title="#moderator_or_owner (instance method)">- (Object) <strong>moderator_or_owner</strong>(method, document) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+True if User has read/write privileges, redirects with flash otherwise.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#not_found-instance_method" title="#not_found (instance method)">- (Object) <strong>not_found</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Catch not found errors gracefully.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#require_privileged_user-instance_method" title="#require_privileged_user (instance method)">- (Object) <strong>require_privileged_user</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+True if User is privileged, redirects with flash otherwise.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="cas_login-instance_method">
+  
+    - (<tt>Object</tt>) <strong>cas_login</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Log in
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+87
+88
+89</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/application_controller.rb', line 87</span>
+
+<span class='kw'>def</span> <span class='id cas_login'>cas_login</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>CASClient</span><span class='op'>::</span><span class='const'>Frameworks</span><span class='op'>::</span><span class='const'>Rails</span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id client'>client</span><span class='period'>.</span><span class='id login_url'>login_url</span><span class='rbrace'>}</span><span class='tstring_content'>?service=http%3A%2F%2F</span><span class='embexpr_beg'>#{</span> <span class='id request'>request</span><span class='period'>.</span><span class='id host_with_port'>host_with_port</span> <span class='rbrace'>}</span><span class='embexpr_beg'>#{</span> <span class='id request'>request</span><span class='period'>.</span><span class='id fullpath'>fullpath</span> <span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="cas_logout-instance_method">
+  
+    - (<tt>Object</tt>) <strong>cas_logout</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Log out
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+81
+82
+83</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/application_controller.rb', line 81</span>
+
+<span class='kw'>def</span> <span class='id cas_logout'>cas_logout</span>
+  <span class='const'>CASClient</span><span class='op'>::</span><span class='const'>Frameworks</span><span class='op'>::</span><span class='const'>Rails</span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id logout'>logout</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="default_params-instance_method">
+  
+    - (<tt>Object</tt>) <strong>default_params</strong>(*args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Handy for setting default ivar values
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <span class='name'>*args</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The list of key-val pairs
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/application_controller.rb', line 17</span>
+
+<span class='kw'>def</span> <span class='id default_params'>default_params</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span>
+  <span class='id hash'>hash</span> <span class='op'>=</span> <span class='id args'>args</span><span class='period'>.</span><span class='id extract_options!'>extract_options!</span>
+  
+  <span class='id hash'>hash</span><span class='period'>.</span><span class='id each_pair'>each_pair</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id param'>param</span><span class='comma'>,</span> <span class='id default'>default</span><span class='op'>|</span>
+    <span class='id value'>value</span> <span class='op'>=</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='id param'>param</span><span class='rbracket'>]</span> <span class='op'>?</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='id param'>param</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='id default'>default</span>
+    
+    <span class='kw'>case</span> <span class='id default'>default</span>
+    <span class='kw'>when</span> <span class='const'>TrueClass</span><span class='comma'>,</span> <span class='const'>FalseClass</span>
+      <span class='id value'>value</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id value'>value</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>true</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>when</span> <span class='const'>Integer</span><span class='comma'>,</span> <span class='const'>Fixnum</span>
+      <span class='id value'>value</span> <span class='op'>=</span> <span class='id value'>value</span><span class='period'>.</span><span class='id to_i'>to_i</span>
+    <span class='kw'>when</span> <span class='const'>Float</span>
+      <span class='id value'>value</span> <span class='op'>=</span> <span class='id value'>value</span><span class='period'>.</span><span class='id to_f'>to_f</span>
+    <span class='kw'>end</span>
+    
+    <span class='id instance_variable_set'>instance_variable_set</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span> <span class='id param'>param</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id value'>value</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="flash_model_errors_on-instance_method">
+  
+    - (<tt>Object</tt>) <strong>flash_model_errors_on</strong>(*docs) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Displays flash errors for documents
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <span class='name'>*docs</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The list of documents being validated
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+94
+95
+96
+97
+98
+99
+100
+101</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/application_controller.rb', line 94</span>
+
+<span class='kw'>def</span> <span class='id flash_model_errors_on'>flash_model_errors_on</span><span class='lparen'>(</span><span class='op'>*</span><span class='id docs'>docs</span><span class='rparen'>)</span>
+  <span class='id messages'>messages</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id docs'>docs</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id doc'>doc</span><span class='op'>|</span>
+    <span class='id messages'>messages</span> <span class='op'>&lt;&lt;</span> <span class='id doc'>doc</span><span class='period'>.</span><span class='id errors'>errors</span><span class='period'>.</span><span class='id full_messages'>full_messages</span><span class='period'>.</span><span class='id map'>map</span><span class='lbrace'>{</span> <span class='op'>|</span><span class='id e'>e</span><span class='op'>|</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;li&gt;</span><span class='embexpr_beg'>#{</span><span class='id e'>e</span><span class='rbrace'>}</span><span class='tstring_content'>&lt;/li&gt;</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id join'>join</span> <span class='kw'>if</span> <span class='id doc'>doc</span><span class='period'>.</span><span class='id errors'>errors</span><span class='period'>.</span><span class='id respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:full_messages</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id doc'>doc</span><span class='period'>.</span><span class='id errors'>errors</span><span class='period'>.</span><span class='id any?'>any?</span>
+  <span class='kw'>end</span>
+  
+  <span class='id flash'>flash</span><span class='lbracket'>[</span><span class='symbol'>:alert</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;ul&gt;</span><span class='embexpr_beg'>#{</span> <span class='id messages'>messages</span><span class='period'>.</span><span class='id join'>join</span> <span class='rbrace'>}</span><span class='tstring_content'>&lt;/ul&gt;</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id html_safe'>html_safe</span> <span class='kw'>if</span> <span class='id messages'>messages</span><span class='period'>.</span><span class='id any?'>any?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="id_for-instance_method">
+  
+    - (<tt>Object</tt>) <strong>id_for</strong>(id) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Ensure Id&#8217;s are stored as BSON::ObjectId&#8217;s
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>, <tt>BSON::ObjectId</tt>)</span>
+      
+      
+        <span class='name'>id</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The Id
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38
+39
+40</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/application_controller.rb', line 38</span>
+
+<span class='kw'>def</span> <span class='id id_for'>id_for</span><span class='lparen'>(</span><span class='id id'>id</span><span class='rparen'>)</span>
+  <span class='id id'>id</span><span class='period'>.</span><span class='id is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='const'>BSON</span><span class='op'>::</span><span class='const'>ObjectId</span><span class='lparen'>(</span><span class='id id'>id</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id id'>id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="markdown-instance_method">
+  
+    - (<tt>Object</tt>) <strong>markdown</strong>(text) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Render text as markdown
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>text</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The markup text
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/application_controller.rb', line 44</span>
+
+<span class='kw'>def</span> <span class='id markdown'>markdown</span><span class='lparen'>(</span><span class='id text'>text</span><span class='rparen'>)</span>
+  <span class='id formatted'>formatted</span> <span class='op'>=</span> <span class='id text'>text</span><span class='period'>.</span><span class='id gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>#</span><span class='regexp_end'>/m</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>\#</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[\r\n]</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n\n</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id output'>output</span> <span class='op'>=</span> <span class='const'>BlueCloth</span><span class='op'>::</span><span class='id new'>new</span><span class='lparen'>(</span><span class='id formatted'>formatted</span><span class='comma'>,</span> <span class='symbol'>:escape_html</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='symbol'>:auto_links</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_html'>to_html</span>
+  <span class='id tags'>tags</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>h1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>h2</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>h3</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>h4</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>h5</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>h6</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+  <span class='id tags'>tags</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id tag'>tag</span><span class='op'>|</span>
+    <span class='id output'>output</span><span class='period'>.</span><span class='id gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;</span><span class='embexpr_beg'>#{</span><span class='id tag'>tag</span><span class='rbrace'>}</span><span class='tstring_content'>\b[^&gt;]*&gt;(.*?)&lt;\/</span><span class='embexpr_beg'>#{</span><span class='id tag'>tag</span><span class='rbrace'>}</span><span class='tstring_content'>&gt;</span><span class='regexp_end'>/im</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>\1</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>return</span> <span class='id output'>output</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="moderator_or_owner-instance_method">
+  
+    - (<tt>Object</tt>) <strong>moderator_or_owner</strong>(method, document) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+True if User has read/write privileges, redirects with flash otherwise
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <span class='name'>method</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The verification method
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+        <span class='name'>document</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The document to be checked against
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+70
+71
+72
+73
+74
+75
+76
+77
+78</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/application_controller.rb', line 70</span>
+
+<span class='kw'>def</span> <span class='id moderator_or_owner'>moderator_or_owner</span><span class='lparen'>(</span><span class='id method'>method</span><span class='comma'>,</span> <span class='id document'>document</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id current_zooniverse_user'>current_zooniverse_user</span> <span class='op'>&amp;&amp;</span> <span class='id current_zooniverse_user'>current_zooniverse_user</span><span class='period'>.</span><span class='id send'>send</span><span class='lparen'>(</span><span class='id method'>method</span><span class='comma'>,</span> <span class='id document'>document</span><span class='rparen'>)</span>
+    <span class='id flash'>flash</span><span class='lbracket'>[</span><span class='symbol'>:notice</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id t'>t</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>controllers.application.not_yours</span><span class='tstring_end'>'</span></span>
+    <span class='id redirect_to'>redirect_to</span> <span class='id root_url'>root_url</span>
+    <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="not_found-instance_method">
+  
+    - (<tt>Object</tt>) <strong>not_found</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Catch not found errors gracefully
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/application_controller.rb', line 11</span>
+
+<span class='kw'>def</span> <span class='id not_found'>not_found</span>
+  <span class='id render'>render</span> <span class='symbol'>:file</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span> <span class='const'>Rails</span><span class='period'>.</span><span class='id root'>root</span> <span class='rbrace'>}</span><span class='tstring_content'>/public/404.html</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:status</span> <span class='op'>=&gt;</span> <span class='symbol'>:not_found</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="require_privileged_user-instance_method">
+  
+    - (<tt>Object</tt>) <strong>require_privileged_user</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+True if User is privileged, redirects with flash otherwise
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+57
+58
+59
+60
+61
+62
+63
+64
+65</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/application_controller.rb', line 57</span>
+
+<span class='kw'>def</span> <span class='id require_privileged_user'>require_privileged_user</span>
+  <span class='kw'>unless</span> <span class='id current_zooniverse_user'>current_zooniverse_user</span> <span class='op'>&amp;&amp;</span> <span class='id current_zooniverse_user'>current_zooniverse_user</span><span class='period'>.</span><span class='id privileged?'>privileged?</span>
+    <span class='id flash'>flash</span><span class='lbracket'>[</span><span class='symbol'>:notice</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id t'>t</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>controllers.application.not_authorised</span><span class='tstring_end'>'</span></span>
+    <span class='id redirect_to'>redirect_to</span> <span class='id root_url'>root_url</span>
+    <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun May  1 16:07:48 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.7 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

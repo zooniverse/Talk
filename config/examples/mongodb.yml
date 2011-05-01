@@ -1,0 +1,16 @@
+development: &global_settings
+  host: 127.0.0.1
+  database: talk-development
+  port: 27017
+
+test:
+  database: talk-test
+  <<: *global_settings
+
+production:
+  host: db.example.com
+  database: talk-production
+  username: talker
+  password: super_secret!
+  port: 12345
+  <<: *global_settings

@@ -1,4 +1,6 @@
+# Helpers for Users
 module UsersHelper
+  # Defines more links for User Comments and Discussions
   [:comments, :discussions].each do |group|
     define_method "more_#{ group }".to_sym do |*args|
       options = args.extract_options!

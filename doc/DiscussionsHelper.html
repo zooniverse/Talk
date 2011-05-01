@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module: DiscussionsHelper</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (D)</a> &raquo; 
+    
+    
+    <span class="title">DiscussionsHelper</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: DiscussionsHelper
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">app/helpers/discussions_helper.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Helpers for Discussions
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#focus_url_for-instance_method" title="#focus_url_for (instance method)">- (Object) <strong>focus_url_for</strong>(focus) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Find the path to a Focus.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#title_for-instance_method" title="#title_for (instance method)">- (Object) <strong>title_for</strong>(focus) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Pretty titled link for a Focus.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="focus_url_for-instance_method">
+  
+    - (<tt>Object</tt>) <strong>focus_url_for</strong>(focus) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Find the path to a Focus
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+        <span class='name'>focus</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The Focus for the path
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/helpers/discussions_helper.rb', line 17</span>
+
+<span class='kw'>def</span> <span class='id focus_url_for'>focus_url_for</span><span class='lparen'>(</span><span class='id focus'>focus</span><span class='rparen'>)</span>
+  <span class='kw'>case</span> <span class='id focus'>focus</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id name'>name</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Asset</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id object_path'>object_path</span><span class='lparen'>(</span><span class='id focus'>focus</span><span class='period'>.</span><span class='id zooniverse_id'>zooniverse_id</span><span class='rparen'>)</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Group</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id group_path'>group_path</span><span class='lparen'>(</span><span class='id focus'>focus</span><span class='period'>.</span><span class='id zooniverse_id'>zooniverse_id</span><span class='rparen'>)</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>AssetSet</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>KeywordSet</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id collection_path'>collection_path</span><span class='lparen'>(</span><span class='id focus'>focus</span><span class='period'>.</span><span class='id zooniverse_id'>zooniverse_id</span><span class='rparen'>)</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Board</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SubBoard</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id focus'>focus</span><span class='period'>.</span><span class='id path'>path</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="title_for-instance_method">
+  
+    - (<tt>Object</tt>) <strong>title_for</strong>(focus) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Pretty titled link for a Focus
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+        <span class='name'>focus</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The Focus to link to
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+5
+6
+7
+8
+9
+10
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/helpers/discussions_helper.rb', line 5</span>
+
+<span class='kw'>def</span> <span class='id title_for'>title_for</span><span class='lparen'>(</span><span class='id focus'>focus</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id focus'>focus</span><span class='period'>.</span><span class='id is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Board</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id focus'>focus</span><span class='period'>.</span><span class='id is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>SubBoard</span><span class='rparen'>)</span>
+    <span class='id link'>link</span> <span class='op'>=</span> <span class='id link_to'>link_to</span> <span class='id focus'>focus</span><span class='period'>.</span><span class='id pretty_title'>pretty_title</span><span class='comma'>,</span> <span class='id focus_url_for'>focus_url_for</span><span class='lparen'>(</span><span class='id focus'>focus</span><span class='rparen'>)</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span> <span class='const'>I18n</span><span class='period'>.</span><span class='id t'>t</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>discussion.board.new</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span> <span class='id link'>link</span> <span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span> <span class='const'>I18n</span><span class='period'>.</span><span class='id t'>t</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>discussion.board.discussion</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id html_safe'>html_safe</span>
+  <span class='kw'>else</span>
+    <span class='id link'>link</span> <span class='op'>=</span> <span class='id link_to'>link_to</span> <span class='const'>I18n</span><span class='period'>.</span><span class='id t'>t</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span> <span class='id focus'>focus</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id name'>name</span><span class='period'>.</span><span class='id downcase'>downcase</span> <span class='rbrace'>}</span><span class='tstring_content'>.name</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id focus_url_for'>focus_url_for</span><span class='lparen'>(</span><span class='id focus'>focus</span><span class='rparen'>)</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span> <span class='const'>I18n</span><span class='period'>.</span><span class='id t'>t</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>discussion.startnew</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span> <span class='const'>I18n</span><span class='period'>.</span><span class='id t'>t</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>discussion.about</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span> <span class='id link'>link</span> <span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id html_safe'>html_safe</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun May  1 16:07:47 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.7 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

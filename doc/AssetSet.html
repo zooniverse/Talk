@@ -1,0 +1,1011 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: AssetSet</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (A)</a> &raquo; 
+    
+    
+    <span class="title">AssetSet</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: AssetSet
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">AssetSet</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><span class='object_link'><a href="Focus.html" title="Focus (module)">Focus</a></span>, MongoMapper::Document, <span class='object_link'><a href="ZooniverseId.html" title="ZooniverseId (module)">ZooniverseId</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">app/models/asset_set.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+A User owned and curated collection of Assets
+</p>
+<p>
+Generally referred to as a &#8220;Collection&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="KeywordSet.html" title="KeywordSet (class)">KeywordSet</a></span></p>
+</div>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#recent-class_method" title="recent (class method)">+ (Object) <strong>recent</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Selects the most recent AssetSets.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#with_asset-class_method" title="with_asset (class method)">+ (Object) <strong>with_asset</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Selects AssetSets containing an asset.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#with_keywords-class_method" title="with_keywords (class method)">+ (Object) <strong>with_keywords</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Selects AssetSets tagged with the given keywords.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#asset_count-instance_method" title="#asset_count (instance method)">- (Object) <strong>asset_count</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Counts the number of Assets in this AssetSet.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#conversation_path-instance_method" title="#conversation_path (instance method)">- (Object) <strong>conversation_path</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+The path to the conversation about this AssetSet.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#discussion_path-instance_method" title="#discussion_path (instance method)">- (Object) <strong>discussion_path</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+The path to a discussion about this AssetSet.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#new_discussion_path-instance_method" title="#new_discussion_path (instance method)">- (Object) <strong>new_discussion_path</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+The path to start a new discussion about this AssetSet.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#recent_assets-instance_method" title="#recent_assets (instance method)">- (Object) <strong>recent_assets</strong>(limit = 10) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Selects the most recently added Assets.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Focus.html" title="Focus (module)">Focus</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Focus.html#archive_and_destroy_as-instance_method" title="Focus#archive_and_destroy_as (method)">#archive_and_destroy_as</a></span>, <span class='object_link'><a href="Focus.html#build_conversation-instance_method" title="Focus#build_conversation (method)">#build_conversation</a></span>, <span class='object_link'><a href="Focus.html#conversation-instance_method" title="Focus#conversation (method)">#conversation</a></span>, <span class='object_link'><a href="Focus.html#conversation%3D-instance_method" title="Focus#conversation= (method)">#conversation=</a></span>, <span class='object_link'><a href="Focus.html#keywords-instance_method" title="Focus#keywords (method)">#keywords</a></span>, <span class='object_link'><a href="Focus.html#set_focus-instance_method" title="Focus#set_focus (method)">#set_focus</a></span>, <span class='object_link'><a href="Focus.html#update_popularity-instance_method" title="Focus#update_popularity (method)">#update_popularity</a></span></p>
+
+  
+  
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="recent-class_method">
+  
+    + (<tt>Object</tt>) <strong>recent</strong>(*args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Selects the most recent AssetSets
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <span class='name'>*args</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Pagination options
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <h3>Options Hash (<tt>*args</tt>):</h3>
+    <ul class="option">
+      
+        <li>
+          <span class="type">(<tt>Fixnum</tt>)</span>
+          <span class="name">:page</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>1</tt>
+            
+          </span>
+          &mdash; <div class='inline'><p>
+The page of AssetSets to find
+</p>
+</div>
+        </tr>
+      
+        <li>
+          <span class="type">(<tt>Fixnum</tt>)</span>
+          <span class="name">:per_page</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>10</tt>
+            
+          </span>
+          &mdash; <div class='inline'><p>
+The number of AssetSets per page
+</p>
+</div>
+        </tr>
+      
+    </ul>
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/asset_set.rb', line 28</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id recent'>recent</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span>
+  <span class='id opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='symbol'>:page</span> <span class='op'>=&gt;</span> <span class='int'>1</span><span class='comma'>,</span> <span class='symbol'>:per_page</span> <span class='op'>=&gt;</span> <span class='int'>10</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id update'>update</span><span class='lparen'>(</span><span class='id args'>args</span><span class='period'>.</span><span class='id extract_options!'>extract_options!</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id sort'>sort</span><span class='lparen'>(</span><span class='symbol'>:created_at</span><span class='period'>.</span><span class='id desc'>desc</span><span class='rparen'>)</span><span class='period'>.</span><span class='id paginate'>paginate</span><span class='lparen'>(</span><span class='id opts'>opts</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="with_asset-class_method">
+  
+    + (<tt>Object</tt>) <strong>with_asset</strong>(*args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Selects AssetSets containing an asset
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <span class='name'>*args</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Pagination options
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <h3>Options Hash (<tt>*args</tt>):</h3>
+    <ul class="option">
+      
+        <li>
+          <span class="type">(<tt>Fixnum</tt>)</span>
+          <span class="name">:page</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>1</tt>
+            
+          </span>
+          &mdash; <div class='inline'><p>
+The page of AssetSets to find
+</p>
+</div>
+        </tr>
+      
+        <li>
+          <span class="type">(<tt>Fixnum</tt>)</span>
+          <span class="name">:per_page</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>10</tt>
+            
+          </span>
+          &mdash; <div class='inline'><p>
+The number of AssetSets per page
+</p>
+</div>
+        </tr>
+      
+    </ul>
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46
+47
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/asset_set.rb', line 44</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id with_asset'>with_asset</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span>
+  <span class='id opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='symbol'>:page</span> <span class='op'>=&gt;</span> <span class='int'>1</span><span class='comma'>,</span> <span class='symbol'>:per_page</span> <span class='op'>=&gt;</span> <span class='int'>10</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id update'>update</span><span class='lparen'>(</span><span class='id args'>args</span><span class='period'>.</span><span class='id extract_options!'>extract_options!</span><span class='rparen'>)</span>
+  <span class='id opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:per_page</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:limit</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id opts'>opts</span><span class='period'>.</span><span class='id has_key?'>has_key?</span><span class='lparen'>(</span><span class='symbol'>:limit</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id sort'>sort</span><span class='lparen'>(</span><span class='symbol'>:created_at</span><span class='period'>.</span><span class='id desc'>desc</span><span class='rparen'>)</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='symbol'>:asset_ids</span> <span class='op'>=&gt;</span> <span class='id args'>args</span><span class='period'>.</span><span class='id first'>first</span><span class='period'>.</span><span class='id id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id paginate'>paginate</span><span class='lparen'>(</span><span class='id opts'>opts</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="with_keywords-class_method">
+  
+    + (<tt>Object</tt>) <strong>with_keywords</strong>(*args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Selects AssetSets tagged with the given keywords
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <span class='name'>*args</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The list of keywords to search for
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <h3>Options Hash (<tt>*args</tt>):</h3>
+    <ul class="option">
+      
+        <li>
+          <span class="type">(<tt>Fixnum</tt>)</span>
+          <span class="name">:page</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>1</tt>
+            
+          </span>
+          &mdash; <div class='inline'><p>
+The page of AssetSets to find
+</p>
+</div>
+        </tr>
+      
+        <li>
+          <span class="type">(<tt>Fixnum</tt>)</span>
+          <span class="name">:per_page</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>20</tt>
+            
+          </span>
+          &mdash; <div class='inline'><p>
+The number of AssetSets per page
+</p>
+</div>
+        </tr>
+      
+    </ul>
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+54
+55
+56
+57
+58
+59
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/asset_set.rb', line 54</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id with_keywords'>with_keywords</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span>
+  <span class='id opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='symbol'>:per_page</span> <span class='op'>=&gt;</span> <span class='int'>20</span><span class='comma'>,</span> <span class='symbol'>:page</span> <span class='op'>=&gt;</span> <span class='int'>1</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id update'>update</span><span class='lparen'>(</span><span class='id args'>args</span><span class='period'>.</span><span class='id extract_options!'>extract_options!</span><span class='rparen'>)</span>
+  <span class='id args'>args</span> <span class='op'>=</span> <span class='id args'>args</span><span class='period'>.</span><span class='id collect'>collect</span><span class='lbrace'>{</span> <span class='op'>|</span><span class='id arg'>arg</span><span class='op'>|</span> <span class='id arg'>arg</span><span class='period'>.</span><span class='id split'>split</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id flatten'>flatten</span>
+  <span class='kw'>return</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id args'>args</span><span class='period'>.</span><span class='id blank?'>blank?</span>
+  
+  <span class='kw'>self</span><span class='period'>.</span><span class='id sort'>sort</span><span class='lparen'>(</span><span class='symbol'>:created_at</span><span class='period'>.</span><span class='id desc'>desc</span><span class='rparen'>)</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='symbol'>:tags</span><span class='period'>.</span><span class='id all'>all</span> <span class='op'>=&gt;</span> <span class='id args'>args</span><span class='rparen'>)</span><span class='period'>.</span><span class='id paginate'>paginate</span><span class='lparen'>(</span><span class='id opts'>opts</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="asset_count-instance_method">
+  
+    - (<tt>Object</tt>) <strong>asset_count</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Counts the number of Assets in this AssetSet
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+63
+64
+65</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/asset_set.rb', line 63</span>
+
+<span class='kw'>def</span> <span class='id asset_count'>asset_count</span>
+  <span class='id asset_ids'>asset_ids</span><span class='period'>.</span><span class='id length'>length</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="conversation_path-instance_method">
+  
+    - (<tt>Object</tt>) <strong>conversation_path</strong>(*args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+The path to the conversation about this AssetSet
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <span class='name'>*args</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Arguments to pass into the url helper
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+86
+87
+88
+89
+90</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/asset_set.rb', line 86</span>
+
+<span class='kw'>def</span> <span class='id conversation_path'>conversation_path</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span>
+  <span class='id options'>options</span> <span class='op'>=</span> <span class='id args'>args</span><span class='period'>.</span><span class='id extract_options!'>extract_options!</span>
+  <span class='id options'>options</span><span class='period'>.</span><span class='id delete'>delete</span><span class='lparen'>(</span><span class='symbol'>:page</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id options'>options</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='int'>1</span>
+  <span class='id collection_path'>collection_path</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id zooniverse_id'>zooniverse_id</span><span class='comma'>,</span> <span class='id options'>options</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="discussion_path-instance_method">
+  
+    - (<tt>Object</tt>) <strong>discussion_path</strong>(*args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+The path to a discussion about this AssetSet
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <span class='name'>*args</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The Discussion
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <h3>Options Hash (<tt>*args</tt>):</h3>
+    <ul class="option">
+      
+        <li>
+          <span class="type">(<tt>Hash</tt>)</span>
+          <span class="name">*</span>
+          <span class="default">
+            
+          </span>
+          &mdash; <div class='inline'><p>
+Arguments to pass into the url helper
+</p>
+</div>
+        </tr>
+      
+    </ul>
+  
+<h3>Raises:</h3>
+<ul class="raise">
+  
+    <li>
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+76
+77
+78
+79
+80
+81
+82</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/asset_set.rb', line 76</span>
+
+<span class='kw'>def</span> <span class='id discussion_path'>discussion_path</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span>
+  <span class='id options'>options</span> <span class='op'>=</span> <span class='id args'>args</span><span class='period'>.</span><span class='id extract_options!'>extract_options!</span>
+  <span class='id raise'>raise</span> <span class='const'>ArgumentError</span> <span class='kw'>unless</span> <span class='id args'>args</span><span class='period'>.</span><span class='id first'>first</span><span class='period'>.</span><span class='id respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:zooniverse_id</span><span class='rparen'>)</span>
+  
+  <span class='id options'>options</span><span class='period'>.</span><span class='id delete'>delete</span><span class='lparen'>(</span><span class='symbol'>:page</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id options'>options</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='int'>1</span>
+  <span class='id collection_discussion_path'>collection_discussion_path</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id zooniverse_id'>zooniverse_id</span><span class='comma'>,</span> <span class='id args'>args</span><span class='period'>.</span><span class='id first'>first</span><span class='period'>.</span><span class='id zooniverse_id'>zooniverse_id</span><span class='comma'>,</span> <span class='id options'>options</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="new_discussion_path-instance_method">
+  
+    - (<tt>Object</tt>) <strong>new_discussion_path</strong>(*args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+The path to start a new discussion about this AssetSet
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <span class='name'>*args</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Arguments to pass into the url helper
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+69
+70
+71</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/asset_set.rb', line 69</span>
+
+<span class='kw'>def</span> <span class='id new_discussion_path'>new_discussion_path</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span>
+  <span class='id new_collection_discussion_path'>new_collection_discussion_path</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id zooniverse_id'>zooniverse_id</span><span class='comma'>,</span> <span class='id args'>args</span><span class='period'>.</span><span class='id extract_options!'>extract_options!</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="recent_assets-instance_method">
+  
+    - (<tt>Object</tt>) <strong>recent_assets</strong>(limit = 10) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Selects the most recently added Assets
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+        <span class='name'>limit</span>
+      
+      
+        <em class="default">(defaults to: <tt>10</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The number of Assets to find
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+35
+36
+37
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/asset_set.rb', line 35</span>
+
+<span class='kw'>def</span> <span class='id recent_assets'>recent_assets</span><span class='lparen'>(</span><span class='id limit'>limit</span> <span class='op'>=</span> <span class='int'>10</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id asset_ids'>asset_ids</span><span class='period'>.</span><span class='id empty?'>empty?</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id asset_ids'>asset_ids</span><span class='period'>.</span><span class='id reverse'>reverse</span><span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='id limit'>limit</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id map'>map</span><span class='lbrace'>{</span> <span class='op'>|</span><span class='id id'>id</span><span class='op'>|</span> <span class='const'>Asset</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id id'>id</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun May  1 16:07:45 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.7 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

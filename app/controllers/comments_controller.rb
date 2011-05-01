@@ -1,8 +1,10 @@
+# Comments
 class CommentsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter, :only => [:create, :update, :destroy, :markitup_parser, :vote_up, :report]
   respond_to :html, :only => :create
   respond_to :js, :only => [:edit, :update, :destroy, :vote_up, :report, :preview]
   
+  # Create a new Comment
   def create
     default_params :page => 1
     @discussion = Discussion.find(params[:discussion_id])
@@ -16,6 +18,7 @@ class CommentsController < ApplicationController
     end
   end
   
+  # Edit a Comment
   def edit
     @comment = Comment.find(params[:id])
     return not_found unless @comment
@@ -24,6 +27,7 @@ class CommentsController < ApplicationController
     @short_display = @comment.discussion.conversation?
   end
   
+  # Update a Comment
   def update
     @comment = Comment.find(params[:id])
     return not_found unless @comment
@@ -41,6 +45,7 @@ class CommentsController < ApplicationController
     respond_with @comment
   end
   
+  # Destroy a Comment
   def destroy
     @comment = Comment.find(params[:id])
     return not_found unless @comment
@@ -56,6 +61,7 @@ class CommentsController < ApplicationController
     respond_with @comment
   end
   
+  # 'Recommend' a Comment
   def vote_up
     @comment = Comment.find(params[:id])
     return not_found unless @comment
@@ -71,6 +77,7 @@ class CommentsController < ApplicationController
     end
   end
   
+  # Report a Comment to the moderators
   def report
     if current_zooniverse_user.nil?
       flash[:alert] = I18n.t('controllers.comments.not_logged_in')
@@ -87,6 +94,7 @@ class CommentsController < ApplicationController
     end
   end
   
+  # Parse markdown for markItUp!
   def markitup_parser
     @comment = Comment.new(:body => params[:body] || "")
     @comment.author = current_zooniverse_user
@@ -101,6 +109,7 @@ class CommentsController < ApplicationController
     end
   end
   
+  # Preview markdown text
   def preview
     @comment = Comment.find(params[:id])
     return not_found unless @comment
@@ -108,6 +117,7 @@ class CommentsController < ApplicationController
     respond_with @comment
   end
   
+  # Show more Comments
   def more
     default_params :page => 1, :per_page => 10
     @discussion_id = params[:discussion_id]

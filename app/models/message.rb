@@ -1,4 +1,4 @@
-# A private Message between User
+# A private Message between Users
 class Message
   include MongoMapper::Document
   attr_accessible :title, :body
@@ -21,7 +21,7 @@ class Message
   
   after_create :deliver_notification
   
-  # Sends an email to the recipient of a message
+  # Sends an email to the recipient of a Message
   def deliver_notification
     Notifier.message_received(self).deliver
   end
@@ -31,33 +31,33 @@ class Message
     Message.collection.update({ :_id => id }, { '$set' => { :unread => false } })
   end
   
-  # The recipients name
+  # The recipient name
   def recipient_name
     self.recipient.name
   end
   
-  # Sets the recipient by user-name
+  # Sets the recipient by User name
   def recipient_name=(name)
     user = User.find_by_name(name)
     self.recipient = user unless user.nil?
   end
   
-  # True if user is the recipient
+  # True if User is the recipient
   def sent_to?(user)
     recipient_id == user.id
   end
   
-  # True if user is the sender
+  # True if User is the sender
   def sent_by?(user)
     sender_id == user.id
   end
   
-  # True if user is the sender or recipient
+  # True if User is the sender or recipient
   def visible_to?(user)
     sent_to?(user) || sent_by?(user)
   end
   
-  # The message is only destroyed when both recipient and sender have deleted it
+  # The Message is only destroyed when both recipient and sender have deleted it
   def destroy_for(user)
     self.destroyed_by_sender = true if sent_by? user
     self.destroyed_by_recipient = true if sent_to? user

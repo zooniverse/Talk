@@ -18,7 +18,7 @@ group :production do
 end
 
 group :development do
-  gem 'mysql'
+  gem 'yard'
   gem 'mongrel', '1.2.0.pre2'
   gem 'sass', '3.1.1'
 end

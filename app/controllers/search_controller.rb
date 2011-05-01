@@ -1,6 +1,8 @@
+# Search
 class SearchController < ApplicationController
   respond_to :html, :js
   
+  # The Search
   def index
     default_params :search => "", :page => 1, :per_page => 10, :for => "comments"
     @for.sub('keyword_sets', 'collections')
@@ -37,18 +39,25 @@ class SearchController < ApplicationController
     end
   end
   
+  # Preview Assets for a KeywordSet
   def keyword_set_results
     @keywords = params[:keywords]
     @assets = Asset.with_keywords(@keywords.split(',').map(&:downcase), :per_page => 44)
     render :nothing => true if @keywords.split(',').blank?
   end
   
+  # Parse keywords from a query
   def parse_keywords
     if @search =~ /^keywords:/
       @keywords = @search.gsub(/#|keywords:|,/, ' ').split.collect{ |tag| tag.strip.downcase }
     end
   end
   
+  # Selects Focii from the query
+  # @param search_terms [String] The query
+  # @param options [Hash] Search options
+  # @option options [Integer] :page The page of results to find
+  # @option options [Integer] :per_page The number of results per page
   def focus_results(search_terms, options)
     return if search_terms.blank?
     options = { :per_page => @per_page, :page => @page }.merge(options)

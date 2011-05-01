@@ -1,3 +1,4 @@
+# The Event system for Comments and Users
 class Event
   include MongoMapper::Document
   
@@ -29,10 +30,13 @@ class Event
     end
   end
   
+  # The object this Event is targeting
   def target
     self.eventable
   end
   
+  # Events pending for a user
+  # @param user [User] the User the Events target
   def self.pending_for_user(user)
     Event.where(:state => "pending", :target_user_id => user.id)
   end

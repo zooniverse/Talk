@@ -1,0 +1,704 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module: Focus</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (F)</a> &raquo; 
+    
+    
+    <span class="title">Focus</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: Focus
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+      <dt class="r1">Extended by:</dt>
+      <dd class="r1">ActiveSupport::Concern</dd>
+      
+    
+  
+    
+  
+  
+    <dt class="r2">Included in:</dt>
+    <dd class="r2"><span class='object_link'><a href="Asset.html" title="Asset (class)">Asset</a></span>, <span class='object_link'><a href="AssetSet.html" title="AssetSet (class)">AssetSet</a></span>, <span class='object_link'><a href="Group.html" title="Group (class)">Group</a></span></dd>
+    
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/focus.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+A lightweight MongoMapper plugin that adds Discussion to the model &#8212;
+the model becomes the focus
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+   
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Focus/ClassMethods.html" title="Focus::ClassMethods (module)">ClassMethods</a></span>
+    
+   
+    
+  
+</p>
+
+
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#archive_and_destroy_as-instance_method" title="#archive_and_destroy_as (instance method)">- (Object) <strong>archive_and_destroy_as</strong>(destroying_user) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Archive and destroy this Focus.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#build_conversation-instance_method" title="#build_conversation (instance method)">- (Object) <strong>build_conversation</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Adds a conversation to all Focii.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#conversation-instance_method" title="#conversation (instance method)">- (Object) <strong>conversation</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Lazy load and cache the conversation.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#conversation%3D-instance_method" title="#conversation= (instance method)">- (Object) <strong>conversation=</strong>(discussion) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Association assignment, also caches the Discussion.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#keywords-instance_method" title="#keywords (instance method)">- (Object) <strong>keywords</strong>(limit = 10) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Selects Tags for this Focus.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set_focus-instance_method" title="#set_focus (instance method)">- (Object) <strong>set_focus</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Ensures that the association can be reversed.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_popularity-instance_method" title="#update_popularity (instance method)">- (Object) <strong>update_popularity</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Denormalizes trending score to this Focus.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="archive_and_destroy_as-instance_method">
+  
+    - (<tt>Object</tt>) <strong>archive_and_destroy_as</strong>(destroying_user) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Archive and destroy this Focus
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="User.html" title="User (class)">User</a></span></tt>)</span>
+      
+      
+        <span class='name'>destroying_user</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the User destroying this Focus
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/focus.rb', line 78</span>
+
+<span class='kw'>def</span> <span class='id archive_and_destroy_as'>archive_and_destroy_as</span><span class='lparen'>(</span><span class='id destroying_user'>destroying_user</span><span class='rparen'>)</span>
+  <span class='id archive'>archive</span> <span class='op'>=</span> <span class='const'>Archive</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='lbrace'>{</span>
+    <span class='symbol'>:kind</span> <span class='op'>=&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id name'>name</span><span class='comma'>,</span>
+    <span class='symbol'>:original_id</span> <span class='op'>=&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id id'>id</span><span class='comma'>,</span>
+    <span class='symbol'>:zooniverse_id</span> <span class='op'>=&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id zooniverse_id'>zooniverse_id</span><span class='comma'>,</span>
+    <span class='symbol'>:user_id</span> <span class='op'>=&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id user_id'>user_id</span><span class='comma'>,</span>
+    <span class='symbol'>:destroying_user_id</span> <span class='op'>=&gt;</span> <span class='id destroying_user'>destroying_user</span><span class='period'>.</span><span class='id id'>id</span>
+  <span class='rbrace'>}</span><span class='rparen'>)</span>
+  
+  <span class='id original'>original</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id to_mongo'>to_mongo</span>
+  <span class='id original'>original</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>conversation</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id conversation'>conversation</span><span class='period'>.</span><span class='id to_embedded_hash'>to_embedded_hash</span>
+  <span class='id original'>original</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>discussions</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id discussions'>discussions</span><span class='period'>.</span><span class='id collect'>collect</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_embedded_hash</span><span class='rparen'>)</span>
+  <span class='id archive'>archive</span><span class='period'>.</span><span class='id original_document'>original_document</span> <span class='op'>=</span> <span class='id original'>original</span>
+  
+  <span class='kw'>if</span> <span class='id archive'>archive</span><span class='period'>.</span><span class='id save'>save</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id conversation'>conversation</span><span class='period'>.</span><span class='id destroy'>destroy</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id discussions'>discussions</span><span class='period'>.</span><span class='id each'>each</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:destroy</span><span class='rparen'>)</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id destroy'>destroy</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="build_conversation-instance_method">
+  
+    - (<tt>Object</tt>) <strong>build_conversation</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Adds a conversation to all Focii
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58
+59
+60
+61</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/focus.rb', line 58</span>
+
+<span class='kw'>def</span> <span class='id build_conversation'>build_conversation</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id conversation'>conversation</span> <span class='op'>||=</span> <span class='const'>Discussion</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='symbol'>:subject</span> <span class='op'>=&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id zooniverse_id'>zooniverse_id</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id save'>save</span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id changed?'>changed?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="conversation-instance_method">
+  
+    - (<tt>Object</tt>) <strong>conversation</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Lazy load and cache the conversation
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+36
+37
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/focus.rb', line 36</span>
+
+<span class='kw'>def</span> <span class='id conversation'>conversation</span>
+  <span class='ivar'>@conversation</span> <span class='op'>||=</span> <span class='const'>Discussion</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id conversation_id'>conversation_id</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="conversation=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>conversation=</strong>(discussion) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Association assignment, also caches the Discussion
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Discussion.html" title="Discussion (class)">Discussion</a></span></tt>)</span>
+      
+      
+        <span class='name'>discussion</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The Discussion that is the conversation for this Focus
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31
+32
+33</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/focus.rb', line 29</span>
+
+<span class='kw'>def</span> <span class='id conversation='>conversation=</span><span class='lparen'>(</span><span class='id discussion'>discussion</span><span class='rparen'>)</span>
+  <span class='id discussion'>discussion</span><span class='period'>.</span><span class='id save'>save</span> <span class='kw'>if</span> <span class='id discussion'>discussion</span><span class='period'>.</span><span class='id new?'>new?</span>
+  <span class='ivar'>@conversation</span> <span class='op'>=</span> <span class='id discussion'>discussion</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id conversation_id'>conversation_id</span> <span class='op'>=</span> <span class='id discussion'>discussion</span><span class='period'>.</span><span class='id id'>id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="keywords-instance_method">
+  
+    - (<tt>Object</tt>) <strong>keywords</strong>(limit = 10) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Selects Tags for this Focus
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+        <span class='name'>limit</span>
+      
+      
+        <em class="default">(defaults to: <tt>10</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The number of Tags to find
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+65
+66
+67</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/focus.rb', line 65</span>
+
+<span class='kw'>def</span> <span class='id keywords'>keywords</span><span class='lparen'>(</span><span class='id limit'>limit</span> <span class='op'>=</span> <span class='int'>10</span><span class='rparen'>)</span>
+  <span class='const'>Tag</span><span class='period'>.</span><span class='id for_focus'>for_focus</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id limit'>limit</span><span class='rparen'>)</span><span class='period'>.</span><span class='id collect'>collect</span><span class='lbrace'>{</span> <span class='op'>|</span><span class='id t'>t</span><span class='op'>|</span> <span class='id t'>t</span><span class='period'>.</span><span class='id name'>name</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="set_focus-instance_method">
+  
+    - (<tt>Object</tt>) <strong>set_focus</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Ensures that the association can be reversed
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/focus.rb', line 41</span>
+
+<span class='kw'>def</span> <span class='id set_focus'>set_focus</span>
+  <span class='kw'>unless</span> <span class='id conversation'>conversation</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+    <span class='id conversation'>conversation</span><span class='period'>.</span><span class='id focus_id'>focus_id</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id id'>id</span>
+    <span class='id conversation'>conversation</span><span class='period'>.</span><span class='id focus_type'>focus_type</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id name'>name</span>
+    <span class='id conversation'>conversation</span><span class='period'>.</span><span class='id focus_base_type'>focus_base_type</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>KeywordSet</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>AssetSet</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='kw'>self</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id name'>name</span>
+    <span class='id conversation'>conversation</span><span class='period'>.</span><span class='id save'>save</span> <span class='kw'>if</span> <span class='id conversation'>conversation</span><span class='period'>.</span><span class='id changed?'>changed?</span>
+  <span class='kw'>end</span>
+  
+  <span class='id discussions'>discussions</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id discussion'>discussion</span><span class='op'>|</span>
+    <span class='id discussion'>discussion</span><span class='period'>.</span><span class='id focus_id'>focus_id</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id id'>id</span>
+    <span class='id discussion'>discussion</span><span class='period'>.</span><span class='id focus_type'>focus_type</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id name'>name</span>
+    <span class='id discussion'>discussion</span><span class='period'>.</span><span class='id focus_base_type'>focus_base_type</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>KeywordSet</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>AssetSet</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='kw'>self</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id name'>name</span>
+    <span class='id discussion'>discussion</span><span class='period'>.</span><span class='id save'>save</span> <span class='kw'>if</span> <span class='id discussion'>discussion</span><span class='period'>.</span><span class='id changed?'>changed?</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="update_popularity-instance_method">
+  
+    - (<tt>Object</tt>) <strong>update_popularity</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Denormalizes trending score to this Focus
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+70
+71
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/focus.rb', line 70</span>
+
+<span class='kw'>def</span> <span class='id update_popularity'>update_popularity</span>
+  <span class='id fresh_discussions'>fresh_discussions</span> <span class='op'>=</span> <span class='const'>Discussion</span><span class='period'>.</span><span class='id collection'>collection</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='symbol'>:focus_id</span> <span class='op'>=&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id id'>id</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='symbol'>:fields</span> <span class='op'>=&gt;</span> <span class='symbol'>:popularity</span> <span class='rbrace'>}</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_a'>to_a</span>
+  <span class='id new_popularity'>new_popularity</span> <span class='op'>=</span> <span class='id fresh_discussions'>fresh_discussions</span><span class='period'>.</span><span class='id collect'>collect</span><span class='lbrace'>{</span> <span class='op'>|</span><span class='id d'>d</span><span class='op'>|</span> <span class='id d'>d</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>popularity</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id sum'>sum</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id set'>set</span><span class='lparen'>(</span><span class='symbol'>:popularity</span> <span class='op'>=&gt;</span> <span class='id new_popularity'>new_popularity</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id new_popularity'>new_popularity</span> <span class='op'>==</span> <span class='kw'>self</span><span class='period'>.</span><span class='id popularity'>popularity</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun May  1 16:07:44 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.7 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

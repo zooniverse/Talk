@@ -1,12 +1,15 @@
+# Boards
 class BoardsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:science, :help, :chat]
   respond_to :js, :only => [:show, :arrange, :update]
   before_filter :require_privileged_user, :only => [:arrange, :update]
   
+  # Show the board
   def show
     show_by_title(params[:board_id])
   end
   
+  # Pretty route methods
   %w(help science chat).each do |title|
     define_method(title.to_sym) do
       if params[:sub_board_id].present?
@@ -17,6 +20,9 @@ class BoardsController < ApplicationController
     end
   end
   
+  # Finds a SubBoard
+  # @param sub_title [String] The name of the SubBoard
+  # @param parent_title [String] The name of the Board
   def sub_board(sub_title, parent_title)
     @parent = Board.by_title parent_title
     return not_found unless @parent
@@ -28,6 +34,7 @@ class BoardsController < ApplicationController
     show_by_title @board.title
   end
   
+  # Arranging SubBoards in the list
   def arrange
     params[:positions].each.with_index do |id, index|
       sub_board = SubBoard.first(:id => id, :board_id => params[:id])
@@ -46,6 +53,7 @@ class BoardsController < ApplicationController
     end
   end
   
+  # Update a (Sub)Board
   def update
     @board = Board.find(params[:id])
     flash[:notice] = []
@@ -105,6 +113,7 @@ class BoardsController < ApplicationController
     end
   end
   
+  # Shows a board by title
   def show_by_title(title)
     default_params :page => 1, :per_page => 10, :by_user => false
     @board ||= Board.by_title(title)
@@ -126,6 +135,7 @@ class BoardsController < ApplicationController
   
   protected
   
+  # Build prettier flash messages
   def format_flashes
     if flash[:notice].present? && flash[:notice].any?
       notices = flash[:notice].collect{ |notice| "<li>#{ notice }</li>" }.join

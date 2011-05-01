@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Documentation by YARD 0.6.7</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html" title="Index">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'><h1>Talk</h1>
+
+<p>Zooniverse Talk is a forum replacement</p>
+
+<h2>Object Oriented Discussion</h2>
+
+<ul>
+<li>You can talk about a <a href="Focus.html">Focus</a>
+
+<ul>
+<li><a href="Asset.html">Asset</a>s, <a href="Group.html">Group</a>s, and Collections (<a href="AssetSet.html">AssetSet</a>s and <a href="KeywordSet.html">KeywordSet</a>s) are Focii</li>
+<li>They have one twitter-style Conversation and many in-depth <a href="Discussion.html">Discussion</a>s.  Both are really just <a href="Discussion.html">Discussion</a>s</li>
+<li>Focii and their <a href="Discussion.html">Discussion</a>s have <a href="ZooniverseId.html">ZooniverseId</a>s that are unique in the Zooniverse</li>
+<li>Focii can have <a href="Tag.html">Tag</a>s, which are created by <a href="User.html">User</a>s in <a href="Comment.html">Comment</a>s</li>
+</ul>
+</li>
+<li><a href="Discussion.html">Discussion</a>s are really just containers for <a href="Comment.html">Comment</a>s
+
+<ul>
+<li>Then again they also store lots of other metadata</li>
+<li>They also get the <a href="Tag.html">Tag</a>s from their <a href="Comment.html">Comment</a>s</li>
+</ul>
+</li>
+<li>If a <a href="User.html">User</a> doesn't want to talk about a <a href="Focus.html">Focus</a>, they can go to the <a href="Board.html">Board</a>s
+
+<ul>
+<li>A <a href="Board.html">Board</a> is some category of conversation.  We supply 'help', 'science', and 'chat'</li>
+<li>Moderators and admins can create <a href="SubBoard.html">SubBoard</a>s to help <a href="User.html">User</a>s organize discussion</li>
+</ul>
+</li>
+<li>An <a href="Asset.html">Asset</a> is whatever the Zoo is classifying, it's really the primary object of discussion</li>
+<li>A Collection is a <a href="User.html">User</a> created set of <a href="Asset.html">Asset</a>s
+
+<ul>
+<li>An <a href="AssetSet.html">AssetSet</a> is a manually curated set of <a href="Asset.html">Asset</a>s</li>
+<li>A <a href="KeywordSet.html">KeywordSet</a> is a dynamic set of <a href="Asset.html">Asset</a>s based on the <a href="Tag.html">Tag</a>s specified by the <a href="User.html">User</a></li>
+</ul>
+</li>
+<li>A <a href="Group.html">Group</a> is a system managed group of <a href="Asset.html">Asset</a>s
+
+<ul>
+<li>Imagine a book with many pages.  The <a href="Asset.html">Asset</a> is the page, the <a href="Group.html">Group</a> is the Book</li>
+<li>Or how about a CD with many songs.  The <a href="Asset.html">Asset</a> is the song, the <a href="Group.html">Group</a> is the CD</li>
+</ul>
+</li>
+<li>A <a href="User.html">User</a> is... well... a <a href="User.html">User</a>
+
+<ul>
+<li>They can send <a href="Message.html">Message</a>s to each other too</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Getting started</h2>
+
+<ul>
+<li>Setup <a href="https://rvm.beginrescueend.com/">RVM</a>, probably with some <a href="https://rvm.beginrescueend.com/packages/">packages</a> depending on your environment</li>
+<li><a href="https://rvm.beginrescueend.com/rubies/installing/">Install Ruby 1.9.2</a></li>
+<li><a href="http://rubygems.org/pages/download">Install RubyGems</a></li>
+<li><a href="http://www.mongodb.org/display/DOCS/Quickstart">Install MongoDB</a></li>
+<li>Make sure <a href="http://rubygems.org/gems/bundler">Bundler</a> is installed</li>
+<li>Run <code>bundle</code> from the app to install the gem dependencies</li>
+</ul>
+
+
+<h2>Configuring</h2>
+
+<ul>
+<li>Setup config files in Talk/config
+
+<ul>
+<li>Examples are show in Talk/config/examples</li>
+</ul>
+</li>
+<li>Configure mailer settings in Talk/environments/*</li>
+<li>Configure your Capistrano deploy script at Talk/config/deploy.rb</li>
+</ul>
+</div></div>
+    
+    <div id="footer">
+  Generated on Sun May  1 16:07:44 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.7 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>
