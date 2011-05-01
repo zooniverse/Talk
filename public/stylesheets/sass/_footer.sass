@@ -7,21 +7,17 @@
   font-family: 'lucida grande'
   font-size: 1em
   margin-bottom: 20px
-  
   img
     float: left
     margin-left: 20px
     position: relative
     top: 25px
-  
   .inner
     position: relative
     top: 26px
     padding-right: 20px
-    
     .copyright
       float: right
-    
     #active-users
       float: left
       position: relative
@@ -35,7 +31,11 @@
       line-height: 20px
       font-size: 1.5em
       font-family: "Gill Sans Light", "GillSans-Light", "Gill Sans", "Gill Sans MT", sans-serif
-      
+      #count
+        float: left
+        max-width: 110px
+        text-align: right
+        padding: 0 10px 0 5px
       .handle
         position: absolute
         cursor: pointer
@@ -44,27 +44,16 @@
         left: 467px
         z-index: 2
         background: url('/images/icons/vertical_arrows.png') no-repeat 0 0
-      
-      #handle-up
-        background-position: -25px -25px
-        top: 5px
-      
-      #handle-down
-        background-position: -25px 0
-        top: 55px
-      
-      #handle-up:hover
-        background-position: 0 -25px
-      
-      #handle-down:hover
-        background-position: 0 0
-      
-      #count
-        float: left
-        max-width: 110px
-        text-align: right
-        padding: 0 10px 0 5px
-      
+        &#handle-up
+          background-position: -25px -25px
+          top: 5px
+          &:hover
+            background-position: 0 -25px
+        &#handle-down
+          background-position: -25px 0
+          top: 55px
+          &:hover
+            background-position: 0 0
       #users-wrapper
         float: left
         position: relative
@@ -72,15 +61,13 @@
         margin: 0 10px
         width: 700px
         height: 20px
-      
-      #users
-        position: relative
-        text-align: center
-        height: 20px
-      
-      .user
-        display: inline
-        clear: none
-        padding-left: 15px
-        margin-right: 5px
-        background: url('/images/icons/bullet_green.png') no-repeat left center
+        #users
+          position: relative
+          text-align: center
+          height: 20px
+        .user
+          display: inline
+          clear: none
+          padding-left: 15px
+          margin-right: 5px
+          background: url('/images/icons/bullet_green.png') no-repeat left center

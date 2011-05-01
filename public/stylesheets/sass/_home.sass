@@ -1,0 +1,369 @@
+// The keyword cloud
+#keyword-cloud
+  line-height: 3em
+  text-align: center
+  margin: 0
+  padding: 10px
+  a
+    padding: 0px
+  li
+    display: inline
+    &.level1
+      font-size: 0.7em
+      font-weight: 100
+    &.level2
+      font-size: 0.8em
+      font-weight: 200
+    &.level3
+      font-size: 0.9em
+      font-weight: 300
+    &.level4
+      font-size: 1.0em
+      font-weight: 400
+    &.level5
+      font-size: 1.2em
+      font-weight: 500
+    &.level6
+      font-size: 1.4em
+      font-weight: 600
+    &.level7
+      font-size: 1.6em
+      font-weight: 700
+    &.level8
+      font-size: 1.8em
+      font-weight: 800
+    &.level9
+      font-size: 2.2em
+      font-weight: 900
+
+// Recent or Trending
+.home .mode_switch
+  color: #c5c4c4
+  font-size: 2.5em
+  text-shadow: #fff 1px 1px
+  margin-bottom: 20px
+  height: 35px
+  font-family: "HelveticaNeue-Light", Helvetica, "Arial Narrow", Arial,sans-serif
+  .current
+    color: #3C3C3C
+    cursor: default
+    &:hover
+      color: #3C3C3C
+      cursor: default
+
+// The featured list
+.wrapper
+  .home
+    &.content
+      padding: 40px 26px 20px
+    .rhc
+      padding-top: 0
+      width: auto
+      .featured
+        width: 228px
+        padding: 10px 16px 20px 0
+        margin-bottom: 20px
+        background: #FFFFFF
+        h2
+          font-family: "Gill Sans Light", "GillSans-Light", "Gill Sans", "Gill Sans MT", sans-serif
+          margin-bottom: 20px
+          font-size: 1.8em
+          background: none
+          padding: 0
+        p
+          display: block
+          padding: 15px 20px 0
+        img
+          position: absolute
+          z-index: 200
+          left: 20px
+        .board_info
+          position: absolute
+          top: 50px
+          left: 25px
+          text-align: left
+          z-index: 250
+          h2
+            color: #DDDDDD
+            text-transform: none
+            text-shadow: 1px 1px #333333
+        .list
+          position: relative
+          .ribbon
+            height: 55px
+            width: 100%
+            position: absolute
+            left: 0
+            top: 40px
+            z-index: 100
+          .box_shadow
+            background: #000
+            height: 130px
+            left: 28px
+            opacity: 0.2
+            position: relative
+            top: 10px
+            width: 130px
+            z-index: 150
+
+.home
+  padding: 40px 26px 20px 26px
+  h2
+    font-family: "Gill Sans Light", "GillSans-Light", "Gill Sans", "Gill Sans MT", sans-serif
+  .rhc
+    padding: 0
+    h2
+      margin-left: 5px
+      border: 0
+      color: #aaa
+      font-size: 1.8em
+      margin-bottom: 20px
+  .upper
+    width: 100%
+    display: block
+    clear: both
+    padding-bottom: 20px
+  .gold
+    background: #a49e67
+  .red
+    background: #900
+  .translucent
+    &.red
+      background: rgb(153, 0, 0)
+      background: rgba(153, 0, 0, 0.6)
+    &.gold
+      background: rgb(164, 158, 103)
+      background: rgba(164, 158, 103, 0.6)
+  .circle
+    -webkit-border-radius: 22px
+    -moz-border-radius: 22px
+    border-radius: 22px
+    height: 44px
+    width: 44px
+    float: right
+    margin-top: 25px
+    p
+      margin: 14px 0
+      text-align: center
+      color: #fff
+      a
+        color: #fff
+  .stats-wrapper
+    position: absolute
+    top: 62px
+    left: 17px
+    width: 90px
+    text-align: left
+    padding: 2px
+    z-index: 2
+    -moz-border-radius-topright: 25px
+    -webkit-border-top-right-radius: 25px
+    border-top-right-radius: 25px
+  .page-container
+    width: 1500px
+  .page-nav
+    display: block
+    clear: both
+    height: 25px
+    margin: -10px 0 0 15px
+    text-align: center
+    .more
+      float: right
+      cursor: pointer
+      background: url(/images/colorbox/controls.png) no-repeat -50px 0px
+      width: 25px
+      height: 25px
+      text-indent: -55px
+      line-height: 25px
+      color: #990000
+  #assets, #collections
+    width: 277px
+    height: 528px
+    float: left
+    display: inline
+    padding: 10px 16px 0 0
+    background: #FFFFFF
+    h2
+      font-family: "Gill Sans Light", "GillSans-Light", "Gill Sans", "Gill Sans MT", sans-serif
+      margin-left: 16px
+      color: #aaa
+      font-size: 1.8em
+    .page
+      float: left
+      position: relative
+      width: 277px
+      height: 505px
+      left: 0
+      top: 0
+    .list
+      width: 277px
+      height: 505px
+      overflow: hidden
+  .asset
+    position: relative
+    height: 100px
+    border-bottom: 0
+    padding-bottom: 10px
+    margin-bottom: 10px
+    img
+      position: absolute
+      right: 0
+    .stats
+      position: relative
+      width: 100%
+      display: block
+      text-align: left
+      margin-left: 2px
+      color: #FFFFFF
+    .circle
+      position: absolute
+      top: 2px
+      left: 20px
+      margin-top: 0
+      width: 50px
+      height: 50px
+      -webkit-border-radius: 25px
+      -moz-border-radius: 25px
+      border-radius: 25px
+      p
+        margin-top: 18px
+  .comment
+    color: #787e7f
+    background: #e6f1f5
+    border: none
+    border-right: solid #b5d4e3 12px
+    padding: 8px 3px
+    margin-bottom: 10px
+    font-size: 1.2em
+    font-family: 'Gill Sans', "Gill Sans MT", sans-serif
+    left: 0
+    height: 50px
+    width: 275px
+    background: #e0ebcd
+    border-right: solid #c6d5ac 12px
+    overflow: hidden
+    .author
+      float: right
+      right: -2px
+      background: none
+      border-bottom: 3px solid #AEBC99
+      padding: 2px 5px
+      position: absolute
+      text-align: right
+    .in a
+      color: #999999
+    .author a:link
+      font-size: 0.7em
+      text-transform: uppercase
+      &:hover
+        font-size: 0.7em
+        text-transform: uppercase
+  #discussions
+    width: 588px
+    clear: both
+    padding: 15px
+    background: #FFFFFF
+    h2
+      color: #AAAAAA
+      font-size: 1.8em
+    .discussion
+      border: 1px dotted #AFAFAF
+      border-top: none
+      padding: 5px
+      height: 47px
+      padding: 5px
+      font-size: 100%
+      &.alt
+        background-color: #F5F5F5
+    .page
+      float: left
+      position: relative
+      width: 588px
+      height: 490px
+      left: 0
+      top: 0
+    .page-nav
+      margin: 2px 0 0 0
+    .list
+      width: 588px
+      height: 490px
+      overflow: hidden
+    &.trending
+      .more
+        text-indent: -95px
+  #collections
+    margin-left: 32px
+    .collection
+      background: #fff
+      width: 260px !important
+      margin: 0 0 10px 16px
+      padding: 0 0 10px 0px
+      position: relative
+      height: 100px
+      h2
+        margin-left: 0px
+      .collection-info
+        width: 260px
+        position: relative
+      .col
+        display: inline
+        width: 260px
+        margin-right: 0
+      .nav
+        position: absolute
+        top: auto
+        bottom: 0
+        z-index: 3
+        height: 15px
+      .stat
+        color: #FFFFFF
+      .circle
+        position: absolute
+        left: 3px
+        top: -23px
+        width: 50px
+        height: 50px
+        -webkit-border-radius: 25px
+        -moz-border-radius: 25px
+        border-radius: 25px
+        z-index: 2
+        p
+          margin-top: 18px
+      img
+        z-index: 1
+      .stats-wrapper
+        left: 0
+        top: 63px
+        height: 33px
+      .title-bar
+        position: absolute
+        top: 0
+        right: 0
+        width: 160px
+        height: 20px
+        padding: 2px 5px
+        overflow: hidden
+        z-index: 2
+        text-align: center
+        -moz-border-radius-bottomleft: 15px
+        -webkit-border-bottom-left-radius: 15px
+        border-bottom-left-radius: 15px
+        a
+          color: #FFFFFF
+          text-transform: uppercase
+      .nav a
+        background-color: #E5E5E5
+        border: 1px solid #999999
+        &:link:hover
+          background-color: #CCCCCC
+          border: 1px solid #777777
+        &.current
+          background-color: #B2B2B2
+  #keywords
+    background: #FFFFFF
+    width: 228px
+    padding: 10px 8px
+    h2
+      font-size: 1.7em
+      margin-bottom: 0
+      margin-left: 0

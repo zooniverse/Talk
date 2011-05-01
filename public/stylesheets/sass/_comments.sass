@@ -1,0 +1,148 @@
+.comment
+  margin-bottom: 10px
+  border-bottom: dotted #afafaf 1px
+  padding-bottom: 10px
+  position: relative
+  left: -40px
+  background: #fff
+  padding: 20px 30px 20px 40px
+  img.user
+    float: left
+    margin-top: 3px
+    margin-right: 10px
+  .date
+    color: #B3B3B3
+    float: right
+    font-family: georgia
+    font-size: 1.1em
+    font-style: italic
+    right: -15px
+    top: -11px
+  .body
+    margin-left: 56px
+    max-height: 800px
+    overflow-y: auto
+    overflow-x: hidden
+    padding-right: 5px
+  .comment_container
+    margin-left: 50px
+
+.short-comment
+  padding: 10px 0
+  width: 545px
+  .avatar
+    width: 71px
+    height: 40px
+    float: left
+    img.user
+      display: block
+    .arrow
+      background: transparent url(/images/interface/arrow_bubble.png) no-repeat
+      position: relative
+      width: 18px
+      height: 28px
+      float: right
+      margin-top: 6px
+  .body
+    background: #ECF4E6
+    border-bottom: solid #d3dbce 3px
+    padding: 15px 20px 5px
+    width: 430px
+    margin-left: 70px
+    overflow: hidden
+  .name
+    float: left
+  .toggle
+    color: #999999
+    a
+      color: #999999
+      &:hover
+        color: #990000
+  .date
+    color: #999999
+    float: right
+
+.comment-edit.short-comment-form
+  text-align: right
+
+.comment-form
+  position: relative
+  left: -40px
+  input
+    float: right
+  h2
+    margin: 10px 0 0 0
+    position: relative
+    top: 26px
+    padding: 2px
+  .markItUp
+    width: 620px
+    .markItUpHeader
+      float: right
+      height: 22px
+  #cancel-response
+    float: left
+    margin-right: 3px
+    li
+      background-image: url('/images/icons/cancel.png')
+      background-repeat: no-repeat
+      width: 16px
+      height: 16px
+      cursor: pointer
+  .comment-preview
+    .comment
+      min-height: 50px
+      left: 0px
+
+// Shown if no comments on a focus conversation
+.comment_status
+  font-family: georgia, serif
+  color: #d3d3d3
+  margin-left: 10px
+  font-size: 1.5em
+  font-style: italic
+
+form.edit_comment
+  input
+    &.left-submit
+      float: left
+      margin-left: 65px
+    &.right-submit
+      position: relative
+      left: 50px
+  .left-edit-cancel
+    float: left
+    margin-left: 15px
+  .right-edit-cancel
+    position: relative
+    left: 65px
+  .edit-short-text
+    width: 460px
+
+.full-width .comment-form .markItUp
+  width: 855px
+
+.short-comment-form
+  width: 545px
+  textarea
+    width: 525px
+    font-size: 1.3em
+    padding: 9px 8px
+  #short-counter
+    float: right
+    color: #afafaf
+    font-size: 1.4em
+    width: 100px
+    text-align: right
+    padding-right: 5px
+
+.comments-list
+  .toolbar
+    visibility: hidden
+  .vote-controls
+    font-size: 70%
+    float: right
+    position: relative
+    top: 0
+    right: 5px
+

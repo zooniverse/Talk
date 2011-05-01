@@ -1,2 +1,131 @@
-@import _communicator
+@import _base
+@import _layout
+@import _flashes
+
+@import _header
 @import _footer
+
+@import _home
+@import _admin
+@import _boards
+
+@import _focii
+@import _collections
+@import _objects
+
+@import _comments
+@import _discussions
+
+@import _users
+@import _messages
+
+a.button
+  background: transparent url(/images/interface/button_bg_right.png) no-repeat scroll 100% 0%
+  color: #666666
+  display: block
+  font: normal normal bold 12px / normal arial, sans-serif
+  height: 20px
+  margin-right: 6px
+  margin-top: 3px
+  padding-right: 15px
+  text-decoration: none
+  cursor: pointer
+  span
+    background: transparent url(/images/interface/button_bg_left.png) no-repeat
+    display: block
+    line-height: 14px
+    padding: 3px 0px 3px 15px
+  &.pressed
+    background-position: 100% 100%
+    color: #000000
+    span
+      background-position: 0% 100%
+      padding: 4px 0px 2px 15px
+
+div.more-results
+  text-align: center
+
+#not-logged-in
+  width: 99%
+  text-align: center
+
+.pagination
+  display: block
+  clear: both
+  padding-top: 20px
+
+ul.search-kinds
+  margin-left: 40px
+  font-size: 14px
+  li
+    padding-left: 20px
+
+
+.home .page-nav .less, .board #discussions .page-nav .less, .discussion .page-nav .less
+  float: left
+  cursor: pointer
+  background: url(/images/colorbox/controls.png) no-repeat -74px 0px
+  width: 25px
+  height: 25px
+  text-indent: 10px
+  line-height: 25px
+  color: #990000
+
+.home .page-nav .more:hover, .board #discussions .page-nav .more:hover, .discussion .page-nav .more:hover
+  background-position: -50px -25px
+  color: #FF0000
+
+.home .page-nav .less:hover, .board #discussions .page-nav .less:hover, .discussion .page-nav .less:hover
+  background-position: -74px -25px
+  color: #FF0000
+
+.board #discussions .page-nav, .discussion .page-nav
+  display: block
+  clear: both
+  height: 25px
+  margin: -10px 0 0 15px
+  text-align: center
+
+.board #discussions .page-nav .more, .discussion .page-nav .more
+  float: right
+  cursor: pointer
+  background: url(/images/colorbox/controls.png) no-repeat -50px 0px
+  width: 25px
+  height: 25px
+  text-indent: -55px
+  line-height: 25px
+  color: #990000
+
+.board #discussions .page-nav .label, .discussion .page-nav .label
+  position: absolute
+
+.board #discussions .page-nav .pages, .discussion .page-nav .pages
+  position: relative
+  display: inline
+  clear: none
+  width: 400px
+  top: 5px
+
+.board #discussions .page-nav .pages
+  .previous_page, .next_page
+    display: none
+
+.board #discussions .page-nav
+  margin: 2px 0 0 0
+
+.comment .body, .message .body
+  blockquote
+    padding: 5px
+    border: 1px solid #afafaf
+    background-color: #eeeeee
+  ul, ol
+    margin: 5px 5px 5px 20px
+    padding: 0
+  ul li
+    list-style: disc
+    margin-left: 20px
+  ol li
+    list-style: decimal
+    margin-left: 20px
+  blockquote p
+    margin: 0

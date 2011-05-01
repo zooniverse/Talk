@@ -1,0 +1,59 @@
+// User role coloring on comments
+.admin a
+  color: green !important
+
+.moderator a
+  color: blue !important
+
+.scientist a
+  color: #FF8C00 !important
+
+// The profile page
+.wrapper
+  .content
+    .profile
+      h2
+        background: #fff
+        color: #24231D
+        font-family: 'Gill Sans','Gill Sans MT', sans-serif
+        font-size: 1em
+        margin-bottom: 0px
+        padding: 12px 14px 8px 15px
+        text-transform: uppercase
+      .popular-discussions
+        float: left
+        width: 47%
+        margin-right: 20px
+        .item .stats
+          height: 20px
+      .user-comments
+        float: left
+        width: 49%
+      .item
+        padding: 10px 20px 10px 20px
+      .rhc
+        padding-top: 0
+      .my-collections
+        margin-left: 15px
+        h2
+          line-height: 17px
+        .item
+          padding: 14.5px
+        .toolbar
+          margin-top: 10px
+          text-align: right
+      .profile-detail
+        margin-bottom: 20px
+        img
+          float: left
+        .user-status
+          margin-left: -5px
+          padding-left: 15px
+          &.online
+            background: url('/images/icons/bullet_green.png') no-repeat left center
+          &.offline
+            background: url('/images/icons/bullet_red.png') no-repeat left center
+        .info
+          margin-left: 50px
+          h1
+            margin-bottom: 0
