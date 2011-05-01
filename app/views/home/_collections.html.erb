@@ -1,13 +1,13 @@
 <div id="collections_page_<%= @asset_sets.current_page %>" class="page">
   <%- @asset_sets.each do |collection| %>
     <div class="collection">
-      <div class="translucent gold circle">
+      <div class="translucent secondary_color circle">
         <p><%= link_to short_id_for(collection), collection_path(collection.zooniverse_id) %></p>
       </div>
-      <div class="translucent gold title-bar">
+      <div class="translucent secondary_color title-bar">
         <p><%= link_to truncate(collection.name, :length => 25, :separator => ' '), collection_path(collection.zooniverse_id) %></p>
       </div>
-      <div class="translucent gold stats-wrapper">
+      <div class="translucent secondary_color stats-wrapper">
         <div class="stat">
           <%= "#{ pluralize collection.asset_count, 'object' }" %>
         </div>

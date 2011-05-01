@@ -38,12 +38,12 @@
 
 // Recent or Trending
 .home .mode_switch
-  color: #c5c4c4
+  color: #C5C4C4
   font-size: 2.5em
-  text-shadow: #fff 1px 1px
+  text-shadow: #FFFFFF 1px 1px
   margin-bottom: 20px
   height: 35px
-  font-family: "HelveticaNeue-Light", Helvetica, "Arial Narrow", Arial,sans-serif
+  font-family: $basic_font
   .current
     color: #3C3C3C
     cursor: default
@@ -65,7 +65,7 @@
         margin-bottom: 20px
         background: #FFFFFF
         h2
-          font-family: "Gill Sans Light", "GillSans-Light", "Gill Sans", "Gill Sans MT", sans-serif
+          font-family: $styled_font
           margin-bottom: 20px
           font-size: 1.8em
           background: none
@@ -97,7 +97,7 @@
             top: 40px
             z-index: 100
           .box_shadow
-            background: #000
+            background: #000000
             height: 130px
             left: 28px
             opacity: 0.2
@@ -109,13 +109,13 @@
 .home
   padding: 40px 26px 20px 26px
   h2
-    font-family: "Gill Sans Light", "GillSans-Light", "Gill Sans", "Gill Sans MT", sans-serif
+    font-family: $styled_font
   .rhc
     padding: 0
     h2
       margin-left: 5px
       border: 0
-      color: #aaa
+      color: #AAAAAA
       font-size: 1.8em
       margin-bottom: 20px
   .upper
@@ -123,21 +123,19 @@
     display: block
     clear: both
     padding-bottom: 20px
-  .gold
-    background: #a49e67
-  .red
-    background: #900
+  .secondary_color
+    background: $secondary_color
+  .primary_color
+    background: $primary_color
   .translucent
-    &.red
-      background: rgb(153, 0, 0)
-      background: rgba(153, 0, 0, 0.6)
-    &.gold
-      background: rgb(164, 158, 103)
-      background: rgba(164, 158, 103, 0.6)
+    &.primary_color
+      background: $primary_color
+      background: transparentize($primary_color, 0.4)
+    &.secondary_color
+      background: $secondary_color
+      background: transparentize($secondary_color, 0.4)
   .circle
-    -webkit-border-radius: 22px
-    -moz-border-radius: 22px
-    border-radius: 22px
+    @include rounded(22px)
     height: 44px
     width: 44px
     float: right
@@ -145,9 +143,9 @@
     p
       margin: 14px 0
       text-align: center
-      color: #fff
+      color: #FFFFFF
       a
-        color: #fff
+        color: #FFFFFF
   .stats-wrapper
     position: absolute
     top: 62px
@@ -156,9 +154,7 @@
     text-align: left
     padding: 2px
     z-index: 2
-    -moz-border-radius-topright: 25px
-    -webkit-border-top-right-radius: 25px
-    border-top-right-radius: 25px
+    @include rounded-top-right(25px)
   .page-container
     width: 1500px
   .page-nav
@@ -175,7 +171,7 @@
       height: 25px
       text-indent: -55px
       line-height: 25px
-      color: #990000
+      color: $link_color
   #assets, #collections
     width: 277px
     height: 528px
@@ -184,9 +180,9 @@
     padding: 10px 16px 0 0
     background: #FFFFFF
     h2
-      font-family: "Gill Sans Light", "GillSans-Light", "Gill Sans", "Gill Sans MT", sans-serif
+      font-family: $styled_font
       margin-left: 16px
-      color: #aaa
+      color: #AAAAAA
       font-size: 1.8em
     .page
       float: left
@@ -222,25 +218,23 @@
       margin-top: 0
       width: 50px
       height: 50px
-      -webkit-border-radius: 25px
-      -moz-border-radius: 25px
-      border-radius: 25px
+      @include rounded(25px)
       p
         margin-top: 18px
   .comment
-    color: #787e7f
-    background: #e6f1f5
+    color: #787E7F
+    background: #E6F1F5
     border: none
-    border-right: solid #b5d4e3 12px
+    border-right: solid #B5D4E3 12px
     padding: 8px 3px
     margin-bottom: 10px
     font-size: 1.2em
-    font-family: 'Gill Sans', "Gill Sans MT", sans-serif
+    font-family: $styled_font
     left: 0
     height: 50px
     width: 275px
-    background: #e0ebcd
-    border-right: solid #c6d5ac 12px
+    background: #E0EBCD
+    border-right: solid #C6D5AC 12px
     overflow: hidden
     .author
       float: right
@@ -294,7 +288,7 @@
   #collections
     margin-left: 32px
     .collection
-      background: #fff
+      background: #FFFFFF
       width: 260px !important
       margin: 0 0 10px 16px
       padding: 0 0 10px 0px
@@ -323,9 +317,7 @@
         top: -23px
         width: 50px
         height: 50px
-        -webkit-border-radius: 25px
-        -moz-border-radius: 25px
-        border-radius: 25px
+        @include rounded(25px)
         z-index: 2
         p
           margin-top: 18px
@@ -345,9 +337,7 @@
         overflow: hidden
         z-index: 2
         text-align: center
-        -moz-border-radius-bottomleft: 15px
-        -webkit-border-bottom-left-radius: 15px
-        border-bottom-left-radius: 15px
+        @include rounded-bottom-left(15px)
         a
           color: #FFFFFF
           text-transform: uppercase

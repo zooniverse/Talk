@@ -3,13 +3,13 @@
   background: url(/images/moonzoo/interface/menu_bg.jpg) repeat-x center
   display: block
   height: 28px
-  border-bottom: solid #000 1px
-  border-top: solid #65737b 1px
+  border-bottom: solid #000000 1px
+  border-top: solid #65737B 1px
   width: 100%
   .inner
     width: 945px
     margin: 0 auto
-    color: #fff
+    color: #FFFFFF
     font-size: 0.9em
     a
       margin-top: 2px
@@ -45,7 +45,7 @@
       float: right
       height: 118px
       padding: 14px 0
-      color: #fff
+      color: #FFFFFF
       z-index: 900
       width: 500px
       font-size: 0.8em
@@ -63,16 +63,16 @@
           margin-bottom: -2px
           visibility: hidden
       .main_link
-        background: #aaa287
-        border-top: solid #cac4b2 3px
-        border-left: solid #aaa287 3px
-        color: #fff
+        background: #AAA287
+        border-top: solid #CAC4B2 3px
+        border-left: solid #AAA287 3px
+        color: #FFFFFF
         padding-top: 3px
         padding-bottom: 3px
         margin-bottom: 4px
         visibility: visible
         a
-          color: #fff
+          color: #FFFFFF
       .unread-messages-count
         background-color: #7F7F7F
         display: inline
@@ -80,11 +80,9 @@
         font-weight: bold
         margin: 0 0px 0 5px
         padding: 2px 5px 1px 5px
-        -moz-border-radius: 5px
-        -webkit-border-radius: 5px
-        border-radius: 5px
+        @include rounded(5px)
         &.active
           background-color: #4F8C33
       .back_to_app
-        background: #4f8c33
-        border-top: solid #84c267 3px
+        background: #4F8C33
+        border-top: solid #84C267 3px

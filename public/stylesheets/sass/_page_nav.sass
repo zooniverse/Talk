@@ -1,0 +1,30 @@
+.pagination
+  display: block
+  clear: both
+  padding-top: 20px
+
+.board #discussions .page-nav .more, .discussion .page-nav .more
+  @include more-nav
+
+.home .page-nav .less, .board #discussions .page-nav .less, .discussion .page-nav .less
+  @include less-nav
+
+.board #discussions .page-nav, .discussion .page-nav
+  display: block
+  clear: both
+  height: 25px
+  margin: -10px 0 0 15px
+  text-align: center
+  .label
+    position: absolute
+  .pages
+    position: relative
+    display: inline
+    clear: none
+    width: 400px
+    top: 5px
+    .previous_page, .next_page
+      display: none
+
+.board #discussions .page-nav
+  margin: 2px 0 0 0

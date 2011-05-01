@@ -1,17 +1,21 @@
 .wrapper
-  font-family: verdana, sans-serif
+  $width: 945px
+  $padding: 39px
+  $rhc_width: 236px
+
+  font-family: $basic_font
   font-size: 80%
-  width: 945px
+  width: $width
   margin: 0 auto
   position: relative
   .content
-    padding: 39px
+    padding: $padding
     background: #EEEEEE
     border-top: 7px solid #E3E3E3
     h2
       margin: 0 0 5px 0
     .lhc
-      width: 631px
+      width: $width - $padding - $rhc_width - $padding
       padding: 0 0 20px 0
     .lower-row
       padding-top: 20px
@@ -20,10 +24,10 @@
     .rhc
       float: right
       padding-top: 15px
-      width: 236px
+      width: $rhc_width
       h2
         color: #24231D
-        font-family: 'Gill Sans','Gill Sans MT', sans-serif
+        font-family: $styled_font
         font-size: 1em
         margin-bottom: 0px
         padding: 12px 14px 8px 15px
@@ -47,17 +51,12 @@
       p
         margin: 8px 13px 13px 13px
     .rounded-panel
-      background: #fff
-      left: -39px
+      background: #FFFFFF
+      left: -1 * $padding
       margin-top: 14px
-      padding: 39px 10px 39px 40px
+      padding: $padding 10px $padding ($padding + 1)
       position: relative
-      -webkit-border-top-right-radius: 7px
-      -webkit-border-bottom-right-radius: 7px
-      -moz-border-radius-topright: 7px
-      -moz-border-radius-bottomright: 7px
-      border-top-right-radius: 7px
-      border-bottom-right-radius: 7px
+      @include rounded-right(7px)
 
 .push
   height: 1px

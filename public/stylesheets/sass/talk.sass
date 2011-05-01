@@ -1,5 +1,6 @@
 @import _base
 @import _layout
+@import _page_nav
 @import _flashes
 
 @import _header
@@ -18,6 +19,51 @@
 
 @import _users
 @import _messages
+
+body
+  background: $background
+  margin: 0
+  font-family: $default_font
+  line-height: 1.3em
+  font-size: 0.8em
+  background-position: 0 28px
+
+h1, h2, h3, h4
+  margin: 10px 0 5px 0
+  font-family: $default_heading_font
+  font-weight: normal
+
+h1
+  font-size: 1.8em
+  margin: 20px 0 15px 0
+
+h2
+  font-size: 1.4em
+  margin: 20px 0 15px 0
+
+h3
+  font-size: 1.2em
+  margin: 15px 0 10px 0
+
+h4
+  font-size: 1.1em
+
+ol
+  list-style-type: decimal
+  margin-bottom: 20px
+  li
+    margin-bottom: 3px
+    margin-left: 40px
+
+p
+  margin: 0 0 10px 0
+
+a
+  &:link, &:visited
+    color: $link_color
+    text-decoration: none
+  &:hover
+    color: $link_hover_color
 
 a.button
   background: transparent url(/images/interface/button_bg_right.png) no-repeat scroll 100% 0%
@@ -42,82 +88,12 @@ a.button
       background-position: 0% 100%
       padding: 4px 0px 2px 15px
 
-div.more-results
-  text-align: center
-
-#not-logged-in
-  width: 99%
-  text-align: center
-
-.pagination
-  display: block
-  clear: both
-  padding-top: 20px
-
-ul.search-kinds
-  margin-left: 40px
-  font-size: 14px
-  li
-    padding-left: 20px
-
-
-.home .page-nav .less, .board #discussions .page-nav .less, .discussion .page-nav .less
-  float: left
-  cursor: pointer
-  background: url(/images/colorbox/controls.png) no-repeat -74px 0px
-  width: 25px
-  height: 25px
-  text-indent: 10px
-  line-height: 25px
-  color: #990000
-
-.home .page-nav .more:hover, .board #discussions .page-nav .more:hover, .discussion .page-nav .more:hover
-  background-position: -50px -25px
-  color: #FF0000
-
-.home .page-nav .less:hover, .board #discussions .page-nav .less:hover, .discussion .page-nav .less:hover
-  background-position: -74px -25px
-  color: #FF0000
-
-.board #discussions .page-nav, .discussion .page-nav
-  display: block
-  clear: both
-  height: 25px
-  margin: -10px 0 0 15px
-  text-align: center
-
-.board #discussions .page-nav .more, .discussion .page-nav .more
-  float: right
-  cursor: pointer
-  background: url(/images/colorbox/controls.png) no-repeat -50px 0px
-  width: 25px
-  height: 25px
-  text-indent: -55px
-  line-height: 25px
-  color: #990000
-
-.board #discussions .page-nav .label, .discussion .page-nav .label
-  position: absolute
-
-.board #discussions .page-nav .pages, .discussion .page-nav .pages
-  position: relative
-  display: inline
-  clear: none
-  width: 400px
-  top: 5px
-
-.board #discussions .page-nav .pages
-  .previous_page, .next_page
-    display: none
-
-.board #discussions .page-nav
-  margin: 2px 0 0 0
-
+// Markdown styles
 .comment .body, .message .body
   blockquote
     padding: 5px
-    border: 1px solid #afafaf
-    background-color: #eeeeee
+    border: 1px solid #AFAFAF
+    background-color: #EEEEEE
   ul, ol
     margin: 5px 5px 5px 20px
     padding: 0
@@ -129,3 +105,17 @@ ul.search-kinds
     margin-left: 20px
   blockquote p
     margin: 0
+
+
+.search-kinds
+  margin-left: 40px
+  font-size: 14px
+  li
+    padding-left: 20px
+
+.more-results
+  text-align: center
+
+#not-logged-in
+  width: 99%
+  text-align: center

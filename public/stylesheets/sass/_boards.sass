@@ -34,7 +34,7 @@
       clear: none
       padding: 10px
       margin: 0px auto 15px auto
-      font-family: "Gill Sans Light", "GillSans-Light", "Gill Sans", "Gill Sans MT", sans-serif
+      font-family: $styled_font
       form
         text-align: center
       input
@@ -68,22 +68,14 @@
       .current
         color: #343534
         text-shadow: 1px 1px #FFFFFF
-        -moz-border-radius: 2px
-        -webkit-border-radius: 2px
-        border-radius: 2px
-        -moz-box-shadow: 0px 0px 5px #979797
-        -webkit-box-shadow: 0px 0px 5px #979797
-        box-shadow: 0px 0px 5px #979797
+        @include rounded(2px)
+        @include box-shadow(0px 0px 5px #979797)
       .arrangeable, .arrange-link, .edit-link
         background: #DCDCDC
         color: #2075AF
         text-shadow: 1px 1px #FFFFFF
-        -moz-border-radius: 2px
-        -webkit-border-radius: 2px
-        border-radius: 2px
-        -moz-box-shadow: 0px 0px 5px #979797
-        -webkit-box-shadow: 0px 0px 5px #979797
-        box-shadow: 0px 0px 5px #979797
+        @include rounded(2px)
+        @include box-shadow(0px 0px 5px #979797)
       .parent
         li
           height: 18px

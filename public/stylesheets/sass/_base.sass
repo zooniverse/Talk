@@ -1,0 +1,67 @@
+$link_color: #990000
+$link_hover_color: #F00F00
+$primary_color: #990000
+$secondary_color: #A49E67
+
+$background: #D2C5A4 url(/images/moonzoo/interface/body_fade.png) repeat-x
+
+$default_font: Helvetica, "Arial Narrow", Arial, verdana
+$default_heading_font: "HelveticaNeue-Light", Helvetica, "Arial Narrow", Arial,sans-serif
+$styled_font: "Gill Sans Light", "GillSans-Light", "Gill Sans", "Gill Sans MT", sans-serif
+$emphasis_font: georgia, serif
+$basic_font: 'Lucida Grande', verdana, sans-serif
+
+@mixin less-nav
+  float: left
+  cursor: pointer
+  background: url(/images/colorbox/controls.png) no-repeat -74px 0px
+  width: 25px
+  height: 25px
+  text-indent: 10px
+  line-height: 25px
+  color: $link_color
+  &:hover
+    background-position: -74px -25px
+    color: #FF0000
+
+@mixin more-nav
+  float: right
+  cursor: pointer
+  background: url(/images/colorbox/controls.png) no-repeat -50px 0px
+  width: 25px
+  height: 25px
+  text-indent: -55px
+  line-height: 25px
+  color: $link_color
+  &:hover
+    background-position: -50px -25px
+    color: #FF0000
+
+@mixin rounded($radius: 2px)
+  -moz-border-radius: $radius
+  -webkit-border-radius: $radius
+  border-radius: $radius
+
+@mixin rounded-top-right($radius: 2px)
+  -moz-border-radius-topright: $radius
+  -webkit-border-top-right-radius: $radius
+  border-top-right-radius: $radius
+
+@mixin rounded-bottom-left($radius: 2px)
+  -moz-border-radius-bottomleft: $radius
+  -webkit-border-bottom-left-radius: $radius
+  border-bottom-left-radius: $radius
+
+@mixin rounded-right($radius: 2px)
+  -moz-border-radius-topright: $radius
+  -moz-border-radius-bottomright: $radius
+  -webkit-border-top-right-radius: $radius
+  -webkit-border-bottom-right-radius: $radius
+  border-top-right-radius: $radius
+  border-bottom-right-radius: $radius
+
+@mixin box-shadow($horiz: 0, $vert: 0, $blur: 0, $color: #FFFFFF)
+  -moz-box-shadow: $horiz $vert $blur $color
+  -webkit-box-shadow: $horiz $vert $blur $color
+  box-shadow: $horiz $vert $blur $color
+

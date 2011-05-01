@@ -1,6 +1,6 @@
 #asset-as-focus
   img
-    border: solid #000 1px
+    border: solid #000000 1px
   h1
     font-size: 1.8em
     margin: 0
@@ -18,7 +18,7 @@
         h2
           margin: 0 0 12px 0px
           font-weight: normal
-          font-family: 'HelveticaNeue-Light',Helvetica, verdana, sans-serif
+          font-family: $basic_font
           a
             font-size: 0.8em
         .large
@@ -26,11 +26,11 @@
           margin-right: 0
           position: relative
           z-index: 110
-          border-right: solid #fff 1px
+          border-right: solid #FFFFFF 1px
         .film img
           margin-right: 2px
         .progress
-          background: #dedede
+          background: #DEDEDE
           height: 5px
           width: 85px
           float: right
@@ -46,7 +46,7 @@
 .asset-actions
   .collect-asset
     cursor: pointer
-    color: #990000
+    color: $link_color
     text-decoration: none
 
 .collect-dialog
@@ -54,7 +54,7 @@
   overflow-y: auto
   li
     a
-      color: #990000
+      color: $link_color
     &.new-collection
       img
         margin: 3px 2px 0px -8px
