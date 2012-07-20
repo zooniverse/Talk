@@ -7,6 +7,9 @@ class Discussion
   
   zoo_id :prefix => "D"
   key :subject, String, :required => true
+  
+  validates_length_of :subject, :maximum => 140
+  
   key :focus_id, ObjectId
   key :focus_type, String
   key :focus_base_type, String
