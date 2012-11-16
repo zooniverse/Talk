@@ -12,9 +12,7 @@ app.el = $('#app')
 app.header = new AppHeader
 app.header.el.prependTo app.el
 
-app.mainStack = new Stack
-  el: '#main > .pages'
-
+app.stack = new Stack
   controllers:
     subjectPage: ObjectPage
 
@@ -22,5 +20,7 @@ app.mainStack = new Stack
     '/subjects/:subjectId': 'subjectPage'
 
   default: 'subjectPage'
+
+app.stack.el.appendTo app.el
 
 module.exports = app

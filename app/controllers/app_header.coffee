@@ -7,7 +7,6 @@ class AppHeader extends Controller
 
   constructor: ->
     super
-
     @html template
 
 module.exports = AppHeader

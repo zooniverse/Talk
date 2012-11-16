@@ -1,21 +1,27 @@
 .app-header {
   background: $gray-dark;
   color: $gray-light;
+  display: table;
   font-size: 12px;
-  height: 50px;
-  line-height: 50px;
+  line-height: 40px;
+  width: 100%;
+
+  .group {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
 
   h1 {
     display: inline-block;
     font-size: 18px;
     font-weight: normal;
-    margin: 0 30px;
+    margin: 0;
     vertical-align: bottom;
   }
 
   nav {
     display: inline-block;
-    margin: 0 30px;
     vertical-align: bottom;
 
     ul {
@@ -27,7 +33,7 @@
         list-style: none;
 
         a {
-          border-bottom: 2px solid transparent;
+          border-bottom: 3px solid transparent;
           box-sizing: border-box;
           color: inherit;
           display: block;

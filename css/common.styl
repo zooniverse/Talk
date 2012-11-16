@@ -2,12 +2,42 @@ $black = #000;
 $white = #fff;
 
 $gray-dark = hsl(0, 0, 20%);
+$gray-less-dark = hsl(0, 0, 40%);
+$gray-less-light = hsl(0, 0, 85%);
 $gray-light = hsl(0, 0, 95%);
 
 $blue = hsl(200, 100, 60);
 
-#inset {
-  background: rgba(black, 0.1);
+#block-header {
+  border-bottom: 2px solid $gray-dark;
+  font-size: 20px;
+}
+
+#standard-button {
+  background: linear-gradient($gray-light, $gray-less-light);
+  border: 1px solid $gray-less-dark;
   border-radius: 5px;
-  box-shadow: 0 1px 1px rgba(black, 0.33) inset, 0 1px 0 rgba(white, 0.67);
+  box-shadow: 0 1px 1px rgba($black, 0.25);
+  color: $gray-dark;
+  padding: 1px 10px;
+
+  &:active {
+    background: $gray-less-light;
+    box-shadow: 0 1px 1px rgba($black, 0.25) inset;
+  }
+}
+
+#rule-after {
+  position: relative;
+
+  &:after {
+    border-bottom: 1px solid $white;
+    border-top: 1px solid rgba($black, 0.25);
+    content: "";
+    height: 0;
+    left: 0;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+  }
 }

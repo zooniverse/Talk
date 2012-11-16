@@ -1,25 +1,119 @@
 .object.page {
   overflow: hidden;
 
+  > header {
+    @extends #rule-after;
+    margin: 10px 0;
+    padding: 5px 0;
+    font-size: 16px;
+  }
+
   .object {
     float: left;
-    width: 50%;
+    width: 33%;
 
-    .view {
-      background: gray;
+    .object-view {
+      img {
+        width: 100%;
+      }
+    }
+
+    .create-comment {
+      background: $blue;
+      color: $white;
+      margin: 10px 0;
+      padding: 10px;
+
+      textarea {
+        width: 100%;
+      }
+
+      button {
+        @extends #standard-button;
+      }
     }
 
     .comments {
-      .create {
-        textarea {
-          width: 100%;
+      ul {
+        margin: 0;
+        padding: 0;
+
+        li {
+          list-style: none;
+
+          .comment {
+            @extends #rule-after;
+            padding: 10px;
+          }
         }
       }
     }
   }
 
+  .collections {
+    box-sizing: border-box;
+    float: left;
+    margin-bottom: 30px;
+    padding-left: 30px;
+    width: 33%;
+
+    > header {
+      @extends #block-header;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+
+      li {
+        display: inline-block;
+        list-style: none;
+      }
+    }
+  }
+
+  .hashtags {
+    box-sizing: border-box;
+    float: left;
+    margin-bottom: 30px;
+    padding-left: 30px;
+    width: 33%;
+
+    > header {
+      @extends #block-header;
+    }
+
+    ul {
+      margin: 0;
+      overflow: hidden;
+      padding: 0;
+
+      li {
+        display: inline-block;
+        float: left;
+        width: 33%;
+      }
+    }
+  }
+
   .discussions {
-    float: right;
-    width: 50%;
+    box-sizing: border-box;
+    float: left;
+    margin-bottom: 30px;
+    padding-left: 30px;
+    width: 67%;
+
+    > header {
+      @extends #block-header;
+    }
+
+    ul  {
+      margin: 0;
+      padding: 0;
+
+      li {
+        display: inline-block;
+      }
+    }
   }
 }
