@@ -1,0 +1,59 @@
+<% userLink = require './user_link' %>
+
+<div class="object">
+  <div class="object-view">TODO: Project-appropriate view of object/metadata</div>
+
+  <div class="create-comment">
+    <header>Leave a comment</header>
+
+    <form class="comment-form">
+      <textarea name="comment"></textarea>
+      <button type="submit">Comment</button>
+    </form>
+  </div>
+
+  <div class="comments">
+    <ul>
+      <% for comment in @discussion.comments: %>
+        <li>
+          <div class="comment">
+            <div class="content"><%= comment.body %></div>
+            <footer>By <%- userLink comment %></footer>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class="discussions">
+  <% for category, discussions of @board_discussions when discussions.length isnt 0: %>
+    <div class="board preview-list">
+      <header>Category: <%= category %></header>
+
+      <ul>
+        <% for discussion in discussions: %>
+          <li>
+            <div class="discussion">
+              <div class="info">
+                <header>
+                  <a href="#/boards/BOARD_ID/discussions/<%= discussion._id %>"><%= discussion.title %></a>
+                </header>
+              </div>
+
+              <div class="stats">
+                <div class="counts">
+                  <span class="posts"><%= discussion.comments %></span> posts, <span class="users"><%= discussion.users %></span> participants
+                </div>
+
+                <div class="last">
+                  Last post <span class="last-modified"><%= discussion.last_updated %></span>
+                </div>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

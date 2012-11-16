@@ -1,0 +1,141 @@
+{
+    "id": "504e660fc499611ea601eac2",
+    "activated_at": "2012-11-08T02:27:21Z",
+    "classification_count": 9,
+    "coords": [
+        267.945806142848,
+        24.4835938184049
+    ],
+    "created_at": "2012-09-10T22:13:35Z",
+    "group_id": "50251c3b516bcb6ecb000002",
+    "group_type": "survey",
+    "location": {
+        "standard": "http://www.galaxyzoo.org.s3.amazonaws.com/subjects/standard/1237666209781055858.jpg",
+        "thumbnail": "http://www.galaxyzoo.org.s3.amazonaws.com/subjects/thumbnail/1237666209781055858.jpg",
+        "inverted": "http://www.galaxyzoo.org.s3.amazonaws.com/subjects/inverted/1237666209781055858.jpg"
+    },
+    "metadata": {
+        "absolute_size": 12.237291000359164,
+        "counters": {
+            "feature": 9
+        },
+        "mag": {
+            "u": 14.863594,
+            "g": 13.242537,
+            "r": 12.435862,
+            "i": 12.026426,
+            "z": 11.759286,
+            "abs_r": -24.6021
+        },
+        "petrorad_flux": 9970.36914,
+        "petrorad_r": 18.81126,
+        "petrorad_50_r": 9.066271,
+        "redshift": 0.071725,
+        "sdss_id": "1237666209781055858",
+        "survey": "sloan"
+    },
+    "project_id": "502a90cd516bcb060c000001",
+    "random": 0.1041381183618022,
+    "state": "active",
+    "updated_at": "2012-09-10T22:13:35Z",
+    "workflow_ids": [
+        "50251c3b516bcb6ecb000002"
+    ],
+    "zooniverse_id": "AGZ0002oxu",
+    "tags": [
+        {
+            "_id": "blueclumps",
+            "count": 2
+        },
+        {
+            "_id": "starformation",
+            "count": 1
+        }
+    ],
+    "discussion": {
+        "id": "50a41c7d3ae7402f6a004d50",
+        "board": { },
+        "comments": [
+            {
+                "_id": "50a41c7d3ae7402f6a004d51",
+                "response_to_id": null,
+                "user_id": "5035db53ba40af071e00001b",
+                "user_name": "klmasters",
+                "upvotes": [ ],
+                "body": "That's a stunning galaxy.... Like arfon said - staformation regions in the outer spirals showing up as the #blueclumps",
+                "tags": [
+                    "blueclumps"
+                ],
+                "mentions": [ ],
+                "created_at": "2012-11-14T22:34:37Z",
+                "updated_at": "2012-11-14T22:34:37Z"
+            },
+            {
+                "_id": "50a41c7d3ae7402f6a004d4f",
+                "response_to_id": null,
+                "user_id": "5005bed044dff81ff0000001",
+                "user_name": "arfon",
+                "upvotes": [ ],
+                "body": "#starformation",
+                "tags": [
+                    "starformation"
+                ],
+                "mentions": [ ],
+                "created_at": "2012-11-14T22:34:37Z",
+                "updated_at": "2012-11-14T22:34:37Z"
+            }
+        ],
+        "comments_count": 2,
+        "created_at": "2012-11-14T22:34:37Z",
+        "featured": { },
+        "focus": {
+            "_id": "504e660fc499611ea601eac2",
+            "type": "GalaxyZooSubject",
+            "name": "Subject"
+        },
+        "last_comment": {
+            "_id": "50a41c7d3ae7402f6a004d51",
+            "response_to_id": null,
+            "user_id": "5035db53ba40af071e00001b",
+            "user_name": "klmasters",
+            "upvotes": [ ],
+            "body": "That's a stunning galaxy.... Like arfon said - staformation regions in the outer spirals showing up as the #blueclumps",
+            "tags": [
+                "blueclumps"
+            ],
+            "mentions": [ ],
+            "created_at": "2012-11-14T22:34:37Z",
+            "updated_at": "2012-11-14T22:34:37Z"
+        },
+        "project_id": "502a90cd516bcb060c000001",
+        "title": "AGZ0002oxu",
+        "updated_at": "2012-11-14T22:34:37Z",
+        "user_id": "5005bed044dff81ff0000001",
+        "user_name": "arfon",
+        "users_count": 2,
+        "zooniverse_id": "DGZ0007ax"
+    },
+    "mentions": [
+        {
+            "comments": 2,
+            "title": "AGZ0000mr0",
+            "users": 2,
+            "zooniverse_id": "DGZ000001",
+            "last_updated": "2012-11-15T17:40:09Z"
+        }
+    ],
+    "board_discussions": {
+        "science": [
+            {
+                "_id": "50a529973ae740366c000003",
+                "comments": 1,
+                "title": "An Awesome Topic",
+                "users": 1,
+                "zooniverse_id": "DGZ000a2m",
+                "last_updated": "2012-11-15T17:42:47Z"
+            }
+        ],
+        "help": [ ],
+        "chat": [ ]
+    }
+}

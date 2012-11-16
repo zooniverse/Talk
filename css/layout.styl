@@ -1,0 +1,129 @@
+html {
+  background: $gray-light;
+  color: $gray-dark;
+  font-family: "Helvetica Neue",  sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid rgba($black, 0.33);
+  border-bottom: 1px solid rgba($white, 0.67);
+  margin: 20px 0;
+}
+
+a {
+  color: $blue;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+#app {
+  overflow: hidden;
+
+  > header {
+    background: $gray-dark;
+    color: $gray-light;
+    font-size: 12px;
+    height: 50px;
+    line-height: 50px;
+
+    h1 {
+      display: inline-block;
+      font-size: 18px;
+      font-weight: normal;
+      margin: 0 30px;
+      vertical-align: bottom;
+    }
+
+    nav {
+      display: inline-block;
+      margin: 0 30px;
+      vertical-align: bottom;
+
+      ul {
+        margin: 0;
+        padding: 0;
+
+        li {
+          display: inline-block;
+          list-style: none;
+
+          a {
+            border-bottom: 2px solid transparent;
+            box-sizing: border-box;
+            color: inherit;
+            display: block;
+            height: 100%;
+            margin: 0 5px;
+
+            &:hover,
+            &.active {
+              color: $blue;
+              text-decoration: none;
+            }
+
+            &.active {
+              border-bottom-color: $blue;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#sidebar {
+  float: left;
+  overflow: hidden;
+  position: relative;
+  width: 20%;
+
+  > .pages {
+    float: right;
+    position: relative;
+    right: 0;
+    top: 0;
+    width: 80%;
+  }
+}
+
+#main {
+  float: left;
+  width: 80%;
+
+  > .pages {
+    position: relative;
+    width: 95%;
+
+    > .page {
+      margin-bottom: 100px; // Temporary
+      padding: 20px;
+
+      > section {
+        border-bottom: 1px solid $light-background;
+        box-shadow: 0 1px 0 $dark-background;
+
+        > header {
+          background: $blue;
+          color: $white;
+          font-size: 16px;
+          font-weight: bold;
+          margin-left: -20px;
+          padding: 0 20px;
+          width: 100%;
+
+          .aux {
+            float: right;
+          }
+        }
+      }
+    }
+  }
+}

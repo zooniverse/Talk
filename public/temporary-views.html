@@ -1,0 +1,293 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Talk</title>
+
+    <link rel="stylesheet" href="application.css" />
+    <script src="application.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <header>
+        <h1><strong>Talk</strong> Snapshot Serengeti</h1>
+        <nav>
+          <ul>
+            <li><a href="#/">Trending</a></li>
+            <li><a href="#/boards">Discussion boards</a></li>
+            <li><a href="#/browse">Browse data</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <div id="sidebar">
+        <div class="current-user">
+          <div class="avatar">
+            <img src="//placehold.it/72.png" />
+          </div>
+
+          <div class="info">
+            <span class="name">davidmill</span>
+            <a href="#">View profile</a>
+            <a href="#">Sign out</a>
+          </div>
+
+          <ul class="stats">
+            <li>Comments <span class="comments">0</span></li>
+            <li>Discussions <span class="discussions">0</span></li>
+            <li>Following <span class="following">0</span></li>
+            <li>Messages <span class="messages">0</span></li>
+          </ul>
+        </div>
+
+        <div class="pages">
+          <div class="page">
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="main">
+        <div class="pages">
+          <section class="trending home page">
+            <section class="subjects preview-list">
+              <header>
+                People are classifying <a href="#">Browse subjects</a>
+              </header>
+            </section>
+
+            <hr />
+
+            <section class="discussions preview-list">
+              <header>
+                People are discussing <a href="#">View discussion boards</a>
+              </header>
+              <ul>
+                <li>
+                  <div class="discussion">
+                    <div class="info">
+                      <header>
+                        <a href="#">Is this wildebeest eating a porcupine?</a>
+                      </header>
+                      <div class="metadata">
+                        Posted in <span class="board">Food chain</span> by <a href="#" class="user">arfon <span class="role">Admin</span></a>
+                      </div>
+                    </div>
+                    <div class="stats">
+                      <div class="counts">
+                        <span class="posts">4</span> posts, <span class="users">2</span> participants
+                      </div>
+                      <div class="last">
+                        <a href="#">Last post</a> <span class="last-modified">1 minute ago</span> by <a href="#" class="user">stuart_lynn</a>
+                      </div>
+                    </div>
+                    <div class="follow">
+                      <button name="follow" value="">Follow</button>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </section>
+
+            <hr />
+
+            <section class="collections preview-list">
+              <header>
+                People are collecting <a href="#">Browse collections</a>
+              </header>
+            </section>
+          </section>
+
+          <section class="boards page">
+            <section class="boards preview-list">
+              <header>Science board</header>
+              <ul>
+                <li>
+                  <div class="discussion">
+                    <div class="info">
+                      <header>
+                        <a href="#">The objects</a>
+                      </header>
+                      <div class="description">
+                        Discuss specific captures you've observed
+                      </div>
+                    </div>
+                    <div class="stats">
+                      <div class="counts">
+                        <span class="posts">4</span> posts, <span class="users">2</span> participants
+                      </div>
+                      <div class="last">
+                        <a href="#">Last post</a> <span class="last-modified">1 minute ago</span> by <a href="#" class="user">stuart_lynn</a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </section>
+          </section>
+
+          <section class="board page">
+            <header>Science board / The Objects</header>
+            <div class="new-discussion">
+              <header>Begin a new discussion</header>
+              <form>
+                <textarea></textarea>
+                <button type="submit">Discuss</button>
+              </form>
+            </div>
+
+            <div class="discussions preview-list">
+              <header>
+                People are discussing <a href="#">View discussion boards</a>
+              </header>
+              <ul>
+                <li>
+                  <div class="discussion">
+                    <div class="info">
+                      <header>
+                        <a href="#">Is this wildebeest eating a porcupine?</a>
+                      </header>
+                      <div class="metadata">
+                        Posted in <span class="board">Food chain</span> by <a href="#" class="user">arfon <span class="role">Admin</span></a>
+                      </div>
+                    </div>
+                    <div class="stats">
+                      <div class="counts">
+                        <span class="posts">4</span> posts, <span class="users">2</span> participants
+                      </div>
+                      <div class="last">
+                        <a href="#">Last post</a> <span class="last-modified">1 minute ago</span> by <a href="#" class="user">stuart_lynn</a>
+                      </div>
+                    </div>
+                    <div class="follow">
+                      <button name="follow" value="">Follow</button>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="discussion page">
+            <header>Science board / Characteristics</header>
+            <div class="discussion">
+              <header>
+                Why is this horse black and white?
+                <p class="metadata">Started 3 days ago by stuart_lynn</p>
+              </header>
+
+              <div class="starter"></div>
+
+              <div class="responses">
+                <ul>
+                  <li>
+                    <div class="response">
+                      <header><a href="#" class="user">Ali.Swanson <span class="role">Scientist</span></a></header>
+                      <div class="content">
+                        <p>That's no horse, it's a zebra.</p>
+                      </div>
+                      <footer>Posted 10 days ago</footer>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="respond">
+                <header>Add your response</header>
+                <form>
+                  <textarea></textarea>
+                  <button type="submit">Respond</button>
+                </form>
+              </div>
+            </div>
+          </section>
+
+          <!--"Objects" here can refer to subjects, collections, live collections, etc.-->
+          <section class="browse objects page">
+            <div class="objects preview-list">
+              <header>
+                Objects
+              </header>
+              <ul>
+                <li>
+                  <div class="discussion">
+                    <div class="info">
+                      <header>
+                        <a href="#">Is this wildebeest eating a porcupine?</a>
+                      </header>
+                      <div class="metadata">
+                        Posted in <span class="board">Food chain</span> by <a href="#" class="user">arfon <span class="role">Admin</span></a>
+                      </div>
+                    </div>
+                    <div class="stats">
+                      <div class="counts">
+                        <span class="posts">4</span> posts, <span class="users">2</span> participants
+                      </div>
+                      <div class="last">
+                        <a href="#">Last post</a> <span class="last-modified">1 minute ago</span> by <a href="#" class="user">stuart_lynn</a>
+                      </div>
+                    </div>
+                    <div class="follow">
+                      <button name="follow" value="">Follow</button>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="object page">
+            <div class="object">
+              <div class="view">{{VIEW OF OBJECT}}</div>
+              <div class="comments">
+                <ul>
+                  <li>
+                    <div class="comment">
+                      <div class="content">Lorem ipsum dolor sit amet</div>
+                      <footer>
+                        By <a href="#" class="user">Ali.Swanson <span class="role">Scientist</span></a>
+                      </footer>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mentions">
+              <div class="board preview-list">
+                <header>
+                  Science board <a href="#">View board</a>
+                </header>
+                <ul>
+                  <li>
+                    <div class="discussion">
+                      <div class="info">
+                        <header>
+                          <a href="#">Is this wildebeest eating a porcupine?</a>
+                        </header>
+                        <div class="metadata">
+                          Posted in <span class="board">Food chain</span> by <a href="#" class="user">arfon <span class="role">Admin</span></a>
+                        </div>
+                      </div>
+                      <div class="stats">
+                        <div class="counts">
+                          <span class="posts">4</span> posts, <span class="users">2</span> participants
+                        </div>
+                        <div class="last">
+                          <a href="#">Last post</a> <span class="last-modified">1 minute ago</span> by <a href="#" class="user">stuart_lynn</a>
+                        </div>
+                      </div>
+                      <div class="follow">
+                        <button name="follow" value="">Follow</button>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

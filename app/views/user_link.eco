@@ -1,0 +1,6 @@
+<a href="#/users/<%= @user_id %>">
+  <%= @user_name %>
+  <% if @user_role: %>
+    <span class="<%= @user_role %> role"><%= @user_role %></span>
+  <% end %>
+</a>
