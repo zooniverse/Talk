@@ -1,15 +1,27 @@
 .app-header {
   background: $gray-dark;
   color: $gray-light;
-  display: table;
   font-size: 12px;
   line-height: 40px;
-  width: 100%;
+
+  .wrapper {
+    display: table;
+    margin: 0 auto;
+    width: 90%;
+  }
 
   .group {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
+
+    &:first-child {
+      text-align: left;
+    }
+
+    &:last-child {
+      text-align: right;
+    }
   }
 
   h1 {
