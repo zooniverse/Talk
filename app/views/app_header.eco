@@ -1,0 +1,9 @@
+<h1><strong>Talk</strong> Snapshot Serengeti</h1>
+
+<nav>
+  <ul>
+    <li><a href="#/" class="active">Trending</a></li>
+    <li><a href="#/boards">Discussion boards</a></li>
+    <li><a href="#/browse">Browse data</a></li>
+  </ul>
+</nav>
