@@ -1,7 +1,8 @@
+<% { capitalize } = require 'lib/util' %>
+
 <div class="discussions">
   <% for category, discussions of @boards: %>
-    <% name = category.replace /^(\w)/, (c) -> c.toUpperCase() %>
-    <%- require('views/focus/discussion_list') category: category, name: "#{ name } Discussions", list: discussions %>
+    <%- require('views/focus/discussion_list') category: category, name: "#{ capitalize category } Discussions", list: discussions %>
   <% end %>
   
   <% if @mentions.length > 0: %>

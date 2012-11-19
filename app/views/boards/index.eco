@@ -1,0 +1,14 @@
+<% { capitalize } = require 'lib/util' %>
+
+<div class="boards">
+  <% for category in ['help', 'science', 'chat']: %>
+    <header><%= capitalize category %></header>
+    <ul>
+      <% for board in @[category]: %>
+        <li>
+          <%- require('views/boards/summary') board %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
