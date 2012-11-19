@@ -1,4 +1,4 @@
-Spine = require 'spine'
+SubStack = require 'lib/sub_stack'
 Page = require 'controllers/page'
 
 class Show extends Page
@@ -18,7 +18,7 @@ class Index extends Page
     "#{ super }/boards"
 
 
-class Boards extends Spine.Stack
+class Boards extends SubStack
   controllers:
     show: Show
     index: Index
