@@ -1,5 +1,3 @@
-<% userLink = require './user_link' %>
-
 <header>
   Image <%= @zooniverse_id %>
 </header>
@@ -18,19 +16,8 @@
       <button type="submit">Comment</button>
     </form>
   </div>
-
-  <div class="comments">
-    <ul>
-      <% for comment in @discussion.comments: %>
-        <li>
-          <div class="comment">
-            <div class="content"><%= comment.body %></div>
-            <footer>By <%- userLink comment %></footer>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+  
+  <%- require('views/focus/comments') comments: @discussion.comments %>
 </div>
 
 <div class="collections">

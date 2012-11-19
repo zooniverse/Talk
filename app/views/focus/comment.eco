@@ -1,0 +1,6 @@
+<% userLink = require 'views/user_link' %>
+
+<div class="comment">
+  <div class="content"><%= @comment.body %></div>
+  <footer>By <%- userLink @comment %></footer>
+</div>
