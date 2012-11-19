@@ -11,7 +11,7 @@ User.project = Config.project
 User.fetch()
 
 AppHeader = require 'controllers/app_header'
-ObjectPage = require 'controllers/object_page'
+SubjectPage = require 'controllers/subject_page'
 
 app = {}
 app.el = $('#app')
@@ -21,10 +21,10 @@ app.header.el.prependTo app.el
 
 app.stack = new Stack
   controllers:
-    subjectPage: ObjectPage
+    subjectPage: SubjectPage
 
   routes:
-    '/subjects/:subjectId': 'subjectPage'
+    '/subjects/:focusId': 'subjectPage'
 
   default: 'subjectPage'
 

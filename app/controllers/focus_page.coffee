@@ -1,10 +1,8 @@
 Api = require 'zooniverse/lib/api'
 Page = require './page'
-template = require 'views/object_page'
 
-class ObjectPage extends Page
+class FocusPage extends Page
   className: "object #{Page::className}"
-  template: template
   
   elements:
     '.comment-form': 'commentForm'
@@ -16,11 +14,11 @@ class ObjectPage extends Page
   
   activate: (params) ->
     return unless params
-    @subjectId = params.subjectId
+    @focusId = params.focusId
     super
   
   url: ->
-    "#{ super }/subjects/#{ @subjectId }"
+    "#{ super }/#{ @focus_type }/#{ @focusId }"
   
   submitComment: (ev) ->
     Api.post "#{ @url() }/comments", @commentForm.serialize(), (response) =>
@@ -28,12 +26,11 @@ class ObjectPage extends Page
       comment = require('views/focus/comment') comment: response
       comment = $("<li>#{ comment }</li>")
       @commentList.prepend comment
-      console.log comment
     
     ev.preventDefault()
   
   startDiscussion: (ev) =>
-    @navigate "/subjects/#{ @subjectId }/discussions/new"
+    @navigate "/#{ focus_type }/#{ @focusId }/discussions/new"
     ev.preventDefault()
 
-module.exports = ObjectPage
+module.exports = FocusPage
