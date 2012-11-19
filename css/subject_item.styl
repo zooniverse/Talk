@@ -1,0 +1,57 @@
+li > .subject {
+  @extends #rule-left;
+  font-size: 11px;
+  margin-left: 10px;
+  padding-left: 10px;
+
+  .view {
+    margin-bottom: 10px;
+
+    img {
+      max-width: 100%;
+      border: 1px solid $white;
+      box-shadow: 0 1px 1px rgba($black, 0.25);
+    }
+  }
+
+  .metadata {
+    @extends #rule-below;
+    display: table;
+    line-height: 1.25;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    white-space: nowrap;
+
+    .collections {
+      display: table-cell;
+      vertical-align: middle;
+
+      button {
+        @extends #standard-button;
+        height: 24px;
+      }
+    }
+
+    .stats {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: right;
+    }
+  }
+
+  .comment {
+    .content {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+li:first-child > .subject {
+  margin-left: 0;
+  padding-left: 0;
+
+  &:before {
+    display: none;
+  }
+}

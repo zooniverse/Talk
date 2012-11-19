@@ -1,8 +1,16 @@
 ul.previews {
-  margin: 0;
+  margin: 10px 0;
   padding: 0;
 
   > li {
     list-style: none;
+  }
+
+  &.inline {
+    overflow: hidden;
+
+    > li {
+      float: left;
+    }
   }
 }

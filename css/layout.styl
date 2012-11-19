@@ -8,6 +8,28 @@ body {
   margin: 0;
 }
 
+h2 {
+  @extends #rule-below;
+  color: $blue;
+  font-size: 14px;
+  margin: 10px 0;
+  padding-bottom: 5px;
+
+  .aux {
+    float: right;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+}
+
+h3 {
+  border-bottom: 3px solid;
+  font-weight: normal;
+  font-size: 20px;
+  margin: 10px 0;
+  padding-bottom: 5px;
+}
+
 hr {
   border: 0;
   border-top: 1px solid rgba($black, 0.33);

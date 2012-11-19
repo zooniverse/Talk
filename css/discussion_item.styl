@@ -1,9 +1,11 @@
 li > .discussion {
+  @extends #rule-below;
   display: table;
-  margin: 10px 0;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
   position: relative;
 
-  &.sticky:after {
+  &.sticky:before {
     background: yellow; // TODO: Pin icon.
     content: "";
     height: 20px;
@@ -44,6 +46,7 @@ li > .discussion {
 
   .follow {
     display: table-cell;
+    padding-left: 15px;
     vertical-align: middle;
     white-space: nowrap;
     width: 1%;
@@ -51,10 +54,7 @@ li > .discussion {
     button {
       @extends #standard-button;
       font-size: 10px;
-      font-weight: bold;
-      height: 30px;
-      margin-left: 5px;
-      padding: 0 0 2px;
+      height: 24px;
       width: 60px;
 
       &[name="unfollow"] {
@@ -74,5 +74,14 @@ li > .discussion {
         display: inline-block;
       }
     }
+  }
+}
+
+li:last-child > .discussion {
+  margin-bottom: 0;
+  padding-bottom: 0;
+
+  &:after {
+    display: none;
   }
 }
