@@ -15,7 +15,7 @@ $blue = hsl(200, 100, 60);
 }
 
 #standard-button {
-  background: linear-gradient($gray-less-light, $gray-light);
+  background: $gray-light;
   border: 1px solid rgba($black, 0.33);
   border-radius: 3px;
   box-shadow: 0 1px 0 rgba($white, 0.75) inset;
@@ -30,7 +30,7 @@ $blue = hsl(200, 100, 60);
 
   &:active,
   &.selected {
-    box-shadow: 0 100px 0 rgba($black, 0.1) inset, 0 1px 1px rgba($black, 0.25) inset;
+    box-shadow: 0 100px 0 rgba($black, 0.1) inset, 0 1px 3px rgba($black, 0.25) inset;
   }
 }
 
