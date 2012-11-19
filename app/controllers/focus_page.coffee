@@ -2,8 +2,6 @@ Api = require 'zooniverse/lib/api'
 Page = require './page'
 
 class FocusPage extends Page
-  className: "object #{Page::className}"
-  
   elements:
     '.comment-form': 'commentForm'
     '.comments ul': 'commentList'
@@ -18,7 +16,7 @@ class FocusPage extends Page
     super
   
   url: ->
-    "#{ super }/#{ @focus_type }/#{ @focusId }"
+    "#{ super }/#{ @constructor::focusType }/#{ @focusId }"
   
   submitComment: (ev) ->
     Api.post "#{ @url() }/comments", @commentForm.serialize(), (response) =>
@@ -30,7 +28,7 @@ class FocusPage extends Page
     ev.preventDefault()
   
   startDiscussion: (ev) =>
-    @navigate "/#{ @focus_type }/#{ @focusId }/discussions/new"
+    @navigate "/#{ @constructor::focusType }/#{ @focusId }/discussions/new"
     ev.preventDefault()
 
 module.exports = FocusPage

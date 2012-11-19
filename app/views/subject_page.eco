@@ -2,10 +2,10 @@
   Image <%= @zooniverse_id %>
 </header>
 
-<div class="object">
-  <div class="object-view">
+<div class="subject">
+  <div class="subject-view">
     <img src="<%= @location['standard'][0] %>" />
-    <!--TODO: Project-appropriate view of object/metadata-->
+    <!--TODO: Project-appropriate view of subject/metadata-->
   </div>
 
   <div class="create-comment">

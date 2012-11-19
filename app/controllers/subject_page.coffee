@@ -3,6 +3,7 @@ template = require 'views/subject_page'
 
 class SubjectPage extends FocusPage
   template: template
-  focus_type: 'subjects'
+  className: 'subject page'
+  focusType: 'subjects'
 
 module.exports = SubjectPage
