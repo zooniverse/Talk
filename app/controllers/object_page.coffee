@@ -12,6 +12,7 @@ class ObjectPage extends Page
   
   events:
     'submit .comment-form': 'submitComment'
+    'click .new-board-discussion button': 'startDiscussion'
   
   activate: (params) ->
     return unless params
@@ -29,6 +30,10 @@ class ObjectPage extends Page
       @commentList.prepend comment
       console.log comment
     
+    ev.preventDefault()
+  
+  startDiscussion: (ev) =>
+    @navigate "/subjects/#{ @subjectId }/discussions/new"
     ev.preventDefault()
 
 module.exports = ObjectPage

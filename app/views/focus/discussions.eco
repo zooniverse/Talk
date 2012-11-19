@@ -1,0 +1,10 @@
+<div class="discussions">
+  <% for category, discussions of @boards: %>
+    <% name = category.replace /^(\w)/, (c) -> c.toUpperCase() %>
+    <%- require('views/focus/discussion_list') category: category, name: "#{ name } Discussions", list: discussions %>
+  <% end %>
+  
+  <% if @mentions.length > 0: %>
+    <%- require('views/focus/discussion_list') name: 'Discussions Mentioning This', list: @mentions %>
+  <% end %>
+</div>
