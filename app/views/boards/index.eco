@@ -4,11 +4,19 @@
   <% for category in ['help', 'science', 'chat']: %>
     <header><%= capitalize category %></header>
     <ul>
+      <% @[category] or= [] %>
       <% for board in @[category]: %>
         <li>
           <%- require('views/boards/summary') board %>
         </li>
       <% end %>
+      
+      <li>
+        <div class="new-board">
+          <label>Want to start a new <%= category %> board?</label>
+          <button data-category="<%= category %>">Create a New Board</button>
+        </div>
+      </li>
     </ul>
   <% end %>
 </div>

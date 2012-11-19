@@ -15,8 +15,15 @@ class Show extends Page
 class Index extends Page
   template: require('views/boards/index')
   
+  events:
+    'click .new-board button': 'newBoard'
+  
   url: ->
     "#{ super }/boards"
+  
+  newBoard: ({ target }) ->
+    category = $(target).data 'category'
+    @navigate "/boards/#{ category }/new"
 
 class New extends Page
   template: require('views/boards/new')

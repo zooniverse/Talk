@@ -13,7 +13,11 @@
       </div>
       
       <div class="last">
-        Last post <span class="last-modified"><%= @last_updated %></span>
+        <% if @last_updated: %>
+          Last post <span class="last-modified"><%= @last_updated %></span>
+        <% else: %>
+          <span class="last-modified"><em>No posts yet</em></span>
+        <% end %>
       </div>
     </div>
   </div>

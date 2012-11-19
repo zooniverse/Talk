@@ -26,7 +26,7 @@
   <% if @category: %>
     <li>
       <div class="new-board-discussion">
-        <label>Want to start a new <% @category %> discussion?</label>
+        <label>Want to start a new <%= @category %> discussion?</label>
         <button>Create a New Post</button>
       </div>
     </li>
