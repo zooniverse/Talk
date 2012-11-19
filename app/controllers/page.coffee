@@ -9,9 +9,9 @@ class Page extends Controller
 
   template: null
   data: null
-
-  resourceId: ''
-
+  
+  fetchOnLoad: true
+  
   constructor: ->
     super
     @data ?= {}
@@ -27,9 +27,14 @@ class Page extends Controller
     "/projects/#{ project }/talk"
 
   reload: (callback) ->
-    Api.get @url(), (@data) =>
+    if @fetchOnLoad
+      Api.get @url(), (@data) =>
+        @render()
+        callback @data
+    else
+      @data = @
       @render()
-      callback @data
+      callback? @
 
   render: ->
     @html @template? @data

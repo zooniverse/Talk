@@ -1,0 +1,6 @@
+<form class="new-board">
+  <input type="hidden" name="category" value="<%= @category %>">
+  <label for="title">Title<input type="text" name="title"></label>
+  <label for="description">Description<textarea name="description"></textarea></label>
+  <input type="submit" name="submit" value="Create Board">
+</form>
