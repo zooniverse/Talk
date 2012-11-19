@@ -1,7 +1,6 @@
 {
   "name": "talk",
   "version": "0.0.1",
-
   "dependencies": {
     "serveup": "~0.0.5",
     "hem": "~0.1.8",
@@ -9,6 +8,7 @@
     "json2ify": "~0.0.1",
     "jqueryify": "~0.0.1",
     "spine": "~1.0.7",
-    "nib": "~0.8.2"
+    "nib": "~0.8.2",
+    "zooniverse": "git+ssh://git@github.com:zooniverse/Zooniverse.git#core"
   }
 }

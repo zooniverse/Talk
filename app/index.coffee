@@ -3,6 +3,10 @@ require 'lib/setup'
 {Stack} = require 'spine/lib/manager'
 $ = require 'jqueryify'
 
+Config = require 'lib/config'
+Api = require 'zooniverse/lib/api'
+Api.init host: Config.apiHost
+
 AppHeader = require 'controllers/app_header'
 ObjectPage = require 'controllers/object_page'
 
