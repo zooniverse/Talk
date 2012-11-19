@@ -12,9 +12,7 @@ User.fetch()
 
 AppHeader = require 'controllers/app_header'
 SubjectPage = require 'controllers/subject_page'
-
-BoardIndex = require 'controllers/board_index'
-BoardShow = require 'controllers/board_show'
+Boards = require 'controllers/boards'
 
 app = {}
 app.el = $('#app')
@@ -25,13 +23,11 @@ app.header.el.prependTo app.el
 app.stack = new Stack
   controllers:
     subjectPage: SubjectPage
-    boardIndex: BoardIndex
-    boardShow: BoardShow
-
+    boards: Boards
+  
   routes:
     '/subjects/:focusId': 'subjectPage'
-    '/boards': 'boardIndex'
-    '/boards/:id': 'boardShow'
+    '/boards': 'boards'
 
   default: 'subjectPage'
 
