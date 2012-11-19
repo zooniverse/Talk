@@ -1,12 +1,12 @@
 <% userLink = require './user_link' %>
 
 <header>
-  Image ASN7113045
+  Image <%= @zooniverse_id %>
 </header>
 
 <div class="object">
   <div class="object-view">
-    <img src="//placehold.it/640x400.png" />
+    <img src="<%= @location['standard'][0] %>" />
     <!--TODO: Project-appropriate view of object/metadata-->
   </div>
 
@@ -59,11 +59,9 @@
 <div class="hashtags">
   <header>Hashtags on this subject</header>
   <ul>
-    <li><a href="#/hashtags/lorem" class="hashtag">lorem</a></li>
-    <li><a href="#/hashtags/ipsum" class="hashtag">ipsum</a></li>
-    <li><a href="#/hashtags/dolor" class="hashtag">dolor</a></li>
-    <li><a href="#/hashtags/sit" class="hashtag">sit</a></li>
-    <li><a href="#/hashtags/amet" class="hashtag">amet</a></li>
+    <% for tag in @tags: %>
+      <li><a href="#/hashtags/<%= tag._id %>" class="hashtag"><%= tag._id %></a></li>
+    <% end %>
   </ul>
 </div>
 
@@ -77,7 +75,7 @@
           <div class="discussion">
             <div class="info">
               <header>
-                <a href="#/boards/BOARD_ID/discussions/<%= discussion._id %>"><%= discussion.title %></a>
+                <a href="#/boards/<%= discussion.board.zooniverse_id %>/discussions/<%= discussion._id %>"><%= discussion.title %></a>
               </header>
             </div>
 

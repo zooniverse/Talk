@@ -1,4 +1,6 @@
 {Controller} = require 'spine'
+{ project, apiHost } = require 'lib/config'
+Api = require 'zooniverse/lib/api'
 $ = require 'jqueryify'
 
 class Page extends Controller
@@ -14,17 +16,18 @@ class Page extends Controller
     super
     @data ?= {}
 
-  activate: ->
+  activate: (params) ->
+    return unless params
     super
 
     @el.addClass 'loading'
     @reload => @el.removeClass 'loading'
 
   url: ->
-    ''
+    "/projects/#{ project }/talk"
 
   reload: (callback) ->
-    $.get @url(), (@data) =>
+    Api.get @url(), (@data) =>
       @render()
       callback @data
 

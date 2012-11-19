@@ -1,14 +1,18 @@
 Config =
   test:
+    project: 'serengeti'
     apiHost: null
   
   developmentLocal:
+    project: 'serengeti'
     apiHost: 'http://localhost:3000'
   
   developmentRemote:
+    project: 'serengeti'
     apiHost: 'https://dev.zooniverse.org'
   
   production:
+    project: 'serengeti'
     apiHost: 'https://api.zooniverse.org'
 
 env = if window.jasmine
