@@ -1,0 +1,18 @@
+<% { capitalize } = require 'lib/util' %>
+
+<div class="board">
+  <header>
+    <span class="category"><%= capitalize @category %> Board</span>
+    <span class="sub-board"><%= @title %></span>
+  </header>
+  
+  <div class="discussions">
+    <ul>
+      <% for discussion in @discussions: %>
+        <li><%- require('views/discussions/summary') discussion %></li>
+      <% end %>
+    </ul>
+  </div>
+  
+  <%- require('views/discussions/new_form') @ %>
+</div>

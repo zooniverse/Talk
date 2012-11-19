@@ -4,6 +4,13 @@ Page = require 'controllers/page'
 
 class Show extends Page
   template: require('views/boards/show')
+  
+  elements:
+    'form.new-board-discussion': 'discussionForm'
+  
+  events:
+    'submit .new-board-discussion': 'createDiscussion'
+  
   activate: (params) ->
     return unless params
     @id = params.id
@@ -11,6 +18,12 @@ class Show extends Page
   
   url: =>
     "#{ super }/boards/#{ @id }"
+  
+  createDiscussion: (ev) =>
+    ev.preventDefault()
+    
+    Api.post "#{ @url() }/discussions", @discussionForm.serialize(), (response) =>
+      @navigate "/#/boards/#{ @id }/discussions/#{ response.zooniverse_id }"
 
 class Index extends Page
   template: require('views/boards/index')
@@ -23,7 +36,7 @@ class Index extends Page
   
   newBoard: ({ target }) ->
     category = $(target).data 'category'
-    @navigate "/boards/#{ category }/new"
+    @navigate "/#/boards/#{ category }/new"
 
 class New extends Page
   template: require('views/boards/new')
@@ -47,7 +60,7 @@ class New extends Page
     ev.preventDefault()
     
     Api.post @url(), @form.serialize(), (result) =>
-      @navigate "/boards/#{ result.zooniverse_id }"
+      @navigate "/#/boards/#{ result.zooniverse_id }"
   
 
 class Boards extends SubStack
