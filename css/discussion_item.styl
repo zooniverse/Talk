@@ -1,0 +1,78 @@
+li > .discussion {
+  display: table;
+  margin: 10px 0;
+  position: relative;
+
+  &.sticky:after {
+    background: yellow; // TODO: Pin icon.
+    content: "";
+    height: 20px;
+    margin: -10px 3px 0 0;
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    width: 16px;
+  }
+
+  .info {
+    display: table-cell;
+    width: 100%;
+
+    .title {
+      font-weight: bold;
+
+      a {
+        color: inherit;
+      }
+    }
+
+    .metadata,
+    .description {
+      color: $gray
+    }
+  }
+
+  .stats {
+    display: table-cell;
+    white-space: nowrap;
+    width: 1%;
+
+    .last {
+      color: $gray
+    }
+  }
+
+  .follow {
+    display: table-cell;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 1%;
+
+    button {
+      @extends #standard-button;
+      font-size: 10px;
+      font-weight: bold;
+      height: 30px;
+      margin-left: 5px;
+      padding: 0 0 2px;
+      width: 60px;
+
+      &[name="unfollow"] {
+        @extends #standard-button:active
+        display: none;
+      }
+    }
+  }
+
+  &.followed {
+    .follow button {
+      &[name="follow"] {
+        display: none;
+      }
+
+      &[name="unfollow"] {
+        display: inline-block;
+      }
+    }
+  }
+}

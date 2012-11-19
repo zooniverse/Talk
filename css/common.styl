@@ -3,6 +3,7 @@ $white = #fff;
 
 $gray-dark = hsl(0, 0, 20%);
 $gray-less-dark = hsl(0, 0, 40%);
+$gray = hsl(0, 0, 60%)
 $gray-less-light = hsl(0, 0, 85%);
 $gray-light = hsl(0, 0, 95%);
 
@@ -15,15 +16,16 @@ $blue = hsl(200, 100, 60);
 
 #standard-button {
   background: linear-gradient($gray-light, $gray-less-light);
-  border: 1px solid $gray-less-dark;
+  border: 1px solid rgba($black, 0.5);
   border-radius: 5px;
   box-shadow: 0 1px 1px rgba($black, 0.25);
   color: $gray-dark;
   padding: 1px 10px;
+  text-shadow: 0 1px 0 $white;
 
-  &:active {
-    background: $gray-less-light;
-    box-shadow: 0 1px 1px rgba($black, 0.25) inset;
+  &:active,
+  &.selected {
+    box-shadow: 0 100px 0 rgba($black, 0.1) inset, 0 1px 1px rgba($black, 0.25) inset;
   }
 }
 
