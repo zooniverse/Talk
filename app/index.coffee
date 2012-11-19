@@ -15,7 +15,6 @@ SubjectPage = require 'controllers/subject_page'
 
 BoardIndex = require 'controllers/board_index'
 BoardShow = require 'controllers/board_show'
-BoardCategory = require 'controllers/board_category'
 
 app = {}
 app.el = $('#app')
@@ -28,14 +27,10 @@ app.stack = new Stack
     subjectPage: SubjectPage
     boardIndex: BoardIndex
     boardShow: BoardShow
-    boardCategory: BoardCategory
 
   routes:
     '/subjects/:focusId': 'subjectPage'
     '/boards': 'boardIndex'
-    '/boards/help': 'boardCategory'
-    '/boards/science': 'boardCategory'
-    '/boards/chat': 'boardCategory'
     '/boards/:id': 'boardShow'
 
   default: 'subjectPage'
