@@ -1,6 +1,6 @@
-<header><%= @name %></header>
+<h3><%= @name %></h3>
 
-<ul>
+<ul class="previews">
   <% for discussion in @list: %>
     <li>
       <%- require('views/discussions/summary') discussion %>
@@ -10,7 +10,7 @@
   <% if @category: %>
     <li>
       <div class="new-discussion">
-        <label>Want to start a new <%= @category %> discussion?</label>
+        Want to start a new <%= @category %> discussion?
         <button data-category="<%= @category %>">Create a New Post</button>
       </div>
     </li>

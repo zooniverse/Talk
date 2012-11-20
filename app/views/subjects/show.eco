@@ -1,6 +1,6 @@
-<header>
+<h2>
   Image <%= @zooniverse_id %>
-</header>
+</h2>
 
 <div class="subject">
   <div class="subject-view">
@@ -13,7 +13,7 @@
 
     <form class="comment-form">
       <textarea name="comment"></textarea>
-      <button type="submit">Comment</button>
+      <div class="action"><button type="submit">Comment</button></div>
     </form>
   </div>
   

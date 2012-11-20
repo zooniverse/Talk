@@ -1,13 +1,6 @@
 .subject.page {
   overflow: hidden;
 
-  > header {
-    @extends #rule-below;
-    margin: 10px 0;
-    padding: 5px 0;
-    font-size: 16px;
-  }
-
   .subject {
     float: left;
     width: 33%;
@@ -24,12 +17,21 @@
       margin: 10px 0;
       padding: 10px;
 
+      form {
+        margin: 0;
+      }
+
       textarea {
         width: 100%;
       }
 
-      button {
-        @extends #standard-button;
+      .action {
+        margin-top: 10px;
+        text-align: right;
+
+        button {
+          @extends #standard-button;
+        }
       }
     }
 
@@ -107,12 +109,20 @@
       @extends #block-header;
     }
 
-    ul  {
+    ul {
       margin: 0;
       padding: 0;
 
       li {
-        display: inline-block;
+        list-style: none;
+      }
+    }
+
+    .new-discussion {
+      overflow: hidden;
+
+      button {
+        float: right;
       }
     }
   }
