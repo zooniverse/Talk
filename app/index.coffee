@@ -31,7 +31,7 @@ app.stack = new Stack
 
   default: 'subjectPage'
 
-Spine.Route.setup history: true
+Spine.Route.setup()
 app.stack.el.appendTo app.el
 
 module.exports = app

@@ -23,7 +23,7 @@ class Show extends Page
     ev.preventDefault()
     
     Api.post "#{ @url() }/discussions", @discussionForm.serialize(), (response) =>
-      @navigate "/#/boards/#{ @id }/discussions/#{ response.zooniverse_id }"
+      @navigate '/boards', @id, 'discussions', response.zooniverse_id
 
 class Index extends Page
   template: require('views/boards/index')
@@ -36,7 +36,7 @@ class Index extends Page
   
   newBoard: ({ target }) ->
     category = $(target).data 'category'
-    @navigate "/#/boards/#{ category }/new"
+    @navigate '/boards', category, 'new'
 
 class New extends Page
   template: require('views/boards/new')
@@ -60,7 +60,7 @@ class New extends Page
     ev.preventDefault()
     
     Api.post @url(), @form.serialize(), (result) =>
-      @navigate "/#/boards/#{ result.zooniverse_id }"
+      @navigate '/boards', result.zooniverse_id
   
 
 class Boards extends SubStack

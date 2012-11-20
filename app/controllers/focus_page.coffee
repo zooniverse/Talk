@@ -28,7 +28,7 @@ class FocusPage extends Page
     ev.preventDefault()
   
   startDiscussion: (ev) =>
-    @navigate "/#/#{ @constructor::focusType }/#{ @focusId }/discussions/new"
+    @navigate "/#{ @constructor::focusType }", @focusId, 'discussions', 'new'
     ev.preventDefault()
 
 module.exports = FocusPage
