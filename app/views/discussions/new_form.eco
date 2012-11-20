@@ -1,8 +1,23 @@
+<h4>Begin a new discussion:</h4>
 <form class="new-board-discussion">
-  <header>Begin a new discussion:</header>
   <input type="hidden" name="category" value="<%= @category %>">
   <input type="hidden" name="board_id" value="<%= @zooniverse_id %>">
-  <label for="title">Title<input type="text" name="title"></label>
-  <label for="comment">Post<textarea name="comment"></textarea></label>
-  <input type="submit" name="submit" value="Create new Discussion">
+
+  <div class="field">
+    <label for="title">
+      <span class="label">Title</span>
+      <span class="input"><input type="text" name="title" /></span>
+    </label>
+  </div>
+
+  <div class="field">
+    <label for="comment">
+      <span class="label">Post</span>
+      <span class="input"><textarea name="comment"></textarea></span>
+    </label>
+  </div>
+
+  <div class="action">
+    <button type="submit" name="submit">Create new discussion</button>
+  </div>
 </form>

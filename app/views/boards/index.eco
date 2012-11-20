@@ -2,15 +2,16 @@
 
 <div class="boards">
   <% for category in ['help', 'science', 'chat']: %>
-    <header><%= capitalize category %></header>
-    <ul>
+    <h3><%= capitalize category %></h3>
+
+    <ul class="previews">
       <% @[category] or= [] %>
       <% for board in @[category]: %>
         <li>
           <%- require('views/boards/summary') board %>
         </li>
       <% end %>
-      
+
       <li>
         <div class="new-board">
           <label>Want to start a new <%= category %> board?</label>

@@ -1,3 +1,4 @@
+li > .board,
 li > .discussion {
   @extends #rule-below;
   display: table;
@@ -18,6 +19,7 @@ li > .discussion {
 
   .info {
     display: table-cell;
+    padding-left: 15px;
     width: 100%;
 
     .title {
@@ -77,11 +79,20 @@ li > .discussion {
   }
 }
 
+li:last-child > .board,
 li:last-child > .discussion {
   margin-bottom: 0;
   padding-bottom: 0;
 
   &:after {
     display: none;
+  }
+}
+
+li > .new-board {
+  margin-left: 15px;
+
+  button {
+    @extends #standard-button;
   }
 }

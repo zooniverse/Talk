@@ -1,0 +1,30 @@
+.new-board-discussion {
+  label {
+    display: table;
+    margin: 10px 0;
+    width: 100%;
+
+    .label {
+      display: table-cell;
+      width: 5em;
+    }
+
+    .input {
+      display: table-cell;
+
+      input,
+      textarea {
+        width: 100%;
+      }
+    }
+  }
+
+  .action {
+    margin: 10px 0;
+    text-align: right;
+
+    button {
+      @extends #standard-button;
+    }
+  }
+}

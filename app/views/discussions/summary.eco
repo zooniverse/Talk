@@ -1,17 +1,23 @@
-<div class="discussion-summary">
+<div class="discussion">
   <div class="info">
-    <header>
+    <div class="title">
       <a href="#/boards/<%= @board._id %>/discussions/<%= @zooniverse_id %>"><%= @title %></a>
-    </header>
+    </div>
+    <div class="metadata">TODO: Metadata</div>
   </div>
-  
+
   <div class="stats">
     <div class="counts">
       <span class="posts"><%= @comments %></span> posts, <span class="users"><%= @users %></span> participants
     </div>
-    
+
     <div class="last">
       Last post <span class="last-modified"><%= @last_updated %></span>
     </div>
+  </div>
+
+  <div class="follow">
+    <button name="follow">Follow</button>
+    <button name="unfollow">Followed</button>
   </div>
 </div>
