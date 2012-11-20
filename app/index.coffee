@@ -13,6 +13,7 @@ User.fetch()
 AppHeader = require 'controllers/app_header'
 SubjectPage = require 'controllers/subject_page'
 Boards = require 'controllers/boards'
+Discussions = require 'controllers/discussions'
 
 app = {}
 app.el = $('#app')
@@ -24,11 +25,13 @@ app.stack = new Stack
   controllers:
     subjectPage: SubjectPage
     boards: Boards
+    discussions: Discussions
   
   routes:
     '/subjects/:focusId': 'subjectPage'
     '/boards': 'boards'
-
+    '/boards/:boardId/discussions': 'discussions'
+  
   default: 'subjectPage'
 
 Spine.Route.setup()

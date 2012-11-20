@@ -1,0 +1,9 @@
+<div class="comments">
+  <ul>
+    <% for comment in @comments: %>
+      <li>
+        <%- require('views/discussions/comment') comment: comment %>
+      </li>
+    <% end %>
+  </ul>
+</div>

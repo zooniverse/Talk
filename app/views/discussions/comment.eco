@@ -1,0 +1,16 @@
+<% userLink = require 'views/user_link' %>
+
+<div class="comment">
+  <header>
+    <img class="avatar" src="http://placehold.it/40.png" />
+    <%- userLink @comment %>
+  </header>
+  
+  <div class="content">
+    <%= @comment.body %>
+  </div>
+  
+  <footer>
+    Posted <%= @comment.created_at %>
+  </footer>
+</div>

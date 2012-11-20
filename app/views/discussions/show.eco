@@ -1,0 +1,20 @@
+<% { capitalize } = require 'lib/util' %>
+<% userLink = require 'views/user_link' %>
+
+<div class="discussion">
+  <header>
+    <span class="category"><%= capitalize @board.category %> Board</span>
+    <span class="sub-board"><%= @board.name %></span>
+  </header>
+  
+  <div class="discussion">
+    <hgroup>
+      <h1><%= @title %></h1>
+      <h2>Started at: <%= @created_at %> by <%- userLink @ %></h2>
+    </hgroup>
+    
+    <%- require('views/discussions/comments') @ %>
+  </div>
+  
+  <%- require('views/discussions/comment_form') @ %>
+</div>

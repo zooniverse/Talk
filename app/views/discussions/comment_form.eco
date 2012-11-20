@@ -1,0 +1,9 @@
+<form class="new-comment">
+  <header>Leave a post here:</header>
+  
+  <form class="comment-form">
+    <textarea name="comment"></textarea>
+    
+    <button type="submit">Submit</button>
+  </form>
+</form>
