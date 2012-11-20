@@ -1,0 +1,52 @@
+.discussion-topic {
+  overflow: hidden;
+
+  .follow {
+    float: right;
+
+    button {
+      @extends #standard-button;
+    }
+  }
+
+  .post {
+    > header {
+      color: $gray;
+      font-size: 10px;
+
+      .title {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .responses {
+    margin: 0;
+    padding: 0;
+
+    > li {
+      list-style: none;
+
+      .post {
+        background: $gray-less-light;
+        margin: 10px 0;
+        padding: 10px;
+      }
+    }
+  }
+
+  .respond {
+    textarea {
+      margin 10px 0;
+      width: 100%;
+    }
+
+    .action {
+      text-align: right;
+
+      button {
+        @extends #standard-button;
+      }
+    }
+  }
+}
