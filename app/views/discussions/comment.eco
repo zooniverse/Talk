@@ -1,6 +1,6 @@
 <% userLink = require 'views/user_link' %>
 
-<div class="comment">
+<div class="post">
   <header>
     <img class="avatar" src="http://placehold.it/40.png" />
     <%- userLink @comment %>

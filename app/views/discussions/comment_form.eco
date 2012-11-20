@@ -1,9 +1,10 @@
-<form class="new-comment">
-  <header>Leave a post here:</header>
-  
-  <form class="comment-form">
-    <textarea name="comment"></textarea>
-    
-    <button type="submit">Submit</button>
+<div class="respond">
+  <form class="new-comment">
+    <h4>Leave a post here:</h4>
+    <div class="input"><textarea name="comment"></textarea></div>
+
+    <div class="action">
+      <button type="submit">Submit</button>
+    </div>
   </form>
-</form>
+</div>
