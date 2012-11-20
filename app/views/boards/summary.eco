@@ -1,3 +1,5 @@
+<% userLink = require 'views/user_link' %>
+
 <div class="board-summary">
   <div class="board">
     <div class="info">
@@ -9,12 +11,12 @@
     
     <div class="stats">
       <div class="counts">
-        <span class="posts"><%= @comments %></span> posts, <span class="users"><%= @users %></span> participants
+        <span class="discussions"><%= @discussions %> discussions, </span><span class="posts"><%= @comments %></span> posts, <span class="users"><%= @users %></span> participants
       </div>
       
       <div class="last">
         <% if @last_updated: %>
-          Last post <span class="last-modified"><%= @last_updated %></span>
+          Last post <span class="last-modified"><%= @last_comment.created_at %> by <%- userLink @last_comment %></span>
         <% else: %>
           <span class="last-modified"><em>No posts yet</em></span>
         <% end %>
