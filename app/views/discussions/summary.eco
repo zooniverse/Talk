@@ -1,11 +1,10 @@
 <% userLink = require 'views/user_link' %>
 
-<div class="discussion-summary">
+<div class="discussion">
   <div class="info">
     <div class="title">
       <a href="#/boards/<%= @board._id %>/discussions/<%= @zooniverse_id %>"><%= @title %></a>
     </div>
-    <div class="metadata">TODO: Metadata</div>
   </div>
   
   <div class="stats">

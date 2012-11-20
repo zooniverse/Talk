@@ -1,5 +1,5 @@
 <h4>Begin a new discussion:</h4>
-<form class="new-board-discussion">
+<form class="new-discussion">
   <% if @category: %>
     <input type="hidden" name="category" value="<%= @category %>">
   <% end %>
