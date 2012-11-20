@@ -6,10 +6,10 @@ class Show extends Page
   template: require('views/boards/show')
   
   elements:
-    'form.new-board-discussion': 'discussionForm'
+    'form.new-discussion': 'discussionForm'
   
   events:
-    'submit .new-board-discussion': 'createDiscussion'
+    'submit .new-discussion': 'createDiscussion'
   
   activate: (params) ->
     return unless params

@@ -30,7 +30,7 @@ app.stack = new Stack
   routes:
     '/subjects/:focusId': 'subjectPage'
     '/boards': 'boards'
-    '/boards/:boardId/discussions': 'discussions'
+    '/:focusType/:focusId/discussions': 'discussions'
   
   default: 'subjectPage'
 

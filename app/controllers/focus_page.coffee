@@ -8,7 +8,7 @@ class FocusPage extends Page
   
   events:
     'submit .comment-form': 'submitComment'
-    'click .new-board-discussion button': 'startDiscussion'
+    'click .new-discussion button': 'startDiscussion'
   
   activate: (params) ->
     return unless params

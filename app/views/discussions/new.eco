@@ -1,0 +1,3 @@
+<% { capitalize } = require 'lib/util' %>
+<h1>Start a new <%= capitalize @category %> Discussion</h1>
+<%- require('views/discussions/new_form') @ %>
