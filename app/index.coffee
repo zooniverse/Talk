@@ -11,7 +11,7 @@ User.project = Config.project
 User.fetch()
 
 AppHeader = require 'controllers/app_header'
-SubjectPage = require 'controllers/subject_page'
+Subjects = require 'controllers/subjects'
 Boards = require 'controllers/boards'
 Discussions = require 'controllers/discussions'
 
@@ -23,16 +23,16 @@ app.header.el.prependTo app.el
 
 app.stack = new Stack
   controllers:
-    subjectPage: SubjectPage
+    subjects: Subjects
     boards: Boards
     discussions: Discussions
   
   routes:
-    '/subjects/:focusId': 'subjectPage'
+    '/subjects': 'subjects'
     '/boards': 'boards'
     '/:focusType/:focusId/discussions': 'discussions'
   
-  default: 'subjectPage'
+  default: 'subjects'
 
 Spine.Route.setup()
 app.stack.el.appendTo app.el
