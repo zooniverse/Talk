@@ -2,7 +2,40 @@ Api = require 'zooniverse/lib/api'
 SubStack = require 'lib/sub_stack'
 Page = require 'controllers/page'
 
-class Show extends Page
+class DiscussionPage extends Page
+  reload: (callback) ->
+    if @fetchOnLoad
+      Api.get @url(), (@data) =>
+        @focus = @data.focus
+        @data.focusType = @discussionFocus()
+        @render()
+        callback? @data
+    else
+      Api.get @focusUrl(), (@focus) =>
+        @data = @
+        @data.focusType = @focusType
+        @render()
+        callback? @data
+  
+  discussionFocus: ->
+    return unless @data?.focus?.type
+    
+    if @data.focus.type is 'Board'
+      'boards'
+    else if /Subject$/.test(@data.focus.type)
+      'subjects'
+    else if /Group$/.test(@data.focus.type)
+      'groups'
+    else if @data.focus.type in ['SubjectSet', 'KeywordSet']
+      'collections'
+  
+  focusUrl: ->
+    if @data?.focus
+      "#{ _super::url() }/#{ @discussionFocus() }/#{ @data.focus._id }"
+    else
+      "#{ _super::url() }/#{ @focusType }/#{ @focusId }"
+  
+class Show extends DiscussionPage
   template: require('views/discussions/show')
   
   elements:
@@ -30,7 +63,7 @@ class Show extends Page
       @commentList.append comment
 
 
-class New extends Page
+class New extends DiscussionPage
   template: require('views/discussions/new')
   fetchOnLoad: false
   

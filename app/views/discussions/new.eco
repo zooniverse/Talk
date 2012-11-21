@@ -1,3 +1,4 @@
 <% { capitalize } = require 'lib/util' %>
+<%- require("views/#{ @focusType }/discussion_focus") @focus %>
 <h1>Start a new <%= capitalize @category %> Discussion</h1>
 <%- require('views/discussions/new_form') @ %>
