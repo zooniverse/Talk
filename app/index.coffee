@@ -12,6 +12,7 @@ User.fetch()
 
 AppHeader = require 'controllers/app_header'
 Subjects = require 'controllers/subjects'
+Collections = require 'controllers/collections'
 Boards = require 'controllers/boards'
 Discussions = require 'controllers/discussions'
 
@@ -26,13 +27,15 @@ app.stack = new Stack
     subjects: Subjects
     boards: Boards
     discussions: Discussions
+    collections: Collections
   
   routes:
     '/subjects': 'subjects'
+    '/collections': 'collections'
     '/boards': 'boards'
     '/:focusType/:focusId/discussions': 'discussions'
   
-  default: 'subjects'
+  default: 'boards'
 
 Spine.Route.setup()
 app.stack.el.appendTo app.el

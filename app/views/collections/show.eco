@@ -1,0 +1,46 @@
+<h2>
+  Collection <%= @title %> by <%= @user_name %>
+</h2>
+
+<div class="collection">
+  <div class="subject-view">
+    <img src="<%= @subjects[0].location['standard'][0] %>" />
+  </div>
+  
+  <div class="create-comment">
+    <header>Leave a comment</header>
+    
+    <form class="comment-form">
+      <textarea name="comment"></textarea>
+      <div class="action"><button type="submit">Comment</button></div>
+    </form>
+  </div>
+  
+  <div class="subjects">
+    <header>Subjects in this collection</header>
+    <ul>
+      <li>
+        <div class="subject-preview">
+          <ul>
+            <% for subject in @subjects: %>
+              <li><img src="<%= subject.location.standard[0] %>" /><label><%= subject.zooniverse_id %></label></li>
+            <% end %>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
+  <%- require('views/focus/comments') comments: @discussion.comments %>
+</div>
+
+<div class="hashtags">
+  <header>Hashtags on this collection</header>
+  <ul>
+    <% for tag in @tags: %>
+      <li><a href="#/hashtags/<%= tag._id %>" class="hashtag"><%= tag._id %></a></li>
+    <% end %>
+  </ul>
+</div>
+
+<%- require('views/focus/discussions') boards: @board_discussions, mentions: @mentions %>
