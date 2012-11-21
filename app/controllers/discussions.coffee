@@ -14,8 +14,14 @@ class DiscussionPage extends Page
       Api.get @focusUrl(), (@focus) =>
         @data = @
         @data.focusType = @focusType
-        @render()
-        callback? @data
+        
+        if @category
+          Api.get @boardsUrl(), (@boards) =>
+            @render()
+            callback? @data
+        else
+          @render()
+          callback? @data
   
   discussionFocus: ->
     return unless @data?.focus?.type
@@ -34,6 +40,9 @@ class DiscussionPage extends Page
       "#{ _super::url() }/#{ @discussionFocus() }/#{ @data.focus._id }"
     else
       "#{ _super::url() }/#{ @focusType }/#{ @focusId }"
+  
+  boardsUrl: ->
+    "#{ _super::url() }/boards"
   
 class Show extends DiscussionPage
   template: require('views/discussions/show')

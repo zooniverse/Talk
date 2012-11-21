@@ -1,4 +1,6 @@
+Api = require 'zooniverse/lib/api'
 SubStack = require 'lib/sub_stack'
+Page = require 'controllers/page'
 FocusPage = require 'controllers/focus_page'
 template = require 'views/collections/show'
 
@@ -8,7 +10,7 @@ class Show extends FocusPage
   focusType: 'collections'
 
 
-class New extends FocusPage
+class New extends Page
   template: require('views/collections/new')
   fetchOnLoad: false
   

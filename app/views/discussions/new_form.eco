@@ -4,7 +4,21 @@
     <input type="hidden" name="category" value="<%= @category %>">
   <% end %>
   
-  <% if @zooniverse_id: %>
+  <% if @category and @boards and @focusType isnt 'subjects': %>
+    <div class="field">
+      <label for="board_id">
+        <span class="label">Board</span>
+        <span class="input">
+          <select name="board_id">
+            <option value="">Choose a <%= @category %> board for this discussion</option>
+            <% for board in @boards[@category]: %>
+              <option value="<%= board.zooniverse_id %>"><%= board.title %></option>
+            <% end %>
+          </select>
+        </span>
+      </label>
+    </div>
+  <% else if @zooniverse_id: %>
     <input type="hidden" name="board_id" value="<%= @zooniverse_id %>">
   <% end %>
   

@@ -1,0 +1,26 @@
+<form class="new-collection">
+  <label for="type">
+    Type:
+    <select name="type">
+      <option value="SubjectSet">Subject Set</option>
+      <option value="KeywordSet">Keyword Set</option>
+    </select>
+  </label>
+  
+  <label for="title">
+    Title:
+    <input type="text" name="title" value="">
+  </label>
+  
+  <label for="description">
+    Description:
+    <input type="text" name="description" value="">
+  </label>
+  
+  <label for="subject_id">
+    Subject Id:
+    <input type="text" name="subject_id" value="" placeholder="The Zooniverse Id of the Subject (Temporary hack)" style="width: 300px">
+  </label>
+  
+  <button type="submit" name="submit">Submit</button>
+</form>
