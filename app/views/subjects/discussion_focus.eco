@@ -4,7 +4,7 @@
       <img src="<%= @location['standard'][0] %>" />
       <!--TODO: Project-appropriate view of subject/metadata-->
     </div>
-    
+
     <%- require('views/focus/comments') comments: @discussion.comments %>
   </div>
 </div>

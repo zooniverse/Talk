@@ -1,9 +1,7 @@
-<div class="comments">
-  <ul>
-    <% for comment in @comments: %>
-      <li>
-        <%- require('views/focus/comment') comment: comment %>
-      </li>
-    <% end %>
-  </ul>
-</div>
+<ul class="comments">
+  <% for comment in @comments: %>
+    <li>
+      <%- require('views/focus/comment') comment: comment %>
+    </li>
+  <% end %>
+</ul>
