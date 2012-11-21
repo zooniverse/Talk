@@ -2,7 +2,6 @@
 
 <div class="post">
   <header>
-    <img class="avatar" src="http://placehold.it/40.png" />
     <%- userLink @comment %>
   </header>
   

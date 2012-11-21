@@ -2,8 +2,5 @@
 
 <div class="comment">
   <div class="content"><%= @comment.body %></div>
-  <footer>
-    <img class="avatar" src="http://placehold.it/40.png" />
-    By <%- userLink @comment %>
-  </footer>
+  <footer>By <%- userLink @comment %></footer>
 </div>

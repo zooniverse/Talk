@@ -1,5 +1,8 @@
-<a href="#/users/<%= @user_id %>">
+<a href="#/users/<%= @user_id %>" class="user">
+  <!--<img src="<%= @user_avatar || '//placehold.it/20.png' %>" class="avatar" />-->
+
   <%= @user_name %>
+
   <% if @user_role: %>
     <span class="<%= @user_role %> role"><%= @user_role %></span>
   <% end %>
