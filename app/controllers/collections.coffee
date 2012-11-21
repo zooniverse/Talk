@@ -25,7 +25,7 @@ class New extends FocusPage
     return unless params
     super
   
-  createBoard: (ev) ->
+  createCollection: (ev) ->
     ev.preventDefault()
     
     Api.post @url(), @form.serialize(), (result) =>
@@ -38,6 +38,7 @@ class Collections extends SubStack
     new: New
   
   routes:
+    '/collections/new': 'new'
     '/collections/:focusId': 'show'
 
 
