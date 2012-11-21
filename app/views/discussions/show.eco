@@ -1,28 +1,32 @@
 <% { capitalize } = require 'lib/util' %>
 <% userLink = require 'views/user_link' %>
 
-<%- require("views/#{ @focusType }/discussion_focus")(@focus) if @focusType isnt 'boards' %>
+<div class="discussion-show">
+  <%- require("views/#{ @focusType }/discussion_focus")(@focus) if @focusType isnt 'boards' %>
 
-<h3>
-  <span class="category"><%= capitalize @board.category %> Board</span>
-  /
-  <span class="sub-board"><%= @board.name %></span>
-</h3>
+  <div class="discussion">
+    <h3>
+      <span class="category"><%= capitalize @board.category %> Board</span>
+      /
+      <span class="sub-board"><%= @board.name %></span>
+    </h3>
 
-<div class="discussion-topic">
-  <div class="follow">
-    <button name="follow">Follow</button>
-    <!--<button name="unfollow">Followed</button>-->
+    <div class="discussion-topic">
+      <div class="follow">
+        <button name="follow">Follow</button>
+        <!--<button name="unfollow">Followed</button>-->
+      </div>
+      
+      <div class="post">
+        <header>
+          <div class="title"><%= @title %></div>
+          Started at: <%= @created_at %> by <%- userLink @ %>
+        </header>
+      </div>
+      
+      <%- require('views/discussions/comments') @ %>
+      
+      <%- require('views/discussions/comment_form') @ %>
+    </div>
   </div>
-  
-  <div class="post">
-    <header>
-      <div class="title"><%= @title %></div>
-      Started at: <%= @created_at %> by <%- userLink @ %>
-    </header>
-  </div>
-  
-  <%- require('views/discussions/comments') @ %>
-  
-  <%- require('views/discussions/comment_form') @ %>
 </div>
