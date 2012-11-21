@@ -128,3 +128,28 @@
     }
   }
 }
+
+// TODO: Move these where they belong once Hem updates Stylus.
+// NOTE: Hem is terrible.
+
+@media (max-width: 800px) {
+  .subject.page {
+    .collections,
+    .hashtags {
+      width: 67%;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .subject.page {
+    .subject,
+    .collections,
+    .hashtags,
+    .discussions {
+      float: none;
+      padding-left: 0;
+      width: 100%;
+    }
+  }
+}
