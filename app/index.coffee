@@ -40,4 +40,14 @@ app.stack = new Stack
 Spine.Route.setup()
 app.stack.el.appendTo app.el
 
+activateMatchingHashLinks = ->
+  $('a.active').removeClass 'active'
+  setTimeout ->
+    segments = location.hash.split '/'
+    hashes = (segments[..i].join '/' for _, i in segments)
+    $("a[href='#{hash}']").addClass 'active' for hash in hashes
+
+$(window).on 'hashchange', activateMatchingHashLinks
+setTimeout activateMatchingHashLinks
+
 module.exports = app
