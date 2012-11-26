@@ -63,3 +63,20 @@ $blue = hsl(200, 100, 60);
     width: 0;
   }
 }
+
+.columns {
+  clearfix();
+
+  .column {
+    box-sizing: border-box;
+    float: left;
+    padding-left: 30px;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &.one-quarter {width: 25%;}
+    &.three-quarters {width: 75%;}
+  }
+}
