@@ -17,20 +17,21 @@
 
     <div class="hashtags">
       <h2>Popular hashtags</h2>
-      TODO: HASHTAG
+      TODO: HASHTAGS
     </div>
   </div>
 
   <div class="three-quarters column">
     <div class="boards">
-      <% for category in ['help', 'science', 'chat']: %>
+      <% categories = ['help', 'science', 'chat'] %>
+      <% for category, i in categories: %>
         <h3>
           <%= capitalize category %>
           <div class="aux">
             <button name="new-board" value="<%= category %>">Start a new <%= category %> board</button>
           </div>
         </h3>
-        
+
         <% @[category] or= [] %>
         <% if @[category].length is 0: %>
           <div class="none">There are currently no <%= category %> boards.</div>
@@ -44,7 +45,9 @@
           </ul>
         <% end %>
 
-        <hr />
+        <% unless i is categories.length - 1: %>
+          <hr />
+        <% end %>
       <% end %>
     </div>
   </div>
