@@ -1,21 +1,36 @@
 <% { capitalize } = require 'lib/util' %>
 
-<div class="board">
-  <h3>
-    <span class="category"><%= capitalize @category %> Board</span>
-    /
-    <span class="sub-board"><%= @title %></span>
-  </h3>
-
-  <div class="discussions">
-    <ul class="previews">
-      <% for discussion in @discussions: %>
-        <li><%- require('views/discussions/summary') discussion %></li>
-      <% end %>
-    </ul>
+<div class="columns">
+  <div class="one-quarter column">
+    <div class="hashtags">
+      <h2>Popular hashtags</h2>
+      TODO: HASHTAGS
+    </div>
   </div>
 
-  <hr />
+  <div class="three-quarters column">
+    <div class="board">
+      <h3>
+        <span class="category"><%= capitalize @category %> Board</span>
+        /
+        <span class="sub-board"><%= @title %></span>
+      </h3>
 
-  <%- require('views/discussions/new_form') @ %>
+      <div class="discussions">
+        <% if @discussions.length is 0: %>
+          <div class="none">There are curently no discussions.</div>
+        <% else: %>
+          <ul class="previews">
+            <% for discussion in @discussions: %>
+              <li><%- require('views/discussions/summary') discussion %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+
+      <hr />
+
+      <%- require('views/discussions/new_form') @ %>
+    </div>
+  </div>
 </div>
