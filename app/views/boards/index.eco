@@ -1,23 +1,47 @@
 <% { capitalize } = require 'lib/util' %>
 
-<div class="boards">
-  <% for category in ['help', 'science', 'chat']: %>
-    <h3><%= capitalize category %></h3>
-
-    <ul class="previews">
-      <% @[category] or= [] %>
-      <% for board in @[category]: %>
-        <li>
-          <%- require('views/boards/summary') board %>
-        </li>
+<div class="columns">
+  <div class="one-quarter column">
+    <div class="featured">
+      <h2>Featured discussions</h2>
+      <% if @featured.length is 0: %>
+        <div class="none">No featured discussions</div>
+      <% else: %>
+        <% for featured in @featured: %>
+          TODO: FEATURED DISCUSSION
+        <% end %>
       <% end %>
+    </div>
 
-      <li>
-        <div class="new-board">
-          <label>Want to start a new <%= category %> board?</label>
-          <button data-category="<%= category %>">Create a New Board</button>
-        </div>
-      </li>
-    </ul>
-  <% end %>
+    <hr />
+
+    <div class="hashtags">
+      <h2>Popular hashtags</h2>
+      TODO: HASHTAG
+    </div>
+  </div>
+
+  <div class="three-quarters column">
+    <div class="boards">
+      <% for category in ['help', 'science', 'chat']: %>
+        <h3><%= capitalize category %></h3>
+
+        <ul class="previews">
+          <% @[category] or= [] %>
+          <% for board in @[category]: %>
+            <li>
+              <%- require('views/boards/summary') board %>
+            </li>
+          <% end %>
+
+          <li>
+            <div class="new-board">
+              <label>Want to start a new <%= category %> board?</label>
+              <button data-category="<%= category %>">Create a New Board</button>
+            </div>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
 </div>
