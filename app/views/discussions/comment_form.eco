@@ -1,7 +1,8 @@
 <div class="respond">
+  <h4>Leave a post here:</h4>
+
   <form class="new-comment">
-    <h4>Leave a post here:</h4>
-    <div class="input"><textarea name="comment"></textarea></div>
+    <textarea name="comment"></textarea>
 
     <div class="action">
       <button type="submit">Submit</button>

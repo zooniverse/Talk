@@ -1,32 +1,45 @@
 <% { capitalize } = require 'lib/util' %>
 <% userLink = require 'views/user_link' %>
 
-<div class="discussion-show">
-  <%- require("views/#{ @focusType }/discussion_focus")(@focus) if @focusType isnt 'boards' %>
-
-  <div class="discussion">
-    <h3>
-      <span class="category"><%= capitalize @board.category %> Board</span>
-      /
-      <span class="sub-board"><%= @board.name %></span>
-    </h3>
-
-    <div class="discussion-topic">
-      <div class="follow">
-        <button name="follow">Follow</button>
-        <!--<button name="unfollow">Followed</button>-->
+<div class="columns">
+  <div class="one-quarter column">
+    <% if @focusType is 'boards': %>
+      <div class="hashtags">
+        <h2>Popular hashtags</h2>
+        TODO: HASHTAGS
       </div>
-      
-      <div class="post">
-        <header>
-          <div class="title"><%= @title %></div>
-          Started at: <%= @created_at %> by <%- userLink @ %>
-        </header>
+    <% else: %>
+      <%- require("views/#{ @focusType }/discussion_focus")(@focus) %>
+    <% end %>
+  </div>
+
+  <div class="three-quarters column">
+    <div class="discussion-show">
+      <div class="discussion">
+        <h3>
+          <span class="category"><%= capitalize @board.category %> Board</span>
+          /
+          <span class="sub-board"><%= @board.name %></span>
+        </h3>
+
+        <div class="discussion-topic">
+          <div class="follow">
+            <button name="follow">Follow</button>
+            <!--<button name="unfollow">Followed</button>-->
+          </div>
+          
+          <div class="post">
+            <header>
+              <div class="title"><%= @title %></div>
+              Started at: <%= @created_at %> by <%- userLink @ %>
+            </header>
+          </div>
+          
+          <%- require('views/discussions/comments') @ %>
+          
+          <%- require('views/discussions/comment_form') @ %>
+        </div>
       </div>
-      
-      <%- require('views/discussions/comments') @ %>
-      
-      <%- require('views/discussions/comment_form') @ %>
     </div>
   </div>
 </div>

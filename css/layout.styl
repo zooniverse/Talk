@@ -2,10 +2,12 @@ html {
   background: $gray-light;
   color: $gray-dark;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  height: 100%;
 }
 
 body {
   margin: 0;
+  height: 100%;
 }
 
 h2 {
@@ -73,6 +75,9 @@ a {
 }
 
 #app {
+  box-sizing: border-box;
+  height: 100%;
+
   > .stack {
     margin: 0 auto;
     width: 90%;
@@ -81,5 +86,15 @@ a {
 
 body > footer {
   background: $gray-less-light;
-  padding: 30px;
+  clear: both;
+  color: $gray;
+  font-size: 18px;
+  height: 50px;
+  line-height: 50px;
+  margin-top: -50px;
+  text-align: center;
+
+  p {
+    margin: 0;
+  }
 }

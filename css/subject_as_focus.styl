@@ -1,0 +1,20 @@
+.focus > .subject {
+  img {
+    max-width: 100%;
+  }
+
+  ul.comments {
+    li {
+      list-style: none;
+
+      .comment {
+        @extends #rule-below;
+        padding: 10px;
+
+        footer {
+          color: $gray;
+        }
+      }
+    }
+  }
+}

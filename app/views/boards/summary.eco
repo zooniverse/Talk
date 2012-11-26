@@ -2,7 +2,7 @@
 
 <div class="board">
   <div class="info">
-    <div class="title"><a href="#/boards/<%= @zooniverse_id %>"><%= @title %></a></div>
+    <div class="title"><a href="#/boards/<%= @zooniverse_id %>"><%= @title || '(Untitled board)' %></a></div>
     <div class="description"><%= @description %></div>
   </div>
 

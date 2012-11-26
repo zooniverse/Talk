@@ -1,6 +1,6 @@
 <h4>Begin a new discussion:</h4>
 
-<form class="boxed">
+<form class="new-discussion boxed">
   <% if @category: %>
     <input type="hidden" name="category" value="<%= @category %>">
   <% end %>
