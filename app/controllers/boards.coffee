@@ -30,13 +30,13 @@ class Index extends Page
   template: require('views/boards/index')
   
   events:
-    'click .new-board button': 'newBoard'
+    'click button[name="new-board"]': 'newBoard'
   
   url: ->
     "#{ super }/boards"
   
   newBoard: ({ target }) ->
-    category = $(target).data 'category'
+    category = $(target).val()
     @navigate '/boards', category, 'new'
 
 

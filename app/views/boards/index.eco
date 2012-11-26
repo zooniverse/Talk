@@ -24,23 +24,27 @@
   <div class="three-quarters column">
     <div class="boards">
       <% for category in ['help', 'science', 'chat']: %>
-        <h3><%= capitalize category %></h3>
+        <h3>
+          <%= capitalize category %>
+          <div class="aux">
+            <button name="new-board" value="<%= category %>">Start a new <%= category %> board</button>
+          </div>
+        </h3>
+        
+        <% @[category] or= [] %>
+        <% if @[category].length is 0: %>
+          <div class="none">There are currently no <%= category %> boards.</div>
+        <% else: %>
+          <ul class="previews">
+            <% for board in @[category]: %>
+              <li>
+                <%- require('views/boards/summary') board %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
 
-        <ul class="previews">
-          <% @[category] or= [] %>
-          <% for board in @[category]: %>
-            <li>
-              <%- require('views/boards/summary') board %>
-            </li>
-          <% end %>
-
-          <li>
-            <div class="new-board">
-              <label>Want to start a new <%= category %> board?</label>
-              <button data-category="<%= category %>">Create a New Board</button>
-            </div>
-          </li>
-        </ul>
+        <hr />
       <% end %>
     </div>
   </div>

@@ -12,14 +12,8 @@ h2 {
   @extends #rule-below;
   color: $blue;
   font-size: 14px;
-  margin: 10px 0;
+  margin: 20px 0 10px;
   padding-bottom: 5px;
-
-  .aux {
-    float: right;
-    font-size: 12px;
-    margin-top: 5px;
-  }
 }
 
 h3 {
@@ -28,6 +22,15 @@ h3 {
   font-size: 20px;
   margin: 10px 0;
   padding-bottom: 5px;
+}
+
+h2,
+h3 {
+  .aux {
+    float: right;
+    font-size: 12px;
+    margin-top: 5px;
+  }
 }
 
 h4 {
@@ -39,6 +42,11 @@ hr {
   border-top: 1px solid rgba($black, 0.33);
   border-bottom: 1px solid rgba($white, 0.67);
   margin: 20px 0;
+}
+
+.none {
+  color: $gray;
+  font-style: italic;
 }
 
 button {
