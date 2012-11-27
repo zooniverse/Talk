@@ -1,3 +1,5 @@
+<% { capitalize } = require 'lib/util' %>
+
 <div class="columns">
   <div class="one-quarter column">
     <%- require('views/discussions/featured') featured: @featured %>
@@ -8,17 +10,45 @@
   <div class="three-quarters column">
     <section>
       <h1>People are Observing...</h1>
-      <%- require('views/subjects/list') subjects: @subjects %>
+      <div class="subjects">
+        <div class="list">
+          <%- require('views/subjects/list') subjects: @subjects %>
+        </div>
+        
+        <a class="load-more" data-type="subjects">Load more</a>
+      </div>
     </section>
     
     <section>
       <h1>People are Discussing...</h1>
-      <%- require('views/discussions/list') @discussions %>
+      <div class="board discussions">
+        <% for category, i in ['help', 'science', 'chat']: %>
+          <h3>
+            <%= capitalize category %>
+          </h3>
+          
+          <div class="<%= category %> list">
+            <%- require('views/discussions/list') category: category, discussions: @discussions[category] %>
+          </div>
+          <a class="load-more" data-type="discussions" data-category="<%= category %>">Load more</a>
+          
+          <% unless category is 'chat': %>
+            <hr />
+          <% end %>
+        <% end %>
+      </div>
+      
     </section>
     
     <section>
       <h1>People are Collecting...</h1>
-      <%- require('views/collections/list') collections: @collections %>
+      <div class="collections">
+        <div class="list">
+          <%- require('views/collections/list') collections: @collections %>
+        </div>
+        
+        <a class="load-more" data-type="collections">Load more</a>
+      </div>
     </section>
   </div>
 </div>
