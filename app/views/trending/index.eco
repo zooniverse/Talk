@@ -6,5 +6,19 @@
   </div>
   
   <div class="three-quarters column">
+    <section>
+      <h1>People are Observing...</h1>
+      <%- require('views/subjects/list') subjects: @subjects %>
+    </section>
+    
+    <section>
+      <h1>People are Discussing...</h1>
+      <%- require('views/discussions/list') @discussions %>
+    </section>
+    
+    <section>
+      <h1>People are Collecting...</h1>
+      <%- require('views/collections/list') collections: @collections %>
+    </section>
   </div>
 </div>

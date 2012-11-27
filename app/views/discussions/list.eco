@@ -1,0 +1,29 @@
+<% { capitalize } = require 'lib/util' %>
+
+<div class="boards">
+  <% categories = ['help', 'science', 'chat'] %>
+  <% for category, i in categories: %>
+    <h3>
+      <%= capitalize category %>
+    </h3>
+    
+    <% if @[category]?.length > 0: %>
+      <ul class="previews">
+        <% for discussion, j in @[category]: %>
+          <li>
+            <%- require('views/discussions/summary') discussion %>
+            <% if j is @[category].length - 1: %>
+              <a class="load-more" data-category="<%= category %>">Load more</a>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% else: %>
+      <div class="none">There are currently no trending <%= category %> discussions.</div>
+    <% end %>
+    
+    <% unless i is categories.length - 1: %>
+      <hr />
+    <% end %>
+  <% end %>
+</div>

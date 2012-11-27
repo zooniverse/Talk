@@ -1,0 +1,15 @@
+<div class="collections">
+  <% for collection in @collections: %>
+    <div class="collection">
+      <header>
+        <%= collection.title %> by <%= collection.user_name %> / <em>N</em> - <em>M</em> of <%= collection.subjects.length %> images
+      </header>
+      
+      <footer>
+        <% for subject in collection.subjects: %>
+          <img src="<%= subject.location.standard[0] %>">
+        <% end %>
+      </footer>
+    </div>
+  <% end %>
+</div>
