@@ -71,4 +71,26 @@
       }
     }
   }
+
+  a.return {
+    background linear-gradient($blue, darken($blue, 33%));
+    border: 1px solid rgba($black, 0.67);
+    border-radius: 15px;
+    box-shadow: 0 1px 0 rgba($white, 0.33);
+    color: $white;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 3px 15px;
+    text-shadow: 0 1px 0 rgba($black, 0.33);
+
+    &:hover {
+      background: linear-gradient($blue, darken($blue, 25%));
+      text-decoration: none;
+    }
+
+    &:active {
+      background: darken($blue, 33%);
+      box-shadow: 0 1px 3px 0px rgba($black, 0.67) inset, 0 1px 0 rgba($white, 0.33);
+    }
+  }
 }

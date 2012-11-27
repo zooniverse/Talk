@@ -21,4 +21,8 @@
       </ul>
     </nav>
   </div>
+
+  <div class="return group">
+    <a href="#" class="return">Return to classifying</a>
+  </div>
 </div>
