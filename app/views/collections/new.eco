@@ -23,27 +23,21 @@
   </label>
   
   <% if @type is 'SubjectSet': %>
-    <label for="subject_id">
-      Subject Id:
-      <input type="text" name="subject_id" value="" placeholder="The Zooniverse Id of the Subject (Temporary hack)" style="width: 300px">
-    </label>
+    <input type="hidden" name="subject_id" value="<%= @subjectId %>">
   <% else if @type is 'KeywordSet': %>
     <br />
     
     <div class="keywords">
       <label for="keywords">
         Tags:
-        <% for i in [1..3]: %>
-          <div class="keyword">
-            <select class="operator">
-              <option value="true">include</option>
-              <option value="false">exclude</option>
-            </select>
-            <input type="text" class="tag" placeholder="Tag">
-            <button class="remove">Remove</button>
-          </div>
+        <% for keyword in @keywords: %>
+          <%- require('views/collections/keyword_field') keyword: keyword %>
         <% end %>
+        
+        <%- require('views/collections/keyword_field')({ }) if @keywords.length is 0 %>
       </label>
+      
+      <button class="add">Add</button>
     </div>
     <br />
   <% end %>

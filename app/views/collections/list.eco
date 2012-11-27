@@ -1,7 +1,11 @@
 <% for collection in @collections: %>
   <div class="collection">
     <header>
-      <%= collection.title %> by <%= collection.user_name %> / <em>N</em> - <em>M</em> of <%= collection.subjects.length %> images
+      <a href="/#/collections/<%= collection.zooniverse_id %>">
+        <%= collection.title %> by <%= collection.user_name %>
+      </a>
+      /
+      <em>N</em> - <em>M</em> of <%= collection.subjects.length %> images
     </header>
     
     <footer>

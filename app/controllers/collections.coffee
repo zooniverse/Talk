@@ -17,12 +17,13 @@ class New extends Page
   elements:
     'form.new-collection': 'form'
     'form.new-collection select[name="type"]': 'typeSelector'
-    'form.new-collection .keywords .keyword': 'keywords'
+    'form.new-collection .keywords label': 'keywordList'
   
   events:
     'submit form.new-collection': 'createCollection'
     'change form.new-collection select[name="type"]': 'changeType'
     'click form.new-collection .keywords .keyword .remove': 'removeKeyword'
+    'click form.new-collection .keywords .add': 'addKeyword'
   
   url: ->
     "#{ super }/collections"
@@ -30,6 +31,14 @@ class New extends Page
   activate: (params) ->
     return unless params
     @type = 'SubjectSet'
+    @keywords = []
+    
+    if params.subjectId
+      @subjectId = params.subjectId
+    else if params.keywords
+      @type = 'KeywordSet'
+      @keywords = params.keywords.split '&'
+    
     super
   
   changeType: (ev) ->
@@ -44,7 +53,7 @@ class New extends Page
   
   serializeTags: =>
     tags = { }
-    @keywords.each (i, el) =>
+    $('form.new-collection .keywords .keyword').each (i, el) =>
       tag = $('.tag', el).val()
       operator = $('.operator', el).val()
       name = "name='keywords[#{ tag }]'"
@@ -54,7 +63,12 @@ class New extends Page
       $(el).append """<input type="hidden" #{ name } #{ value }>"""
   
   removeKeyword: (ev) ->
+    ev.preventDefault()
     $(ev.target).closest('.keyword').remove()
+  
+  addKeyword: (ev) =>
+    ev.preventDefault()
+    @keywordList.append require('views/collections/keyword_field')({ })
 
 
 class Collections extends SubStack
@@ -64,6 +78,8 @@ class Collections extends SubStack
   
   routes:
     '/collections/new': 'new'
+    '/collections/new/keywords/*keywords': 'new'
+    '/collections/new/:subjectId': 'new'
     '/collections/:focusId': 'show'
 
 
