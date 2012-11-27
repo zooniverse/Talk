@@ -34,6 +34,29 @@ $blue = hsl(200, 100, 60);
   }
 }
 
+#bold-button {
+  background linear-gradient($blue, darken($blue, 33%));
+  border: 1px solid rgba($black, 0.67);
+  border-radius: 15px;
+  box-shadow: 0 1px 0 rgba($white, 0.33) inset, 0 1px 0 rgba($white, 0.33);
+  color: $white;
+  display: inline-block;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 1.25em;
+  padding: 3px 15px;
+  text-shadow: 0 1px 0 rgba($black, 0.67);
+
+  &:hover {
+    box-shadow: 0 100px 0 rgba($white, 0.125) inset, 0 1px 0 rgba($white, 0.33);
+    text-decoration: none;
+  }
+
+  &:active {
+    box-shadow: 0 100px 0 rgba($black, 0.125) inset, 0 1px 3px rgba($black, 0.67) inset, 0 1px 0 rgba($white, 0.33);
+  }
+}
+
 #rule-below {
   position: relative;
 

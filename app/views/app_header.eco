@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="main">
   <div class="group">
     <h1><strong>Talk</strong> Snapshot Serengeti</h1>
   </div>
@@ -25,4 +25,18 @@
   <div class="return group">
     <a href="#" class="return">Return to classifying</a>
   </div>
+</div>
+
+<div class="sign-in">
+  <header>Sign in to participate!</header>
+
+  <form name="sign-in">
+    <input type="text" name="username" placeholder="Username" required="required" />
+    <input type="password" name="password" placeholder="Password" required="required" />
+    <button type="submit">Sign in</button>
+  </form>
+
+  <a href="https://www.zooniverse.org/password/reset" class="forgot">Forgot your password?</a>
+
+  <div class="error">Something went wrong!</div>
 </div>
