@@ -1,23 +1,22 @@
 <h2>Image <%= @zooniverse_id %></h2>
 
-<div class="subject">
-  <div class="subject-view">
-    <img src="<%= @location['standard'][0] %>" />
-    <!--TODO: Project-appropriate view of subject/metadata-->
-  </div>
+<div class="focus">
+  <img src="<%= @location['standard'][0] %>" class="main" />
 
   <div class="create-comment">
+    <header>Leave a comment</header>
+    
     <form class="comment-form">
-      <textarea name="comment" placeholder="Leave a comment or #hashtag"></textarea>
+      <div class="field"><textarea name="comment" required="required"></textarea></div>
       <div class="action"><button type="submit">Comment</button></div>
     </form>
   </div>
-
+  
   <%- require('views/focus/comments') comments: @discussion.comments %>
 </div>
 
 <div class="collections">
-  <header>Collections with this subject</header>
+  <h3>Collections with this subject</h3>
   <ul>
     <li>
       <div class="collection-preview">
@@ -40,7 +39,7 @@
 </div>
 
 <div class="hashtags">
-  <header>Hashtags on this subject</header>
+  <h3>Hashtags on this collection</h3>
   <ul>
     <% for tag in @tags: %>
       <li><a href="#/hashtags/<%= tag._id %>" class="hashtag"><%= tag._id %></a></li>

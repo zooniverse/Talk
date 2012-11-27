@@ -4,7 +4,7 @@ template = require 'views/subjects/show'
 
 class Show extends FocusPage
   template: template
-  className: 'subject page'
+  className: "#{FocusPage::className} subject page"
   focusType: 'subjects'
 
 

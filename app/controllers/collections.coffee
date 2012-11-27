@@ -6,7 +6,7 @@ template = require 'views/collections/show'
 
 class Show extends FocusPage
   template: template
-  className: 'collection page'
+  className: "#{FocusPage::className} collection page"
   focusType: 'collections'
 
 

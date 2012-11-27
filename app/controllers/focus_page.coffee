@@ -2,6 +2,7 @@ Api = require 'zooniverse/lib/api'
 Page = require './page'
 
 class FocusPage extends Page
+  className: "#{Page::className} focus"
   elements:
     '.comment-form': 'commentForm'
     'ul.comments': 'commentList'

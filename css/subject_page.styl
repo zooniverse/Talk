@@ -1,55 +1,90 @@
-.subject.page {
+.focus.page {
   overflow: hidden;
 
-  .subject {
+  .subjects {
+    @extends #rule-below;
+    margin-bottom: 30px;
+
+    ul {
+      margin: 0;
+      overflow: hidden;
+      padding: 20px 0 20px 20px;
+
+      li {
+        box-sizing: border-box;
+        float: left;
+        list-style: none;
+        margin-bottom: 20px;
+        padding-right: 20px;
+        width: 20%;
+
+        a {
+          color: $white;
+          display: block;
+          position: relative;
+
+          img {
+            border: 2px solid $white;
+            box-sizing: border-box;
+            box-shadow: 0 1px 1px rgba($black, 0.25);
+            max-width: 100%;
+          }
+
+          .label {
+            background: $black;
+            border-radius: 3px 0 0 3px;
+            bottom: 5px;
+            font-size: 10px;
+            padding: 1px 3px;
+            position: absolute;
+            right: -1px;
+          }
+        }
+      }
+    }
+  }
+
+  .focus {
     float: left;
     width: 33%;
 
-    .subject-view {
-      img {
-        width: 100%;
-      }
+    .main {
+      max-width: 100%;
     }
 
     .create-comment {
       background: $blue;
       color: $white;
       margin: 10px 0;
-      padding: 10px;
+      padding: 1px 10px;
 
-      form {
-        margin: 0;
-      }
-
-      textarea {
-        width: 100%;
-      }
-
-      .action {
-        margin-top: 10px;
-        text-align: right;
-
-        button {
-          @extends #standard-button;
-        }
+      header {
+        font-weight: bold;
+        margin: 10px 0;
       }
     }
 
     .comments {
-      ul {
-        margin: 0;
-        padding: 0;
+      margin: 0;
+      padding: 0;
 
-        li {
-          list-style: none;
+      li {
+        list-style: none;
 
-          .comment {
-            @extends #rule-below;
-            padding: 10px;
-          }
+        .comment {
+          @extends #rule-below;
+          padding: 10px;
         }
       }
     }
+  }
+
+  .description {
+    box-sizing: border-box;
+    float: left;
+    margin-bottom: 30px;
+    padding-left: 30px;
+    width: 33%;
   }
 
   .collections {
@@ -81,10 +116,6 @@
     padding-left: 30px;
     width: 33%;
 
-    > header {
-      @extends #block-header;
-    }
-
     ul {
       margin: 0;
       overflow: hidden;
@@ -100,7 +131,7 @@
 
   .discussions {
     box-sizing: border-box;
-    float: left;
+    float: right;
     margin-bottom: 30px;
     padding-left: 30px;
     width: 67%;
@@ -125,31 +156,6 @@
         @extends #standard-button;
         float: right;
       }
-    }
-  }
-}
-
-// TODO: Move these where they belong once Hem updates Stylus.
-// NOTE: Hem is terrible.
-
-@media (max-width: 800px) {
-  .subject.page {
-    .collections,
-    .hashtags {
-      width: 67%;
-    }
-  }
-}
-
-@media (max-width: 500px) {
-  .subject.page {
-    .subject,
-    .collections,
-    .hashtags,
-    .discussions {
-      float: none;
-      padding-left: 0;
-      width: 100%;
     }
   }
 }

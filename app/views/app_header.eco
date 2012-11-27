@@ -38,5 +38,5 @@
 
   <a href="https://www.zooniverse.org/password/reset" class="forgot">Forgot your password?</a>
 
-  <div class="error">Something went wrong!</div>
+  <div class="error" style="display: none;"></div>
 </div>
