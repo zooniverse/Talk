@@ -18,28 +18,28 @@
 <div class="collections">
   <h3>Collections with this subject</h3>
   <ul>
-    <li>
-      <div class="collection-preview">
-        <header>
-          <a href="#">
-            <span class="title">Some awesome things I found</span>
-            by <span class="user">brian-c</span>
-            <span class="count">12 items</span>
-          </a>
-        </header>
-        <ul>
-          <li><img src="//placehold.it/20.png" /></li>
-          <li><img src="//placehold.it/20.png" /></li>
-          <li><img src="//placehold.it/20.png" /></li>
-          <li><img src="//placehold.it/20.png" /></li>
-        </ul>
-      </div>
-    </li>
+    <% for collection in @collections: %>
+      <li>
+        <a href="#/collections/<%= collection.zooniverse_id %>">
+          <span class="label">
+            <%= collection.title %>
+            by <%= collection.user_name %>
+            (<%= collection.subjects.length %> subject<%= if collection.subjects.length isnt 1: %>s<% end %>)
+          </span>
+
+          <span class="images">
+            <% for subject, i in collection.subjects[...5]: %>
+              <img src="<%= collection.subjects[0].location.standard['0']%>" />
+            <% end %>
+          </span>
+        </a>
+      </li>
+    <% end %>
   </ul>
 </div>
 
 <div class="hashtags">
-  <h3>Hashtags on this collection</h3>
+  <h3>Hashtags on this subject</h3>
   <ul>
     <% for tag in @tags: %>
       <li><a href="#/hashtags/<%= tag._id %>" class="hashtag"><%= tag._id %></a></li>

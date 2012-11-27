@@ -105,6 +105,24 @@
       li {
         display: inline-block;
         list-style: none;
+
+        a {
+          color: inherit;
+
+          .label {
+            font-weight: bold;
+          }
+
+          .images {
+            display: block;
+            margin: 10px 0;
+            padding: 0 20px;
+            
+            img {
+              width: 20%;
+            }
+          }
+        }
       }
     }
   }
@@ -135,27 +153,5 @@
     margin-bottom: 30px;
     padding-left: 30px;
     width: 67%;
-
-    > header {
-      @extends #block-header;
-    }
-
-    ul {
-      margin: 0;
-      padding: 0;
-
-      li {
-        list-style: none;
-      }
-    }
-
-    .new-discussion {
-      overflow: hidden;
-
-      button {
-        @extends #standard-button;
-        float: right;
-      }
-    }
   }
 }
