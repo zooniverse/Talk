@@ -2,23 +2,9 @@
 
 <div class="columns">
   <div class="one-quarter column">
-    <div class="featured">
-      <h2>Featured discussions</h2>
-      <% if @featured.length is 0: %>
-        <div class="none">No featured discussions</div>
-      <% else: %>
-        <% for featured in @featured: %>
-          TODO: FEATURED DISCUSSION
-        <% end %>
-      <% end %>
-    </div>
-
+    <%- require('views/discussions/featured') featured: @featured %>
     <hr />
-
-    <div class="hashtags">
-      <h2>Popular hashtags</h2>
-      TODO: HASHTAGS
-    </div>
+    <%- require('views/trending/tags') tags: @tags %>
   </div>
 
   <div class="three-quarters column">

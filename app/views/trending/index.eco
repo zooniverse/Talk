@@ -1,0 +1,10 @@
+<div class="columns">
+  <div class="one-quarter column">
+    <%- require('views/discussions/featured') featured: @featured %>
+    <hr />
+    <%- require('views/trending/tags') tags: @tags %>
+  </div>
+  
+  <div class="three-quarters column">
+  </div>
+</div>

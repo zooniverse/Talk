@@ -1,0 +1,3 @@
+<% for discussion in @featured: %>
+  <%- require('views/discussions/summary') discussion %>
+<% end %>
