@@ -49,7 +49,7 @@ class Show extends DiscussionPage
   
   elements:
     'form.new-comment': 'commentForm'
-    '.discussion .comments ul': 'commentList'
+    'ul.posts': 'commentList'
   
   events:
     'submit .new-comment': 'createComment'
