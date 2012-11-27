@@ -2,7 +2,7 @@
   <h4>Leave a post here:</h4>
 
   <form class="new-comment">
-    <textarea name="comment"></textarea>
+    <div class="field"><textarea name="comment"></textarea></div>
 
     <div class="action">
       <button type="submit">Submit</button>
