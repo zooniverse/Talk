@@ -4,7 +4,7 @@ Page = require './page'
 class FocusPage extends Page
   elements:
     '.comment-form': 'commentForm'
-    '.comments ul': 'commentList'
+    'ul.comments': 'commentList'
   
   events:
     'submit .comment-form': 'submitComment'
