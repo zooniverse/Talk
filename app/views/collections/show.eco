@@ -17,15 +17,7 @@
 </div>
 
 <div class="focus">
-  <div class="create-comment">
-    <header>Leave a comment</header>
-    
-    <form class="comment-form">
-      <div class="field"><textarea name="comment" required="required"></textarea></div>
-      <div class="action"><button type="submit">Comment</button></div>
-    </form>
-  </div>
-  
+  <%- require('views/focus/comment_form')() %>
   <%- require('views/focus/comments') comments: @discussion.comments %>
 </div>
 

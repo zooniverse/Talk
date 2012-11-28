@@ -24,5 +24,11 @@ form {
 
   button {
     @extends #standard-button;
+    
+    &:disabled {
+      background-color: $gray-less-light;
+      color: $gray;
+      cursor: auto;
+    }
   }
 }

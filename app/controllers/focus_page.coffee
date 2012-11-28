@@ -5,15 +5,20 @@ class FocusPage extends Page
   className: "#{Page::className} focus"
   elements:
     '.comment-form': 'commentForm'
+    '.comment-form button[type="submit"]': 'commentButton'
+    '.comment-form [name="comment"]': 'commentBox'
     'ul.comments': 'commentList'
+    '.comment-form .characters .count': 'characterCounter'
   
   events:
     'submit .comment-form': 'submitComment'
     'click .new-discussion button': 'startDiscussion'
+    'keyup .comment-form textarea': 'updateCounter'
   
   activate: (params) ->
     return unless params
     @focusId = params.focusId
+    @commentLength = 140
     super
   
   url: ->
@@ -21,6 +26,15 @@ class FocusPage extends Page
   
   rootUrl: ->
     _super::url()
+  
+  updateCounter: (ev) =>
+    remaining = @commentLength - @commentBox.val().length
+    if remaining < 0
+      @characterCounter.html """<span style="color: red;">#{ remaining }</span>"""
+      @commentButton.attr 'disabled', 'disabled'
+    else
+      @characterCounter.html remaining
+      @commentButton.removeAttr 'disabled'
   
   submitComment: (ev) ->
     Api.post "#{ @url() }/comments", @commentForm.serialize(), (response) =>
