@@ -2,23 +2,22 @@ Api = require 'zooniverse/lib/api'
 SubStack = require 'lib/sub_stack'
 FocusPage = require 'controllers/focus_page'
 template = require 'views/subjects/show'
+$ = require 'jqueryify'
 
 class Show extends FocusPage
   template: template
   className: "#{FocusPage::className} subject page"
   focusType: 'subjects'
   
-  elements:
-    '.comment-form': 'commentForm'
-    'ul.comments': 'commentList'
+  elements: $.extend
     '.focus .collect-this': 'collectThis'
     '.focus .collection-list': 'collectionList'
+    FocusPage::elements
   
-  events:
-    'submit .comment-form': 'submitComment'
-    'click .new-discussion button': 'startDiscussion'
+  events: $.extend
     'click .focus .collect-this': 'showCollectionList'
     'click .focus .collection-list .collection': 'collectSubject'
+    FocusPage::events
   
   showCollectionList: (ev) =>
     ev.preventDefault()
