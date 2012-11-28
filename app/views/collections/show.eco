@@ -34,13 +34,5 @@
   <p><%= @description %></p>
 </div>
 
-<div class="hashtags">
-  <h3>Hashtags on this collection</h3>
-  <ul>
-    <% for tag in @tags: %>
-      <li><a href="#/hashtags/<%= tag._id %>" class="hashtag"><%= tag._id %></a></li>
-    <% end %>
-  </ul>
-</div>
-
+<%- require('views/focus/tags') tags: @tags %>
 <%- require('views/focus/discussions') boards: @board_discussions, mentions: @mentions %>

@@ -18,7 +18,7 @@
 </div>
 
 <div class="collections">
-  <h3>Collections with this subject</h3>
+  <h3>Collections</h3>
   <ul>
     <% for collection in @collections: %>
       <li>
@@ -26,7 +26,7 @@
           <span class="label">
             <%= collection.title %>
             by <%= collection.user_name %>
-            (<%= collection.subjects.length %> subject<%= if collection.subjects.length isnt 1: %>s<% end %>)
+            (<%= collection.subjects.length %> images)
           </span>
           
           <span class="images">
@@ -40,13 +40,5 @@
   </ul>
 </div>
 
-<div class="hashtags">
-  <h3>Hashtags on this subject</h3>
-  <ul>
-    <% for tag in @tags: %>
-      <li><a href="#/hashtags/<%= tag._id %>" class="hashtag"><%= tag._id %></a></li>
-    <% end %>
-  </ul>
-</div>
-
+<%- require('views/focus/tags') tags: @tags, subject: true %>
 <%- require('views/focus/discussions') boards: @board_discussions, mentions: @mentions %>
