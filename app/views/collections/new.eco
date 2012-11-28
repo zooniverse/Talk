@@ -5,24 +5,33 @@
 
   <% if @subjectId: %>
     <h3>Start a collection starting with <a href="#/subjects/<%= @subjectId %>"><%= @subjectId %></a></h3>
-  <% else if @keywords.length isnt 0: %>
+  <% else if @keywords?.length isnt 0: %>
     <h3>Create a keyword collection</h3>
   <% end %>
 
   <div class="columns">
     <div class="one-half column">
-      <% if @keywords.length isnt 0: %>
+      <% if @keywords?.length > 0: %>
         <p>Keep track of subjects that others have tagged with words that interest you.</p>
         <p>A keyword collection will update automatically as more subjects are commented on.</p>
       <% end %>
-      <div class="field"><input type="text" name="title" required="required" placeholder="Title" /></div>
-      <div class="field"><textarea name="description" required="required" placeholder="Description"></textarea></div>
+      <div class="field"><input type="text" name="title" required="required" placeholder="Title" value="<%= @title %>" /></div>
+      <div class="field"><textarea name="description" required="required" placeholder="Description"><%= @description %></textarea></div>
     </div>
 
     <div class="one-half column">
-      <% if @subjectId: %>
-        TODO: List subjects
-      <% else if @keywords.length isnt 0: %>
+      <% if @subjects?.length > 0: %>
+        <ul class="subjects">
+          <% for subject in @subjects: %>
+            <li class="subject">
+              <a href="#/subjects/<%= subject.zooniverse_id %>">
+                <img src="<%= subject.location.standard[0] %>" />
+              </a>
+              <button type="button" name="remove" value="<%= subject.zooniverse_id %>">&times;</button>
+            </li>
+          <% end %>
+        </ul>
+      <% else if @keywords?.length > 0: %>
         <h4>Keywords</h4>
         <div class="keywords">
           <% for keyword in @keywords: %>

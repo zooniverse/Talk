@@ -21,7 +21,7 @@
           <span class="label">
             <%= collection.title %>
             by <%= collection.user_name %>
-            (<%= collection.subjects.length %> image<% if collection.subjects.length isnt 1: %>s<% end %>)
+            (<%= collection.subjects?.length || 0 %> images)
           </span>
           
           <span class="images">

@@ -3,9 +3,9 @@
 <h2>Collection <%= @title %> by <%- userLink @ %></h2>
 
 <div class="subjects">
-  <h3>Subjects in this collection <span class="aux"><%= @subjects.length %></span></h3>
+  <h3>Subjects in this collection <span class="aux"><%= @subjects?.length || 0 %></span></h3>
   <ul>
-    <% for subject in @subjects: %>
+    <% for subject in @subjects || []: %>
       <li>
         <a href="#/subjects/<%= subject.zooniverse_id %>">
           <img src="<%= subject.location.standard[0] %>" />

@@ -11,6 +11,8 @@ class Show extends FocusPage
 
 
 class New extends Page
+  action: 'new'
+  className: "#{Page::className} new collection"
   template: require('views/collections/new')
   fetchOnLoad: false
   
@@ -30,14 +32,15 @@ class New extends Page
   
   activate: (params) ->
     return unless params
-    @type = 'SubjectSet'
-    @keywords = []
-    
+
+    @id = params.id
+    @subjectId = params.subjectId
+    @keywords = params.keywords?.split '&'
+
     if params.subjectId
-      @subjectId = params.subjectId
+      @type = 'SubjectSet'
     else if params.keywords
       @type = 'KeywordSet'
-      @keywords = params.keywords.split '&'
     
     super
   
@@ -71,16 +74,28 @@ class New extends Page
     @keywordList.append require('views/collections/keyword_field')({ })
 
 
+class Edit extends New
+  className: "#{Page::className} edit collection"
+  action: 'edit'
+  fetchOnLoad: true
+  focusType: 'collections'
+
+  url: ->
+    "#{super}/#{@id}"
+
+
 class Collections extends SubStack
   controllers:
     show: Show
     new: New
+    edit: Edit
   
   routes:
     '/collections/new': 'new'
     '/collections/new/keywords/*keywords': 'new'
     '/collections/new/:subjectId': 'new'
     '/collections/:focusId': 'show'
+    '/collections/:id/edit': 'edit'
 
 
 module.exports = Collections
