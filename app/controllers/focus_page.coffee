@@ -19,6 +19,9 @@ class FocusPage extends Page
   url: ->
     "#{ super }/#{ @constructor::focusType }/#{ @focusId }"
   
+  rootUrl: ->
+    _super::url()
+  
   submitComment: (ev) ->
     Api.post "#{ @url() }/comments", @commentForm.serialize(), (response) =>
       @commentForm[0].reset()

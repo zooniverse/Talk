@@ -2,7 +2,9 @@
 
 <div class="focus">
   <img src="<%= @location['standard'][0] %>" class="main" />
-
+  <button class="collect-this">Collect</button>
+  <div class="collection-list"></div>
+  
   <div class="create-comment">
     <header>Leave a comment</header>
     
@@ -26,7 +28,7 @@
             by <%= collection.user_name %>
             (<%= collection.subjects.length %> subject<%= if collection.subjects.length isnt 1: %>s<% end %>)
           </span>
-
+          
           <span class="images">
             <% for subject, i in collection.subjects[...5]: %>
               <img src="<%= collection.subjects[0].location.standard['0']%>" />
