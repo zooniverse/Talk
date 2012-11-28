@@ -2,8 +2,11 @@
 
 <div class="focus">
   <img src="<%= @location['standard'][0] %>" class="main" />
-  <button class="collect-this">Collect</button>
-  <div class="collection-list"></div>
+
+  <div class="add-to-collection">
+    <button class="collect-this">Collect</button>
+    <div class="collection-list"></div>
+  </div>
   
   <div class="create-comment">
     <header>Leave a comment</header>

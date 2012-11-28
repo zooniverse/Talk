@@ -22,13 +22,19 @@ class Show extends FocusPage
   
   showCollectionList: (ev) =>
     ev.preventDefault()
+
+    @collectionList.addClass 'loading'
+    @collectionList.toggle()
+
     Api.get "#{ @rootUrl() }/users/collection_list", (results) =>
+      @collectionList.removeClass 'loading'
       @collectionList.html require('views/users/collection_list') subject: @data, collections: results
   
   collectSubject: ({ target }) =>
     id = $(target).data 'id'
     Api.post "#{ @rootUrl() }/collections/#{ id }/add_subject", subject_id: @data.zooniverse_id, (results) =>
       @collectionList.html ''
+      @collectionList.hide()
       @collectThis.text 'Collected'
 
 
