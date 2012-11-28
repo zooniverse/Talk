@@ -4,6 +4,6 @@
     <option value="false">exclude</option>
   </select>
   
-  <input type="text" class="tag" placeholder="Tag" value="<%= @keyword %>">
-  <button class="remove">Remove</button>
+  <input type="text" class="tag" placeholder="Tag" value="<%= @keyword %>" />
+  <button type="button" name="remove-keyword">&times;</button>
 </div>

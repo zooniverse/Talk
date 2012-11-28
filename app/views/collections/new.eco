@@ -1,46 +1,40 @@
 <form class="new-collection">
-  <label for="type">
-    Type:
-    <select name="type">
-      <% if @type is 'SubjectSet': %>
-        <option value="SubjectSet">Subject Set</option>
-        <option value="KeywordSet">Keyword Set</option>
-      <% else if @type is 'KeywordSet': %>
-        <option value="KeywordSet">Keyword Set</option>
-        <option value="SubjectSet">Subject Set</option>
-      <% end %>
-    </select>
-  </label>
-  
-  <label for="title">
-    Title:
-    <input type="text" name="title" value="">
-  </label>
-  
-  <label for="description">
-    Description:
-    <input type="text" name="description" value="">
-  </label>
-  
   <% if @type is 'SubjectSet': %>
     <input type="hidden" name="subject_id" value="<%= @subjectId %>">
-  <% else if @type is 'KeywordSet': %>
-    <br />
-    
-    <div class="keywords">
-      <label for="keywords">
-        Tags:
-        <% for keyword in @keywords: %>
-          <%- require('views/collections/keyword_field') keyword: keyword %>
-        <% end %>
-        
-        <%- require('views/collections/keyword_field')({ }) if @keywords.length is 0 %>
-      </label>
-      
-      <button class="add">Add</button>
-    </div>
-    <br />
   <% end %>
-  
-  <button type="submit" name="submit">Submit</button>
+
+  <% if @subjectId: %>
+    <h3>Start a collection starting with <a href="#/subjects/<%= @subjectId %>"><%= @subjectId %></a></h3>
+  <% else if @keywords.length isnt 0: %>
+    <h3>Create a keyword collection</h3>
+  <% end %>
+
+  <div class="columns">
+    <div class="one-half column">
+      <% if @keywords.length isnt 0: %>
+        <p>Keep track of subjects that others have tagged with words that interest you.</p>
+        <p>A keyword collection will update automatically as more subjects are commented on.</p>
+      <% end %>
+      <div class="field"><input type="text" name="title" required="required" placeholder="Title" /></div>
+      <div class="field"><textarea name="description" required="required" placeholder="Description"></textarea></div>
+    </div>
+
+    <div class="one-half column">
+      <% if @subjectId: %>
+        TODO: List subjects
+      <% else if @keywords.length isnt 0: %>
+        <h4>Keywords</h4>
+        <div class="keywords">
+          <% for keyword in @keywords: %>
+            <%- require('views/collections/keyword_field') keyword: keyword %>
+          <% end %>
+        </div>
+        <button type="button" name="add-keyword">+</button>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="action" style="text-align: center;">
+    <button type="submit">Create</button>
+  </div>
 </form>

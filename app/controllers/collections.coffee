@@ -17,13 +17,13 @@ class New extends Page
   elements:
     'form.new-collection': 'form'
     'form.new-collection select[name="type"]': 'typeSelector'
-    'form.new-collection .keywords label': 'keywordList'
+    'form.new-collection .keywords': 'keywordList'
   
   events:
     'submit form.new-collection': 'createCollection'
     'change form.new-collection select[name="type"]': 'changeType'
-    'click form.new-collection .keywords .keyword .remove': 'removeKeyword'
-    'click form.new-collection .keywords .add': 'addKeyword'
+    'click button[name="remove-keyword"]': 'removeKeyword'
+    'click button[name="add-keyword"]': 'addKeyword'
   
   url: ->
     "#{ super }/collections"
