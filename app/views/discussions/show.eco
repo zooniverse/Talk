@@ -4,10 +4,7 @@
 <div class="columns">
   <div class="one-quarter column">
     <% if @focusType is 'boards': %>
-      <div class="hashtags">
-        <h2>Popular hashtags</h2>
-        TODO: HASHTAGS
-      </div>
+      <%- require('views/trending/tags') tags: @tags %>
     <% else: %>
       <%- require("views/#{ @focusType }/discussion_focus")(@focus) %>
     <% end %>
