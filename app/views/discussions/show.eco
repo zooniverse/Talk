@@ -1,5 +1,6 @@
 <% { capitalize } = require 'lib/util' %>
 <% userLink = require 'views/user_link' %>
+<% moment = require 'moment/moment' %>
 
 <div class="columns">
   <div class="one-quarter column">
@@ -28,7 +29,7 @@
           <div class="post">
             <header>
               <div class="title"><%= @title %></div>
-              Started at: <%= @created_at %> by <%- userLink @ %>
+              Started at: <%= moment(@created_at).fromNow() %> by <%- userLink @ %>
             </header>
           </div>
           

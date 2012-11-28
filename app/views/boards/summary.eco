@@ -1,4 +1,5 @@
 <% userLink = require 'views/user_link' %>
+<% moment = require 'moment/moment' %>
 
 <div class="board">
   <div class="info">
@@ -11,7 +12,7 @@
       <span class="discussions"><%= @discussions %> discussions, </span><span class="posts"><%= @comments %></span> posts, <span class="users"><%= @users %></span> participants
       <div class="last">
         <% if @last_updated: %>
-          Last post <span class="last-modified"><%= @last_comment.created_at %> by <%- userLink @last_comment %></span>
+          Last post <span class="last-modified"><%= moment(@last_comment.created_at).fromNow() %> by <%- userLink @last_comment %></span>
         <% else: %>
           <span class="last-modified"><em>No posts yet</em></span>
         <% end %>
