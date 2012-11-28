@@ -26,12 +26,12 @@
           <span class="label">
             <%= collection.title %>
             by <%= collection.user_name %>
-            (<%= collection.subjects.length %> images)
+            (<%= collection.subjects.length %> image<% if collection.subjects.length isnt 1: %>s<% end %>)
           </span>
           
           <span class="images">
             <% for subject, i in collection.subjects[...5]: %>
-              <img src="<%= collection.subjects[0].location.standard['0']%>" />
+              <img src="<%= subject.location.standard['0']%>" />
             <% end %>
           </span>
         </a>
