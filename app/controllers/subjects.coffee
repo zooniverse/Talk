@@ -9,10 +9,14 @@ class Show extends FocusPage
   focusType: 'subjects'
   
   elements:
+    '.comment-form': 'commentForm'
+    'ul.comments': 'commentList'
     '.focus .collect-this': 'collectThis'
     '.focus .collection-list': 'collectionList'
   
   events:
+    'submit .comment-form': 'submitComment'
+    'click .new-discussion button': 'startDiscussion'
     'click .focus .collect-this': 'showCollectionList'
     'click .focus .collection-list .collection': 'collectSubject'
   
