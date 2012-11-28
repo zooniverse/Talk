@@ -16,6 +16,7 @@ Subjects = require 'controllers/subjects'
 Collections = require 'controllers/collections'
 Boards = require 'controllers/boards'
 Discussions = require 'controllers/discussions'
+Users = require 'controllers/users'
 
 app = {}
 app.el = $('#app')
@@ -30,6 +31,7 @@ app.stack = new Stack
     boards: Boards
     discussions: Discussions
     collections: Collections
+    users: Users
   
   routes:
     '/': 'trending'
@@ -37,6 +39,7 @@ app.stack = new Stack
     '/subjects': 'subjects'
     '/collections': 'collections'
     '/boards': 'boards'
+    '/users': 'users'
     '/:focusType/:focusId/discussions': 'discussions'
   
   default: 'trending'
