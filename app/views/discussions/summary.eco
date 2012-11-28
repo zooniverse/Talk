@@ -5,6 +5,9 @@
     <div class="title">
       <a href="#/boards/<%= @board._id %>/discussions/<%= @zooniverse_id %>"><%= @title %></a>
     </div>
+    <div class="board-info">
+      <%= "Posted in #{ @board.name }" if @board %>
+    </div>
   </div>
   
   <div class="stats">
