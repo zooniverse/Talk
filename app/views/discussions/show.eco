@@ -5,6 +5,8 @@
 <div class="columns">
   <div class="one-quarter column">
     <% if @focusType is 'boards': %>
+      <%- require('views/discussions/featured') featured: @featured %>
+      <hr />
       <%- require('views/trending/tags') tags: @tags %>
     <% else: %>
       <%- require("views/#{ @focusType }/discussion_focus")(@focus) %>
