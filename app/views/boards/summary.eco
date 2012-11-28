@@ -5,7 +5,7 @@
     <div class="title"><a href="#/boards/<%= @zooniverse_id %>"><%= @title || '(Untitled board)' %></a></div>
     <div class="description"><%= @description %></div>
   </div>
-
+  
   <div class="stats">
     <div class="counts">
       <span class="discussions"><%= @discussions %> discussions, </span><span class="posts"><%= @comments %></span> posts, <span class="users"><%= @users %></span> participants

@@ -1,6 +1,7 @@
 <% userLink = require 'views/user_link' %>
 
 <div class="discussion">
+  <%- '<div class="pinned">‡</div>' if @featured %>
   <div class="info">
     <div class="title">
       <a href="#/boards/<%= @board._id %>/discussions/<%= @zooniverse_id %>"><%= @title %></a>

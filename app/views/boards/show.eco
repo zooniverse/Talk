@@ -18,6 +18,10 @@
           <div class="none">There are curently no discussions.</div>
         <% else: %>
           <ul class="previews">
+            <% for discussion in @featured: %>
+              <% discussion.featured = true %>
+              <li><%- require('views/discussions/summary') discussion %></li>
+            <% end %>
             <% for discussion in @discussions: %>
               <li><%- require('views/discussions/summary') discussion %></li>
             <% end %>

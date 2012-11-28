@@ -19,6 +19,15 @@ class Show extends Page
   url: =>
     "#{ super }/boards/#{ @id }"
   
+  render: ->
+    nonfeatured = []
+    featuredIds = @data.featured.map (d) -> d.zooniverse_id
+    for discussion in @data.discussions when discussion.zooniverse_id not in featuredIds
+      nonfeatured.push(discussion)
+    
+    @data.discussions = nonfeatured
+    super
+  
   createDiscussion: (ev) =>
     ev.preventDefault()
     
