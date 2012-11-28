@@ -27,8 +27,8 @@ class Users extends SubStack
     profile: Profile
   
   routes:
-    '/users/profile': profile
-    '/users/:id': show
+    '/users/profile': 'profile'
+    '/users/:id': 'show'
   
   default: 'profile'
   className: 'stack users'
