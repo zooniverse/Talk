@@ -1,7 +1,9 @@
 <ul class="comments">
   <% for comment in @comments: %>
-    <li>
-      <%- require('views/focus/comment') comment: comment %>
-    </li>
+    <%- require('views/focus/comment') comment: comment %>
   <% end %>
 </ul>
+
+<% if @count and @count > 10: %>
+  <button class="load-more-comments">Load more</button>
+<% end %>

@@ -1,10 +1,12 @@
 <% userLink = require 'views/user_link' %>
 <% moment = require 'moment/moment' %>
 
-<div class="comment">
-  <div class="content"><%= @comment.body %></div>
-  <footer>
-    <%- userLink @comment %>
-    <span class="right"><%= moment(@comment.created_at).fromNow() %></span>
-  </footer>
-</div>
+<li>
+  <div class="comment">
+    <div class="content"><%= @comment.body %></div>
+    <footer>
+      <%- userLink @comment %>
+      <span class="right"><%= moment(@comment.created_at).fromNow() %></span>
+    </footer>
+  </div>
+</li>

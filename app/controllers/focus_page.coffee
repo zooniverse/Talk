@@ -7,18 +7,21 @@ class FocusPage extends Page
     '.comment-form': 'commentForm'
     '.comment-form button[type="submit"]': 'commentButton'
     '.comment-form [name="comment"]': 'commentBox'
-    'ul.comments': 'commentList'
     '.comment-form .characters .count': 'characterCounter'
+    'ul.comments': 'commentList'
+    '.load-more-comments': 'loadMoreComments'
   
   events:
     'submit .comment-form': 'submitComment'
     'click .new-discussion button': 'startDiscussion'
     'keyup .comment-form textarea': 'updateCounter'
+    'click .load-more-comments': 'paginateComments'
   
   activate: (params) ->
     return unless params
     @focusId = params.focusId
     @commentLength = 140
+    @commentPage = 1
     super
   
   url: ->
@@ -39,11 +42,19 @@ class FocusPage extends Page
   submitComment: (ev) ->
     Api.post "#{ @url() }/comments", @commentForm.serialize(), (response) =>
       @commentForm[0].reset()
+      @updateCounter()
       comment = require('views/focus/comment') comment: response
       comment = $("<li>#{ comment }</li>")
       @commentList.prepend comment
     
     ev.preventDefault()
+  
+  paginateComments: =>
+    @commentPage += 1
+    Api.get "#{ @url() }/comments?page=#{ @commentPage }", (results) =>
+      @loadMoreComments.hide() if @data.discussion.comments_count < @commentPage * 10
+      for comment in results
+        @commentList.append require('views/focus/comment') comment: comment
   
   startDiscussion: (ev) =>
     ev.preventDefault()
