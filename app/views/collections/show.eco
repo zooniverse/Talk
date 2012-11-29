@@ -1,6 +1,13 @@
+<% User = require 'zooniverse/lib/models/user' %>
+
 <% userLink = require 'views/user_link' %>
 
-<h2>Collection <%= @title %> by <%- userLink @ %></h2>
+<h2>
+  Collection: <%= @title %> by <%- userLink @ %>
+  <% if @user_id is User.current?.id: %>
+    <span class="owned">(<a href="#/collections/<%= @zooniverse_id %>/edit">Edit</a>)</span>
+  <% end %>
+</h2>
 
 <div class="subjects">
   <h3>Subjects in this collection <span class="aux"><%= @subjects?.length || 0 %></span></h3>
