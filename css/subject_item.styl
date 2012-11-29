@@ -1,51 +1,47 @@
-li > .subject {
-  @extends #rule-left;
-  font-size: 11px;
-  margin-left: 10px;
-  padding-left: 10px;
+ul.subject-summaries {
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
 
-  .view {
-    margin-bottom: 10px;
+  > li {
+    @extends #rule-left;
+    box-sizing: border-box;
+    float: left;
+    list-style: none;
+    padding: 0 10px;
+    width: 20%;
 
-    img {
-      max-width: 100%;
-      border: 1px solid $white;
-      box-shadow: 0 1px 1px rgba($black, 0.25);
+    &:first-child:before {
+      display: none;
     }
   }
 
-  .metadata {
-    @extends #rule-below;
-    display: table;
-    line-height: 1.25;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    width: 100%;
-    white-space: nowrap;
+  .subject {
+    font-size: 11px;
 
-    .collections {
-      display: table-cell;
-      vertical-align: middle;
+    > a {
+      display: block;
 
-      button {
-        @extends #standard-button;
-        height: 24px;
+      img {
+        width: 100%;
       }
     }
 
-    .stats {
-      display: table-cell;
-      vertical-align: middle;
-      text-align: right;
+    .metadata {
+      @extends #rule-below;
+      display: table;
+      line-height: 1.25;
+      margin: 10px 0;
+      padding-bottom: 10px;
+      text-align: center;
+      width: 100%;
+      white-space: nowrap;
+
+      .collections {
+        button {
+          @extends #standard-button;
+        }
+      }
     }
-  }
-}
-
-li:first-child > .subject {
-  margin-left: 0;
-  padding-left: 0;
-
-  &:before {
-    display: none;
   }
 }

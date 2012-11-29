@@ -1,20 +1,26 @@
-<% for subject in @subjects: %>
-  <div class="subject">
-    <a href="/#/subjects/<%= subject.zooniverse_id %>">
-      <img src="<%= subject.location.standard[0] %>">
-    </a>
-    <header>
-      <button class="collect">Add to Collection</button>
-      <div class="stats">
-        <span class="comments"><%= subject.comments %> Comments</span>
-        <span class="discussions"><%= subject.discussions %> Discussions</span>
+<ul class="subject-summaries">
+  <% for subject in @subjects: %>
+    <li>
+      <div class="subject">
+        <a href="/#/subjects/<%= subject.zooniverse_id %>">
+          <img src="<%= subject.location.standard[0] %>">
+        </a>
+
+        <div class="metadata">
+          <div class="collections">
+            <button class="collect">Add to Collection</button>
+          </div>
+
+          <div class="stats">
+            <div class="comments"><%= subject.comments %> Comments</div>
+            <div class="discussions"><%= subject.discussions %> Discussions</div>
+          </div>
+        </div>
+        
+        <footer>
+          <%- require('views/discussions/comment') comment: subject.last_comment %>
+        </footer>
       </div>
-    </header>
-    
-    <hr />
-    
-    <footer>
-      <%- require('views/discussions/comment') comment: subject.last_comment %>
-    </footer>
-  </div>
-<% end %>
+    </li>
+  <% end %>
+</ul>

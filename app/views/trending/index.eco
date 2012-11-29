@@ -9,7 +9,7 @@
   
   <div class="three-quarters column">
     <section>
-      <h1>People are Observing...</h1>
+      <h3>People are Observing...</h3>
       <div class="subjects">
         <div class="list">
           <%- require('views/subjects/list') subjects: @subjects %>
