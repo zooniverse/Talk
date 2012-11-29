@@ -33,7 +33,7 @@ class FocusPage extends Page
   
   reload: (callback) ->
     if @fetchOnLoad
-      Focus.findOrFetch @focusId, (@data) =>
+      Focus.fetch @focusId, (@data) =>
         @render()
         callback @data
     else
