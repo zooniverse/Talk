@@ -107,8 +107,16 @@ class Edit extends New
 
   onSubmit: (ev) ->
     ev.preventDefault()
+    if @type is 'KeywordSet'
+      return console.log 'TODO: Keyword set editing'
 
-    @log "TODO: Save title/description changes, remove #{@toBeRemoved}"
+    data =
+      title: @el.find('input[name="title"]').val()
+      description: @el.find('textarea[name="description"]').val()
+      zooniverse_ids_to_remove: @toBeRemoved
+
+    Api.post @url(), data, (result) =>
+      @navigate "/collections/#{@id}"
 
 
 class Collections extends SubStack
