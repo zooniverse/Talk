@@ -24,6 +24,12 @@
 <div class="description">
   <h3>Description</h3>
   <p><%= @description %></p>
+  <% includes = (word for word, included of @keywords when included is 'true') %>
+  <% excludes = (word for word, included of @keywords when included is 'false') %>
+  <p>
+    Includes <%= includes.join(' and ') || 'every subject' %>
+    <% if excludes.length isnt 0: %>but not <%= excludes.join ' or ' %><% end %>
+  </p>
 </div>
 
 <%- require('views/focus/tags') tags: @tags %>
