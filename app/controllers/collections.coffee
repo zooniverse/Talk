@@ -41,7 +41,7 @@ class New extends Page
       @type = 'SubjectSet'
     else if params.keywords
       @type = 'KeywordSet'
-    
+
     super
   
   changeType: (ev) ->
@@ -107,15 +107,18 @@ class Edit extends New
 
   onSubmit: (ev) ->
     ev.preventDefault()
-    if @type is 'KeywordSet'
-      return console.log 'TODO: Keyword set editing'
 
     data =
       title: @el.find('input[name="title"]').val()
       description: @el.find('textarea[name="description"]').val()
-      zooniverse_ids_to_remove: @toBeRemoved
 
-    Api.post @url(), data, (result) =>
+    if @data.keywords
+      @serializeTags()
+      return console.log 'TODO: Keyword set editing'
+    else
+      data.subject_ids_to_remove = @toBeRemoved
+
+    Api.put @url(), data, (result) =>
       @navigate "/collections/#{@id}"
 
 
