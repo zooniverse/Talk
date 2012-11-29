@@ -1,21 +1,22 @@
-Spine = require 'spine'
 { project } = require 'lib/config'
 Api = require 'zooniverse/lib/api'
 
-class Focus extends Spine.Model
-  @configure 'Focus'
+class Focus
+  @records = { }
   
-  @findOrFetch: (focusId, callback) ->
+  @findOrFetch: (focusId, callback) =>
     if @exists(focusId)
       callback @find(focusId)
     else
-      @fetch focusId, (result) =>
-        callback @create(result)
+      @fetch focusId, callback
   
   @fetch: (focusId, callback) =>
     Api.get @urlFor(focusId), (result) =>
-      result.id = result.zooniverse_id
+      @records[focusId] = new Focus(result)
       callback result
+  
+  @exists: (id) =>
+    !!@records[id]
   
   @typeOf: (focusId) ->
     switch focusId[0]
@@ -28,17 +29,18 @@ class Focus extends Spine.Model
     "/projects/#{ project }/talk/#{ @typeOf focusId }/#{ focusId }"
   
   constructor: (hash) ->
-    super
+    for own key, val of hash
+      @[key] = val
   
   url: =>
-    Focus.urlFor @id
+    Focus.urlFor @zooniverse_id
   
   reload: =>
-    Focus.fetch @id, (record) =>
-      @load record
+    Focus.fetch @zooniverse_id, (record) =>
+      Focus.records[record.zooniverse_id] = record
   
   focusType: =>
-    Focus.typeOf @id
+    Focus.typeOf @zooniverse_id
 
 
 module.exports = Focus
