@@ -22,7 +22,7 @@ class New extends Page
     'form.new-collection .keywords': 'keywordList'
   
   events:
-    'submit form.new-collection': 'createCollection'
+    'submit form.new-collection': 'onSubmit'
     'change form.new-collection select[name="type"]': 'changeType'
     'click button[name="remove-keyword"]': 'removeKeyword'
     'click button[name="add-keyword"]': 'addKeyword'
@@ -48,7 +48,7 @@ class New extends Page
     @type = @typeSelector.val()
     @render()
   
-  createCollection: (ev) ->
+  onSubmit: (ev) ->
     ev.preventDefault()
     @serializeTags() if @type is 'KeywordSet'
     Api.post @url(), @form.serialize(), (result) =>
@@ -80,8 +80,35 @@ class Edit extends New
   fetchOnLoad: true
   focusType: 'collections'
 
+  events: $.extend
+    'click button[name="remove"]': 'onClickRemove'
+    New::events
+
+  constructor: ->
+    super
+    @toBeRemoved = []
+
   url: ->
     "#{super}/#{@id}"
+
+  onClickRemove: ({target}) ->
+    target = $(target)
+    id = target.val()
+    listItem = target.closest '.subject'
+
+    if id in @toBeRemoved
+      @toBeRemoved.splice i, 1 for otherId, i in @toBeRemoved when otherId is id
+      listItem.removeClass 'to-be-removed'
+      @log "Subject #{id} NOT to be removed"
+    else
+      @toBeRemoved.push id
+      listItem.addClass 'to-be-removed'
+      @log "Subject #{id} to be removed"
+
+  onSubmit: (ev) ->
+    ev.preventDefault()
+
+    @log "TODO: Save title/description changes, remove #{@toBeRemoved}"
 
 
 class Collections extends SubStack

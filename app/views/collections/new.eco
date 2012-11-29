@@ -44,6 +44,8 @@
   </div>
 
   <div class="action" style="text-align: center;">
-    <button type="submit">Create</button>
+    <button type="submit">
+      <% if @id: %>Save changes<% else: %>Create<% end %>
+    </button>
   </div>
 </form>
