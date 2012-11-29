@@ -1,4 +1,5 @@
 Api = require 'zooniverse/lib/api'
+Focus = require 'models/focus'
 SubStack = require 'lib/sub_stack'
 Page = require 'controllers/page'
 
@@ -11,7 +12,7 @@ class DiscussionPage extends Page
         @render()
         callback? @data
     else
-      Api.get @focusUrl(), (@focus) =>
+      Focus.findOrFetch @focusId, (@focus) =>
         @data = @
         @data.focusType = @focusType
         

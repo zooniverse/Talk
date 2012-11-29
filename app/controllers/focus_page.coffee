@@ -1,5 +1,6 @@
 Api = require 'zooniverse/lib/api'
-Page = require './page'
+Focus = require 'models/focus'
+Page = require 'controllers/page'
 
 class FocusPage extends Page
   className: "#{Page::className} focus"
@@ -29,6 +30,14 @@ class FocusPage extends Page
   
   rootUrl: ->
     _super::url()
+  
+  reload: (callback) ->
+    if @fetchOnLoad
+      Focus.findOrFetch @focusId, (@data) =>
+        @render()
+        callback @data
+    else
+      super
   
   updateCounter: (ev) =>
     remaining = @commentLength - @commentBox.val().length

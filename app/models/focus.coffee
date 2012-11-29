@@ -18,6 +18,9 @@ class Focus
   @exists: (id) =>
     !!@records[id]
   
+  @find: (id) =>
+    @records[id]
+  
   @typeOf: (focusId) ->
     switch focusId[0]
       when 'A' then 'subjects'
