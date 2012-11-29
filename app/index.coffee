@@ -3,11 +3,11 @@ require 'lib/setup'
 {Stack} = require 'spine/lib/manager'
 $ = require 'jqueryify'
 
-Config = require 'lib/config'
+{ project, apiHost } = require 'lib/config'
 Api = require 'zooniverse/lib/api'
-Api.init host: Config.apiHost
+Api.init host: apiHost
 User = require 'zooniverse/lib/models/user'
-User.project = Config.project
+User.project = project
 User.fetch()
 
 AppHeader = require 'controllers/app_header'
@@ -56,5 +56,23 @@ activateMatchingHashLinks = ->
 
 $(window).on 'hashchange', activateMatchingHashLinks
 setTimeout activateMatchingHashLinks
+
+$(window).on 'click', '.follow-link button', (event) ->
+  event.preventDefault()
+  link = $(event.target)
+  action = link.attr 'name'
+  id = link.data 'id'
+  type = link.data 'type'
+  link.attr 'disabled', 'disabled'
+  
+  url = "/projects/#{ project }/talk/following/#{ action }"
+  hash =
+    type: type
+    id: id
+  
+  Api.post url, hash, =>
+    followed = action is 'follow'
+    link.closest('.follow').replaceWith require('views/follow_button')(id: id, type: type, followed: followed)
+
 
 module.exports = app

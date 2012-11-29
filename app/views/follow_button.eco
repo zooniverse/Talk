@@ -1,0 +1,11 @@
+<% user = require('zooniverse/lib/models/user').current %>
+
+<% if user: %>
+  <div class="follow follow-link">
+    <% if @followed or (@follower_ids? and user.id in @follower_ids): %>
+      <button name="unfollow" data-type="<%= @type %>" data-id="<%= @id %>">Followed</button>
+    <% else: %>
+      <button name="follow" data-type="<%= @type %>" data-id="<%= @id %>">Follow</button>
+    <% end %>
+  </div>
+<% end %>

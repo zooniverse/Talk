@@ -22,8 +22,5 @@
     </div>
   </div>
   
-  <div class="follow">
-    <button name="follow">Follow</button>
-    <button name="unfollow">Followed</button>
-  </div>
+  <%- require('views/follow_button') id: @zooniverse_id, type: 'discussions', follower_ids: @follower_ids %>
 </div>

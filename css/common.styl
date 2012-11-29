@@ -23,7 +23,13 @@ $blue = hsl(200, 100, 60);
   font-weight: bold;
   padding: 1px 10px;
   text-shadow: 0 1px 0 $white;
-
+  
+  &:disabled {
+    background-color: $gray-less-light;
+    color: $gray;
+    cursor: auto;
+  }
+  
   &:hover {
     border-color: rgba($black, 0.67);
   }
