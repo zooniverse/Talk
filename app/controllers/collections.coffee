@@ -108,17 +108,19 @@ class Edit extends New
   onSubmit: (ev) ->
     ev.preventDefault()
 
-    data =
+    newValues =
       title: @el.find('input[name="title"]').val()
       description: @el.find('textarea[name="description"]').val()
 
     if @data.keywords
-      @serializeTags()
-      return console.log 'TODO: Keyword set editing'
+      newValues.keywords = {}
+      for item in @keywordList.find '.keyword'
+        item = $(item)
+        newValues.keywords[item.find('input.tag').val()] = item.find('select.operator').val()
     else
-      data.subject_ids_to_remove = @toBeRemoved
+      newValues.subject_ids_to_remove = @toBeRemoved
 
-    Api.put @url(), data, (result) =>
+    Api.put @url(), newValues, (result) =>
       @navigate "/collections/#{@id}"
 
 
