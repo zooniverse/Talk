@@ -20,7 +20,22 @@
     </div>
 
     <div class="one-half column">
-      <% if @subjects?.length > 0: %>
+      <% if @keywords?: %>
+        <h4>Keywords</h4>
+        <div class="keywords">
+          <% if @keywords instanceof Array: %>
+            <% for keyword in @keywords: %>
+              <%- require('views/collections/keyword_field') keyword: keyword %>
+            <% end %>
+          <% else: %>
+            <% for keyword, include of @keywords: %>
+              <%- require('views/collections/keyword_field') {keyword, include: include is 'true'} %>
+            <% end %>
+          <% end %>
+        </div>
+        <button type="button" name="add-keyword">+</button>
+      <% else if @subjects?.length > 0: %>
+        <h4>Subjects</h4>
         <ul class="subjects">
           <% for subject in @subjects: %>
             <li class="subject">
@@ -31,14 +46,6 @@
             </li>
           <% end %>
         </ul>
-      <% else if @keywords?.length > 0: %>
-        <h4>Keywords</h4>
-        <div class="keywords">
-          <% for keyword in @keywords: %>
-            <%- require('views/collections/keyword_field') keyword: keyword %>
-          <% end %>
-        </div>
-        <button type="button" name="add-keyword">+</button>
       <% end %>
     </div>
   </div>
