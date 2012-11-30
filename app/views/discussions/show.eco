@@ -7,7 +7,7 @@
     <% if @focusType is 'boards': %>
       <%- require('views/discussions/featured') featured: @featured %>
       <hr />
-      <%- require('views/trending/tags') tags: @tags %>
+      <%- require('views/hashtags/list') tags: @tags %>
     <% else: %>
       <%- require("views/#{ @focusType }/discussion_focus")(@focus) %>
     <% end %>
