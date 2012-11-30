@@ -11,7 +11,7 @@
     <div class="counts">
       <span class="discussions"><%= @discussions %> discussions, </span><span class="posts"><%= @comments %></span> posts, <span class="users"><%= @users %></span> participants
       <div class="last">
-        <% if @last_updated: %>
+        <% if @last_updated and @last_comment: %>
           Last post <span class="last-modified"><%= moment(@last_comment.created_at).fromNow() %> by <%- userLink @last_comment %></span>
         <% else: %>
           <span class="last-modified"><em>No posts yet</em></span>

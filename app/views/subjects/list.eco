@@ -21,8 +21,8 @@
       </div>
       
       <div class="last-comment">
-        <div class="content"><%= subject.last_comment.body %></div>
-        <div class="user">By <%- userLink subject.last_comment %></div>
+        <div class="content"><%- subject?.last_comment?.body or '&nbsp;' %></div>
+        <div class="user"><%- if subject.last_comment then "By #{ userLink(subject.last_comment) }" else '&nbsp;' %></div>
       </div>
     </div>
   <% end %>

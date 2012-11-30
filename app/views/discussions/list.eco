@@ -1,5 +1,5 @@
 <div class="discussion-summaries">
-  <% for discussion, j in @discussions: %>
+  <% for discussion in @discussions: %>
     <%- require('views/discussions/summary') discussion: discussion, followable: true %>
   <% end %>
 </div>
