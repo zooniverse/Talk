@@ -6,9 +6,13 @@ $ = require 'jqueryify'
 { project, apiHost } = require 'lib/config'
 Api = require 'zooniverse/lib/api'
 Api.init host: apiHost
+
 User = require 'zooniverse/lib/models/user'
 User.project = project
 User.fetch()
+
+Roles = require 'models/roles'
+Roles.fetch()
 
 AppHeader = require 'controllers/app_header'
 Trending = require 'controllers/trending'
