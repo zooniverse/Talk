@@ -46,46 +46,6 @@ li > .discussion {
       color: $gray
     }
   }
-
-  .follow {
-    display: table-cell;
-    padding-left: 15px;
-    vertical-align: middle;
-    white-space: nowrap;
-    width: 1%;
-
-    button {
-      @extends #standard-button;
-      font-size: 10px;
-      height: 24px;
-      width: 60px;
-
-      &[name="unfollow"] {
-        @extends #standard-button:active
-        
-        &:disabled:hover {
-          box-shadow: 0 100px 0 rgba($black, 0.1) inset, 0 1px 3px rgba($black, 0.25) inset;
-        }
-        
-        &:active:disabled,
-        &.selected:disabled {
-          box-shadow: 0 100px 0 rgba($black, 0.1) inset, 0 1px 3px rgba($black, 0.25) inset;
-        }
-      }
-    }
-  }
-
-  &.followed {
-    .follow button {
-      &[name="follow"] {
-        display: none;
-      }
-
-      &[name="unfollow"] {
-        display: inline-block;
-      }
-    }
-  }
 }
 
 li:last-child > .board,

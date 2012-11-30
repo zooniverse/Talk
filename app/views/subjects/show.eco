@@ -1,9 +1,11 @@
 <header>
-  <h2>Image <%= @zooniverse_id %></h2>
-  <span class="buttons">
-    <%- require('views/follow_button') id: @zooniverse_id, type: 'subjects', follower_ids: @follower_ids %>
-    <%- require('views/share_button') id: @zooniverse_id, type: 'subjects' %>
-  </span>
+  <h2>
+    Image <%= @zooniverse_id %>
+    <span class="buttons">
+      <%- require('views/follow_button') id: @zooniverse_id, type: 'subjects', follower_ids: @follower_ids %>
+      <%- require('views/share_button') id: @zooniverse_id, type: 'subjects' %>
+    </span>
+  </h2>
 </header>
 
 <div class="focus">
