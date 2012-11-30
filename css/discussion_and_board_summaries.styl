@@ -1,3 +1,60 @@
+.discussion-summaries {
+  .discussion-summary {
+    @extends #rule-below;
+    box-sizing: border-box;
+    display: table;
+    margin: 10px 0;
+    padding: 0 0 10px 20px;
+    position: realtive;
+    width: 100%;
+
+    &:last-child:after {
+      display: none;
+    }
+
+    .pinned {
+      right: 100%;
+    }
+
+    .info {
+      display: table-cell;
+      width: 100%;
+
+      .title {
+        a {
+          color: inherit;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .stats {
+      display: table-cell;
+      text-align: right;
+      white-space: nowrap
+      width: 1%;
+
+      .counts {
+        .users,
+        .posts {
+          font-weight: bold;
+        }
+      }
+    }
+
+    .follow {
+      display: table-cell;
+      padding-left: 10px;
+      width: 1%;
+      vertical-align: middle;
+
+      button {
+        @extends #standard-button;
+      }
+    }
+  }
+}
+
 li > .board,
 li > .discussion {
   @extends #rule-below;

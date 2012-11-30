@@ -1,6 +1,7 @@
 <div class="hashtags">
   <h2>Popular hashtags</h2>
-  <% for index, tag of @tags: %>
-    <%= tag['_id'] %>
-  <% end %>
+  <ul class="hashtags">
+    <% for index, tag of @tags: %>
+      <li><a href="#/hashtags/<%= tag['_id'] %>"><%= tag['_id'] %></a></li>
+    <% end %>
 </div>

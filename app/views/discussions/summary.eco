@@ -1,12 +1,14 @@
 <% userLink = require 'views/user_link' %>
 <% moment = require 'moment/moment' %>
 
-<div class="discussion">
+<div class="discussion-summary">
   <%- '<div class="pinned">‡</div>' if @discussion.featured %>
+
   <div class="info">
     <div class="title">
       <a href="#/boards/<%= @discussion.board._id %>/discussions/<%= @discussion.zooniverse_id %>"><%= @discussion.title %></a>
     </div>
+
     <div class="board-info">
       <%= "Posted in #{ @discussion.board.name }" if @discussion.board %>
     </div>
@@ -14,7 +16,8 @@
   
   <div class="stats">
     <div class="counts">
-      <span class="posts"><%= @discussion.comments %></span> posts, <span class="users"><%= @discussion.users %></span> participants
+      <span class="posts"><%= @discussion.comments %></span> posts /
+      <span class="users"><%= @discussion.users %></span> participants
     </div>
     
     <div class="last">

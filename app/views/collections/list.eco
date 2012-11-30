@@ -1,4 +1,4 @@
-<div class="collections-summaries">
+<div class="collection-summaries">
   <% for collection in @collections: %>
     <div class="collection-summary">
       <a href="/#/collections/<%= collection.zooniverse_id %>">
