@@ -1,0 +1,44 @@
+<% { capitalize } = require 'lib/util' %>
+
+<div class="columns">
+  <div class="one-quarter column">
+    <%- require('views/discussions/featured') featured: @featured %>
+    <hr />
+    <%- require('views/trending/tags') tags: @tags %>
+  </div>
+  
+  <div class="three-quarters column">
+    <section>
+      <h3>Followed Objects</h3>
+      <div class="subjects">
+        <div class="list">
+          <%- require('views/subjects/list') subjects: @subjects %>
+        </div>
+        
+        <a class="load-more" data-type="subjects">Load more</a>
+      </div>
+    </section>
+    
+    <section>
+      <h1>Followed Discussions</h1>
+      <div class="discussions">
+        <div class="list">
+          <%- require('views/discussions/list') discussions: @discussions %>
+        </div>
+        
+        <a class="load-more" data-type="discussions">Load more</a>
+      </div>
+    </section>
+    
+    <section>
+      <h1>Followed Collections</h1>
+      <div class="collections">
+        <div class="list">
+          <%- require('views/collections/list') collections: @collections %>
+        </div>
+        
+        <a class="load-more" data-type="collections">Load more</a>
+      </div>
+    </section>
+  </div>
+</div>

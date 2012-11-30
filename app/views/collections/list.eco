@@ -6,6 +6,8 @@
       </a>
       /
       <em>N</em> - <em>M</em> of <%= collection.subjects.length %> images
+      
+      <%- require('views/follow_button') id: collection.zooniverse_id, type: 'subject_sets', follower_ids: collection.follower_ids %>
     </header>
     
     <footer>

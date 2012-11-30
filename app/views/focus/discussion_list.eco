@@ -3,7 +3,7 @@
 <ul class="previews">
   <% for discussion in @list: %>
     <li>
-      <%- require('views/discussions/summary') discussion %>
+      <%- require('views/discussions/summary') discussion: discussion, followable: true %>
     </li>
   <% end %>
   

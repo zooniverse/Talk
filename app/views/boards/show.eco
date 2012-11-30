@@ -20,10 +20,10 @@
           <ul class="previews">
             <% for discussion in @featured: %>
               <% discussion.featured = true %>
-              <li><%- require('views/discussions/summary') discussion %></li>
+              <li><%- require('views/discussions/summary') discussion: discussion, followable: true %></li>
             <% end %>
             <% for discussion in @discussions: %>
-              <li><%- require('views/discussions/summary') discussion %></li>
+              <li><%- require('views/discussions/summary') discussion: discussion, followable: true %></li>
             <% end %>
           </ul>
         <% end %>

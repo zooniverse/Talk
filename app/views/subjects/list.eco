@@ -7,6 +7,8 @@
         </a>
 
         <div class="metadata">
+          <%- require('views/follow_button') id: subject.zooniverse_id, type: 'subjects', follower_ids: subject.follower_ids %>
+          
           <div class="collections">
             <button class="collect">Add to Collection</button>
           </div>

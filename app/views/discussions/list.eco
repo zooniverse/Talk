@@ -1,5 +1,5 @@
 <ul class="previews">
   <% for discussion, j in @discussions: %>
-    <li><%- require('views/discussions/summary') discussion %></li>
+    <li><%- require('views/discussions/summary') discussion: discussion, followable: true %></li>
   <% end %>
 </ul>

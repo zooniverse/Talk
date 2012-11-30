@@ -12,6 +12,7 @@ User.fetch()
 
 AppHeader = require 'controllers/app_header'
 Trending = require 'controllers/trending'
+Following = require 'controllers/following'
 Subjects = require 'controllers/subjects'
 Collections = require 'controllers/collections'
 Boards = require 'controllers/boards'
@@ -27,6 +28,7 @@ app.header.el.prependTo app.el
 app.stack = new Stack
   controllers:
     trending: Trending
+    following: Following
     subjects: Subjects
     boards: Boards
     discussions: Discussions
@@ -36,6 +38,7 @@ app.stack = new Stack
   routes:
     '/': 'trending'
     '/trending': 'trending'
+    '/following': 'following'
     '/subjects': 'subjects'
     '/collections': 'collections'
     '/boards': 'boards'

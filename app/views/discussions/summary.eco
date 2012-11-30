@@ -2,25 +2,25 @@
 <% moment = require 'moment/moment' %>
 
 <div class="discussion">
-  <%- '<div class="pinned">‡</div>' if @featured %>
+  <%- '<div class="pinned">‡</div>' if @discussion.featured %>
   <div class="info">
     <div class="title">
-      <a href="#/boards/<%= @board._id %>/discussions/<%= @zooniverse_id %>"><%= @title %></a>
+      <a href="#/boards/<%= @discussion.board._id %>/discussions/<%= @discussion.zooniverse_id %>"><%= @discussion.title %></a>
     </div>
     <div class="board-info">
-      <%= "Posted in #{ @board.name }" if @board %>
+      <%= "Posted in #{ @discussion.board.name }" if @discussion.board %>
     </div>
   </div>
   
   <div class="stats">
     <div class="counts">
-      <span class="posts"><%= @comments %></span> posts, <span class="users"><%= @users %></span> participants
+      <span class="posts"><%= @discussion.comments %></span> posts, <span class="users"><%= @discussion.users %></span> participants
     </div>
     
     <div class="last">
-      Last post <span class="last-modified"><%= moment(@last_updated).fromNow() %> by <%- userLink @last_comment %></span>
+      Last post <span class="last-modified"><%= moment(@discussion.last_updated).fromNow() %> by <%- userLink @discussion.last_comment %></span>
     </div>
   </div>
   
-  <%- require('views/follow_button') id: @zooniverse_id, type: 'discussions', follower_ids: @follower_ids %>
+  <%- require('views/follow_button')(id: @discussion.zooniverse_id, type: 'discussions', follower_ids: @discussion.follower_ids) if @followable %>
 </div>
