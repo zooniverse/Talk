@@ -11,9 +11,6 @@ User = require 'zooniverse/lib/models/user'
 User.project = project
 User.fetch()
 
-Roles = require 'models/roles'
-Roles.fetch()
-
 AppHeader = require 'controllers/app_header'
 Trending = require 'controllers/trending'
 Following = require 'controllers/following'
@@ -22,37 +19,39 @@ Collections = require 'controllers/collections'
 Boards = require 'controllers/boards'
 Discussions = require 'controllers/discussions'
 Users = require 'controllers/users'
+Roles = require 'models/roles'
 
 app = {}
-app.el = $('#app')
-
-app.header = new AppHeader
-app.header.el.prependTo app.el
-
-app.stack = new Stack
-  controllers:
-    trending: Trending
-    following: Following
-    subjects: Subjects
-    boards: Boards
-    discussions: Discussions
-    collections: Collections
-    users: Users
+Roles.fetch ->
+  app.el = $('#app')
   
-  routes:
-    '/': 'trending'
-    '/trending': 'trending'
-    '/following': 'following'
-    '/subjects': 'subjects'
-    '/collections': 'collections'
-    '/boards': 'boards'
-    '/users': 'users'
-    '/:focusType/:focusId/discussions': 'discussions'
+  app.header = new AppHeader
+  app.header.el.prependTo app.el
   
-  default: 'trending'
-
-Spine.Route.setup()
-app.stack.el.appendTo app.el
+  app.stack = new Stack
+    controllers:
+      trending: Trending
+      following: Following
+      subjects: Subjects
+      boards: Boards
+      discussions: Discussions
+      collections: Collections
+      users: Users
+    
+    routes:
+      '/': 'trending'
+      '/trending': 'trending'
+      '/following': 'following'
+      '/subjects': 'subjects'
+      '/collections': 'collections'
+      '/boards': 'boards'
+      '/users': 'users'
+      '/:focusType/:focusId/discussions': 'discussions'
+    
+    default: 'trending'
+  
+  Spine.Route.setup()
+  app.stack.el.appendTo app.el
 
 activateMatchingHashLinks = ->
   $('a.active').removeClass 'active'
