@@ -4,7 +4,7 @@
   <div class="one-quarter column">
     <%- require('views/discussions/featured') featured: @featured %>
     <hr />
-    <%- require('views/trending/tags') tags: @tags %>
+    <%- require('views/hashtags/list') tags: @tags %>
   </div>
   
   <div class="three-quarters column">

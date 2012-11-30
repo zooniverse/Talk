@@ -22,26 +22,16 @@
 
 <div class="collections">
   <h3>Collections</h3>
-  <ul>
-    <% for collection in @collections: %>
-      <li>
-        <a href="#/collections/<%= collection.zooniverse_id %>">
-          <span class="label">
-            <%= collection.title %>
-            by <%= collection.user_name %>
-            (<%= collection.subjects?.length || 0 %> images)
-          </span>
-          
-          <span class="images">
-            <% for subject, i in collection.subjects[...5]: %>
-              <img src="<%= subject.location.standard['0']%>" />
-            <% end %>
-          </span>
-        </a>
-      </li>
-    <% end %>
-  </ul>
+  <%- require('views/collections/list') collections: @collections %>
 </div>
 
-<%- require('views/focus/tags') tags: @tags, subject: true %>
+<div class="hashtags">
+  <h3>Tags</h3>
+  <%- require('views/hashtags/list') tags: @tags %>
+
+  <div class="collect">
+    <a class="create-keyword-set" href="/#/collections/new/keywords/<%= @tags.map((o) -> o._id).join('&') %>">Create a tag group</a>
+  </div>
+</div>
+
 <%- require('views/focus/discussions') boards: @board_discussions, mentions: @mentions %>

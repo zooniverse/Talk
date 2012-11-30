@@ -1,0 +1,8 @@
+<% tags = @tags.map (tag) -> tag._id %>
+
+<ul class="hashtag-links">
+  <% for tag in tags: %>
+    <li><a href="#/hashtags/<%= tag %>"><%= tag %></a></li>
+  <% end %>
+</ul>
+
