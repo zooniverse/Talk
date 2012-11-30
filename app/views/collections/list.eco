@@ -1,19 +1,20 @@
-<% for collection in @collections: %>
-  <div class="collection">
-    <header>
+<div class="collections-summaries">
+  <% for collection in @collections: %>
+    <div class="collection-summary">
       <a href="/#/collections/<%= collection.zooniverse_id %>">
-        <%= collection.title %> by <%= collection.user_name %>
+        <span class="info">
+          <%= collection.title %> by <%= collection.user_name %> /
+          <%= collection.subjects.length %> images
+
+          <!--<%- require('views/follow_button') id: collection.zooniverse_id, type: 'subject_sets', follower_ids: collection.follower_ids %>-->
+        </span>
+
+        <span class="subjects">
+          <% for subject in collection.subjects: %>
+            <span class="subject"><img src="<%= subject.location.standard[0] %>" /></span>
+          <% end %>
+        </span>
       </a>
-      /
-      <em>N</em> - <em>M</em> of <%= collection.subjects.length %> images
-      
-      <%- require('views/follow_button') id: collection.zooniverse_id, type: 'subject_sets', follower_ids: collection.follower_ids %>
-    </header>
-    
-    <footer>
-      <% for subject in collection.subjects: %>
-        <img src="<%= subject.location.standard[0] %>">
-      <% end %>
-    </footer>
-  </div>
-<% end %>
+    </div>
+  <% end %>
+</div>

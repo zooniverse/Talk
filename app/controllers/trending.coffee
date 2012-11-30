@@ -3,6 +3,7 @@ SubStack = require 'lib/sub_stack'
 Page = require 'controllers/page'
 
 class Index extends Page
+  className: "#{Page::className} trending"
   template: require('views/trending/index')
   
   elements:

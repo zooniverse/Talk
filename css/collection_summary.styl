@@ -1,0 +1,51 @@
+.collection-summary {
+  a {
+    color: inherit;
+    display: block;
+    margin: 10px 0;
+    position: relative;
+
+    &:after {
+      $pad = 10px;
+
+      border-radius: $pad;
+      content: "";
+      position: absolute;
+      left: -1 * $pad;
+      top: -1 * $pad;
+      bottom: -1 * $pad;
+      right: -1 * $pad;
+    }
+
+    &:hover {
+      text-decoration: none;
+
+      &:after {
+        background: rgba($black, 0.1);
+      }
+    }
+
+    .info {
+      display: block;
+    }
+
+    .subjects {
+      display: block;
+      margin: 0 -10px;
+      overflow: hidden;
+
+      .subject {
+        box-sizing: border-box;
+        float: left;
+        padding: 0 10px;
+        width: 20%;
+
+        img {
+          border: 1px solid $white;
+          box-shadow: 0 1px 3px -1px $black
+          width: 100%;
+        }
+      }
+    }
+  }
+}
