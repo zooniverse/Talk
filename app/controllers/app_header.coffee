@@ -20,9 +20,11 @@ class AppHeader extends Controller
 
     User.bind 'sign-in', @onUserSignIn
     User.bind 'sign-in-error', @onSignInError
+    @onUserSignIn() if User.current
 
   onUserSignIn: =>
     signedIn = User.current?
+    @html template
     @el.toggleClass 'signed-in', signedIn
     @signInContainer.toggle not signedIn
 
