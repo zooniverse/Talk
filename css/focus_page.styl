@@ -114,7 +114,11 @@
 
       header {
         font-weight: bold;
-        margin: 10px 0;
+        margin: 10px 0 -5px;
+      }
+
+      .action .characters {
+        float: left;
       }
     }
 
@@ -128,6 +132,10 @@
         .comment {
           @extends #rule-below;
           padding: 10px;
+
+          footer {
+            color: $gray;
+          }
         }
       }
     }

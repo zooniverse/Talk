@@ -1,11 +1,24 @@
 <% { capitalize } = require 'lib/util' %>
 
-<div class="discussions">
-  <% for category, discussions of @boards: %>
-    <%- require('views/focus/discussion_list') category: category, name: "#{ capitalize category } Discussions", list: discussions %>
+<% for category, discussions of @boards: %>
+  <h3><%= capitalize category %></h3>
+
+  <div class="discussion-summaries">
+    <% for discussion in discussions: %>
+      <%- require('views/discussions/summary') discussion: discussion, followable: true %>
+    <% end %>
+    
+    <div class="new-discussion">
+      Want to start a new <%= @category %> discussion?
+      <button data-category="<%= @category %>">Create a New Post</button>
+    </div>
+  </div>
+<% end %>
+
+<% if @mentions.length > 0: %>
+  <h3>Discussions Mentioning This</h3>
+
+  <% for discussion in @mentions: %>
+    <%- require('views/discussions/summary') discussion: discussion, followable: true %>
   <% end %>
-  
-  <% if @mentions.length > 0: %>
-    <%- require('views/focus/discussion_list') name: 'Discussions Mentioning This', list: @mentions %>
-  <% end %>
-</div>
+<% end %>

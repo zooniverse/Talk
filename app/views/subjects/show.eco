@@ -1,6 +1,7 @@
 <header>
   <h2>
     Image <%= @zooniverse_id %>
+
     <span class="buttons">
       <%- require('views/follow_button') id: @zooniverse_id, type: 'subjects', follower_ids: @follower_ids %>
       <%- require('views/share_button') id: @zooniverse_id, type: 'subjects' %>
@@ -17,6 +18,7 @@
   </div>
   
   <%- require('views/focus/comment_form')() %>
+
   <%- require('views/focus/comments') comments: @discussion.comments, count: @discussion.comments_count %>
 </div>
 
@@ -34,4 +36,6 @@
   </div>
 </div>
 
-<%- require('views/focus/discussions') boards: @board_discussions, mentions: @mentions %>
+<div class="discussions">
+  <%- require('views/focus/discussions') boards: @board_discussions, mentions: @mentions %>
+</div>

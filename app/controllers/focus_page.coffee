@@ -8,7 +8,7 @@ class FocusPage extends Page
     '.comment-form': 'commentForm'
     '.comment-form button[type="submit"]': 'commentButton'
     '.comment-form [name="comment"]': 'commentBox'
-    '.comment-form .characters .count': 'characterCounter'
+    '.comment-form .characters-count': 'characterCounter'
     'ul.comments': 'commentList'
     '.load-more-comments': 'loadMoreComments'
   

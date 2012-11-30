@@ -4,10 +4,10 @@
   <form class="comment-form">
     <div class="field">
       <textarea name="comment" required="required"></textarea>
-      <label class="characters"><span class="count">140</span> characters</label>
     </div>
-    
+
     <div class="action">
+      <span class="characters"><span class="count">140</span> characters</span>
       <button type="submit">Comment</button>
     </div>
   </form>
