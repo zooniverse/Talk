@@ -1,28 +1,29 @@
-<ul class="subject-summaries">
+<% userLink = require 'views/user_link' %>
+<% moment = require 'moment/moment' %>
+
+<div class="subject-summaries">
   <% for subject in @subjects: %>
-    <li>
-      <div class="subject">
-        <a href="/#/subjects/<%= subject.zooniverse_id %>">
-          <img src="<%= subject.location.standard[0] %>">
-        </a>
+    <div class="subject-summary">
+      <a href="/#/subjects/<%= subject.zooniverse_id %>">
+        <img src="<%= subject.location.standard[0] %>" class="thin-frame" />
+      </a>
 
-        <div class="metadata">
-          <%- require('views/follow_button') id: subject.zooniverse_id, type: 'subjects', follower_ids: subject.follower_ids %>
-          
-          <div class="collections">
-            <button class="collect">Add to Collection</button>
-          </div>
+      <div class="metadata">
+        <!--<div class="collections">
+          <button class="collect">Add to Collection</button>
+        </div>-->
+        <!--<%- require('views/follow_button') id: subject.zooniverse_id, type: 'subjects', follower_ids: subject.follower_ids %>-->
 
-          <div class="stats">
-            <div class="comments"><%= subject.comments %> Comments</div>
-            <div class="discussions"><%= subject.discussions %> Discussions</div>
-          </div>
+        <div class="stats">
+          <span class="comments"><%= subject.comments %> Comments</span>,
+          <span class="discussions"><%= subject.discussions %> Discussions</span>
         </div>
-        
-        <footer>
-          <%- require('views/discussions/comment') comment: subject.last_comment %>
-        </footer>
       </div>
-    </li>
+      
+      <div class="last-comment">
+        <div class="content"><%= subject.last_comment.body %></div>
+        <div class="user">By <%- userLink subject.last_comment %></div>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>

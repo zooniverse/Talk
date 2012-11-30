@@ -14,7 +14,7 @@ h2 {
   @extends #rule-below;
   color: $blue;
   font-size: 14px;
-  margin: 20px 0 10px;
+  margin: 20px 0 20px;
   padding-bottom: 5px;
 }
 
@@ -41,8 +41,8 @@ h4 {
 
 hr {
   border: 0;
-  border-top: 1px solid rgba($black, 0.33);
-  border-bottom: 1px solid rgba($white, 0.67);
+  border-top: 1px solid rgba($black, 0.125);
+  border-bottom: 1px solid $white;
   margin: 20px 0;
 }
 
@@ -59,6 +59,12 @@ button {
   font: inherit;
   margin: 0;
   padding: 0;
+
+  &:disabled {
+    cursor: pointer;
+    opacity: 0.5;
+    pointer-events: none;
+  }
 }
 
 input,
@@ -68,6 +74,14 @@ textarea {
   box-shadow: 0 1px 0 $white;
   font: inherit;
   padding: 5px;
+}
+
+img {
+  &.thin-frame {
+    border: 1px solid $white;
+    box-shadow: 0 1px 2px -1px $black;
+    box-sizing: border-box;
+  }
 }
 
 a {

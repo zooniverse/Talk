@@ -14,7 +14,7 @@ class Index extends Page
     '.collections .list': 'collectionList'
   
   events:
-    'click .load-more': 'loadMore'
+    'click button[name="load-more"]': 'loadMore'
   
   constructor: ->
     @subjectsPage = 1
@@ -43,7 +43,7 @@ class Index extends Page
             @subjectList.append require('views/subjects/list')(subjects: results)
           
           if results.length < 3
-            target.remove()
+            target.attr disabled: true
       
       when 'discussions'
         Api.get "#{ @url() }/discussions?category=#{ category }&page=#{ @discussionPages[category] += 1 }&per_page=5", (results) =>
@@ -51,7 +51,7 @@ class Index extends Page
             @["#{ category }List"].append require('views/discussions/list')(category: category, discussions: results)
           
           if results.length < 5
-            target.remove()
+            target.attr disabled: true
       
       when 'collections'
         Api.get "#{ @url() }/collections?page=#{ @collectionsPage += 1 }&per_page=3", (results) =>
@@ -59,7 +59,7 @@ class Index extends Page
             @collectionList.append require('views/collections/list')(collections: results)
           
           if results.length < 3
-            target.remove()
+            target.attr disabled: true
 
 class Trending extends SubStack
   controllers:

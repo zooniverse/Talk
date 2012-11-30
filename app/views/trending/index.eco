@@ -14,8 +14,10 @@
         <div class="list">
           <%- require('views/subjects/list') subjects: @subjects %>
         </div>
-        
-        <a class="load-more" data-type="subjects">Load more</a>
+      </div>
+
+      <div class="load-more">
+        <button name="load-more" data-type="subjects">Load more</button>
       </div>
     </section>
    
@@ -32,11 +34,11 @@
           <div class="<%= category %> list">
             <%- require('views/discussions/list') category: category, discussions: @discussions[category] %>
           </div>
-          <a class="load-more" data-type="discussions" data-category="<%= category %>">Load more</a>
           
-          <% unless category is 'chat': %>
-            <hr />
-          <% end %>
+          <div class="load-more">
+            <button name="load-more" data-type="subjects" data-category="<%= category %>">Load more</button>
+          </div>
+
         <% end %>
       </div>
     </section>
@@ -50,7 +52,10 @@
           <%- require('views/collections/list') collections: @collections %>
         </div>
         
-        <a class="load-more" data-type="collections">Load more</a>
+      </div>
+
+      <div class="load-more">
+        <button name="load-more" data-type="collections">Load more</button>
       </div>
     </section>
   </div>

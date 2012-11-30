@@ -11,7 +11,9 @@
 
         <span class="subjects">
           <% for subject in collection.subjects: %>
-            <span class="subject"><img src="<%= subject.location.standard[0] %>" /></span>
+            <span class="subject">
+              <img src="<%= subject.location.standard[0] %>" class="thin-frame" />
+            </span>
           <% end %>
         </span>
       </a>
