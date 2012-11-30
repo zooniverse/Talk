@@ -1,0 +1,3 @@
+<div class="share share-link">
+  <button name="share" data-type="<%= @type %>" data-id="<%= @id %>">Share</button>
+</div>

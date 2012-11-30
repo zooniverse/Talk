@@ -1,4 +1,10 @@
-<h2>Image <%= @zooniverse_id %></h2>
+<header>
+  <h2>Image <%= @zooniverse_id %></h2>
+  <span class="buttons">
+    <%- require('views/follow_button') id: @zooniverse_id, type: 'subjects', follower_ids: @follower_ids %>
+    <%- require('views/share_button') id: @zooniverse_id, type: 'subjects' %>
+  </span>
+</header>
 
 <div class="focus">
   <img src="<%= @location['standard'][0] %>" class="main" />
