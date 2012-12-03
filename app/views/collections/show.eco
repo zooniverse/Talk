@@ -48,5 +48,11 @@
   <% end %>
 </div>
 
-<%- require('views/focus/tags') tags: @tags %>
-<%- require('views/focus/discussions') boards: @board_discussions, mentions: @mentions %>
+<div class="hashtags">
+  <h3>Hashtags</h3>
+  <%- require('views/hashtags/list') tags: @tags %>
+</div>
+
+<div class="discussions">
+  <%- require('views/focus/discussions') boards: @board_discussions, mentions: @mentions %>
+</div>
