@@ -2,5 +2,5 @@
   <% for collection in @collections: %>
     <li class="collection" data-id="<%= collection.zooniverse_id %>"><%= collection.title %></li>
   <% end %>
-  <li><a href="/#/collections/new/<%= @subject.zooniverse_id %>">Start a new collection</a></li>
+  <li><a href="#/collections/new/<%= @subject.zooniverse_id %>">Start a new collection</a></li>
 </ul>

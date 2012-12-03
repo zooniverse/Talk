@@ -121,7 +121,7 @@ class Edit extends New
       newValues.subject_ids_to_remove = @toBeRemoved
 
     Api.put @url(), newValues, (result) =>
-      @navigate "/collections/#{@id}"
+      @navigate "collections/#{@id}"
 
 
 class Collections extends SubStack

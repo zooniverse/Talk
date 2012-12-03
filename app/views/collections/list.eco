@@ -1,7 +1,7 @@
 <div class="collection-summaries">
   <% for collection in @collections: %>
     <div class="collection-summary">
-      <a href="/#/collections/<%= collection.zooniverse_id %>">
+      <a href="#/collections/<%= collection.zooniverse_id %>">
         <span class="info">
           <%= collection.title %> by <%= collection.user_name %> /
           <%= collection.subjects.length %> images

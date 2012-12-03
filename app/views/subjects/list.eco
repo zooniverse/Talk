@@ -4,7 +4,7 @@
 <div class="subject-summaries">
   <% for subject in @subjects: %>
     <div class="subject-summary">
-      <a href="/#/subjects/<%= subject.zooniverse_id %>">
+      <a href="#/subjects/<%= subject.zooniverse_id %>">
         <img src="<%= subject.location.standard[0] %>" class="thin-frame" />
       </a>
 

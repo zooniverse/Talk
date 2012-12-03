@@ -68,6 +68,6 @@ class FocusPage extends Page
   startDiscussion: (ev) =>
     ev.preventDefault()
     category = $(ev.target).data 'category'
-    @navigate "/#{ @constructor::focusType }", @focusId, category, 'discussions', 'new'
+    @navigate "#{ @constructor::focusType }", @focusId, category, 'discussions', 'new'
 
 module.exports = FocusPage
