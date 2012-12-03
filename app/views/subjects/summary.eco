@@ -27,7 +27,6 @@
     </div>
   <% end %>
 
-  <% console.log @ %>
   <% if @discussion?.comments: %>
     <%- require('views/focus/comments') comments: @discussion.comments, count: @discussion.comments_count %>
   <% end %>
