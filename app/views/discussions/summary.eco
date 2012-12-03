@@ -1,4 +1,5 @@
 <% userLink = require 'views/user_link' %>
+<% { focusCollectionFor, capitalize, singularize } = require('lib/util') %>
 <% moment = require 'moment/moment' %>
 
 <div class="discussion-summary">
@@ -8,8 +9,8 @@
     <div class="title">
       <% if @discussion.board: %>
         <a href="#/boards/<%= @discussion.board._id %>/discussions/<%= @discussion.zooniverse_id %>"><%= @discussion.title %></a>
-      <% else: %>
-        <a href="#/discussions/<%= @discussion.zooniverse_id %>"><%= @discussion.title %></a>
+      <% else if @discussion.focus: %>
+        <a href="#/<%= focusCollectionFor(@discussion.focus.type) %>/<%= @discussion.focus._id %>"><%= @discussion.focus.name %></a>
       <% end %>
     </div>
 
@@ -17,7 +18,7 @@
       <% if @discussion.board: %>
         Posted in <%= @discussion.board.name %>
       <% else if @discussion.focus: %>
-        Posted on <%= @discussion.focus.name %>
+        <%= singularize capitalize focusCollectionFor @discussion.focus.type %>
       <% end %>
     </div>
   </div>

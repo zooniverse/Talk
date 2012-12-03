@@ -1,3 +1,4 @@
+{ focusCollectionFor } = require('lib/util')
 Api = require 'zooniverse/lib/api'
 Focus = require 'models/focus'
 SubStack = require 'lib/sub_stack'
@@ -26,15 +27,7 @@ class DiscussionPage extends Page
   
   discussionFocus: ->
     return unless @data?.focus?.type
-    
-    if @data.focus.type is 'Board'
-      'boards'
-    else if /Subject$/.test(@data.focus.type)
-      'subjects'
-    else if /Group$/.test(@data.focus.type)
-      'groups'
-    else if @data.focus.type in ['SubjectSet', 'KeywordSet']
-      'collections'
+    focusCollectionFor @data.focus.type
   
   focusUrl: ->
     if @data?.focus
