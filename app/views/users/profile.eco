@@ -1,0 +1,68 @@
+<% { capitalize } = require 'lib/util' %>
+
+<div class="columns">
+  <div class="one-quarter column">
+    <!-- TO-DO: user messaging and mini-profile -->
+  </div>
+  
+  <div class="three-quarters column">
+    <section>
+      <h2>My Recent Subject Comments</h2>
+      <div class="subjects">
+        <div class="list">
+          <%- require('views/users/subject_comments') subjects: @subjects %>
+        </div>
+      </div>
+      
+      <div class="load-more">
+        <button name="load-more" data-type="subjects">Load more</button>
+      </div>
+    </section>
+    
+    <hr />
+    
+    <section>
+      <h2>My Recent Collection Comments</h2>
+      <div class="collections">
+        <div class="list">
+          <%- require('views/users/collection_comments') collections: @collections %>
+        </div>
+      </div>
+      
+      <div class="load-more">
+        <button name="load-more" data-type="collections">Load more</button>
+      </div>
+    </section>
+    
+    <hr />
+    
+    <section>
+      <h3>My Recent Discussions</h3>
+      <div class="discussions">
+        <div class="list">
+          <%- require('views/discussions/list') discussions: @boards %>
+        </div>
+        
+        <div class="load-more">
+          <button name="load-more" data-type="boards">Load more</button>
+        </div>
+      </div>
+    </section>
+    
+    <hr />
+    
+    <section>
+      <h2>My Collections</h2>
+      <div class="my_collections">
+        <div class="list">
+          <%- require('views/collections/list') collections: @my_collections %>
+        </div>
+        
+      </div>
+      
+      <div class="load-more">
+        <button name="load-more" data-type="my_collections">Load more</button>
+      </div>
+    </section>
+  </div>
+</div>

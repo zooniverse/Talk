@@ -44,6 +44,7 @@ Roles.fetch ->
         '/subjects': 'subjects'
         '/collections': 'collections'
         '/boards': 'boards'
+        '/profile': 'users'
         '/users': 'users'
         '/:focusType/:focusId/discussions': 'discussions'
       

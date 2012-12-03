@@ -1,0 +1,24 @@
+<% userLink = require 'views/user_link' %>
+<% moment = require 'moment/moment' %>
+
+<% for collection in @collections: %>
+  <div class="collection">
+    <a href="#/collections/<%= collection.focus.zooniverse_id %>">
+      <%= collection.title %>
+    </a> updated <%= moment(collection.updated_at).fromNow() %>
+    
+    <div class="subjects">
+      <% subjects = collection?.focus?.subjects or [] %>
+      <% for subject in subjects: %>
+        <div class="subject">
+          <img src="<%= subject.location.standard[0] %>" class="thin-frame" />
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="comment">
+      <div class="content"><%- collection.comment.body or '&nbsp;' %></div>
+      <div class="user">By <%- userLink(collection.comment) %><%= moment(collection.comment.created_at).fromNow() %></div>
+    </div>
+  </div>
+<% end %>
