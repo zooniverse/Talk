@@ -13,7 +13,7 @@ Config =
   
   production:
     project: 'serengeti'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'https://dev.zooniverse.org'
 
 env = if window.jasmine
   'test'
