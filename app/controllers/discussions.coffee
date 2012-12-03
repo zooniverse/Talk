@@ -87,7 +87,7 @@ class New extends DiscussionPage
   createDiscussion: (ev) =>
     ev.preventDefault()
     Api.post @url(), @form.serialize(), (result) =>
-      @navigate "#{ @focusType }", @focusId, 'discussions', result.zooniverse_id
+      @navigate '', @focusType, @focusId, 'discussions', result.zooniverse_id
 
 
 class Discussions extends SubStack
