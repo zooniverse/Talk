@@ -76,11 +76,11 @@ to_upload.each.with_index do |file, index|
   end
   
   puts "#{ '%2d' % (index + 1) } / #{ '%2d' % (total + 1) }: Uploading #{ prefix }/#{ file } as #{ content_type }"
-  # bucket.objects["#{ prefix }/#{ file }"].write file: file, acl: :public_read, content_type: content_type
+  bucket.objects["#{ prefix }/#{ file }"].write file: file, acl: :public_read, content_type: content_type
 end
 
 puts "#{ '%2d' % (total + 1) } / #{ '%2d' % (total + 1) }: Uploading #{ prefix }/index.html as text/html"
-# bucket.objects['#{ prefix }/index.html'].write file: 'index.html', acl: :public_read, content_type: 'text/html', cache_control: 'no-cache, must-revalidate'
+bucket.objects['#{ prefix }/index.html'].write file: 'index.html', acl: :public_read, content_type: 'text/html', cache_control: 'no-cache, must-revalidate'
 
 Dir.chdir working_directory
 `rm -rf build`
