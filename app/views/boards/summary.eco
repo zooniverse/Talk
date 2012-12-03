@@ -1,4 +1,5 @@
 <% userLink = require 'views/user_link' %>
+<% { pluralize } = require 'lib/util' %>
 <% moment = require 'moment/moment' %>
 
 <div class="board-summary">
@@ -9,7 +10,15 @@
   
   <div class="stats">
     <div class="counts">
-      <span class="discussions"><%= @discussions %> discussions, </span><span class="posts"><%= @comments %></span> posts, <span class="users"><%= @users %></span> participants
+      <span class="discussions"><%= @discussions %></span>
+      <%= pluralize @discussions, 'discussion', 'discussions' %>,
+      
+      <span class="posts"><%= @comments %></span>
+      <%= pluralize @comments, 'post', 'posts' %>,
+      
+      <span class="users"><%= @users %></span>
+      <%= pluralize @users, 'participant', 'participants' %>
+      
       <div class="last">
         <% if @last_updated and @last_comment: %>
           Last post <span class="last-modified"><%= moment(@last_comment.created_at).fromNow() %> by <%- userLink @last_comment %></span>

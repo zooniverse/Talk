@@ -1,10 +1,12 @@
+<% { pluralize } = require 'lib/util' %>
+
 <div class="collection-summaries">
   <% for collection in @collections: %>
     <div class="collection-summary">
       <a href="#/collections/<%= collection.zooniverse_id %>">
         <span class="info">
           <%= collection.title %> by <%= collection.user_name %> /
-          <%= collection.subjects.length %> images
+          <%= "#{ collection.subjects.length } #{ pluralize collection.subjects.length, 'image', 'images' }" %>
 
           <!--<%- require('views/follow_button') id: collection.zooniverse_id, type: 'subject_sets', follower_ids: collection.follower_ids %>-->
         </span>

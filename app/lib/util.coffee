@@ -14,3 +14,6 @@ module.exports =
   
   singularize: (word) ->
     word.replace /s$/, ''
+  
+  pluralize: (number, singular, plural) ->
+    if number > 1 or number is 0 then plural else singular
