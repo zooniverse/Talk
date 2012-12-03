@@ -1,10 +1,14 @@
 <% { capitalize } = require 'lib/util' %>
 
-<div class="new-discussion">
-  <%- require("views/#{ @focusType }/discussion_focus") @focus %>
+<div class="new-discussion columns">
+  <div class="one-quarter column">
+    <%- require("views/#{ @focusType }/discussion_focus") @focus %>
+  </div>
 
-  <div class="discussion">
-    <h1>Start a new <%= capitalize @category %> Discussion</h1>
-    <%- require('views/discussions/new_form') @ %>
+  <div class="three-quarters column">
+    <div class="discussion">
+      <h1>Start a new <%= capitalize @category %> Discussion</h1>
+      <%- require('views/discussions/new_form') @ %>
+    </div>
   </div>
 </div>
