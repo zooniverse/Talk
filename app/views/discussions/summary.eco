@@ -6,11 +6,19 @@
 
   <div class="info">
     <div class="title">
-      <a href="#/boards/<%= @discussion.board._id %>/discussions/<%= @discussion.zooniverse_id %>"><%= @discussion.title %></a>
+      <% if @discussion.board: %>
+        <a href="#/boards/<%= @discussion.board._id %>/discussions/<%= @discussion.zooniverse_id %>"><%= @discussion.title %></a>
+      <% else: %>
+        <a href="#/discussions/<%= @discussion.zooniverse_id %>"><%= @discussion.title %></a>
+      <% end %>
     </div>
 
     <div class="board-info">
-      <%= "Posted in #{ @discussion.board.name }" if @discussion.board %>
+      <% if @discussion.board: %>
+        Posted in <%= @discussion.board.name %>
+      <% else if @discussion.focus: %>
+        Posted on <%= @discussion.focus.name %>
+      <% end %>
     </div>
   </div>
   
