@@ -1,5 +1,14 @@
-// .board-summaries,
-// .discussion-summaries {}
+.board-summaries,
+.discussion-summaries {
+  .new-discussion {
+    overflow: hidden;
+
+    button {
+      @extends #standard-button;
+      float: right;
+    }
+  }
+}
 
 .board-summary,
 .discussion-summary {
@@ -55,14 +64,5 @@
     button {
       @extends #standard-button;
     }
-  }
-}
-
-.new-discussion {
-  overflow: hidden;
-
-  button {
-    @extends #standard-button;
-    float: right;
   }
 }
