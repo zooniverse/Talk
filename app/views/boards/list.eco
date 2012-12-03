@@ -14,13 +14,11 @@
     <% if @[category].length is 0: %>
       <div class="none">There are currently no <%= category %> boards.</div>
     <% else: %>
-      <ul class="previews">
+      <div class="board-summaries">
         <% for board in @[category]: %>
-          <li>
-            <%- require('views/boards/summary') board %>
-          </li>
+          <%- require('views/boards/summary') board %>
         <% end %>
-      </ul>
+      </div>
     <% end %>
     
     <% unless i is categories.length - 1: %>

@@ -1,7 +1,7 @@
 <% userLink = require 'views/user_link' %>
 <% moment = require 'moment/moment' %>
 
-<div class="board">
+<div class="board-summary">
   <div class="info">
     <div class="title"><a href="#/boards/<%= @zooniverse_id %>"><%= @title || '(Untitled board)' %></a></div>
     <div class="description"><%= @description %></div>
