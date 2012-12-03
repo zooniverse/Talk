@@ -2,6 +2,7 @@
 
 <div class="columns">
   <div class="one-quarter column">
+    <h2>Popular hashtags</h2>
     <%- require('views/hashtags/list') tags: @tags %>
   </div>
 
@@ -17,15 +18,16 @@
         <% if @discussions.length is 0: %>
           <div class="none">There are curently no discussions.</div>
         <% else: %>
-          <ul class="previews">
+          <div class="discussion-sumarries">
             <% for discussion in @featured: %>
               <% discussion.featured = true %>
-              <li><%- require('views/discussions/summary') discussion: discussion, followable: true %></li>
+              <%- require('views/discussions/summary') discussion: discussion, followable: true %>
             <% end %>
+
             <% for discussion in @discussions: %>
-              <li><%- require('views/discussions/summary') discussion: discussion, followable: true %></li>
+              <%- require('views/discussions/summary') discussion: discussion, followable: true %>
             <% end %>
-          </ul>
+          </div>
         <% end %>
       </div>
 

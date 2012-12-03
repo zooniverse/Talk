@@ -122,20 +122,13 @@
       }
     }
 
-    .comments {
-      margin: 0;
-      padding: 0;
+    .focus-comments {
+      .comment {
+        @extends #rule-below;
+        padding: 10px;
 
-      li {
-        list-style: none;
-
-        .comment {
-          @extends #rule-below;
-          padding: 10px;
-
-          footer {
-            color: $gray;
-          }
+        footer {
+          color: $gray;
         }
       }
     }

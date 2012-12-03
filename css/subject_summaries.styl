@@ -1,49 +1,49 @@
 .subject-summaries {
   overflow: hidden;
   margin: 0 -20px;
+}
 
-  .subject-summary {
-    @extends #rule-left;
-    box-sizing: border-box;
-    float: left;
-    font-size: 11px;
-    list-style: none;
-    padding: 0 20px;
-    width: 20%;
+.subject-summary {
+  @extends #rule-left;
+  box-sizing: border-box;
+  float: left;
+  font-size: 11px;
+  list-style: none;
+  padding: 0 20px;
+  width: 20%;
 
-    &:first-child:before {
-      display: none;
-    }
+  &:first-child:before {
+    display: none;
+  }
 
-    > a {
-      display: block;
+  > a {
+    display: block;
 
-      img {
-        width: 100%;
-      }
-    }
-
-    .metadata {
-      @extends #rule-below;
-      display: table;
-      line-height: 1.25;
-      margin: 5px 0;
-      padding-bottom: 5px;
-      text-align: center;
+    img {
       width: 100%;
-      white-space: nowrap;
+    }
+  }
 
-      .collections {
-        button {
-          @extends #standard-button;
-        }
+  .metadata {
+    @extends #rule-below;
+    display: table;
+    line-height: 1.25;
+    margin: 5px 0;
+    padding-bottom: 5px;
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+
+    .collections {
+      button {
+        @extends #standard-button;
       }
     }
+  }
 
-    .last-comment {
-      .user {
-        color: $gray;
-      }
+  .last-comment {
+    .user {
+      color: $gray;
     }
   }
 }

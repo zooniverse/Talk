@@ -1,8 +1,18 @@
-.discussion-topic {
+.discussion-focus {
+  img {
+    width: 100%;
+  }
+}
+
+.discussion {
   overflow: hidden;
 
   .follow {
     float: right;
+
+    button {
+      @extends #standard-button;
+    }
   }
 
   .post {

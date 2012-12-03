@@ -1,6 +1,9 @@
 <div class="featured">
-  <h2>Featured discussions</h2>
-  <% for discussion in @featured: %>
-    <%- require('views/discussions/summary') discussion: discussion, followable: false %>
+  <% if @featured.length is 0: %>
+    <div class="none">No featured discussions</div>
+  <% else: %>
+    <% for discussion in @featured: %>
+      <%- require('views/discussions/summary') discussion: discussion, followable: false %>
+    <% end %>
   <% end %>
 </div>

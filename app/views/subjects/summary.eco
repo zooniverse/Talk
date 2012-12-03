@@ -1,0 +1,34 @@
+<% userLink = require 'views/user_link' %>
+<% moment = require 'moment/moment' %>
+
+<div class="subject-summary">
+  <a href="/#/subjects/<%= @zooniverse_id %>">
+    <img src="<%= @location.standard[0] %>" class="thin-frame" />
+  </a>
+
+  <div class="metadata">
+    <!--<div class="collections">
+      <button class="collect">Add to Collection</button>
+    </div>-->
+    <!--<%- require('views/follow_button') id: @zooniverse_id, type: 'subjects', follower_ids: @follower_ids %>-->
+
+    <% if @comments? and @discussions?: %>
+      <div class="stats">
+        <span class="comments"><%= @comments %> Comments</span>,
+        <span class="discussions"><%= @discussions %> Discussions</span>
+      </div>
+    <% end %>
+  </div>
+  
+  <% if @last_comment: %>
+    <div class="last-comment">
+      <div class="content"><%- @last_comment.body or '&nbsp;' %></div>
+      <div class="user">By <%- userLink(@last_comment) %></div>
+    </div>
+  <% end %>
+
+  <% console.log @ %>
+  <% if @discussion?.comments: %>
+    <%- require('views/focus/comments') comments: @discussion.comments, count: @discussion.comments_count %>
+  <% end %>
+</div>

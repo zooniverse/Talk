@@ -1,29 +1,5 @@
-<% userLink = require 'views/user_link' %>
-<% moment = require 'moment/moment' %>
-
 <div class="subject-summaries">
   <% for subject in @subjects: %>
-    <div class="subject-summary">
-      <a href="#/subjects/<%= subject.zooniverse_id %>">
-        <img src="<%= subject.location.standard[0] %>" class="thin-frame" />
-      </a>
-
-      <div class="metadata">
-        <!--<div class="collections">
-          <button class="collect">Add to Collection</button>
-        </div>-->
-        <!--<%- require('views/follow_button') id: subject.zooniverse_id, type: 'subjects', follower_ids: subject.follower_ids %>-->
-
-        <div class="stats">
-          <span class="comments"><%= subject.comments %> Comments</span>,
-          <span class="discussions"><%= subject.discussions %> Discussions</span>
-        </div>
-      </div>
-      
-      <div class="last-comment">
-        <div class="content"><%- subject?.last_comment?.body or '&nbsp;' %></div>
-        <div class="user"><%- if subject.last_comment then "By #{ userLink(subject.last_comment) }" else '&nbsp;' %></div>
-      </div>
-    </div>
+    <%- require('views/subjects/summary') subject %>
   <% end %>
 </div>
