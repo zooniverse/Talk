@@ -9,10 +9,15 @@ class AppHeader extends Controller
 
   events:
     'submit form[name="sign-in"]': 'onSignInSubmit'
+    'submit form[name="search"]': 'onSubmitSearch'
+    'click .search.button': 'onClickSearchButton'
 
   elements:
     '.sign-in': 'signInContainer'
     '.error': 'errorContainer'
+    '.search.button': 'searchButton'
+    '.search.dropdown': 'searchDropdown'
+    'form[name="search"] input[name="query"]': 'searchQueryInput'
 
   constructor: ->
     super
@@ -21,6 +26,8 @@ class AppHeader extends Controller
     User.bind 'sign-in', @onUserSignIn
     User.bind 'sign-in-error', @onSignInError
     @onUserSignIn() if User.current
+
+    $(document).on 'click', @onDocumentClick
 
   onUserSignIn: =>
     signedIn = User.current?
@@ -41,5 +48,20 @@ class AppHeader extends Controller
     username = @el.find('input[name="username"]').val()
     password = @el.find('input[name="password"]').val()
     User.login {username, password} if username and password
+
+  onClickSearchButton: ->
+    @searchDropdown.toggle()
+
+  onSubmitSearch: (e) ->
+    e.preventDefault();
+    @searchDropdown.hide()
+    location.hash = "/search/#{@searchQueryInput.val()}"
+
+  onDocumentClick: ({target}) =>
+    isDropdown = @searchDropdown.is target
+    isButton = @searchButton.is target
+    inDropdown = @searchDropdown.has(target).length isnt 0
+    inButton = @searchButton.has(target).length isnt 0
+    @searchDropdown.hide() unless isDropdown or isButton or inButton or inDropdown
 
 module.exports = AppHeader

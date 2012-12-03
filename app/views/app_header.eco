@@ -20,7 +20,15 @@
     <nav>
       <ul>
         <%- '<li><a href="#/profile">Profile</a></li>' if user %>
-        <li><a href="#/search">Search</a></li>
+        <li>
+          <span class="search button">Search</span>
+          <div class="right search dropdown" style="display: none;">
+            <form name="search">
+              <div class="field"><input type="text" name="query" /></div>
+              <div class="action"><button type="submit">Search</button></div>
+            </form>
+          </div>
+        </li>
       </ul>
     </nav>
   </div>

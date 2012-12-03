@@ -44,18 +44,21 @@
     display: inline-block;
     vertical-align: bottom;
 
-    ul {
+    > ul {
       margin: 0;
       padding: 0;
 
-      li {
+      > li {
         display: inline-block;
         list-style: none;
+        position:relative;
 
-        a {
+        > a,
+        > .button {
           border-bottom: 3px solid transparent;
           box-sizing: border-box;
           color: inherit;
+          cursor: pointer;
           display: block;
           height: 100%;
           margin: 0 5px;
@@ -68,6 +71,36 @@
 
           &.active {
             border-bottom-color: $blue;
+          }
+        }
+
+        .dropdown {
+          background: $black;
+          position: absolute;
+          line-height: 1.4;
+          top: 100%;
+          white-space: nowrap;
+          padding: 0 10px;
+          z-index: 1;
+
+          &.right {
+            right: 0;
+          }
+
+          &.left {
+            left: 0;
+          }
+
+          &.search {
+            width: 200px;
+
+            .action {
+              text-align: center;
+
+              button {
+                @extends #bold-button;
+              }
+            }
           }
         }
       }
