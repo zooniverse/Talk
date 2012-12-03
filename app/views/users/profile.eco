@@ -6,62 +6,61 @@
   </div>
   
   <div class="three-quarters column">
-    <section>
+    <section class="subjects">
       <h2>My Recent Subject Comments</h2>
-      <div class="subjects">
-        <div class="list">
-          <%- require('views/users/subject_comments') subjects: @subjects %>
-        </div>
+      <div class="list">
+        <%- require('views/users/subject_comments') subjects: @subjects %>
       </div>
       
       <div class="load-more">
-        <button name="load-more" data-type="subjects">Load more</button>
+        <% if @subjects.length is @sections.subjects.perPage: %>
+          <button name="load-more" data-type="subjects">Load more</button>
+        <% end %>
       </div>
     </section>
     
     <hr />
     
-    <section>
+    <section class="collections">
       <h2>My Recent Collection Comments</h2>
-      <div class="collections">
-        <div class="list">
-          <%- require('views/users/collection_comments') collections: @collections %>
-        </div>
+      <div class="list">
+        <%- require('views/users/collection_comments') collections: @collections %>
       </div>
       
       <div class="load-more">
-        <button name="load-more" data-type="collections">Load more</button>
+        <% if @collections.length is @sections.collections.perPage: %>
+          <button name="load-more" data-type="collections">Load more</button>
+        <% end %>
       </div>
     </section>
     
     <hr />
     
-    <section>
+    <section class="boards">
       <h3>My Recent Discussions</h3>
-      <div class="discussions">
-        <div class="list">
-          <%- require('views/discussions/list') discussions: @boards %>
-        </div>
-        
-        <div class="load-more">
+      <div class="list">
+        <%- require('views/discussions/list') discussions: @boards %>
+      </div>
+      
+      <div class="load-more">
+        <% if @boards.length is @sections.boards.perPage: %>
           <button name="load-more" data-type="boards">Load more</button>
-        </div>
+        <% end %>
       </div>
     </section>
     
     <hr />
     
-    <section>
+    <section class="my_collections">
       <h2>My Collections</h2>
-      <div class="my_collections">
-        <div class="list">
-          <%- require('views/collections/list') collections: @my_collections %>
-        </div>
-        
+      <div class="list">
+        <%- require('views/collections/list') collections: @my_collections %>
       </div>
       
       <div class="load-more">
-        <button name="load-more" data-type="my_collections">Load more</button>
+        <% if @my_collections.length is @sections.my_collections.perPage: %>
+          <button name="load-more" data-type="my_collections">Load more</button>
+        <% end %>
       </div>
     </section>
   </div>

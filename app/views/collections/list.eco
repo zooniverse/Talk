@@ -2,17 +2,18 @@
 
 <div class="collection-summaries">
   <% for collection in @collections: %>
+    <% subjects = collection?.subjects or [] %>
     <div class="collection-summary">
       <a href="#/collections/<%= collection.zooniverse_id %>">
         <span class="info">
           <%= collection.title %> by <%= collection.user_name %> /
-          <%= "#{ collection.subjects.length } #{ pluralize collection.subjects.length, 'image', 'images' }" %>
+          <%= "#{ subjects.length } #{ pluralize subjects.length, 'image', 'images' }" %>
 
           <!--<%- require('views/follow_button') id: collection.zooniverse_id, type: 'subject_sets', follower_ids: collection.follower_ids %>-->
         </span>
 
         <span class="subjects">
-          <% for subject in collection.subjects[0...5]: %>
+          <% for subject in subjects[0...5]: %>
             <span class="subject">
               <img src="<%= subject.location.standard[0] %>" class="thin-frame" />
             </span>
