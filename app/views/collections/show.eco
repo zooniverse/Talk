@@ -3,7 +3,7 @@
 
 <header>
   <h2>
-    Collection <%= @title %> by <%- userLink @ %>
+    Collection <%= @title %> <%- userLink link: @, avatar: true %>
     <% if @user_id is User.current?.id: %>
       <span class="owned">(<a href="#/collections/<%= @zooniverse_id %>/edit">Edit</a>)</span>
     <% end %>

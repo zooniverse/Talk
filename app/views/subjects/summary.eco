@@ -23,7 +23,7 @@
   <% if @last_comment: %>
     <div class="last-comment">
       <div class="content"><%- @last_comment.body or '&nbsp;' %></div>
-      <div class="user">By <%- userLink(@last_comment) %></div>
+      <%- userLink link: @last_comment, avatar: true %>
     </div>
   <% end %>
 

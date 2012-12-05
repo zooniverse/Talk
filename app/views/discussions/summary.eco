@@ -31,7 +31,7 @@
     
     <div class="last">
       <% if @discussion.last_comment: %>
-        Last post <span class="last-modified"><%= moment(@discussion.last_updated).fromNow() %> by <%- userLink @discussion.last_comment %></span>
+        Last post <span class="last-modified"><%= moment(@discussion.last_updated).fromNow() %> <%- userLink link: @discussion.last_comment %></span>
       <% else: %>
         <span class="last-modified"><em>No posts yet</em></span>
       <% end %>

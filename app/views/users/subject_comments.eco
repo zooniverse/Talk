@@ -9,7 +9,7 @@
     
     <div class="comment">
       <div class="content"><%- subject.comment.body or '&nbsp;' %></div>
-      <div class="user">By <%- userLink(subject.comment) %><%= moment(subject.comment.created_at).fromNow() %></div>
+      <%- userLink link: subject.comment %><%= moment(subject.comment.created_at).fromNow() %>
     </div>
   </div>
 <% end %>

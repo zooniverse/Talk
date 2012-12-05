@@ -3,7 +3,7 @@
 
 <div class="post">
   <header>
-    <%- userLink @comment %>
+    <%- userLink link: @comment, avatar: true %>
   </header>
   
   <div class="content">

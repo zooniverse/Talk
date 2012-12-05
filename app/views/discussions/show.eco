@@ -30,7 +30,7 @@
           <div class="post">
             <header>
               <div class="title"><%= @title %></div>
-              Started <%= moment(@created_at).fromNow() %> by <%- userLink @ %>
+              Started <%= moment(@created_at).fromNow() %> <%- userLink link: @ %>
             </header>
           </div>
           

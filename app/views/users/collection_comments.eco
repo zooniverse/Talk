@@ -18,7 +18,7 @@
     
     <div class="comment">
       <div class="content"><%- collection.comment.body or '&nbsp;' %></div>
-      <div class="user">By <%- userLink(collection.comment) %><%= moment(collection.comment.created_at).fromNow() %></div>
+      <%- userLink link: collection.comment %><%= moment(collection.comment.created_at).fromNow() %>
     </div>
   </div>
 <% end %>

@@ -4,7 +4,7 @@
 <div class="comment">
   <div class="content"><%= @comment.body %></div>
   <footer>
-    <%- userLink @comment %>
+    <%- userLink link: @comment %>
     <span class="right"><%= moment(@comment.created_at).fromNow() %></span>
   </footer>
 </div>
