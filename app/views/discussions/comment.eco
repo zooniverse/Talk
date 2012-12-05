@@ -1,8 +1,8 @@
 <% userLink = require 'views/user_link' %>
 <% moment = require 'moment/moment' %>
-<% role = require('models/roles').roles[@comment.user_name] %>
+<% roles = require('models/roles').roles[@comment.user_name] %>
 
-<div class="post<%= " #{ role }" if role %>">
+<div class="post<%= " #{ roles.sort().join(' ') }" if roles %>">
   <header>
     <%- userLink link: @comment, avatar: true %>
   </header>

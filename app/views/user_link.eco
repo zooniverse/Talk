@@ -1,4 +1,4 @@
-<% role = require('models/roles').roles[@link.user_name] %>
+<% roles = require('models/roles').roles[@link.user_name] %>
 
 <div class="user">
   <% if @avatar: %>
@@ -16,8 +16,8 @@
   <a href="#/users/<%= @link.user_id %>" class="user">
     <%= @link.user_name %>
     
-    <% if role: %>
-      <span class="<%= role %> role"><%= role %></span>
+    <% if roles: %>
+      <span class="<%= roles.sort().join(' ') %> role"><%= roles.sort().join(', ') %></span>
     <% end %>
   </a>
 </div>
