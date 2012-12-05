@@ -62,59 +62,12 @@
   }
 
   .focus {
+    position: relative;
     float: left;
     width: 33%;
 
     .main {
       max-width: 100%;
-    }
-
-    .add-to-collection {
-      margin: 10px 0;
-      position: relative;
-
-      .collect-this {
-        @extends #standard-button;
-      }
-
-      .collection-list {
-        background: $white;
-        border-radius: 5px;
-        box-shadow: 0 3px 5px -3px $black;
-        left: 0;
-        position: absolute;
-        top: 100%;
-        z-index: 5;
-
-        ul {
-          margin: 0;
-          padding: 0;
-
-          li {
-            @extends #rule-below;
-            cursor: pointer;
-            list-style: none;
-            padding: 3px 10px;
-
-            &:last-child:after {
-              display: none;
-            }
-
-            &:hover {
-              background: $blue;
-              color: $white;
-            }
-
-            a {
-              color: inherit;
-
-              &:hover {
-                text-decoration: none;
-              }
-            }
-          }
-        }
-      }
     }
 
     .create-comment {

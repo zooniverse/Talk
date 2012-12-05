@@ -7,11 +7,12 @@ class Profile extends Page
   className: "#{Page::className} user"
   template: require('views/users/profile')
   
-  events:
+  events: $.extend
     'click .subjects .load-more button': 'loadMore'
     'click .collections .load-more button': 'loadMore'
     'click .boards .load-more button': 'loadMore'
     'click .my_collections .load-more button': 'loadMore'
+    Page::events
   
   constructor: ->
     @sections =

@@ -4,19 +4,21 @@ Page = require 'controllers/page'
 
 class FocusPage extends Page
   className: "#{Page::className} focus"
-  elements:
+  elements: $.extend
     '.comment-form': 'commentForm'
     '.comment-form button[type="submit"]': 'commentButton'
     '.comment-form [name="comment"]': 'commentBox'
     '.comment-form .characters-count': 'characterCounter'
     'ul.comments': 'commentList'
     '.load-more-comments': 'loadMoreComments'
+    Page::elements
   
-  events:
+  events: $.extend
     'submit .comment-form': 'submitComment'
     'click .new-discussion button': 'startDiscussion'
     'keyup .comment-form textarea': 'updateCounter'
     'click .load-more-comments': 'paginateComments'
+    Page::events
   
   activate: (params) ->
     return unless params
@@ -27,9 +29,6 @@ class FocusPage extends Page
   
   url: ->
     "#{ super }/#{ @constructor::focusType }/#{ @focusId }"
-  
-  rootUrl: ->
-    _super::url()
   
   reload: (callback) ->
     if @fetchOnLoad

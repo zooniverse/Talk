@@ -7,10 +7,36 @@
   @extends #rule-left;
   box-sizing: border-box;
   float: left;
+  position: relative;
   font-size: 11px;
   list-style: none;
   padding: 0 20px;
   width: 20%;
+  
+  .add-to-collection {
+    top: 5px;
+    left: 25px;
+    
+    .collect-this {
+      vendor('transition-property', opacity);
+      vendor('transition-duration', 300ms);
+      opacity: 0;
+    }
+    
+    .collection-list {
+      opacity: 0;
+    }
+  }
+  
+  &:hover .add-to-collection {
+    .collect-this {
+      opacity: 0.6;
+    }
+    
+    .collection-list {
+      opacity: 1.0;
+    }
+  }
 
   &:first-child:before {
     display: none;

@@ -41,12 +41,14 @@ class DiscussionPage extends Page
 class Show extends DiscussionPage
   template: require('views/discussions/show')
   
-  elements:
+  elements: $.extend
     'form.new-comment': 'commentForm'
     'ul.posts': 'commentList'
+    DiscussionPage::elements
   
-  events:
+  events: $.extend
     'submit .new-comment': 'createComment'
+    DiscussionPage::events
   
   activate: (params) ->
     return unless params
@@ -70,11 +72,13 @@ class New extends DiscussionPage
   template: require('views/discussions/new')
   fetchOnLoad: false
   
-  elements:
+  elements: $.extend
     'form.new-discussion': 'form'
+    DiscussionPage::elements
   
-  events:
+  events: $.extend
     'submit form.new-discussion': 'createDiscussion'
+    DiscussionPage::events
   
   url: ->
     "#{ super }/#{ @focusType }/#{ @focusId }/discussions"

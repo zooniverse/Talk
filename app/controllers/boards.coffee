@@ -5,11 +5,13 @@ Page = require 'controllers/page'
 class Show extends Page
   template: require('views/boards/show')
   
-  elements:
+  elements: $.extend
     'form.new-discussion': 'discussionForm'
+    Page::elements
   
-  events:
+  events: $.extend
     'submit .new-discussion': 'createDiscussion'
+    Page::events
   
   activate: (params) ->
     return unless params
@@ -38,8 +40,9 @@ class Show extends Page
 class Index extends Page
   template: require('views/boards/index')
   
-  events:
+  events: $.extend
     'click button[name="new-board"]': 'newBoard'
+    Page::events
   
   url: ->
     "#{ super }/boards"
@@ -53,11 +56,13 @@ class New extends Page
   template: require('views/boards/new')
   fetchOnLoad: false
   
-  elements:
+  elements: $.extend
     'form.new-board': 'form'
+    Page::elements
   
-  events:
+  events: $.extend
     'submit form.new-board': 'createBoard'
+    Page::events
   
   url: ->
     "#{ super }/boards"

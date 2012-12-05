@@ -5,11 +5,13 @@
   <a href="/#/subjects/<%= @zooniverse_id %>">
     <img src="<%= @location.standard[0] %>" class="thin-frame" />
   </a>
-
+  
+  <div class="add-to-collection">
+    <button class="collect-this" data-id="<%= @zooniverse_id %>">Collect</button>
+    <div class="collection-list"></div>
+  </div>
+  
   <div class="metadata">
-    <!--<div class="collections">
-      <button class="collect">Add to Collection</button>
-    </div>-->
     <!--<%- require('views/follow_button') id: @zooniverse_id, type: 'subjects', follower_ids: @follower_ids %>-->
 
     <% if @comments? and @discussions?: %>

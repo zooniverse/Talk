@@ -6,15 +6,17 @@ class Index extends Page
   className: "#{Page::className} trending"
   template: require('views/trending/index')
   
-  elements:
+  elements: $.extend
     '.subjects .list': 'subjectList'
     '.discussions .help.list': 'helpList'
     '.discussions .science.list': 'scienceList'
     '.discussions .chat.list': 'chatList'
     '.collections .list': 'collectionList'
+    Page::elements
   
-  events:
+  events: $.extend
     'click button[name="load-more"]': 'loadMore'
+    Page::events
   
   constructor: ->
     @subjectsPage = 1

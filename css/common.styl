@@ -119,3 +119,55 @@ $blue = hsl(200, 100, 60);
     &.three-quarters {width: 75%;}
   }
 }
+
+.add-to-collection {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  .collect-this {
+    @extends #standard-button;
+    opacity: 0.6;
+  }
+
+  .collection-list {
+    background: $white;
+    border-radius: 5px;
+    box-shadow: 0 3px 5px -3px $black;
+    left: 0;
+    position: absolute;
+    top: 100%;
+    z-index: 5;
+    min-width: 150px;
+    max-width: 300px;
+
+    ul {
+      margin: 0;
+      padding: 0;
+
+      li {
+        @extends #rule-below;
+        cursor: pointer;
+        list-style: none;
+        padding: 3px 10px;
+
+        &:last-child:after {
+          display: none;
+        }
+
+        &:hover {
+          background: $blue;
+          color: $white;
+        }
+
+        a {
+          color: inherit;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}

@@ -16,16 +16,18 @@ class New extends Page
   template: require('views/collections/new')
   fetchOnLoad: false
   
-  elements:
+  elements: $.extend
     'form.new-collection': 'form'
     'form.new-collection select[name="type"]': 'typeSelector'
     'form.new-collection .keywords': 'keywordList'
+    Page::elements
   
-  events:
+  events: $.extend
     'submit form.new-collection': 'onSubmit'
     'change form.new-collection select[name="type"]': 'changeType'
     'click button[name="remove-keyword"]': 'removeKeyword'
     'click button[name="add-keyword"]': 'addKeyword'
+    Page::events
   
   url: ->
     "#{ super }/collections"
