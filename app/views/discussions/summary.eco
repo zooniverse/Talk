@@ -3,7 +3,7 @@
 <% moment = require 'moment/moment' %>
 
 <div class="discussion-summary">
-  <%- '<div class="pinned">‡</div>' if @discussion.featured %>
+  <%- '<div class="pinned"></div>' if @discussion.featured %>
 
   <div class="info">
     <div class="title">
