@@ -1,5 +1,6 @@
 <% tags = @tags.map (tag) -> tag._id %>
 
+<h2>Popular hashtags</h2>
 <% if tags.length is 0: %>
   <div class="none">No hashtags</div>
 <% else: %>

@@ -2,7 +2,6 @@
 
 <div class="columns">
   <div class="one-quarter column">
-    <h2>Popular hashtags</h2>
     <%- require('views/hashtags/list') tags: @tags %>
   </div>
 
