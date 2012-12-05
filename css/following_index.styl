@@ -1,0 +1,30 @@
+.following.page {
+  .subject-summaries {
+    .subject-summary {
+      display: table;
+      overflow: hidden;
+      width: 50%;
+
+      &:before {
+        display: none;
+      }
+
+      > a {
+        display: table-cell;
+        vertical-align: top;
+        width: 33%;
+      }
+
+      .metadata {
+        display: none;
+      }
+
+      .last-comment {
+        display: table-cell;
+        padding: 0 10px;
+        vertical-align: top;
+        width: 67%;
+      }
+    }
+  }
+}

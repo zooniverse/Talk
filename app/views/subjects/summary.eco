@@ -3,7 +3,7 @@
 
 <div class="subject-summary">
   <a href="/#/subjects/<%= @zooniverse_id %>">
-    <img src="<%= @location.standard[0] %>" class="thin-frame" />
+    <img src="<%= @location.standard[0] %>" class="thin-frame preview" />
   </a>
   
   <div class="add-to-collection">
