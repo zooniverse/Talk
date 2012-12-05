@@ -20,6 +20,14 @@ User = require 'zooniverse/lib/models/user'
 User.project = project
 
 app = {}
+
+activateMatchingHashLinks = ->
+  $('a.active').removeClass 'active'
+  setTimeout ->
+    segments = location.hash.split '/'
+    hashes = (segments[..i].join '/' for _, i in segments)
+    $("a[href='#{hash}']").addClass 'active' for hash in hashes
+
 Roles.fetch ->
   User.fetch().onSuccess ->
     app.el = $('#app')
@@ -53,15 +61,9 @@ Roles.fetch ->
     Spine.Route.setup()
     app.stack.el.appendTo app.el
 
-activateMatchingHashLinks = ->
-  $('a.active').removeClass 'active'
-  setTimeout ->
-    segments = location.hash.split '/'
-    hashes = (segments[..i].join '/' for _, i in segments)
-    $("a[href='#{hash}']").addClass 'active' for hash in hashes
+    setTimeout activateMatchingHashLinks
 
 $(window).on 'hashchange', activateMatchingHashLinks
-setTimeout activateMatchingHashLinks
 
 $(window).on 'click', '.follow-link button', (event) ->
   event.preventDefault()
