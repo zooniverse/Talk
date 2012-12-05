@@ -1,5 +1,5 @@
 <% userLink = require 'views/user_link' %>
-<% { focusCollectionFor, capitalize, singularize } = require('lib/util') %>
+<% { focusCollectionFor, capitalize, singularize, pluralize } = require('lib/util') %>
 <% moment = require 'moment/moment' %>
 
 <div class="discussion-summary">
@@ -25,8 +25,8 @@
   
   <div class="stats">
     <div class="counts">
-      <span class="posts"><%= @discussion.comments %></span> posts /
-      <span class="users"><%= @discussion.users %></span> participants
+      <span class="posts"><%= @discussion.comments %></span> <%= pluralize @discussion.comments, 'post', 'posts' %> /
+      <span class="users"><%= @discussion.users %></span> <%= pluralize @discussion.comments, 'participants', 'participant' %>
     </div>
     
     <div class="last">
