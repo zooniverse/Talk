@@ -42,11 +42,19 @@
     display: none;
   }
 
-  > a {
-    display: block;
+  > .preview {
+    a {
+      display: block;
 
-    img {
-      width: 100%;
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  > .summary {
+    .title {
+      display: none;
     }
   }
 
@@ -58,13 +66,6 @@
     padding-bottom: 5px;
     text-align: center;
     width: 100%;
-    white-space: nowrap;
-
-    .collections {
-      button {
-        @extends #standard-button;
-      }
-    }
   }
 
   .last-comment {

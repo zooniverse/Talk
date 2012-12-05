@@ -2,34 +2,42 @@
 <% moment = require 'moment/moment' %>
 
 <div class="subject-summary">
-  <a href="/#/subjects/<%= @zooniverse_id %>">
-    <img src="<%= @location.standard[0] %>" class="thin-frame preview" />
-  </a>
-  
-  <div class="add-to-collection">
-    <button class="collect-this" data-id="<%= @zooniverse_id %>">Collect</button>
-    <div class="collection-list"></div>
-  </div>
-  
-  <div class="metadata">
-    <!--<%- require('views/follow_button') id: @zooniverse_id, type: 'subjects', follower_ids: @follower_ids %>-->
+  <div class="preview">
+    <a href="/#/subjects/<%= @zooniverse_id %>">
+      <img src="<%= @location.standard[0] %>" class="thin-frame preview" />
+    </a>
 
-    <% if @comments? and @discussions?: %>
-      <div class="stats">
-        <span class="comments"><%= @comments %> Comments</span>,
-        <span class="discussions"><%= @discussions %> Discussions</span>
+    <div class="add-to-collection">
+      <button class="collect-this" data-id="<%= @zooniverse_id %>">Collect</button>
+      <div class="collection-list"></div>
+    </div>
+  </div>
+
+  <div class="summary">
+    <div class="title">
+      <a href="/#/subjects/<%= @zooniverse_id %>"><%= @zooniverse_id %></a>
+    </div>
+
+    <div class="metadata">
+      <!--<%- require('views/follow_button') id: @zooniverse_id, type: 'subjects', follower_ids: @follower_ids %>-->
+
+      <% if @comments? and @discussions?: %>
+        <div class="stats">
+          <span class="comments"><%= @comments %> Comments</span>,
+          <span class="discussions"><%= @discussions %> Discussions</span>
+        </div>
+      <% end %>
+    </div>
+    
+    <% if @last_comment: %>
+      <div class="last-comment">
+        <div class="content"><%- @last_comment.body or '&nbsp;' %></div>
+        <%- userLink link: @last_comment, avatar: true %>
       </div>
     <% end %>
-  </div>
-  
-  <% if @last_comment: %>
-    <div class="last-comment">
-      <div class="content"><%- @last_comment.body or '&nbsp;' %></div>
-      <%- userLink link: @last_comment, avatar: true %>
-    </div>
-  <% end %>
 
-  <% if @discussion?.comments: %>
-    <%- require('views/focus/comments') comments: @discussion.comments, count: @discussion.comments_count %>
-  <% end %>
+    <% if @discussion?.comments: %>
+      <%- require('views/focus/comments') comments: @discussion.comments, count: @discussion.comments_count %>
+    <% end %>
+  </div>
 </div>
