@@ -1,5 +1,9 @@
 <a href="#/users/<%= @user_id %>" class="user">
-  <!--<img src="<%= @user_avatar || '//placehold.it/20.png' %>" class="avatar" />-->
+  <% if @user_zooniverse_id: %>
+    <img src="//zooniverse-avatars.s3.amazonaws.com/ouroboros/<%= @user_zooniverse_id %>" class="avatar" onerror="window.defaultAvatar(this)" />
+  <% else: %>
+    <%- require('views/users/default_avatar')() %>
+  <% end %>
 
   <%= @user_name %>
 

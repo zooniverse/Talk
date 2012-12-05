@@ -4,6 +4,7 @@ Page = require 'controllers/page'
 
 # TO-DO: refactor this to share code with Trending
 class Index extends Page
+  className: "#{Page::className} following"
   template: require('views/following/index')
   
   elements:

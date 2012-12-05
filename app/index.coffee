@@ -80,5 +80,8 @@ $(window).on 'click', '.follow-link button', (event) ->
     followed = action is 'follow'
     link.closest('.follow').replaceWith require('views/follow_button')(id: id, type: type, followed: followed)
 
+window.defaultAvatar = (el) ->
+  $(el).replaceWith require('views/users/default_avatar')()
+
 
 module.exports = app

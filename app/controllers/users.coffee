@@ -4,6 +4,7 @@ SubStack = require 'lib/sub_stack'
 Page = require 'controllers/page'
 
 class Profile extends Page
+  className: "#{Page::className} user"
   template: require('views/users/profile')
   
   events:
