@@ -45,13 +45,14 @@ class Page extends Controller
     ev.preventDefault()
     collection = $(ev.target).closest '.add-to-collection'
     list = collection.find '.collection-list'
+    subjectId = collection.find('.collect-this').data 'id'
     
     list.addClass 'loading'
 
     Api.get "/projects/#{ project }/talk/users/collection_list", (results) =>
       list.removeClass 'loading'
       list.show()
-      list.html require('views/users/collection_list') subject: @data, collections: results
+      list.html require('views/users/collection_list') subject: { zooniverse_id: subjectId }, collections: results
 
   collectSubject: (ev) =>
     ev.preventDefault()
