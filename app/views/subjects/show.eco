@@ -23,8 +23,14 @@
 </div>
 
 <div class="collections">
-  <h3>Collections</h3>
-  <%- require('views/collections/list') collections: @collections %>
+  <h3>Collections<%- '<div class="pages"></div>' if @collectionPages > 1 %></h3>
+  <% if @collectionPages > 0: %>
+    <div class="list">
+      <%- require('views/collections/list') collections: @collections[1] %>
+    </div>
+  <% else: %>
+    No collections
+  <% end %>
 </div>
 
 <div class="hashtags">
