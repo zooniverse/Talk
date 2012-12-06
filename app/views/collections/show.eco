@@ -16,16 +16,9 @@
 </header>
 
 <div class="subjects">
-  <h3>Subjects in this collection <span class="aux"><%= @subjects?.length || 0 %></span></h3>
-  <ul>
-    <% for subject in @subjects || []: %>
-      <li>
-        <a href="#/subjects/<%= subject.zooniverse_id %>">
-          <img src="<%= subject.location.standard[0] %>" />
-          <span class="label"><%= subject.zooniverse_id %></span>
-        </a>
-      </li>
-    <% end %>
+  <h3>Subjects in this collection</span><%- '<div class="pages"></div>' if @subjectPages > 1 %></h3>
+  <ul class="list">
+    <%- require('views/collections/subject_list') subjects: @subjects[1] %>
   </ul>
 </div>
 

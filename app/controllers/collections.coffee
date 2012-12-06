@@ -1,6 +1,7 @@
 Api = require 'zooniverse/lib/api'
 SubStack = require 'lib/sub_stack'
 Page = require 'controllers/page'
+Focus = require 'models/focus'
 FocusPage = require 'controllers/focus_page'
 template = require 'views/collections/show'
 
@@ -8,6 +9,55 @@ class Show extends FocusPage
   template: template
   className: "#{FocusPage::className} collection page"
   focusType: 'collections'
+  
+  elements: $.extend
+    '.subjects .list': 'subjectsList'
+    '.subjects .pages': 'paginateLinks'
+    FocusPage::elements
+  
+  render: ->
+    super
+    @subjectPage = 1
+    @paginationLinks()
+  
+  reload: (callback) ->
+    if @fetchOnLoad
+      Focus.fetch @focusId, (@data) =>
+        subjects = @data.subjects
+        @data.subjects = { }
+        
+        if subjects?.length > 0
+          page = 0
+          for index in [0 .. subjects.length] by 10
+            @data.subjects[page += 1] = subjects.slice index, index + 10
+          
+          @data.subjectsCount = subjects.length
+          @data.subjectPages = page
+        else
+          @data.subjectsCount = 0
+          @data.subjectPages = 0
+        
+        @render()
+        callback @data
+    else
+      super
+  
+  paginationLinks: =>
+    return unless @data.subjectPages > 1
+    @paginateLinks.pagination
+      cssStyle: 'compact-theme'
+      items: @data.subjectsCount
+      itemsOnPage: 10
+      onPageClick: @paginateSubjects
+  
+  paginateSubjects: (page, ev) =>
+    ev.preventDefault()
+    @subjectsList.html require('views/collections/subject_list')(subjects: @data.subjects[page])
+    
+    return unless @data.subjects[page + 1]
+    for subject in @data.subjects[page + 1]
+      img = new Image
+      img.src = subject.location.standard[0]
 
 
 class New extends Page

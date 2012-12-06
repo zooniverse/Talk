@@ -7,7 +7,7 @@
       <a href="#/collections/<%= collection.zooniverse_id %>">
         <span class="info">
           <%= collection.title %> by <%= collection.user_name %> /
-          <%= "#{ subjects.length } #{ pluralize subjects.length, 'image', 'images' }" %>
+          <%= "#{ collection.subjects_count } #{ pluralize collection.subjects_count, 'image', 'images' }" %>
 
           <!--<%- require('views/follow_button') id: collection.zooniverse_id, type: 'subject_sets', follower_ids: collection.follower_ids %>-->
         </span>

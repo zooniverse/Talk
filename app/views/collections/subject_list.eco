@@ -1,0 +1,8 @@
+<% for subject in @subjects || []: %>
+  <li>
+    <a href="#/subjects/<%= subject.zooniverse_id %>">
+      <img src="<%= subject.location.standard[0] %>" />
+      <span class="label"><%= subject.zooniverse_id %></span>
+    </a>
+  </li>
+<% end %>
