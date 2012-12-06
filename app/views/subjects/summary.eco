@@ -32,7 +32,10 @@
     <% if @last_comment: %>
       <div class="last-comment">
         <div class="content"><%- @last_comment.body or '&nbsp;' %></div>
-        <%- userLink link: @last_comment, avatar: true %>
+
+        <div class="author">
+          <%- userLink link: @last_comment, avatar: true %>
+        </div>
       </div>
     <% end %>
 
