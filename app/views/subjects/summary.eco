@@ -3,7 +3,7 @@
 
 <div class="subject-summary">
   <div class="preview">
-    <a href="/#/subjects/<%= @zooniverse_id %>">
+    <a href="#/subjects/<%= @zooniverse_id %>">
       <img src="<%= @location.standard[0] %>" class="thin-frame preview" />
     </a>
 
@@ -15,7 +15,7 @@
 
   <div class="summary">
     <div class="title">
-      <a href="/#/subjects/<%= @zooniverse_id %>"><%= @zooniverse_id %></a>
+      <a href="#/subjects/<%= @zooniverse_id %>"><%= @zooniverse_id %></a>
     </div>
 
     <div class="metadata">

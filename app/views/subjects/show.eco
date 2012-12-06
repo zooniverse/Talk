@@ -32,7 +32,7 @@
   <%- require('views/hashtags/list') tags: @tags %>
 
   <div class="collect">
-    <a class="create-keyword-set" href="/#/collections/new/keywords/<%= @tags.map((o) -> o._id).join('&') %>">Create a tag group</a>
+    <a class="create-keyword-set" href="#/collections/new/keywords/<%= @tags.map((o) -> o._id).join('&') %>">Create a tag group</a>
   </div>
 </div>
 
