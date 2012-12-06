@@ -16,7 +16,7 @@
         </div>
         
         <div class="load-more">
-          <button name="load-more" data-type="discussions">Load more</button>
+          <button name="load-more" data-type="subjects">Load more</button>
         </div>
       </div>
     </section>
