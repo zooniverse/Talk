@@ -2,20 +2,29 @@
 Api = require 'zooniverse/lib/api'
 Focus = require 'models/focus'
 SubStack = require 'lib/sub_stack'
+Params = require 'lib/params'
 Page = require 'controllers/page'
 
 class DiscussionPage extends Page
+  setPage: ->
+    @data.currentPage = Params?.page or 1
+    comments = @data.comments
+    @data.comments = { }
+    @data.comments[@data.currentPage] = comments
+  
   reload: (callback) ->
     if @fetchOnLoad
-      Api.get @url(), (@data) =>
+      Api.get "#{ @url() }?page=#{ Params?.page or 1 }", (@data) =>
         @focus = @data.focus
         @data.focusType = @discussionFocus()
+        @setPage()
         @render()
         callback? @data
     else
       Focus.findOrFetch @focusId, (@focus) =>
         @data = @
         @data.focusType = @focusType
+        @setPage()
         
         if @category
           Api.get @boardsUrl(), (@boards) =>
@@ -44,6 +53,7 @@ class Show extends DiscussionPage
   elements: $.extend
     'form.new-comment': 'commentForm'
     'ul.posts': 'commentList'
+    '.pages': 'paginateLinks'
     DiscussionPage::elements
   
   events: $.extend
@@ -53,11 +63,33 @@ class Show extends DiscussionPage
   activate: (params) ->
     return unless params
     { @focusType, @focusId } = params
-    @id = params.id
+    @id = params.id.split('?')[0]
     super
   
   url: =>
     "#{ super }/#{ @focusType }/#{ @focusId }/discussions/#{ @id }"
+  
+  render: ->
+    super
+    @paginationLinks()
+  
+  paginationLinks: =>
+    return unless @data.comments_count > 10
+    @paginateLinks.pagination
+      cssStyle: 'light-theme'
+      items: @data.comments_count
+      itemsOnPage: 10
+      onPageClick: @paginateComments
+      currentPage: @data.currentPage or 1
+  
+  paginateComments: (page, ev) =>
+    ev.preventDefault()
+    Api.get "#{ @url() }/comments", page: page, (comments) =>
+      @data.comments[page] = comments
+      list = comments.map (comment) ->
+        "<li>#{ require('views/discussions/comment') comment: comment }</li>"
+      
+      @commentList.html list.join("\n")
   
   createComment: (ev) =>
     ev.preventDefault()

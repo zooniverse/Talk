@@ -17,7 +17,6 @@ jQuery = require('jqueryify');
         displayedPages: 5,
         edges: 2,
         currentPage: 1,
-        hrefText: '#page-',
         prevText: 'Prev',
         nextText: 'Next',
         ellipseText: '&hellip;',
@@ -124,9 +123,9 @@ jQuery = require('jqueryify');
       if (pageIndex == o.currentPage) {
         $link = $('<span class="current">' + (options.text) + '</span>');
       } else {
-        $link = $('<a href="' + o.hrefText + (pageIndex + 1) + '" class="page-link">' + (options.text) + '</a>');
-        $link.click(function(){
-          methods._selectPage.call(panel, pageIndex);
+        $link = $('<a data-page="' + (pageIndex + 1) + '" class="page-link">' + (options.text) + '</a>');
+        $link.click(function(ev){
+          methods._selectPage.call(panel, pageIndex, ev);
         });
       }
       if (options.classes) {
@@ -136,10 +135,10 @@ jQuery = require('jqueryify');
       $(panel).append($link);
     },
 
-    _selectPage: function(pageIndex) {
+    _selectPage: function(pageIndex, ev) {
       var o = $(this).data('pagination');
       o.currentPage = pageIndex;
-      o.onPageClick(pageIndex + 1);
+      o.onPageClick(pageIndex + 1, ev);
       if (o.selectOnClick) {
         methods._draw.call(this);
       }

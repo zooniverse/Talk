@@ -1,7 +1,8 @@
 <ul class="posts">
-  <% for comment in @comments: %>
+  <% for comment in @comments[@currentPage]: %>
     <li>
       <%- require('views/discussions/comment') comment: comment %>
     </li>
   <% end %>
 </ul>
+<div class="pages"></div>
