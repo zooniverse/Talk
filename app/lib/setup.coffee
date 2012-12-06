@@ -9,3 +9,4 @@ require('spine/lib/manager')
 require('spine/lib/route')
 
 require('lib/config')
+require('lib/pagination')
