@@ -1,6 +1,27 @@
 .discussion-focus {
-  img {
-    width: 100%;
+  &.collection {
+    .subjects {
+      margin: 0 -5px;
+      overflow: hidden;
+
+      .subject {
+        box-sizing: border-box;
+        float: left;
+        max-width: 50%;
+        padding: 5px;
+        position: relative;
+        text-align: center;
+
+        img {
+          max-width: 100%;
+        }
+
+        .title {
+          font-size: 10px;
+          font-weight: bold;
+        }
+      }
+    }
   }
 }
 
