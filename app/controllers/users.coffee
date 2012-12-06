@@ -72,7 +72,7 @@ class Show extends Profile
   template: require('views/users/show')
   
   url: =>
-    "#{ super }/users/#{ @id }"
+    "#{ Page::url() }/users/#{ @id }"
   
   activate: (params) ->
     return unless params

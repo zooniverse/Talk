@@ -1,7 +1,7 @@
 <% roles = require('models/roles').roles[@link.user_name] %>
 
 <% if @avatar: %>
-  <a href="#/users/<%= @link.user_id %>" class="user">
+  <a href="#/users/<%= @link.user_name %>" class="user">
     <% if @link.user_zooniverse_id: %>
       <img src="//zooniverse-avatars.s3.amazonaws.com/ouroboros/<%= @link.user_zooniverse_id %>" class="avatar" onerror="window.defaultAvatar(this)" />
     <% else: %>
@@ -12,7 +12,7 @@
 
 by
 
-<a href="#/users/<%= @link.user_id %>" class="user">
+<a href="#/users/<%= @link.user_name %>" class="user">
   <%= @link.user_name %>
   
   <% if roles: %>
