@@ -6,7 +6,7 @@
   <%- '<div class="pinned"></div>' if @discussion.featured %>
   
   <div class="category">
-    <%= capitalize @discussion.board?.category %>
+    <%= capitalize(@discussion.board?.category) if @discussion.board %>
   </div>
   
   <div class="info">
