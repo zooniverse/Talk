@@ -2,16 +2,13 @@ Api = require 'zooniverse/lib/api'
 SubStack = require 'lib/sub_stack'
 Page = require 'controllers/page'
 
-# TO-DO: refactor this to share code with Trending
 class Index extends Page
   className: "#{Page::className} following"
   template: require('views/following/index')
   
   elements: $.extend
     '.subjects .list': 'subjectList'
-    '.discussions .help.list': 'helpList'
-    '.discussions .science.list': 'scienceList'
-    '.discussions .chat.list': 'chatList'
+    '.discussions .list': 'discussionList'
     '.collections .list': 'collectionList'
     Page::elements
   
@@ -47,7 +44,7 @@ class Index extends Page
       when 'discussions'
         Api.get "#{ @url() }/discussions?page=#{ @discussionPage += 1 }&per_page=10", (results) =>
           if results.length > 0
-            @["#{ category }List"].append require('views/discussions/list')(category: category, discussions: results)
+            @discussionList.append require('views/discussions/list')(discussions: results)
           
           if results.length < 5
             target.attr disabled: true
