@@ -49,7 +49,7 @@
       <h2>People are Collecting...</h2>
       <div class="collections">
         <div class="list">
-          <%- require('views/collections/list') collections: @collections %>
+          <%- require('views/collections/list') collections: @collections, updatedStats: true %>
         </div>
         
       </div>

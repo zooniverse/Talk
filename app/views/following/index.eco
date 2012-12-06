@@ -42,7 +42,7 @@
       <h3>Followed Collections</h3>
       <div class="collections">
         <div class="list">
-          <%- require('views/collections/list') collections: @collections %>
+          <%- require('views/collections/list') collections: @collections, updatedStats: true %>
         </div>
         
         <div class="load-more">

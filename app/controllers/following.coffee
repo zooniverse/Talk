@@ -52,7 +52,7 @@ class Index extends Page
       when 'collections'
         Api.get "#{ @url() }/collections?page=#{ @collectionsPage += 1 }&per_page=8", (results) =>
           if results.length > 0
-            @collectionList.append require('views/collections/list')(collections: results)
+            @collectionList.append require('views/collections/list')(collections: results, updatedStats: true)
           
           if results.length < 8
             target.attr disabled: true

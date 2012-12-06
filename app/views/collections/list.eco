@@ -1,4 +1,5 @@
 <% { pluralize } = require 'lib/util' %>
+<% moment = require 'moment/moment' %>
 
 <div class="collection-summaries">
   <% for collection in @collections: %>
@@ -6,12 +7,12 @@
     <div class="collection-summary">
       <a href="#/collections/<%= collection.zooniverse_id %>">
         <span class="info">
-          <%= collection.title %> by <%= collection.user_name %> /
+          <%= collection.title %>
+          by <%= collection.user_name %>
+          <%= "last updated #{ moment(collection.updated_at).fromNow() }" if @updatedStats %>
           <%= "#{ collection.subjects_count } #{ pluralize collection.subjects_count, 'image', 'images' }" %>
-
-          <!--<%- require('views/follow_button') id: collection.zooniverse_id, type: 'subject_sets', follower_ids: collection.follower_ids %>-->
         </span>
-
+        
         <span class="subjects">
           <% for subject in subjects[0...5]: %>
             <span class="subject">
