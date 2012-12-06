@@ -9,7 +9,7 @@ class FocusPage extends Page
     '.comment-form button[type="submit"]': 'commentButton'
     '.comment-form [name="comment"]': 'commentBox'
     '.comment-form .characters .count': 'characterCounter'
-    'ul.comments': 'commentList'
+    '.focus-comments': 'commentList'
     '.load-more-comments': 'loadMoreComments'
     Page::elements
   
@@ -51,9 +51,7 @@ class FocusPage extends Page
     Api.post "#{ @url() }/comments", @commentForm.serialize(), (response) =>
       @commentForm[0].reset()
       @updateCounter()
-      comment = require('views/focus/comment') comment: response
-      comment = $("<li>#{ comment }</li>")
-      @commentList.prepend comment
+      @commentList.prepend require('views/focus/comment')(comment: response)
     
     ev.preventDefault()
   
