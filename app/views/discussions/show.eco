@@ -24,6 +24,7 @@
 
         <div class="discussion-topic">
           <%- require('views/follow_button') id: @zooniverse_id, type: 'discussions', follower_ids: @follower_ids %>
+          <%- require('views/discussions/feature_buttons') id: @zooniverse_id, featured: @featured_status, board: @board %>
           
           <div class="post">
             <header>

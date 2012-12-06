@@ -19,6 +19,16 @@
     }
   }
   
+  .feature {
+    button {
+      @extends #standard-button;
+      
+      &[name="unfeature"] {
+        @extends #standard-button:active;
+      }
+    }
+  }
+  
   .pages {
     a {
       cursor: pointer;

@@ -58,6 +58,7 @@ class Show extends DiscussionPage
   
   events: $.extend
     'submit .new-comment': 'createComment'
+    'click .feature-link button': 'featureDiscussion'
     DiscussionPage::events
   
   activate: (params) ->
@@ -98,6 +99,22 @@ class Show extends DiscussionPage
       comment = require('views/discussions/comment') comment: response
       comment = $("<li>#{ comment }</li>")
       @commentList.append comment
+  
+  featureDiscussion: (ev) =>
+    ev.preventDefault()
+    button = $(ev.target)
+    { id, scope } = button.data()
+    action = button.attr 'name'
+    Api.post "#{ @url() }/#{ action }", context: scope, (response) =>
+      @data.featured_status or= { }
+      @data.featured_status.scopes or= []
+      
+      if action is 'feature'
+        @data.featured_status.scopes.push(scope)
+      else
+        @data.featured_status.scopes = @data.featured_status.scopes.filter (oldScope) -> oldScope isnt scope
+      
+      @el.find('.feature-link').replaceWith require('views/discussions/feature_buttons') id: id, featured: @data.featured_status, board: @data.board
 
 
 class New extends DiscussionPage

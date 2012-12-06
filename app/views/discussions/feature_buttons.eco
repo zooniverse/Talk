@@ -1,0 +1,14 @@
+<% { capitalize } = require('lib/util') %>
+<% user = require('zooniverse/lib/models/user').current %>
+
+<% if user: %>
+  <div class="feature feature-link">
+    <% for scope in ['global', @board.category]: %>
+      <% if @featured? and @featured.scopes? and scope in @featured?.scopes: %>
+        <button name="unfeature" data-scope="<%= scope %>" data-id="<%= @id %>">Featured in <%= capitalize scope %></button>
+      <% else: %>
+        <button name="feature" data-scope="<%= scope %>" data-id="<%= @id %>">Feature in <%= capitalize scope %></button>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
