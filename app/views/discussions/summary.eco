@@ -4,7 +4,11 @@
 
 <div class="discussion-summary">
   <%- '<div class="pinned"></div>' if @discussion.featured %>
-
+  
+  <div class="category">
+    <%= capitalize @discussion.board?.category %>
+  </div>
+  
   <div class="info">
     <div class="title">
       <% if @discussion.board: %>
