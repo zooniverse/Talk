@@ -6,6 +6,11 @@ Params = require 'lib/params'
 Page = require 'controllers/page'
 
 class DiscussionPage extends Page
+  elements: $.extend
+    '.subjects .list': 'subjectsList'
+    '.subjects .pages': 'paginateSubjectLinks'
+    Page::elements
+  
   setPage: ->
     @data.currentPage = Params?.page or 1
     comments = @data.comments
@@ -17,6 +22,22 @@ class DiscussionPage extends Page
       Api.get "#{ @url() }?page=#{ Params?.page or 1 }", (@data) =>
         @focus = @data.focus
         @data.focusType = @discussionFocus()
+        
+        if @data.focusType is 'collections'
+          subjects = @data.focus.subjects
+          @data.focus.subjects = { }
+          
+          if subjects?.length > 0
+            page = 0
+            for index in [0 .. subjects.length] by 6
+              @data.focus.subjects[page += 1] = subjects.slice index, index + 6
+            
+            @data.focus.subjectsCount = subjects.length
+            @data.focus.subjectPages = page
+          else
+            @data.focus.subjectsCount = 0
+            @data.focus.subjectPages = 0
+        
         @setPage()
         @render()
         callback? @data
@@ -34,6 +55,11 @@ class DiscussionPage extends Page
           @render()
           callback? @data
   
+  render: ->
+    super
+    @subjectPage = 1
+    @subjectPaginationLinks()
+  
   discussionFocus: ->
     return unless @data?.focus?.type
     focusCollectionFor @data.focus.type
@@ -46,6 +72,23 @@ class DiscussionPage extends Page
   
   boardsUrl: ->
     "#{ _super::url() }/boards"
+  
+  subjectPaginationLinks: =>
+    return unless @data.focus.subjectPages > 1
+    @paginateSubjectLinks.pagination
+      cssStyle: 'compact-theme'
+      items: @data.focus.subjectsCount
+      itemsOnPage: 10
+      onPageClick: @paginateSubjects
+  
+  paginateSubjects: (page, ev) =>
+    ev.preventDefault()
+    @subjectsList.html require('views/collections/subjects_for_discussion')(subjects: @data.focus.subjects[page])
+    
+    return unless @data.focus.subjects[page + 1]
+    for subject in @data.focus.subjects[page + 1]
+      img = new Image
+      img.src = subject.location.standard[0]
   
 class Show extends DiscussionPage
   template: require('views/discussions/show')

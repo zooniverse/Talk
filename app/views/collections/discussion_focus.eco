@@ -5,17 +5,15 @@
     <%= @title %>
     <span class="aux">
       by <%- userLink link: @ %>
-      (<%= @subjects.length %> items)
+      (<%= @subjectsCount %> items)
     </span>
   </h3>
-
+  
   <div class="subjects">
-    <% for subject in @subjects: %>
-      <a href="#/subjects/<%= subject.zooniverse_id %>" class="subject">
-        <img src="<%= subject.location.standard[0] %>" class="thin-frame" />
-        <span class="title"><%= subject.zooniverse_id %></span>
-      </a>
-    <% end %>
+    <div class="list">
+      <%- require('views/collections/subjects_for_discussion') subjects: @subjects[1] %>
+    </div>
+    <%- '<div class="page-wrapper"><div class="pages"></div></div>' if @subjectPages > 1 %>
   </div>
   
   <%- require('views/focus/comments') comments: @discussion.comments %>
