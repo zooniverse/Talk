@@ -1,0 +1,79 @@
+.user.page {
+  section.subjects {
+    .list {
+      overflow: hidden;
+    }
+
+    .subject {
+      box-sizing: border-box;
+      float: left;
+      padding: 0 30px 30px 0;
+      width: 50%;
+
+      .preview {
+        box-sizing: border-box;
+        float: left;
+        padding-right: 10px;
+        width: 33%;
+
+        a {
+          display: block;
+
+          img {
+            width: 100%;
+          }
+        }
+      }
+
+      .summary {
+        float: left;
+        width: 67%;
+
+        .title a {
+          color: inherit;
+          font-weight: bold;
+        }
+
+        .comment {
+          .author {
+            color: $gray;
+          }
+        }
+      }
+    }
+  }
+
+  section.collections {
+    .collection {
+      box-sizing: border-box;
+      float: left;
+      padding: 0 30px 30px 0;
+      width: 50%;
+
+      .title a {
+        font-weight: bold;
+        color: inherit;
+      }
+
+      .subjects {
+        margin: 0 -5px;
+        overflow: hidden;
+
+        .subject {
+          box-sizing: border-box;
+          float: left;
+          padding: 0 5px;
+          width: 20%;
+
+          img {
+            width: 100%;
+          }
+        }
+      }
+
+      .comment .author {
+        color: gray;
+      }
+    }
+  }
+}

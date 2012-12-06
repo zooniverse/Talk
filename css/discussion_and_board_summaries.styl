@@ -68,6 +68,10 @@
 
     button {
       @extends #standard-button;
+
+      &[name="unfollow"] {
+        @extends #standard-button:active;
+      }
     }
   }
 }

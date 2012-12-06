@@ -3,13 +3,14 @@
 
 <% for collection in @collections: %>
   <div class="collection">
-    <a href="#/collections/<%= collection.focus.zooniverse_id %>">
-      <%= collection.title %>
-    </a> updated <%= moment(collection.updated_at).fromNow() %>
+    <div class="title">
+      <a href="#/collections/<%= collection.focus.zooniverse_id %>"><%= collection.title %></a>
+      updated <%= moment(collection.updated_at).fromNow() %>
+    </div>
     
     <div class="subjects">
       <% subjects = collection?.focus?.subjects or [] %>
-      <% for subject in subjects: %>
+      <% for subject in subjects[0...5]: %>
         <div class="subject">
           <img src="<%= subject.location.standard[0] %>" class="thin-frame" />
         </div>
@@ -17,8 +18,14 @@
     </div>
     
     <div class="comment">
-      <div class="content"><%- collection.comment.body or '&nbsp;' %></div>
-      <%- userLink link: collection.comment %><%= moment(collection.comment.created_at).fromNow() %>
+      <div class="content">
+        <%- collection.comment.body or '&nbsp;' %>
+      </div>
+      
+      <div class="author">
+        <%- userLink link: collection.comment %>
+        <%= moment(collection.comment.created_at).fromNow() %>
+      </div>
     </div>
   </div>
 <% end %>
