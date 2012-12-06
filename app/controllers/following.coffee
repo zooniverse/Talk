@@ -38,7 +38,7 @@ class Index extends Page
           if results.length > 0
             @subjectList.append require('views/subjects/list')(subjects: results)
           
-          if results.length < 3
+          if results.length < 6
             target.attr disabled: true
       
       when 'discussions'
@@ -46,7 +46,7 @@ class Index extends Page
           if results.length > 0
             @discussionList.append require('views/discussions/list')(discussions: results)
           
-          if results.length < 5
+          if results.length < 10
             target.attr disabled: true
       
       when 'collections'
@@ -54,7 +54,7 @@ class Index extends Page
           if results.length > 0
             @collectionList.append require('views/collections/list')(collections: results)
           
-          if results.length < 3
+          if results.length < 8
             target.attr disabled: true
 
 class Following extends SubStack
