@@ -38,7 +38,7 @@
 
         image: "Image <img> Ctrl+G",
         imagedescription: "enter image description here",
-        imagedialog: "<p><b>Insert Image</b></p><p>http://example.com/images/diagram.jpg \"optional title\"<br><br>Need <a href='http://www.google.com/search?q=free+image+hosting' target='_blank'>free image hosting?</a></p>",
+        imagedialog: "<p><b>Insert Image</b></p><p>http://example.com/images/diagram.jpg</p>",
 
         olist: "Numbered List <ol> Ctrl+O",
         ulist: "Bulleted List <ul> Ctrl+U",
@@ -141,7 +141,7 @@
                 }
             }
 
-            uiManager = new UIManager(idPostfix, panels, undoManager, previewManager, commandManager, options.helpButton, getString);
+            uiManager = new UIManager(idPostfix, panels, null, previewManager, commandManager, options.helpButton, getString);
             uiManager.setUndoRedoButtonStates();
 
             var forceRefresh = that.refreshPreview = function () { previewManager.refresh(true); };
@@ -1472,6 +1472,9 @@
             }));
             buttons.quote = makeButton("wmd-quote-button", getString("quote"), "-60px", bindCommand("doBlockquote"));
             buttons.code = makeButton("wmd-code-button", getString("code"), "-80px", bindCommand("doCode"));
+             buttons.image = makeButton("wmd-image-button", getString("image"), "-100px", bindCommand(function (chunk, postProcessing) {
+                return this.doLinkOrImage(chunk, postProcessing, true);
+            }));
             makeSpacer(2);
             buttons.olist = makeButton("wmd-olist-button", getString("olist"), "-120px", bindCommand(function (chunk, postProcessing) {
                 this.doList(chunk, postProcessing, true);
@@ -1481,16 +1484,16 @@
             }));
             buttons.heading = makeButton("wmd-heading-button", getString("heading"), "-160px", bindCommand("doHeading"));
             buttons.hr = makeButton("wmd-hr-button", getString("hr"), "-180px", bindCommand("doHorizontalRule"));
-            makeSpacer(3);
-            buttons.undo = makeButton("wmd-undo-button", getString("undo"), "-200px", null);
-            buttons.undo.execute = function (manager) { if (manager) manager.undo(); };
+            // makeSpacer(3);
+            // buttons.undo = makeButton("wmd-undo-button", getString("undo"), "-200px", null);
+            // buttons.undo.execute = function (manager) { if (manager) manager.undo(); };
 
             var redoTitle = /win/.test(nav.platform.toLowerCase()) ?
                 getString("redo") :
                 getString("redomac"); // mac and other non-Windows platforms
 
-            buttons.redo = makeButton("wmd-redo-button", redoTitle, "-220px", null);
-            buttons.redo.execute = function (manager) { if (manager) manager.redo(); };
+            // buttons.redo = makeButton("wmd-redo-button", redoTitle, "-220px", null);
+            // buttons.redo.execute = function (manager) { if (manager) manager.redo(); };
 
             if (helpOptions) {
                 var helpButton = document.createElement("li");
@@ -1514,8 +1517,8 @@
 
         function setUndoRedoButtonStates() {
             if (undoManager) {
-                setupButton(buttons.undo, undoManager.canUndo());
-                setupButton(buttons.redo, undoManager.canRedo());
+                // setupButton(buttons.undo, undoManager.canUndo());
+                // setupButton(buttons.redo, undoManager.canRedo());
             }
         };
 
@@ -1754,12 +1757,11 @@
                     // the first bracket could then not act as the "not a backslash" for the second.
                     chunk.selection = (" " + chunk.selection).replace(/([^\\](?:\\\\)*)(?=[[\]])/g, "$1\\").substr(1);
                     
-                    var linkDef = " [999]: " + properlyEncoded(link);
+                    var linkDef =properlyEncoded(link);
 
-                    var num = that.addLinkDef(chunk, linkDef);
+                    // var num = that.addLinkDef(chunk, linkDef);
                     chunk.startTag = isImage ? "![" : "[";
-                    chunk.endTag = "][" + num + "]";
-
+                    chunk.endTag = "]("+linkDef+")";
                     if (!chunk.selection) {
                         if (isImage) {
                             chunk.selection = that.getString("imagedescription");
