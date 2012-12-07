@@ -1,7 +1,7 @@
 <div class="respond">
   <h4>Leave a post here:</h4>
 
-  <form class="new-comment">
+  <form class="new-comment boxed">
     <div class="field">
       <%- require('views/markdown') class: 'comment', name: 'comment', placeholder: 'Leave a comment' %>
     </div>

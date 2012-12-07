@@ -30,7 +30,7 @@
     </ul>
     
     <h4>Create a new message</h4>
-    <form class="new-message">
+    <form class="new-message boxed">
       <div class="field">
         <%- require('views/markdown') class: 'reply-message', name: 'message[body]', placeholder: 'Write your message here' %>
       </div>
