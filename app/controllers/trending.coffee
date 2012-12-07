@@ -18,7 +18,7 @@ class Index extends Page
     'click button[name="load-more"]': 'loadMore'
     Page::events
   
-  constructor: ->
+  render: ->
     @subjectsPage = 1
     @collectionsPage = 1
     @discussionPages =
