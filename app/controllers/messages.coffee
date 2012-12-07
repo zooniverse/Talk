@@ -74,11 +74,12 @@ class New extends Page
   
   submit: (ev) ->
     ev.preventDefault()
+    userName = @form.find('[name="user_name"]').val()
     message =
       title: @form.find('[name="message[title]"]').val()
       body: @form.find('[name="message[body]"]').val()
     
-    Message.start userId, message, =>
+    Message.start userName, message, =>
       @navigate '/profile'
   
   escape: (value, currentValue) ->

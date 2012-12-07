@@ -23,7 +23,7 @@ class Message
     url
   
   @start: (userTo, message, callback) ->
-    Api.post @url(), user_id: userTo, message: message, (message) =>
+    Api.post @url(), user_name: userTo, message: message, (message) =>
       @records[message.id] = new Message(message)
       callback? @records[message.id]
   
