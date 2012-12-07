@@ -29,7 +29,9 @@ activateMatchingHashLinks = ->
     $("a[href='#{hash}']").addClass 'active' for hash in hashes
 
 User.bind 'sign-in', ->
-  $('html').toggleClass 'signed-in', User.current?
+  signedIn = User.current?
+  $('html').toggleClass 'signed-in', signedIn
+  $('html').toggleClass 'not-signed-in', not signedIn
 
 Roles.fetch ->
   User.fetch().onSuccess ->

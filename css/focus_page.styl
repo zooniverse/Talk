@@ -2,6 +2,10 @@
   overflow: hidden;
   
   h2 {
+    .not-signed-in & .aux {
+      display: none;
+    }
+
     .follow-link,
     .share-link {
       display: inline-block;
@@ -85,6 +89,10 @@
       color: $white;
       margin: 10px 0;
       padding: 1px 10px;
+
+      .not-signed-in & {
+        display: none;
+      }
 
       header {
         font-weight: bold;
@@ -197,6 +205,10 @@
 
     .collect a {
       @extends #standard-button;
+
+      .not-signed-in & {
+        display: none;
+      }
     }
   }
 

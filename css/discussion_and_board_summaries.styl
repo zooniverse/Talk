@@ -3,6 +3,10 @@
   .new-discussion {
     overflow: hidden;
 
+    .not-signed-in & {
+      display: none;
+    }
+
     button {
       @extends #standard-button;
       float: right;
