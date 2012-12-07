@@ -10,3 +10,4 @@ require('spine/lib/route')
 
 require('lib/config')
 require('lib/pagination')
+require('lib/autocomplete')

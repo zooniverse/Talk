@@ -14,6 +14,7 @@ Subjects = require 'controllers/subjects'
 Collections = require 'controllers/collections'
 Boards = require 'controllers/boards'
 Discussions = require 'controllers/discussions'
+Messages = require 'controllers/messages'
 Users = require 'controllers/users'
 Roles = require 'models/roles'
 User = require 'zooniverse/lib/models/user'
@@ -49,6 +50,7 @@ Roles.fetch ->
         discussions: Discussions
         collections: Collections
         users: Users
+        messages: Messages
       
       routes:
         '/': 'trending'
@@ -59,6 +61,7 @@ Roles.fetch ->
         '/boards': 'boards'
         '/profile': 'users'
         '/users': 'users'
+        '/messages': 'messages'
         '/:focusType/:focusId/discussions': 'discussions'
       
       default: 'trending'
