@@ -90,7 +90,7 @@ class DiscussionPage extends Page
     return unless @data.focus.subjects[page + 1]
     for subject in @data.focus.subjects[page + 1]
       img = new Image
-      img.src = subject.location.standard[0]
+      img.src = subject?.location?.standard?[0]
   
 class Show extends DiscussionPage
   template: require('views/discussions/show')

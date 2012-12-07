@@ -1,6 +1,6 @@
 <% for subject in @subjects: %>
   <a href="#/subjects/<%= subject.zooniverse_id %>" class="subject">
-    <img src="<%= subject.location.standard[0] %>" class="thin-frame" />
+    <img src="<%= subject?.location?.standard?[0] %>" class="thin-frame" />
     <span class="title"><%= subject.zooniverse_id %></span>
   </a>
 <% end %>

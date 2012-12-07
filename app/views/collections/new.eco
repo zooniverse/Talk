@@ -40,7 +40,7 @@
           <% for subject in @subjects: %>
             <li class="subject">
               <a href="#/subjects/<%= subject.zooniverse_id %>">
-                <img src="<%= subject.location.standard[0] %>" />
+                <img src="<%= subject?.location?.standard?[0] %>" />
               </a>
               <button type="button" name="remove" value="<%= subject.zooniverse_id %>">&times;</button>
             </li>

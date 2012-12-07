@@ -57,7 +57,7 @@ class Show extends FocusPage
     return unless @data.subjects[page + 1]
     for subject in @data.subjects[page + 1]
       img = new Image
-      img.src = subject.location.standard[0]
+      img.src = subject?.location?.standard?[0]
 
 
 class New extends Page
