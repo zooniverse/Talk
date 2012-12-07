@@ -1,0 +1,59 @@
+<% { capitalize } = require 'lib/util' %>
+
+<section class="subjects">
+  <h2><%= @label %> Recent Object Comments</h2>
+  <div class="list">
+    <%- require('views/users/subject_comments') subjects: @user.subjects %>
+  </div>
+  
+  <div class="load-more">
+    <% if @user.subjects.length is @user.sections.subjects.perPage: %>
+      <button name="load-more" data-type="subjects">Load more</button>
+    <% end %>
+  </div>
+</section>
+
+<hr />
+
+<section class="collections">
+  <h2><%= @label %> Recent Collection Comments</h2>
+  <div class="list">
+    <%- require('views/users/collection_comments') collections: @user.collections %>
+  </div>
+  
+  <div class="load-more">
+    <% if @user.collections.length is @user.sections.collections.perPage: %>
+      <button name="load-more" data-type="collections">Load more</button>
+    <% end %>
+  </div>
+</section>
+
+<hr />
+
+<section class="boards">
+  <h3><%= @label %> Recent Discussions</h3>
+  <div class="list">
+    <%- require('views/discussions/list') discussions: @user.boards %>
+  </div>
+  
+  <div class="load-more">
+    <% if @user.boards.length is @user.sections.boards.perPage: %>
+      <button name="load-more" data-type="boards">Load more</button>
+    <% end %>
+  </div>
+</section>
+
+<hr />
+
+<section class="my_collections">
+  <h2><%= @label %> Collections</h2>
+  <div class="list">
+    <%- require('views/collections/list') collections: @user.my_collections %>
+  </div>
+  
+  <div class="load-more">
+    <% if @user.my_collections.length is @user.sections.my_collections.perPage: %>
+      <button name="load-more" data-type="my_collections">Load more</button>
+    <% end %>
+  </div>
+</section>

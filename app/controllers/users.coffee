@@ -53,11 +53,11 @@ class Profile extends Page
       @render()
       callback @data
   
-  render: ->
+  render: (withMessages = true )->
     super
-    if @messageList
+    if withMessages and @messageList
       @messageList.render()
-    else
+    else if withMessages
       @messageList = new MessageList('.message-list')
   
   loadMore: (ev) =>
@@ -87,6 +87,9 @@ class Show extends Profile
     return unless params
     @id = params.id
     super
+  
+  render: ->
+    super false
 
 
 class Users extends SubStack
