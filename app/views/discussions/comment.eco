@@ -9,7 +9,6 @@
   </header>
   
   <div class="content">
-
     <%- markdown.convert @comment.body %>
   </div>
   
