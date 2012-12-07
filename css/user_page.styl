@@ -1,6 +1,51 @@
 .user.page {
+  .message-list {
+    font-size: 11px;
+
+    .aux .compose {
+      @extends #standard-button;
+    }
+
+    .message {
+      @extends #rule-below;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      position: relative;
+
+      &.unread:before {
+        background: $blue;
+        border-radius: 50%;
+        content: "";
+        height: 5px;
+        margin: 5px 5px 0 0;
+        position: absolute;
+        right: 100%;
+        top: 0;
+        width: 5px;
+      }
+
+      .title {
+        a {
+          color: inherit;
+          font-weight: bold;
+        }
+      }
+
+      .body {
+        color: $gray;
+      }
+
+      footer {
+        color: $gray;
+        img.avatar {
+          display: none;
+        }
+      }
+    }
+  }
+
   .list {
-    overflow: hidden;
+    clearfix();
   }
 
   section.subjects {

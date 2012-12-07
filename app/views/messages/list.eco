@@ -4,34 +4,32 @@
 
 <h2>
   Messages
-  <a class="compose button" href="#/messages/new">Compose Message</a>
+  <span class="aux">
+    <a class="compose button" href="#/messages/new">Compose Message</a>
+  </span>
 </h2>
 
-<ul class="list">
+<div class="list">
   <% for id, conversation of @conversations: %>
+    <% otherPerson = [conversation.user_to, conversation.user_from].filter(({id}) -> id isnt user.id)[0] %>
     <% lastMessage = conversation.messages[conversation.messages.length - 1] %>
-    <% direction = if lastMessage.user.id is user.id then 'from' else 'to' %>
+    <% direction = if lastMessage.user.id is otherPerson.id then 'from' else 'to' %>
     
-    <li class="<%= 'unread ' if conversation.isUnread(user) %>message">
-      <header>
+    <div class="<%= 'unread ' if conversation.isUnread(user) %>message">
+      <div class="title">
         <a href="#/messages/<%= id %>"><%= conversation.title %></a>
-        
-        <div class="users">
-          <%- require('views/messages/user_link') message: { user: conversation.user_from } %>
-          <%- require('views/messages/user_link') message: { user: conversation.user_to } %>
-        </div>
-      </header>
+      </div>
       
-      <p class="body"><%= lastMessage.body %></p>
+      <div class="body"><%= lastMessage.body %></div>
       
       <footer>
         <div class="last-message">
           Last message
           <%= moment(lastMessage.created_at).fromNow() %>
           <%= direction %>
-          <%- require('views/messages/user_link') message: lastMessage %>
+          <%- require('views/messages/user_link') message: { user: otherPerson } %>
         </div>
       </footer>
-    </li>
+    </div>
   <% end %>
 </ul>
