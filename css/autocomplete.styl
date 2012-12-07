@@ -1,0 +1,46 @@
+.autocomplete-w1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 6px 0 0 6px;
+}
+
+.autocomplete {
+  border: 1px solid #999;
+  background: #FFF;
+  cursor: default;
+  text-align: left;
+  max-height: 350px;
+  overflow: auto;
+  margin: -6px 6px 6px -6px;
+  
+  .selected {
+    background: #F0F0F0;
+    height: 60px;
+    
+    .avatar {
+      width: auto;
+      height: 50px;
+      margin: 5px 5px 0 0;
+    }
+  }
+  
+  div {
+    padding: 2px 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    height: 35px;
+    vertical-align: middle;
+    cursor: pointer;
+    
+    .avatar {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  
+  strong {
+    font-weight: normal;
+    color: #3399FF;
+  }
+}

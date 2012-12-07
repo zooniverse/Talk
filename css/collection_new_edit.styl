@@ -18,9 +18,24 @@
       }
 
       button[name="remove"] {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        color: $white;
+        height: 1em;
+        font-size: 20px;
+        font-weight: normal;
+        padding: 0 0 2em; // What's going on here?
         position: absolute;
-        right: 0;
+        right: 10px;
+        text-shadow: 0 1px 0 $black, 0 0 1px $black, 0 0 2px $black;
         top: 0;
+        width: 2em;
+      }
+
+      &.to-be-removed {
+        opacity: 0.5;
       }
     }
   }

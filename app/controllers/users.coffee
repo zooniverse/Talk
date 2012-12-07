@@ -2,6 +2,8 @@ Api = require 'zooniverse/lib/api'
 User = require 'zooniverse/lib/models/user'
 SubStack = require 'lib/sub_stack'
 Page = require 'controllers/page'
+Message = require 'models/message'
+MessageList = require 'controllers/message_list'
 
 class Profile extends Page
   className: "#{Page::className} user"
@@ -50,6 +52,13 @@ class Profile extends Page
       @data.sections = @sections
       @render()
       callback @data
+  
+  render: ->
+    super
+    if @messageList
+      @messageList.render()
+    else
+      @messageList = new MessageList('.message-list')
   
   loadMore: (ev) =>
     ev.preventDefault()

@@ -104,7 +104,7 @@ class New extends Page
     ev.preventDefault()
     @serializeTags() if @type is 'KeywordSet'
     Api.post @url(), @form.serialize(), (result) =>
-      @navigate '/collections', result.zooniverse_id
+      @navigate "#/collections/#{result.zooniverse_id}"
   
   serializeTags: =>
     tags = { }
@@ -173,7 +173,7 @@ class Edit extends New
       newValues.subject_ids_to_remove = @toBeRemoved
 
     Api.put @url(), newValues, (result) =>
-      @navigate "collections/#{@id}"
+      @navigate "#/collections/#{@id}"
 
 
 class Collections extends SubStack
