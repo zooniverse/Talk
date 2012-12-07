@@ -38,6 +38,11 @@
   </div>
 </div>
 
+<% if user: %>
+  <div class="sign-out"><button name="sign-out">Sign out</button></div>
+<% end %>
+
+
 <div class="sign-in">
   <header>Sign in to participate!</header>
 

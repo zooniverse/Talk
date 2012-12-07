@@ -11,6 +11,7 @@ class AppHeader extends Controller
     'submit form[name="sign-in"]': 'onSignInSubmit'
     'submit form[name="search"]': 'onSubmitSearch'
     'click .search.button': 'onClickSearchButton'
+    'click button[name="sign-out"]': 'onClickSignOut'
 
   elements:
     '.sign-in': 'signInContainer'
@@ -56,6 +57,9 @@ class AppHeader extends Controller
     e.preventDefault();
     @searchDropdown.hide()
     location.hash = "/search/#{@searchQueryInput.val()}"
+
+  onClickSignOut: ->
+    User.logout()
 
   onDocumentClick: ({target}) =>
     isDropdown = @searchDropdown.is target

@@ -1,5 +1,6 @@
 .app-header {
   margin-bottom: 20px;
+  position: relative;
 
   .main {
     background: $gray-dark;
@@ -109,6 +110,20 @@
 
   a.return {
     @extends #bold-button;
+  }
+
+  .sign-out {
+    position: absolute;
+    top: 100%;
+    right: 0;
+
+    button {
+      opacity: 0.5;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
 
   .sign-in {
