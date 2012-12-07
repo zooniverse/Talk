@@ -31,7 +31,9 @@
     
     <h4>Create a new message</h4>
     <form class="new-message">
-      <div class="field"><textarea name="message[body]" placeholder="Description"></textarea></div>
+      <div class="field">
+        <%- require('views/markdown') class: 'reply-message', name: 'message[body]', placeholder: 'Write your message here' %>
+      </div>
       
       <div class="action">
         <button type="submit" name="submit">Send Message</button>

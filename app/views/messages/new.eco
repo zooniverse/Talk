@@ -9,7 +9,10 @@
     <form class="new-message">
       <div class="field"><input type="text" name="user_name" class="user-search" placeholder="Search for a user"></div>
       <div class="field"><input type="text" name="message[title]" placeholder="Title" /></div>
-      <div class="field"><textarea name="message[body]" placeholder="Description"></textarea></div>
+      
+      <div class="field">
+        <%- require('views/markdown') class: 'new-message', name: 'message[body]', placeholder: 'Write your message here' %>
+      </div>
       
       <div class="action">
         <button type="submit" name="submit">Send Message</button>
