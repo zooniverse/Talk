@@ -10,19 +10,27 @@
 <ul class="list">
   <% for id, conversation of @conversations: %>
     <% lastMessage = conversation.messages[conversation.messages.length - 1] %>
-    <% direction = if conversation.isSender(user) then 'from' else 'to' %>
+    <% direction = if lastMessage.user.id is user.id then 'from' else 'to' %>
     
     <li class="<%= 'unread ' if conversation.isUnread(user) %>message">
       <header>
         <a href="#/messages/<%= id %>"><%= conversation.title %></a>
+        
+        <div class="users">
+          <%- require('views/messages/user_link') message: { user: conversation.user_from } %>
+          <%- require('views/messages/user_link') message: { user: conversation.user_to } %>
+        </div>
       </header>
       
       <p class="body"><%= lastMessage.body %></p>
       
       <footer>
-        <%= moment(lastMessage.created_at).fromNow() %>
-        <%= direction %>
-        <%- require('views/messages/user_link') message: lastMessage %>
+        <div class="last-message">
+          Last message
+          <%= moment(lastMessage.created_at).fromNow() %>
+          <%= direction %>
+          <%- require('views/messages/user_link') message: lastMessage %>
+        </div>
       </footer>
     </li>
   <% end %>
