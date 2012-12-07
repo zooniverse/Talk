@@ -1,5 +1,6 @@
 <% userLink = require 'views/user_link' %>
 <% moment = require 'moment/moment' %>
+<% markdown = require 'lib/markdown' %>
 <% roles = require('models/roles').roles[@comment.user_name] %>
 
 <div class="post<%= " #{ roles.sort().join(' ') }" if roles %>">
@@ -8,7 +9,8 @@
   </header>
   
   <div class="content">
-    <%= @comment.body %>
+
+    <%- markdown.convert @comment.body %>
   </div>
   
   <footer>

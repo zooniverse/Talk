@@ -28,7 +28,7 @@
   </div>
 
   <div class="field">
-    <textarea name="comment" placeholder="Comment"></textarea>
+    <%- require('views/markdown/markdownArea')({name:"comment", placeholder:"Comment", class:"comment"})%>
   </div>
 
   <div class="action">
