@@ -2,9 +2,7 @@
 <% { focusCollectionFor, capitalize, singularize, pluralize } = require('lib/util') %>
 <% moment = require 'moment/moment' %>
 
-<div class="discussion-summary">
-  <%- '<div class="pinned"></div>' if @discussion.featured %>
-  
+<div class="<%- 'pinned' if @discussion.featured %> discussion-summary">
   <div class="category">
     <%= capitalize(@discussion.board?.category) if @discussion.board %>
   </div>

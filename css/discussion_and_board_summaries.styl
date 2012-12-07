@@ -21,7 +21,7 @@
   display: table;
   margin: 10px 0;
   padding: 0 0 10px 20px;
-  position: realtive;
+  position: relative;
   width: 100%;
   
   .category {
@@ -32,13 +32,14 @@
     display: none;
   }
 
-  .pinned {
-    position: relative;
-    top: 11px;
-    right: 8px;
-    width: 10px;
-    height: 20px;
+  &.pinned:before {
     background: url('images/pin.png') no-repeat scroll 0 0 transparent;
+    content: "";
+    height: 20px;
+    position: absolute;
+    left: 0;
+    top: 3px;
+    width: 10px;
   }
 
   .info {
