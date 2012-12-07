@@ -1,10 +1,10 @@
 (function () {
-    Markdown = require("lib/Markdown.Converter");
+    Markdown = require("lib/markdown/converter");
 
     var output, Converter;
     if (typeof exports === "object" && typeof require === "function") { // we're in a CommonJS (e.g. Node.js) module
         output = exports;
-        Converter = require("./Markdown.Converter").Converter;
+        Converter = require("lib/markdown/converter").Converter;
     } else {
         output = window.Markdown;
         Converter = output.Converter;

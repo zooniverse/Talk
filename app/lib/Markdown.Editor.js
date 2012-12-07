@@ -1,8 +1,8 @@
-﻿// needs Markdown.Converter.js at the moment
+// needs Markdown.Converter.js at the moment
 
 
 (function () {
-    Markdown = require("lib/Markdown.Converter");
+    Markdown = require("lib/markdown/converter");
 
     var util = {},
         position = {},

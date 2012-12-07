@@ -3,7 +3,7 @@
 
   <form class="new-comment">
     <div class="field">
-      <%-require('views/markdown/markdownArea')({class:"comment", name:'comment', placeholder: "Leave a comment"})%>
+      <%- require('views/markdown') class: 'comment', name: 'comment', placeholder: 'Leave a comment' %>
     </div>
 
     <div class="action">

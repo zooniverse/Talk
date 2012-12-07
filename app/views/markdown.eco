@@ -6,4 +6,3 @@
 <div id="wmd-preview<%=@class%>" class="wmd-panel wmd-preview" style='display:none' ></div>
 
 <% require('lib/markdown').runEditor(@class) %>
-
