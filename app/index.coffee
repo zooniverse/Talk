@@ -28,6 +28,9 @@ activateMatchingHashLinks = ->
     hashes = (segments[..i].join '/' for _, i in segments)
     $("a[href='#{hash}']").addClass 'active' for hash in hashes
 
+User.bind 'sign-in', ->
+  $('html').toggleClass 'signed-in', User.current?
+
 Roles.fetch ->
   User.fetch().onSuccess ->
     app.el = $('#app')
