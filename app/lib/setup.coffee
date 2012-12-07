@@ -16,4 +16,5 @@ require('lib/markdown/sanitizer')
 require('lib/markdown/editor')
 
 require('lib/autocomplete')
+require('lib/emoticons')
 

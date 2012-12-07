@@ -3,6 +3,10 @@ module.exports=
     setTimeout ->
       c =  new Markdown.Converter(); 
       e = new Markdown.Editor(c,className);
+
+      e.hooks.chain "onPreviewRefresh", ->
+        $("#wmd-preview#{className} *").emoticonize({animate: false})
+
       e.run()
       $(".togglePreview").click (e) ->  
         e.preventDefault() 
@@ -12,5 +16,6 @@ module.exports=
     ,20
 
   convert:(content)->
-    (new Markdown.Converter()).makeHtml(content || "")
+    cont= (new Markdown.Converter()).makeHtml(content || "")
+    $("<div>").html(cont).emoticonize().html()
     
