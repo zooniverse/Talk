@@ -1,0 +1,41 @@
+<% user = require('zooniverse/lib/models/user').current %>
+<% roles = require('models/roles').roles[user.name] %>
+<% moment = require 'moment/moment' %>
+
+<div class="columns">
+  <div class="one-quarter column">
+    <!-- TO-DO: Mini profile -->
+    <div class="message-list"></div>
+  </div>
+  
+  <div class="three-quarters column">
+    <ul class="posts">
+      <% for message in @messages: %>
+        <li>
+          <div class="post<%= " #{ roles.sort().join(' ') }" if roles %>">
+            <header>
+              <%- require('views/messages/user_link') message: message %>
+            </header>
+            
+            <div class="content">
+              <%= message.body %>
+            </div>
+            
+            <footer>
+              Posted <%= moment(message.created_at).fromNow() %>
+            </footer>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+    
+    <h4>Create a new message</h4>
+    <form class="new-message">
+      <div class="field"><textarea name="message[body]" placeholder="Description"></textarea></div>
+      
+      <div class="action">
+        <button type="submit" name="submit">Send Message</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,12 +1,12 @@
 <div class="columns">
   <div class="one-quarter column">
-    <!-- TO-DO: Mini profile, messages -->
+    <!-- TO-DO: Mini profile -->
+    <div class="message-list"></div>
   </div>
   
   <div class="three-quarters column">
     <h3>Create a new message</h3>
     <form class="new-message">
-      <input type="hidden" name="user_id" value="<%= @user_id %>">
       <div class="field"><input type="text" name="user_name" class="user-search" placeholder="Search for a user"></div>
       <div class="field"><input type="text" name="message[title]" placeholder="Title" /></div>
       <div class="field"><textarea name="message[body]" placeholder="Description"></textarea></div>

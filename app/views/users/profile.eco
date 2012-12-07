@@ -2,7 +2,8 @@
 
 <div class="columns">
   <div class="one-quarter column">
-    <!-- TO-DO: user messaging and mini-profile -->
+    <!-- TO-DO: mini-profile -->
+    <div class="message-list"></div>
   </div>
   
   <div class="three-quarters column">

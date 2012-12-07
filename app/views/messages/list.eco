@@ -1,0 +1,29 @@
+<% user = require('zooniverse/lib/models/user').current %>
+<% roles = require('models/roles').roles[user.name] %>
+<% moment = require 'moment/moment' %>
+
+<h2>
+  Messages
+  <a class="compose button" href="#/messages/new">Compose Message</a>
+</h2>
+
+<ul class="list">
+  <% for id, conversation of @conversations: %>
+    <% lastMessage = conversation.messages[conversation.messages.length - 1] %>
+    <% direction = if conversation.isSender(user) then 'from' else 'to' %>
+    
+    <li class="<%= 'unread ' if conversation.isUnread(user) %>message">
+      <header>
+        <a href="#/messages/<%= id %>"><%= conversation.title %></a>
+      </header>
+      
+      <p class="body"><%= lastMessage.body %></p>
+      
+      <footer>
+        <%= moment(lastMessage.created_at).fromNow() %>
+        <%= direction %>
+        <%- require('views/messages/user_link') message: lastMessage %>
+      </footer>
+    </li>
+  <% end %>
+</ul>
