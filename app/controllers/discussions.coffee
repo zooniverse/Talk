@@ -22,22 +22,7 @@ class DiscussionPage extends Page
       Api.get "#{ @url() }?page=#{ Params?.page or 1 }", (@data) =>
         @focus = @data.focus
         @data.focusType = @discussionFocus()
-        
-        if @data.focusType is 'collections'
-          subjects = @data.focus.subjects
-          @data.focus.subjects = { }
-          
-          if subjects?.length > 0
-            page = 0
-            for index in [0 .. subjects.length] by 6
-              @data.focus.subjects[page += 1] = subjects.slice index, index + 6
-            
-            @data.focus.subjectsCount = subjects.length
-            @data.focus.subjectPages = page
-          else
-            @data.focus.subjectsCount = 0
-            @data.focus.subjectPages = 0
-        
+        @buildPagination()
         @setPage()
         @render()
         callback? @data
@@ -45,6 +30,7 @@ class DiscussionPage extends Page
       Focus.findOrFetch @focusId, (@focus) =>
         @data = @
         @data.focusType = @focusType
+        @buildPagination()
         @setPage()
         
         if @category
@@ -54,6 +40,22 @@ class DiscussionPage extends Page
         else
           @render()
           callback? @data
+  
+  buildPagination: =>
+    if @data.focusType is 'collections'
+      subjects = @data.focus.subjects
+      @data.focus.subjects = { }
+      
+      if subjects?.length > 0
+        page = 0
+        for index in [0 .. subjects.length] by 6
+          @data.focus.subjects[page += 1] = subjects.slice index, index + 6
+        
+        @data.focus.subjectsCount = subjects.length
+        @data.focus.subjectPages = page
+      else
+        @data.focus.subjectsCount = 0
+        @data.focus.subjectPages = 0
   
   render: ->
     super
