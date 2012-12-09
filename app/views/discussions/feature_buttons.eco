@@ -1,7 +1,7 @@
 <% { capitalize } = require('lib/util') %>
-<% user = require('zooniverse/lib/models/user').current %>
+<% currentUser = require('zooniverse/lib/models/user').current %>
 
-<% if user: %>
+<% if currentUser?.admin or currentUser?.moderator: %>
   <div class="feature feature-link">
     <% for scope in ['global', @board.category]: %>
       <% if @featured? and @featured.scopes? and scope in @featured?.scopes: %>
