@@ -1,4 +1,4 @@
-<div class="respond">
+<div class="respond hide-without-user">
   <h4>Leave a post here:</h4>
 
   <form class="new-comment boxed">

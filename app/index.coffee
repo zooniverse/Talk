@@ -34,6 +34,12 @@ User.bind 'sign-in', ->
   $('html').toggleClass 'signed-in', signedIn
   $('html').toggleClass 'not-signed-in', not signedIn
 
+User.bind 'sign-in', ->
+  if User.current
+    roles = Roles.roles[User.current.name] or []
+    User.current.roles = roles
+    User.current[role] = true for role in roles
+
 Roles.fetch ->
   User.fetch().onSuccess ->
     app.el = $('#app')

@@ -1,4 +1,4 @@
-<h4>Begin a new discussion:</h4>
+<h4 class="hide-without-user">Begin a new discussion:</h4>
 
 <form class="new-discussion boxed">
   <% if @category: %>
