@@ -22,10 +22,13 @@ class Message
     url += "/#{ id }" if id
     url
   
-  @start: (userTo, message, callback) ->
-    Api.post @url(), user_name: userTo, message: message, (message) =>
+  @start: (userTo, message, callback, failureCallback) ->
+    starter = Api.post @url(), user_name: userTo, message: message
+    starter.onSuccess (message) =>
       @records[message.id] = new Message(message)
       callback? @records[message.id]
+    
+    starter.onFailure(failureCallback) if failureCallback
   
   constructor: (hash) ->
     @_copy_keys_from hash

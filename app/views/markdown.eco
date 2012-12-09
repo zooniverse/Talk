@@ -1,8 +1,8 @@
 <div class="wmd-panel">
-  <div id="wmd-button-bar<%=@class%>"></div>
-    <textarea class="wmd-input <%=@class%>" id="wmd-input<%=@class%>" name='<%=@name%>' placeholder= '<%=@placeholder%>'"></textarea>
+  <div id="wmd-button-bar<%= @class %>"></div>
+    <textarea class="wmd-input <%= @class %>" id="wmd-input<%= @class %>" name="<%= @name %>" placeholder= "<%= @placeholder %>" required="required"></textarea>
   </div>
-  <a class='togglePreview' href='#'>Show Preview</a>
-<div id="wmd-preview<%=@class%>" class="wmd-panel wmd-preview" style='display:none' ></div>
+  <a class="togglePreview" href="#">Show Preview</a>
+<div id="wmd-preview<%= @class %>" class="wmd-panel wmd-preview" style="display: none;"></div>
 
 <% require('lib/markdown').runEditor(@class) %>

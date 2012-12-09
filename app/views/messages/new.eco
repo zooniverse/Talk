@@ -7,8 +7,8 @@
   <div class="three-quarters column">
     <h3>Create a new message</h3>
     <form class="new-message boxed">
-      <div class="field"><input type="text" name="user_name" class="user-search" placeholder="Search for a user"></div>
-      <div class="field"><input type="text" name="message[title]" placeholder="Title" /></div>
+      <div class="field"><input type="text" required="required" name="user_name" class="user-search" placeholder="Search for a user"></div>
+      <div class="field"><input type="text" required="required" name="message[title]" placeholder="Title" /></div>
       
       <div class="field">
         <%- require('views/markdown') class: 'new-message', name: 'message[body]', placeholder: 'Write your message here' %>

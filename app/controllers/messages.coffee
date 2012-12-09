@@ -79,8 +79,14 @@ class New extends Page
       title: @form.find('[name="message[title]"]').val()
       body: @form.find('[name="message[body]"]').val()
     
-    Message.start userName, message, =>
-      @navigate '/profile'
+    success = => @navigate '/profile'
+    failure = (ev) =>
+      if ev.responseText is 'invalid user'
+        alert "#{ @userSearch.val() } is not a valid user"
+      else
+        alert 'Something went wrong, please try again'
+    
+    Message.start userName, message, success, failure
   
   escape: (value, currentValue) ->
     escaping = new RegExp "(\\#{ ['/', '.', '*', '+', '?', '|', '(', ')', '[', ']', '{', '}', '\\'].join('|\\') })", 'g'
