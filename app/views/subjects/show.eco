@@ -10,7 +10,9 @@
 </header>
 
 <div class="focus">
-  <img src="<%= @location?.standard?[0] %>" class="main" />
+  <div class="subject-viewer">
+    <!--Replace with SubjectViewer instance-->
+  </div>
 
   <div class="add-to-collection">
     <button class="collect-this" data-id="<%= @zooniverse_id %>">Collect</button>

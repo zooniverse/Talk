@@ -4,6 +4,7 @@ Focus = require 'models/focus'
 FocusPage = require 'controllers/focus_page'
 template = require 'views/subjects/show'
 $ = require 'jqueryify'
+{SubjectViewer} = require 'lib/config'
 
 class Show extends FocusPage
   template: template
@@ -38,7 +39,10 @@ class Show extends FocusPage
       super
   
   render: ->
+    @subjectViewer?.destroy()
     super
+    @subjectViewer = new SubjectViewer el: @el.find('.subject-viewer'), subject: @data
+    @log @subjectViewer
     @collectionPage = 1
     @paginationLinks()
   
