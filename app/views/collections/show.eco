@@ -8,7 +8,7 @@
       <span class="owned">(<a href="#/collections/<%= @zooniverse_id %>/edit">Edit</a>)</span>
     <% end %>
     
-    <span class="buttons">
+    <span class="aux">
       <%- require('views/follow_button') id: @zooniverse_id, type: 'subject_sets', follower_ids: @follower_ids %>
       <%- require('views/share_button') id: @zooniverse_id, type: 'subject_sets' %>
     </span>

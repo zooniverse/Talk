@@ -50,7 +50,7 @@
         width: 20%;
 
         a {
-          color: $white;
+          color: $black;
           display: block;
           position: relative;
 
@@ -62,11 +62,12 @@
           }
 
           .label {
-            background: $black;
+            background: $white;
             border-radius: 3px 0 0 3px;
-            bottom: 5px;
+            bottom: 2px;
             font-size: 10px;
-            padding: 1px 3px;
+            font-weight: 500;
+            padding: 1px 4px;
             position: absolute;
             right: -1px;
           }
@@ -130,8 +131,8 @@
     margin-bottom: 30px;
     padding-left: 30px;
     width: 33%;
-    
-    h3{
+   
+    h3 {
       position: relative;
       
       .pages {
@@ -151,7 +152,7 @@
     
     .list {
       .collection-summary {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
       }
     }
     
@@ -218,5 +219,11 @@
     margin-bottom: 30px;
     padding-left: 30px;
     width: 67%;
+  }
+
+  &.collection {
+    h2 {
+      text-align: center;
+    }
   }
 }
