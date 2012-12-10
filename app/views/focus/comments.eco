@@ -5,5 +5,7 @@
 </div>
 
 <% if @count and @count > 10: %>
-  <button class="load-more-comments">Load more</button>
+  <div class="load-more">
+    <button name="load-more" class="load-more-comments">Load more</button>
+  </div>
 <% end %>
