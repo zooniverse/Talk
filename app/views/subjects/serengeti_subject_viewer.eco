@@ -1,0 +1,20 @@
+<div class="subject-images">
+  <% for image, i in @subject.location.standard: %>
+    <img src="<%= image %>" data-index="<%= i %>" />
+  <% end %>
+</div>
+
+<div class="subject-controls">
+  <span class="series">
+    <button name="play">Play</button>
+    <button name="pause">Pause</button>
+  </span>
+
+  <% for image, i in @subject.location.standard: %>
+    <button name="switch-image" value="<%= i %>"><%= i + 1 %></button>
+  <% end %>
+</div>
+
+<div class="subject-metadata">
+  Captured: <%= @subject.metadata.timestamps[0] %>
+</div>

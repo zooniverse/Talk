@@ -1,25 +1,25 @@
-DefaultSubjectViewer = require 'controllers/default_subject_viewer'
+SerengetiSubjectViewer = require 'controllers/serengeti_subject_viewer'
 
 Config =
   test:
     project: 'serengeti'
     apiHost: null
-    SubjectViewer: DefaultSubjectViewer
+    SubjectViewer: SerengetiSubjectViewer
   
   developmentLocal:
     project: 'serengeti'
     apiHost: 'http://localhost:3000'
-    SubjectViewer: DefaultSubjectViewer
+    SubjectViewer: SerengetiSubjectViewer
   
   developmentRemote:
     project: 'serengeti'
     apiHost: 'https://dev.zooniverse.org'
-    SubjectViewer: DefaultSubjectViewer
+    SubjectViewer: SerengetiSubjectViewer
   
   production:
     project: 'serengeti'
     apiHost: 'https://dev.zooniverse.org'
-    SubjectViewer: DefaultSubjectViewer
+    SubjectViewer: SerengetiSubjectViewer
 
 env = if window.jasmine
   'test'

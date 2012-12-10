@@ -1,0 +1,43 @@
+.serengeti-subject-viewer {
+  .subject-images img {
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+
+    &.active {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  .subject-controls {
+    .series {
+      button {
+        width: 60px;
+
+        &[name="pause"] {
+          display: none;
+        }
+      }
+    }
+
+    button {
+      @extends #standard-button;
+    }
+  }
+
+  .subject-metadata {
+    color: $gray;
+  }
+
+  &.playing .subject-controls button{
+    &[name="play"] {
+      display: none;
+    }
+
+    &[name="pause"] {
+      display: inline-block;
+    }
+  }
+}

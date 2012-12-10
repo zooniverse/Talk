@@ -5,8 +5,8 @@ class DefaultSubjectViewer extends Controller
 
   className: 'subject-viewer'
 
-  template: (subject) -> """
-    <img src="#{subject.location.standard[0]}" class="main" />
+  template: -> """
+    <img src="#{@subject.location.standard[0]}" class="main" />
   """
 
   constructor: ->
@@ -14,7 +14,7 @@ class DefaultSubjectViewer extends Controller
     @render()
 
   render: ->
-    @el.html @template @subject
+    @html @template @
 
   destroy: ->
     @el.off()
