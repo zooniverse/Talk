@@ -23,8 +23,8 @@
 
       <% if @comments? and @discussions?: %>
         <div class="stats">
-          <span class="comments"><%= @comments %> Comments</span>,
-          <span class="discussions"><%= @discussions %> Discussions</span>
+          <span class="comments"><span class="count"><%= @comments %></span> Comments</span>,
+          <span class="discussions"><span class="count"><%= @discussions %></span> Discussions</span>
         </div>
       <% end %>
     </div>
