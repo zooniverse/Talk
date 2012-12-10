@@ -14,8 +14,11 @@
   <% for image, i in @subject.location.standard: %>
     <button name="switch-image" value="<%= i %>"><%= i + 1 %></button>
   <% end %>
+
+  <!--<button name="meme">LOL</button>-->
 </div>
 
 <div class="subject-metadata">
   Captured: <%= moment(@subject.metadata.timestamps[0]).format('MMMM Do YYYY, h:mm:ss a') %>
 </div>
+>>>>>>> Start on integrating meme generator (commented out)

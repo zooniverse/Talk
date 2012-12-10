@@ -1,8 +1,26 @@
 DefaultSubjectViewer = require 'controllers/default_subject_viewer'
 template = require 'views/subjects/serengeti_subject_viewer'
+$ = require 'jqueryify'
 
 modulus = (a, b) ->
   ((a % b) + b) % b
+
+# memeDialogTemplate = """
+#   <div class="serengeti-meme-dialog">
+#     <button name="close">
+
+#     <form name="memeify">
+#       <input type="text" name="topText" placeholder="" />
+#       <input type="text" name="bottomText" placeholder="" />
+#       <button type="submit"></button>
+#     </form>
+
+#     <div class="response">
+#       <img src="" class="memeified" />
+#       <input type="text" name="memeified-src" readonly="readonly" value="" />
+#     </div>
+#   </div>
+# """
 
 class SerengetiSubjectViewer extends DefaultSubjectViewer
   className: "#{DefaultSubjectViewer::className} serengeti-subject-viewer"
@@ -14,6 +32,7 @@ class SerengetiSubjectViewer extends DefaultSubjectViewer
     'click button[name="play"]': 'onClickPlay'
     'click button[name="pause"]': 'onClickPause'
     'click button[name="switch-image"]': 'onClickSwitch'
+    # 'click button[name="meme"]': 'onClickMeme'
 
   elements:
     '.subject-images img': 'subjectImages'
@@ -61,5 +80,13 @@ class SerengetiSubjectViewer extends DefaultSubjectViewer
 
   onClickSwitch: ({target}) ->
     @activate $(target).val()
+
+  # onClickMeme: ->
+  #   src = @subjectImages.filter('.active').attr 'src'
+  #   top = prompt('Top line') || ' '
+  #   bottom = prompt('Bottom line') || ' '
+
+  #   $.get "http://serengeti-meme.herokuapp.com/newMeme?image=#{src}&topText=#{top}&bottomText=#{bottom}", (memeSrc) =>
+  #     open memeSrc
 
 module.exports = SerengetiSubjectViewer
