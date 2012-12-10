@@ -1,5 +1,5 @@
 <div class="create-comment">
-  <header>Leave a comment</header>
+  <header>Say something, or mark with a #hashtag</header>
   
   <form class="comment-form">
     <div class="field">
