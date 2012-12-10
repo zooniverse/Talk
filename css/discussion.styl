@@ -94,6 +94,29 @@
         background: #E2E2E2;
         margin: 10px 0;
         padding: 10px;
+
+        .content {
+          blockquote {
+            border-left: 3px solid $gray;
+            margin-left: 0;
+            padding-left: 10px;
+          }
+
+          h2 {
+            padding-bottom: 0;
+
+            &:after {
+              display: none;
+            }
+          }
+
+          pre {
+            background: $gray-less-dark;
+            border-radius: 3px;
+            color: $white;
+            padding: 10px
+          }
+        }
       }
     }
   }
