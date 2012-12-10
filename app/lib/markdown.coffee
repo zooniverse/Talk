@@ -17,5 +17,5 @@ module.exports=
     , 20)
   
   convert: (content = '') ->
-    html = converter.makeHtml content
-    $(html).emoticonize().html()
+    html = $("<div>#{converter.makeHtml content}</div>")
+    html.emoticonize().html()
