@@ -126,6 +126,15 @@ body > footer {
   &.active
     display: block
 
-html.not-signed-in
-  .hide-without-user
-    display: none
+html
+  .show-for-privileged-user
+    visibility: hidden
+  
+  &.not-signed-in
+    .hide-without-user, .show-for-privileged-user
+      display: none
+  
+  &.privileged-user
+    .show-for-privileged-user
+      visibility: visible
+

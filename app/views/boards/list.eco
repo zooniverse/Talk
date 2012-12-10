@@ -1,5 +1,4 @@
 <% { capitalize } = require 'lib/util' %>
-<% currentUser = require('zooniverse/lib/models/user').current %>
 
 <div class="boards">
   <% categories = ['help', 'science', 'chat'] %>
@@ -7,11 +6,9 @@
     <h3>
       <%= capitalize category %>
       
-      <% if currentUser?.admin or currentUser?.moderator: %>
-        <div class="aux">
-          <button name="new-board" value="<%= category %>">Start a new <%= category %> board</button>
-        </div>
-      <% end %>
+      <div class="aux show-for-privileged-user">
+        <button name="new-board" value="<%= category %>">Start a new <%= category %> board</button>
+      </div>
     </h3>
     
     <% @[category] or= [] %>

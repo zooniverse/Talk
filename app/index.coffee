@@ -39,6 +39,7 @@ User.bind 'sign-in', ->
     roles = Roles.roles[User.current.name] or []
     User.current.roles = roles
     User.current[role] = true for role in roles
+    $('html').addClass('privileged-user') if User.current.moderator or User.current.admin
 
 Roles.fetch ->
   User.fetch().onSuccess ->
