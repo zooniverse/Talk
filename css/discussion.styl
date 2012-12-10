@@ -57,17 +57,21 @@
   }
 
   .post {
+    border: 2px solid transparent;
+
     > header {
-      color: $gray;
+      color: #222;
       
       .title {
-        font-size: 24px;
+        font-size: 20px;
+        font-weight: 300;
+        padding: 3px 0px;
       }
     }
     
-    &.admin   { border: 1px solid red; }
-    &.science { border: 1px solid green; }
-    &.mod     { border: 1px solid blue; }
+    &.admin   { border-color: rgba(red, 0.5); }
+    &.science { border-color: rgba(green, 0.5); }
+    &.mod     { border-color: rgba(blue, 0.5); }
     
     .content {
       padding: 5px 0;
@@ -87,7 +91,7 @@
       list-style: none;
 
       .post {
-        background: $gray-less-light;
+        background: #E2E2E2;
         margin: 10px 0;
         padding: 10px;
       }
