@@ -21,4 +21,3 @@
 <div class="subject-metadata">
   Captured: <%= moment(@subject.metadata.timestamps[0]).format('MMMM Do YYYY, h:mm:ss a') %>
 </div>
->>>>>>> Start on integrating meme generator (commented out)
