@@ -38,10 +38,12 @@
 <div class="hashtags">
   <h3>Tags</h3>
   <%- require('views/hashtags/list') tags: @tags %>
-
-  <div class="collect">
-    <a class="create-keyword-set" href="#/collections/new/keywords/<%= @tags.map((o) -> o._id).join('&') %>">Create a tag group</a>
-  </div>
+  <% tagList = @tags.map((o) -> o._id) %>
+  <% if tagList.length > 0: %>
+    <div class="collect">
+      <a class="create-keyword-set" href="#/collections/new/keywords/<%= tagList.join('&') %>">Create a tag group</a>
+    </div>
+  <% end %>
 </div>
 
 <div class="discussions">
