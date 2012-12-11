@@ -19,8 +19,14 @@ Users = require 'controllers/users'
 Roles = require 'models/roles'
 User = require 'zooniverse/lib/models/user'
 User.project = project
+googleAnalytics = require 'zooniverse/lib/google_analytics'
 
 app = {}
+
+googleAnalytics.init
+  account: 'UA-1224199-36'
+  domain: 'snapshotserengeti.org'
+
 
 activateMatchingHashLinks = ->
   $('a.active').removeClass 'active'
