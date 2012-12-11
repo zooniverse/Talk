@@ -4,7 +4,6 @@ require 'aws-sdk'
 AWS.config access_key_id: ENV['S3_ACCESS_ID'], secret_access_key: ENV['S3_SECRET_KEY']
 s3 = AWS::S3.new
 bucket = s3.buckets['talk.snapshotserengeti.org']
-prefix = ''
 
 build = <<-BASH
 rm -rf build
@@ -75,12 +74,12 @@ to_upload.each.with_index do |file, index|
     `file --mime-type -b #{ file }`.chomp
   end
   
-  puts "#{ '%2d' % (index + 1) } / #{ '%2d' % (total + 1) }: Uploading #{ [prefix, file].join('/') } as #{ content_type }"
-  bucket.objects[[prefix, file].join('/')].write file: file, acl: :public_read, content_type: content_type
+  puts "#{ '%2d' % (index + 1) } / #{ '%2d' % (total + 1) }: Uploading #{ file } as #{ content_type }"
+  bucket.objects[file].write file: file, acl: :public_read, content_type: content_type
 end
 
-puts "#{ '%2d' % (total + 1) } / #{ '%2d' % (total + 1) }: Uploading #{ [prefix, 'index.html'].join('/') } as text/html"
-bucket.objects[[prefix, 'index.html'].join('/')].write file: 'index.html', acl: :public_read, content_type: 'text/html', cache_control: 'no-cache, must-revalidate'
+puts "#{ '%2d' % (total + 1) } / #{ '%2d' % (total + 1) }: Uploading index.html as text/html"
+bucket.objects['index.html'].write file: 'index.html', acl: :public_read, content_type: 'text/html', cache_control: 'no-cache, must-revalidate'
 
 Dir.chdir working_directory
 `rm -rf build`
