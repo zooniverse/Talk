@@ -5,7 +5,7 @@ socialDefaults =
   title: 'Snapshot Serengeti'
   summary: 'Classifying animal behavior on the Serengeti!'
   image: 'https://twimg0-a.akamaihd.net/profile_images/2794566694/dffbf19df47aadeaa1f96c744ae01bda.jpeg'
-  twitterTags: '#zooniverse @snapserengeti'
+  twitterTags: 'via @snapserengeti'
 
 Config =
   test:
