@@ -3,7 +3,7 @@
 <% markdown = require 'lib/markdown' %>
 <% roles = require('models/roles').roles[@comment.user_name] %>
 
-<div class="post<%= " #{ roles.sort().join(' ') }" if roles %>">
+<div id="<%= @comment._id %>" class="post<%= " #{ roles.sort().join(' ') }" if roles %>">
   <header>
     <%- userLink link: @comment, avatar: true %>
   </header>
