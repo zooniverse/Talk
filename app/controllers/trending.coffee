@@ -40,11 +40,11 @@ class Index extends Page
     
     switch type
       when 'subjects'
-        Api.get "#{ @url() }/subjects?page=#{ @subjectsPage += 1 }&per_page=3", (results) =>
+        Api.get "#{ @url() }/subjects?page=#{ @subjectsPage += 1 }&per_page=4", (results) =>
           if results.length > 0
             @subjectList.append require('views/subjects/list')(subjects: results)
           
-          if results.length < 3
+          if results.length < 4
             target.attr disabled: true
       
       when 'discussions'
@@ -56,11 +56,11 @@ class Index extends Page
             target.attr disabled: true
       
       when 'collections'
-        Api.get "#{ @url() }/collections?page=#{ @collectionsPage += 1 }&per_page=3", (results) =>
+        Api.get "#{ @url() }/collections?page=#{ @collectionsPage += 1 }&per_page=4", (results) =>
           if results.length > 0
             @collectionList.append require('views/collections/list')(collections: results, updatedStats: true)
           
-          if results.length < 3
+          if results.length < 4
             target.attr disabled: true
 
 class Trending extends SubStack
