@@ -10,7 +10,7 @@
     
     <span class="aux">
       <%- require('views/follow_button') id: @zooniverse_id, type: 'subject_sets', follower_ids: @follower_ids %>
-      <%- require('views/share_button') id: @zooniverse_id, type: 'subject_sets' %>
+      <%- require('views/share_button') image: @subjects[1][0].location.standard[0] %>
     </span>
   </h2>
 </header>

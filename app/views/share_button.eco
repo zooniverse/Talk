@@ -1,3 +1,13 @@
-<div class="share share-link" style="display: none">
-  <button name="share" data-type="<%= @type %>" data-id="<%= @id %>">Share</button>
+<% {facebook, twitter, pinterest} = require 'lib/social' %>
+
+<div class="share share-link">
+  <a href="<%- facebook {href: location.href, @image} if @image %>" target="_blank">
+    <img src="images/facebook.png" title="Share on Facebook"/>
+  </a>
+  <a href="<%- twitter {href: location.href, @image} if @image %>" target="_blank">
+    <img src="images/twitter.png" title="Share on Twitter"/>
+  </a>
+  <a href="<%- pinterest {href: location.href, @image} if @image %>" target="_blank">
+    <img src="images/pinterest.png" title="Share on Pinterest"/>
+  </a>
 </div>

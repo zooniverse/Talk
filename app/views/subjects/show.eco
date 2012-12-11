@@ -4,7 +4,7 @@
 
     <div class="aux">
       <%- require('views/follow_button') id: @zooniverse_id, type: 'subjects', follower_ids: @follower_ids %>
-      <%- require('views/share_button') id: @zooniverse_id, type: 'subjects' %>
+      <%- require('views/share_button') image: @location.standard[0] %>
     </div>
   </h2>
 </header>
