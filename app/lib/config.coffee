@@ -18,7 +18,7 @@ Config =
   
   production:
     project: 'serengeti'
-    apiHost: 'https://dev.zooniverse.org'
+    apiHost: 'https://api.zooniverse.org'
     SubjectViewer: SerengetiSubjectViewer
 
 env = if window.jasmine
