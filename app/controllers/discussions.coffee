@@ -128,9 +128,10 @@ class Show extends DiscussionPage
       onPageClick: @paginateComments
       currentPage: @data.currentPage or 1
   
-  paginateComments: (page, ev) =>
-    ev.preventDefault()
+  paginateComments: (page, ev, callback) =>
+    ev?.preventDefault()
     Api.get "#{ @url() }/comments", page: page, (comments) =>
+      @callback? comments
       @data.comments[page] = comments
       list = comments.map (comment) ->
         "<li>#{ require('views/discussions/comment') comment: comment }</li>"
@@ -138,12 +139,16 @@ class Show extends DiscussionPage
       @commentList.html list.join("\n")
   
   createComment: (ev) =>
-    ev.preventDefault()
+    ev?.preventDefault()
     Api.post "#{ @url() }/comments", @commentForm.serialize(), (response) =>
       @commentForm[0].reset()
-      comment = require('views/discussions/comment') comment: response
-      comment = $("<li>#{ comment }</li>")
-      @commentList.append comment
+      preview = @commentForm.find '#wmd-previewcomment'
+      preview.html ''
+      @commentForm.find('.togglePreview').click() if preview.is(':visible')
+      @data.comments_count += 1
+      @paginationLinks()
+      lastPage = Math.ceil(@data.comments_count / 10.0)
+      @paginateLinks.pagination 'selectPage', lastPage
   
   featureDiscussion: (ev) =>
     ev.preventDefault()
