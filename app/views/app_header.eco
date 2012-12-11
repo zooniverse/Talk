@@ -16,12 +16,12 @@
     </nav>
   </div>
 
-  <div class="profile search group" style="display: none;">
+  <div class="profile search group">
     <nav>
       <ul>
         <%- '<li><a href="#/profile">Profile</a></li>' if user %>
         <li>
-          <span class="search button">Search</span>
+          <span class="search button" style="display: none;">Search</span>
           <div class="right search dropdown" style="display: none;">
             <form name="search">
               <div class="field"><input type="text" name="query" /></div>
