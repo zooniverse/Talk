@@ -140,6 +140,7 @@ class Show extends DiscussionPage
   
   createComment: (ev) =>
     ev?.preventDefault()
+    return false if @commentForm.find('[name="comment"]').val().trim().length < 1
     Api.post "#{ @url() }/comments", @commentForm.serialize(), (response) =>
       @commentForm[0].reset()
       preview = @commentForm.find '#wmd-previewcomment'
@@ -148,7 +149,13 @@ class Show extends DiscussionPage
       @data.comments_count += 1
       @paginationLinks()
       lastPage = Math.ceil(@data.comments_count / 10.0)
-      @paginateLinks.pagination 'selectPage', lastPage
+      
+      if lastPage > 1
+        @paginateLinks.pagination 'selectPage', lastPage
+      else
+        comment = require('views/discussions/comment') comment: response
+        comment = $("<li>#{ comment }</li>")
+        @commentList.append comment
   
   featureDiscussion: (ev) =>
     ev.preventDefault()
