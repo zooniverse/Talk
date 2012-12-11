@@ -18,14 +18,10 @@
           <div class="none">There are curently no discussions.</div>
         <% else: %>
           <div class="discussion-sumarries">
-            <% for discussion in @featured: %>
-              <% discussion.featured = true %>
-              <%- require('views/discussions/summary') discussion: discussion, followable: true %>
-            <% end %>
-
-            <% for discussion in @discussions: %>
-              <%- require('views/discussions/summary') discussion: discussion, followable: true %>
-            <% end %>
+            <div class="list">
+              <%- require('views/boards/discussion_list') discussions: @discussions[@currentPage], featured: @featured, page: @currentPage %>
+            </div>
+            <div class="pages"></div>
           </div>
         <% end %>
       </div>

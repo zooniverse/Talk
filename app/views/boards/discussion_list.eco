@@ -1,0 +1,10 @@
+<% if @page is 1: %>
+  <% for discussion in @featured: %>
+    <% discussion.featured = true %>
+    <%- require('views/discussions/summary') discussion: discussion, followable: true %>
+  <% end %>
+<% end %>
+
+<% for discussion in @discussions: %>
+  <%- require('views/discussions/summary') discussion: discussion, followable: true %>
+<% end %>
