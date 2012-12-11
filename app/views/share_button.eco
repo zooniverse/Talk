@@ -1,3 +1,3 @@
-<div class="share share-link">
+<div class="share share-link" style="display: none">
   <button name="share" data-type="<%= @type %>" data-id="<%= @id %>">Share</button>
 </div>
