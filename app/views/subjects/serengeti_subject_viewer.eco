@@ -1,3 +1,4 @@
+<% moment = require('moment/moment') %>
 <div class="subject-images">
   <% for image, i in @subject.location.standard: %>
     <img src="<%= image %>" data-index="<%= i %>" />
@@ -16,5 +17,5 @@
 </div>
 
 <div class="subject-metadata">
-  Captured: <%= @subject.metadata.timestamps[0] %>
+  Captured: <%= moment(@subject.metadata.timestamps[0]).format('MMMM Do YYYY, h:mm:ss a') %>
 </div>
