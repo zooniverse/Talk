@@ -11,12 +11,12 @@
         <%- '<li><a href="#/following">Following</a></li>' if user %>
         <li><a href="#/trending" class="active">Trending</a></li>
         <li><a href="#/boards">Discussion boards</a></li>
-        <li><a href="#/browse">Browse data</a></li>
+        <li><a href="#/browse" style="display: none;">Browse data</a></li>
       </ul>
     </nav>
   </div>
 
-  <div class="profile search group">
+  <div class="profile search group" style="display: none;">
     <nav>
       <ul>
         <%- '<li><a href="#/profile">Profile</a></li>' if user %>
@@ -34,7 +34,7 @@
   </div>
 
   <div class="return group">
-    <a href="http://www.snapshotserengeti.org" class="return">Return to classifying</a>
+    <a href="http://www.snapshotserengeti.org/#/classify" class="return">Return to classifying</a>
   </div>
 </div>
 

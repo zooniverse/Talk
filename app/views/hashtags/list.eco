@@ -6,7 +6,8 @@
 <% else: %>
   <ul class="hashtag-links">
     <% for tag in tags: %>
-      <li><a href="#/hashtags/<%= tag %>"><%= tag %></a></li>
+      <!-- TO-DO: link to search href="#/hashtags/<%= tag %>" -->
+      <li><a><%= tag %></a></li>
     <% end %>
   </ul>
 <% end %>
