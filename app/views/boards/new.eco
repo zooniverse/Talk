@@ -2,8 +2,8 @@
 <form class="new-board boxed">
   <input type="hidden" name="category" value="<%= @category %>">
   
-  <div class="field"><input type="text" name="title" placeholder="Title" /></div>
-  <div class="field"><textarea name="description" placeholder="Description"></textarea></div>
+  <div class="field"><input type="text" name="title" placeholder="Title" required="required" /></div>
+  <div class="field"><textarea name="description" placeholder="Description" required="required"></textarea></div>
 
   <div class="action">
     <button type="submit" name="submit">Create Board</button>

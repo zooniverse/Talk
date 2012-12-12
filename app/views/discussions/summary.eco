@@ -10,9 +10,9 @@
   <div class="info">
     <div class="title">
       <% if @discussion.board: %>
-        <a href="#/boards/<%= @discussion.board._id %>/discussions/<%= @discussion.zooniverse_id %>"><%= @discussion.title %></a>
+        <a href="#/boards/<%= @discussion.board._id %>/discussions/<%= @discussion.zooniverse_id %>"><%= @discussion.title || 'Untitled discussion' %></a>
       <% else if @discussion.focus: %>
-        <a href="#/<%= focusCollectionFor(@discussion.focus.type) %>/<%= @discussion.focus._id %>"><%= @discussion.focus.name %></a>
+        <a href="#/<%= focusCollectionFor(@discussion.focus.type) %>/<%= @discussion.focus._id %>"><%= @discussion.focus.name || 'Discussion for @discussion.focus._id' %></a>
       <% end %>
     </div>
 

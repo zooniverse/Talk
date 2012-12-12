@@ -2,7 +2,7 @@
 
 <form class="new-discussion boxed">
   <% if @category: %>
-    <input type="hidden" name="category" value="<%= @category %>">
+    <input type="hidden" name="category" value="<%= @category %>" />
   <% end %>
 
   <% if @category and @boards and @focusType isnt 'subjects': %>
@@ -10,7 +10,7 @@
       <label for="board_id">
         <span class="label">Board</span>
         <span class="input">
-          <select name="board_id">
+          <select name="board_id" required="required">
             <option value="">Choose a <%= @category %> board for this discussion</option>
             <% for board in @boards[@category]: %>
               <option value="<%= board.zooniverse_id %>"><%= board.title %></option>
@@ -24,7 +24,7 @@
   <% end %>
 
   <div class="field">
-    <input type="text" name="title" placeholder="Title" />
+    <input type="text" name="title" placeholder="Title" required="required" />
   </div>
 
   <div class="field">
