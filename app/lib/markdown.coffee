@@ -1,9 +1,14 @@
+mentions = require 'lib/mentions'
 converter = new Markdown.Converter()
 
 module.exports=
   runEditor: (className, name) ->
     setTimeout(->
       editor = new Markdown.Editor(converter, className)
+      editor.hooks.chain 'onPreviewRefresh', ->
+        text = $("#wmd-preview#{ className }").html()
+        $("#wmd-preview#{ className }").html(mentions(text)) if text
+      
       editor.hooks.chain "onPreviewRefresh", ->
         $("#wmd-preview#{ className } *").emoticonize animate: false
       

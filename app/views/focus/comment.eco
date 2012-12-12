@@ -1,8 +1,9 @@
 <% userLink = require 'views/user_link' %>
 <% moment = require 'moment/moment' %>
+<% mentions = require 'lib/mentions' %>
 
 <div class="comment">
-  <div class="content"><%= @comment.body %></div>
+  <div class="content"><%- mentions @comment.body %></div>
   <footer>
     <%- userLink link: @comment %>
     <span class="right"><%= moment(@comment.created_at).fromNow() %></span>

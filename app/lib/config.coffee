@@ -10,24 +10,28 @@ socialDefaults =
 Config =
   test:
     project: 'serengeti'
+    prefix: 'SG'
     apiHost: null
     SubjectViewer: SerengetiSubjectViewer
     socialDefaults: socialDefaults
   
   developmentLocal:
     project: 'serengeti'
+    prefix: 'SG'
     apiHost: 'http://localhost:3000'
     SubjectViewer: SerengetiSubjectViewer
     socialDefaults: socialDefaults
 
   developmentRemote:
     project: 'serengeti'
+    prefix: 'SG'
     apiHost: 'https://dev.zooniverse.org'
     SubjectViewer: SerengetiSubjectViewer
     socialDefaults: socialDefaults
 
   production:
     project: 'serengeti'
+    prefix: 'SG'
     apiHost: 'https://api.zooniverse.org'
     SubjectViewer: SerengetiSubjectViewer
     socialDefaults: socialDefaults
