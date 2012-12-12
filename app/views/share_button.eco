@@ -1,13 +1,21 @@
 <% {facebook, twitter, pinterest} = require 'lib/social' %>
 
 <div class="share share-link">
-  <a href="<%- facebook {href: location.href, @image} if @image %>" target="_blank">
-    <img src="images/facebook.png" title="Share on Facebook"/>
-  </a>
-  <a href="<%- twitter {href: location.href, @image} if @image %>" target="_blank">
-    <img src="images/twitter.png" title="Share on Twitter"/>
-  </a>
-  <a href="<%- pinterest {href: location.href, @image} if @image %>" target="_blank">
-    <img src="images/pinterest.png" title="Share on Pinterest"/>
-  </a>
+  <% unless @facebook is false: %>
+    <a href="<%- facebook {href: location.href, @image} if @image %>" target="_blank">
+      <img src="images/facebook.png" title="Share on Facebook"/>
+    </a>
+  <% end %>
+
+  <% unless @twitter is false: %>
+    <a href="<%- twitter {href: location.href, @image} if @image %>" target="_blank">
+      <img src="images/twitter.png" title="Share on Twitter"/>
+    </a>
+  <% end %>
+
+  <% unless @pinterest is false: %>
+    <a href="<%- pinterest {href: location.href, @image} if @image %>" target="_blank">
+      <img src="images/pinterest.png" title="Share on Pinterest"/>
+    </a>
+  <% end %>
 </div>
