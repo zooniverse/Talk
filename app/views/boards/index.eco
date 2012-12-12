@@ -1,5 +1,5 @@
 <div class="columns">
-  <div class="one-quarter column">
+  <div class="one-third column">
     <%- require('views/discussions/featured') featured: @featured %>
     <% if @tags: %>
       <hr />
@@ -7,7 +7,7 @@
     <% end %>
   </div>
   
-  <div class="three-quarters column">
+  <div class="two-thirds column">
     <%- require('views/boards/list') @ %>
   </div>
 </div>

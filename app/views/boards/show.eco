@@ -1,11 +1,11 @@
 <% { capitalize } = require 'lib/util' %>
 
 <div class="columns">
-  <div class="one-quarter column">
+  <div class="one-third column">
     <%- require('views/hashtags/list') tags: @tags %>
   </div>
 
-  <div class="three-quarters column">
+  <div class="two-thirds column">
     <div class="board">
       <h3>
         <span class="category"><%= capitalize @category %> Board</span>

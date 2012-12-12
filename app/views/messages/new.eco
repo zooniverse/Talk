@@ -1,10 +1,10 @@
 <div class="columns">
-  <div class="one-quarter column">
+  <div class="one-third column">
     <!-- TO-DO: Mini profile -->
     <div class="message-list"></div>
   </div>
   
-  <div class="three-quarters column">
+  <div class="two-thirds column">
     <h3>Create a new message</h3>
     <form class="new-message boxed">
       <div class="field"><input type="text" required="required" name="user_name" class="user-search" placeholder="Search for a user"></div>

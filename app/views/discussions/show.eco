@@ -3,7 +3,7 @@
 <% moment = require 'moment/moment' %>
 
 <div class="columns">
-  <div class="one-quarter column">
+  <div class="one-third column">
     <% if @focusType is 'boards': %>
       <%- require('views/discussions/featured') featured: @featured %>
       <hr />
@@ -13,7 +13,7 @@
     <% end %>
   </div>
 
-  <div class="three-quarters column">
+  <div class="two-thirds column">
     <div class="discussion-show">
       <div class="discussion">
         <h3>

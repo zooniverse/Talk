@@ -3,12 +3,12 @@
 <% moment = require 'moment/moment' %>
 
 <div class="columns">
-  <div class="one-quarter column">
+  <div class="one-third column">
     <!-- TO-DO: Mini profile -->
     <div class="message-list"></div>
   </div>
   
-  <div class="three-quarters column">
+  <div class="two-thirds column">
     <ul class="posts">
       <% for message in @messages: %>
         <li>

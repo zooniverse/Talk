@@ -1,9 +1,9 @@
 <div class="columns">
-  <div class="one-quarter column">
+  <div class="one-third column">
     <!-- TO-DO: mini-profile -->
   </div>
   
-  <div class="three-quarters column">
+  <div class="two-thirds column">
     <%- require('views/users/content') label: @name, user: @ %>
   </div>
 </div>
