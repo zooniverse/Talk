@@ -102,6 +102,10 @@ class New extends Page
   
   onSubmit: (ev) ->
     ev.preventDefault()
+
+    submitButton = $(ev.target).find '[type="submit"]'
+    submitButton.attr disabled: true
+
     @serializeTags() if @type is 'KeywordSet'
     Api.post @url(), @form.serialize(), (result) =>
       @navigate "#/collections/#{result.zooniverse_id}"
@@ -159,6 +163,9 @@ class Edit extends New
 
   onSubmit: (ev) ->
     ev.preventDefault()
+
+    submitButton = $(ev.target).find '[type="submit"]'
+    submitButton.attr disabled: true
 
     newValues =
       title: @el.find('input[name="title"]').val()

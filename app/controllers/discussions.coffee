@@ -141,7 +141,12 @@ class Show extends DiscussionPage
   createComment: (ev) =>
     ev?.preventDefault()
     return false if @commentForm.find('[name="comment"]').val().trim().length < 1
+
+    submitButton = $(ev.target).find '[type="submit"]'
+    submitButton.attr disabled: true
+
     Api.post "#{ @url() }/comments", @commentForm.serialize(), (response) =>
+      submitButton.attr disabled: false
       @commentForm[0].reset()
       preview = @commentForm.find '#wmd-previewcomment'
       preview.html ''
@@ -196,6 +201,10 @@ class New extends DiscussionPage
   
   createDiscussion: (ev) =>
     ev.preventDefault()
+
+    submitButton = $(ev.target).find '[type="submit"]'
+    submitButton.attr disabled: true
+
     Api.post @url(), @form.serialize(), (result) =>
       @navigate '/boards', result.board._id, 'discussions', result.zooniverse_id
 

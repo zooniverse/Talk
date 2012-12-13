@@ -48,7 +48,11 @@ class FocusPage extends Page
       @commentButton.removeAttr 'disabled'
   
   submitComment: (ev) ->
+    submitButton = $(ev.target).find '[type="submit"]'
+    submitButton.attr disabled: true
+
     Api.post "#{ @url() }/comments", @commentForm.serialize(), (response) =>
+      submitButton.attr disabled: false
       @commentForm[0].reset()
       @updateCounter()
       @commentList.prepend require('views/focus/comment')(comment: response)

@@ -37,7 +37,12 @@ class Show extends Page
   
   submit: (ev) ->
     ev.preventDefault()
+
+    submitButton = $(ev.target).find '[type="submit"]'
+    submitButton.attr disabled: true
+
     @message.sendReply @messageBody.val(), (@message) =>
+      submitButton.attr disabled: false
       @data = @message
       @render()
 
@@ -74,13 +79,21 @@ class New extends Page
   
   submit: (ev) ->
     ev.preventDefault()
+
+    submitButton = $(ev.target).find '[type="submit"]'
+    submitButton.attr disabled: true
+
     userName = @form.find('[name="user_name"]').val()
     message =
       title: @form.find('[name="message[title]"]').val()
       body: @form.find('[name="message[body]"]').val()
     
-    success = => @navigate '/profile'
+    success = =>
+      @navigate '/profile'
+
     failure = (ev) =>
+      submitButton.attr disabled: false
+
       if ev.responseText is 'invalid user'
         alert "#{ @userSearch.val() } is not a valid user"
       else
