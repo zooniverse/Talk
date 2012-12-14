@@ -16,5 +16,5 @@
     <%- '<div class="page-wrapper"><div class="pages"></div></div>' if @subjectPages > 1 %>
   </div>
   
-  <%- require('views/focus/comments') comments: @discussion.comments %>
+  <%- require('views/focus/comments') discussionId: @discussion.zooniverse_id, comments: @discussion.comments %>
 </div>

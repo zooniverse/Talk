@@ -7,5 +7,6 @@
   <footer>
     <%- userLink link: @comment %>
     <span class="right"><%= moment(@comment.created_at).fromNow() %></span>
+    <%- require('views/moderation/comment') discussionId: @discussionId, comment: @comment %>
   </footer>
 </div>

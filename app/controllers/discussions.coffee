@@ -133,8 +133,8 @@ class Show extends DiscussionPage
     Api.get "#{ @url() }/comments", page: page, (comments) =>
       @callback? comments
       @data.comments[page] = comments
-      list = comments.map (comment) ->
-        "<li>#{ require('views/discussions/comment') comment: comment }</li>"
+      list = comments.map (comment) =>
+        "<li>#{ require('views/discussions/comment') discussionId: @data.zooniverse_id, comment: comment }</li>"
       
       @commentList.html list.join("\n")
   
@@ -158,7 +158,7 @@ class Show extends DiscussionPage
       if lastPage > 1
         @paginateLinks.pagination 'selectPage', lastPage
       else
-        comment = require('views/discussions/comment') comment: response
+        comment = require('views/discussions/comment') discussionId: @data.zooniverse_id, comment: response
         comment = $("<li>#{ comment }</li>")
         @commentList.append comment
   

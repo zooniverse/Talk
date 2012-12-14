@@ -21,7 +21,7 @@
   
   <%- require('views/focus/comment_form')() %>
 
-  <%- require('views/focus/comments') comments: @discussion.comments, count: @discussion.comments_count %>
+  <%- require('views/focus/comments') discussionId: @discussion.zooniverse_id, comments: @discussion.comments, count: @discussion.comments_count %>
 </div>
 
 <div class="collections">

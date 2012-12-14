@@ -7,6 +7,7 @@
 <div id="<%= @comment._id %>" class="post<%= " #{ roles.sort().join(' ') }" if roles %>">
   <header>
     <%- userLink link: @comment, avatar: true %>
+    <%- require('views/moderation/comment') discussionId: @discussionId, comment: @comment %>
   </header>
   
   <div class="content">

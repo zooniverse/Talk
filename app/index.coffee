@@ -103,6 +103,33 @@ $(window).on 'click', '.follow-link button', (event) ->
     followed = action is 'follow'
     link.closest('.follow').replaceWith require('views/follow_button')(id: id, type: type, followed: followed)
 
+$(window).on 'click', '.report-comment', (event) ->
+  if message = prompt('Please enter a brief message describing the problem with this comment:')
+    el = $(event.target)
+    { commentId, discussionId } = el.data()
+    body = { comment_id: commentId, discussion_id: discussionId, message: message }
+    Api.post "/projects/#{ project }/talk/moderation/report_comment", body, =>
+      el.replaceWith '<strong>Reported</strong>'
+
+$(window).on 'click', '.show-for-privileged-user.remove-comment', (event) ->
+  if message = prompt('Please enter a brief message describing the problem with this comment:')
+    el = $(event.target)
+    { commentId, discussionId } = el.data()
+    body = { comment_id: commentId, discussion_id: discussionId, comment: message }
+    
+    Api.post "/projects/#{ project }/talk/moderation/delete_comment", body, =>
+      el.closest('.comment,.post').remove()
+
+$(window).on 'click', '.remove-own-comment', (event) ->
+  if confirm('Are you sure you want to remove this comment?\nThere is no undo.')
+    el = $(event.target)
+    { commentId, discussionId } = el.data()
+    
+    Api.delete "/projects/#{ project }/talk/discussions/#{ discussionId }/comments/#{ commentId }", =>
+      el.closest('.comment,.post').remove()
+
+
+
 window.defaultAvatar = (el) ->
   $(el).replaceWith require('views/users/default_avatar')()
 

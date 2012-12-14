@@ -1,0 +1,14 @@
+<div class="edit-comment">
+  <header>Edit your comment</header>
+  
+  <form class="comment-form">
+    <div class="field">
+      <textarea name="comment" required="required"><%= @comment.body %></textarea>
+    </div>
+    
+    <div class="action">
+      <span class="characters"><span class="count"><%= 140 - (@comment.body?.length or 0) %></span> characters</span>
+      <button type="submit" data-discussion-id="<%= @discussionId %>" data-comment-id="<%= @comment._id %>">Update</button>
+    </div>
+  </form>
+</div>
