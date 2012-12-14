@@ -53,17 +53,16 @@ class FocusPage extends Page
       commentButton.removeAttr 'disabled'
   
   submitComment: (ev) ->
+    ev.preventDefault()
     submitButton = $(ev.target).find '[type="submit"]'
     submitButton.attr disabled: true
-
+    
     Api.post "#{ @url() }/comments", @commentForm.serialize(), (response) =>
       submitButton.attr disabled: false
       @commentForm[0].reset()
       @characterCounter.html 0
       @data.discussion.comments.unshift response
       @commentList.prepend require('views/focus/comment')(discussionId: response.discussion_id, comment: response)
-    
-    ev.preventDefault()
   
   editComment: (ev) =>
     target = $(ev.target)

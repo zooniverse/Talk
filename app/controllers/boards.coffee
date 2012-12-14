@@ -54,13 +54,13 @@ class Show extends Page
   
   createDiscussion: (ev) =>
     ev.preventDefault()
-
+    
     submitButton = $(ev.target).find '[type="submit"]'
     submitButton.attr disabled: true
     
     Api.post "#{ @url() }/discussions", @discussionForm.serialize(), (response) =>
       @navigate '/boards', @id, 'discussions', response.zooniverse_id
-      
+
 
 class Index extends Page
   template: require('views/boards/index')
