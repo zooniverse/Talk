@@ -1,0 +1,13 @@
+<div class="respond hide-without-user">
+  <h4>Edit your post:</h4>
+  
+  <form class="edit-comment boxed">
+    <div class="field">
+      <%- require('views/markdown') class: "comment#{ @comment._id }", name: 'comment', placeholder: 'Leave a comment' %>
+    </div>
+    
+    <div class="action">
+      <button type="submit" data-discussion-id="<%= @discussionId %>" data-comment-id="<%= @comment._id %>">Update</button>
+    </div>
+  </form>
+</div>

@@ -102,7 +102,9 @@ class Show extends DiscussionPage
     DiscussionPage::elements
   
   events: $.extend
+    'click .discussion-topic .post .comment-moderation .edit-comment': 'editComment'
     'submit .new-comment': 'createComment'
+    'submit .edit-comment': 'updateComment'
     'click .feature-link button': 'featureDiscussion'
     DiscussionPage::events
   
@@ -150,7 +152,7 @@ class Show extends DiscussionPage
       @commentForm[0].reset()
       preview = @commentForm.find '#wmd-previewcomment'
       preview.html ''
-      @commentForm.find('.togglePreview').click() if preview.is(':visible')
+      @commentForm.find('.toggle-preview').click() if preview.is(':visible')
       @data.comments_count += 1
       @paginationLinks()
       lastPage = Math.ceil(@data.comments_count / 10.0)
@@ -161,6 +163,35 @@ class Show extends DiscussionPage
         comment = require('views/discussions/comment') discussionId: @data.zooniverse_id, comment: response
         comment = $("<li>#{ comment }</li>")
         @commentList.append comment
+  
+  editComment: (ev) =>
+    ev.preventDefault()
+    target = $(ev.target)
+    id = target.data 'comment-id'
+    comment = @findComment id
+    commentEl = target.closest '.post'
+    commentEl.html require('views/discussions/edit_comment_form')(discussionId: @data.zooniverse_id, comment: comment)
+    commentEl.find('textarea').val comment.body
+  
+  updateComment: (ev) =>
+    ev.preventDefault()
+    target = $(ev.target).find('[type="submit"]')
+    { commentId, discussionId } = target.data()
+    formEl = target.closest '.edit-comment'
+    body = formEl.find('[name="comment"]').val()
+    
+    Api.put "#{ Page::url() }/discussions/#{ discussionId }/comments/#{ commentId }", body: body, =>
+      comment = @findComment commentId
+      comment.body = body
+      formEl.closest('.post').replaceWith require('views/discussions/comment')(discussionId: discussionId, comment: comment)
+  
+  findComment: (id) =>
+    for page, comments of @data.comments
+      comment = comments.filter((c) -> c._id is id)[0]
+      if comment
+        comment.discussionPage = page
+        return comment
+    null
   
   featureDiscussion: (ev) =>
     ev.preventDefault()

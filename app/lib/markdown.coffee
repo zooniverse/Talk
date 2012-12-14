@@ -2,7 +2,7 @@ mentions = require 'lib/mentions'
 converter = new Markdown.Converter()
 
 module.exports=
-  runEditor: (className, name) ->
+  runEditor: (className) ->
     setTimeout(->
       editor = new Markdown.Editor(converter, className)
       editor.hooks.chain 'onPreviewRefresh', ->
@@ -13,7 +13,8 @@ module.exports=
         $("#wmd-preview#{ className } *").emoticonize animate: false
       
       editor.run()
-      $(".togglePreview").click (ev) ->
+      
+      $(".markdown#{ className } .toggle-preview").click (ev) ->
         ev.preventDefault()
         el = $(ev.target)
         preview = el.closest('.field').find '.wmd-preview'
