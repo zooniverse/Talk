@@ -41,7 +41,7 @@
     <% end %>
 
     <% if @discussion?.comments: %>
-      <%- require('views/focus/comments') discussionId: @discussion.zooniverse_id, comments: @discussion.comments, count: @discussion.comments_count %>
+      <%- require('views/focus/comments') discussionId: @discussion.zooniverse_id, comments: @discussion.comments, count: @discussion.comments_count, fromBoard: true %>
     <% end %>
   </div>
 </div>

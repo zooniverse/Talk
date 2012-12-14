@@ -1,10 +1,10 @@
 <div class="focus-comments">
   <% for comment in @comments: %>
-    <%- require('views/focus/comment') discussionId: @discussionId, comment: comment %>
+    <%- require('views/focus/comment') discussionId: @discussionId, comment: comment, fromBoard: @fromBoard %>
   <% end %>
 </div>
 
-<% if @count and @count > 10: %>
+<% if not @fromBoard and @count and @count > 10: %>
   <div class="load-more">
     <button name="load-more" class="load-more-comments">Load more</button>
   </div>
