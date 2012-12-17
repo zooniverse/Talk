@@ -1,0 +1,27 @@
+<% { titleize } = require 'lib/util' %>
+
+<% for moderation in @moderations: %>
+  <div class="moderation-item moderated-comment lined">
+    <a href="#/users/<%= moderation.target.user.name %>" class="user"><%= moderation.target.user.name %></a>
+    <div class="comment-viewer">
+      <a class="off"></a>
+      <span class="on">
+        <div class="comment">
+          <%= moderation.target.comment.body %>
+        </div>
+        <div class="discussion">
+          <%= moderation.target.comment.title %>
+        </div>
+      </span>
+    </div>
+    
+    <%= titleize @pastTenses[moderation.type] %> by <%= moderation.user.name %>
+    (<em><%= moderation.message or 'no message' %></em>)
+    
+    <span class="actions">
+      <% for action in @actions: %>
+        <a class="action-link" data-action="<%= action %>" data-id="<%= moderation.id %>"><%= titleize action %></a>
+      <% end %>
+    </span>
+  </div>
+<% end %>

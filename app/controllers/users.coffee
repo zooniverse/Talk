@@ -53,11 +53,11 @@ class Profile extends Page
       @render()
       callback @data
   
-  render: (withMessages = true )->
+  render: =>
     super
-    if withMessages and @messageList
+    if @messageList
       @messageList.render()
-    else if withMessages
+    else if User.current
       @messageList = new MessageList('.message-list')
   
   loadMore: (ev) =>
@@ -68,6 +68,7 @@ class Profile extends Page
     section = @sections[type]
     
     Api.get "#{ @url() }?type=#{ type }&page=#{ page }", (results) =>
+      results = results[type]
       if results.length > 0
         params = { }
         params[section.argument] = results
@@ -88,8 +89,9 @@ class Show extends Profile
     @id = params.id
     super
   
-  render: ->
-    super false
+  render: =>
+    @data.user = { name: @id, zooniverse_id: @data.zooniverse_id, state: @data.talk?.state }
+    super
 
 
 class Users extends SubStack

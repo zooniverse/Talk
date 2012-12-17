@@ -13,6 +13,7 @@
         <li><a href="#/boards">Discussion boards</a></li>
         <li><a href="#/browse" style="display: none;">Browse data</a></li>
         <%- '<li><a href="#/profile">Profile</a></li>' if user %>
+        <li class="show-for-privileged-user"><a href="#/moderation">Moderation</a></li>
       </ul>
     </nav>
   </div>

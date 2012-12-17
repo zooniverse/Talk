@@ -20,4 +20,9 @@ module.exports =
   
   truncate: (text, length) ->
     return text if text.length <= length
-    text.substring(0, length).replace(/\s?\w+$/, '') + '&#8230;'
+    text.substring(0, length).replace(/\s?\w+$/, '') + '...'
+  
+  titleize: (text) ->
+    text.replace /([-_ ]|^)(\w)/g, (match, separator, letter) ->
+      " #{ letter.toUpperCase() }"
+    .trim()

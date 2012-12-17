@@ -32,7 +32,7 @@
     
     <% if @last_comment: %>
       <div class="last-comment">
-        <div class="content"><%- truncate(@last_comment.body or '&nbsp;', 140) %></div>
+        <div class="content"><%= truncate(@last_comment.body or ' ', 140) %></div>
 
         <div class="author">
           <%- userLink link: @last_comment, avatar: true %>

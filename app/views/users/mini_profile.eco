@@ -1,0 +1,13 @@
+<% currentUser = require('zooniverse/lib/models/user').current %>
+
+<div class="mini-profile">
+  <% if currentUser?.name is @user.name: %>
+    <a class="change-avatar" href="https://www.zooniverse.org/account/avatar" target="_blank" title="Change your avatar">
+      <img src="//zooniverse-avatars.s3.amazonaws.com/ouroboros/<%= @user.zooniverse_id %>" class="avatar" onerror="window.defaultAvatar(this)" />
+    </a>
+  <% else: %>
+    <img src="//zooniverse-avatars.s3.amazonaws.com/ouroboros/<%= @user.zooniverse_id %>" class="avatar" onerror="window.defaultAvatar(this)" />
+  <% end %>
+  <span class="name"><%= @user.name %></span>
+  <%- require('views/moderation/user') user: @user %>
+</div>

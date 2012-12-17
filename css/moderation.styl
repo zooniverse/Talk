@@ -26,3 +26,88 @@ html.signed-in
     
     .action .characters
       float: left
+
+.mini-profile
+  .report-user, .ban-user, .redeem-user
+    @extends #standard-button
+    display: inline-block
+    margin: 20px 0 10px 0
+    text-decoration: none
+    cursor: pointer
+
+.moderation.stack
+  a
+    cursor: pointer
+  
+  .discussion
+    overflow: visible
+  
+  .timestamp
+    float: right
+    color: $gray-less-dark
+    font-weight: bold
+  
+  .unlined, .lined
+    padding-bottom: 10px
+    margin-bottom: 10px
+  
+  .lined
+    border-bottom: 1px solid $gray-less-light
+  
+  .load-more
+    margin-top: 20px
+  
+  .log, .watched_users, .banned_users
+    margin-top: 40px
+  
+  .comment-viewer
+    .on
+      display: none
+    
+    .off:after
+      content: 'Show Comment'
+    
+    &.on
+      .on
+        display: inline-block
+      
+      .off:after
+        content: 'Hide Comment'
+  
+  .moderated-log, .moderated-comment, .moderated-user
+    clearfix()
+    line-height: 22px
+    
+    div
+      display: inline-block
+    
+    .actions
+      float: right
+      
+      .action-link
+        border-right: 2px solid $gray
+        padding: 0 8px
+        
+        &:last-child
+          border-right: none
+          padding: 0 0 0 5px
+    
+    .moderation-message
+      white-space: pre
+    
+    .comment-viewer
+      .off:after
+        content: 'Comment'
+      
+      &.on
+        display: block
+        
+        .off:after
+          content: 'Hide Comment'
+        
+        .on .comment
+          display: block
+          font: 14px/22px
+          padding: 0 0 0 20px
+          margin: 0 0 0 20px
+          border-left: 3px solid $gray

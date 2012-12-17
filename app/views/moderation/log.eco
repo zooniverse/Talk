@@ -1,0 +1,36 @@
+<% { titleize } = require 'lib/util' %>
+<% moment = require 'moment/moment' %>
+
+<% for moderation in @moderations: %>
+  <div class="moderation-item moderated-log lined">
+    <% if moderation.target.type is 'comment': %>
+      <div class="comment-viewer">
+        <a class="off"></a>
+        <span class="on">
+          <div class="comment">
+            <%= moderation.target.comment.body %>
+          </div>
+        </span>
+      </div>
+    <% end %>
+    
+    <% if moderation.target.type is 'comment': %>
+      in <%= moderation.target.comment.title %>
+      by
+    <% else: %>
+      User
+    <% end %>
+    <a href="#/users/<%= moderation.target.user.name %>" class="user"><%= moderation.target.user.name %></a>
+    <br />
+    <%= titleize @pastTenses[moderation.type] %> by
+    <a href="#/users/<%= moderation.user.name %>" class="user"><%= moderation.user.name %></a>
+    (<em><%= moderation.message or 'no message' %></em>)
+    
+    <br />
+    <strong><%= titleize @pastTenses[moderation.action.label] %></strong> by
+    <a href="#/users/<%= moderation.action.user.name %>" class="user"><%= moderation.action.user.name %></a>
+    (<em><%= moderation.action.comment or 'no comment' %></em>)
+    
+    <span class="timestamp"><%= moment(moderation.actioned_at).fromNow() %></span>
+  </div>
+<% end %>

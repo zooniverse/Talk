@@ -1,6 +1,8 @@
+<% currentUser = require('zooniverse/lib/models/user').current %>
+
 <div class="columns">
   <div class="one-third column">
-    <!-- TO-DO: mini-profile -->
+    <%- require('views/users/mini_profile') user: currentUser %>
     <div class="message-list"></div>
   </div>
   

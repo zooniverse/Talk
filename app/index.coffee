@@ -14,12 +14,15 @@ Subjects = require 'controllers/subjects'
 Collections = require 'controllers/collections'
 Boards = require 'controllers/boards'
 Discussions = require 'controllers/discussions'
+Moderation = require 'controllers/moderation'
 Messages = require 'controllers/messages'
 Users = require 'controllers/users'
 Roles = require 'models/roles'
 User = require 'zooniverse/lib/models/user'
 User.project = project
 googleAnalytics = require 'zooniverse/lib/google_analytics'
+require 'lib/moderation_links'
+require 'lib/follow_links'
 
 app = {}
 
@@ -64,6 +67,7 @@ Roles.fetch ->
         collections: Collections
         users: Users
         messages: Messages
+        moderation: Moderation
       
       routes:
         '/': 'trending'
@@ -75,6 +79,7 @@ Roles.fetch ->
         '/profile': 'users'
         '/users': 'users'
         '/messages': 'messages'
+        '/moderation': 'moderation'
         '/:focusType/:focusId/discussions': 'discussions'
       
       default: 'trending'
@@ -86,47 +91,6 @@ Roles.fetch ->
 
 $(window).on 'hashchange', activateMatchingHashLinks
 
-$(window).on 'click', '.follow-link button', (event) ->
-  event.preventDefault()
-  link = $(event.target)
-  action = link.attr 'name'
-  id = link.data 'id'
-  type = link.data 'type'
-  link.attr 'disabled', 'disabled'
-  
-  url = "/projects/#{ project }/talk/following/#{ action }"
-  hash =
-    type: type
-    id: id
-  
-  Api.post url, hash, =>
-    followed = action is 'follow'
-    link.closest('.follow').replaceWith require('views/follow_button')(id: id, type: type, followed: followed)
-
-$(window).on 'click', '.report-comment', (event) ->
-  if message = prompt('Please enter a brief message describing the problem with this comment:')
-    el = $(event.target)
-    { commentId, discussionId } = el.data()
-    body = { comment_id: commentId, discussion_id: discussionId, message: message }
-    Api.post "/projects/#{ project }/talk/moderation/report_comment", body, =>
-      el.replaceWith '<strong>Reported</strong>'
-
-$(window).on 'click', '.show-for-privileged-user.remove-comment', (event) ->
-  if message = prompt('Please enter a brief message describing the problem with this comment:')
-    el = $(event.target)
-    { commentId, discussionId } = el.data()
-    body = { comment_id: commentId, discussion_id: discussionId, comment: message }
-    
-    Api.post "/projects/#{ project }/talk/moderation/delete_comment", body, =>
-      el.closest('.comment,.post').remove()
-
-$(window).on 'click', '.remove-own-comment', (event) ->
-  if confirm('Are you sure you want to remove this comment?\nThere is no undo.')
-    el = $(event.target)
-    { commentId, discussionId } = el.data()
-    
-    Api.delete "/projects/#{ project }/talk/discussions/#{ discussionId }/comments/#{ commentId }", =>
-      el.closest('.comment,.post').remove()
 
 
 

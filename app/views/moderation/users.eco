@@ -1,0 +1,15 @@
+<% { titleize } = require 'lib/util' %>
+
+<% for moderation in @moderations: %>
+  <div class="moderation-item moderated-user unlined">
+    <a href="#/users/<%= moderation.target.user.name %>" class="user"><%= moderation.target.user.name %></a>
+    <%= titleize @pastTenses[moderation.type] %> by <%= moderation.user.name %>
+    <em class="moderation-message">(<%= moderation.message or 'no message' %>)</em>
+    
+    <span class="actions">
+      <% for action in @actions: %>
+        <a class="action-link" data-user-name="<%= moderation.target.user.name %>" data-action="<%= action %>" data-id="<%= moderation.id %>"><%= titleize action %></a>
+      <% end %>
+    </span>
+  </div>
+<% end %>

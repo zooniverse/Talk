@@ -1,0 +1,15 @@
+<% currentUser = require('zooniverse/lib/models/user').current %>
+
+<div class="user-moderation hide-without-user">
+  <% if (currentUser?.admin or currentUser?.moderator) and currentUser.name isnt @user.name: %>
+    <div class="show-for-privileged-user">
+      <% if @user.state is 'banned': %>
+        <a class="redeem-user" data-user-name="<%= @user.name %>">Redeem User</a>
+      <% else: %>
+        <a class="ban-user" data-user-name="<%= @user.name %>">Ban User</a>
+      <% end %>
+    </div>
+  <% else if currentUser and currentUser?.name isnt @user.name: %>
+    <a class="report-user" data-user-name="<%= @user.name %>">Report User</a>
+  <% end %>
+</div>
