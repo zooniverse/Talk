@@ -15,7 +15,8 @@
       </span>
     </div>
     
-    <%= titleize @pastTenses[moderation.type] %> by <%= moderation.user.name %>
+    <%= titleize @pastTenses[moderation.type] %> by
+    <a href="#/users/<%= moderation.user.name %>" class="user"><%= moderation.user.name %></a>
     (<em><%= moderation.message or 'no message' %></em>)
     
     <span class="actions">
