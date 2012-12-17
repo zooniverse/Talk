@@ -39,6 +39,10 @@ activateMatchingHashLinks = ->
     $("a[href='#{hash}']").addClass 'active' for hash in hashes
 
 User.bind 'sign-in', ->
+  if User.current?.talk?.state is 'banned'
+    $('body').html require('views/users/banned')()
+
+User.bind 'sign-in', ->
   signedIn = User.current?
   $('html').toggleClass 'signed-in', signedIn
   $('html').toggleClass 'not-signed-in', not signedIn

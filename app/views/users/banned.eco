@@ -1,0 +1,10 @@
+<div id="banned-user">
+  <h1>
+    You have been banned from Talk by a moderator
+  </h1>
+  
+  <h3>
+    If you believe this is in error, please send an email to
+    <a title="Zooniverse Support" href="mailto:support@zooniverse.org">Zooniverse Support</a>
+  </h3>
+</div>
