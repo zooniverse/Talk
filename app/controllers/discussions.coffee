@@ -2,8 +2,8 @@
 Api = require 'zooniverse/lib/api'
 Focus = require 'models/focus'
 SubStack = require 'lib/sub_stack'
-Params = require 'lib/params'
 Page = require 'controllers/page'
+Params = require 'lib/params'
 
 class DiscussionPage extends Page
   elements: $.extend
@@ -12,14 +12,14 @@ class DiscussionPage extends Page
     Page::elements
   
   setPage: ->
-    @data.currentPage = Params?.page or 1
+    @data.currentPage = Params.parse()?.page or 1
     comments = @data.comments
     @data.comments = { }
     @data.comments[@data.currentPage] = comments
   
   reload: (callback) ->
     if @fetchOnLoad
-      Api.get "#{ @url() }?page=#{ Params?.page or 1 }", (@data) =>
+      Api.get "#{ @url() }?page=#{ Params.parse()?.page or 1 }", (@data) =>
         @focus = @data.focus
         @data.focusType = @discussionFocus()
         @buildPagination()
@@ -120,6 +120,11 @@ class Show extends DiscussionPage
   render: ->
     super
     @paginationLinks()
+    if commentId = Params.parse().comment_id
+      doc = $('html, body')
+      comment = $("##{ commentId }")
+      doc.animate
+        scrollTop: comment.offset().top - doc.offset().top + doc.scrollTop()
   
   paginationLinks: =>
     return unless @data.comments_count > 10
