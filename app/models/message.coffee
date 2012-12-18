@@ -52,7 +52,7 @@ class Message
   
   isUnread: (user) =>
     lastRead = if @isSender(user) then @last_read_by.user_from else @last_read_by.user_to
-    @updated_at > lastRead
+    !lastRead or (@updated_at > lastRead)
   
   isSender: (user) =>
     @user_from.id is user.id
