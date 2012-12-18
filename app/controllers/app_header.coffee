@@ -1,6 +1,6 @@
 {Controller} = require 'spine'
 User = require 'zooniverse/lib/models/user'
-
+{ pluralize } = require 'lib/util'
 template = require 'views/app_header'
 
 class AppHeader extends Controller
@@ -15,6 +15,7 @@ class AppHeader extends Controller
 
   elements:
     '.sign-in': 'signInContainer'
+    '.message-counter': 'messageCounter'
     '.error': 'errorContainer'
     '.search.button': 'searchButton'
     '.search.dropdown': 'searchDropdown'
@@ -23,7 +24,8 @@ class AppHeader extends Controller
   constructor: ->
     super
     @html template
-
+    
+    User.bind 'message-count', @updateMessageCounter
     User.bind 'sign-in', @onUserSignIn
     User.bind 'sign-in-error', @onSignInError
     @onUserSignIn() if User.current
@@ -67,5 +69,13 @@ class AppHeader extends Controller
     inDropdown = @searchDropdown.has(target).length isnt 0
     inButton = @searchButton.has(target).length isnt 0
     @searchDropdown.hide() unless isDropdown or isButton or inButton or inDropdown
+  
+  updateMessageCounter: (count) =>
+    @messageCounter.attr 'data-count', count
+    if count > 0
+      label = pluralize count, 'new message', 'new messages'
+      @messageCounter.attr 'title', "#{ count } #{ label }"
+    else
+      @messageCounter.attr 'title', 'No new messages'
 
 module.exports = AppHeader

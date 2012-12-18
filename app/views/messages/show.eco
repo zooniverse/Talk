@@ -4,7 +4,7 @@
 
 <div class="columns">
   <div class="one-third column">
-    <!-- TO-DO: Mini profile -->
+    <%- require('views/users/mini_profile') user: user %>
     <div class="message-list"></div>
   </div>
   

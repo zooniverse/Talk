@@ -23,6 +23,7 @@ User.project = project
 googleAnalytics = require 'zooniverse/lib/google_analytics'
 require 'lib/moderation_links'
 require 'lib/follow_links'
+require 'lib/message_counter'
 
 app = {}
 

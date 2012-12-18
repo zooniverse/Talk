@@ -19,6 +19,7 @@
   </div>
 
   <div class="return group">
+    <a title="No new messages" class="hide-without-user message-counter" href="#/profile" data-count="0"></a>
     <nav>
       <ul>
         <li>

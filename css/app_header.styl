@@ -141,6 +141,39 @@
       }
     }
   }
+  
+  .message-counter {
+    position: relative;
+    display: inline-block;
+    width: 18px;
+    height: 10px;
+    vendor('transition-property', 'opacity')
+    vendor('transition-duration', 2s)
+    background: url('images/message.png') no-repeat scroll 0 0 transparent;
+    margin-right: 50px;
+    
+    &.active {
+      border-bottom: none;
+      border-bottom: none;
+      color: inherit;
+    }
+    
+    &[data-count="0"] {
+      opacity: 0.5;
+      
+      &:before {
+        content: '';
+      }
+    }
+    
+    &:before {
+      position: absolute;
+      content: attr(data-count);
+      top: -21px;
+      left: -10px;
+      color: #F2F2F2;
+    }
+  }
 
   .sign-in {
     background: linear-gradient($blue, darken($blue, 33%));
