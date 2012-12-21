@@ -1,5 +1,5 @@
 <% userLink = require 'views/user_link' %>
-<% { pluralize } = require 'lib/util' %>
+<% { pluralize, formatNumber } = require 'lib/util' %>
 <% moment = require 'moment/moment' %>
 
 <div class="board-summary">
@@ -10,13 +10,13 @@
   
   <div class="stats">
     <div class="counts">
-      <span class="discussions"><%= @discussions %></span>
+      <span class="discussions"><%= formatNumber @discussions %></span>
       <%= pluralize @discussions, 'discussion', 'discussions' %>,
       
-      <span class="posts"><%= @comments %></span>
+      <span class="posts"><%= formatNumber @comments %></span>
       <%= pluralize @comments, 'post', 'posts' %>,
       
-      <span class="users"><%= @users %></span>
+      <span class="users"><%= formatNumber @users %></span>
       <%= pluralize @users, 'participant', 'participants' %>
       
       <div class="last">

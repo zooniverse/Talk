@@ -5,6 +5,8 @@
     <%- require('views/discussions/featured') featured: @featured %>
     <hr />
     <%- require('views/hashtags/list') tags: @tags %>
+    <hr />
+    <div class="active-users"></div>
   </div>
   
   <div class="two-thirds column">

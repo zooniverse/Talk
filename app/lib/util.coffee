@@ -26,3 +26,7 @@ module.exports =
     text.replace /([-_ ]|^)(\w)/g, (match, separator, letter) ->
       " #{ letter.toUpperCase() }"
     .trim()
+  
+  formatNumber: (n) ->
+    return unless n
+    n.toString().replace /(\d)(?=(\d{3})+(?!\d))/g, '$1,'

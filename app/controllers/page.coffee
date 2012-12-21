@@ -2,6 +2,7 @@
 { project, apiHost } = require 'lib/config'
 Api = require 'zooniverse/lib/api'
 $ = require 'jqueryify'
+ActiveUsers = require 'controllers/active_users'
 
 class Page extends Controller
   tagName: 'section'
@@ -39,6 +40,11 @@ class Page extends Controller
       callback? @
 
   render: ->
+    if @activeUsers
+      @activeUsers.fetch()
+    else
+      @activeUsers = new ActiveUsers '.active-users'
+    
     @html @template? @data
   
   showCollectionList: (ev) =>

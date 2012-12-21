@@ -8,6 +8,8 @@
       <%- require('views/discussions/featured') featured: @featured %>
       <hr />
       <%- require('views/hashtags/list') tags: @tags %>
+      <hr />
+      <div class="active-users"></div>
     <% else: %>
       <%- require("views/#{ @focusType }/discussion_focus")(@focus) %>
     <% end %>

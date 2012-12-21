@@ -4,6 +4,8 @@
     <% if @tags: %>
       <hr />
       <%- require('views/hashtags/list') tags: @tags %>
+      <hr />
+      <div class="active-users"></div>
     <% end %>
   </div>
   
