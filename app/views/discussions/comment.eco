@@ -7,6 +7,12 @@
 <div id="<%= @comment._id %>" class="post<%= " #{ roles.sort().join(' ') }" if roles %>">
   <header>
     <%- userLink link: @comment, avatar: true %>
+    <% if @comment.response_to: %>
+      <a class="response-to user">in response to
+        <img src="//zooniverse-avatars.s3.amazonaws.com/ouroboros/<%= @comment.response_to.user_zooniverse_id %>" class="avatar" onerror="window.defaultAvatar(this)" />
+        <%= @comment.response_to.user_name %>'s comment
+      </a>
+    <% end %>
     <%- require('views/moderation/comment') discussionId: @discussionId, comment: @comment %>
   </header>
   
@@ -15,6 +21,9 @@
   </div>
   
   <footer>
+    <div class="respond-to hide-without-user">
+      <a class="respond-link" data-id="<%= @comment._id %>">Respond</a>
+    </div>
     Posted <%= moment(@comment.created_at).fromNow() %>
   </footer>
 </div>

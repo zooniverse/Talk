@@ -1,10 +1,12 @@
 <div class="respond hide-without-user">
-  <h4>Leave a post here:</h4>
+  <h4>Leave a post here:<span class="in-response-to"></span></h4>
 
   <form class="new-comment boxed">
     <div class="field">
       <%- require('views/markdown') class: 'comment', name: 'comment', placeholder: 'Leave a comment' %>
     </div>
+    
+    <input type="hidden" name="response_to_id" value="">
 
     <div class="action">
       <button type="submit">Submit</button>

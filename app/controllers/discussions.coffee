@@ -99,10 +99,14 @@ class Show extends DiscussionPage
     'form.new-comment': 'commentForm'
     'ul.posts': 'commentList'
     '.pages': 'paginateLinks'
+    '.discussion-topic .respond h4 .in-response-to': 'inResponseTo'
     DiscussionPage::elements
   
   events: $.extend
     'click .discussion-topic .post .comment-moderation .edit-comment': 'editComment'
+    'click .discussion-topic .post .respond-link': 'respondTo'
+    'click .discussion-topic .in-response-to .remove': 'removeRespondTo'
+    'click .discussion-topic .post .response-to': 'toggleResponse'
     'submit .new-comment': 'createComment'
     'submit .edit-comment': 'updateComment'
     'click .feature-link button': 'featureDiscussion'
@@ -145,15 +149,58 @@ class Show extends DiscussionPage
       
       @commentList.html list.join("\n")
   
+  respondTo: (ev) =>
+    ev.preventDefault()
+    id = $(ev.target).data('id')
+    @commentForm.find('input[name="response_to_id"]').val id
+    comment = @findComment id
+    @inResponseTo.html """In response to #{ comment.user_name }'s comment (<a class="remove">cancel</a>)"""
+    @setCommentCursor()
+  
+  removeRespondTo: (ev) =>
+    ev.preventDefault()
+    @commentForm.find('input[name="response_to_id"]').val ''
+    @inResponseTo.html ''
+    @setCommentCursor()
+  
+  toggleResponse: (ev) =>
+    ev.preventDefault()
+    el = $(ev.target).closest('.post:not(.response-post)')
+    id = el.attr 'id'
+    comment = @findComment id
+    
+    toggle = (comment) =>
+      responseEl = $(""".response-post[data-comment-id="#{ comment._id }"]""")
+      if responseEl[0]
+        responseEl.remove()
+      else
+        el.before require('views/discussions/response')(comment: comment)
+    
+    if comment
+      toggle comment
+    else
+      Api.get "#{ Page::url() }/discussions/#{ @data.zooniverse_id }/comments/#{ id }", toggle
+  
+  setCommentCursor: ->
+    box = $('#wmd-inputcomment').focus()[0]
+    if typeof box.selectionStart is 'number'
+      box.selectionStart = box.selectionEnd = box.value.length
+    else if typeof box.createTextRange isnt 'undefined'
+      box.focus()
+      range = box.createTextRange()
+      range.collapse false
+      range.select()
+  
   createComment: (ev) =>
     ev?.preventDefault()
     return false if @commentForm.find('[name="comment"]').val().trim().length < 1
-
+    
     submitButton = $(ev.target).find '[type="submit"]'
     submitButton.attr disabled: true
-
+    
     Api.post "#{ @url() }/comments", @commentForm.serialize(), (response) =>
       submitButton.attr disabled: false
+      @inResponseTo.html ''
       @commentForm[0].reset()
       preview = @commentForm.find '#wmd-previewcomment'
       preview.html ''
