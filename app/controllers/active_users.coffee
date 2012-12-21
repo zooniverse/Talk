@@ -32,6 +32,7 @@ class ActiveUsers
       @data.userPages = 0
   
   pagination: =>
+    return unless @data.usersCount > 10
     $('.pages', @selector).pagination
       cssStyle: 'compact-theme'
       items: @data.usersCount
