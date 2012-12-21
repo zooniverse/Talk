@@ -1,9 +1,12 @@
 Api = require 'zooniverse/lib/api'
+User = require 'zooniverse/lib/models/user'
 { project } = require 'lib/config'
 
 class ActiveUsers
   constructor: (@selector) ->
     @fetch()
+    User.unbind 'sign-in', @fetch
+    User.bind 'sign-in', @fetch
   
   fetch: =>
     Api.get "/projects/#{ project }/talk/users/active", @render
