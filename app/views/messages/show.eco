@@ -18,7 +18,7 @@
             </header>
             
             <div class="content">
-              <%= message.body %>
+              <%- require('lib/markdown').convert message.body %>
             </div>
             
             <footer>
