@@ -12,6 +12,7 @@ class ActiveUsers
     Api.get "/projects/#{ project }/talk/users/active", @render
   
   render: (@data) =>
+    return unless @data.users?.length > 0
     @paginateData()
     $(@selector).html require('views/users/active') @data
     @pagination()
