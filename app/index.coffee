@@ -3,7 +3,7 @@ require 'lib/setup'
 {Stack} = require 'spine/lib/manager'
 $ = require 'jqueryify'
 
-{ project, apiHost } = require 'lib/config'
+{ project, apiHost, analytics } = require 'lib/config'
 Api = require 'zooniverse/lib/api'
 Api.init host: apiHost
 
@@ -26,11 +26,7 @@ require 'lib/follow_links'
 require 'lib/message_counter'
 
 app = {}
-
-googleAnalytics.init
-  account: 'UA-1224199-36'
-  domain: 'snapshotserengeti.org'
-
+googleAnalytics.init analytics
 
 activateMatchingHashLinks = ->
   $('a.active').removeClass 'active'
@@ -91,13 +87,10 @@ Roles.fetch ->
     
     Spine.Route.setup()
     app.stack.el.appendTo app.el
-
+    
     setTimeout activateMatchingHashLinks
 
 $(window).on 'hashchange', activateMatchingHashLinks
-
-
-
 
 window.defaultAvatar = (el) ->
   $(el).replaceWith require('views/users/default_avatar')()

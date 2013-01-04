@@ -1,5 +1,5 @@
 DefaultSubjectViewer = require 'controllers/default_subject_viewer'
-template = require 'views/subjects/serengeti_subject_viewer'
+template = require 'views/subjects/viewer'
 $ = require 'jqueryify'
 
 modulus = (a, b) ->

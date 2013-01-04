@@ -1,8 +1,9 @@
 <% user = require('zooniverse/lib/models/user').current %>
+<% { projectName, classifyUrl } = require 'lib/config' %>
 
 <div class="main">
   <div class="group">
-    <h1><a href="/"><img src="images/logo-white.png" class="logo" /><strong>Talk</strong> Snapshot Serengeti</a></h1>
+    <h1><a href="/"><img src="images/logo-white.png" class="logo" /><strong>Talk</strong> <%= projectName %></a></h1>
   </div>
   
   <div class="group">
@@ -34,7 +35,7 @@
       </ul>
     </nav>
 
-    <a href="http://www.snapshotserengeti.org/#/classify" class="return">Return to classifying</a>
+    <a href="<%= classifyUrl %>" class="return">Return to classifying</a>
   </div>
 </div>
 

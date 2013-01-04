@@ -4,7 +4,7 @@ Focus = require 'models/focus'
 FocusPage = require 'controllers/focus_page'
 template = require 'views/subjects/show'
 $ = require 'jqueryify'
-{SubjectViewer} = require 'lib/config'
+SubjectViewer = require 'controllers/subject_viewer'
 
 class Show extends FocusPage
   template: template
