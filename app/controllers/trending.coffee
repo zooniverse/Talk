@@ -40,11 +40,11 @@ class Index extends Page
     
     switch type
       when 'subjects'
-        Api.get "#{ @url() }/subjects?page=#{ @subjectsPage += 1 }&per_page=4", (results) =>
+        Api.get "#{ @url() }/subjects?page=#{ @subjectsPage += 1 }&per_page=8", (results) =>
           if results.length > 0
             @subjectList.append require('views/subjects/list')(subjects: results)
           
-          if results.length < 4
+          if results.length < 8
             target.attr disabled: true
       
       when 'discussions'
