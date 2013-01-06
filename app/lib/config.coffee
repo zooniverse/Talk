@@ -1,1 +1,0 @@
-/Users/michael/Sites/Talk/projects/serengeti/config.coffee
