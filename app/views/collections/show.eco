@@ -10,7 +10,7 @@
     
     <span class="aux">
       <%- require('views/follow_button') id: @zooniverse_id, type: 'subject_sets', follower_ids: @follower_ids %>
-      <%- require('views/share_button') image: @subjects[1][0].location.standard[0], pinterest: false %>
+      <%- require('views/share_button') image: require('controllers/subject_viewer').imageIn(@subjects[1][0]?.location), pinterest: false %>
     </span>
   </h2>
 </header>

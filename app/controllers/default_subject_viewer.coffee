@@ -1,6 +1,8 @@
 {Controller} = require 'spine'
 
 class DefaultSubjectViewer extends Controller
+  @imageIn: (location) -> location?.standard
+  
   subject: null
 
   className: 'subject-viewer'

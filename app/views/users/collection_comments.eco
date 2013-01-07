@@ -12,7 +12,7 @@
       <% subjects = collection?.focus?.subjects or [] %>
       <% for subject in subjects[0...5]: %>
         <div class="subject">
-          <img src="<%= subject?.location?.standard?[0] %>" class="thin-frame" />
+          <img src="<%= require('controllers/subject_viewer').imageIn(subject?.location) %>" class="thin-frame" />
         </div>
       <% end %>
     </div>

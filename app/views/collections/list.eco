@@ -16,7 +16,7 @@
         <span class="subjects">
           <% for subject in subjects[0...5]: %>
             <span class="subject">
-              <img src="<%= subject?.location?.standard?[0] %>" class="thin-frame" />
+              <img src="<%= require('controllers/subject_viewer').imageIn(subject?.location) %>" class="thin-frame" />
             </span>
           <% end %>
         </span>

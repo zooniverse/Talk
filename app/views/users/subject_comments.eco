@@ -5,7 +5,7 @@
   <div class="subject">
     <div class="preview">
       <a href="#/subjects/<%= subject.focus.zooniverse_id %>">
-        <img src="<%= subject?.focus?.location?.standard?[0] %>" class="thin-frame" />
+        <img src="<%= require('controllers/subject_viewer').imageIn(subject?.focus?.location) %>" class="thin-frame" />
       </a>
     </div>
     

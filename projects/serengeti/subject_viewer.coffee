@@ -25,6 +25,8 @@ modulus = (a, b) ->
 class SerengetiSubjectViewer extends DefaultSubjectViewer
   className: "#{DefaultSubjectViewer::className} serengeti-subject-viewer"
   template: template
+  
+  @imageIn: (location) -> location?.standard?[0]
 
   fps: 3
 

@@ -5,7 +5,7 @@
 <div class="subject-summary" data-id="<%= @zooniverse_id %>">
   <div class="preview">
     <a href="#/subjects/<%= @zooniverse_id %>">
-      <img src="<%= @location?.standard?[0] %>" class="thin-frame preview" />
+      <img src="<%= require('controllers/subject_viewer').imageIn(@location) %>" class="thin-frame preview" />
     </a>
 
     <div class="add-to-collection">
