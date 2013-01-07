@@ -41,8 +41,8 @@ Config =
     classifyUrl: 'http://www.planetfour.org/#/classify'
     socialDefaults: socialDefaults
     analytics:
-      account: ''
-      domain: 'planetfour.org'
+      account: 'UA-1224199-41'
+      domain: 'talk.planetfour.org'
 
 env = if window.jasmine
   'test'
