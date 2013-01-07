@@ -9,7 +9,7 @@ Config =
   test:
     project: 'planet_four'
     projectName: 'Planet Four'
-    prefix: 'SG'
+    prefix: 'PF'
     apiHost: null
     classifyUrl: null
     socialDefaults: socialDefaults
@@ -18,7 +18,7 @@ Config =
   developmentLocal:
     project: 'planet_four'
     projectName: 'Planet Four'
-    prefix: 'SG'
+    prefix: 'PF'
     apiHost: 'http://localhost:3000'
     classifyUrl: 'http://localhost:9294/#/classify'
     socialDefaults: socialDefaults
@@ -27,7 +27,7 @@ Config =
   developmentRemote:
     project: 'planet_four'
     projectName: 'Planet Four'
-    prefix: 'SG'
+    prefix: 'PF'
     apiHost: 'https://dev.zooniverse.org'
     classifyUrl: 'http://zooniverse-demo.s3-website-us-east-1.amazonaws.com/mars/#/classify'
     socialDefaults: socialDefaults
@@ -36,7 +36,7 @@ Config =
   production:
     project: 'planet_four'
     projectName: 'Planet Four'
-    prefix: 'SG'
+    prefix: 'PF'
     apiHost: 'https://api.zooniverse.org'
     classifyUrl: 'http://www.planetfour.org/#/classify'
     socialDefaults: socialDefaults
