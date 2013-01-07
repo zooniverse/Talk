@@ -12,6 +12,6 @@ end
 
 names.each do |name|
   ARGV[0] = name
-  require_relative 'configure'
-  require_relative 'build'
+  load 'configure.rb'
+  load 'build.rb'
 end
