@@ -2,8 +2,8 @@ socialDefaults =
   href: 'http://talk.planetfour.org/'
   title: 'Planet Four'
   summary: 'Identifying features on the surface of the Red Planet!'
-  image: 'https://twimg0-a.akamaihd.net/profile_images/2794566694/dffbf19df47aadeaa1f96c744ae01bda.jpeg'
-  twitterTags: 'via @planetfour'
+  image: 'https://twimg0-a.akamaihd.net/profile_images/3034609545/b3f45aa65d77590ea91a3f6286fa28c9.jpeg'
+  twitterTags: 'via @planet_four'
 
 Config =
   test:
