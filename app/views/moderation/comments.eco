@@ -21,7 +21,7 @@
     
     <span class="actions">
       <% for action in @actions: %>
-        <a class="action-link" data-action="<%= action %>" data-id="<%= moderation.id %>"><%= titleize action %></a>
+        <a class="action-link" data-action="<%= action %>" data-id="<%= moderation.id %>"><%= titleize action %> comment</a>
       <% end %>
     </span>
   </div>
