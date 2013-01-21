@@ -30,3 +30,22 @@ module.exports =
   formatNumber: (n) ->
     return unless n
     n.toString().replace /(\d)(?=(\d{3})+(?!\d))/g, '$1,'
+  
+  equalObjects: (a, b) ->
+    for own key, val of a
+      return false unless key of b
+      
+      if val is Object(val)
+        return false unless arguments.callee(val, b[key])
+      else
+        return false if b[key] isnt val
+    
+    for own key, val of b
+      return false unless key of a
+      
+      if val is Object(val)
+        return false unless arguments.callee(val, a[key])
+      else
+        return false if a[key] isnt val
+    
+    true

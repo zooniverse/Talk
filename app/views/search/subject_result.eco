@@ -1,0 +1,14 @@
+<div class="subject-result">
+  <div class="preview">
+    <a href="#/subjects/<%= @id %>">
+      <img src="<%= require('controllers/subject_viewer').imageIn(@location) %>" class="thin-frame preview" />
+    </a>
+  </div>
+  
+  <div class="summary">
+    <div class="title">
+      Object <a href="#/subjects/<%= @id %>"><%= @id %></a>
+    </div>
+    <div class="metadata">Last updated <%= require('moment/moment')(@updated_at).fromNow() %></div>
+  </div>
+</div>

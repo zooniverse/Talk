@@ -1,0 +1,4 @@
+<div class="facet" data-facet-type="<%= @term %>">
+  <input id="<%= @term %>-facet" type="checkbox" name="<%= @term %>" value="<%= @term %>" <%= 'checked' if @checked %>>
+  <label for="<%= @term %>-facet"><%= @label %><em class="facet-count" data-count="<%= @count or 0 %>"></em></label>
+</div>

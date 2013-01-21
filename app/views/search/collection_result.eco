@@ -1,0 +1,18 @@
+<% { imageIn } = require('controllers/subject_viewer') %>
+
+<div class="collection-result">
+  <div class="preview">
+    <a href="#/collections/<%= @id %>">
+      <% for location in @location: %>
+        <img src="<%= imageIn location %>" class="thin-frame preview" />
+      <% end %>
+    </a>
+  </div>
+  
+  <div class="summary">
+    <div class="title">
+      Collection <a href="#/collections/<%= @id %>"><%= @name %></a>
+    </div>
+    <div class="metadata">Last updated <%= require('moment/moment')(@updated_at).fromNow() %></div>
+  </div>
+</div>

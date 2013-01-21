@@ -1,0 +1,134 @@
+.search.stack
+  form.search
+    .tags .facets .selected:not(:empty)
+      @extends #rule-below
+      padding-bottom: 5px
+    
+    .type .facet, .category .facet, .tags .facets .facet
+      position: relative
+      width: 22px
+      height: 22px
+      margin: 15px 10px
+      background: #EDEDED
+      background: linear-gradient(top, #FCFFF4 0%, #DFE5D7 40%, #B3BEAD 100%)
+      border-radius: 50px
+      box-shadow: inset 0px 1px 1px $gray-less-light, 0px 1px 2px rgba($gray-dark, 0.5)
+      
+      input[type=checkbox]
+        visibility: hidden
+        
+        &:checked + label:after
+          opacity: 1
+        
+        &:not(:disabled):not(:checked) + label:hover:after
+          opacity: 0.3
+        
+        &:disabled + label
+          cursor: auto
+          background: linear-gradient(top, $gray-less-dark 0%, $gray 100%)
+          color: $gray
+          font-weight: normal
+          
+          .facet-count
+            visibility: hidden
+      
+      label
+        position: absolute
+        cursor: pointer
+        top: 3px
+        left: 3px
+        width: 16px
+        height: 16px
+        border-radius: 50px
+        background: linear-gradient(top, $gray-dark 0%, $gray-less-dark 100%)
+        box-shadow: inset 0px 1px 1px rgba($gray-less-light, 0.4), 0px 1px 0px rgba($gray-light, 0.6)
+        text-indent: 28px
+        white-space: nowrap
+        font-weight: 500
+        font-size: 12px
+        line-height: 17px
+        
+        .facet-count
+          &[data-count="0"]:before
+            content: ''
+          
+          &:before
+            content: '(' attr(data-count) ')'
+            color: $gray
+            margin-left: 0.25em
+        
+        &:after
+          content: ''
+          position: absolute
+          top: 5px
+          left: 3px
+          width: 7px
+          height: 2.5px
+          background: transparent
+          opacity: 0
+          border: 3px solid $blue
+          border-top: none
+          border-right: none
+          transform: rotate(-55deg)
+  
+  .results
+    > h2
+      margin-bottom: 0
+    
+    .result
+      @extends #rule-below
+      display: table
+      width: 100%
+      height: 100%
+      
+      .subject-result, .collection-result, .discussion-result
+        clearfix()
+        display: table-cell
+        position: relative
+        padding: 10px 0
+        width: 100%
+        height: 100px
+        vertical-align: middle
+        
+        .preview
+          display: table-cell
+          
+          img
+            height: 100px
+        
+        .summary
+          display: table-cell
+          height: 100%
+          vertical-align: middle
+          padding-left: 10px
+          
+          .title
+            font-size: 14px
+            font-weight: 500
+      
+      .collection-result
+        .preview
+          height: 100px
+          vertical-align: middle
+          
+          &:last-child
+            margin-right: 0
+          
+          a
+            display: block
+            
+            img
+              display: table-cell
+              height: 50px
+              margin-right: 20px
+              vendor('transition-property', '*')
+              vendor('transition-duration', 500ms)
+              vendor('transition-delay', 150ms)
+              
+              &:hover
+                height: 100px
+                margin: -25px -5px -25px -25px
+      
+      .discussion-result
+        .summary
+          padding-left: 0

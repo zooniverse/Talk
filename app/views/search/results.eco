@@ -1,0 +1,9 @@
+<% { pluralize } = require 'lib/util' %>
+<h2>
+  <%= @total %> <%= pluralize @total, 'result', 'results' %>
+</h2>
+<% for result in @results: %>
+  <div class="result">
+    <%- require("views/search/#{ result.kind }_result") result %>
+  </div>
+<% end %>

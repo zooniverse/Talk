@@ -16,6 +16,7 @@ Boards = require 'controllers/boards'
 Discussions = require 'controllers/discussions'
 Moderation = require 'controllers/moderation'
 Messages = require 'controllers/messages'
+Search = require 'controllers/search'
 Users = require 'controllers/users'
 Roles = require 'models/roles'
 User = require 'zooniverse/lib/models/user'
@@ -69,6 +70,7 @@ Roles.fetch ->
         users: Users
         messages: Messages
         moderation: Moderation
+        search: Search
       
       routes:
         '/': 'trending'
@@ -81,6 +83,7 @@ Roles.fetch ->
         '/users': 'users'
         '/messages': 'messages'
         '/moderation': 'moderation'
+        '/search': 'search'
         '/:focusType/:focusId/discussions': 'discussions'
       
       default: 'trending'
