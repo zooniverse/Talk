@@ -19,5 +19,5 @@
 </div>
 
 <div class="subject-metadata">
-  Captured: <%= moment(@subject.metadata.timestamps[0]).format('MMMM Do YYYY, h:mm:ss a') %>
+  Captured: <%= moment(@subject.metadata.timestamps[0]).utc().format('MMMM Do YYYY, h:mm:ss a') %>
 </div>
