@@ -23,9 +23,8 @@
       
       <section class="tags">
         <h2>Tags</h2>
-        <div class="inputs"></div>
         <div class="facets">
-          <div class="selected"></div>
+          <div class="selected"><% if @queryTags: %><% for name, bool of @queryTags when bool: %><%- require('views/search/facet') term: name, label: name, count: 0, checked: true %><% end %><% end %></div>
           <div class="available"></div>
         </div>
       </section>

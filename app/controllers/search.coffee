@@ -15,7 +15,6 @@ class Index extends Controller
     'form.search .category :checkbox': 'categoryCheck'
     'form.search .tags .facets .available': 'availableTagFacets'
     'form.search .tags .facets .selected': 'selectedTagFacets'
-    'form.search .tags .inputs': 'tagInputs'
     '.results': 'results'
   
   events:
@@ -27,8 +26,8 @@ class Index extends Controller
   activate: ->
     super
     query = @parseParams()
-    @render()
     @queryTags = query.tags or { }
+    @render()
     @runQuery query
     @lastQuery or=
       text: ''
@@ -141,6 +140,7 @@ class Index extends Controller
       @availableTagFacets.append require('views/search/facet') term: facet.term, label: facet.term, count: facet.count
   
   hasChanged: (query) =>
+    return false unless query
     return true unless @lastQuery
     not equalObjects query, @lastQuery
 

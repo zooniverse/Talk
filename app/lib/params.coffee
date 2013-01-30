@@ -6,6 +6,17 @@ module.exports =
     
     for string in query
       [key, value] = string.split '='
-      params[key] = value
+      
+      [totalMatch, arrayKey] = key.match(/\[\]$/) or []
+      [totalMatch, hashKey, hashValueKey] = key.match(/([-\w\d]+)\[([-\w\d]+)\]/) or []
+      
+      if arrayKey
+        params[arrayKey] or= []
+        params[arrayKey].push value
+      else if hashKey and hashValueKey
+        params[hashKey] or= { }
+        params[hashKey][hashValueKey] = value
+      else
+        params[key] = value
     
     params
