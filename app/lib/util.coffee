@@ -28,7 +28,7 @@ module.exports =
     .trim()
   
   formatNumber: (n) ->
-    return unless n
+    return n unless n
     n.toString().replace /(\d)(?=(\d{3})+(?!\d))/g, '$1,'
   
   equalObjects: (a, b) ->

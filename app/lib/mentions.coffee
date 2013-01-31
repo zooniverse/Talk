@@ -25,8 +25,7 @@ userMatcher = ///
 ///g
 
 module.exports = (text) ->
-  # href="#/hashtags/$1"
-  text = text.replace tagMatcher, ' <a title="Tag $1" class="mention">#$1</a>'
+  text = text.replace tagMatcher, ' <a title="Tag $1" class="mention" href="#/search?tags[$1]=true">#$1</a>'
   text = text.replace objectMatcher, ' <a title="Object $1" class="mention" href="#/subjects/$1">$1</a>'
   # text = text.replace groupMatcher, ' <a title="Group $1" class="mention" href="#/groups/$1">$1</a>'
   text = text.replace collectionMatcher, ' <a title="Collection $1" class="mention" href="#/collections/$1">$1</a>'

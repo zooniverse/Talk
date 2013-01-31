@@ -30,13 +30,16 @@
 <div class="description">
   <h3>Description</h3>
   <p><%= @description %></p>
-
+  
   <% if @keywords: %>
-    <% includes = (word for word, included of @keywords when included is 'true') %>
-    <% excludes = (word for word, included of @keywords when included is 'false') %>
+    <% includes = ("##{ word }" for word, included of @keywords when included is 'true') %>
+    <% excludes = ("<a href='#/search?kind=subject&tags[#{ word }]=true'>##{ word }</a>" for word, included of @keywords when included is 'false') %>
+    <% linkHash = { } %>
+    <% linkHash[word] = 'true' for word, included of @keywords when included is 'true' %>
+    
     <p>
-      Includes <%= includes.join(' and ') || 'every subject' %>
-      <% if excludes.length isnt 0: %>but not <%= excludes.join ' or ' %><% end %>
+      Includes <%- """<a href="#/search?kind=subject&#{ decodeURI $.param tags: linkHash }">#{ includes.join(' and ') }</a>""" || 'every subject' %>
+      <% if excludes.length isnt 0: %>but not <%- excludes.join ' or ' %><% end %>
     </p>
   <% end %>
 </div>
