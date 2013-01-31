@@ -26,6 +26,7 @@ class Index extends Controller
   activate: ->
     super
     query = @parseParams()
+    query.per_page = 10
     @queryTags = query.tags or { }
     @render()
     @runQuery query
@@ -41,6 +42,17 @@ class Index extends Controller
   
   render: =>
     @html @template(@)
+  
+  paginationLinks: =>
+    $('.results .pages', @el).pagination
+      cssStyle: 'compact-theme'
+      currentPage: @searchResults.page
+      items: @searchResults.total
+      itemsOnPage: 10
+      onPageClick: (page) =>
+        query = $.extend true, { }, @lastQuery
+        query.page = page
+        @runQuery query
   
   search: (ev) =>
     ev?.preventDefault()
@@ -66,7 +78,9 @@ class Index extends Controller
     retries = 0
     
     Api.get "/projects/#{ project }/talk/search", query, (results) =>
+      @searchResults = results
       @results.html require('views/search/results')(results)
+      @paginationLinks()
       @setFacetCounts results
       @searching = false
       @runQuery(@pending) if @pending

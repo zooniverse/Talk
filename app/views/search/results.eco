@@ -1,6 +1,11 @@
 <% { pluralize, formatNumber } = require 'lib/util' %>
 <h2>
+  <% if @total > 10: %>
+    <%= formatNumber ((@page - 1) * @per_page) + 1 %> -
+    <%= formatNumber Math.min(@total, @page * @per_page) %> of
+  <% end %>
   <%= formatNumber @total %> <%= pluralize @total, 'result', 'results' %>
+  <%- '<div class="pages"></div>' if @total > 10 %>
 </h2>
 <% for result in @results: %>
   <div class="result">
