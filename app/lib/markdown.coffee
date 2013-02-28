@@ -7,10 +7,10 @@ module.exports=
       editor = new Markdown.Editor(converter, className)
       editor.hooks.chain 'onPreviewRefresh', ->
         text = $("#wmd-preview#{ className }").html()
-        $("#wmd-preview#{ className }").html(mentions(text)) if text
-      
-      editor.hooks.chain "onPreviewRefresh", ->
-        $("#wmd-preview#{ className } *").emoticonize animate: false
+        preview = $("#wmd-preview#{ className }")
+        if preview.is(':visible') and text
+          preview.html(mentions(text))
+          preview.find('*').emoticonize animate: false
       
       editor.run()
       
@@ -19,6 +19,7 @@ module.exports=
         el = $(ev.target)
         preview = el.closest('.field').find '.wmd-preview'
         preview.toggle()
+        editor.refreshPreview()
         if preview.is(':visible') then el.html("Hide Preview") else el.html("Show Preview")
     , 20)
   
