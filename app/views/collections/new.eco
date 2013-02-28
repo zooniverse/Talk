@@ -2,19 +2,21 @@
   <% if @type is 'SubjectSet': %>
     <input type="hidden" name="subject_id" value="<%= @subjectId %>">
   <% end %>
-
-  <% if @subjectId: %>
+  
+  <% if @zooniverse_id? and @keywords?.length isnt 0: %>
+    <h3>Edit your keyword collection</h3>
+  <% else if @zooniverse_id?: %>
+    <h3>Edit your collection</h3>
+  <% else if @subjectId: %>
     <h3>Start a collection starting with <a href="#/subjects/<%= @subjectId %>"><%= @subjectId %></a></h3>
   <% else if @keywords?.length isnt 0: %>
     <h3>Create a keyword collection</h3>
+    <p>Keep track of subjects that others have tagged with words that interest you.</p>
+    <p>A keyword collection will update automatically as more subjects are tagged.</p>
   <% end %>
 
   <div class="columns">
     <div class="one-half column">
-      <% if @keywords?.length > 0: %>
-        <p>Keep track of subjects that others have tagged with words that interest you.</p>
-        <p>A keyword collection will update automatically as more subjects are commented on.</p>
-      <% end %>
       <div class="field"><input type="text" name="title" required="required" placeholder="Title" value="<%= @title %>" /></div>
       <div class="field"><textarea name="description" required="required" placeholder="Description"><%= @description %></textarea></div>
     </div>
