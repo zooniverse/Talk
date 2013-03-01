@@ -1,4 +1,4 @@
-<% { capitalize } = require 'lib/util' %>
+<% currentUser = require('zooniverse/lib/models/user').current %>
 <% userLink = require 'views/user_link' %>
 <% moment = require 'moment/moment' %>
 
@@ -18,11 +18,16 @@
   <div class="two-thirds column">
     <div class="discussion-show">
       <div class="discussion">
-        <h3>
-          <span class="category"><%= capitalize @board.category %> Board</span>
-          /
-          <span class="sub-board"><%= @board.name %></span>
-        </h3>
+        <div class="actions">
+          <% if currentUser?.isPrivileged or currentUser?.id is @user_id: %>
+            <a class="edit action">Edit</a>
+            <a class="update action">Update</a>
+            <a class="cancel-update action">Cancel</a>
+          <% end %>
+          <a class="destroy action show-for-privileged-user">Remove</a>
+        </div>
+        
+        <h3 class="board-categories"><%- require('views/discussions/board_categories') @ %></h3>
 
         <div class="discussion-topic">
           <%- require('views/follow_button') id: @zooniverse_id, type: 'discussions', follower_ids: @follower_ids %>

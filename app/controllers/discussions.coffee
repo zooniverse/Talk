@@ -1,5 +1,6 @@
 { focusCollectionFor } = require('lib/util')
 Api = require 'zooniverse/lib/api'
+User = require 'zooniverse/lib/models/user'
 Focus = require 'models/focus'
 SubStack = require 'lib/sub_stack'
 Page = require 'controllers/page'
@@ -100,6 +101,9 @@ class Show extends DiscussionPage
     'ul.posts': 'commentList'
     '.pages': 'paginateLinks'
     '.discussion-topic .respond h4 .in-response-to': 'inResponseTo'
+    '.post header .title': 'title'
+    '.discussion .board-categories': 'boardCategories'
+    '.actions': 'actions'
     DiscussionPage::elements
   
   events: $.extend
@@ -110,6 +114,13 @@ class Show extends DiscussionPage
     'submit .new-comment': 'createComment'
     'submit .edit-comment': 'updateComment'
     'click .feature-link button': 'featureDiscussion'
+    'click .actions .destroy.action': 'destroyDiscussion'
+    'click .actions .edit.action': 'editDiscussion'
+    'click .actions .update.action': 'updateDiscussion'
+    'submit .edit-discussion-title': 'updateDiscussion'
+    'submit .edit-discussion-categories': 'updateDiscussion'
+    'click .actions .cancel-update.action': 'stopEditingDiscussion'
+    'change .edit-discussion-categories .category': 'showSubBoards'
     DiscussionPage::events
   
   activate: (params) ->
@@ -260,6 +271,56 @@ class Show extends DiscussionPage
         @data.featured_status.scopes = @data.featured_status.scopes.filter (oldScope) -> oldScope isnt scope
       
       @el.find('.feature-link').replaceWith require('views/discussions/feature_buttons') id: id, featured: @data.featured_status, board: @data.board
+  
+  destroyDiscussion: (ev) =>
+    ev.preventDefault()
+    if confirm('Are you sure you want to remove this discussion?\nThere is no undo!')
+      Api.delete @url(), =>
+        @navigate '/boards', @data.board._id
+  
+  editDiscussion: (ev) =>
+    ev.preventDefault()
+    @actions.addClass 'editing'
+    @title.html require('views/discussions/edit_title')(@data)
+    
+    if User.current.isPrivileged
+      Api.get @boardsUrl(), (boards) =>
+        @data.boardCategories = boards
+        @boardCategories.html require('views/discussions/edit_categories')(@data)
+  
+  showSubBoards: (ev) =>
+    ev.preventDefault()
+    category = $(ev.target).find('option:selected').val()
+    subBoards = $('.edit-discussion-categories .sub-board')
+    subBoards.attr 'data-category', category
+    subBoards.prop 'selectedIndex', -1
+  
+  updateDiscussion: (ev) =>
+    ev.preventDefault()
+    input = @title.find 'input'
+    changes = { title: input.val() }
+    
+    categoryValid = true
+    if User.current.isPrivileged
+      categories = $('.edit-discussion-categories')
+      changes['board'] = categories.find('.sub-board :selected').val()
+      categoryValid = categories.find('.sub-board')[0].checkValidity()
+      
+      unless categoryValid
+        categories.find('[type=submit]').click()
+        return
+    
+    if input[0].checkValidity()
+      Api.put @url(), changes, (@data) =>
+        @stopEditingDiscussion(ev)
+    else
+      $('.edit-discussion-title [type=submit]').click()
+  
+  stopEditingDiscussion: (ev) =>
+    ev?.preventDefault()
+    @actions.removeClass 'editing'
+    @title.html @data.title
+    @boardCategories.html require('views/discussions/board_categories')(@data)
 
 
 class New extends DiscussionPage

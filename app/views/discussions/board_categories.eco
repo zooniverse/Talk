@@ -1,0 +1,4 @@
+<% { capitalize } = require 'lib/util' %>
+<span class="category"><%= capitalize @board.category %> Board</span>
+/
+<span class="sub-board"><a href="#/boards/<%= @board._id %>"><%= @board.name %></a></span>

@@ -25,6 +25,53 @@
   }
 }
 
+.discussion {
+  .actions {
+    .action {
+      @extends #standard-button;
+      float: right;
+      margin-top: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+    
+    .update, .cancel-update {
+      display: none;
+    }
+    
+    &.editing {
+      .destroy, .edit {
+        display: none;
+      }
+      
+      .update, .cancel-update {
+        display: block;
+      }
+    }
+  }
+  
+  .edit-discussion-categories {
+    font-size: 14px;
+    
+    .field {
+      display: inline-block;
+      margin: 10px;
+    }
+    
+    .sub-board {
+      option {
+        padding-left: 0;
+        display: none;
+      }
+      
+      &[data-category="help"] { option[data-category="help"]{ display: block; } }
+      &[data-category="science"] { option[data-category="science"]{ display: block; } }
+      &[data-category="chat"] { option[data-category="chat"]{ display: block; } }
+    }
+  }
+}
+
 .discussion, .messages {
   overflow: hidden;
 

@@ -1,0 +1,6 @@
+<form class="edit-discussion-title boxed">
+  <div class="field">
+    <input type="text" name="title" placeholder="Title" required="required" value="<%= @title %>" />
+  </div>
+  <button type="submit" name="submit" style="display: none;">Update</button>
+</form>

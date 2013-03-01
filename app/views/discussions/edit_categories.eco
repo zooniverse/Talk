@@ -1,0 +1,25 @@
+<% { capitalize } = require 'lib/util' %>
+
+<form class="edit-discussion-categories boxed">
+  <div class="field">
+    <select class="category" required="required">
+      <% for category in ['help', 'science', 'chat']: %>
+        <option value="<%= category %>"<%= ' selected' if category is @board.category %>><%= capitalize category %></option>
+      <% end %>
+    </select>
+  </div>
+  /
+  <div class="field">
+    <select class="sub-board" required="required" data-category="<%= @board.category %>">
+      <% for category in ['help', 'science', 'chat']: %>
+        <optgroup data-category="<%= category %>">
+          <% for board in @boardCategories[category]: %>
+            <option data-category="<%= category %>" value="<%= board.zooniverse_id %>"<%= ' selected' if board.zooniverse_id is @board._id %>><%= board.title %></option>
+          <% end %>
+        </optgroup>
+      <% end %>
+    </select>
+  </div>
+  
+  <button type="submit" name="submit" style="display: none;">Update</button>
+</form>
