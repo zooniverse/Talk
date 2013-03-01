@@ -355,6 +355,12 @@ class Show extends DiscussionPage
       form.find('[type=submit]').click()
       return
     
+    if @data.zooniverse_id is changes.discussion
+      alert 'You cannot merge a discussion with itself'
+      return
+    
+    return unless confirm """You are about to merge comments in "#{ @data.title }" into "#{ form.find('select.discussion :selected').text() }"\n"#{ @data.title }" will be deleted.\n\nThere is not undo!"""
+    
     Api.post "#{ @url() }/merge", changes, (@data) =>
       @navigate '/boards', changes.board, 'discussions', changes.discussion
   
