@@ -19,11 +19,17 @@
     <div class="discussion-show">
       <div class="discussion">
         <div class="actions">
-          <% if currentUser?.isPrivileged or currentUser?.id is @user_id: %>
+          <% if currentUser?.isPrivileged or (currentUser?.id is @user_id and not @locked): %>
             <a class="edit action">Edit</a>
             <a class="update action">Update</a>
             <a class="cancel-update action">Cancel</a>
           <% end %>
+          <% if @locked: %>
+            <a class="unlock action show-for-privileged-user">Unlock</a>
+          <% else: %>
+            <a class="lock action show-for-privileged-user">Lock</a>
+          <% end %>
+          
           <a class="merge action show-for-privileged-user">Merge</a>
           <a class="update-merge action show-for-privileged-user">Update</a>
           <a class="cancel-merge action show-for-privileged-user">Cancel</a>
@@ -45,7 +51,13 @@
           
           <%- require('views/discussions/comments') @ %>
           
-          <%- require('views/discussions/comment_form') @ %>
+          <div class="new-post<%= ' locked' if @locked %>">
+            <%- require('views/discussions/comment_form') @ %>
+            <div class="lock">
+              <p>This discussion has been locked by a moderator.</p>
+              <p>Comments may not be added, updated, or removed.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

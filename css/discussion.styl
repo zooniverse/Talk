@@ -41,7 +41,7 @@
     }
     
     &.editing, &.merging {
-      .destroy, .edit, .merge {
+      .destroy, .edit, .merge, .lock, .unlock {
         display: none;
       }
     }
@@ -103,6 +103,39 @@
       &[data-category="help"] { option[data-category="help"]{ display: block; } }
       &[data-category="science"] { option[data-category="science"]{ display: block; } }
       &[data-category="chat"] { option[data-category="chat"]{ display: block; } }
+    }
+  }
+  
+  .new-post {
+    position: relative;
+    
+    .lock {
+      display: none;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 10%
+      border: 2px solid #222222;
+      vertical-align: center;
+      text-align: center;
+      font-weight: 500;
+      background-color: rgba(200, 200, 200, 0.7);
+      z-index: 100;
+    }
+    
+    &.locked {
+      .respond {
+        // display: none;
+      }
+      
+      .lock {
+        display: block;
+      }
     }
   }
 }

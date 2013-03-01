@@ -127,6 +127,10 @@ class Show extends DiscussionPage
     'click .actions .cancel-merge.action': 'cancelMerge'
     'change form.merge-discussion .category': 'showBoards'
     'change form.merge-discussion .sub-board': 'showDiscussions'
+    
+    'click .actions .lock.action': 'lockDiscussion'
+    'click .actions .unlock.action': 'unlockDiscussion'
+    
     DiscussionPage::events
   
   activate: (params) ->
@@ -385,7 +389,18 @@ class Show extends DiscussionPage
       $("##{ selectId }").replaceWith require('views/discussions/mergable_list')(@data)
       $("##{ selectId }_chzn").remove()
       form.find('select.discussion').prop('selectedIndex', -1).chosen no_results_text: 'No discussions matched'
-
+  
+  lockDiscussion: (ev) =>
+    ev.preventDefault()
+    return unless confirm('Are you sure you want to lock commenting on this discussion?\nThis will also prevent comments from being edited and removed.')
+    $('.actions .lock.action').replaceWith '<a class="unlock action show-for-privileged-user">Unlock</a>'
+    Api.put "#{ @url() }/lock", -> $('.new-post').addClass 'locked'
+  
+  unlockDiscussion: (ev) =>
+    ev.preventDefault()
+    return unless confirm('Are you sure you want to unlock commenting on this discussion?')
+    $('.actions .unlock.action').replaceWith '<a class="lock action show-for-privileged-user">Lock</a>'
+    Api.put "#{ @url() }/unlock", -> $('.new-post').removeClass 'locked'
 
 class New extends DiscussionPage
   template: require('views/discussions/new')

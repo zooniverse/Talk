@@ -9,7 +9,7 @@
       <% end %>
     </select>
   </div>
-  /
+  
   <div class="field">
     <select class="sub-board" required="required" data-category="<%= @board.category %>">
       <% for category in ['help', 'science', 'chat']: %>
