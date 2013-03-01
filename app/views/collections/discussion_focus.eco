@@ -2,7 +2,7 @@
 
 <div class="collection discussion-focus">
   <h3>
-    <a href="#/collections/<%= @_id %>"><%= @title %></a>
+    <a href="#/collections/<%= @_id or @zooniverse_id %>"><%= @title %></a>
     <span class="aux">
       <%- userLink link: @ %>
       (<%= @subjectsCount %> items)

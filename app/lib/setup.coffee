@@ -17,3 +17,4 @@ require('lib/markdown/editor')
 
 require('lib/autocomplete')
 require('lib/emoticons')
+require('lib/chosen')

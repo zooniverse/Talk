@@ -121,6 +121,12 @@ class Show extends DiscussionPage
     'submit .edit-discussion-categories': 'updateDiscussion'
     'click .actions .cancel-update.action': 'stopEditingDiscussion'
     'change .edit-discussion-categories .category': 'showSubBoards'
+    
+    'click .actions .merge.action': 'mergeDiscussion'
+    'click .actions .update-merge.action': 'completeMerge'
+    'click .actions .cancel-merge.action': 'cancelMerge'
+    'change form.merge-discussion .category': 'showBoards'
+    'change form.merge-discussion .sub-board': 'showDiscussions'
     DiscussionPage::events
   
   activate: (params) ->
@@ -285,13 +291,15 @@ class Show extends DiscussionPage
     
     if User.current.isPrivileged
       Api.get @boardsUrl(), (boards) =>
+        @actions.addClass 'editing'
         @data.boardCategories = boards
         @boardCategories.html require('views/discussions/edit_categories')(@data)
   
   showSubBoards: (ev) =>
     ev.preventDefault()
-    category = $(ev.target).find('option:selected').val()
-    subBoards = $('.edit-discussion-categories .sub-board')
+    target = $(ev.target)
+    category = target.find('option:selected').val()
+    subBoards = target.closest('form').find '.sub-board'
     subBoards.attr 'data-category', category
     subBoards.prop 'selectedIndex', -1
   
@@ -321,6 +329,56 @@ class Show extends DiscussionPage
     @actions.removeClass 'editing'
     @title.html @data.title
     @boardCategories.html require('views/discussions/board_categories')(@data)
+  
+  mergeDiscussion: (ev) =>
+    ev.preventDefault()
+    @actions.addClass 'merging'
+    Api.get @boardsUrl(), (boards) =>
+      Api.get "#{ @boardsUrl() }/#{ @data.board._id }/discussion_list", (board) =>
+        @actions.addClass 'merging'
+        @data.boardCategories = boards
+        @data.boardDiscussions = board.discussions
+        @boardCategories.html require('views/discussions/merge')(@data)
+        $('.merge-discussion select.discussion').chosen no_results_text: 'No discussions matched'
+  
+  completeMerge: (ev) =>
+    ev.preventDefault()
+    changes = { }
+    form = $('.merge-discussion')
+    
+    changes.board = form.find('select.sub-board :selected').val()
+    boardValid = form.find('select.sub-board')[0].checkValidity()
+    changes.discussion = form.find('select.discussion :selected').val()
+    discussionValid = form.find('select.discussion')[0].checkValidity()
+    
+    unless boardValid and discussionValid
+      form.find('[type=submit]').click()
+      return
+    
+    Api.post "#{ @url() }/merge", changes, (@data) =>
+      @navigate '/boards', changes.board, 'discussions', changes.discussion
+  
+  cancelMerge: (ev) =>
+    ev?.preventDefault()
+    @actions.removeClass 'merging'
+    @boardCategories.html require('views/discussions/board_categories')(@data)
+  
+  showBoards: (ev) =>
+    @showSubBoards ev
+    $('.merge-discussion select.discussion option').remove()
+    $('.merge-discussion select.discussion').prop('selectedIndex', -1).trigger('liszt:updated')
+  
+  showDiscussions: (ev) =>
+    ev.preventDefault()
+    target = $(ev.target)
+    boardId = target.find('option:selected').val()
+    Api.get "#{ @boardsUrl() }/#{ boardId }/discussion_list", (board) =>
+      form = target.closest 'form'
+      @data.boardDiscussions = board.discussions
+      selectId = form.find('select.discussion').attr 'id'
+      $("##{ selectId }").replaceWith require('views/discussions/mergable_list')(@data)
+      $("##{ selectId }_chzn").remove()
+      form.find('select.discussion').prop('selectedIndex', -1).chosen no_results_text: 'No discussions matched'
 
 
 class New extends DiscussionPage

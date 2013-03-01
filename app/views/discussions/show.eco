@@ -24,6 +24,9 @@
             <a class="update action">Update</a>
             <a class="cancel-update action">Cancel</a>
           <% end %>
+          <a class="merge action show-for-privileged-user">Merge</a>
+          <a class="update-merge action show-for-privileged-user">Update</a>
+          <a class="cancel-merge action show-for-privileged-user">Cancel</a>
           <a class="destroy action show-for-privileged-user">Remove</a>
         </div>
         

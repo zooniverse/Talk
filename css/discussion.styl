@@ -36,27 +36,62 @@
       margin-left: 20px;
     }
     
-    .update, .cancel-update {
+    .update, .cancel-update, .update-merge, .cancel-merge {
       display: none;
     }
     
-    &.editing {
-      .destroy, .edit {
+    &.editing, &.merging {
+      .destroy, .edit, .merge {
         display: none;
       }
-      
+    }
+    
+    &.editing {
       .update, .cancel-update {
+        display: block;
+      }
+    }
+    
+    &.merging {
+      .update-merge, .cancel-merge {
         display: block;
       }
     }
   }
   
-  .edit-discussion-categories {
+  .merge-discussion {
+    overflow: visible;
+    
+    label {
+      display: block;
+    }
+    
+    select, a {
+      color: #222222;
+      cursor: auto;
+    }
+    
+    select.discussion, select.sub-board {
+      max-width: 300px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      
+      option {
+        max-width: 260px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+  
+  .edit-discussion-categories, .merge-discussion {
     font-size: 14px;
     
     .field {
-      display: inline-block;
-      margin: 10px;
+      display: block;
+      padding: 4px;
     }
     
     .sub-board {

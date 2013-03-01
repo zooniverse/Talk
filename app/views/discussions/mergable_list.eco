@@ -1,0 +1,5 @@
+<select class="discussion chzn-single chzn-default" data-placeholder="Choose a discussion" required="required">
+  <% for discussion in @boardDiscussions: %>
+    <option value="<%= discussion.zooniverse_id %>"<%= ' selected' if discussion.zooniverse_id is @zooniverse_id %>><%= discussion.title %></option>
+  <% end %>
+</select>

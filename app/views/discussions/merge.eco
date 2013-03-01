@@ -1,7 +1,7 @@
 <% { capitalize } = require 'lib/util' %>
 
-<form class="edit-discussion-categories boxed">
-  <label>Move this discussion to: </label>
+<form class="merge-discussion boxed">
+  <label>Merge this discussion into: </label>
   <div class="field">
     <select class="category" required="required">
       <% for category in ['help', 'science', 'chat']: %>
@@ -9,7 +9,7 @@
       <% end %>
     </select>
   </div>
-  /
+  
   <div class="field">
     <select class="sub-board" required="required" data-category="<%= @board.category %>">
       <% for category in ['help', 'science', 'chat']: %>
@@ -20,6 +20,10 @@
         </optgroup>
       <% end %>
     </select>
+  </div>
+  
+  <div class="field">
+    <%- require('views/discussions/mergable_list') @ %>
   </div>
   
   <button type="submit" name="submit" style="display: none;">Update</button>
