@@ -2,9 +2,9 @@
 
 <div class="collection discussion-focus">
   <h3>
-    <%= @title %>
+    <a href="#/collections/<%= @_id %>"><%= @title %></a>
     <span class="aux">
-      by <%- userLink link: @ %>
+      <%- userLink link: @ %>
       (<%= @subjectsCount %> items)
     </span>
   </h3>
