@@ -29,7 +29,7 @@ Config =
     projectName: 'Spacewarps'
     prefix: 'SW'
     apiHost: 'https://dev.zooniverse.org'
-    classifyUrl: 'http://zooniverse-demo.s3-website-us-east-1.amazonaws.com/spacewarp/#/classify'
+    classifyUrl: 'http://spacewarps.org/beta/#/classify'
     socialDefaults: socialDefaults
     analytics: { }
   
@@ -37,12 +37,10 @@ Config =
     project: 'spacewarp'
     projectName: 'Spacewarps'
     prefix: 'SW'
-    apiHost: 'https://api.zooniverse.org'
-    classifyUrl: 'http://www.spacewarp.org/#/classify'
+    apiHost: 'https://dev.zooniverse.org'
+    classifyUrl: 'http://spacewarps.org/beta/#/classify'
     socialDefaults: socialDefaults
-    analytics:
-      account: 'UA-1234567-89'
-      domain: 'http://talk.spacewarp.org'
+    analytics: { }
 
 env = if window.jasmine
   'test'
