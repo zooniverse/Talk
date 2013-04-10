@@ -1,0 +1,28 @@
+<% { truncate } = require 'lib/util' %>
+<% userLink = require 'views/user_link' %>
+
+<div class="subject-summaries">
+  <% for discussion in @subjects: %>
+    <div class="subject-summary" data-id="<%= discussion.focus._id %>">
+      <div class="preview">
+        <a href="#/subjects/<%= discussion.focus._id %>">
+          <img src="<%= require('controllers/subject_viewer').imageIn(discussion.focus.location) %>" class="thin-frame preview" />
+        </a>
+      </div>
+      
+      <div class="summary">
+        <div class="title">
+          <a href="#/subjects/<%= discussion.focus._id %>"><%= discussion.focus._id %></a>
+        </div>
+        
+        <div class="last-comment">
+          <div class="content"><%= truncate(discussion.comment.body or ' ', 140) %></div>
+          
+          <div class="author">
+            <%- userLink link: discussion.comment, avatar: true %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

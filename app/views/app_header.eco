@@ -10,6 +10,7 @@
     <nav>
       <ul>
         <li class="hide-without-user"><a href="#/following">Following</a></li>
+        <li><a href="#/recent">Recent</a></li>
         <li><a href="#/trending" class="active">Trending</a></li>
         <li><a href="#/boards">Discussion boards</a></li>
         <li><a href="#/search">Search</a></li>

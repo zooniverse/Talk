@@ -1,0 +1,45 @@
+<% userLink = require 'views/user_link' %>
+<% { focusCollectionFor, capitalize, singularize, pluralize, formatNumber, truncate } = require('lib/util') %>
+<% moment = require 'moment/moment' %>
+
+<div class="discussion-summaries">
+  <% for discussion in @discussions: %>
+    <% discussionUrl = '' %>
+    <% if discussion.board: %>
+      <% discussionUrl = "/boards/#{ discussion.board._id }/discussions/#{ discussion.zooniverse_id }" %>
+    <% else if discussion.focus: %>
+      <% discussionUrl = "/#{ focusCollectionFor(discussion.focus.type) }/#{ discussion.focus._id }" %>
+    <% end %>
+    
+    <% discussionUrl = "#{ discussionUrl }?page=#{ Math.ceil(discussion.comments / 10.0) }&comment_id=#{ discussion.last_comment._id }" %>
+    
+    <div class="discussion-summary" data-link="<%= discussionUrl %>">
+      <div class="category">
+        <%= capitalize discussion.board.category %>
+      </div>
+      
+      <div class="info">
+        <div class="title">
+          <% if discussion.board: %>
+            <a><%= truncate(discussion.title or 'Untitled discussion', 100) %></a>
+          <% else if discussion.focus: %>
+            <a><%= truncate(discussion.title or "Discussion for #{ discussion.focus._id }", 100) %></a>
+          <% end %>
+        </div>
+        
+        <div class="board-info">
+          <% if typeof(discussion.board) is 'object': %>
+            Posted in <%= discussion.board.name %>
+          <% else if typeof(discussion.board) is 'string': %>
+            Posted in <%= discussion.board %>
+          <% else if discussion.focus: %>
+            <%= singularize capitalize focusCollectionFor discussion.focus.type %>
+          <% end %>
+        </div>
+        <div class="comment">
+          <%= truncate discussion.last_comment.body, 150 %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

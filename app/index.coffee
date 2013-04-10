@@ -10,6 +10,7 @@ Api.init host: apiHost
 AppHeader = require 'controllers/app_header'
 Trending = require 'controllers/trending'
 Following = require 'controllers/following'
+Recents = require 'controllers/recents'
 Subjects = require 'controllers/subjects'
 Collections = require 'controllers/collections'
 Boards = require 'controllers/boards'
@@ -64,6 +65,7 @@ Roles.fetch ->
     app.stack = new Stack
       controllers:
         trending: Trending
+        recents: Recents
         following: Following
         subjects: Subjects
         boards: Boards
@@ -77,6 +79,7 @@ Roles.fetch ->
       routes:
         '/': 'trending'
         '/trending': 'trending'
+        '/recent': 'recents'
         '/following': 'following'
         '/subjects': 'subjects'
         '/collections': 'collections'
