@@ -34,7 +34,7 @@ class Index extends Page
   
   navTo: (ev) =>
     ev.preventDefault()
-    discussion = $(ev.target).closest('.discussion-summary')
+    discussion = $(ev.target).closest '[data-link]'
     @navigate discussion.data('link')
   
   # TO-DO: refactor this

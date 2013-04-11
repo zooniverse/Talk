@@ -36,8 +36,16 @@
             <%= singularize capitalize focusCollectionFor discussion.focus.type %>
           <% end %>
         </div>
+        
         <div class="comment">
-          <%= truncate discussion.last_comment.body, 150 %>
+          <div class="content">
+            <%- truncate discussion.last_comment.body, 150 %>
+          </div>
+          
+          <div class="author">
+            <%- userLink link: discussion.last_comment, avatar: true %>
+            <span class="timestamp"><%= moment(discussion.last_comment.created_at).fromNow() %></span>
+          </div>
         </div>
       </div>
     </div>

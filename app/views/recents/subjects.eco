@@ -3,11 +3,9 @@
 
 <div class="subject-summaries">
   <% for discussion in @subjects: %>
-    <div class="subject-summary" data-id="<%= discussion.focus._id %>">
+    <div class="subject-summary" data-link="#/subjects/<%= discussion.focus._id %>">
       <div class="preview">
-        <a href="#/subjects/<%= discussion.focus._id %>">
-          <img src="<%= require('controllers/subject_viewer').imageIn(discussion.focus.location) %>" class="thin-frame preview" />
-        </a>
+        <a><img src="<%= require('controllers/subject_viewer').imageIn(discussion.focus.location) %>" class="thin-frame preview" /></a>
       </div>
       
       <div class="summary">
@@ -20,6 +18,7 @@
           
           <div class="author">
             <%- userLink link: discussion.comment, avatar: true %>
+            <span class="timestamp"><%= moment(discussion.comment.created_at).fromNow() %></span>
           </div>
         </div>
       </div>

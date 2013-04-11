@@ -1,44 +1,59 @@
 .recents.page
-  .column > section + hr
-    margin-bottom: 40px
-  
-  .board.discussions .discussion-summary
-    padding: 10px
+  hovered()
     cursor: pointer
-    
     vendor('transition-property', 'background-color')
     vendor('transition-duration', 200ms)
     
     &:hover
       background-color: #E0E0E0
+  
+  .column > section + hr
+    margin-bottom: 40px
+  
+  .two-thirds.column
+    .board-summary:last-child:after, .discussion-summary:last-child:after
+      display: block
+  
+  .author
+    color: gray
+    margin-top: 10px
+    
+    a
+      color: #333333
+      
+      &:hover
+        text-decoration: none
+    
+    .role
+      display: none
+  
+  .subjects .list .subject-summaries
+    .subject-summary
+      hovered()
+      padding: 10px 20px
+      
+      &:before
+        border-left: none
+        border-right: none
+  
+  .board.discussions .discussion-summary
+    hovered()
+    padding: 0 0 10px 10px
     
     .comment, .title
       max-width: 100%
       overflow: hidden
       white-space: nowrap
       text-overflow: ellipsis
-      
-      a
-        color: #333333
-        
-        &:hover
-          text-decoration: none
-  
-  .collection-summaries .collection-summary
-    box-sizing: border-box
-    float: left
-    padding-right: 10%
-    width: 50%
-    
-    a .subjects .subject
-      padding: 0 5px 3px
   
   .collections .list
     .collection
+      hovered()
       box-sizing: border-box
-      float: left
-      padding: 0 30px 30px 0
-      width: 50%
+      display: inline-block
+      padding: 10px 20px
+      width: 49%
+      vertical-align: top
       
       .title a
         font-weight: bold
@@ -56,6 +71,3 @@
           
           img
             width: 100%
-      
-      .comment .author
-        color: gray
