@@ -19,10 +19,14 @@ class Index extends Page
     'click [data-link]': 'navTo'
     Page::events
   
+  constructor: ->
+    super
+    @data = null
+  
   render: ->
-    @subjectsPage = 1
-    @collectionsPage = 1
-    @discussionPages =
+    @subjectsPage or= 1
+    @collectionsPage or= 1
+    @discussionPages or=
       help: 1
       science: 1
       chat: 1
@@ -31,6 +35,29 @@ class Index extends Page
   
   url: =>
     "#{ super }/recents"
+  
+  reload: (callback) ->
+    if @data
+      callback @data
+    else
+      Api.get @url(), (data) =>
+        @data =
+          featured: data.featured
+          tags: data.tags
+          subjects:
+            1: data.subjects
+          discussions:
+            help:
+              1: data.discussions.help
+            science:
+              1: data.discussions.science
+            chat:
+              1: data.discussions.chat
+          collections:
+            1: data.collections
+        
+        @render()
+        callback @data
   
   navTo: (ev) =>
     ev.preventDefault()
@@ -48,15 +75,22 @@ class Index extends Page
       when 'subjects'
         Api.get "#{ @url() }/subjects?page=#{ @subjectsPage += 1 }&per_page=12", (results) =>
           if results.length > 0
-            @subjectList.append require('views/recents/subjects')(subjects: results)
+            subjectPage = { subjects: { } }
+            subjectPage.subjects[@subjectPage] = results
+            @data.subjects[@subjectsPage] = results
+            @subjectList.append require('views/recents/subjects')(subjectPage)
           
           if results.length < 12
             target.attr disabled: true
       
       when 'discussions'
-        Api.get "#{ @url() }/discussions?category=#{ category }&page=#{ @discussionPages[category] += 1 }&per_page=10", (results) =>
+        page = @discussionPages[category] += 1
+        Api.get "#{ @url() }/discussions?category=#{ category }&page=#{ page }&per_page=10", (results) =>
           if results.length > 0
-            @["#{ category }List"].append require('views/recents/discussions')(category: category, discussions: results)
+            discussionPage = { discussions: { } }
+            discussionPage.discussions[page] = results
+            @data.discussions[category][page] = results
+            @["#{ category }List"].append require('views/recents/discussions')(discussionPage)
           
           if results.length < 10
             target.attr disabled: true
@@ -64,7 +98,9 @@ class Index extends Page
       when 'collections'
         Api.get "#{ @url() }/collections?page=#{ @collectionsPage += 1 }&per_page=10", (results) =>
           if results.length > 0
-            @collectionList.append require('views/recents/collections')(collections: results, updatedStats: true)
+            collectionPage = { collections: { } }
+            collectionPage.collections[@collectionsPage] = results
+            @collectionList.append require('views/recents/collections')(collectionPage)
           
           if results.length < 10
             target.attr disabled: true

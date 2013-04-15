@@ -11,7 +11,7 @@
   
   <div class="two-thirds column">
     <section>
-      <h2>Recent Comments...</h2>
+      <h2>Recent Object Comments...</h2>
       <div class="subjects">
         <div class="list">
           <%- require('views/recents/subjects') subjects: @subjects %>
@@ -22,16 +22,14 @@
         <button name="load-more" data-type="subjects">Load more</button>
       </div>
     </section>
-   
+    
     <hr />
     
     <section>
       <h2>Recent Discussions...</h2>
       <div class="board discussions">
         <% for category, i in ['help', 'science', 'chat']: %>
-          <h3>
-            <%= capitalize category %>
-          </h3>
+          <h3><%= capitalize category %></h3>
           
           <div class="<%= category %> list">
             <%- require('views/recents/discussions') category: category, discussions: @discussions[category] %>

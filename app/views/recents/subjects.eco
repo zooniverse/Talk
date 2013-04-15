@@ -2,26 +2,28 @@
 <% userLink = require 'views/user_link' %>
 
 <div class="subject-summaries">
-  <% for discussion in @subjects: %>
-    <div class="subject-summary" data-link="#/subjects/<%= discussion.focus._id %>">
-      <div class="preview">
-        <a><img src="<%= require('controllers/subject_viewer').imageIn(discussion.focus.location) %>" class="thin-frame preview" /></a>
-      </div>
-      
-      <div class="summary">
-        <div class="title">
-          <a href="#/subjects/<%= discussion.focus._id %>"><%= discussion.focus._id %></a>
+  <% for page, discussions of @subjects: %>
+    <% for discussion in discussions: %>
+      <div class="subject-summary" data-link="#/subjects/<%= discussion.focus._id %>">
+        <div class="preview">
+          <a><img src="<%= require('controllers/subject_viewer').imageIn(discussion.focus.location) %>" class="thin-frame preview" /></a>
         </div>
         
-        <div class="last-comment">
-          <div class="content"><%= truncate(discussion.comment.body or ' ', 140) %></div>
+        <div class="summary">
+          <div class="title">
+            <a href="#/subjects/<%= discussion.focus._id %>"><%= discussion.focus._id %></a>
+          </div>
           
-          <div class="author">
-            <%- userLink link: discussion.comment, avatar: true %>
-            <span class="timestamp"><%= moment(discussion.comment.created_at).fromNow() %></span>
+          <div class="last-comment">
+            <div class="content"><%= truncate(discussion.comment.body or ' ', 140) %></div>
+            
+            <div class="author">
+              <%- userLink link: discussion.comment, avatar: true %>
+              <span class="timestamp"><%= moment(discussion.comment.created_at).fromNow() %></span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>

@@ -3,51 +3,53 @@
 <% moment = require 'moment/moment' %>
 
 <div class="discussion-summaries">
-  <% for discussion in @discussions: %>
-    <% discussionUrl = '' %>
-    <% if discussion.board: %>
-      <% discussionUrl = "/boards/#{ discussion.board._id }/discussions/#{ discussion.zooniverse_id }" %>
-    <% else if discussion.focus: %>
-      <% discussionUrl = "/#{ focusCollectionFor(discussion.focus.type) }/#{ discussion.focus._id }" %>
-    <% end %>
-    
-    <% discussionUrl = "#{ discussionUrl }?page=#{ Math.ceil(discussion.comments / 10.0) }&comment_id=#{ discussion.last_comment._id }" %>
-    
-    <div class="discussion-summary" data-link="<%= discussionUrl %>">
-      <div class="category">
-        <%= capitalize discussion.board.category %>
-      </div>
+  <% for page, discussions of @discussions: %>
+    <% for discussion in discussions: %>
+      <% discussionUrl = '' %>
+      <% if discussion.board: %>
+        <% discussionUrl = "/boards/#{ discussion.board._id }/discussions/#{ discussion.zooniverse_id }" %>
+      <% else if discussion.focus: %>
+        <% discussionUrl = "/#{ focusCollectionFor(discussion.focus.type) }/#{ discussion.focus._id }" %>
+      <% end %>
       
-      <div class="info">
-        <div class="title">
-          <% if discussion.board: %>
-            <a><%= truncate(discussion.title or 'Untitled discussion', 100) %></a>
-          <% else if discussion.focus: %>
-            <a><%= truncate(discussion.title or "Discussion for #{ discussion.focus._id }", 100) %></a>
-          <% end %>
+      <% discussionUrl = "#{ discussionUrl }?page=#{ Math.ceil(discussion.comments / 10.0) }&comment_id=#{ discussion.comment._id }" %>
+      
+      <div class="discussion-summary" data-link="<%= discussionUrl %>">
+        <div class="category">
+          <%= capitalize discussion.board.category %>
         </div>
         
-        <div class="board-info">
-          <% if typeof(discussion.board) is 'object': %>
-            Posted in <%= discussion.board.name %>
-          <% else if typeof(discussion.board) is 'string': %>
-            Posted in <%= discussion.board %>
-          <% else if discussion.focus: %>
-            <%= singularize capitalize focusCollectionFor discussion.focus.type %>
-          <% end %>
-        </div>
-        
-        <div class="comment">
-          <div class="content">
-            <%- truncate discussion.last_comment.body, 150 %>
+        <div class="info">
+          <div class="title">
+            <% if discussion.board: %>
+              <a><%= truncate(discussion.title or 'Untitled discussion', 100) %></a>
+            <% else if discussion.focus: %>
+              <a><%= truncate(discussion.title or "Discussion for #{ discussion.focus._id }", 100) %></a>
+            <% end %>
           </div>
           
-          <div class="author">
-            <%- userLink link: discussion.last_comment, avatar: true %>
-            <span class="timestamp"><%= moment(discussion.last_comment.created_at).fromNow() %></span>
+          <div class="board-info">
+            <% if typeof(discussion.board) is 'object': %>
+              Posted in <%= discussion.board.name %>
+            <% else if typeof(discussion.board) is 'string': %>
+              Posted in <%= discussion.board %>
+            <% else if discussion.focus: %>
+              <%= singularize capitalize focusCollectionFor discussion.focus.type %>
+            <% end %>
+          </div>
+          
+          <div class="comment">
+            <div class="content">
+              <%- truncate discussion.comment.body, 150 %>
+            </div>
+            
+            <div class="author">
+              <%- userLink link: discussion.comment, avatar: true %>
+              <span class="timestamp"><%= moment(discussion.comment.created_at).fromNow() %></span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>
