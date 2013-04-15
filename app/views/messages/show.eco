@@ -22,7 +22,10 @@
             </div>
             
             <footer>
-              Posted <%= moment(message.created_at).fromNow() %>
+              <span class="timestamp">
+                <span class="relative"><%= moment(message.created_at).fromNow() %></span>
+                <span class="absolute"><%= moment(message.created_at).format('LLL') %></span>
+              </span>
             </footer>
           </div>
         </li>

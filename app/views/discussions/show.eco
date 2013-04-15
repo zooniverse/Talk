@@ -45,7 +45,12 @@
           <div class="post">
             <header>
               <div class="title"><%= @title %></div>
-              Started <%= moment(@created_at).fromNow() %> <%- userLink link: @ %>
+              Started
+              <span class="timestamp">
+                <span class="relative"><%= moment(@created_at).fromNow() %></span>
+                <span class="absolute"><%= moment(@created_at).format('LLL') %></span>
+              </span>
+              <%- userLink link: @ %>
             </header>
           </div>
           

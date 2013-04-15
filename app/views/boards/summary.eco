@@ -21,7 +21,14 @@
       
       <div class="last">
         <% if @last_updated and @last_comment: %>
-          Last post <span class="last-modified"><%= moment(@last_comment.created_at).fromNow() %> <%- userLink link: @last_comment %></span>
+          Last post
+          <span class="last-modified">
+            <span class="timestamp">
+              <span class="relative"><%= moment(@last_comment.created_at).fromNow() %></span>
+              <span class="absolute"><%= moment(@last_comment.created_at).format('LLL') %></span>
+            </span>
+            <%- userLink link: @last_comment %>
+          </span>
         <% else: %>
           <span class="last-modified"><em>No posts yet</em></span>
         <% end %>

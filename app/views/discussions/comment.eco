@@ -24,6 +24,11 @@
     <div class="respond-to hide-without-user">
       <a class="respond-link" data-id="<%= @comment._id %>">Respond</a>
     </div>
-    Posted <%= moment(@comment.created_at).fromNow() %>
+    
+    Posted
+    <span class="timestamp">
+      <span class="relative"><%= moment(@comment.created_at).fromNow() %></span>
+      <span class="absolute"><%= moment(@comment.created_at).format('LLL') %></span>
+    </span>
   </footer>
 </div>

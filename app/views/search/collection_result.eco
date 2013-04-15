@@ -1,4 +1,5 @@
 <% { imageIn } = require('controllers/subject_viewer') %>
+<% moment = require 'moment/moment' %>
 
 <div class="collection-result">
   <div class="preview">
@@ -13,6 +14,12 @@
     <div class="title">
       Collection <a href="#/collections/<%= @id %>"><%= @name %></a>
     </div>
-    <div class="metadata">Last updated <%= require('moment/moment')(@updated_at).fromNow() %></div>
+    <div class="metadata">
+      Last updated
+      <span class="timestamp">
+        <span class="relative"><%= moment(@updated_at).fromNow() %></span>
+        <span class="absolute"><%= moment(@updated_at).format('LLL') %></span>
+      </span>
+    </div>
   </div>
 </div>

@@ -23,7 +23,10 @@
         
         <div class="author">
           <%- userLink link: discussion.comment, avatar: true %>
-          <span class="timestamp"><%= moment(discussion.comment.created_at).fromNow() %></span>
+          <span class="timestamp">
+            <span class="relative"><%= moment(discussion.comment.created_at).fromNow() %></span>
+            <span class="absolute"><%= moment(discussion.comment.created_at).format('LLL') %></span>
+          </span>
         </div>
       </div>
     </div>

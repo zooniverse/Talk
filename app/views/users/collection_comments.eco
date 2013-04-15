@@ -24,7 +24,10 @@
       
       <div class="author">
         <%- userLink link: collection.comment %>
-        <%= moment(collection.comment.created_at).fromNow() %>
+        <span class="timestamp">
+          <span class="relative"><%= moment(collection.comment.created_at).fromNow() %></span>
+          <span class="absolute"><%= moment(collection.comment.created_at).format('LLL') %></span>
+        </span>
       </div>
     </div>
   </div>

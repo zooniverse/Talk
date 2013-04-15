@@ -9,7 +9,13 @@
         <span class="info">
           <%= collection.title %>
           by <%= collection.user_name %>
-          <%= "last updated #{ moment(collection.updated_at).fromNow() }" if @updatedStats %>
+          <% if @updatedStats: %>
+            last updated
+            <span class="timestamp">
+              <span class="relative"><%= moment(collection.updated_at).fromNow() %></span>
+              <span class="absolute"><%= moment(collection.updated_at).format('LLL') %></span>
+            </span>
+          <% end %>
           <%= "#{ collection.subjects_count } #{ pluralize collection.subjects_count, 'image', 'images' }" %>
         </span>
         

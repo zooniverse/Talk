@@ -1,4 +1,6 @@
 <% { capitalize, titleize } = require('lib/util') %>
+<% moment = require 'moment/moment' %>
+
 <div class="discussion-result">
   <div class="summary">
     <div class="title">
@@ -8,6 +10,12 @@
       in
       <a href="#/boards/<%= @board_id %>"><%= titleize @board_name %></a>
     </div>
-    <div class="metadata">Last updated <%= require('moment/moment')(@updated_at).fromNow() %></div>
+    <div class="metadata">
+      Last updated
+      <span class="timestamp">
+        <span class="relative"><%= moment(@updated_at).fromNow() %></span>
+        <span class="absolute"><%= moment(@updated_at).format('LLL') %></span>
+      </span>
+    </div>
   </div>
 </div>

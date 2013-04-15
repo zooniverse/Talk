@@ -1,3 +1,5 @@
+<% moment = require 'moment/moment' %>
+
 <div class="subject-result">
   <div class="preview">
     <a href="#/subjects/<%= @id %>">
@@ -9,6 +11,12 @@
     <div class="title">
       Object <a href="#/subjects/<%= @id %>"><%= @id %></a>
     </div>
-    <div class="metadata">Last updated <%= require('moment/moment')(@updated_at).fromNow() %></div>
+    <div class="metadata">
+      Last updated
+      <span class="timestamp">
+        <span class="relative"><%= moment(@updated_at).fromNow() %></span>
+        <span class="absolute"><%= moment(@updated_at).format('LLL') %></span>
+      </span>
+    </div>
   </div>
 </div>
