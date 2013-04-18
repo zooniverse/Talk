@@ -37,7 +37,7 @@ Config =
     project: 'notes_from_nature'
     projectName: 'Notes From Nature'
     prefix: 'NN'
-    apiHost: 'https://dev.zooniverse.org'
+    apiHost: 'https://api.zooniverse.org'
     classifyUrl: 'http://www.notesfromnature.org/beta/#/archives'
     socialDefaults: socialDefaults
     analytics:
