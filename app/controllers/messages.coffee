@@ -66,7 +66,9 @@ class New extends Page
       @messageList.render()
     else
       @messageList = new MessageList('.message-list')
-    
+    setTimeout @autocomplete, 0
+  
+  autocomplete: =>
     @userSearch.autocomplete
       serviceUrl: "#{ Api.host }/#{ Message.url() }/search",
       width: 300

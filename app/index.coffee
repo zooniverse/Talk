@@ -101,6 +101,7 @@ Roles.fetch ->
 $(window).on 'hashchange', activateMatchingHashLinks
 
 window.defaultAvatar = (el) ->
+  $(el).removeAttr 'onerror'
   $(el).replaceWith require('views/users/default_avatar')()
 
 

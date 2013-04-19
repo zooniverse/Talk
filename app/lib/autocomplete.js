@@ -73,6 +73,8 @@
         killerFn: null,
 
         initialize: function () {
+            this.api = window.require('zooniverse/lib/api');
+            
             var me = this,
                 uid = Math.floor(Math.random() * 0x100000).toString(16),
                 autocompleteElId = 'Autocomplete_' + uid,
@@ -293,9 +295,9 @@
             } else if (!this.isBadQuery(q)) {
                 me = this;
                 me.options.params.query = q;
-                $.get(this.serviceUrl, me.options.params, function (txt) {
-                    me.processResponse(txt);
-                }, 'text');
+                this.api.get(this.serviceUrl, me.options.params, function (json) {
+                    me.processResponse(json);
+                });
             }
         },
 
@@ -356,30 +358,17 @@
             this.container.show();
         },
 
-        processResponse: function (text) {
-            /*jslint evil: true */
-            var response;
-
-            try {
-                response = eval('(' + text + ')');
-            } catch (err) {
-                return;
-            }
-
-            if (!$.isArray(response.data)) {
-                response.data = [];
-            }
-
+        processResponse: function (json) {
             if (!this.options.noCache) {
-                this.cachedResponse[response.query] = response;
-                if (response.suggestions.length === 0) {
-                    this.badQueries.push(response.query);
+                this.cachedResponse[json.query] = json;
+                if (json.suggestions.length === 0) {
+                    this.badQueries.push(json.query);
                 }
             }
 
-            if (response.query === this.getQuery(this.currentValue)) {
-                this.suggestions = response.suggestions;
-                this.data = response.data;
+            if (json.query === this.getQuery(this.currentValue)) {
+                this.suggestions = json.suggestions;
+                this.data = json.data;
                 this.suggest();
             }
         },
