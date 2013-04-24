@@ -7,7 +7,7 @@ updateCounter = ->
   if User.current
     Api.get '/talk/messages/count', (count) ->
       User.trigger 'message-count', count
-      Message.timer = setTimeout updateCounter, 10000
+      Message.timer = setTimeout updateCounter, 60000
 
 User.bind 'sign-in', ->
   updateCounter()
