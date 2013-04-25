@@ -8,7 +8,7 @@
       <img src="<%= require('controllers/subject_viewer').imageIn(@location) %>" class="thin-frame preview" />
     </a>
 
-    <div class="add-to-collection">
+    <div class="add-to-collection hide-without-user">
       <button class="collect-this" data-id="<%= @zooniverse_id %>">Collect</button>
       <div class="collection-list"></div>
     </div>

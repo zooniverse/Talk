@@ -14,7 +14,7 @@
     <!--Replace with SubjectViewer instance-->
   </div>
 
-  <div class="add-to-collection">
+  <div class="add-to-collection hide-without-user">
     <button class="collect-this" data-id="<%= @zooniverse_id %>">Collect</button>
     <div class="collection-list"></div>
   </div>
