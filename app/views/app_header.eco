@@ -9,13 +9,13 @@
   <div class="group">
     <nav>
       <ul>
-        <li class="hide-without-user"><a href="#/following">Following</a></li>
-        <li><a href="#/recent">Recent</a></li>
-        <li><a href="#/trending" class="active">Trending</a></li>
-        <li><a href="#/boards">Discussion boards</a></li>
-        <li><a href="#/search">Search</a></li>
-        <li class="hide-without-user"><a href="#/profile">Profile</a></li>
-        <li class="show-for-privileged-user"><a href="#/moderation">Moderation</a></li>
+        <li class="hide-without-user"><a href="#/following"><%- translate 'span', 'header.following' %></a></li>
+        <li><a href="#/recent"><%- translate 'span', 'header.recent' %></a></li>
+        <li><a href="#/trending" class="active"><%- translate 'span', 'header.trending' %></a></li>
+        <li><a href="#/boards"><%- translate 'span', 'header.boards' %></a></li>
+        <li><a href="#/search"><%- translate 'span', 'header.search' %></a></li>
+        <li class="hide-without-user"><a href="#/profile"><%- translate 'span', 'header.profile' %></a></li>
+        <li class="show-for-privileged-user"><a href="#/moderation"><%- translate 'span', 'header.moderation' %></a></li>
       </ul>
     </nav>
   </div>
