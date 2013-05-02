@@ -4,20 +4,20 @@
 
 <div class="board-summary">
   <div class="info">
-    <div class="title"><a href="#/boards/<%= @zooniverse_id %>"><%= @title || '(Untitled board)' %></a></div>
+    <div class="title"><a href="#/boards/<%= @zooniverse_id %>"><%= @title || translate('span', 'boards.show.no_discussions') %></a></div>
     <div class="description"><%= @description %></div>
   </div>
   
   <div class="stats">
     <div class="counts">
       <span class="discussions"><%= formatNumber @discussions %></span>
-      <%= pluralize @discussions, 'discussion', 'discussions' %>,
+      <%= pluralize @discussions, translate('span', 'boards.summary.discussion'), translate('span', 'boards.summary.discussions') %>,
       
       <span class="posts"><%= formatNumber @comments %></span>
-      <%= pluralize @comments, 'post', 'posts' %>,
+      <%= pluralize @comments, translate('span', 'boards.summary.post'), translate('span', 'boards.summary.posts') %>,
       
       <span class="users"><%= formatNumber @users %></span>
-      <%= pluralize @users, 'participant', 'participants' %>
+      <%= pluralize @users, translate('span', 'boards.summary.participant'), translate('span', 'boards.summary.participants') %>
       
       <div class="last">
         <% if @last_updated and @last_comment: %>
@@ -30,7 +30,7 @@
             <%- userLink link: @last_comment %>
           </span>
         <% else: %>
-          <span class="last-modified"><em>No posts yet</em></span>
+          <span class="last-modified"><em><%- translate 'span', 'boards.summary.no_posts' %></em></span>
         <% end %>
       </div>
     </div>

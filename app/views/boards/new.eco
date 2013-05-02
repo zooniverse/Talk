@@ -6,6 +6,6 @@
   <div class="field"><textarea name="description" placeholder="Description" required="required"></textarea></div>
 
   <div class="action">
-    <button type="submit" name="submit">Create Board</button>
+    <button type="submit" name="submit"><%- translate 'span', 'boards.new.create' %></button>
   </div>
 </form>

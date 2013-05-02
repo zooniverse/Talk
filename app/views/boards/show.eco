@@ -10,14 +10,14 @@
   <div class="two-thirds column">
     <div class="board">
       <h3>
-        <span class="category"><%= capitalize @category %> Board</span>
+        <span class="category"><%= capitalize @category %> <%- translate 'span', 'boards.show.board' %></span>
         /
         <span class="sub-board"><%= @title %></span>
       </h3>
 
       <div class="discussions">
         <% if @discussions.length is 0: %>
-          <div class="none">There are curently no discussions.</div>
+          <div class="none"><%- translate 'span', 'boards.show.no_discussions' %></div>
         <% else: %>
           <div class="discussion-sumarries">
             <div class="list">

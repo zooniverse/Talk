@@ -3,9 +3,9 @@
 <% if user: %>
   <div class="follow follow-link">
     <% if @followed or (@follower_ids? and user.id in @follower_ids): %>
-      <button name="unfollow" data-type="<%= @type %>" data-id="<%= @id %>">Followed</button>
+      <button name="unfollow" data-type="<%= @type %>" data-id="<%= @id %>"><%- translate 'span', 'follow.followed' %></button>
     <% else: %>
-      <button name="follow" data-type="<%= @type %>" data-id="<%= @id %>">Follow</button>
+      <button name="follow" data-type="<%= @type %>" data-id="<%= @id %>"><%- translate 'span', 'follow.follow' %></button>
     <% end %>
   </div>
 <% end %>

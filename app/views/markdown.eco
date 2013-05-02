@@ -1,7 +1,7 @@
 <div class="wmd-panel markdown<%= @class %>">
   <div id="wmd-button-bar<%= @class %>"></div>
     <textarea class="wmd-input <%= @class %>" id="wmd-input<%= @class %>" name="<%= @name %>" placeholder= "<%= @placeholder %>" required="required"></textarea>
-    <a class="toggle-preview">Show Preview</a>
+    <a class="toggle-preview"><%- translate 'span', 'markdown.show_preview' %></a>
   </div>
 <div id="wmd-preview<%= @class %>" class="wmd-panel wmd-preview" style="display: none;"></div>
 

@@ -25,36 +25,36 @@
     <nav>
       <ul>
         <li>
-          <span class="search button" style="display: none;">Search</span>
+          <span class="search button" style="display: none;"><%- translate 'span', 'header.search' %></span>
           <div class="right search dropdown" style="display: none;">
             <form name="search">
               <div class="field"><input type="text" name="query" /></div>
-              <div class="action"><button type="submit">Search</button></div>
+              <div class="action"><button type="submit"><%- translate 'span', 'header.search' %></button></div>
             </form>
           </div>
         </li>
       </ul>
     </nav>
 
-    <a href="<%= classifyUrl %>" class="return">Return to classifying</a>
+    <a href="<%= classifyUrl %>" class="return"><%- translate 'span', 'header.return' %></a>
   </div>
 </div>
 
 <% if user: %>
-  <div class="sign-out"><button name="sign-out">Sign out</button></div>
+  <div class="sign-out"><button name="sign-out"><%- translate 'span', 'header.sign_out' %></button></div>
 <% end %>
 
 
 <div class="sign-in">
-  <header>Sign in to participate!</header>
+  <header><%- translate 'span', 'header.sign_in_to_participate' %></header>
 
   <form name="sign-in">
     <input type="text" name="username" placeholder="Username" required="required" />
     <input type="password" name="password" placeholder="Password" required="required" />
-    <button type="submit">Sign in</button>
+    <button type="submit"><%- translate 'span', 'header.sign_in' %></button>
   </form>
 
-  <a href="https://www.zooniverse.org/password/reset" class="forgot">Forgot your password?</a>
+  <a href="https://www.zooniverse.org/password/reset" class="forgot"><%- translate 'span', 'header.forgot_password' %></a>
 
   <div class="error" style="display: none;"></div>
 </div>
