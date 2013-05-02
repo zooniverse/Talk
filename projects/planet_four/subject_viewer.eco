@@ -1,1 +1,5 @@
 <img src="<%= @subject.location.standard %>" class="main" />
+
+<div class="subject-metadata">
+  <a href="<%= @subject.metadata.link %>">Download HIRISE data</a>
+</div>
