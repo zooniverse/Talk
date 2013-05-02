@@ -1,5 +1,8 @@
 <img src="<%= @subject.location.standard %>" class="main" />
 
-<div class="subject-metadata">
-  <a href="<%= @subject.metadata.link %>">Download HIRISE data</a>
-</div>
+<% if @subject.metadata: %>
+  <div class="subject-metadata">
+    <% link = @subject.metadata.link.match(/(\w+)_RGB\.NOMAP\.JP2/i)[1] %>
+    <a href="http://hirise.lpl.arizona.edu/<%= link %>" target="_blank">View HIRISE image</a>
+  </div>
+<% end %>
