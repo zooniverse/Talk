@@ -5,8 +5,7 @@
   
   <% for category, i in categories: %>
     <h3>
-      <%- translate('span', "boards.list.#{ category }") %>
-      <!-- capitalize -->
+      <%- translate('span', "boards.list.#{ category }", capitalize) %>
       
       <div class="aux show-for-privileged-user">
         <button name="new-board" value="<%= category %>"><%- translate 'span', 'boards.list.start_a_new' %> <%- translate('span', "boards.list.#{ category }") %> <%- translate 'span', 'boards.list.board' %></button>
