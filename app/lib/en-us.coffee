@@ -7,17 +7,16 @@ module.exports =
     search: 'Search'
     profile: 'Profile'
     moderation: 'Moderation'
-    search: 'Search'
     return: 'Return to classifying'
     sign_out: 'Sign out'
     sign_in: 'Sign in'
     sign_in_to_participate: 'Sign in to participate!'
     forgot_password: 'Forgot your password?'
   follow:
-   	follow: 'Follow'
-   	followed: 'Followed'
+    follow: 'Follow'
+    followed: 'Followed'
   markdown:
-   	show_preview: 'Show Preview'
+    show_preview: 'Show Preview'
   boards:
     list:
       help: 'help'

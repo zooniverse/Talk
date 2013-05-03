@@ -10,7 +10,8 @@
   <div class="two-thirds column">
     <div class="board">
       <h3>
-        <span class="category"><%= capitalize @category %> <%- translate 'span', 'boards.show.board' %></span>
+        <span class="category"><%- translate('span', "boards.list.#{ @category }") %> <%- translate 'span', 'boards.show.board' %></span>
+        <!-- capitalize -->
         /
         <span class="sub-board"><%= @title %></span>
       </h3>

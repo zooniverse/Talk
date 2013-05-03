@@ -1,19 +1,21 @@
 <% { capitalize } = require 'lib/util' %>
 
 <div class="boards">
-  <% categories = [ translate('span', 'boards.list.help'), translate('span', 'boards.list.science'), translate('span', 'boards.list.chat')] %>
+  <% categories = ['help', 'science', 'chat'] %>
+  
   <% for category, i in categories: %>
     <h3>
-      <%= capitalize category %>
+      <%- translate('span', "boards.list.#{ category }") %>
+      <!-- capitalize -->
       
       <div class="aux show-for-privileged-user">
-        <button name="new-board" value="<%= category %>"><%- translate 'span', 'boards.list.start_a_new' %> <%= category %> <%- translate 'span', 'boards.list.board' %></button>
+        <button name="new-board" value="<%= category %>"><%- translate 'span', 'boards.list.start_a_new' %> <%- translate('span', "boards.list.#{ category }") %> <%- translate 'span', 'boards.list.board' %></button>
       </div>
     </h3>
     
     <% @[category] or= [] %>
     <% if @[category].length is 0: %>
-      <div class="none"><%- translate 'span', 'boards.list.there_are_currently_no' %> <%= category %> <%- translate 'span', 'boards.list.boards' %>.</div>
+      <div class="none"><%- translate 'span', 'boards.list.there_are_currently_no' %> <%- translate('span', "boards.list.#{ category }") %> <%- translate 'span', 'boards.list.boards' %>.</div>
     <% else: %>
       <div class="board-summaries">
         <% for board in @[category]: %>
