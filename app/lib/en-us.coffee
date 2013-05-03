@@ -40,6 +40,34 @@ module.exports =
       posts: 'posts'
       discussion: 'discussion'
       discussions: 'discussions'
+  collections:
+    keyword_field:
+      include: 'include'
+      exclude: 'exclude'
+      tag: 'Tag'
+    new:
+      edit_keyword_title: 'Edit your keyword collection'
+      edit_collection_title: 'Edit your collection'
+      start_a_collection_with: 'Start a collection starting with'
+      create_a_keyword_collection: 'Create a keyword collection'
+      keep_track_of_subjects: 'Keep track of subjects that others have tagged with words that interest you.'
+      a_keyword_collection_will: 'A keyword collection will update automatically as more subjects are tagged.'
+      title: 'Title'
+      description: 'Description'
+      keywords: 'Keywords'
+      subjects: 'Subjects'
+      save_changes: 'Save changes'
+      create: 'Create'
+    show:
+      collection: 'Collection'
+      edit: 'Edit'
+      subjects_in_collection: 'Subjects in this collection'
+      description: 'Description'
+      includes: 'Includes'
+      hashtags: 'Hashtags'
+      and: 'and'
+      or: 'or'
+      every_subject: "every subject"
 
 
 

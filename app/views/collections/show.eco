@@ -3,9 +3,9 @@
 
 <header>
   <h2>
-    Collection <%= @title %> <%- userLink link: @, avatar: true %>
+    <%- translate 'span', 'collections.show.collection' %> <%= @title %> <%- userLink link: @, avatar: true %>
     <% if @user_id is User.current?.id: %>
-      <span class="owned">(<a href="#/collections/<%= @zooniverse_id %>/edit">Edit</a>)</span>
+      <span class="owned">(<a href="#/collections/<%= @zooniverse_id %>/edit"><%- translate 'span', 'collections.show.edit' %></a>)</span>
     <% end %>
     
     <span class="aux">
@@ -16,7 +16,7 @@
 </header>
 
 <div class="subjects">
-  <h3>Subjects in this collection</span><%- '<div class="pages"></div>' if @subjectPages > 1 %></h3>
+  <h3><%- translate 'span', 'collections.show.subjects_incollection' %></span><%- '<div class="pages"></div>' if @subjectPages > 1 %></h3>
   <ul class="list">
     <%- require('views/collections/subject_list') subjects: @subjects[1] %>
   </ul>
@@ -28,7 +28,7 @@
 </div>
 
 <div class="description">
-  <h3>Description</h3>
+  <h3><%- translate 'span', 'collections.show.description' %></h3>
   <p><%= @description %></p>
   
   <% if @keywords: %>
@@ -38,14 +38,14 @@
     <% linkHash[word] = 'true' for word, included of @keywords when included is 'true' %>
     
     <p>
-      Includes <%- """<a href="#/search?kind=subject&#{ decodeURI $.param tags: linkHash }">#{ includes.join(' and ') }</a>""" || 'every subject' %>
+      <%- translate 'span', 'collections.show.includes' %> <%- """<a href="#/search?kind=subject&#{ decodeURI $.param tags: linkHash }">#{ includes.join(' and ') }</a>""" || translate('span', 'collections.show.every_subject') %>
       <% if excludes.length isnt 0: %>but not <%- excludes.join ' or ' %><% end %>
     </p>
   <% end %>
 </div>
 
 <div class="hashtags">
-  <h3>Hashtags</h3>
+  <h3><%- translate 'span', 'collections.show.hashtags' %></h3>
   <%- require('views/hashtags/list') tags: @tags %>
 </div>
 

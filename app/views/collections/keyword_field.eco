@@ -1,9 +1,9 @@
 <div class="keyword">
   <select class="operator">
-    <option value="true">include</option>
-    <option value="false" <% if @include is false: %>selected="selected"<% end %>>exclude</option>
+    <option value="true"><%- translate 'span', 'collections.keyword_field.include' %></option>
+    <option value="false" <% if @include is false: %>selected="selected"<% end %>><%- translate 'span', 'collections.keyword_field.exclude' %></option>
   </select>
   
-  <input type="text" class="tag" placeholder="Tag" value="<%= @keyword %>" />
+  <input type="text" class="tag" placeholder="<%- translate 'span', 'collections.keyword_field.tag' %>" value="<%= @keyword %>" />
   <button type="button" name="remove-keyword">&times;</button>
 </div>

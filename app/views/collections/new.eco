@@ -4,26 +4,26 @@
   <% end %>
   
   <% if @zooniverse_id? and @keywords?.length isnt 0: %>
-    <h3>Edit your keyword collection</h3>
+    <h3><%- translate 'span', 'collections.new.edit_keyword_title' %></h3>
   <% else if @zooniverse_id?: %>
-    <h3>Edit your collection</h3>
+    <h3><%- translate 'span', 'collections.new.edit_collection_title' %></h3>
   <% else if @subjectId: %>
-    <h3>Start a collection starting with <a href="#/subjects/<%= @subjectId %>"><%= @subjectId %></a></h3>
+    <h3><%- translate 'span', 'collections.new.start_a_collection_with' %> <a href="#/subjects/<%= @subjectId %>"><%= @subjectId %></a></h3>
   <% else if @keywords?.length isnt 0: %>
-    <h3>Create a keyword collection</h3>
-    <p>Keep track of subjects that others have tagged with words that interest you.</p>
-    <p>A keyword collection will update automatically as more subjects are tagged.</p>
+    <h3><%- translate 'span', 'collections.new.create_a_keyword_collection' %></h3>
+    <p><%- translate 'span', 'collections.new.keep_track_of_subjects' %></p>
+    <p><%- translate 'span', 'collections.new.a_keyword_collection_will' %></p>
   <% end %>
 
   <div class="columns">
     <div class="one-half column">
-      <div class="field"><input type="text" name="title" required="required" placeholder="Title" value="<%= @title %>" /></div>
-      <div class="field"><textarea name="description" required="required" placeholder="Description"><%= @description %></textarea></div>
+      <div class="field"><input type="text" name="title" required="required" placeholder="<%= translate 'span', 'collections.new.title' %>" value="<%= @title %>" /></div>
+      <div class="field"><textarea name="description" required="required" placeholder="<%= translate 'span', 'collections.new.description' %>"><%= @description %></textarea></div>
     </div>
 
     <div class="one-half column">
       <% if @keywords?: %>
-        <h4>Keywords</h4>
+        <h4><%- translate 'span', 'collections.new.keywords' %></h4>
         <div class="keywords">
           <% if @keywords instanceof Array: %>
             <% for keyword in @keywords: %>
@@ -37,7 +37,7 @@
         </div>
         <button type="button" name="add-keyword">+</button>
       <% else if @subjects?.length > 0: %>
-        <h4>Subjects</h4>
+        <h4><%- translate 'span', 'collections.new.subjects' %></h4>
         <ul class="subjects">
           <% for subject in @subjects: %>
             <li class="subject">
@@ -54,7 +54,7 @@
 
   <div class="action" style="text-align: center;">
     <button type="submit">
-      <% if @id: %>Save changes<% else: %>Create<% end %>
+      <% if @id: %><%- translate 'span', 'collections.new.save_changes' %><% else: %><%- translate 'span', 'collections.new.create' %><% end %>
     </button>
   </div>
 </form>
