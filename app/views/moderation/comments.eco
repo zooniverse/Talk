@@ -15,13 +15,13 @@
       </span>
     </div>
     
-    <%= titleize @pastTenses[moderation.type] %> by
+    <%= titleize @pastTenses[moderation.type] %> <%- translate 'span', 'moderation.comments.by' %>
     <a href="#/users/<%= moderation.user.name %>" class="user"><%= moderation.user.name %></a>
     (<em><%= moderation.message or 'no message' %></em>)
     
     <span class="actions">
       <% for action in @actions: %>
-        <a class="action-link" data-action="<%= action %>" data-id="<%= moderation.id %>"><%= titleize action %> comment</a>
+        <a class="action-link" data-action="<%= action %>" data-id="<%= moderation.id %>"><%= titleize action %> <%- translate 'span', 'moderation.comments.comment' %></a>
       <% end %>
     </span>
   </div>

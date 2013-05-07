@@ -3,9 +3,9 @@
 <% moment = require 'moment/moment' %>
 
 <h2>
-  Messages
+  <%- translate 'span', 'messages.list.messages' %>
   <span class="aux">
-    <a class="compose button" href="#/messages/new">Compose Message</a>
+    <a class="compose button" href="#/messages/new"><%- translate 'span', 'messages.list.compose_message' %></a>
   </span>
 </h2>
 
@@ -24,7 +24,7 @@
       
       <footer>
         <div class="last-message">
-          Last message
+          <%- translate 'span', 'messages.list.last_message' %>
           <span class="timestamp">
             <span class="relative"><%= moment(lastMessage.created_at).fromNow() %></span>
             <span class="absolute"><%= moment(lastMessage.created_at).format('LLL') %></span>

@@ -7,7 +7,7 @@
   </div>
   
   <div class="two-thirds column">
-    <h3>Create a new message</h3>
+    <h3><%- translate 'span', 'messages.new.create_a_new_message' %></h3>
     <form class="new-message boxed">
       <div class="field"><input type="text" required="required" name="user_name" class="user-search" placeholder="Search for a user"></div>
       <div class="field"><input type="text" required="required" name="message[title]" placeholder="Title" /></div>
@@ -17,7 +17,7 @@
       </div>
       
       <div class="action">
-        <button type="submit" name="submit">Send Message</button>
+        <button type="submit" name="submit"><%- translate 'span', 'messages.new.send_message' %></button>
       </div>
     </form>
   </div>

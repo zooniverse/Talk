@@ -32,14 +32,14 @@
       <% end %>
     </ul>
     
-    <h4>Create a new message</h4>
+    <h4><%- translate 'span', 'messages.new.create_a_new_message' %></h4>
     <form class="new-message boxed">
       <div class="field">
         <%- require('views/markdown') class: 'reply-message', name: 'message[body]', placeholder: 'Write your message here' %>
       </div>
       
       <div class="action">
-        <button type="submit" name="submit">Send Message</button>
+        <button type="submit" name="submit"><%- translate 'span', 'messages.new.send_message' %></button>
       </div>
     </form>
   </div>

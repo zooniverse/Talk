@@ -11,14 +11,14 @@
   
   <div class="two-thirds column">
     <section>
-      <h3>Followed Objects</h3>
+      <h3><%- translate 'span', 'following.index.followed_objects' %></h3>
       <div class="subjects">
         <div class="list">
           <%- require('views/subjects/list') subjects: @subjects %>
         </div>
         
         <div class="load-more">
-          <button name="load-more" data-type="subjects">Load more</button>
+          <button name="load-more" data-type="subjects"><%- translate 'span', 'following.index.load_more' %></button>
         </div>
       </div>
     </section>
@@ -26,14 +26,14 @@
     <hr />
     
     <section>
-      <h3>Followed Discussions</h3>
+      <h3><%- translate 'span', 'following.index.followed_discussions' %></h3>
       <div class="discussions">
         <div class="list">
           <%- require('views/discussions/list') discussions: @discussions %>
         </div>
         
         <div class="load-more">
-          <button name="load-more" data-type="discussions">Load more</button>
+          <button name="load-more" data-type="discussions"><%- translate 'span', 'following.index.load_more' %></button>
         </div>
       </div>
     </section>
@@ -41,14 +41,14 @@
     <hr />
 
     <section>
-      <h3>Followed Collections</h3>
+      <h3><%- translate 'span', 'following.index.followed_collections' %></h3>
       <div class="collections">
         <div class="list">
           <%- require('views/collections/list') collections: @collections, updatedStats: true %>
         </div>
         
         <div class="load-more">
-          <button name="load-more" data-type="collections">Load more</button>
+          <button name="load-more" data-type="collections"><%- translate 'span', 'following.index.load_more' %></button>
         </div>
       </div>
     </section>

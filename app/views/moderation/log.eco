@@ -16,7 +16,7 @@
     
     <% if moderation.target.type is 'comment': %>
       in <%= moderation.target.comment.title %>
-      by
+      <%- translate 'span', 'moderation.comments.by' %>
     <% else: %>
       User
     <% end %>

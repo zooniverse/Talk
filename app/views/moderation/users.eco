@@ -3,7 +3,7 @@
 <% for moderation in @moderations: %>
   <div class="moderation-item moderated-user unlined">
     <a href="#/users/<%= moderation.target.user.name %>" class="user"><%= moderation.target.user.name %></a>
-    <%= titleize @pastTenses[moderation.type] %> by
+    <%= titleize @pastTenses[moderation.type] %> <%- translate 'span', 'moderation.comments.by' %>
     <a href="#/users/<%= moderation.user.name %>" class="user"><%= moderation.user.name %></a>
     <em class="moderation-message">(<%= moderation.message or 'no message' %>)</em>
     

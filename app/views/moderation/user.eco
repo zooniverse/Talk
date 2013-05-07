@@ -4,12 +4,12 @@
   <% if (currentUser?.admin or currentUser?.moderator) and currentUser.name isnt @user.name: %>
     <div class="show-for-privileged-user">
       <% if @user.state is 'banned': %>
-        <a class="redeem-user" data-user-name="<%= @user.name %>">Redeem User</a>
+        <a class="redeem-user" data-user-name="<%= @user.name %>"><%- translate 'span', 'moderation.user.redeem_user' %></a>
       <% else: %>
-        <a class="ban-user" data-user-name="<%= @user.name %>">Ban User</a>
+        <a class="ban-user" data-user-name="<%= @user.name %>"><%- translate 'span', 'moderation.user.ban_user' %></a>
       <% end %>
     </div>
   <% else if currentUser and currentUser?.name isnt @user.name: %>
-    <a class="report-user" data-user-name="<%= @user.name %>">Report User</a>
+    <a class="report-user" data-user-name="<%= @user.name %>"><%- translate 'span', 'moderation.user.report_user' %></a>
   <% end %>
 </div>

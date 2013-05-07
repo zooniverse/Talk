@@ -125,6 +125,35 @@ module.exports =
       mentioning: 'Discussions Mentioning This'
     edit_comment_form:
       update: 'Update'
-
-
-
+  following:
+    index:
+      load_more: 'Load more'
+      followed_collections: 'Followed Collections'
+      followed_discussions: 'Followed Discussions'
+      followed_objects: 'Followed Objects'
+  messages:
+    list:
+      messages: 'Messages'
+      compose_message: 'Compose Message'
+      last_message: 'Last message'
+    new:
+      create_a_new_message: 'Create a new message'
+      send_message: 'Send Message'
+  moderation:
+    comment:
+      edit: 'Edit'
+      remove: 'Remove'
+      report: 'Report'
+    comments:
+      by: 'by'
+      comment: 'comment'
+    index:
+      reported_users: 'Reported Users'
+      banned_users: 'Banned Users'
+      watched_users: 'Watched Users'
+      reported_comments: 'Reported Comments'
+      moderation_log: 'Moderation Log'
+    user:
+      report_user: 'Report User'
+      redeem_user: 'Redeem User'
+      ban_user: 'Ban User'

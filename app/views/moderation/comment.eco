@@ -2,11 +2,11 @@
 
 <div class="comment-moderation hide-without-user">
   <% if currentUser?.id is @comment.user_id: %>
-    <a class="edit-comment" data-comment-id="<%= @comment._id %>" data-discussion-id="<%= @discussionId %>">Edit</a>
-    <a class="remove-own-comment" data-comment-id="<%= @comment._id %>" data-discussion-id="<%= @discussionId %>">Remove</a>
+    <a class="edit-comment" data-comment-id="<%= @comment._id %>" data-discussion-id="<%= @discussionId %>"><%- translate 'span', 'moderation.comment.edit' %></a>
+    <a class="remove-own-comment" data-comment-id="<%= @comment._id %>" data-discussion-id="<%= @discussionId %>"><%- translate 'span', 'moderation.comment.remove' %></a>
   <% else if currentUser?.admin or currentUser?.moderator: %>
-    <a class="remove-comment show-for-privileged-user" data-comment-id="<%= @comment._id %>" data-discussion-id="<%= @discussionId %>">Remove</a>
+    <a class="remove-comment show-for-privileged-user" data-comment-id="<%= @comment._id %>" data-discussion-id="<%= @discussionId %>"><%- translate 'span', 'moderation.comment.remove' %></a>
   <% else: %>
-    <a class="report-comment" data-comment-id="<%= @comment._id %>" data-discussion-id="<%= @discussionId %>">Report</a>
+    <a class="report-comment" data-comment-id="<%= @comment._id %>" data-discussion-id="<%= @discussionId %>"><%- translate 'span', 'moderation.comment.report' %></a>
   <% end %>
 </div>
