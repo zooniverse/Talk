@@ -67,7 +67,52 @@ module.exports =
       hashtags: 'Hashtags'
       and: 'and'
       or: 'or'
-      every_subject: "every subject"
+      every_subject: 'every subject'
+  discussions:
+    board_categories:
+      board: 'Board'
+    comment:
+      in_response: 'in response to'
+      comment: 'comment'
+      respond: 'Respond'
+      posted: 'Posted'
+    comment_form:
+      leave_a_post: 'Leave a post here:'
+      leave_a_comment: 'Leave a comment here'
+      submit: 'Submit'
+    edit_categories:
+      move_this: 'Move this discussion to:'
+      update: 'Update'
+    edit_comment_form:
+      edit_your_post: 'Edit your post:'
+      update: 'Update'
+    feature_buttons:
+      featured_in: 'Featured in'
+    featured:
+      no_featured_discussions: 'No featured discussions'
+    merge:
+      merge_this: 'Merge this discussion into:'
+      update: 'Update'
+    new:
+      start_new: 'Start a new'
+    new_form:
+      begin_a_new: 'Begin a new discussion:'
+      board: 'Board'
+      choose_a: 'Choose a:'
+      board_for_this: 'board for this discussion'
+      create_a_new_discussion: 'Create a new discussion'
+    show:
+      edit: 'Edit'
+      update: 'Update'
+      cancel: 'Cancel'
+      lock: 'Lock'
+      unlock: 'Unlock'
+      started: 'Started'
+      has_been_locked: 'This discussion has been locked by a moderator.'
+      comments_may_not: 'Comments may not be added, updated, or removed.'
+    summary:
+      no_posts_yet: 'No posts yet'
+
 
 
 

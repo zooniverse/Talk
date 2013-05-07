@@ -1,5 +1,5 @@
 <div class="respond hide-without-user">
-  <h4>Edit your post:</h4>
+  <h4><%- translate 'span', 'discussions.edit_comment_form.edit_your_post' %></h4>
   
   <form class="edit-comment boxed">
     <div class="field">
@@ -7,7 +7,7 @@
     </div>
     
     <div class="action">
-      <button type="submit" data-discussion-id="<%= @discussionId %>" data-comment-id="<%= @comment._id %>">Update</button>
+      <button type="submit" data-discussion-id="<%= @discussionId %>" data-comment-id="<%= @comment._id %>"><%- translate 'span', 'discussions.edit_comment_form.update' %></button>
     </div>
   </form>
 </div>

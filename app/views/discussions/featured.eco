@@ -1,7 +1,7 @@
 <h2>Featured discussions</h2>
 <div class="featured">
   <% if @featured.length is 0: %>
-    <div class="none">No featured discussions</div>
+    <div class="none"><%- translate 'span', 'discussions.featured.no_featured_discussions' %></div>
   <% else: %>
     <% for discussion in @featured: %>
       <%- require('views/discussions/summary') discussion: discussion, followable: false %>

@@ -1,7 +1,7 @@
 <% { capitalize } = require 'lib/util' %>
 
 <form class="merge-discussion boxed">
-  <label>Merge this discussion into: </label>
+  <label><%- translate 'span', 'discussions.merge.merge_this' %> </label>
   <div class="field">
     <select class="category" required="required">
       <% for category in ['help', 'science', 'chat']: %>
@@ -26,5 +26,5 @@
     <%- require('views/discussions/mergable_list') @ %>
   </div>
   
-  <button type="submit" name="submit" style="display: none;">Update</button>
+  <button type="submit" name="submit" style="display: none;"><%- translate 'span', 'discussions.merge.update' %></button>
 </form>

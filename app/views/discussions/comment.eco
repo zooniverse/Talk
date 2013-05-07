@@ -8,9 +8,9 @@
   <header>
     <%- userLink link: @comment, avatar: true %>
     <% if @comment.response_to: %>
-      <a class="response-to user">in response to
+      <a class="response-to user"><%- translate 'span', 'discussions.comment.in_response' %>
         <img src="//zooniverse-avatars.s3.amazonaws.com/ouroboros/<%= @comment.response_to.user_zooniverse_id %>" class="avatar" onerror="window.defaultAvatar(this)" />
-        <%= @comment.response_to.user_name %>'s comment
+        <%= @comment.response_to.user_name %>'s <%- translate 'span', 'discussions.comment.comment' %>
       </a>
     <% end %>
     <%- require('views/moderation/comment') discussionId: @discussionId, comment: @comment %>
@@ -22,10 +22,10 @@
   
   <footer>
     <div class="respond-to hide-without-user">
-      <a class="respond-link" data-id="<%= @comment._id %>">Respond</a>
+      <a class="respond-link" data-id="<%= @comment._id %>"><%- translate 'span', 'discussions.comment.respond' %></a>
     </div>
     
-    Posted
+    <%- translate 'span', 'discussions.comment.posted' %>
     <span class="timestamp">
       <span class="relative"><%= moment(@comment.created_at).fromNow() %></span>
       <span class="absolute"><%= moment(@comment.created_at).format('LLL') %></span>

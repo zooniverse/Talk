@@ -20,14 +20,14 @@
       <div class="discussion">
         <div class="actions">
           <% if currentUser?.isPrivileged or (currentUser?.id is @user_id and not @locked): %>
-            <a class="edit action">Edit</a>
-            <a class="update action">Update</a>
-            <a class="cancel-update action">Cancel</a>
+            <a class="edit action"><%- translate 'span', 'discussions.show.edit' %></a>
+            <a class="update action"><%- translate 'span', 'discussions.show.update' %></a>
+            <a class="cancel-update action"><%- translate 'span', 'discussions.show.cancel' %></a>
           <% end %>
           <% if @locked: %>
-            <a class="unlock action show-for-privileged-user">Unlock</a>
+            <a class="unlock action show-for-privileged-user"><%- translate 'span', 'discussions.show.unlock' %></a>
           <% else: %>
-            <a class="lock action show-for-privileged-user">Lock</a>
+            <a class="lock action show-for-privileged-user"><%- translate 'span', 'discussions.show.lock' %></a>
           <% end %>
           
           <a class="merge action show-for-privileged-user">Merge</a>
@@ -45,7 +45,7 @@
           <div class="post">
             <header>
               <div class="title"><%= @title %></div>
-              Started
+              <%- translate 'span', 'discussions.show.started' %>
               <span class="timestamp">
                 <span class="relative"><%= moment(@created_at).fromNow() %></span>
                 <span class="absolute"><%= moment(@created_at).format('LLL') %></span>
@@ -59,8 +59,8 @@
           <div class="new-post<%= ' locked' if @locked %>">
             <%- require('views/discussions/comment_form') @ %>
             <div class="lock">
-              <p>This discussion has been locked by a moderator.</p>
-              <p>Comments may not be added, updated, or removed.</p>
+              <p><%- translate 'span', 'discussions.show.has_been_locked' %></p>
+              <p><%- translate 'span', 'discussions.show.comments_may_not' %></p>
             </div>
           </div>
         </div>

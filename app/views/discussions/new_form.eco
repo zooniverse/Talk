@@ -1,4 +1,4 @@
-<h4 class="hide-without-user">Begin a new discussion:</h4>
+<h4 class="hide-without-user"><%- translate 'span', 'discussions.new_form.begin_a_new' %></h4>
 
 <form class="new-discussion boxed">
   <% if @category: %>
@@ -8,10 +8,10 @@
   <% if @category and @boards and @focusType isnt 'subjects': %>
     <div class="field">
       <label for="board_id">
-        <span class="label">Board</span>
+        <span class="label"><%- translate 'span', 'discussions.new_form.board' %></span>
         <span class="input">
           <select name="board_id" required="required">
-            <option value="">Choose a <%= @category %> board for this discussion</option>
+            <option value=""><%- translate 'span', 'discussions.new_form.choose_a' %> <%= @category %> <%- translate 'span', 'discussions.new_form.board_for_this' %></option>
             <% for board in @boards[@category]: %>
               <option value="<%= board.zooniverse_id %>"><%= board.title %></option>
             <% end %>
@@ -32,6 +32,6 @@
   </div>
 
   <div class="action">
-    <button type="submit" name="submit">Create new discussion</button>
+    <button type="submit" name="submit"><%- translate 'span', 'discussions.new_form.create_a_new_discussion' %></button>
   </div>
 </form>

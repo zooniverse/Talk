@@ -54,7 +54,7 @@
           <%- userLink link: @discussion.last_comment %>
         </span>
       <% else: %>
-        <span class="last-modified"><em>No posts yet</em></span>
+        <span class="last-modified"><em><%- translate 'span', 'discussions.summary.no_posts_yet' %></em></span>
       <% end %>
     </div>
   </div>

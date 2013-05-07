@@ -1,15 +1,15 @@
 <div class="respond hide-without-user">
-  <h4>Leave a post here:<span class="in-response-to"></span></h4>
+  <h4><%- translate 'span', 'discussions.comment_form.leave_a_post' %><span class="in-response-to"></span></h4>
 
   <form class="new-comment boxed">
     <div class="field">
-      <%- require('views/markdown') class: 'comment', name: 'comment', placeholder: 'Leave a comment' %>
+      <%- require('views/markdown') class: 'comment', name: 'comment', placeholder: translate('span', 'discussions.comment_form.leave_a_comment') %>
     </div>
     
     <input type="hidden" name="response_to_id" value="">
 
     <div class="action">
-      <button type="submit">Submit</button>
+      <button type="submit"><%- translate 'span', 'discussions.comment_form.submit' %></button>
     </div>
   </form>
 </div>

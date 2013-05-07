@@ -2,5 +2,5 @@
   <div class="field">
     <input type="text" name="title" placeholder="Title" required="required" value="<%= @title %>" />
   </div>
-  <button type="submit" name="submit" style="display: none;">Update</button>
+  <button type="submit" name="submit" style="display: none;"><%- translate 'span', 'discussions.edit_comment_form.update' %></button>
 </form>
