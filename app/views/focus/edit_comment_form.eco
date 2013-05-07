@@ -7,8 +7,8 @@
     </div>
     
     <div class="action">
-      <span class="characters"><span class="count"><%= 140 - (@comment.body?.length or 0) %></span> characters</span>
-      <button type="submit" data-discussion-id="<%= @discussionId %>" data-comment-id="<%= @comment._id %>">Update</button>
+      <span class="characters"><span class="count"><%= 140 - (@comment.body?.length or 0) %></span> <%- translate 'span', 'focus.comment_form.characters' %></span>
+      <button type="submit" data-discussion-id="<%= @discussionId %>" data-comment-id="<%= @comment._id %>"><%- translate 'span', 'focus.edit_comment_form.update' %></button>
     </div>
   </form>
 </div>

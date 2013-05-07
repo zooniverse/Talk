@@ -1,5 +1,5 @@
 <div class="create-comment">
-  <header>Say something, or mark with a #hashtag</header>
+  <header><%- translate 'span', 'focus.comment_form.say_something' %></header>
   
   <form class="comment-form">
     <div class="field">
@@ -7,8 +7,8 @@
     </div>
 
     <div class="action">
-      <span class="characters"><span class="count">140</span> characters</span>
-      <button type="submit">Comment</button>
+      <span class="characters"><span class="count">140</span> <%- translate 'span', 'focus.comment_form.characters' %></span>
+      <button type="submit"><%- translate 'span', 'focus.comment_form.comment' %></button>
     </div>
   </form>
 </div>

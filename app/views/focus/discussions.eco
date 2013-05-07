@@ -9,14 +9,14 @@
     <% end %>
     
     <div class="new-discussion">
-      Want to start a new <%= category %> discussion?
-      <button data-category="<%= category %>">Create a New Post</button>
+        <%- translate 'span', 'focus.discussion_list.want_to_start' %> <%= @category %> <%- translate 'span', 'focus.discussion_list.discussion' %>
+        <button data-category="<%= @category %>"><%- translate 'span', 'focus.discussion_list.create_a_new_post' %></button>
     </div>
   </div>
 <% end %>
 
 <% if @mentions.length > 0: %>
-  <h3>Discussions Mentioning This</h3>
+  <h3><%- translate 'span', 'focus.discussion_list.mentioning' %></h3>
 
   <% for discussion in @mentions: %>
     <%- require('views/discussions/summary') discussion: discussion, followable: true %>

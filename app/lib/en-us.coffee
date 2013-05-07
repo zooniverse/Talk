@@ -112,7 +112,19 @@ module.exports =
       comments_may_not: 'Comments may not be added, updated, or removed.'
     summary:
       no_posts_yet: 'No posts yet'
-
+  focus:
+    comment_form:
+      say_something: 'Say something, or mark with a #hashtag'
+      characters: 'characters'
+      comment: 'Comment'
+    discussion_list:
+      want_to_start: 'Want to start a new'
+      discussion: 'discussion?'
+      create_a_new_post: 'Create a new post'
+    discussions:
+      mentioning: 'Discussions Mentioning This'
+    edit_comment_form:
+      update: 'Update'
 
 
 
