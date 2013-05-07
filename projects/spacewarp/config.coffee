@@ -1,9 +1,9 @@
 socialDefaults =
   href: 'http://talk.spacewarp.org/'
   title: 'Spacewarps'
-  summary: 'Some summary line'
-  image: 'http://example.com/image.jpg'
-  twitterTags: 'via @spacewarp'
+  summary: 'Discovering gravitational lenses'
+  image: 'https://si0.twimg.com/profile_images/3468076942/c06223dd495507fdaccfa6a7c24ac055.jpeg'
+  twitterTags: 'via @spacewarps'
 
 Config =
   test:

@@ -1,9 +1,9 @@
 socialDefaults =
   href: 'http://talk.notesfromnature.org/'
   title: 'Notes From Nature'
-  summary: 'Some summary line'
-  image: 'http://example.com/image.jpg'
-  twitterTags: 'via @notes_from_nature'
+  summary: 'Transcribing in Notes from Nature'
+  image: 'https://si0.twimg.com/profile_images/3468070736/662c1dbc17f7f5e91dd91a2ad0bd9bef.jpeg'
+  twitterTags: 'via @nfromn'
 
 Config =
   test:
