@@ -37,8 +37,8 @@ Config =
     project: 'spacewarp'
     projectName: 'Spacewarps'
     prefix: 'SW'
-    apiHost: 'https://dev.zooniverse.org'
-    classifyUrl: 'http://spacewarps.org/beta/#/classify'
+    apiHost: 'https://api.zooniverse.org'
+    classifyUrl: 'http://spacewarps.org/#/classify'
     socialDefaults: socialDefaults
     analytics: { }
 
