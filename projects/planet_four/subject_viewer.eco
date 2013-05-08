@@ -1,5 +1,7 @@
 <img src="<%= @subject.location.standard %>" class="main" />
 
+<div class="large-mouseover"></div>
+
 <% if @subject.metadata: %>
   <div class="subject-metadata">
     <% link = @subject.metadata.link.match(/(\w+)_RGB\.NOMAP\.JP2/i)[1] %>
