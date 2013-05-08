@@ -1,1 +1,7 @@
 <img src="<%= @subject.location.standard %>" class="main" />
+
+<div class="subject-metadata">
+  <% if @subject.metadata?.training?: %>
+    Training image
+  <% end %>
+</div>
