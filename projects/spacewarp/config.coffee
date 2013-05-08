@@ -41,7 +41,7 @@ Config =
     classifyUrl: 'http://spacewarps.org/#/classify'
     socialDefaults: socialDefaults
     analytics:
-      account: 'UA-1224199-42'
+      account: 'UA-1224199-43'
       domain: 'talk.spacewarps.org'
 
 env = if window.jasmine
