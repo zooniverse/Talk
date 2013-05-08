@@ -1,6 +1,6 @@
 <header>
   <h2>
-    Image <%= @zooniverse_id %>
+    <%= require('controllers/subject_viewer').subjectTitle(@) %>
 
     <div class="aux">
       <%- require('views/follow_button') id: @zooniverse_id, type: 'subjects', follower_ids: @follower_ids %>

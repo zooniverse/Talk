@@ -3,6 +3,10 @@ template = require 'views/subjects/viewer'
 $ = require 'jqueryify'
 
 class NotesFromNatureSubjectViewer extends DefaultSubjectViewer
+  @subjectTitle: (subject) ->
+    { number, species } = subject.metadata
+    if number? and species? then "#{ number } #{ species }" else super
+
   className: "#{ DefaultSubjectViewer::className } notes-from-nature-subject-viewer"
   template: template
 
