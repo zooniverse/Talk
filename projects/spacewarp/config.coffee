@@ -40,7 +40,9 @@ Config =
     apiHost: 'https://api.zooniverse.org'
     classifyUrl: 'http://spacewarps.org/#/classify'
     socialDefaults: socialDefaults
-    analytics: { }
+    analytics:
+      account: 'UA-1224199-42'
+      domain: 'talk.spacewarps.org'
 
 env = if window.jasmine
   'test'
