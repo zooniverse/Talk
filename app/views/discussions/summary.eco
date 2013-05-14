@@ -40,7 +40,7 @@
   <div class="stats">
     <div class="counts">
       <span class="posts"><%= formatNumber @discussion.comments %></span> <%= pluralize @discussion.comments, 'post', 'posts' %> /
-      <span class="users"><%= formatNumber @discussion.users %></span> <%= pluralize @discussion.comments, 'participants', 'participant' %>
+      <span class="users"><%= formatNumber @discussion.users %></span> <%= pluralize @discussion.comments, 'participant', 'participants' %>
     </div>
     
     <div class="last">
