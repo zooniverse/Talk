@@ -8,7 +8,6 @@ Api = require 'zooniverse/lib/api'
 Api.init host: apiHost
 
 AppHeader = require 'controllers/app_header'
-Trending = require 'controllers/trending'
 Following = require 'controllers/following'
 Recents = require 'controllers/recents'
 Subjects = require 'controllers/subjects'
@@ -64,7 +63,6 @@ Roles.fetch ->
     
     app.stack = new Stack
       controllers:
-        trending: Trending
         recents: Recents
         following: Following
         subjects: Subjects
@@ -77,8 +75,7 @@ Roles.fetch ->
         search: Search
       
       routes:
-        '/': 'trending'
-        '/trending': 'trending'
+        '/': 'recents'
         '/recent': 'recents'
         '/following': 'following'
         '/subjects': 'subjects'
@@ -91,7 +88,7 @@ Roles.fetch ->
         '/search': 'search'
         '/:focusType/:focusId/discussions': 'discussions'
       
-      default: 'trending'
+      default: 'recents'
     
     Spine.Route.setup()
     app.stack.el.appendTo app.el
