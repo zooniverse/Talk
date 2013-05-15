@@ -1,4 +1,5 @@
 <% userLink = require 'views/user_link' %>
+<% moment = require 'moment/moment' %>
 
 <% for page, discussions of @collections: %>
   <% for discussion in discussions: %>

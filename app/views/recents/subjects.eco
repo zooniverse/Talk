@@ -1,5 +1,6 @@
 <% { truncate } = require 'lib/util' %>
 <% userLink = require 'views/user_link' %>
+<% moment = require 'moment/moment' %>
 
 <div class="subject-summaries">
   <% for page, discussions of @subjects: %>

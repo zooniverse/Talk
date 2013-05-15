@@ -110,6 +110,7 @@ class Recents extends SubStack
     index: Index
   
   routes:
+    '/': 'index'
     '/recent': 'index'
   
   default: 'index'
