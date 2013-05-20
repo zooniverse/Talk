@@ -41,7 +41,7 @@ Config =
     classifyUrl: 'http://www.galaxyzoo.org/#/classify'
     socialDefaults: socialDefaults
     analytics:
-      account: 'UA-1234567-89'
+      account: 'UA-1224199-9'
       domain: 'http://talk.galaxyzoo.org'
 
 env = if window.jasmine
