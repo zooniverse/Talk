@@ -1,6 +1,13 @@
 <% moment = require 'moment/moment' %>
+<% user = require('zooniverse/lib/models/user').current %>
+<% preference = user?.preferences?.talk?.time_format or 'relative' %>
 
 <span class="timestamp">
-  <span class="relative"><%= moment(@timestamp).fromNow() %></span>
-  <span class="absolute"><%= moment(@timestamp).format('LLL') %></span>
+  <% if preference is 'absolute': %>
+    <span class="shown"><%= moment(@timestamp).format('LLL') %></span>
+    <span class="on-hover"><%= moment(@timestamp).fromNow() %></span>
+  <% else: %>
+    <span class="shown"><%= moment(@timestamp).fromNow() %></span>
+    <span class="on-hover"><%= moment(@timestamp).format('LLL') %></span>
+  <% end %>
 </span>
