@@ -205,3 +205,22 @@ module.exports =
       collecting: 'People are Collecting...'
       load_more: 'Load more'
   users:
+    active:
+      currently_online: 'Currently Online'
+      user: 'user'
+      users: 'users'
+    banned:
+      you_have_been_banned: 'You have been banned from Talk by a moderator'
+      in_error: 'If you believe this is in error, please send an email to'
+      zooniverse_support: 'Zooniverse Support'
+    collection_list:
+      start_new: 'Start a new collection'
+    content:
+      recent_objects: 'Recent Object Comments'
+      recent_discussions: 'Recent Discussions'
+      recent_collection: 'Recent Collection Comments'
+      load_more: 'Load more'
+    mini_profile:
+      change_avatar: 'Change your avatar'
+    profile:
+      my: 'My'

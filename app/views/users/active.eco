@@ -1,5 +1,5 @@
 <% { formatNumber, pluralize } = require 'lib/util' %>
-<h2>Currently Online<span class="aux"><%= formatNumber @count %> <%= pluralize @count, 'user', 'users' %></span></h2>
+<h2><%- translate 'span', 'users.active.currently_online' %><span class="aux"><%= formatNumber @count %> <%- pluralize @count, translate('span', 'users.active.user'), translate('span', 'users.active.users') %></span></h2>
 <div class="list">
   <%- require('views/users/active_list') users: @users[1] %>
 </div>

@@ -1,10 +1,10 @@
 <div id="banned-user">
   <h1>
-    You have been banned from Talk by a moderator
+    <%- translate 'span', 'users.banned.you_have_been_banned' %>
   </h1>
   
   <h3>
-    If you believe this is in error, please send an email to
-    <a title="Zooniverse Support" href="mailto:support@zooniverse.org">Zooniverse Support</a>
+    <%- translate 'span', 'users.banned.in_error' %>
+    <a title="Zooniverse Support" href="mailto:support@zooniverse.org"><%- translate 'span', 'users.banned.zooniverse_support' %></a>
   </h3>
 </div>

@@ -7,6 +7,6 @@
   </div>
   
   <div class="two-thirds column">
-    <%- require('views/users/content') label: 'My', user: @ %>
+    <%- require('views/users/content') label: translate('span', 'users.profile.my'), user: @ %>
   </div>
 </div>
