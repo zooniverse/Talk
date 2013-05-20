@@ -1,17 +1,25 @@
 .mini-profile {
+  clearfix();
+  
   .change-avatar {
+    float: left;
     text-decoration: none;
   }
   
   .avatar {
+    float: left;
     display: inline-block;
     vertical-align: top;
   }
   
-  .name {
-    font-weight: bold;
-    font-size: 16px;
+  .info {
+    float: left;
     padding-left: 10px;
+    
+    .name {
+      font-weight: bold;
+      font-size: 16px;
+    }
   }
 }
 
@@ -19,7 +27,7 @@
   .list {
     clearfix();
   }
-
+  
   section.subjects {
     .list {
       overflow: hidden;

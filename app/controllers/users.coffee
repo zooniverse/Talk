@@ -94,14 +94,43 @@ class Show extends Profile
     super
 
 
+class Preferences extends Profile
+  template: require('views/users/preferences')
+  fetchOnLoad: false
+  
+  events: $.extend
+    'change .preference': 'changePreference'
+    Page::events
+  
+  reload: ->
+    @render()
+  
+  changePreference: (ev) =>
+    ev.preventDefault()
+    target = $(ev.target)
+    preference = target.closest '.row'
+    key = target.attr 'name'
+    value = target.val()
+    preference.find('.description').hide()
+    preference.find(".description[name='#{ value }']").show()
+    
+    Api.put '/users/preferences', key: "talk.#{ key }", value: value, =>
+      User.current.preferences or= { }
+      User.current.preferences.talk or= { }
+      User.current.preferences.talk[key] = value
+      @messageList.render()
+
+
 class Users extends SubStack
   controllers:
     show: Show
     profile: Profile
+    preferences: Preferences
   
   routes:
     '/profile': 'profile'
     '/users/profile': 'profile'
+    '/users/preferences': 'preferences'
     '/users/:id': 'show'
   
   default: 'profile'

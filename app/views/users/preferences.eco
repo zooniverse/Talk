@@ -1,0 +1,32 @@
+<% currentUser = require('zooniverse/lib/models/user').current %>
+<% preferences = currentUser?.preferences?.talk or { time_format: 'relative' } %>
+
+<div class="columns">
+  <div class="one-third column">
+    <%- require('views/users/mini_profile') user: currentUser %>
+    <div class="message-list"></div>
+  </div>
+  
+  <div class="two-thirds column">
+    <section class="preferences">
+      <h2>Preferences</h2>
+      <div class="row">
+        <div class="column">Time format</div>
+        <div class="column">
+          <select class="preference" name="time_format">
+            <option value="relative" <%= 'selected' if preferences.time_format is 'relative' %>>Relative</option>
+            <option value="absolute" <%= 'selected' if preferences.time_format is 'absolute' %>>Absolute</option>
+          </select>
+        </div>
+        <div class="column">
+          <span class="description" name="relative" style="<%= 'display: none;' unless preferences.time_format is 'relative' %>">
+            Show dates and times relative to the current time
+          </span>
+          <span class="description" name="absolute" style="<%= 'display: none;' unless preferences.time_format is 'absolute' %>">
+            Show full dates and times in your timezone
+          </span>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
