@@ -199,7 +199,9 @@ module.exports =
       comments: 'Comments'
       discussions: 'Discussions'
   trending:
-    observing: 'People are Observing...'
-    discussing: 'People are Discussing...'
-    collecting: 'People are Collecting...'
-    load_more: 'Load more'
+    index:
+      observing: 'People are Observing...'
+      discussing: 'People are Discussing...'
+      collecting: 'People are Collecting...'
+      load_more: 'Load more'
+  users:
