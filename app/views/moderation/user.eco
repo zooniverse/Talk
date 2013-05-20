@@ -9,7 +9,8 @@
         <a class="ban-user" data-user-name="<%= @user.name %>">Ban User</a>
       <% end %>
     </div>
-  <% else if currentUser and currentUser?.name isnt @user.name: %>
+  <% end %>
+  <% if currentUser and currentUser?.name isnt @user.name: %>
     <a class="report-user" data-user-name="<%= @user.name %>">Report User</a>
   <% end %>
 </div>
