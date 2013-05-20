@@ -12,10 +12,10 @@
   
   <div class="summary">
     <div class="title">
-      Collection <a href="#/collections/<%= @id %>"><%= @name %></a>
+      <%- translate 'span', 'searcg.collection_result.collection' %> <a href="#/collections/<%= @id %>"><%= @name %></a>
     </div>
     <div class="metadata">
-      Last updated
+      <%- translate 'span', 'searcg.collection_result.last_updated' %>
       <span class="timestamp">
         <span class="relative"><%= moment(@updated_at).fromNow() %></span>
         <span class="absolute"><%= moment(@updated_at).format('LLL') %></span>

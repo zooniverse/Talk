@@ -11,7 +11,7 @@
   
   <div class="two-thirds column">
     <section>
-      <h2>People are Observing...</h2>
+      <h2><%- translate 'span', 'trending.index.observing' %></h2>
       <div class="subjects">
         <div class="list">
           <%- require('views/subjects/list') subjects: @subjects %>
@@ -19,14 +19,14 @@
       </div>
 
       <div class="load-more">
-        <button name="load-more" data-type="subjects">Load more</button>
+        <button name="load-more" data-type="subjects"><%- translate 'span', 'trending.index.load_more' %></button>
       </div>
     </section>
    
     <hr />
 
     <section>
-      <h2>People are Discussing...</h2>
+      <h2><%- translate 'span', 'trending.index.discussing' %></h2>
       <div class="board discussions">
         <% for category, i in ['help', 'science', 'chat']: %>
           <h3>
@@ -38,7 +38,7 @@
           </div>
           
           <div class="load-more">
-            <button name="load-more" data-type="discussions" data-category="<%= category %>">Load more</button>
+            <button name="load-more" data-type="discussions" data-category="<%= category %>"><%- translate 'span', 'trending.index.load_more' %></button>
           </div>
 
         <% end %>
@@ -48,7 +48,7 @@
     <hr />
     
     <section>
-      <h2>People are Collecting...</h2>
+      <h2><%- translate 'span', 'trending.index.collecting' %></h2>
       <div class="collections">
         <div class="list">
           <%- require('views/collections/list') collections: @collections, updatedStats: true %>
@@ -57,7 +57,7 @@
       </div>
 
       <div class="load-more">
-        <button name="load-more" data-type="collections">Load more</button>
+        <button name="load-more" data-type="collections"><%- translate 'span', 'trending.index.load_more' %></button>
       </div>
     </section>
   </div>

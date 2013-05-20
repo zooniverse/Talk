@@ -9,7 +9,7 @@
     </a>
 
     <div class="add-to-collection hide-without-user">
-      <button class="collect-this" data-id="<%= @zooniverse_id %>">Collect</button>
+      <button class="collect-this" data-id="<%= @zooniverse_id %>"><%- translate 'span', 'subjects.summary.collect' %></button>
       <div class="collection-list"></div>
     </div>
   </div>
@@ -24,8 +24,8 @@
 
       <% if @comments? and @discussions?: %>
         <div class="stats">
-          <span class="comments"><span class="count"><%= @comments %></span> Comments</span>,
-          <span class="discussions"><span class="count"><%= @discussions %></span> Discussions</span>
+          <span class="comments"><span class="count"><%= @comments %></span> <%- translate 'span', 'subjects.summary.comments' %></span>,
+          <span class="discussions"><span class="count"><%= @discussions %></span> <%- translate 'span', 'subjects.summary.discussions' %></span>
         </div>
       <% end %>
     </div>

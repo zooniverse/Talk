@@ -1,6 +1,6 @@
 <header>
   <h2>
-    Image <%= @zooniverse_id %>
+    <%- translate 'span', 'subjects.show.image' %> <%= @zooniverse_id %>
 
     <div class="aux">
       <%- require('views/follow_button') id: @zooniverse_id, type: 'subjects', follower_ids: @follower_ids %>
@@ -25,23 +25,23 @@
 </div>
 
 <div class="collections">
-  <h3>Collections<%- '<div class="pages"></div>' if @collectionPages > 1 %></h3>
+  <h3><%- translate 'span', 'subjects.show.collections' %><%- '<div class="pages"></div>' if @collectionPages > 1 %></h3>
   <% if @collectionPages > 0: %>
     <div class="list">
       <%- require('views/collections/list') collections: @collections[1] %>
     </div>
   <% else: %>
-    No collections
+    <%- translate 'span', 'subjects.show.no_collections' %>
   <% end %>
 </div>
 
 <div class="hashtags">
-  <h3>Tags</h3>
+  <h3><%- translate 'span', 'subjects.show.tags' %></h3>
   <%- require('views/hashtags/list') tags: @tags %>
   <% tagList = @tags.map((o) -> o._id) %>
   <% if tagList.length > 0: %>
     <div class="collect">
-      <a class="create-keyword-set" href="#/collections/new/keywords/<%= tagList.join('&') %>">Create a tag group</a>
+      <a class="create-keyword-set" href="#/collections/new/keywords/<%= tagList.join('&') %>"><%- translate 'span', 'subjects.show.create_tag_group' %></a>
     </div>
   <% end %>
 </div>

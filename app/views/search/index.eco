@@ -2,27 +2,27 @@
   <div class="one-third column">
     <form class="search">
       <section class="text">
-        <h2>Search For</h2>
+        <h2><%- translate 'span', 'search.index.search_for' %></h2>
         <input type="text" name="text" value="<%= @params.text %>">
-        <button type="submit">Search</button>
+        <button type="submit"><%- translate 'span', 'search.index.search' %></button>
       </section>
       
       <section class="type">
-        <h2>Type</h2>
+        <h2><%- translate 'span', 'search.index.type' %></h2>
         <%- require('views/search/facet') term: 'subject', label: 'Objects', count: 0, checked: @params.kind is 'subject' %>
         <%- require('views/search/facet') term: 'collection', label: 'Collections', count: 0, checked: @params.kind is 'collection' %>
         <%- require('views/search/facet') term: 'discussion', label: 'Discussions', count: 0, checked: @params.kind is 'discussion' %>
       </section>
       
       <section class="category">
-        <h2>Category</h2>
+        <h2><%- translate 'span', 'search.index.category' %></h2>
         <%- require('views/search/facet') term: 'help', label: 'Help', count: 0, checked: @params.category is 'help' %>
         <%- require('views/search/facet') term: 'science', label: 'Science', count: 0, checked: @params.category is 'science' %>
         <%- require('views/search/facet') term: 'chat', label: 'Chat', count: 0, checked: @params.category is 'chat' %>
       </section>
       
       <section class="tags">
-        <h2>Tags</h2>
+        <h2><%- translate 'span', 'search.index.tags' %></h2>
         <div class="facets">
           <div class="selected"><% if @queryTags: %><% for name, bool of @queryTags when bool: %><%- require('views/search/facet') term: name, label: name, count: 0, checked: true %><% end %><% end %></div>
           <div class="available"></div>

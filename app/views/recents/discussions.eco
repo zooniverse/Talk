@@ -22,7 +22,7 @@
         <div class="info">
           <div class="title">
             <% if discussion.board: %>
-              <a><%= truncate(discussion.title or 'Untitled discussion', 100) %></a>
+              <a><%= truncate(discussion.title or translate('span', 'recents.discussions.untitled'), 100) %></a>
             <% else if discussion.focus: %>
               <a><%= truncate(discussion.title or "Discussion for #{ discussion.focus._id }", 100) %></a>
             <% end %>

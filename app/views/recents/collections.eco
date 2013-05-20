@@ -4,7 +4,7 @@
   <% for discussion in discussions: %>
     <div class="collection" data-link="#/collections/<%= discussion.focus._id %>">
       <div class="title">
-        <a><%= discussion.focus.name or 'Untitled Collection' %></a>
+        <a><%= discussion.focus.name or translate('span', 'recents.collections.untitled') %></a>
       </div>
       
       <div class="subjects">

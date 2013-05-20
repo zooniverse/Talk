@@ -4,7 +4,7 @@
     <%= formatNumber ((@page - 1) * @per_page) + 1 %> -
     <%= formatNumber Math.min(@total, @page * @per_page) %> of
   <% end %>
-  <%= formatNumber @total %> <%= pluralize @total, 'result', 'results' %>
+  <%= formatNumber @total %> <%= pluralize @total, translate('span', 'search.results.result'), translate('span', 'search.results.results') %>
   <%- '<div class="pages"></div>' if @total > 10 %>
 </h2>
 <% for result in @results: %>

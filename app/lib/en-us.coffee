@@ -157,3 +157,49 @@ module.exports =
       report_user: 'Report User'
       redeem_user: 'Redeem User'
       ban_user: 'Ban User'
+  recents:
+    collections:
+      untitled: 'Untitled Collection'
+    discussions:
+      untitled: 'Untitled Collection'
+    index:
+      recent_objects: 'Recent Object Comments...'
+      recent_discussions: 'Recent Discussions...'
+      recent_collection: 'Recent Collection Comments...'
+      load_more: 'Load more'
+  search:
+    collection_result:
+      collection: 'Collection'
+      last_updated: 'Last updated'
+    discussion_result:
+      discussion: 'Discussion'
+      in: 'in'
+      last_updated: 'Last updated'
+    subject_result:
+      object: 'Object'
+      last_updated: 'Last updated'
+    index:
+      search: 'Search'
+      search_for: 'Search For'
+      type: 'Type'
+      category: 'Category'
+      tags: 'Tags'
+    results:
+      result: 'result'
+      results: 'results'
+    subjects:
+      show:
+        image: 'Image'
+        collections: 'Collections'
+        no_collections: 'No collections'
+        tags: 'Tags'
+        create_tag_group: 'Create a tag group'
+    summary:
+      collect: 'Collect'
+      comments: 'Comments'
+      discussions: 'Discussions'
+  trending:
+    observing: 'People are Observing...'
+    discussing: 'People are Discussing...'
+    collecting: 'People are Collecting...'
+    load_more: 'Load more'

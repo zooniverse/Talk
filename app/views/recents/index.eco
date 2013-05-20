@@ -11,7 +11,7 @@
   
   <div class="two-thirds column">
     <section>
-      <h2>Recent Object Comments...</h2>
+      <h2><%- translate 'span', 'recents.index.recent_objects' %></h2>
       <div class="subjects">
         <div class="list">
           <%- require('views/recents/subjects') subjects: @subjects %>
@@ -26,7 +26,7 @@
     <hr />
     
     <section>
-      <h2>Recent Discussions...</h2>
+      <h2><%- translate 'span', 'recents.index.recent_discussions' %></h2>
       <div class="board discussions">
         <% for category, i in ['help', 'science', 'chat']: %>
           <h3><%= capitalize category %></h3>
@@ -46,7 +46,7 @@
     <hr />
     
     <section>
-      <h2>Recent Collection Comments...</h2>
+      <h2><%- translate 'span', 'recents.index.recent_collection' %></h2>
       <div class="collections">
         <div class="list">
           <%- require('views/recents/collections') @ %>
@@ -54,7 +54,7 @@
       </div>
       
       <div class="load-more">
-        <button name="load-more" data-type="collections">Load more</button>
+        <button name="load-more" data-type="collections"><%- translate 'span', 'recents.index.load_more' %></button>
       </div>
     </section>
   </div>
