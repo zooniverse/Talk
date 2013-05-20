@@ -31,9 +31,6 @@
     <a href="#/users/<%= moderation.action.user.name %>" class="user"><%= moderation.action.user.name %></a>
     (<em><%= moderation.action.comment or 'no comment' %></em>)
     
-    <span class="timestamp">
-      <span class="relative"><%= moment(moderation.actioned_at).fromNow() %></span>
-      <span class="absolute"><%= moment(moderation.actioned_at).format('LLL') %></span>
-    </span>
+    <%- require('views/timestamp') timestamp: moderation.actioned_at %>
   </div>
 <% end %>

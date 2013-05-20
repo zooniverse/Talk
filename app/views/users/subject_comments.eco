@@ -13,18 +13,15 @@
       <div class="title">
         <a href="#/subjects/<%= subject.focus.zooniverse_id %>"><%= subject.focus.zooniverse_id %></a>
       </div>
-
+      
       <div class="comment">
         <div class="content">
           <%- subject.comment.body or '&nbsp;' %>
         </div>
-
+        
         <div class="author">
           <%- userLink link: subject.comment %>
-          <span class="timestamp">
-            <span class="relative"><%= moment(subject.comment.created_at).fromNow() %></span>
-            <span class="absolute"><%= moment(subject.comment.created_at).format('LLL') %></span>
-          </span>
+          <%- require('views/timestamp') timestamp: subject.comment.created_at %>
         </div>
       </div>
     </div>

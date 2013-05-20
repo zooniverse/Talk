@@ -25,10 +25,7 @@
       <footer>
         <div class="last-message">
           Last message
-          <span class="timestamp">
-            <span class="relative"><%= moment(lastMessage.created_at).fromNow() %></span>
-            <span class="absolute"><%= moment(lastMessage.created_at).format('LLL') %></span>
-          </span>
+          <%- require('views/timestamp') timestamp: lastMessage.created_at %>
           <%= direction %>
           <%- require('views/messages/user_link') message: { user: otherPerson } %>
         </div>

@@ -16,10 +16,7 @@
     </div>
     <div class="metadata">
       Last updated
-      <span class="timestamp">
-        <span class="relative"><%= moment(@updated_at).fromNow() %></span>
-        <span class="absolute"><%= moment(@updated_at).format('LLL') %></span>
-      </span>
+      <%- require('views/timestamp') timestamp: @updated_at %>
     </div>
   </div>
 </div>

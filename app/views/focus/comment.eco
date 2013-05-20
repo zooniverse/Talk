@@ -7,10 +7,7 @@
   <footer>
     <%- userLink link: @comment %>
     <span class="right">
-      <span class="timestamp">
-        <span class="relative"><%= moment(@comment.created_at).fromNow() %></span>
-        <span class="absolute"><%= moment(@comment.created_at).format('LLL') %></span>
-      </span>
+      <%- require('views/timestamp') timestamp: @comment.created_at %>
     </span>
     <%- require('views/moderation/comment')(discussionId: @discussionId, comment: @comment) unless @fromBoard %>
   </footer>

@@ -22,10 +22,7 @@
             </div>
             
             <footer>
-              <span class="timestamp">
-                <span class="relative"><%= moment(message.created_at).fromNow() %></span>
-                <span class="absolute"><%= moment(message.created_at).format('LLL') %></span>
-              </span>
+              <%- require('views/timestamp') timestamp: message.created_at %>
             </footer>
           </div>
         </li>

@@ -46,10 +46,7 @@
             <header>
               <div class="title"><%= @title %></div>
               Started
-              <span class="timestamp">
-                <span class="relative"><%= moment(@created_at).fromNow() %></span>
-                <span class="absolute"><%= moment(@created_at).format('LLL') %></span>
-              </span>
+              <%- require('views/timestamp') timestamp: @created_at %>
               <%- userLink link: @ %>
             </header>
           </div>

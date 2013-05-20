@@ -23,10 +23,7 @@
         <% if @last_updated and @last_comment: %>
           Last post
           <span class="last-modified">
-            <span class="timestamp">
-              <span class="relative"><%= moment(@last_comment.created_at).fromNow() %></span>
-              <span class="absolute"><%= moment(@last_comment.created_at).format('LLL') %></span>
-            </span>
+            <%- require('views/timestamp') timestamp: @last_comment.created_at %>
             <%- userLink link: @last_comment %>
           </span>
         <% else: %>

@@ -47,10 +47,7 @@
       <% if @discussion.last_comment: %>
         <a href="<%= "#{ discussionUrl }?page=#{ Math.ceil(@discussion.comments / 10.0) }&comment_id=#{ @discussion.last_comment._id }" %>">Last post</a>
         <span class="last-modified">
-          <span class="timestamp">
-            <span class="relative"><%= moment(@discussion.last_updated).fromNow() %></span>
-            <span class="absolute"><%= moment(@discussion.last_updated).format('LLL') %></span>
-          </span>
+          <%- require('views/timestamp') timestamp: @discussion.last_updated %>
           <%- userLink link: @discussion.last_comment %>
         </span>
       <% else: %>

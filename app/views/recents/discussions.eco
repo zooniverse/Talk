@@ -45,10 +45,7 @@
             
             <div class="author">
               <%- userLink link: discussion.comment, avatar: true %>
-              <span class="timestamp">
-                <span class="relative"><%= moment(discussion.comment.created_at).fromNow() %></span>
-                <span class="absolute"><%= moment(discussion.comment.created_at).format('LLL') %></span>
-              </span>
+              <%- require('views/timestamp') timestamp: discussion.comment.created_at %>
             </div>
           </div>
         </div>

@@ -11,10 +11,7 @@
           by <%= collection.user_name %>
           <% if @updatedStats: %>
             last updated
-            <span class="timestamp">
-              <span class="relative"><%= moment(collection.updated_at).fromNow() %></span>
-              <span class="absolute"><%= moment(collection.updated_at).format('LLL') %></span>
-            </span>
+            <%- require('views/timestamp') timestamp: collection.updated_at %>
           <% end %>
           <%= "#{ collection.subjects_count } #{ pluralize collection.subjects_count, 'image', 'images' }" %>
         </span>
