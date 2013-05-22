@@ -37,12 +37,12 @@ Config =
     project: 'galaxy_zoo'
     projectName: 'Galaxy Zoo'
     prefix: 'GZ'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'https://dev.zooniverse.org'
     classifyUrl: 'http://www.galaxyzoo.org/#/classify'
     socialDefaults: socialDefaults
     analytics:
       account: 'UA-1224199-9'
-      domain: 'http://talk.galaxyzoo.org'
+      domain: 'http://talk.galaxyzoo.org.s3-website-us-east-1.amazonaws.com'
 
 env = if window.jasmine
   'test'

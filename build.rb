@@ -46,6 +46,11 @@ index.gsub! 'application.js', "application-#{ timestamp }.js"
 index.gsub! 'application.css', "application-#{ timestamp }.css"
 File.open('build/index.html', 'w'){ |f| f.puts index }
 
+error = File.read 'build/error.html'
+error.gsub! 'application.js', "application-#{ timestamp }.js"
+error.gsub! 'application.css', "application-#{ timestamp }.css"
+File.open('build/error.html', 'w'){ |f| f.puts error }
+
 app_js = File.read "build/application-#{ timestamp }.js"
 File.open("build/application-#{ timestamp }.js", 'w'){ |f| f.puts app_js }
 

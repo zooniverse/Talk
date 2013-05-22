@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="/application.js"></script>
+  </head>
+  
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      Spine = require('spine');
+      var Api = require('zooniverse/lib/api');
+      var Config = require('lib/config');
+      var User = require('zooniverse/lib/models/user');
+      User.project = Config.project;
+      Api.init({ host: Config.apiHost });
+      
+      var path = window.location.pathname;
+      var routes = [
+        [ '\/collections\/(C\\w{2}[SL][\\w\\d]{6})', '/#/collections/$1' ],
+        [ '\/live_collections\/(C\\w{2}[SL][\\w\\d]{6})', '/#/collections/$1' ],
+        [ '\/collections\/(C\\w{2}[SL][\\w\\d]{6})\/discussions\/(D\\w{2}[\\w\\d]{7})', '', 'discussion' ],
+        [ '\/live_collections\/(C\\w{2}[SL][\\w\\d]{6})\/discussions\/(D\\w{2}[\\w\\d]{7})', '', 'discussion' ],
+        [ '\/discussions\/(D\\w{2}[\\w\\d]{7})', '/#/discussions/$1', 'discussion' ],
+        [ '\/objects/(A\\w{2}[\\w\\d]{7})', '/#/subjects/$1' ],
+        [ '\/(help|science|chat)', '/#/boards' ],
+        [ '\/search', '/#/search' ],
+        [ '\/admin', '/#/moderation' ],
+        [ '\/users\/([\\w\\d]{24})', '', 'user' ]
+      ];
+      var matched = false;
+      
+      for(var i = 0; i < routes.length; i++) {
+        var route = routes[i];
+        var matcher = new RegExp(route[0], 'i');
+        if(path.match(matcher)) {
+          var id = path.match(matcher)[1];
+          
+          if(route[2] == 'discussion') {
+            Api.get('/projects/' + Config.project + '/talk/discussions/' + id, function(json) {
+              window.location.href = '/#/boards/' + json.board._id + '/discussions/' + id;
+            });
+            
+            matched = true; break;
+          }
+          else if(route[2] == 'user') {
+            User.fetch().onSuccess(function() {
+              if(User.current && User.current.id == id) {
+                window.location.href = '/#/profile';
+              }
+              else {
+                Api.get('/projects/' + Config.project + '/talk/users/' + id, function(json) {
+                  window.location.href = '/#/users/' + json.name;
+                });
+              }
+            });
+            
+            matched = true; break;
+          }
+          else {
+            window.location.href = path.replace(matcher, route[1]);
+            matched = true; break;
+          }
+        }
+      }
+      
+      if(!matched){
+        console.log('not matched');
+      }
+    </script>
+  </body>
+</html>
