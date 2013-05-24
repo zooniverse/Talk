@@ -10,7 +10,7 @@
     
     <span class="aux">
       <%- require('views/follow_button') id: @zooniverse_id, type: 'subject_sets', follower_ids: @follower_ids %>
-      <%- require('views/share_button') image: require('controllers/subject_viewer').imageIn(@subjects[1][0]?.location), pinterest: false %>
+      <%- require('views/share_button')(image: require('controllers/subject_viewer').imageIn(@subjects[1][0]?.location), pinterest: false) if @subjects[1] %>
     </span>
   </h2>
 </header>
@@ -18,7 +18,11 @@
 <div class="subjects">
   <h3>Subjects in this collection</span><%- '<div class="pages"></div>' if @subjectPages > 1 %></h3>
   <ul class="list">
-    <%- require('views/collections/subject_list') subjects: @subjects[1] %>
+    <% if @subjectsCount > 0: %>
+      <%- require('views/collections/subject_list') subjects: @subjects[1] %>
+    <% else: %>
+      <div class="none">This collection is currently empty</div>
+    <% end %>
   </ul>
 </div>
 
