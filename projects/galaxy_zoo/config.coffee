@@ -1,9 +1,9 @@
 socialDefaults =
   href: 'http://talk.galaxyzoo.org/'
   title: 'Galaxy Zoo'
-  summary: 'Some summary line'
-  image: 'http://example.com/image.jpg'
-  twitterTags: 'via @galaxy_zoo'
+  summary: 'Classifying galaxies in the distant universe!'
+  image: 'https://si0.twimg.com/profile_images/2597266958/image.jpg'
+  twitterTags: 'via @galaxyzoo'
 
 Config =
   test:
@@ -37,12 +37,12 @@ Config =
     project: 'galaxy_zoo'
     projectName: 'Galaxy Zoo'
     prefix: 'GZ'
-    apiHost: 'https://dev.zooniverse.org'
+    apiHost: 'https://api.zooniverse.org'
     classifyUrl: 'http://www.galaxyzoo.org/#/classify'
     socialDefaults: socialDefaults
     analytics:
       account: 'UA-1224199-9'
-      domain: 'http://talk.galaxyzoo.org.s3-website-us-east-1.amazonaws.com'
+      domain: 'talk.galaxyzoo.org'
 
 env = if window.jasmine
   'test'
