@@ -1,7 +1,9 @@
 mentions = require 'lib/mentions'
+Markdown = require 'lib/markdown/converter'
+require 'lib/markdown/sanitizer'
 converter = new Markdown.Converter()
 
-module.exports=
+module.exports =
   runEditor: (className) ->
     setTimeout(->
       editor = new Markdown.Editor(converter, className)
@@ -24,6 +26,6 @@ module.exports=
     , 20)
   
   convert: (content = '') ->
-    html = $("<div>#{converter.makeHtml content}</div>")
+    html = $("<div>#{ converter.makeHtml content }</div>")
     html.children().emoticonize()
     html.html()
