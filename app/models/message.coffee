@@ -1,4 +1,5 @@
 Api = require 'zooniverse/lib/api'
+projectName = require('lib/config').projectName
 
 class Message
   @records = { }
@@ -40,7 +41,7 @@ class Message
     Message.get id, callback
   
   sendReply: (message, callback) =>
-    Api.post "#{ @url() }/reply", message: { body: message }, (message) =>
+    Api.post "#{ @url() }/reply", message: { body: message, project_name: projectName }, (message) =>
       @_copy_keys_from message
       Message.records[@id] = @
       callback? @

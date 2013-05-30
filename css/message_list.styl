@@ -1,5 +1,24 @@
 .messages.stack {
   overflow: visible;
+  
+  .posts .post {
+    position: relative;
+    
+    &:before {
+      content: attr(data-project-name);
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      padding: 5px;
+      background-color: $gray-less-light;
+    }
+    
+    &[data-project-name=""] {
+      &:before {
+        display: none;
+      }
+    }
+  }
 }
 
 .message-list {
@@ -18,7 +37,22 @@
     margin-bottom: 10px;
     padding-bottom: 10px;
     position: relative;
-
+    
+    &:before {
+      content: attr(data-project-name);
+      position: absolute;
+      bottom: 5px;
+      right: 0;
+      padding: 5px;
+      background-color: $gray-less-light;
+    }
+    
+    &[data-project-name=""] {
+      &:before {
+        display: none;
+      }
+    }
+    
     &.unread:before {
       background: $blue;
       border-radius: 50%;

@@ -15,7 +15,7 @@
     <% lastMessage = conversation.messages[conversation.messages.length - 1] %>
     <% direction = if lastMessage.user.id is otherPerson.id then 'from' else 'to' %>
     
-    <div class="<%= 'unread ' if conversation.isUnread(user) %>message">
+    <div class="<%= 'unread ' if conversation.isUnread(user) %>message" data-project-name="<%= conversation.project_name %>">
       <div class="title">
         <a href="#/messages/<%= id %>"><%= conversation.title %></a>
       </div>

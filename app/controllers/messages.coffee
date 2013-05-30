@@ -4,6 +4,7 @@ Message = require 'models/message'
 MessageList = require 'controllers/message_list'
 SubStack = require 'lib/sub_stack'
 Page = require 'controllers/page'
+projectName = require('lib/config').projectName
 
 class Show extends Page
   template: require('views/messages/show')
@@ -89,6 +90,7 @@ class New extends Page
     message =
       title: @form.find('[name="message[title]"]').val()
       body: @form.find('[name="message[body]"]').val()
+      project_name: projectName
     
     success = =>
       @navigate '/profile'

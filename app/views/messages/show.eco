@@ -12,7 +12,7 @@
     <ul class="posts">
       <% for message in @messages: %>
         <li>
-          <div class="post<%= " #{ roles.sort().join(' ') }" if roles %>">
+          <div class="post<%= " #{ roles.sort().join(' ') }" if roles %>" data-project-name="<%= message.project_name %>">
             <header>
               <%- require('views/messages/user_link') message: message %>
             </header>
