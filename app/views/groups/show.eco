@@ -1,0 +1,39 @@
+<% User = require 'zooniverse/lib/models/user' %>
+<% userLink = require 'views/user_link' %>
+<% GroupViewer = require 'controllers/group_viewer' %>
+
+<header>
+  <h2>
+    <%= GroupViewer.groupTitle(@) %>
+    
+    <span class="aux">
+      <%- require('views/follow_button') id: @zooniverse_id, type: 'groups', follower_ids: @follower_ids %>
+      <%- require('views/share_button')(image: require('controllers/subject_viewer').imageIn(@subjects[1][0]?.location), pinterest: false) if @subjects[1] %>
+    </span>
+  </h2>
+</header>
+
+<div class="subjects">
+  <div class="group-viewer">
+    <!--Replace with GroupViewer instance-->
+  </div>
+</div>
+
+<div class="focus">
+  <%- require('views/focus/comment_form')() %>
+  <%- require('views/focus/comments') discussionId: @discussion.zooniverse_id, comments: @discussion.comments, count: @discussion.comments_count %>
+</div>
+
+<div class="description">
+  <h3>Description</h3>
+  <p><%- GroupViewer.description(@) %></p>
+</div>
+
+<div class="hashtags">
+  <h3>Hashtags</h3>
+  <%- require('views/hashtags/list') tags: @tags %>
+</div>
+
+<div class="discussions">
+  <%- require('views/focus/discussions') boards: @board_discussions, mentions: @mentions %>
+</div>

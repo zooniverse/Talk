@@ -11,6 +11,7 @@ AppHeader = require 'controllers/app_header'
 Following = require 'controllers/following'
 Recents = require 'controllers/recents'
 Subjects = require 'controllers/subjects'
+Groups = require 'controllers/groups'
 Collections = require 'controllers/collections'
 Boards = require 'controllers/boards'
 Discussions = require 'controllers/discussions'
@@ -66,6 +67,7 @@ Roles.fetch ->
         recents: Recents
         following: Following
         subjects: Subjects
+        groups: Groups
         boards: Boards
         discussions: Discussions
         collections: Collections
@@ -79,6 +81,7 @@ Roles.fetch ->
         '/recent': 'recents'
         '/following': 'following'
         '/subjects': 'subjects'
+        '/groups': 'groups'
         '/collections': 'collections'
         '/boards': 'boards'
         '/profile': 'users'

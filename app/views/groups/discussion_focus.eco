@@ -1,0 +1,16 @@
+<% userLink = require 'views/user_link' %>
+
+<div class="collection discussion-focus">
+  <h3>
+    <a href="#/groups/<%= @_id or @zooniverse_id %>"><%= @name %></a>
+  </h3>
+  
+  <div class="subjects">
+    <div class="list">
+      <%- require('views/collections/subjects_for_discussion') subjects: @subjects[0...2] %>
+    </div>
+    <%- '<div class="page-wrapper"><div class="pages"></div></div>' if @subjectPages > 1 %>
+  </div>
+  
+  <%- require('views/focus/comments') discussionId: @discussion.zooniverse_id, comments: @discussion.comments, fromBoard: true %>
+</div>
