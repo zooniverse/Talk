@@ -1,0 +1,22 @@
+<% { imageIn } = require('controllers/subject_viewer') %>
+<% moment = require 'moment/moment' %>
+
+<div class="collection-result">
+  <div class="preview">
+    <a href="#/collections/<%= @id %>">
+      <% for location in @location: %>
+        <img src="<%= imageIn location %>" class="thin-frame preview" />
+      <% end %>
+    </a>
+  </div>
+  
+  <div class="summary">
+    <div class="title">
+       <a href="#/groups/<%= @id %>"><%= @name %></a>
+    </div>
+    <div class="metadata">
+      Last updated
+      <%- require('views/timestamp') timestamp: @updated_at %>
+    </div>
+  </div>
+</div>
