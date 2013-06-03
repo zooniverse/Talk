@@ -61,6 +61,11 @@ class New extends Page
     'submit .new-message': 'submit'
     Page::events
   
+  activate: (params) ->
+    return unless params
+    @id = params.id
+    super
+  
   render: ->
     super
     if @messageList
@@ -119,6 +124,7 @@ class Messages extends SubStack
   routes:
     '/messages/new': 'new'
     '/messages/:id': 'show'
+    '/messages/:id/new': 'new'
   
   default: 'new'
   className: 'stack messages'

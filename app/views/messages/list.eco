@@ -5,7 +5,11 @@
 <h2>
   Messages
   <span class="aux">
-    <a class="compose button" href="#/messages/new">Compose Message</a>
+    <% if @viewedUser: %>
+      <a class="compose button" href="#/messages/<%= @viewedUser %>/new">Send <%= @viewedUser %> a Message</a>
+    <% else: %>
+      <a class="compose button" href="#/messages/new">Compose Message</a>
+    <% end %>
   </span>
 </h2>
 

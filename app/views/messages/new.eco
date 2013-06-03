@@ -7,9 +7,13 @@
   </div>
   
   <div class="two-thirds column">
-    <h3>Create a new message</h3>
+    <h3><%- if @data?.id then "Send a message to #{ @data.id }" else 'Create a new message' %></h3>
     <form class="new-message boxed">
-      <div class="field"><input type="text" required="required" name="user_name" class="user-search" placeholder="Search for a user"></div>
+      <% if @data?.id: %>
+        <div class="field"><input type="text" required="required" disabled="disabled" name="user_name" class="user-search" value="<%- @data.id %>"></div>
+      <% else: %>
+        <div class="field"><input type="text" required="required" name="user_name" class="user-search" placeholder="Search for a user"></div>
+      <% end %>
       <div class="field"><input type="text" required="required" name="message[title]" placeholder="Title" /></div>
       
       <div class="field">

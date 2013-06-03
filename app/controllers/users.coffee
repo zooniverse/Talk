@@ -58,7 +58,7 @@ class Profile extends Page
     if @messageList
       @messageList.render()
     else if User.current
-      @messageList = new MessageList('.message-list')
+      @messageList = new MessageList('.message-list', @id)
   
   loadMore: (ev) =>
     ev.preventDefault()
