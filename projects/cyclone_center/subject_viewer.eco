@@ -1,0 +1,1 @@
+<img src="<%= @constructor.imageIn(@subject.location) %>" class="main" />
