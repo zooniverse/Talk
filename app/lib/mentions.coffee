@@ -1,34 +1,44 @@
 prefix = require('lib/config').prefix
 
 tagMatcher = ///
-  (?=[^\w]|^)#([-\w\d]{3,40})
+  (\s|^)#([-\w\d]{3,40})
 ///g
 
 objectMatcher = ///
-  (?=[^\/]|^)(A#{ prefix }\w{7})
+  (\s|^)(A#{ prefix }\w{7})
 ///g
 
 groupMatcher = ///
-  (?=[^\/]|^)(G#{ prefix }\w{7})
+  (\s|^)(G#{ prefix }\w{7})
 ///g
 
 collectionMatcher = ///
-  (?=[^\/]|^)(C#{ prefix }[SL]\w{6})
+  (\s|^)(C#{ prefix }[SL]\w{6})
 ///g
 
 discussionMatcher = ///
-  (?=[^\/]|^)(D#{ prefix }\w{7})
+  (\s|^)(D#{ prefix }\w{7})
 ///g
 
 userMatcher = ///
-  (?=[^\w]|^)@([^\s$]+)
+  (\s|^)@([^\s$]+)
 ///g
 
+parseMentionsIn = (str, pattern, link, parent) ->
+  html = $(str)[0]
+  
+  if html.nodeType is 3 and parent and html.textContent.match(pattern)
+    parent.replaceChild $("<span>#{ html.textContent.replace(pattern, link) }</span>")[0], html
+  else if html.nodeType is 1 and html.nodeName isnt 'A'
+    parseMentionsIn(child, pattern, link, html) for child in html.childNodes
+
 module.exports = (text) ->
-  text = text.replace tagMatcher, ' <a title="Tag $1" class="mention" href="#/search?tags[$1]=true">#$1</a>'
-  text = text.replace objectMatcher, ' <a title="Object $1" class="mention" href="#/subjects/$1">$1</a>'
-  # text = text.replace groupMatcher, ' <a title="Group $1" class="mention" href="#/groups/$1">$1</a>'
-  text = text.replace collectionMatcher, ' <a title="Collection $1" class="mention" href="#/collections/$1">$1</a>'
-  # text = text.replace discussionMatcher, ' <a title="Discussion $1" class="mention" href="#/discussions/$1">$1</a>'
-  text = text.replace userMatcher, (match, user, offset, string) ->
-    """ <a title="User #{ user }" class="mention" href="#/users/#{ encodeURIComponent user }">@#{ user }</a>"""
+  text = $("<div>#{ text }</div>")
+  parseMentionsIn text, tagMatcher, '$1<a title="Tag $2" class="mention" href="#/search?tags[$2]=true">#$2</a>'
+  parseMentionsIn text, objectMatcher, '$1<a title="Object $2" class="mention" href="#/subjects/$2">$2</a>'
+  # parseMentionsIn text, groupMatcher, '$1<a title="Group $2" class="mention" href="#/groups/$2">$2</a>'
+  parseMentionsIn text, collectionMatcher, '$1<a title="Collection $2" class="mention" href="#/collections/$2">$2</a>'
+  # parseMentionsIn text, discussionMatcher, '$1<a title="Discussion $2" class="mention" href="#/discussions/$2">$2</a>'
+  parseMentionsIn text, userMatcher, (match, leading, user) ->
+    """#{ leading }<a title="User #{ user }" class="mention" href="#/users/#{ encodeURIComponent user }">@#{ user }</a>"""
+  $(text).html()

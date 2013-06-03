@@ -17,7 +17,7 @@
   </header>
   
   <div class="content">
-    <%- markdown.convert mentions(@comment.body) %>
+    <%- mentions markdown.convert @comment.body %>
   </div>
   
   <footer>

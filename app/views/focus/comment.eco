@@ -4,7 +4,7 @@
 <% markdown = require 'lib/markdown' %>
 
 <div class="comment">
-  <div class="content"><%- markdown.convert mentions(@comment.body) %></div>
+  <div class="content"><%- mentions markdown.convert @comment.body %></div>
   <footer>
     <%- userLink link: @comment %>
     <span class="right">
