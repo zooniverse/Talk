@@ -42,7 +42,6 @@ class Show extends FocusPage
     @subjectViewer?.destroy()
     super
     @subjectViewer = new SubjectViewer el: @el.find('.subject-viewer'), subject: @data
-    @log @subjectViewer
     @collectionPage = 1
     @paginationLinks()
   
