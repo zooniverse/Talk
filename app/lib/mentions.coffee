@@ -26,7 +26,7 @@ userMatcher = ///
 
 parseMentionsIn = (str, pattern, link, parent) ->
   html = $(str)[0]
-  text = html.textContent or html.innerText
+  text = html.textContent or html.innerText or html.nodeValue
   
   if html.nodeType is 3 and parent and text.match(pattern)
     parent.replaceChild $("<span>#{ text.replace(pattern, link) }</span>")[0], html
