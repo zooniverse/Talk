@@ -16,6 +16,7 @@
 <div class="list">
   <% for id, conversation of @conversations: %>
     <% otherPerson = [conversation.user_to, conversation.user_from].filter(({id}) -> id isnt user.id)[0] %>
+    <% otherPerson = conversation.user_to if conversation.user_to.id is conversation.user_from.id %>
     <% lastMessage = conversation.messages[conversation.messages.length - 1] %>
     <% direction = if lastMessage.user.id is otherPerson.id then 'from' else 'to' %>
     
