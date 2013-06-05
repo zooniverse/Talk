@@ -1,4 +1,9 @@
-<h3>Images from this Storm</span><%- '<div class="pages"></div>' if @group.subjectPages > 1 %></h3>
+<% { pluralize } = require 'lib/util' %>
+<h3>
+  <%= @group.stats.total %>
+  <%= pluralize @group.stats.total, 'Image', 'Images' %> from this Storm
+  <%- '<div class="pages"></div>' if @group.subjectPages > 1 %>
+</h3>
 <ul class="list">
   <%- require('views/collections/subject_list') subjects: @group.subjects[1] %>
 </ul>
