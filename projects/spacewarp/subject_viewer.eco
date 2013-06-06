@@ -5,6 +5,6 @@
     Training image<br />
   <% end %>
   <% if @subject.metadata?.known_lens?: %>
-    Known lens<br />
+    Known lens candidate<br />
   <% end %>
 </div>
