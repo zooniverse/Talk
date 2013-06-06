@@ -30,12 +30,11 @@ echo 'Compressing...'
 
 timestamp=#{ timestamp }
 
-mv build/application.js "build/application-$timestamp.js"
-
-./node_modules/clean-css/bin/cleancss build/application.css -o "build/application-$timestamp.css"
+./node_modules/clean-css/bin/cleancss build/application.css -o "build/application.css"
+gzip -9 -c "build/application.js" > "build/application-$timestamp.js"
+gzip -9 -c "build/application.css" > "build/application-$timestamp.css"
+rm build/application.js
 rm build/application.css
-gzip -9 -c "build/application-$timestamp.js" > "build/application-$timestamp.js.gz"
-gzip -9 -c "build/application-$timestamp.css" > "build/application-$timestamp.css.gz"
 BASH
 
 system build
@@ -50,9 +49,6 @@ error = File.read 'build/error.html'
 error.gsub! 'application.js', "application-#{ timestamp }.js"
 error.gsub! 'application.css', "application-#{ timestamp }.css"
 File.open('build/error.html', 'w'){ |f| f.puts error }
-
-app_js = File.read "build/application-#{ timestamp }.js"
-File.open("build/application-#{ timestamp }.js", 'w'){ |f| f.puts app_js }
 
 working_directory = File.expand_path Dir.pwd
 Dir.chdir 'build'
@@ -86,7 +82,13 @@ to_upload.each.with_index do |file, index|
   end
   
   puts "#{ '%2d' % (index + 1) } / #{ '%2d' % (total + 1) }: Uploading #{ file } as #{ content_type }"
-  bucket.objects[file].write file: file, acl: :public_read, content_type: content_type
+  options = { file: file, acl: :public_read, content_type: content_type }
+  
+  if content_type == 'application/javascript' || content_type == 'text/css'
+    options[:content_encoding] = 'gzip'
+  end
+  
+  bucket.objects[file].write options
 end
 
 puts "#{ '%2d' % (total + 1) } / #{ '%2d' % (total + 1) }: Uploading index.html as text/html"
