@@ -1,4 +1,22 @@
 <% { capitalize } = require 'lib/util' %>
+<% { grouped } = require 'lib/config' %>
+
+<% if grouped: %>
+  <section class="groups">
+    <h2><%= @label %> Recent <%= require('controllers/group_viewer').groupName() %> Comments</h2>
+    <div class="list">
+      <%- require('views/users/group_comments') groups: @user.groups %>
+    </div>
+    
+    <div class="load-more">
+      <% if @user.groups.length is @user.sections.groups.perPage: %>
+        <button name="load-more" data-type="groups">Load more</button>
+      <% end %>
+    </div>
+  </section>
+  
+  <hr />
+<% end %>
 
 <section class="subjects">
   <h2><%= @label %> Recent Object Comments</h2>

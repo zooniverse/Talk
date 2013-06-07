@@ -11,6 +11,7 @@ class Profile extends Page
   
   events: $.extend
     'click .subjects .load-more button': 'loadMore'
+    'click .groups .load-more button': 'loadMore'
     'click .collections .load-more button': 'loadMore'
     'click .boards .load-more button': 'loadMore'
     'click .my_collections .load-more button': 'loadMore'
@@ -18,6 +19,12 @@ class Profile extends Page
   
   constructor: ->
     @sections =
+      groups:
+        page: 1
+        perPage: 6
+        template: 'views/users/group_comments'
+        argument: 'groups'
+      
       subjects:
         page: 1
         perPage: 6

@@ -1,0 +1,34 @@
+<% userLink = require 'views/user_link' %>
+<% moment = require 'moment/moment' %>
+<% groupViewer = require 'controllers/group_viewer' %>
+<% subjectViewer = require 'controllers/subject_viewer' %>
+
+<% for group in @groups: %>
+  <div class="group">
+    <div class="title">
+      <a href="#/groups/<%= group.focus.zooniverse_id %>"><%= group.focus.search_name %></a>
+    </div>
+    
+    <a href="#/groups/<%= group.focus.zooniverse_id %>">
+      <div class="subjects">
+        <% subjects = group.focus.subjects or [] %>
+        <% for subject in subjects: %>
+          <div class="subject">
+            <img src="<%= subjectViewer.imageIn(subject?.location) %>" class="thin-frame" />
+          </div>
+        <% end %>
+      </div>
+    </a>
+    
+    <div class="comment">
+      <div class="content">
+        <%- group.comment.body or '&nbsp;' %>
+      </div>
+      
+      <div class="author">
+        <%- userLink link: group.comment %>
+        <%- require('views/timestamp') timestamp: group.comment.created_at %>
+      </div>
+    </div>
+  </div>
+<% end %>
