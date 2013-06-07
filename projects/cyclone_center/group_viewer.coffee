@@ -3,6 +3,8 @@ DefaultGroupViewer = require 'controllers/default_group_viewer'
 class CycloneCenterGroupViewer extends DefaultGroupViewer
   className: "#{ DefaultGroupViewer::className } cyclone-center-group-viewer"
   
+  @groupName: -> 'Storm'
+  
   @description: (group) -> """
     #{ group.name }, #{ group.metadata.year }<br />
     <span class="data-label">Wind:</span><span class="wind-data"></span><br />

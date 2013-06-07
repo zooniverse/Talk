@@ -8,6 +8,7 @@ class Index extends Page
   
   elements: $.extend
     '.subjects .list': 'subjectList'
+    '.groups .list': 'groupList'
     '.discussions .help.list': 'helpList'
     '.discussions .science.list': 'scienceList'
     '.discussions .chat.list': 'chatList'
@@ -25,6 +26,7 @@ class Index extends Page
   
   render: ->
     @subjectsPage or= 1
+    @groupsPage or= 1
     @collectionsPage or= 1
     @discussionPages or=
       help: 1
@@ -46,6 +48,8 @@ class Index extends Page
           tags: data.tags
           subjects:
             1: data.subjects
+          groups:
+            1: data.groups
           discussions:
             help:
               1: data.discussions.help
@@ -81,6 +85,17 @@ class Index extends Page
             @subjectList.append require('views/recents/subjects')(subjectPage)
           
           if results.length < 12
+            target.attr disabled: true
+      
+      when 'groups'
+        Api.get "#{ @url() }/groups?page=#{ @groupsPage += 1 }&per_page=10", (results) =>
+          if results.length > 0
+            groupPage = { groups: { } }
+            groupPage.groups[@groupPage] = results
+            @data.groups[@groupsPage] = results
+            @groupList.append require('views/recents/groups')(groupPage)
+          
+          if results.length < 10
             target.attr disabled: true
       
       when 'discussions'

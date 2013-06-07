@@ -2,6 +2,7 @@ Controller = require('spine').Controller
 
 class DefaultGroupViewer extends Controller
   @imageIn: (location) -> location?.standard
+  @groupName: -> 'Group'
   @groupTitle: (group) -> "Group #{ group.name }"
   @description: (group) -> group.description
   
