@@ -2,6 +2,9 @@
 
 <div class="subject-metadata">
   <% if @subject.metadata?.training?: %>
-    Training image
+    Training image<br />
+  <% end %>
+  <% if @subject.metadata?.known_lens?: %>
+    Known lens candidate<br />
   <% end %>
 </div>
