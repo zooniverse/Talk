@@ -1,86 +1,110 @@
-.following.page {
-  .subject-summaries {
-    clearfix();
+.following.page
+  .subject-summaries
+    clearfix()
     
-    .subject-summary {
-      clearfix();
-      width: 50%;
+    .subject-summary
+      clearfix()
+      width: 50%
       
-      &:before {
-        display: none;
-      }
-
-      > .preview {
-        float: left;
-        max-width: 33%;
-        padding-bottom: 10px;
-        vertical-align: top;
-      }
-
-      > .summary {
-        box-sizing: border-box;
-        float: left;
-        max-width: 67%;
-        padding: 0 0 10px 10px;
-        vertical-align: top;
-      }
-
-      .title {
-        display: block;
-        margin-bottom: 5px;
-
-        a {
-          color: inherit;
-          font-weight: bold;
-        }
-      }
-
-      .metadata {
-        display: none;
-      }
-    }
-  }
-
-  .discussions {
-    .discussion-summary {
-      margin-top: -10px;
-      padding: 8px;
+      &:before
+        display: none
       
-      .category {
-        display: table-cell;
-        min-width: 70px;
-        font-weight: 500;
-        color: #999;
-      }
-
-      .info .board-info {
-        display: none;
-      }
-
-      .stats .counts {
-        display: none;
-      }
-
-      .follow {
-        display: none;
-      }
-    }
-  }
-
-  .collection-summaries, .group-summaries {
-    .collection-summary, .group-summary {
-      box-sizing: border-box;
-      float: left;
-      padding-right: 10%;
-      width: 50%;
-
-      .subjects {
-        margin: 0 -5px;
-
-        .subject {
-          padding: 0 5px 3px;
-        }
-      }
-    }
-  }
-}
+      > .preview
+        float: left
+        max-width: 33%
+        padding-bottom: 10px
+        vertical-align: top
+      
+      > .summary
+        box-sizing: border-box
+        float: left
+        max-width: 67%
+        padding: 0 0 10px 10px
+        vertical-align: top
+      
+      .title
+        display: block
+        margin-bottom: 5px
+        
+        a
+          color: inherit
+          font-weight: bold
+      
+      .metadata
+        display: none
+  
+  .discussions
+    .discussion-summary
+      margin-top: -10px
+      padding: 8px
+      
+      .category
+        display: table-cell
+        min-width: 70px
+        font-weight: 500
+        color: #999
+      
+      .info .board-info
+        display: none
+      
+      .stats .counts
+        display: none
+      
+      .follow
+        display: none
+  
+  .collection-summaries
+    .collection-summary
+      box-sizing: border-box
+      float: left
+      padding-right: 10%
+      width: 50%
+      
+      .subjects
+        margin: 0 -5px
+        
+        .subject
+          padding: 0 5px 3px
+  
+  .groups .list
+    .group
+      box-sizing: border-box
+      display: inline-block
+      padding: 10px 20px
+      width: 49%
+      vertical-align: top
+      
+      .comment
+        .no-author
+          height: 20px
+          margin-top: 10px
+        
+        .author
+          color: gray
+          margin-top: 10px
+          
+          a
+            color: #333333
+            
+            &:hover
+              text-decoration: none
+          
+          .role
+            display: none
+      
+      .title a
+        font-weight: bold
+        color: inherit
+      
+      .subjects
+        margin: 0 -5px
+        overflow: hidden
+        
+        .subject
+          box-sizing: border-box
+          float: left
+          padding: 0 5px
+          width: 20%
+          
+          img
+            width: 100%

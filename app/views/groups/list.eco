@@ -1,24 +1,37 @@
 <% { pluralize } = require 'lib/util' %>
+<% userLink = require 'views/user_link' %>
 <% moment = require 'moment/moment' %>
 <% groupViewer = require 'controllers/group_viewer' %>
+<% subjectViewer = require 'controllers/subject_viewer' %>
 
-<div class="group-summaries">
-  <% for group in @groups: %>
-    <% subjects = group?.subjects or [] %>
-    <div class="group-summary">
-      <a href="#/groups/<%= group.zooniverse_id %>">
-        <span class="info">
-          <%= groupViewer.groupTitle group %>
-        </span>
-        
-        <span class="subjects">
-          <% for subject in subjects: %>
-            <span class="subject">
-              <img src="<%= require('controllers/subject_viewer').imageIn(subject?.location) %>" class="thin-frame" />
-            </span>
-          <% end %>
-        </span>
-      </a>
+<% for group in @groups: %>
+  <div class="group">
+    <div class="title">
+      <a href="#/groups/<%= group.zooniverse_id %>"><%= groupViewer.groupTitle group %></a>
     </div>
-  <% end %>
-</div>
+    
+    <div class="subjects">
+      <% subjects = group.subjects or [] %>
+      <% for subject in subjects: %>
+        <div class="subject">
+          <img src="<%= subjectViewer.imageIn(subject?.location) %>" class="thin-frame" />
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="comment">
+      <div class="content">
+        <%- group.last_comment?.body or '<em>No comments yet</em>' %>
+      </div>
+      
+      <% if group.last_comment?: %>
+        <div class="author">
+          <%- userLink link: group.last_comment, avatar: true %>
+          <%- require('views/timestamp') timestamp: group.last_comment.created_at %>
+        </div>
+      <% else: %>
+        <div class="no-author"></div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
