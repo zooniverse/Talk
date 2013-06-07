@@ -10,14 +10,16 @@
       <a href="#/groups/<%= group.zooniverse_id %>"><%= groupViewer.groupTitle group %></a>
     </div>
     
-    <div class="subjects">
-      <% subjects = group.subjects or [] %>
-      <% for subject in subjects: %>
-        <div class="subject">
-          <img src="<%= subjectViewer.imageIn(subject?.location) %>" class="thin-frame" />
-        </div>
-      <% end %>
-    </div>
+    <a href="#/groups/<%= group.zooniverse_id %>">
+      <div class="subjects">
+        <% subjects = group.subjects or [] %>
+        <% for subject in subjects: %>
+          <div class="subject">
+            <img src="<%= subjectViewer.imageIn(subject?.location) %>" class="thin-frame" />
+          </div>
+        <% end %>
+      </div>
+    </a>
     
     <div class="comment">
       <div class="content">
