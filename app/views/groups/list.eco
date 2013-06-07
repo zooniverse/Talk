@@ -1,0 +1,24 @@
+<% { pluralize } = require 'lib/util' %>
+<% moment = require 'moment/moment' %>
+<% groupViewer = require 'controllers/group_viewer' %>
+
+<div class="group-summaries">
+  <% for group in @groups: %>
+    <% subjects = group?.subjects or [] %>
+    <div class="group-summary">
+      <a href="#/groups/<%= group.zooniverse_id %>">
+        <span class="info">
+          <%= groupViewer.groupTitle group %>
+        </span>
+        
+        <span class="subjects">
+          <% for subject in subjects: %>
+            <span class="subject">
+              <img src="<%= require('controllers/subject_viewer').imageIn(subject?.location) %>" class="thin-frame" />
+            </span>
+          <% end %>
+        </span>
+      </a>
+    </div>
+  <% end %>
+</div>

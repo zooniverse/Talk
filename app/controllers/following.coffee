@@ -8,6 +8,7 @@ class Index extends Page
   
   elements: $.extend
     '.subjects .list': 'subjectList'
+    '.groups .list': 'groupList'
     '.discussions .list': 'discussionList'
     '.collections .list': 'collectionList'
     Page::elements
@@ -18,6 +19,7 @@ class Index extends Page
   
   render: ->
     @subjectsPage = 1
+    @groupsPage = 1
     @collectionsPage = 1
     @discussionPage = 1
     super
@@ -37,6 +39,14 @@ class Index extends Page
         Api.get "#{ @url() }/subjects?page=#{ @subjectsPage += 1 }&per_page=6", (results) =>
           if results.length > 0
             @subjectList.append require('views/subjects/list')(subjects: results)
+          
+          if results.length < 6
+            target.attr disabled: true
+      
+      when 'groups'
+        Api.get "#{ @url() }/groups?page=#{ @groupsPage += 1 }&per_page=6", (results) =>
+          if results.length > 0
+            @groupList.append require('views/groups/list')(groups: results)
           
           if results.length < 6
             target.attr disabled: true
