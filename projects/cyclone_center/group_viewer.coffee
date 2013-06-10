@@ -9,9 +9,7 @@ class CycloneCenterGroupViewer extends DefaultGroupViewer
     #{ group.name }, #{ group.metadata.year }<br />
     <span class="data-label">Wind:</span><span class="wind-data"></span><br />
     <span class="data-label">Pressure:</span><span class="pressure-data"></span><br />
-    <!-- Server is currently not responding
-      <a href="http://storm5.atms.unca.edu/browse-ibtracs/browseIbtracs.php?name=v03r02-#{ group.metadata.id }">View IBTraCS data</a>
-    -->
+    <a target="_blank" href="http://atms.unca.edu/ibtracs/ibtracs_v03r04/browse-ibtracs/index.php?name=v03r04-#{ group.metadata.id }">View IBTraCS data</a>
   """
   
   @groupTitle: (group) -> "#{ group.name }(#{ group.metadata.year })"
