@@ -32,7 +32,7 @@ Config =
     prefix: 'CC'
     grouped: true
     apiHost: 'https://dev.zooniverse.org'
-    classifyUrl: 'http://zooniverse-demo.s3-website-us-east-1.amazonaws.com/cyclone_center/#/classify'
+    classifyUrl: 'http://zooniverse-demo.s3-website-us-east-1.amazonaws.com/cyclone-center-redux/#/classify'
     socialDefaults: socialDefaults
     analytics: { }
   
@@ -41,12 +41,14 @@ Config =
     projectName: 'Cyclone Center'
     prefix: 'CC'
     grouped: true
-    apiHost: 'https://api.zooniverse.org'
-    classifyUrl: 'http://www.cyclonecenter.org/#/classify'
+    # apiHost: 'https://api.zooniverse.org'
+    apiHost: 'https://dev.zooniverse.org'
+    # classifyUrl: 'http://www.cyclonecenter.org/#/classify'
+    classifyUrl: 'http://zooniverse-demo.s3-website-us-east-1.amazonaws.com/cyclone-center-redux/#/classify'
     socialDefaults: socialDefaults
-    analytics:
-      account: 'UA-1234567-89'
-      domain: 'http://talk.cyclonecenter.org'
+    analytics: { }
+    # account: 'UA-1234567-89'
+    # domain: 'http://talk.cyclonecenter.org'
 
 env = if window.jasmine
   'test'
