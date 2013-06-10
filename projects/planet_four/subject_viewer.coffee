@@ -28,7 +28,10 @@ class PlanetFourSubjectViewer extends DefaultSubjectViewer
     @heightRatio = @subjectImage.get(0).naturalHeight / @height
 
     @viewing = true
-    @largeImageContainer.css 'display', 'block'
+    @largeImageContainer.css
+      'display': 'block'
+      'max-width': @subjectImage.get(0).naturalWidth
+
     @subjectImage.on 'mouseout.viewer', @onMouseOut
 
     box = [@width * 0.33, @height * 0.33]
