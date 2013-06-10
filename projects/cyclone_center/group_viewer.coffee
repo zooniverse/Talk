@@ -17,8 +17,8 @@ class CycloneCenterGroupViewer extends DefaultGroupViewer
   render: ->
     super
     if @group.metadata.stats.length > 1
-      $('.group.page .description .wind-data').sparkline @stats('wind'), type: 'line', width: '80%', tooltipFormat: '{{y}} knots'
-      $('.group.page .description .pressure-data').sparkline @stats('pressure'), type: 'line', width: '80%', tooltipFormat: '{{y}} millibars'
+      $('.group.page .description .wind-data').sparkline @stats('wind'), type: 'line', width: '80%', spotRadius: 0, tooltipFormat: '{{y}} knots'
+      $('.group.page .description .pressure-data').sparkline @stats('pressure'), type: 'line', width: '80%', spotRadius: 0, tooltipFormat: '{{y}} millibars'
     else
       $('.group.page .description .data-label').hide()
   
