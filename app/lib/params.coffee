@@ -1,6 +1,7 @@
 module.exports =
-  parse: ->
-    search = document.location.hash.split('?')[1]
+  parse: (hash) ->
+    hash or= document.location.hash
+    search = hash.split('?')[1]
     query = if search then search.replace('?', '').split('&') else []
     params = { }
     

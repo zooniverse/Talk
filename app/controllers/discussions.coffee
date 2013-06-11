@@ -12,15 +12,20 @@ class DiscussionPage extends Page
     '.subjects .pages': 'paginateSubjectLinks'
     Page::elements
   
+  activate: (params) ->
+    return unless params
+    @hash = params.id
+    super
+  
   setPage: ->
-    @data.currentPage = Params.parse()?.page or 1
+    @data.currentPage = Params.parse(@hash)?.page or 1
     comments = @data.comments
     @data.comments = { }
     @data.comments[@data.currentPage] = comments
   
   reload: (callback) ->
     if @fetchOnLoad
-      Api.get "#{ @url() }?page=#{ Params.parse()?.page or 1 }", (@data) =>
+      Api.get "#{ @url() }?page=#{ Params.parse(@hash)?.page or 1 }", (@data) =>
         @focus = @data.focus
         @data.focusType = @discussionFocus()
         @buildPagination()
@@ -145,11 +150,12 @@ class Show extends DiscussionPage
   render: ->
     super
     @paginationLinks()
-    if commentId = Params.parse().comment_id
+    if commentId = Params.parse(@hash).comment_id
       doc = $('html, body')
       comment = $("##{ commentId }")
-      doc.animate
-        scrollTop: comment.offset().top - doc.offset().top + doc.scrollTop()
+      
+      if comment[0]
+        doc.animate scrollTop: comment.offset().top - doc.offset().top + doc.scrollTop()
   
   paginationLinks: =>
     return unless @data.comments_count > 10
