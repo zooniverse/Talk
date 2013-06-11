@@ -113,6 +113,7 @@ class Show extends DiscussionPage
   
   events: $.extend
     'click .discussion-topic .post .comment-moderation .edit-comment': 'editComment'
+    'click .discussion-topic .post .comment-moderation .remove-own-comment': 'removeComment'
     'click .discussion-topic .post .respond-link': 'respondTo'
     'click .discussion-topic .in-response-to .remove': 'removeRespondTo'
     'click .discussion-topic .post .response-to': 'toggleResponse'
@@ -233,8 +234,10 @@ class Show extends DiscussionPage
       preview.html ''
       @commentForm.find('.toggle-preview').click() if preview.is(':visible')
       @data.comments_count += 1
-      @paginationLinks()
       lastPage = Math.ceil(@data.comments_count / 10.0)
+      @data.comments[lastPage] or= []
+      @data.comments[lastPage].push response
+      @paginationLinks()
       
       if lastPage > 1
         @paginateLinks.pagination 'selectPage', lastPage
@@ -251,6 +254,28 @@ class Show extends DiscussionPage
     commentEl = target.closest '.post'
     commentEl.html require('views/discussions/edit_comment_form')(discussionId: @data.zooniverse_id, comment: comment)
     commentEl.find('textarea').val comment.body
+  
+  removeComment: (ev) =>
+    ev.preventDefault()
+    ev.stopPropagation()
+    if confirm('Are you sure you want to remove this comment?\nThere is no undo.')
+      el = $(ev.target)
+      { commentId, discussionId } = el.data()
+      
+      Api.delete "#{ Page::url() }/discussions/#{ discussionId }/comments/#{ commentId }", =>
+        el.closest('.comment,.post').remove()
+        comment = @findComment commentId
+        @data.comments[comment.discussionPage] = @data.comments[comment.discussionPage].filter (el, i) -> el._id isnt commentId
+        @data.comments_count -= 1
+        
+        if @data.comments[comment.discussionPage].length is 0
+          delete @data.comments[comment.discussionPage]
+          @buildPagination()
+          @paginationLinks()
+          @paginateLinks.pagination 'selectPage', comment.discussionPage - 1
+        else
+          @buildPagination()
+          @paginationLinks()
   
   updateComment: (ev) =>
     ev.preventDefault()
