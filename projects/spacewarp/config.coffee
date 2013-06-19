@@ -13,7 +13,6 @@ Config =
     apiHost: null
     classifyUrl: null
     socialDefaults: socialDefaults
-    dashboard: true
     analytics: { }
   
   developmentLocal:
@@ -23,7 +22,6 @@ Config =
     apiHost: 'http://localhost:3000'
     classifyUrl: 'http://localhost:9294/#/classify'
     socialDefaults: socialDefaults
-    dashboard: true
     analytics: { }
   
   developmentRemote:
@@ -33,7 +31,6 @@ Config =
     apiHost: 'https://dev.zooniverse.org'
     classifyUrl: 'http://spacewarps.org/beta/#/classify'
     socialDefaults: socialDefaults
-    dashboard: true
     analytics: { }
   
   production:
@@ -43,7 +40,6 @@ Config =
     apiHost: 'https://api.zooniverse.org'
     classifyUrl: 'http://spacewarps.org/#/classify'
     socialDefaults: socialDefaults
-    dashboard: true
     analytics:
       account: 'UA-1224199-43'
       domain: 'talk.spacewarps.org'

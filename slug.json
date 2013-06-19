@@ -12,6 +12,6 @@
     "moment"
   ],
   "libs": [
-    "node_modules/zooniverse/vendor/base64.js"
+    "node_modules/Zooniverse/vendor/base64.js"
   ]
 }

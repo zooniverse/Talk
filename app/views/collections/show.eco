@@ -10,7 +10,6 @@
     
     <span class="aux">
       <%- require('views/follow_button') id: @zooniverse_id, type: 'subject_sets', follower_ids: @follower_ids %>
-      <%- require('views/dashboard_button') zoo_ids: @subjects[1].map((s) -> s.zooniverse_id), name: @title, project: 'spacewarp' %>
       <%- require('views/share_button')(image: require('controllers/subject_viewer').imageIn(@subjects[1][0]?.location), pinterest: false) if @subjects[1] %>
     </span>
   </h2>
