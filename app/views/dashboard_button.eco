@@ -1,8 +1,9 @@
 <% user = require('zooniverse/lib/models/user').current %>
 <% config = require('lib/config') %>
+<% zooId = if typeof @zooId is 'string' then @zooId else @zooId.join(',') %>
 
 <% if user and config.dashboard: %>
   <div class="dashboard dashboard-link">
-    <a target="_blank" href="http://tools.zooniverse.org/#/project/<%- config.project %>/<%- @zoo_ids.join(',') %>/Dashboard-from-<%- @name %>">Open in Dashboard</a>
+    <a target="_blank" href="http://tools.zooniverse.org/#/project/<%- config.project %>/<%- @type %>/<%- zooId %>/Dashboard-from-<%- @name %>">Open in Dashboard</a>
   </div>
 <% end %>
