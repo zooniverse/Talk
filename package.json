@@ -7,11 +7,11 @@
     "es5-shimify": "~0.0.1",
     "json2ify": "~0.0.1",
     "jqueryify": "~0.0.1",
-    "spine": "~1.0.7",
+    "spine": "1.0.8",
     "nib": "~0.8.2",
     "moment": "~1.7.2",
     "clean-css": "0.6.0",
-    "uglify-js": "1.3.4",
+    "uglify-js": "1.3.3",
     "zooniverse": "git+ssh://git@github.com:zooniverse/Zooniverse.git#core"
   }
 }
