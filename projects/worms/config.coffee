@@ -3,7 +3,7 @@ socialDefaults =
   title: 'Worm Watch Lab'
   summary: 'Detecting genetic abnormalities in C. elegans!'
   image: 'TODO'
-  twitterTags: 'via @worms'
+  twitterTags: 'via @WormWatchLab'
 
 Config =
   test:
