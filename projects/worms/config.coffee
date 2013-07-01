@@ -53,4 +53,18 @@ else if window.location.port > 1024
 else
   'production'
 
+body = document.getElementsByTagName('body')[0]
+
+link = document.createElement 'link'
+link.type = 'text/css'
+link.rel = 'stylesheet'
+link.href = 'http://vjs.zencdn.net/4.0/video-js.css'
+body.appendChild link
+
+script = document.createElement 'script'
+script.type = 'text/javascript'
+script.charset = 'utf-8'
+script.src = 'http://vjs.zencdn.net/4.0/video.js'
+body.appendChild script
+
 module.exports = Config[env]
