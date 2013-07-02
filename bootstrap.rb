@@ -107,3 +107,29 @@ end
 
 File.open('subject_viewer.eco', 'w'){ |out| out.puts "<img src=\"<%= @subject.location.standard %>\" class=\"main\" />" }
 puts "created #{ project } at projects/#{ project }"
+
+File.open('index.html', 'w') do |out|
+  out.puts <<-STRING
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Zooniverse Talk</title>
+
+    <link rel="stylesheet" href="application.css" />
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <footer>
+      <img src="images/logo-gray.png" class="logo" />
+      Talk is a place for citizen scientists to observe, collect, share, and discuss data from Zooniverse projects.
+    </footer>
+
+    <script src="application.js"></script>
+    <script>window.app = require('index');</script>
+  </body>
+</html>
+  STRING
+end
