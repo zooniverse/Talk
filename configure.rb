@@ -21,6 +21,8 @@ subject_view = Pathname.new File.absolute_path "projects/#{ PROJECT }/subject_vi
 group_viewer = Pathname.new File.absolute_path "projects/#{ PROJECT }/group_viewer.coffee"
 group_view = Pathname.new File.absolute_path "projects/#{ PROJECT }/group_viewer.eco"
 style = Pathname.new File.absolute_path "projects/#{ PROJECT }/project.styl"
+public_index = Pathname.new File.absolute_path "projects/#{ PROJECT }/index.html"
+
 
 paths = {
   config => Pathname.new('app/lib/config.coffee'),
@@ -28,7 +30,8 @@ paths = {
   subject_view => Pathname.new('app/views/subjects/viewer.eco'),
   group_viewer => Pathname.new('app/controllers/group_viewer.coffee'),
   group_view => Pathname.new('app/views/groups/viewer.eco'),
-  style => Pathname.new('css/project.styl')
+  style => Pathname.new('css/project.styl'),
+  public_index => Pathname.new('public/index.html')
 }
 
 paths.each_pair do |path, link_path|
