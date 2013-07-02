@@ -6,4 +6,10 @@ class WormSubjectViewer extends DefaultSubjectViewer
   className: "#{ DefaultSubjectViewer::className } worms-subject-viewer"
   template: template
 
+  constructor: ->
+    super
+
+    videojs "worms_video", ->
+      # nothing
+
 module.exports = WormSubjectViewer
