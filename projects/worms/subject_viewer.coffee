@@ -9,7 +9,9 @@ class WormSubjectViewer extends DefaultSubjectViewer
   constructor: ->
     super
 
-    videojs "worms_video", ->
-      # nothing
+    # I have no idea why this works
+    videoObj.dispose() for id, videoObj of videojs.players
+
+    videojs "worms-video"
 
 module.exports = WormSubjectViewer
