@@ -32,9 +32,14 @@ paths = {
 }
 
 paths.each_pair do |path, link_path|
+  default_path = Pathname.new File.absolute_path "project_defaults/#{ link_path.basename }"
+  
   if path.exist?
     File.unlink link_path if link_path.symlink?
     File.symlink path, link_path
+  elsif default_path.exist?
+    File.unlink link_path if link_path.symlink?
+    File.symlink default_path, link_path
   else
     File.unlink link_path if link_path.symlink?
   end
