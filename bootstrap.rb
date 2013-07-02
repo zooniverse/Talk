@@ -88,7 +88,16 @@ module.exports = Config[env]
 COFFEESCRIPT
 end
 
-File.open('config.yml', 'w'){ |out| out.puts "bucket: 'talk.#{ project.gsub('_', '') }.org'" }
+File.open('config.yml', 'w') do |out|
+  out.puts <<-YAML
+bucket: 'talk.#{ project.gsub('_', '') }.org'
+external_scripts: []
+external_styles: []
+internal_scripts: []
+internal_styles: []
+YAML
+end
+
 File.open('project.styl', 'w'){ }
 
 File.open('subject_viewer.coffee', 'w') do |out|

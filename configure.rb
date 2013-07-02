@@ -1,7 +1,59 @@
 #!/usr/bin/env ruby
 
+require 'active_support/core_ext/hash'
 require 'pathname'
 require 'yaml'
+require 'erb'
+
+class Dependencies
+  attr_accessor :config
+  
+  def initialize
+    find_config
+  end
+  
+  def render_index
+    File.open('public/index.html', 'w'){ |out| out.puts index_html }
+  end
+  
+  def external_styles
+    @config['external_styles'].collect do |href|
+      "<link rel=\"stylesheet\" href=\"#{ href }\" />"
+    end.join("\n    ")
+  end
+  
+  def external_scripts
+    @config['external_scripts'].collect do |href|
+      "<script src=\"#{ href }\" type=\"text/javascript\" charset=\"utf-8\"></script>"
+    end.join("\n    ")
+  end
+  
+  protected
+  
+  def find_config
+    @config = YAML.load config_file.read
+    @config.reverse_merge!({
+      'external_scripts' => [],
+      'external_styles' => [],
+      'internal_scripts' => [],
+      'internal_styles' => []
+    })
+  end
+  
+  def config_file
+    Pathname.new "projects/#{ PROJECT }/config.yml"
+  end
+  
+  def index_html
+    ERB.new(file_with_default('index.html')).result binding
+  end
+  
+  def file_with_default(name)
+    project_file = "projects/#{ PROJECT }/#{ name }"
+    default_file = "project_defaults/#{ name }"
+    File.read File.exists?(project_file) ? project_file : default_file
+  end
+end
 
 projects = Dir['projects/*'].collect{ |path| Pathname.new(path).basename.to_s }.sort
 
@@ -45,6 +97,8 @@ paths.each_pair do |path, link_path|
   end
 end
 
-CONFIG = YAML.load File.read "projects/#{ PROJECT }/config.yml"
+dependencies = Dependencies.new
+dependencies.render_index
+CONFIG = dependencies.config
 
 puts "Configured for #{ PROJECT }"
