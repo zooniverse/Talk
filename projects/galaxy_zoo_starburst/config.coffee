@@ -37,12 +37,12 @@ Config =
     project: 'galaxy_zoo_starburst'
     projectName: 'Galaxy Zoo Quench'
     prefix: 'GS'
-    apiHost: 'https://dev.zooniverse.org'
+    apiHost: 'https://api.zooniverse.org'
     classifyUrl: 'http://quench.galaxyzoo.org/#/classify'
     socialDefaults: socialDefaults
     analytics:
       account: 'UA-1224199-9'
-      domain: 'talk.galaxyzoo.org'
+      domain: 'quenchtalk.galaxyzoo.org'
 
 env = if window.jasmine
   'test'

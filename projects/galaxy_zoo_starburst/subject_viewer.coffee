@@ -2,8 +2,8 @@ DefaultSubjectViewer = require 'controllers/default_subject_viewer'
 template = require 'views/subjects/viewer'
 $ = require 'jqueryify'
 
-class GalaxyZooSubjectViewer extends DefaultSubjectViewer
-  className: "#{ DefaultSubjectViewer::className } galaxy-zoo-subject-viewer"
+class GalaxyZooStarburstSubjectViewer extends DefaultSubjectViewer
+  className: "#{ DefaultSubjectViewer::className } galaxy-zoo-starburst-subject-viewer"
   template: template
 
-module.exports = GalaxyZooSubjectViewer
+module.exports = GalaxyZooStarburstSubjectViewer
