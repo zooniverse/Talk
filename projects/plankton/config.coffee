@@ -1,5 +1,5 @@
 socialDefaults =
-  href: 'http://talk.plankton.org/'
+  href: 'http://talk.planktonportal.org/'
   title: 'Plankton'
   summary: 'Inspecting diversity of plankton species!'
   image: ''
@@ -29,7 +29,7 @@ Config =
     projectName: 'Plankton'
     prefix: 'PK'
     apiHost: 'https://dev.zooniverse.org'
-    classifyUrl: 'http://zooniverse-demo.s3-website-us-east-1.amazonaws.com/plankton/#/classify'
+    classifyUrl: 'http://www.planktonportal.org/beta/#/classify'
     socialDefaults: socialDefaults
     analytics: { }
   
@@ -37,12 +37,12 @@ Config =
     project: 'plankton'
     projectName: 'Plankton'
     prefix: 'PK'
-    apiHost: 'https://api.zooniverse.org'
-    classifyUrl: 'http://www.plankton.org/#/classify'
+    apiHost: 'https://dev.zooniverse.org'
+    classifyUrl: 'http://www.planktonportal.org/#/classify'
     socialDefaults: socialDefaults
     analytics:
       account: 'UA-1234567-89'
-      domain: 'http://talk.plankton.org'
+      domain: 'http://talk.planktonportal.org'
 
 env = if window.jasmine
   'test'
