@@ -38,7 +38,7 @@ Config =
     projectName: 'Plankton Portal'
     prefix: 'PK'
     apiHost: 'https://dev.zooniverse.org'
-    classifyUrl: 'http://www.planktonportal.org/#/classify'
+    classifyUrl: 'http://www.planktonportal.org/beta/#/classify'
     socialDefaults: socialDefaults
     analytics: { }
       # account: 'UA-1234567-89'
