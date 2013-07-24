@@ -8,7 +8,7 @@ socialDefaults =
 Config =
   test:
     project: 'plankton'
-    projectName: 'Plankton'
+    projectName: 'Plankton Portal'
     prefix: 'PK'
     apiHost: null
     classifyUrl: null
@@ -17,7 +17,7 @@ Config =
   
   developmentLocal:
     project: 'plankton'
-    projectName: 'Plankton'
+    projectName: 'Plankton Portal'
     prefix: 'PK'
     apiHost: 'http://localhost:3000'
     classifyUrl: 'http://localhost:9294/#/classify'
@@ -26,7 +26,7 @@ Config =
   
   developmentRemote:
     project: 'plankton'
-    projectName: 'Plankton'
+    projectName: 'Plankton Portal'
     prefix: 'PK'
     apiHost: 'https://dev.zooniverse.org'
     classifyUrl: 'http://www.planktonportal.org/beta/#/classify'
@@ -35,14 +35,14 @@ Config =
   
   production:
     project: 'plankton'
-    projectName: 'Plankton'
+    projectName: 'Plankton Portal'
     prefix: 'PK'
     apiHost: 'https://dev.zooniverse.org'
     classifyUrl: 'http://www.planktonportal.org/#/classify'
     socialDefaults: socialDefaults
-    analytics:
-      account: 'UA-1234567-89'
-      domain: 'http://talk.planktonportal.org'
+    analytics: { }
+      # account: 'UA-1234567-89'
+      # domain: 'http://talk.planktonportal.org'
 
 env = if window.jasmine
   'test'
