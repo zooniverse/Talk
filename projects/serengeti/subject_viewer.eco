@@ -21,3 +21,5 @@
 <div class="subject-metadata">
   Captured: <%= moment(@subject.metadata.timestamps[0]).utc().format('MMMM Do YYYY, h:mm:ss a') %>
 </div>
+
+<a id="meme-link" class="meme-link" target="_blank"><button name="meme">Meme This!</button></a>
