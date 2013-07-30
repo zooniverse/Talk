@@ -34,9 +34,10 @@ class SerengetiSubjectViewer extends DefaultSubjectViewer
     'click button[name="play"]': 'onClickPlay'
     'click button[name="pause"]': 'onClickPause'
     'click button[name="switch-image"]': 'onClickSwitch'
-    # 'click button[name="meme"]': 'onClickMeme'
+    'click button[name="meme"]': 'onClickMeme'
 
   elements:
+    '#meme-link': 'memeLink'
     '.subject-images img': 'subjectImages'
     'button[name="switch-image"]': 'imageSwitchers'
 
@@ -83,8 +84,10 @@ class SerengetiSubjectViewer extends DefaultSubjectViewer
   onClickSwitch: ({target}) ->
     @activate $(target).val()
 
-  # onClickMeme: ->
-  #   src = @subjectImages.filter('.active').attr 'src'
+  onClickMeme: ->
+    src = @subjectImages.filter('.active').attr 'src'
+    @memeLink.attr 'href', "http://www.savethememes.org/?u=#{ src }"
+
   #   top = prompt('Top line') || ' '
   #   bottom = prompt('Bottom line') || ' '
 

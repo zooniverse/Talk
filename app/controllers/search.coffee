@@ -23,7 +23,8 @@ class Index extends Controller
     'click form.search .category :checkbox': 'checkFacets'
     'click form.search .tags :checkbox': 'checkTags'
   
-  activate: ->
+  activate: (params) ->
+    return unless params
     super
     query = @parseParams()
     query.per_page = 10

@@ -1,0 +1,6 @@
+<img src="<%= @subject.location.standard %>" class="main" />
+
+<div class="subject-metadata">
+  RA: <%= @subject.coords[0] %>, DEC: <%= @subject.coords[1] %><br />
+  View in <a href="http://quench.galaxyzoo.org/#/examine/<%= @subject.zooniverse_id %>">Galaxy Zoo examine</a>
+</div>
