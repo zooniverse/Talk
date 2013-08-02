@@ -41,7 +41,7 @@ Config =
     projectName: 'Galaxy Zoo Quench'
     prefix: 'GS'
     apiHost: 'https://api.zooniverse.org'
-    classifyUrl: 'http://quench.galaxyzoo.org/#/classify'
+    classifyUrl: 'http://quench.galaxyzoo.org/'
     socialDefaults: socialDefaults
     dashboard: true
     analytics:
