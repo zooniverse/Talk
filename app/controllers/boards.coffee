@@ -25,9 +25,14 @@ class Show extends Page
   
   render: ->
     @data.currentPage = 1
-    
     nonfeatured = []
+    @data.boardFeatured = []
+    
     featuredIds = @data.featured.map (d) -> d.zooniverse_id
+    @data.featured = @data.featured.filter (d) =>
+      @data.boardFeatured.push d if d.board._id is @id
+      d.board._id isnt @id
+    
     for discussion in @data.discussions when discussion.zooniverse_id not in featuredIds
       nonfeatured.push(discussion)
     
@@ -49,8 +54,9 @@ class Show extends Page
     Api.get "#{ @url() }?page=#{ page }", (board) =>
       discussions = board.discussions
       @data.currentPage = page
-      @data.discussions[page] = discussions
-      @discussionsList.html require('views/boards/discussion_list')(discussions: @data.discussions[page], featured: @data.featured, page: page)
+      boardFeaturedIds = @data.boardFeatured.map (d) -> d.zooniverse_id
+      @data.discussions[page] = (discussion for discussion in discussions when discussion.zooniverse_id not in boardFeaturedIds)
+      @discussionsList.html require('views/boards/discussion_list')(discussions: @data.discussions[page], boardFeatured: @data.boardFeatured, page: page)
   
   createDiscussion: (ev) =>
     ev.preventDefault()

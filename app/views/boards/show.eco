@@ -2,11 +2,13 @@
 
 <div class="columns">
   <div class="one-third column">
+    <%- require('views/discussions/featured') featured: @featured %>
+    <hr />
     <%- require('views/hashtags/list') tags: @tags %>
     <hr />
     <div class="active-users"></div>
   </div>
-
+  
   <div class="two-thirds column">
     <div class="board">
       <h3>
@@ -14,22 +16,21 @@
         /
         <span class="sub-board"><%= @title %></span>
       </h3>
-
+      
       <div class="discussions">
         <% if @discussions.length is 0: %>
           <div class="none">There are curently no discussions.</div>
         <% else: %>
-          <div class="discussion-sumarries">
+          <div class="discussion-summaries">
             <div class="list">
-              <%- require('views/boards/discussion_list') discussions: @discussions[@currentPage], featured: @featured, page: @currentPage %>
+              <%- require('views/boards/discussion_list') discussions: @discussions[@currentPage], boardFeatured: @boardFeatured, page: @currentPage %>
             </div>
             <div class="pages"></div>
           </div>
         <% end %>
       </div>
-
+      
       <hr />
-
       <%- require('views/discussions/new_form') @ %>
     </div>
   </div>
