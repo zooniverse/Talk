@@ -1,4 +1,4 @@
-<h2>Featured discussions</h2>
+<h2>Featured <%= "#{ @category } " if @category %>discussions</h2>
 <div class="featured">
   <% if @featured.length is 0: %>
     <div class="none">No featured discussions</div>

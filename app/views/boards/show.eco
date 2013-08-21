@@ -2,7 +2,7 @@
 
 <div class="columns">
   <div class="one-third column">
-    <%- require('views/discussions/featured') featured: @featured %>
+    <%- require('views/discussions/featured') featured: @featured, category: @category %>
     <hr />
     <%- require('views/hashtags/list') tags: @tags %>
     <hr />
