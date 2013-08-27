@@ -1,278 +1,222 @@
-.discussion-focus {
-  &.collection {
-    .subjects {
-      margin: 0 -5px;
-      overflow: hidden;
-
-      .subject {
-        box-sizing: border-box;
-        float: left;
-        max-width: 50%;
-        padding: 5px;
-        position: relative;
-        text-align: center;
-
-        img {
-          max-width: 100%;
-        }
-
-        .title {
-          font-size: 10px;
-          font-weight: bold;
-        }
-      }
-    }
-  }
-}
-
-.discussion {
-  .actions {
-    .action {
-      @extends #standard-button;
-      float: right;
-      margin-top: 10px;
-      cursor: pointer;
-      text-decoration: none;
-      margin-left: 20px;
-    }
-    
-    .update, .cancel-update, .update-merge, .cancel-merge {
-      display: none;
-    }
-    
-    &.editing, &.merging {
-      .destroy, .edit, .merge, .lock, .unlock {
-        display: none;
-      }
-    }
-    
-    &.editing {
-      .update, .cancel-update {
-        display: block;
-      }
-    }
-    
-    &.merging {
-      .update-merge, .cancel-merge {
-        display: block;
-      }
-    }
-  }
-  
-  .merge-discussion {
-    overflow: visible;
-    
-    label {
-      display: block;
-    }
-    
-    select, a {
-      color: #222222;
-      cursor: auto;
-    }
-    
-    select.discussion, select.sub-board {
-      max-width: 300px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+.discussion-focus
+  &.collection
+    .subjects
+      margin: 0 -5px
+      overflow: hidden
       
-      option {
-        max-width: 260px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-    }
-  }
-  
-  .edit-discussion-categories, .merge-discussion {
-    font-size: 14px;
-    
-    .field {
-      display: block;
-      padding: 4px;
-    }
-    
-    .sub-board {
-      option {
-        padding-left: 0;
-        display: none;
-      }
-      
-      &[data-category="help"] { option[data-category="help"]{ display: block; } }
-      &[data-category="science"] { option[data-category="science"]{ display: block; } }
-      &[data-category="chat"] { option[data-category="chat"]{ display: block; } }
-    }
-  }
-  
-  .new-post {
-    position: relative;
-    
-    .lock {
-      display: none;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      box-sizing: border-box;
-      padding: 10%
-      border: 2px solid #222222;
-      vertical-align: center;
-      text-align: center;
-      font-weight: 500;
-      background-color: rgba(200, 200, 200, 0.7);
-      z-index: 100;
-    }
-    
-    &.locked {
-      .respond {
-        // display: none;
-      }
-      
-      .lock {
-        display: block;
-      }
-    }
-  }
-}
-
-.discussion, .messages {
-  overflow: hidden;
-
-  .follow {
-    float: right;
-
-    button {
-      @extends #standard-button;
-
-      &[name="unfollow"] {
-        @extends #standard-button:active;
-      }
-    }
-  }
-  
-  .feature {
-    button {
-      @extends #standard-button;
-      
-      &[name="unfeature"] {
-        @extends #standard-button:active;
-      }
-    }
-  }
-  
-  .pages {
-    a {
-      cursor: pointer;
-    }
-  }
-  
-  .discussion-topic {
-    .in-response-to {
-      margin-left: 10px;
-      
-      .remove {
-        cursor: pointer;
-      }
-    }
-  }
-
-  .post {
-    border: 2px solid transparent;
-
-    > header {
-      color: #222;
-      
-      .title {
-        font-size: 20px;
-        font-weight: 300;
-        padding: 3px 0px;
-      }
-      
-      .response-to {
-        margin-left: 5px;
-        cursor: pointer;
+      .subject
+        box-sizing: border-box
+        float: left
+        max-width: 50%
+        padding: 5px
+        position: relative
+        text-align: center
         
-        .avatar {
-          margin-left: 5px;
-        }
-      }
-    }
+        img
+          max-width: 100%
+        
+        .title
+          font-size: 10px
+          font-weight: bold
+
+html.signed-in .discussion .post:hover .respond-to,
+html.signed-in .messages .post:hover .respond-to
+    display: block
+
+.discussion
+  .actions
+    .action
+      @extends #standard-button
+      float: right
+      margin-top: 10px
+      cursor: pointer
+      text-decoration: none
+      margin-left: 20px
     
-    &.admin     { border: 2px solid rgba(124, 1,  28, 0.5); }
-    &.scientist { border: 2px solid rgba(82, 91,  70, 0.5); }
-    &.moderator { border: 2px solid rgba(53, 68, 101, 0.5); }
+    .update, .cancel-update, .update-merge, .cancel-merge
+      display: none
     
-    .content {
-      padding: 5px 0;
-    }
+    &.editing, &.merging
+      .destroy, .edit, .merge, .lock, .unlock
+        display: none
     
-    .respond-to {
-      display: none;
-      float: left;
+    &.editing
+      .update, .cancel-update
+        display: block
+    
+    &.merging
+      .update-merge, .cancel-merge
+        display: block
+  
+  .merge-discussion
+    overflow: visible
+    
+    label
+      display: block
+    
+    select, a
+      color: #222222
+      cursor: auto
+    
+    select.discussion, select.sub-board
+      max-width: 300px
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
       
-      .respond-link {
-        cursor: pointer;
-      }
-    }
+      option
+        max-width: 260px
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+  
+  .edit-discussion-categories, .merge-discussion
+    font-size: 14px
     
-    &:hover .respond-to {
-      display: block;
-    }
+    .field
+      display: block
+      padding: 4px
     
-    > footer {
-      color: $gray;
-      text-align: right;
-    }
-  }
-
-  .posts {
-    margin: 0;
-    padding: 0;
-    
-    .response-post {
-      margin-left: 20px;
-    }
-    
-    .post + .response-post {
-      margin-left: 40px;
-    }
-    
-    > li {
-      list-style: none;
+    .sub-board
+      option
+        padding-left: 0
+        display: none
       
-      .post {
-        background: #E2E2E2;
-        margin: 10px 0;
-        padding: 10px;
+      &[data-category="help"] option[data-category="help"]
+        display: block
+      
+      &[data-category="science"] option[data-category="science"]
+        display: block
+      
+      &[data-category="chat"] option[data-category="chat"]
+        display: block
+  
+  .new-post
+    position: relative
+    
+    .lock
+      display: none
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 0
+      right: 0
+      width: 100%
+      height: 100%
+      box-sizing: border-box
+      padding: 10%
+      border: 2px solid #222222
+      vertical-align: center
+      text-align: center
+      font-weight: 500
+      background-color: rgba(200, 200, 200, 0.7)
+      z-index: 100
+    
+    &.locked
+      .lock
+        display: block
 
-        .content {
-          blockquote {
-            border-left: 3px solid $gray;
-            margin-left: 0;
-            padding-left: 10px;
-          }
-
-          h2 {
-            padding-bottom: 0;
-
-            &:after {
-              display: none;
-            }
-          }
-
-          pre {
-            background: $gray-less-dark;
-            border-radius: 3px;
-            color: $white;
+.discussion, .messages
+  overflow: hidden
+  
+  .follow
+    float: right
+    
+    button
+      @extends #standard-button
+      
+      &[name="unfollow"]
+        @extends #standard-button:active
+  
+  .feature
+    button
+      @extends #standard-button
+      
+      &[name="unfeature"]
+        @extends #standard-button:active
+  
+  .pages
+    a
+      cursor: pointer
+  
+  .discussion-topic
+    .in-response-to
+      margin-left: 10px
+      
+      .remove
+        cursor: pointer
+  
+  .post
+    border: 2px solid transparent
+    
+    > header
+      color: #222
+      
+      .title
+        font-size: 20px
+        font-weight: 300
+        padding: 3px 0px
+      
+      .response-to
+        margin-left: 5px
+        cursor: pointer
+        
+        .avatar
+          margin-left: 5px
+    
+    &.admin
+      border: 2px solid rgba(124, 1,  28, 0.5)
+    &.scientist
+      border: 2px solid rgba(82, 91,  70, 0.5)
+    &.moderator
+      border: 2px solid rgba(53, 68, 101, 0.5)
+    
+    .content
+      padding: 5px 0
+    
+    .respond-to
+      display: none
+      float: left
+      
+      .respond-link
+        cursor: pointer
+    
+    > footer
+      color: $gray
+      text-align: right
+  
+  .posts
+    margin: 0
+    padding: 0
+    
+    .response-post
+      margin-left: 20px
+    
+    .post + .response-post
+      margin-left: 40px
+    
+    > li
+      list-style: none
+      
+      .post
+        background: #E2E2E2
+        margin: 10px 0
+        padding: 10px
+        
+        .content
+          blockquote
+            border-left: 3px solid $gray
+            margin-left: 0
+            padding-left: 10px
+          
+          h2
+            padding-bottom: 0
+            
+            &:after
+              display: none
+          
+          pre
+            background: $gray-less-dark
+            border-radius: 3px
+            color: $white
             padding: 10px
-          }
-        }
-      }
-    }
-  }
-}
