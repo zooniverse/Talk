@@ -127,6 +127,8 @@ class Show extends DiscussionPage
     'submit .edit-discussion-categories': 'updateDiscussion'
     'click .actions .cancel-update.action': 'stopEditingDiscussion'
     'change .edit-discussion-categories .category': 'showSubBoards'
+
+    'click .scroll-to-top': 'scrollToTop'
     
     'click .actions .merge.action': 'mergeDiscussion'
     'click .actions .update-merge.action': 'completeMerge'
@@ -297,6 +299,10 @@ class Show extends DiscussionPage
         return comment
     null
   
+  scrollToTop: (ev) =>
+    ev.preventDefault()
+    window.scrollTo(0, 0)
+
   featureDiscussion: (ev) =>
     ev.preventDefault()
     button = $(ev.target)

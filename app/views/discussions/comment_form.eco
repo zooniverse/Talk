@@ -13,3 +13,7 @@
     </div>
   </form>
 </div>
+
+<div class="sign-in-prompt hide-with-user">
+  You must be <a href="#" class="scroll-to-top">signed in</a> to reply.
+</div>
