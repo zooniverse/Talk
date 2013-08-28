@@ -127,7 +127,7 @@ class Show extends DiscussionPage
     'submit .edit-discussion-categories': 'updateDiscussion'
     'click .actions .cancel-update.action': 'stopEditingDiscussion'
     'change .edit-discussion-categories .category': 'showSubBoards'
-
+    
     'click .scroll-to-top': 'scrollToTop'
     
     'click .actions .merge.action': 'mergeDiscussion'
@@ -301,7 +301,8 @@ class Show extends DiscussionPage
   
   scrollToTop: (ev) =>
     ev.preventDefault()
-    window.scrollTo(0, 0)
+    $('html, body').animate scrollTop: 0, ->
+      $('.app-header .sign-in input[name="username"]').focus()
 
   featureDiscussion: (ev) =>
     ev.preventDefault()
