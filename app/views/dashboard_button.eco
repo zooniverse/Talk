@@ -1,6 +1,6 @@
 <% config = require 'lib/config' %>
 <% if config.dashboard: %>
   <div class="dashboard dashboard-link">
-    <a target="_blank" href="http://tools.zooniverse.org/#/project/<%= config.project %>/<%= @type %>/<%= @zooId %>/Dashboard-from-<%= @name %>">Open in Dashboard</a>
+    <a target="_blank" href="http://tools.zooniverse.org/#/project/<%= config.project %>/<%= @type %>/<%= @zooId %>/Dashboard-from-<%= @name %>">Open in Tools</a>
   </div>
 <% end %>
