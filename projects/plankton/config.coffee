@@ -40,7 +40,7 @@ Config =
     apiHost: 'https://api.zooniverse.org'
     classifyUrl: 'http://www.planktonportal.org/#/classify'
     socialDefaults: socialDefaults
-    analytics: { }
+    analytics:
       account: 'UA-1224199-45'
       domain: 'http://talk.planktonportal.org'
 
