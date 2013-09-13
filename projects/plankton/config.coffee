@@ -3,7 +3,7 @@ socialDefaults =
   title: 'Plankton'
   summary: 'Inspecting diversity of plankton species!'
   image: ''
-  twitterTags: 'via @plankton'
+  twitterTags: 'via @PlanktonPortal'
 
 Config =
   test:
@@ -37,12 +37,12 @@ Config =
     project: 'plankton'
     projectName: 'Plankton Portal'
     prefix: 'PK'
-    apiHost: 'https://dev.zooniverse.org'
-    classifyUrl: 'http://www.planktonportal.org/beta/#/classify'
+    apiHost: 'https://api.zooniverse.org'
+    classifyUrl: 'http://www.planktonportal.org/#/classify'
     socialDefaults: socialDefaults
     analytics: { }
-      # account: 'UA-1234567-89'
-      # domain: 'http://talk.planktonportal.org'
+      account: 'UA-1224199-45'
+      domain: 'http://talk.planktonportal.org'
 
 env = if window.jasmine
   'test'
