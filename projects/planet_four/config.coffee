@@ -38,7 +38,7 @@ Config =
     projectName: 'Planet Four'
     prefix: 'PF'
     apiHost: 'https://api.zooniverse.org'
-    classifyUrl: 'http://www.planetfour.org/#/classify'
+    classifyUrl: 'http://planetfour.org/#/classify'
     socialDefaults: socialDefaults
     analytics:
       account: 'UA-1224199-41'
