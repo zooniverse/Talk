@@ -2,7 +2,7 @@ socialDefaults =
   href: 'http://talk.planktonportal.org/'
   title: 'Plankton'
   summary: 'Inspecting diversity of plankton species!'
-  image: ''
+  image: 'https://twimg0-a.akamaihd.net/profile_images/378800000187643583/58bf1212a6702a38b358399164d27a2c.jpeg'
   twitterTags: 'via @PlanktonPortal'
 
 Config =
