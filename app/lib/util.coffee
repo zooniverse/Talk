@@ -19,6 +19,7 @@ module.exports =
     if number > 1 or number is 0 then plural else singular
   
   truncate: (text, length) ->
+    return text unless typeof text is 'string'
     return text if text.length <= length
     text.substring(0, length).replace(/\s?\w+$/, '') + '...'
   
