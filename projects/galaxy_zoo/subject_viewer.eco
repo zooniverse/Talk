@@ -1,6 +1,11 @@
 <img src="<%= @subject.location.standard %>" class="main" />
 
 <div class="subject-metadata">
+  <% survey = @subject.metadata?.survey %>
+  <%- if survey is 'sloan' then 'SDSS<br />' %>
+  <%- if survey is 'candels' then 'Hubble<br />' %>
+  <%- if survey is 'ukidss' then 'UKIDSS<br />' %>
+  <%- if survey is 'ferengi' then 'Artifically redshifted SDSS<br />' %>
   RA: <%= @subject.coords[0] %>, DEC: <%= @subject.coords[1] %><br />
   View in <a href="http://www.galaxyzoo.org/#/examine/<%= @subject.zooniverse_id %>">Galaxy Zoo examine</a>
 </div>
