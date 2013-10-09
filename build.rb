@@ -10,6 +10,8 @@ require 'aws-sdk'
 AWS.config access_key_id: ENV['S3_ACCESS_ID'], secret_access_key: ENV['S3_SECRET_KEY']
 s3 = AWS::S3.new
 bucket = s3.buckets[CONFIG['bucket']]
+bucket_path = CONFIG['bucket_path']
+bucket_path.sub(/^\//, '') if bucket_path
 
 build = <<-BASH
 rm -rf build
@@ -81,18 +83,19 @@ to_upload.each.with_index do |file, index|
     `file --mime-type -b #{ file }`.chomp
   end
   
-  puts "#{ '%2d' % (index + 1) } / #{ '%2d' % (total + 1) }: Uploading #{ file } as #{ content_type }"
+  puts "#{ '%2d' % (index + 1) } / #{ '%2d' % (total + 1) }: Uploading #{ file } as #{ content_type } to #{ bucket_path || '/' }"
   options = { file: file, acl: :public_read, content_type: content_type }
   
   if content_type == 'application/javascript' || content_type == 'text/css'
     options[:content_encoding] = 'gzip'
   end
   
-  bucket.objects[file].write options
+  file_path = [bucket_path, file].compact.join '/'
+  bucket.objects[file_path].write options
 end
 
-puts "#{ '%2d' % (total + 1) } / #{ '%2d' % (total + 1) }: Uploading index.html as text/html"
-bucket.objects['index.html'].write file: 'index.html', acl: :public_read, content_type: 'text/html', cache_control: 'no-cache, must-revalidate'
+puts "#{ '%2d' % (total + 1) } / #{ '%2d' % (total + 1) }: Uploading index.html as text/html to #{ bucket_path || '/' }"
+bucket.objects[[bucket_path, 'index.html'].compact.join('/')].write file: 'index.html', acl: :public_read, content_type: 'text/html', cache_control: 'no-cache, must-revalidate'
 
 Dir.chdir working_directory
 `rm -rf build`
