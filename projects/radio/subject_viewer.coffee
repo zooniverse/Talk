@@ -13,9 +13,7 @@ class RadioSubjectViewer extends DefaultSubjectViewer
   constructor: ->
     super
 
-    console.log "#{ @className } .image-slider"
     slider = document.querySelector ".image-slider"
-    console.log slider
     slider.addEventListener 'change', @onSliderChange
 
   onSliderChange: ({ target: { value } }) =>
