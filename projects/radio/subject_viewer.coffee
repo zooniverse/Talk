@@ -13,8 +13,10 @@ class RadioSubjectViewer extends DefaultSubjectViewer
   constructor: ->
     super
 
+    $('.image-stack').height(@el.width())
+
     slider = document.querySelector ".image-slider"
-    slider.addEventListener 'change', @onSliderChange
+    slider.addEventListener 'input', @onSliderChange
 
   onSliderChange: ({ target: { value } }) =>
     @infraredImage.css 'opacity', 1 - value
