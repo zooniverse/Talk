@@ -1,0 +1,7 @@
+<div class="subject-container">
+  <div class="image-stack">
+    <img src="<%= @subject.location.standard %>" class="main" />
+    <img src="<%= @subject.location.radio %>" class="radio" />
+  </div>
+  <input class="image-slider" type="range" min="0" max="1" step="0.01" value="0" />
+</div>
