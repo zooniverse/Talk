@@ -10,15 +10,18 @@ class RadioSubjectViewer extends DefaultSubjectViewer
   template: template
 
   elements:
+    '.image-stack': 'imageStack'
     '.main': 'infraredImage'
     '.radio': 'radioImage'
+    'svg': 'svg'
 
   constructor: ->
     super
 
     @width = @el.width()
 
-    $('.image-stack').height @width
+    @imageStack.height @width
+    @svg.height @width
 
     $.getJSON @subject.location.contour, @drawContours if d3?
 
