@@ -19,3 +19,18 @@
     outline: none
     padding: 1px
     width: 100%
+
+  svg
+    fill-opacity: 0
+    position: absolute
+    stroke: #ccc
+    width: 100%
+    z-index: 1
+
+    g.contours
+      transition: opacity 200ms linear
+      
+      path
+        stroke-width: 1.35px
+        opacity: 1
+          
