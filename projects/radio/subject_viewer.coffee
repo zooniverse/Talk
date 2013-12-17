@@ -23,14 +23,15 @@ class RadioSubjectViewer extends DefaultSubjectViewer
     @imageStack.height @width
     @svg.height @width
 
-    $.getJSON @subject.location.contour, @drawContours if d3?
+    contours = @subject.location.contours || @subject.location.contour
+    $.getJSON contours, @drawContours if d3?
 
     slider = document.querySelector '.image-slider'
     slider.addEventListener 'input', @onSliderChange
 
   onSliderChange: ({ target: { value } }) =>
-    @infraredImage.css 'opacity', 1 - value
-    @radioImage.css 'opacity', value
+    @infraredImage.css 'opacity', value
+    @radioImage.css 'opacity', 1 - value
 
   drawContours: (contours) =>
     svg = d3.select('svg.svg-contours g.contours')
