@@ -3,8 +3,8 @@
     <svg width="424" height="424" xmlns="http://www.w3.org/2000/svg" class="svg-contours">
       <g class="contours"></g>
     </svg>
-    <img src="<%= @subject.location.standard %>" class="main" />
     <img src="<%= @subject.location.radio %>" class="radio" />
+    <img src="<%= @subject.location.standard %>" class="main" />
   </div>
   <input class="image-slider" type="range" min="0" max="1" step="0.01" value="0.5" />
 </div>

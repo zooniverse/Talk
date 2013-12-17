@@ -38,7 +38,7 @@ Config =
     projectName: 'Galaxy Zoo: Radio'
     prefix: 'RZ'
     apiHost: 'https://api.zooniverse.org'
-    classifyUrl: 'http://www.radio.galaxyzoo.org/#/classify'
+    classifyUrl: 'http://radio.galaxyzoo.org/#/classify'
     socialDefaults: socialDefaults
     analytics:
       account: 'UA-1224199-49"'

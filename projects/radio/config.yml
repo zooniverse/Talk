@@ -1,2 +1,2 @@
-bucket: 'talk.radio.galaxyzoo.org'
+bucket: 'radiotalk.galaxyzoo.org'
 external_scripts: ["//cdnjs.cloudflare.com/ajax/libs/d3/3.3.11/d3.min.js"]
