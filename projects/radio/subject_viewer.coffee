@@ -3,11 +3,10 @@ template = require 'views/subjects/viewer'
 
 $ = require 'jqueryify'
 
-FITS_DIMENSION = 301
-
 class RadioSubjectViewer extends DefaultSubjectViewer
   className: "#{ DefaultSubjectViewer::className } radio-subject-viewer"
   template: template
+  fitsImageDimension: 301
 
   elements:
     '.image-stack': 'imageStack'
@@ -33,10 +32,15 @@ class RadioSubjectViewer extends DefaultSubjectViewer
 
   drawContours: (contours) =>
     svg = d3.select('svg.svg-contours g.contours')
-    factor = @width / FITS_DIMENSION
+
+    if contours.contours?
+      {contours, height, width} = contours
+    xFactor = @width / (width || @fitsImageDimension)
+    yFactor = @width / (height || @fitsImageDimension)
+ 
     path = d3.svg.line()
-      .x( (d) -> factor * d.x)
-      .y( (d) -> factor * d.y)
+      .x( (d) -> xFactor * d.x)
+      .y( (d) -> yFactor * d.y)
       .interpolate('linear')
 
     cGroups = svg.selectAll('g.contour-group')
