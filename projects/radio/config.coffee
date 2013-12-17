@@ -1,8 +1,8 @@
 socialDefaults =
-  href: 'http://talk.radio.galaxyzoo.org/'
+  href: 'http://radiotalk.galaxyzoo.org/'
   title: 'Galaxy Zoo: Radio'
   summary: 'In Search of Erupting Black Holes'
-  image: 'http://radio.galaxyzoo.org/beta2/images/science/pictor.jpg'
+  image: 'http://radio.galaxyzoo.org/images/science/pictor.jpg'
   twitterTags: 'via @galaxyzoo'
 
 Config =
