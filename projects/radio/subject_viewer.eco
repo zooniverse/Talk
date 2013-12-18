@@ -1,6 +1,6 @@
 <div class="subject-container">
   <div class="image-stack">
-    <svg width="424" height="424" xmlns="http://www.w3.org/2000/svg" class="svg-contours">
+    <svg width="362" height="362" xmlns="http://www.w3.org/2000/svg" class="svg-contours">
       <g class="contours"></g>
     </svg>
     <img src="<%= @subject.location.radio %>" class="radio" />
