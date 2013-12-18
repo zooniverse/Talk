@@ -63,6 +63,7 @@ class Profile extends Page
   render: =>
     super
     if @messageList
+      @messageList.viewedUser = @id
       @messageList.render()
     else if User.current
       @messageList = new MessageList('.message-list', @id)
