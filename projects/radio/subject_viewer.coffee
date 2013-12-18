@@ -31,7 +31,7 @@ class RadioSubjectViewer extends DefaultSubjectViewer
     @infraredImage.css 'opacity', value
 
   drawContours: (contours) =>
-    svg = d3.select('svg.svg-contours g.contours')
+    svg = d3.select(@el[0]).select('svg.svg-contours g.contours')
 
     if contours.contours?
       {contours, height, width} = contours

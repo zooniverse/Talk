@@ -18,6 +18,22 @@
   .add-to-collection {
     top: 5px;
     left: 25px;
+
+    &.with-subject-viewer {
+      position: absolute
+      top: 5px
+      display: inline-block
+      left: auto
+      right: 0px
+
+      .collect-this {
+        opacity: 1;
+      }
+      .collection-list {
+        left: auto
+        right: 0
+      }
+    }
     
     .collect-this {
       vendor('transition-property', opacity);
@@ -31,6 +47,11 @@
   }
   
   &:hover .add-to-collection {
+    &.with-subject-viewer {
+      .collect-this {
+        opacity: 1
+      }
+    }
     .collect-this {
       opacity: 0.6;
     }

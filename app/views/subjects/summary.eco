@@ -1,14 +1,19 @@
 <% { truncate } = require 'lib/util' %>
 <% userLink = require 'views/user_link' %>
 <% moment = require 'moment/moment' %>
+<% {subjectViewerDiscuss} = require 'lib/config' %>
 
 <div class="subject-summary" data-id="<%= @zooniverse_id %>">
   <div class="preview">
-    <a href="#/subjects/<%= @zooniverse_id %>">
-      <img src="<%= require('controllers/subject_viewer').imageIn(@location) %>" class="thin-frame preview" />
-    </a>
-
-    <div class="add-to-collection hide-without-user">
+    <% if subjectViewerDiscuss: %>
+      <h3><a href="#/subjects/<%= @zooniverse_id %>"><%= @zooniverse_id %></a></h3>
+      <div class="subject-viewer"></div>
+    <% else: %>
+      <a href="#/subjects/<%= @zooniverse_id %>">
+        <img src="<%= require('controllers/subject_viewer').imageIn(@location) %>" class="thin-frame preview" />
+      </a>
+    <% end %>
+    <div class="add-to-collection hide-without-user <% if subjectViewerDiscuss: %>with-subject-viewer<% end %>">
       <button class="collect-this" data-id="<%= @zooniverse_id %>">Collect</button>
       <div class="collection-list"></div>
     </div>
