@@ -13,6 +13,7 @@ Config =
     apiHost: null
     classifyUrl: null
     socialDefaults: socialDefaults
+    subjectViewerDiscuss: true
     dashboard: true
     analytics: { }
   
@@ -22,6 +23,7 @@ Config =
     prefix: 'GZ'
     apiHost: 'http://localhost:3000'
     classifyUrl: 'http://localhost:9294/#/classify'
+    subjectViewerDiscuss: true
     socialDefaults: socialDefaults
     dashboard: true
     analytics: { }
@@ -34,6 +36,7 @@ Config =
     classifyUrl: 'http://zooniverse-demo.s3-website-us-east-1.amazonaws.com/galaxy_zoo/#/classify'
     socialDefaults: socialDefaults
     dashboard: true
+    subjectViewerDiscuss: true
     analytics: { }
   
   production:
@@ -43,6 +46,7 @@ Config =
     apiHost: 'https://api.zooniverse.org'
     classifyUrl: 'http://www.galaxyzoo.org/#/classify'
     socialDefaults: socialDefaults
+    subjectViewerDiscuss: true
     dashboard: true
     analytics:
       account: 'UA-1224199-9'

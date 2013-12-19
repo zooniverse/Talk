@@ -33,7 +33,7 @@ class RadioSubjectViewer extends DefaultSubjectViewer
     @imageStack.height(@elwidth)
     @svg.height(@elwidth)
 
-    svg = d3.select('svg.svg-contours')
+    svg = d3.select(@el[0]).select('svg.svg-contours')
       .append('g').attr('class', 'contours')
 
     d3.selectAll('path').remove()

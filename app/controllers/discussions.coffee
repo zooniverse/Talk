@@ -5,6 +5,7 @@ Focus = require 'models/focus'
 SubStack = require 'lib/sub_stack'
 Page = require 'controllers/page'
 Params = require 'lib/params'
+SubjectViewer = require 'controllers/subject_viewer'
 
 class DiscussionPage extends Page
   elements: $.extend
@@ -64,9 +65,12 @@ class DiscussionPage extends Page
         @data.focus.subjectPages = 0
   
   render: ->
+    @subjectViewer?.destroy()
     super
     @subjectPage = 1
     @subjectPaginationLinks()
+    if @data.focusType is 'subjects'
+      @subjectViewer = new SubjectViewer el: @el.find('.subject-viewer'), subject: @data.focus
   
   discussionFocus: ->
     return unless @data?.focus?.type
