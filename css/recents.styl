@@ -28,9 +28,19 @@
       display: none
   
   .subjects .list .subject-summaries
+    line-height: 0  
+    margin: 0
+    font-size: 0
+    letter-spacing: -1
+    
     .subject-summary
       hovered()
       padding: 10px 20px
+      letter-spacing: normal
+      vertical-align: top
+      float: none
+      display: inline-block
+
       
       &:before
         border-left: none
@@ -38,6 +48,7 @@
 
       img
         max-height: 200px
+        max-width: 200px
   
   .board.discussions .discussion-summary
     hovered()
