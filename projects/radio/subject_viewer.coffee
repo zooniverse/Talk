@@ -71,7 +71,7 @@ class RadioSubjectViewer extends DefaultSubjectViewer
     "http://third.ucllnl.org/cgi-bin/firstimage?RA=#{encodeURIComponent(@subject.metadata.ra_hms)}&Dec=#{encodeURIComponent("+" + @subject.metadata.dec_dms)}&Equinox=J2000&ImageSize=6&MaxInt=10"
 
   linkToSDSS: ->
-    "http://cas.sdss.org/dr6/en/tools/chart/chart.asp?ra=#{@subject.coords[0]}&dec=#{@subject.coords[1]}"
+    "http://skyserver.sdss3.org/public/en/tools/chart/chart.aspx?ra=#{@subject.coords[0]}&dec=#{@subject.coords[1]}&scale=0.2"
 
   linkToWISE: ->
     "http://irsa.ipac.caltech.edu/applications/wise/#id=Hydra_wise_wise_1&RequestClass=ServerRequest&DoSearch=true&intersect=CENTER&subsize=0.16666666800000002&mcenter=mcen&schema=allwise-multiband&dpLevel=3a&band=1,2,3,4&UserTargetWorldPt=#{@subject.coords[0]};#{@subject.coords[1]};EQ_J2000&SimpleTargetPanel.field.resolvedBy=nedthensimbad&preliminary_data=no&coaddId=&projectId=wise&searchName=wise_1&shortDesc=Position&isBookmarkAble=true&isDrillDownRoot=true&isSearchResult=true"
