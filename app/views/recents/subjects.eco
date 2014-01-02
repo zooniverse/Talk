@@ -16,7 +16,7 @@
           </div>
           
           <div class="last-comment">
-            <div class="content"><%= truncate(discussion.comment.body or ' ', 140) %></div>
+            <div class="content"><%= truncate(discussion.comment.body.replace('<', '&gt;').replace('>', '&gt;') or ' ', 140) %></div>
             
             <div class="author">
               <%- userLink link: discussion.comment, avatar: true %>

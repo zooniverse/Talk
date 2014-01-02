@@ -7,7 +7,7 @@
       <a class="off"></a>
       <span class="on">
         <div class="comment">
-          <%= moderation.target.comment.body %>
+          <%= moderation.target.comment.body.replace('<', '&gt;').replace('>', '&gt;') %>
         </div>
         <div class="discussion">
           <%= moderation.target.comment.title %>

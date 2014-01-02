@@ -16,7 +16,7 @@
       
       <div class="comment">
         <div class="content">
-          <%- subject.comment.body or '&nbsp;' %>
+          <%- subject.comment.body.replace('<', '&gt;').replace('>', '&gt;') or '&nbsp;' %>
         </div>
         
         <div class="author">

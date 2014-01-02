@@ -40,7 +40,7 @@
           
           <div class="comment">
             <div class="content">
-              <%- truncate discussion.comment.body, 150 %>
+              <%- truncate discussion.comment.body.replace('<', '&gt;').replace('>', '&gt;'), 150 %>
             </div>
             
             <div class="author">

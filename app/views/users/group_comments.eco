@@ -22,7 +22,7 @@
     
     <div class="comment">
       <div class="content">
-        <%- group.comment.body or '&nbsp;' %>
+        <%- group.comment.body.replace('<', '&gt;').replace('>', '&gt;') or '&nbsp;' %>
       </div>
       
       <div class="author">
