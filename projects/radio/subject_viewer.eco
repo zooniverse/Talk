@@ -15,6 +15,7 @@
     </ul>
     <ul class="ext-links">
       <li><a href="<%= @linkToFIRST() %>" target="_blank">FIRST</a></li>
+      <li><a href="<%= @linkToNVSS() %>" target="_blank">NVSS</a></li>
       <li><a href="<%= @linkToSDSS() %>" target="_blank">SDSS</a></li>
       <li><a href="<%= @linkToWISE() %>" target="_blank">WISE</a></li>
     </ul>
