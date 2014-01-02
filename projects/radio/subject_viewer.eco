@@ -10,8 +10,8 @@
   <div class="radio-metadata">
     <ul class="metadata-coords">
       <li><strong>Survey Id:</strong> <%= @subject.metadata.source %></li>
-      <li><strong>RA:</strong> <%= @subject.coords[0].toFixed(2) %></li>
-      <li><strong>Dec:</strong> <%= @subject.coords[1].toFixed(2) %></li>
+      <li><strong>RA:</strong> <%= @subject.coords[0].toFixed(3) %></li>
+      <li><strong>Dec:</strong> <%= @subject.coords[1].toFixed(3) %></li>
     </ul>
     <ul class="ext-links">
       <li><a href="<%= @linkToFIRST() %>" target="_blank">FIRST</a></li>
