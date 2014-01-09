@@ -1,7 +1,7 @@
 <img src="<%= @subject.location.standard %>" class="main" />
 
 <div class="subject-metadata">
-  <% if @subject.metadata?.training?: %>
+  <% if @subject.metadata?.training? and @subject.metadata.training[0].type != 'empty': %>
     Training image<br />
   <% end %>
   <% if @subject.metadata?.known_lens?: %>
