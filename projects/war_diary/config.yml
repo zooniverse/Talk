@@ -1,5 +1,4 @@
-bucket: 'zooniverse-demo'
-bucket_path: 'diaries_talk'
+bucket: 'talk.operationwardiary.org'
 external_scripts: []
 external_styles: []
 internal_scripts: []
