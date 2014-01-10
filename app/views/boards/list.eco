@@ -1,7 +1,8 @@
 <% { capitalize } = require 'lib/util' %>
+<% { boards } = require('lib/config').appConfig %>
 
 <div class="boards">
-  <% categories = ['help', 'science', 'chat'] %>
+  <% categories = boards || ['help', 'science', 'chat'] %>
   <% for category, i in categories: %>
     <h3>
       <%= capitalize category %>

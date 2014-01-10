@@ -36,6 +36,9 @@ socialDefaults =
   image: 'http://example.com/image.jpg'
   twitterTags: 'via @#{ project }'
 
+appConfig =
+  boards: ['help', 'science', 'chat']
+
 Config =
   test:
     project: '#{ project }'
@@ -45,6 +48,7 @@ Config =
     classifyUrl: null
     socialDefaults: socialDefaults
     analytics: { }
+    appConfig: appConfig
   
   developmentLocal:
     project: '#{ project }'
@@ -54,6 +58,7 @@ Config =
     classifyUrl: 'http://localhost:9294/#/classify'
     socialDefaults: socialDefaults
     analytics: { }
+    appConfig: appConfig
   
   developmentRemote:
     project: '#{ project }'
@@ -63,6 +68,7 @@ Config =
     classifyUrl: 'http://zooniverse-demo.s3-website-us-east-1.amazonaws.com/#{ project }/#/classify'
     socialDefaults: socialDefaults
     analytics: { }
+    appConfig: appConfig
   
   production:
     project: '#{ project }'
@@ -74,6 +80,7 @@ Config =
     analytics:
       account: 'UA-1234567-89'
       domain: '#{ url }'
+    appConfig: appConfig
 
 env = if window.jasmine
   'test'
