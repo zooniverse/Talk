@@ -5,8 +5,8 @@ socialDefaults =
   image: 'http://example.com/image.jpg'
   twitterTags: 'via @war_diary'
 
-appConfig = 
-  boards: ['help', 'history', 'chat']
+app = 
+  categories: ['help', 'history', 'chat']
 
 Config =
   test:
@@ -17,7 +17,7 @@ Config =
     classifyUrl: null
     socialDefaults: socialDefaults
     analytics: { }
-    appConfig: appConfig
+    app: app
   
   developmentLocal:
     project: 'war_diary'
@@ -27,7 +27,7 @@ Config =
     classifyUrl: 'http://localhost:9294/#/classify'
     socialDefaults: socialDefaults
     analytics: { }
-    appConfig: appConfig
+    app: app
   
   developmentRemote:
     project: 'war_diary'
@@ -37,7 +37,7 @@ Config =
     classifyUrl: 'http://zooniverse-demo.s3-website-us-east-1.amazonaws.com/war_diary/#/classify'
     socialDefaults: socialDefaults
     analytics: { }
-    appConfig: appConfig
+    app: app
   
   production:
     project: 'war_diary'
@@ -49,7 +49,7 @@ Config =
     analytics:
       account: 'UA-1224199-51'
       domain: 'http://talk.operationwardiary.org'
-    appConfig: appConfig
+    app: app
 
 env = if window.jasmine
   'test'
