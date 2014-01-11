@@ -5,8 +5,9 @@ socialDefaults =
   image: 'https://pbs.twimg.com/profile_images/420931133795078144/38PaC6gV.jpeg'
   twitterTags: 'via @OpWarDiary'
 
-app =
-  categories: ['help', 'history', 'chat']
+app = 
+  categoryLabels:
+    science: 'history'
 
 Config =
   test:

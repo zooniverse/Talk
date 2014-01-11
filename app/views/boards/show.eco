@@ -1,4 +1,4 @@
-<% { capitalize } = require 'lib/util' %>
+<% { capitalize, getCategoryLabel } = require 'lib/util' %>
 
 <div class="columns">
   <div class="one-third column">
@@ -12,7 +12,7 @@
   <div class="two-thirds column">
     <div class="board">
       <h3>
-        <span class="category"><%= capitalize @category %> Board</span>
+        <span class="category"><%= capitalize getCategoryLabel @category %> Board</span>
         /
         <span class="sub-board"><%= @title %></span>
       </h3>

@@ -1,22 +1,21 @@
-<% { capitalize } = require 'lib/util' %>
-<% config = require 'lib/config' %>
+<% { capitalize, getCategoryLabel } = require 'lib/util' %>
 
 <div class="boards">
-  <% categories = config?.app?.categories %>
-  <% categories ?= ['help', 'science', 'chat'] %>
+  <% categories = ['help', 'science', 'chat'] %>
 
   <% for category, i in categories: %>
+    <% label = getCategoryLabel category %>
     <h3>
-      <%= capitalize category %>
+      <%= capitalize label %>
       
       <div class="aux show-for-privileged-user">
-        <button name="new-board" value="<%= category %>">Start a new <%= category %> board</button>
+        <button name="new-board" value="<%= category %>">Start a new <%= label %> board</button>
       </div>
     </h3>
     
     <% @[category] or= [] %>
     <% if @[category].length is 0: %>
-      <div class="none">There are currently no <%= category %> boards.</div>
+      <div class="none">There are currently no <%= label %> boards.</div>
     <% else: %>
       <div class="board-summaries">
         <% for board in @[category]: %>

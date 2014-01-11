@@ -1,3 +1,5 @@
+config = require 'lib/config'
+
 module.exports =
   capitalize: (string) ->
     string.replace /^(\w)/, (c) -> c.toUpperCase()
@@ -50,3 +52,7 @@ module.exports =
         return false if a[key] isnt val
     
     true
+
+  getCategoryLabel: (category) ->
+    categoryLabels = config?.app?.categoryLabels || {}
+    if category of categoryLabels then categoryLabels[category] else category
