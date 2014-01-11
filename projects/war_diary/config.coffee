@@ -2,10 +2,10 @@ socialDefaults =
   href: 'http://talk.operationwardiary.org/'
   title: 'Operation War Diary'
   summary: 'The story of the British Army on the Western Front during the First World War is waiting to be discovered in 1.5 million pages of unit war diaries.'
-  image: 'http://example.com/image.jpg'
-  twitterTags: 'via @war_diary'
+  image: 'https://pbs.twimg.com/profile_images/420931133795078144/38PaC6gV.jpeg'
+  twitterTags: 'via @OpWarDiary'
 
-app = 
+app =
   categories: ['help', 'history', 'chat']
 
 Config =
