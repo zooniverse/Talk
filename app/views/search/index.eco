@@ -1,3 +1,5 @@
+<% { getCategoryLabel } = require 'lib/util' %>
+
 <div class="columns">
   <div class="one-third column">
     <form class="search">
@@ -16,9 +18,9 @@
       
       <section class="category">
         <h2>Category</h2>
-        <%- require('views/search/facet') term: 'help', label: 'Help', count: 0, checked: @params.category is 'help' %>
-        <%- require('views/search/facet') term: 'science', label: 'Science', count: 0, checked: @params.category is 'science' %>
-        <%- require('views/search/facet') term: 'chat', label: 'Chat', count: 0, checked: @params.category is 'chat' %>
+        <%- require('views/search/facet') term: 'help', label: getCategoryLabel('help'), count: 0, checked: @params.category is 'help' %>
+        <%- require('views/search/facet') term: 'science', label: getCategoryLabel('science'), count: 0, checked: @params.category is 'science' %>
+        <%- require('views/search/facet') term: 'chat', label: getCategoryLabel('chat'), count: 0, checked: @params.category is 'chat' %>
       </section>
       
       <section class="tags">
