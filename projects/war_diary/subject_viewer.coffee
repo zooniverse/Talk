@@ -21,6 +21,10 @@ class WarDiarySubjectViewer extends DefaultSubjectViewer
     @largeImageContainer.css
       "background-image": "url(\"#{@subject.location.standard}\")"
 
+    document.querySelector('img.main').addEventListener 'contextmenu', (e) ->
+      e.preventDefault()
+      return false
+
   onMouseOver: (e) =>
     @height = @el.get(0).clientHeight
     @width = @el.get(0).clientWidth
