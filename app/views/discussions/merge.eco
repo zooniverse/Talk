@@ -1,11 +1,11 @@
-<% { capitalize } = require 'lib/util' %>
+<% { capitalize, getCategoryLabel } = require 'lib/util' %>
 
 <form class="merge-discussion boxed">
   <label>Merge this discussion into: </label>
   <div class="field">
     <select class="category" required="required">
       <% for category in ['help', 'science', 'chat']: %>
-        <option value="<%= category %>"<%= ' selected' if category is @board.category %>><%= capitalize category %></option>
+        <option value="<%= category %>"<%= ' selected' if category is @board.category %>><%= capitalize getCategoryLabel category %></option>
       <% end %>
     </select>
   </div>

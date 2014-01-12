@@ -1,3 +1,5 @@
+<% { getCategoryLabel } = require 'lib/util' %>
+
 <h4 class="hide-without-user">Begin a new discussion:</h4>
 
 <form class="new-discussion boxed">
@@ -11,7 +13,7 @@
         <span class="label">Board</span>
         <span class="input">
           <select name="board_id" required="required">
-            <option value="">Choose a <%= @category %> board for this discussion</option>
+            <option value="">Choose a <%= getCategoryLabel @category %> board for this discussion</option>
             <% for board in @boards[@category]: %>
               <option value="<%= board.zooniverse_id %>"><%= board.title %></option>
             <% end %>

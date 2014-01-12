@@ -1,7 +1,7 @@
-<% { capitalize } = require 'lib/util' %>
+<% { capitalize, getCategoryLabel } = require 'lib/util' %>
 
 <% for category, discussions of @boards: %>
-  <h3><%= capitalize category %></h3>
+  <h3><%= capitalize getCategoryLabel category %></h3>
 
   <div class="discussion-summaries">
     <% for discussion in discussions: %>
@@ -9,7 +9,7 @@
     <% end %>
     
     <div class="new-discussion">
-      Want to start a new <%= category %> discussion?
+      Want to start a new <%= getCategoryLabel category %> discussion?
       <button data-category="<%= category %>">Create a New Post</button>
     </div>
   </div>

@@ -1,4 +1,6 @@
-<h4>Create a new <%= @category %> board</h4>
+<% { getCategoryLabel } = require 'lib/util' %>
+
+<h4>Create a new <%= getCategoryLabel @category %> board</h4>
 <form class="new-board boxed">
   <input type="hidden" name="category" value="<%= @category %>">
   
