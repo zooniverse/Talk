@@ -18,7 +18,7 @@
 
   <% if @subject.metadata.tna_id?: %>
     <li class="archives-link">
-      <a href="http://discovery.nationalarchives.gov.uk/SearchUI/details?Uri=<% @subject.metadata.tna_id %>">Download the full item from TNA, charges may apply</a>
+      <a href="http://discovery.nationalarchives.gov.uk/SearchUI/details?Uri=<%- @subject.metadata.tna_id %>" target="_blank">Download the full item from TNA, charges may apply</a>
     </li>
   <% end %>
 
