@@ -3,6 +3,10 @@ template = require 'views/subjects/viewer'
 $ = require 'jqueryify'
 
 class M83SubjectViewer extends DefaultSubjectViewer
+  @subjectTitle: (subject) ->
+    { file_name } = subject.metadata
+    if file_name? then "Image #{ file_name }" else super
+
   className: "#{ DefaultSubjectViewer::className } m83-subject-viewer"
   template: template
 
