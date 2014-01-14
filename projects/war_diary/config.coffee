@@ -8,6 +8,8 @@ socialDefaults =
 app = 
   categoryLabels:
     science: 'history'
+  roleLabels:
+    scientist: 'historian'
 
 Config =
   test:
