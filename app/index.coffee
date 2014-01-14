@@ -1,5 +1,7 @@
 require 'lib/setup'
 
+spinner = new Spinner({width: 3}).spin document.querySelector('#app')
+
 {Stack} = require 'spine/lib/manager'
 $ = require 'jqueryify'
 
@@ -57,6 +59,8 @@ User.bind 'sign-in', ->
 
 Roles.fetch ->
   User.fetch().onSuccess ->
+    spinner.stop()
+
     app.el = $('#app')
     
     app.header = new AppHeader
