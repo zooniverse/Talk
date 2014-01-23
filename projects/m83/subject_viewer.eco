@@ -1,1 +1,6 @@
 <img src="<%= @subject.location.standard %>" class="main" />
+
+<ul>
+  <li><label>RA:</label> <%= @subject.coords[0] %></li>
+  <li><label>DEC:</label> <%= @subject.coords[1] %></li>
+</ul>
