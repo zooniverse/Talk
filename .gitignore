@@ -7,3 +7,4 @@ app/controllers/subject_viewer.coffee
 app/controllers/group_viewer.coffee
 css/project.styl
 public/index.html
+build/
