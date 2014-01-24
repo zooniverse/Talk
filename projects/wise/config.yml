@@ -1,5 +1,5 @@
-bucket: 'talk.wise.org'
-external_scripts: []
-external_styles: []
-internal_scripts: []
-internal_styles: []
+bucket: 'talk.diskdetective.org'
+external_scripts: [
+  "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js",
+  "//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"
+]
