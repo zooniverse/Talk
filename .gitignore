@@ -8,3 +8,6 @@ app/controllers/group_viewer.coffee
 css/project.styl
 public/index.html
 build/
+.ruby-version
+.env
+.bundle/

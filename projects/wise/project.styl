@@ -1,0 +1,107 @@
+.wise-subject-viewer
+  div.toggle
+    position: relative
+    display: none
+
+    &.active
+      display: block
+
+  .canvas-container
+    position: relative
+
+  .canvas-container > canvas, .sed > img
+    width: 100%
+
+  button
+    position: absolute
+    border-radius: 50%
+    background: #000
+    width: 35px
+    height: 35px
+    bottom: 15px
+
+    &.pause
+      display: none
+
+    &.play, &.pause
+      left: 20px
+
+    &.loop
+      right: 20px
+
+  .timeline
+    input
+      width: 100% 
+      background: none
+      margin: 0 auto
+      border: none
+      box-shadow: none
+      box-sizing: border-box
+
+    .bands
+      line-height: 0
+      font-size: 0
+      letter-spacing: -1
+      padding: 0
+      margin: 0
+      height: 30px
+      width: 100%
+
+      p
+        text-align: center
+        display: inline-block
+        width: 40%
+        box-sizing: border-box
+        font-size: 12px
+
+        &.pull-right
+          text-align: right
+          width: 30%
+
+        &.pull-left
+          text-align: left
+          width: 30%
+
+  ul
+    line-height: 0  
+    margin: 0 auto
+    font-size: 0
+    letter-spacing: -1
+    padding: 0
+    list-style-type: none
+    width: 100%
+    height: 30px
+
+    li
+      box-sizing: border-box
+      font-size: 10px
+      display: inline-block
+      width: 33%
+      height: 100%
+      border: 1px solid #000
+      text-align: center
+
+      &:first-child
+        border-right: none
+
+      &:last-child
+        border-left: none
+
+      &:hover
+        background: rgb(200, 200, 200)
+
+        a
+          font-weight: 700
+
+      &.active
+        background: rgb(160, 160, 160)
+
+        a
+          font-weight: 700
+          font-size: 11px
+
+      a
+        position: relative
+        top: 14px
+        color: #000
+        

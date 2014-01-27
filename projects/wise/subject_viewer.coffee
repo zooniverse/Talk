@@ -2,6 +2,8 @@ DefaultSubjectViewer = require 'controllers/default_subject_viewer'
 template = require 'views/subjects/viewer'
 $ = require 'jqueryify'
 
+Backbone.$ = $
+
 wavelengthKeys = 
   'sdssu': 'SDSS U 0.359 μm)'
   'sdssg': 'SDSS G 0.481 μm)'
@@ -126,13 +128,13 @@ class IVModel extends Backbone.Model
     @set('loop', not @get('loop'))
 
 class Timeline extends Backbone.View
-  el: '#timeline'
+  el: '.timeline'
   wavelengths: wavelengthKeys
 
   initialize: ->
     @listenTo(@model, "change:index", @updateTimeline)
     @range = @$('input')
-    @currentWavelength = @$('p:NOT(.pull-left, .pull-right)')
+    @currentWavelength = @$('.band')
     @updateTimeline(@model, @model.get('index'))
 
   events:
@@ -201,13 +203,13 @@ class Controls extends Backbone.View
   template: -> 
     """
 <button class="btn circular play" title="Play">
-  <img src="img/play.svg" onerror="this.src='img/play.png'">
+  <img src="http://www.diskdetective.org/img/play.svg" onerror="this.src='http://www.diskdetective.org/img/play.png'">
 </button>
 <button class="btn circular pause" title="Pause">
-  <img src="img/pause.svg" onerror="this.src='img/pause.png'">
+  <img src="http://www.diskdetective.org/img/pause.svg" onerror="this.src='http://www.diskdetective.org/img/pause.png'">
 </button>
 <button class="btn circular loop" title="Toggle Loop">
-  <img src="img/loop.svg" onerror="this.src='img/loop.png'">
+  <img src="http://www.diskdetective.org/img/loop.svg" onerror="this.src='http://www.diskdetective.org/img/loop.png'">
 </button>
     """
   initialize: ->
@@ -291,5 +293,26 @@ class ImageViewer extends Backbone.View
 class WiseSubjectViewer extends DefaultSubjectViewer
   className: "#{ DefaultSubjectViewer::className } wise-subject-viewer"
   template: template
+
+  events: 
+    'click li.toggle' : 'toggleView'
+
+  constructor: ->
+    super
+    @active = @el.find('.toggle.active')
+
+    @iv = new ImageViewer({
+      el: '.canvas-container' 
+      controls: true 
+      timeline: true
+    })
+
+    @iv.setupSubject(@subject)
+
+  toggleView: (ev) ->
+    ev.preventDefault()
+    toActive = @el.find('.toggle:NOT(.active)').addClass('active')
+    @active.removeClass('active')
+    @active = toActive
 
 module.exports = WiseSubjectViewer

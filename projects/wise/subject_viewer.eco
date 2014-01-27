@@ -1,1 +1,26 @@
-<img src="<%= @subject.location.standard %>" class="main" />
+<div class="subject-container">
+  <div class="toggle image-player active">
+    <div class="canvas-container">
+      <canvas width="400px" height="400px">
+      </canvas>
+    </div>
+    
+    <div class="timeline">
+      <input type="range" min="0" max="9" step="1" />
+      <div class="bands">
+        <p class="pull-left">Shorter</p>
+        <p class="band"></p>
+        <p class="pull-right">Longer</p>
+      </div>
+    </div>
+  </div>
+  <div class="toggle sed">
+    <img src="<%= @subject.metadata.sed %>" alt="SED diagram for <%= @subject.zooniverse_id %>" />
+  </div>
+  <ul class="subject-nav">
+    <li data-switch="image" class="toggle active"><a>Image</a></li>
+    <li data-switch="sed" class="toggle"><a>SED</a></li>
+    <li><a href="<%= @subject.metadata.simbad_url %>" target="_blank">More Info on SIMBAD</a></li>
+  </ul>
+</div>
+
