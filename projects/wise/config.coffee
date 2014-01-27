@@ -1,9 +1,9 @@
 socialDefaults =
   href: 'http://talk.diskdetective.org/'
   title: 'Disk Detective'
-  summary: 'Some summary line'
+  summary: 'Comb our galaxy looking for stars that could be harbouring planet-forming disks'
   image: 'http://example.com/image.jpg'
-  twitterTags: 'via @wise'
+  twitterTags: 'via @disk_detective'
 
 Config =
   test:
@@ -41,11 +41,11 @@ Config =
     projectName: 'Disk Detective'
     prefix: 'WI'
     apiHost: 'https://api.zooniverse.org'
-    classifyUrl: 'http://www.wise.org/#/classify'
+    classifyUrl: 'http://www.diskdetective.org/#/classify'
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true
     analytics:
-      account: 'UA-1234567-89'
+      account: 'UA-1224199-50'
       domain: 'http://talk.diskdetective.org'
 
 env = if window.jasmine
