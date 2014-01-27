@@ -15,12 +15,16 @@
     </div>
   </div>
   <div class="toggle sed">
-    <img src="<%= @subject.metadata.sed %>" alt="SED diagram for <%= @subject.zooniverse_id %>" />
+    <% if @subject.metadata.sed?: %>
+      <img src="<%= @subject.metadata.sed %>" alt="SED diagram for <%= @subject.zooniverse_id %>" />
+    <% else: %>
+      <p>Sorry we don't have an SED for this subject yet. Check back soon.</p>
+    <% end %>
   </div>
   <ul class="subject-nav">
     <li data-switch="image" class="toggle active"><a>Image</a></li>
     <li data-switch="sed" class="toggle"><a>SED</a></li>
-    <li><a href="<%= @subject.metadata.simbad_url %>" target="_blank">More Info on SIMBAD</a></li>
+    <li><a href="<%= @subject.metadata.simbad_url or @linkToSimbad() %>" target="_blank">More Info on SIMBAD</a></li>
   </ul>
 </div>
 
