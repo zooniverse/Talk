@@ -316,8 +316,9 @@ class WiseSubjectViewer extends DefaultSubjectViewer
     @active = toActive
 
   linkToSimbad: ->
+    sign = if @subject.coords[1] > 0 then "+" else ""
     """
-    http://simbad.u-strasbg.fr/simbad/sim-coo?CooDefinedFrames=none&CooEpoch=2000&Coord=#{@subject.coords[0]}#{"+" if @subject.coords[1] > 0}#{@subject.coords[1]}31.2938778&submit=submit%20query&Radius.unit=arcmin&CooEqui=2000&CooFrame=FK5&Radius=2" 
+    http://simbad.u-strasbg.fr/simbad/sim-coo?CooDefinedFrames=none&CooEpoch=2000&Coord=#{@subject.coords[0]}#{sign}#{@subject.coords[1]}31.2938778&submit=submit%20query&Radius.unit=arcmin&CooEqui=2000&CooFrame=FK5&Radius=2" 
     """
 
 module.exports = WiseSubjectViewer
