@@ -301,8 +301,11 @@ class WiseSubjectViewer extends DefaultSubjectViewer
     super
     @active = @el.find('.toggle.active')
 
+  render: ->
+    super
+    [img] = @el.find('.canvas-container')
     @iv = new ImageViewer({
-      el: '.canvas-container' 
+      el: img
       controls: true 
       timeline: true
     })
@@ -316,8 +319,14 @@ class WiseSubjectViewer extends DefaultSubjectViewer
     @active = toActive
 
   linkToSimbad: ->
-    """
-    http://simbad.u-strasbg.fr/simbad/sim-coo?CooDefinedFrames=none&CooEpoch=2000&Coord=#{@subject.metadata.ra_hms}#{@subject.metadata.dec_hms}&submit=submit%20query&Radius.unit=arcmin&CooEqui=2000&CooFrame=FK5&Radius=10" 
-    """
+    if @subject.metadata.simbad
+      url = @subject.metadata.simbad.split("=")
+      url.pop()
+      url.push("0.2")
+      url.join("=")
+    else
+      """
+      http://simbad.u-strasbg.fr/simbad/sim-coo?CooDefinedFrames=none&CooEpoch=2000&Coord=#{@subject.metadata.ra_hms}#{@subject.metadata.dec_hms}&submit=submit%20query&Radius.unit=arcmin&CooEqui=2000&CooFrame=FK5&Radius=10" 
+      """
 
 module.exports = WiseSubjectViewer
