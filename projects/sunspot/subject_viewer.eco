@@ -17,6 +17,7 @@
     <% if @subject.metadata.date?: %>
       <li><label>Date taken:</label> <%- moment(@subject.metadata.date).format('LLL') %></li>
     <% end %>
+
     <% if @subject.metadata.hale?: %>
       <li><label>Hale classification:</label> <%- capitalize @subject.metadata.hale %></li>
     <% end %>
@@ -38,5 +39,3 @@
     <% end %>
   </ul>
 </div>
-
-

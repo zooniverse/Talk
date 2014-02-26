@@ -94,5 +94,4 @@ class SunspotSubjectViewer extends DefaultSubjectViewer
     @viewing = false
     @largeImageContainer.css 'display', 'none'
 
-
 module.exports = SunspotSubjectViewer
