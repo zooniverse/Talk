@@ -1,0 +1,42 @@
+<% moment = require 'moment/moment' %>
+<% { capitalize, truther } = require 'lib/util' %>
+
+<div class="large-mouseover"></div>
+
+<div class="subject-images"></div>
+
+<div class="controls">
+  <button class="action standard" data-target="standard-image">Standard</button>
+  <button class="action inverted" data-target="inverted-image">Inverted</button>
+  <button class="action context" data-target="context-image">Context</button>
+</div>
+
+<div class="metadata">
+  <div class="header">Subject Information</div>
+  <ul>
+    <% if @subject.metadata.date?: %>
+      <li><label>Date taken:</label> <%- moment(@subject.metadata.date).format('LLL') %></li>
+    <% end %>
+    <% if @subject.metadata.hale?: %>
+      <li><label>Hale classification:</label> <%- capitalize @subject.metadata.hale %></li>
+    <% end %>
+
+    <% if @subject.metadata.n_nar?: %>
+      <li><label>Active regions:</label> <%- @subject.metadata.n_nar %></li>
+    <% end %>
+
+    <% if @subject.metadata.c1flr24hr?: %>
+      <li><label>Flared in next 24 hours:</label> <%- capitalize truther @subject.metadata.c1flr24hr %></li>
+    <% end %>
+
+    <% if @subject.metadata.m1flr12hr?: %>
+      <li><label>Flared in next 12 hours:</label> <%- capitalize truther @subject.metadata.m1flr12hr %></li>
+    <% end %>
+
+    <% if @subject.metadata.m5flr12hr?: %>
+      <li><label>Major flare in next 12 hours:</label> <%- capitalize truther @subject.metadata.m5flr12hr %></li>
+    <% end %>
+  </ul>
+</div>
+
+

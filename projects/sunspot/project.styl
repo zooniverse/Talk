@@ -1,0 +1,53 @@
+.sunspot-subject-viewer
+  position: relative
+
+  button
+    @extends #standard-button
+    outline: none
+
+  img
+    width: 100%
+
+  .large-mouseover
+    display: none
+    position: absolute
+    top: 0
+    left: 103%
+    width: 200%
+    height: 100%
+    min-height: 272px
+    background-repeat: no-repeat
+    border: 1px solid #000000
+    box-sizing: border-box
+    z-index: 100
+
+  .controls
+    margin: 10px 0 0 0
+
+  .metadata
+    margin: 10px 0 0 0
+
+    .header
+      border-bottom: 1px solid #bbb
+      font-size: 18px
+
+    ul
+      list-style: none
+      margin: 0
+      padding: 0
+
+      li
+        padding: 5px
+        text-align: right
+
+        label
+          float: left
+          font-weight: 700
+          min-width: 75px
+          text-align: left
+
+        &:nth-child(2n)
+          background-color: #eee
+
+        &:nth-child(2n + 1)
+          background-color: #f6f6f6
