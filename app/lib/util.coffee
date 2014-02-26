@@ -3,6 +3,9 @@ config = require 'lib/config'
 module.exports =
   capitalize: (string) ->
     string.replace /^(\w)/, (c) -> c.toUpperCase()
+
+  truther: (bool) ->
+    if bool then 'yes' else 'no'
   
   focusCollectionFor: (type) ->
     if type is 'Board'
