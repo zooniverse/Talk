@@ -47,7 +47,7 @@ Config =
     classifyUrl: 'http://www.sunspotter.org/#/classify'
     socialDefaults: socialDefaults
     analytics:
-      account: 'UA-1234567-89'
+      account: 'UA-1224199-53'
       domain: 'http://talk.sunspotter.org'
     app: app
 
