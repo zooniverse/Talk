@@ -12,6 +12,7 @@ class Roles
     Api.get @url, (results) =>
       for user in results
         @roles[user.name] = ((if role of roleLabels then roleLabels[role] else role) for role in user.roles)
+        @roles[user.name] = (role for role in @roles[user.name] when role isnt 'translator')
       callback?()
   
   @hasRole: (name, role) =>
