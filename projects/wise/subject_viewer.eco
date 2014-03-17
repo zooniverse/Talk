@@ -24,7 +24,7 @@
   <ul class="subject-nav">
     <li data-switch="image" class="toggle active"><a>Image</a></li>
     <li data-switch="sed" class="toggle"><a>SED</a></li>
-    <li><a href="<%= @subject.metadata.simbad or @linkToSimbad() %>" target="_blank">More Info on SIMBAD</a></li>
+    <li><a href="<%= @linkToSimbad() %>" target="_blank">More Info on SIMBAD</a></li>
   </ul>
   <div class="more-metadata">
     <p><b>WISE ID:</b> <%= @subject.metadata.wise_id %> </p>
