@@ -133,17 +133,16 @@ body > footer {
 
 html
   .show-for-privileged-user
-    visibility: hidden
+    visibility: hidden !important
   
   &.not-signed-in
     .hide-without-user, .show-for-privileged-user
-      display: none
+      display: none !important
 
   &.signed-in
     .hide-with-user
-      display: none
+      display: none !important
   
   &.privileged-user
     .show-for-privileged-user
-      visibility: visible
-
+      visibility: visible !important
