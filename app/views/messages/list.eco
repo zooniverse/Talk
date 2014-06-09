@@ -22,7 +22,7 @@
     
     <div class="<%= 'unread ' if conversation.isUnread(user) %>message" data-project-name="<%= conversation.project_name %>">
       <div class="title">
-        <a href="#/messages/<%= id %>"><%= conversation.title || '(no title)' %></a>
+        <a href="#/messages/<%= id %>"><%= if conversation.isTitleBlank() then '(no title)' else conversation.title %></a>
       </div>
       
       <div class="body"><%= lastMessage.body %></div>

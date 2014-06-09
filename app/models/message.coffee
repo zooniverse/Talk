@@ -60,6 +60,9 @@ class Message
   
   isRecipient: (user) =>
     @user_to.id is user.id
+
+  isTitleBlank: =>
+    /^\s+$/.test @title
   
   _copy_keys_from: (hash) =>
     for own key, val of hash
