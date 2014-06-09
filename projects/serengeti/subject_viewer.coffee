@@ -5,23 +5,6 @@ $ = require 'jqueryify'
 modulus = (a, b) ->
   ((a % b) + b) % b
 
-# memeDialogTemplate = """
-#   <div class="serengeti-meme-dialog">
-#     <button name="close">
-
-#     <form name="memeify">
-#       <input type="text" name="topText" placeholder="" />
-#       <input type="text" name="bottomText" placeholder="" />
-#       <button type="submit"></button>
-#     </form>
-
-#     <div class="response">
-#       <img src="" class="memeified" />
-#       <input type="text" name="memeified-src" readonly="readonly" value="" />
-#     </div>
-#   </div>
-# """
-
 class SerengetiSubjectViewer extends DefaultSubjectViewer
   className: "#{DefaultSubjectViewer::className} serengeti-subject-viewer"
   template: template
@@ -86,12 +69,6 @@ class SerengetiSubjectViewer extends DefaultSubjectViewer
 
   onClickMeme: ->
     src = @subjectImages.filter('.active').attr 'src'
-    @memeLink.attr 'href', "http://www.savethememes.org/?u=#{ src }"
-
-  #   top = prompt('Top line') || ' '
-  #   bottom = prompt('Bottom line') || ' '
-
-  #   $.get "http://serengeti-meme.herokuapp.com/newMeme?image=#{src}&topText=#{top}&bottomText=#{bottom}", (memeSrc) =>
-  #     open memeSrc
+    @memeLink.attr 'href', "http://memes.snapshotserengeti.org/?u=#{ src }"
 
 module.exports = SerengetiSubjectViewer
