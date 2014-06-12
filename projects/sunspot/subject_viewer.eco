@@ -1,5 +1,5 @@
 <% moment = require 'moment/moment' %>
-<% { capitalize, truther } = require 'lib/util' %>
+<% { capitalize, truther, formatNumber } = require 'lib/util' %>
 
 <div class="large-mouseover"></div>
 
@@ -18,12 +18,12 @@
       <li><label>Date taken:</label> <%- moment(@subject.metadata.date).format('LLL') %></li>
     <% end %>
 
-    <% if @subject.metadata.hale?: %>
-      <li><label>Hale classification:</label> <%- capitalize @subject.metadata.hale %></li>
+    <% if @subject.metadata.area?: %>
+      <li><label>Area <span class="fine-print">(in megameters<sup>2</sup>)</span></label><%- formatNumber @subject.metadata.area %></li>
     <% end %>
 
-    <% if @subject.metadata.n_nar?: %>
-      <li><label>Active regions:</label> <%- @subject.metadata.n_nar %></li>
+    <% if @subject.metadata.flux?: %>
+      <li><label>Flux <span class="fine-print">(in maxwells)</span></label><%- @subject.metadata.flux %></li>
     <% end %>
 
     <% if @subject.metadata.c1flr24hr?: %>
