@@ -23,7 +23,7 @@
     <% end %>
 
     <% if @subject.metadata.flux?: %>
-      <li><label>Flux <span class="fine-print">(in maxwells)</span></label><%- @subject.metadata.flux %></li>
+      <li><label>Magnetic Flux <span class="fine-print">(in maxwells)</span></label><%- @subject.metadata.flux %></li>
     <% end %>
 
     <% if @subject.metadata.c1flr24hr?: %>
