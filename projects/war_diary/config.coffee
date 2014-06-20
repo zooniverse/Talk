@@ -7,7 +7,9 @@ socialDefaults =
 
 app = 
   categoryLabels:
-    science: 'history'
+    science: 'welcome_to_operation_war_diary'
+    chat: 'the_mess_hall'
+    help: 'questions_and_answers'
   roleLabels:
     scientist: 'historian'
 
