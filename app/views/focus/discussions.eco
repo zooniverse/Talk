@@ -1,7 +1,7 @@
-<% { capitalize, getCategoryLabel } = require 'lib/util' %>
+<% { titleize, getCategoryLabel } = require 'lib/util' %>
 
 <% for category, discussions of @boards: %>
-  <h3><%= capitalize getCategoryLabel category %></h3>
+  <h3><%= titleize getCategoryLabel category %></h3>
 
   <div class="discussion-summaries">
     <% for discussion in discussions: %>

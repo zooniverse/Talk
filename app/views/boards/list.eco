@@ -1,4 +1,4 @@
-<% { capitalize, getCategoryLabel } = require 'lib/util' %>
+<% { titleize, getCategoryLabel } = require 'lib/util' %>
 
 <div class="boards">
   <% categories = ['help', 'science', 'chat'] %>
@@ -6,7 +6,7 @@
   <% for category, i in categories: %>
     <% label = getCategoryLabel category %>
     <h3>
-      <%= capitalize label %>
+      <%= titleize label %>
       
       <div class="aux show-for-privileged-user">
         <button name="new-board" value="<%= category %>">Start a new <%= label %> board</button>

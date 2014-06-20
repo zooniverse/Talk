@@ -1,4 +1,4 @@
-<% { capitalize, getCategoryLabel } = require 'lib/util' %>
+<% { titleize, getCategoryLabel } = require 'lib/util' %>
 <% { grouped } = require 'lib/config' %>
 
 <div class="columns">
@@ -47,7 +47,7 @@
       <h2>Recent Discussions...</h2>
       <div class="board discussions">
         <% for category, i in ['help', 'science', 'chat']: %>
-          <h3><%= capitalize getCategoryLabel category %></h3>
+          <h3><%= titleize getCategoryLabel category %></h3>
           
           <div class="<%= category %> list">
             <%- require('views/recents/discussions') category: category, discussions: @discussions[category] %>

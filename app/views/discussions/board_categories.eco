@@ -1,4 +1,4 @@
-<% { capitalize, getCategoryLabel } = require 'lib/util' %>
-<span class="category"><%= capitalize getCategoryLabel @board.category %> Board</span>
+<% { titleize, getCategoryLabel } = require 'lib/util' %>
+<span class="category"><%= titleize getCategoryLabel @board.category %> Board</span>
 /
 <span class="sub-board"><a href="#/boards/<%= @board._id %>"><%= @board.name %></a></span>
