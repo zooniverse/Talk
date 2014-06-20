@@ -1,0 +1,46 @@
+.asteroid-subject-viewer
+  font-size: 13px
+
+  .images-container
+    position: relative
+
+    img
+      left: 0
+      position: absolute
+      top: 0
+      width: 100%
+      z-index: 0
+
+      &.active
+        position: relative
+        z-index: 1
+
+  .frames-container
+    clearfix()
+    padding: 5px 0
+
+    .frame
+      box-sizing: border-box
+      cursor: pointer
+      float: left
+      padding: 5px 0
+      text-align: center
+      width: 25%
+
+      &:hover
+        background: #ddd
+
+      &.active
+        background: #bbb
+
+  .actions-container
+    padding: 5px 0
+
+    button
+      @extends #standard-button
+      outline: none
+      text-shadow: none
+
+      &.active
+        background: $blue
+        color: white

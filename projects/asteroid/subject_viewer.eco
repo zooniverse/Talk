@@ -1,0 +1,16 @@
+<div class="images-container">
+  <% for image in @subject.location.standard: %>
+    <img src="<%= image %>" />
+  <% end %>
+</div>
+
+<div class="frames-container">
+  <% availableFrames = @subject.location.standard.length %>
+  <% for i in [0..availableFrames - 1]: %>
+    <div class="frame" data-frame="<%- i %>"><%- i + 1 %></div>
+  <% end %>
+</div>
+
+<div class="actions-container">
+  <button name="playPause">Play/Pause</button>
+</div>
