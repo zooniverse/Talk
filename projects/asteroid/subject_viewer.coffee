@@ -2,6 +2,7 @@ DefaultSubjectViewer = require 'controllers/default_subject_viewer'
 $ = require 'jqueryify'
 
 class AsteroidSubjectViewer extends DefaultSubjectViewer
+  @imageIn: (location) -> location?.standard?[0]
   className: "#{ DefaultSubjectViewer::className } asteroid-subject-viewer"
   template: require 'views/subjects/viewer'
 

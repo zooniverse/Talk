@@ -1,4 +1,5 @@
-bucket: 'talk.asteroidzoo.org'
+bucket: 'zooniverse-static'
+bucket_path: 'talk.asteroidzoo.org'
 external_scripts: []
 external_styles: []
 internal_scripts: []
