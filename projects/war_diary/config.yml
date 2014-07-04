@@ -1,4 +1,5 @@
-bucket: 'talk.operationwardiary.org'
+bucket: 'zooniverse-static'
+bucket_path: 'talk.operationwardiary.org'
 external_scripts: []
 external_styles: []
 internal_scripts: []

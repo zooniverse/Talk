@@ -1,3 +1,4 @@
-bucket: 'talk.wormwatchlab.org'
+bucket: 'zooniverse-static'
+bucket_path: 'talk.wormwatchlab.org'
 external_scripts: ["http://vjs.zencdn.net/4.1/video.js"]
 external_styles: ["http://vjs.zencdn.net/4.1/video-js.css"]

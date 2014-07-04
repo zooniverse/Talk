@@ -1,4 +1,5 @@
-bucket: 'talk.milkywayproject.org'
+bucket: 'zooniverse-static'
+bucket_path: 'talk.milkywayproject.org'
 external_scripts: []
 external_styles: []
 internal_scripts: []

@@ -1,4 +1,5 @@
-bucket: 'talk.sunspotter.org'
+bucket: 'zooniverse-static'
+bucket_path: 'talk.sunspotter.org'
 external_scripts: []
 external_styles: []
 internal_scripts: []
