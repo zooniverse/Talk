@@ -34,7 +34,7 @@ Config =
     projectName: 'Penguin Watch'
     prefix: 'PZ'
     apiHost: 'https://dev.zooniverse.org'
-    classifyUrl: 'http://demo.zooniverse.org/penguins/#/classify'
+    classifyUrl: 'http://www.penguinwatch.org/beta/#/classify'
     socialDefaults: socialDefaults
     analytics: { }
     app: app
