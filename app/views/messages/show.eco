@@ -22,6 +22,7 @@
             </div>
             
             <footer>
+              <span class="float-left"><a class="delete-message">Delete this message</a></span>
               <%- require('views/timestamp') timestamp: message.created_at %>
             </footer>
           </div>

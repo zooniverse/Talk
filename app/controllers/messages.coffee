@@ -16,6 +16,7 @@ class Show extends Page
   
   events: $.extend
     'submit .new-message': 'submit'
+    'click .delete-message': 'destroy'
     Page::events
   
   activate: (params) ->
@@ -46,6 +47,11 @@ class Show extends Page
       submitButton.attr disabled: false
       @data = @message
       @render()
+  
+  destroy: (ev) ->
+    ev.preventDefault()
+    Message.records[@id].destroy =>
+      @navigate '/profile'
 
 
 class New extends Page
