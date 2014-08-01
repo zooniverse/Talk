@@ -23,6 +23,7 @@ end
 
 project_url = "http://www.#{ project.gsub('_', '') }.org"
 url = "http://talk.#{ project.gsub('_', '') }.org"
+cwd = Dir.pwd
 
 Dir.mkdir "projects/#{ project }" unless Dir.exists? "projects/#{ project }"
 Dir.chdir "projects/#{ project }"
@@ -122,4 +123,7 @@ COFFEESCRIPT
 end
 
 File.open('subject_viewer.eco', 'w'){ |out| out.puts "<img src=\"<%= @subject.location.standard %>\" class=\"main\" />" }
+
 puts "created #{ project } at projects/#{ project }"
+Dir.chdir cwd
+puts `ruby ./configure.rb #{ project }`
