@@ -5,8 +5,9 @@
 <div class="metadata">
   <ul>
     <% if @subject.coords.length is 2: %>
-      <li><label>Latitude:</label> <%- @subject.coords[1].toFixed(5) %></li>
-      <li><label>Longitude:</label> <%- @subject.coords[0].toFixed(5) %></li>
+      <li><label>Latitude:</label> <%- @subject.coords[0] %></li>
+      <li><label>Longitude:</label> <%- @subject.coords[1] %></li>
+      <li><label>Google Earth:</label> <a href="https://www.google.com/maps/@<%- @subject.coords[0] %>,<%- @subject.coords[1] %>,<%- @zoomLevel %>m/data=!3m1!1e3" target="_blank">Link</a></li>
     <% end %>
 
     <% if @subject.metadata.timestamp?: %>
