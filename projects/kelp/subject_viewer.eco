@@ -1,1 +1,16 @@
+<% moment = require 'moment/moment' %>
+
 <img src="<%= @subject.location.standard %>" class="main" />
+
+<div class="metadata">
+  <ul>
+    <% if @subject.coords.length is 2: %>
+      <li><label>Latitude:</label> <%- @subject.coords[1].toFixed(5) %></li>
+      <li><label>Longitude:</label> <%- @subject.coords[0].toFixed(5) %></li>
+    <% end %>
+
+    <% if @subject.metadata.timestamp?: %>
+      <li><label>Date taken:</label> <%- moment(@subject.metadata.timestamp).format('LLL') %></li>
+    <% end %>
+  </ul>
+</div>
