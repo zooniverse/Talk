@@ -24,7 +24,7 @@ Config =
     projectName: 'Microplants'
     prefix: 'LF'
     apiHost: 'http://localhost:3000'
-    classifyUrl: 'http://localhost:9294/#/classify'
+    classifyUrl: 'http://localhost:6002/#/classify'
     socialDefaults: socialDefaults
     analytics: { }
     app: app
@@ -44,16 +44,16 @@ Config =
     projectName: 'Microplants'
     prefix: 'LF'
     apiHost: 'https://api.zooniverse.org'
-    classifyUrl: 'http://microplants.zooniverse.org/#/classify'
+    classifyUrl: 'http://microplants.fieldmuseum.org/#/classify'
     socialDefaults: socialDefaults
     analytics:
       account: 'UA-53428944-2'
-      domain: 'http://microplantstalk.zooniverse.org'
+      domain: 'http://microplants.fieldmuseum.org'
     app: app
 
 env = if window.jasmine
   'test'
-else if window.location.port is '9295'
+else if window.location.port is '6002'
   'developmentLocal'
 else if window.location.port > 1024 
   'developmentRemote'
