@@ -1,9 +1,9 @@
 socialDefaults =
-  href: 'http://talk.planethunter.org/'
+  href: 'http://talk.planethunters.org/'
   title: 'Planet Hunters'
   summary: 'Some summary line'
   image: 'http://example.com/image.jpg'
-  twitterTags: 'via @planet_hunter'
+  twitterTags: 'via @planethunters'
 
 app =
   categories: ['help', 'science', 'chat']
@@ -34,7 +34,7 @@ Config =
     projectName: 'Planet Hunters'
     prefix: 'PH'
     apiHost: 'https://dev.zooniverse.org'
-    classifyUrl: 'http://zooniverse-demo.s3-website-us-east-1.amazonaws.com/planet_hunter/#/classify'
+    classifyUrl: 'http://zooniverse-demo.s3-website-us-east-1.amazonaws.com/planethunter/#/classify'
     socialDefaults: socialDefaults
     analytics: { }
     app: app
@@ -44,11 +44,11 @@ Config =
     projectName: 'Planet Hunters'
     prefix: 'PH'
     apiHost: 'https://api.zooniverse.org'
-    classifyUrl: 'http://www.planethunter.org/#/classify'
+    classifyUrl: 'http://www.planethunters.org/#/classify'
     socialDefaults: socialDefaults
     analytics:
-      account: 'UA-1234567-89'
-      domain: 'http://talk.planethunter.org'
+      account: 'UA-1224199-25'
+      domain: 'http://talk.planethunters.org'
     app: app
 
 env = if window.jasmine
