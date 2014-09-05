@@ -1,0 +1,19 @@
+<div class="graph-and-quarters">
+  <div class="canvas-container">
+    <canvas id="graph" width="1024" height="418"></canvas>
+  </div>
+
+  <div class="quarters-and-metadata">
+    <div class="quarters">
+      <div><b>Quarters</b></div>
+      <% for quarter in @quarterList: %>
+        <div class="quarter" data-quarter="<%- quarter %>"><%- quarter %></div>
+      <% end %>
+    </div>
+
+    <div class="metadata">
+      <div><b>Metadata</b></div>
+      <p>metadata would go here</p>
+    </div>
+  </div>
+</div>

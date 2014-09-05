@@ -1,0 +1,41 @@
+.planet-hunter-subject-viewer  
+  canvas
+    background: black
+
+  .graph-and-quarters
+    display: flex
+
+  .canvas-container
+    min-width: 1024px
+
+  .quarters-and-metadata
+    box-sizing: border-box
+    padding: 0 10px
+
+    .quarters
+      clearfix()
+      margin: 0 0 10px 0
+
+    .quarter
+      border-radius: 2px
+      float: left
+      margin: 0 2px 0 0
+      padding: 3px 6px
+      &:hover
+        background: #fff
+        cursor: pointer
+      &.active
+        background: $blue
+        color: #fff
+
+.focus.page .focus
+  padding: 8px 0 0 0
+
+  .add-to-collection
+    left: 0
+    position: relative
+    top: 0
+
+    .collect-this
+      @extends #bold-button
+      opacity: 1
