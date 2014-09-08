@@ -1,6 +1,14 @@
 .higgs-hunter-subject-viewer
   position: relative
-  
+
+  button
+    @extends #standard-button
+    outline: none
+
+  img
+    display: none
+    width: 100%
+
   .large-mouseover
     display: none
     position: absolute
@@ -13,11 +21,6 @@
     border: 1px solid #000000
     box-sizing: border-box
     z-index: 100
-    
-  .subject-metadata
-    text-align: right
-    padding-bottom: 5px
-    
-    a
-      color: $gray
-      font-size: 11px
+
+  .controls
+    margin: 10px 0 0 0

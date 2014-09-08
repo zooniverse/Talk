@@ -1,59 +1,81 @@
 DefaultSubjectViewer = require 'controllers/default_subject_viewer'
 $ = require 'jqueryify'
 
+loadImage = (src, cb) ->
+  image = new Image
+  image.onload = ->
+    cb image if cb?
+  image.src = src
+
+names = ['first', 'second', 'third']
+
 class HiggsHunterSubjectViewer extends DefaultSubjectViewer
   className: "#{ DefaultSubjectViewer::className } higgs-hunter-subject-viewer"
   template: require 'views/subjects/viewer'
 
   viewing: false
+  images: []
 
   elements:
-    'img.main': 'subjectImage'
     '.large-mouseover': 'largeImageContainer'
+    '.subject-images img': 'subjectImages'
 
   events:
-    'mouseover img.main': 'onMouseOver'
+    'mouseover img': 'onMouseOver'
+    'click button.action': 'onClickAction'
 
   constructor: ->
     super
 
     @largeImageContainer.css
-      "background-image": "url(\"#{@subject.location.standard}\")"
+      "background-image": "url(\"#{ @subject.location.standard[0] }\")"
+
+    @subjectImages.first().show()
+
+  onClickAction: (e) =>
+    view = @el.get 0
+    target = $(e.currentTarget).data('target')
+
+    @subjectImages.hide()
+    @subjectImages.filter("[data-target=\"#{ +target }\"]").show()
 
   onMouseOver: (e) =>
+    image = @currentImage = $(@subjectImages.get $(e.currentTarget).data('target'))
+
     @height = @el.get(0).clientHeight
     @width = @el.get(0).clientWidth
-    @widthRatio = @subjectImage.get(0).naturalWidth / @width
-    @heightRatio = @subjectImage.get(0).naturalHeight / @height
+    @widthRatio = image.get(0).naturalWidth / @width
+    @heightRatio = image.get(0).naturalHeight / @height
 
     @viewing = true
     @largeImageContainer.css
       'display': 'block'
-      'max-width': @subjectImage.get(0).naturalWidth
+      'max-width': image.get(0).naturalWidth
+      'background-image': "url(#{ image.attr('src') })"
 
-    @subjectImage.on 'mouseout.viewer', @onMouseOut
+    image.on 'mouseout.viewer', @onMouseOut
 
     box = [@width * 0.33, @height * 0.33]
 
-    @subjectImage.on 'mousemove.viewer', (mm_e) =>
+    image.on 'mousemove.viewer', (mm_e) =>
       if @viewing
-        offsetX = mm_e.pageX - @subjectImage.parent().offset().left
-        offsetY = mm_e.pageY - @subjectImage.parent().offset().top
+        offsetX = mm_e.pageX - image.parent().offset().left
+        offsetY = mm_e.pageY - image.parent().offset().top
 
         position = [(offsetX - (box[0] / 2)) * @widthRatio, ((offsetY - (box[1] / 2)) * @heightRatio)]
         position = (for axis in position then parseInt(Math.max(axis, 0)))
 
-        if position[0] + @largeImageContainer.width() > @subjectImage.get(0).naturalWidth
-          position[0] = @subjectImage.get(0).naturalWidth - @largeImageContainer.width()
+        if position[0] + @largeImageContainer.width() > image.get(0).naturalWidth
+          position[0] = image.get(0).naturalWidth - @largeImageContainer.width()
 
-        if position[1] + @largeImageContainer.height() > @subjectImage.get(0).naturalHeight
-          position[1] = @subjectImage.get(0).naturalHeight - @largeImageContainer.height()
+        if position[1] + @largeImageContainer.height() > image.get(0).naturalHeight
+          position[1] = image.get(0).naturalHeight - @largeImageContainer.height()
 
         @largeImageContainer.css
           "background-position": "-#{position[0]}px -#{position[1]}px"
 
   onMouseOut: (e) =>
-    @subjectImage.off 'mousemove.viewer, mouseout.viewer'
+    @currentImage.off 'mousemove.viewer, mouseout.viewer'
     @viewing = false
     @largeImageContainer.css 'display', 'none'
 

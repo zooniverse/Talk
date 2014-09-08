@@ -1,5 +1,5 @@
 socialDefaults =
-  href: 'http://talk.higgshunter.org/'
+  href: 'http://talk.higgshunters.org/'
   title: 'Higgs Hunters'
   summary: 'Some summary line'
   image: 'http://example.com/image.jpg'
@@ -44,11 +44,11 @@ Config =
     projectName: 'Higgs Hunters'
     prefix: 'HH'
     apiHost: 'https://api.zooniverse.org'
-    classifyUrl: 'http://www.higgshunter.org/#/classify'
+    classifyUrl: 'http://www.higgshunters.org/#/classify'
     socialDefaults: socialDefaults
     analytics:
       account: 'UA-1234567-89'
-      domain: 'http://talk.higgshunter.org'
+      domain: 'http://talk.higgshunters.org'
     app: app
 
 env = if window.jasmine

@@ -1,3 +1,13 @@
-<img src="<%= @subject.location.standard %>" class="main" />
-
 <div class="large-mouseover"></div>
+
+<div class="subject-images">
+  <% for image, i in @subject.location.standard: %>
+    <img src="<%- image %>" data-target="<%- i %>">
+  <% end %>
+</div>
+
+<div class="controls">
+  <button class="action" data-target="0">First</button>
+  <button class="action" data-target="1">Second</button>
+  <button class="action" data-target="2">Third</button>
+</div>
