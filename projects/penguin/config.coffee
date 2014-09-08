@@ -47,7 +47,7 @@ Config =
     classifyUrl: 'http://www.penguinwatch.org/#/classify'
     socialDefaults: socialDefaults
     analytics:
-      account: 'UA-1234567-89'
+      account: 'UA-1224199-57'
       domain: 'http://talk.penguinwatch.org'
     app: app
 
