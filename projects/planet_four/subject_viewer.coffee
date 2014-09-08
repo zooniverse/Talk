@@ -58,5 +58,4 @@ class PlanetFourSubjectViewer extends DefaultSubjectViewer
     @viewing = false
     @largeImageContainer.css 'display', 'none'
 
-
 module.exports = PlanetFourSubjectViewer
