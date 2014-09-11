@@ -1,0 +1,5 @@
+<% if +@subject.metadata?.counters?.human > 0: %>
+  <img src="//placehold.it/600&text=Human">
+<% else: %>
+  <img src="<%= @subject.location.standard %>" class="main" />
+<% end %>
