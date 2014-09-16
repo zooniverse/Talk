@@ -6,10 +6,7 @@
   <% for page, discussions of @subjects: %>
     <% for discussion in discussions: %>
       <div class="subject-summary" data-link="#/subjects/<%= discussion.focus._id %>">
-        <div class="preview">
-          <a><img src="<%= require('controllers/subject_viewer').imageIn(discussion.focus.location) %>" class="thin-frame preview" /></a>
-        </div>
-        
+        <%- require('views/subjects/preview')(discussion: discussion) %>
         <div class="summary">
           <div class="title">
             <a href="#/subjects/<%= discussion.focus._id %>"><%= discussion.focus._id %></a>

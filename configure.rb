@@ -70,6 +70,7 @@ end
 config = Pathname.new File.absolute_path "projects/#{ PROJECT }/config.coffee"
 subject_viewer = Pathname.new File.absolute_path "projects/#{ PROJECT }/subject_viewer.coffee"
 subject_view = Pathname.new File.absolute_path "projects/#{ PROJECT }/subject_viewer.eco"
+subject_preview = Pathname.new File.absolute_path "projects/#{ PROJECT }/subject_preview.eco"
 group_viewer = Pathname.new File.absolute_path "projects/#{ PROJECT }/group_viewer.coffee"
 group_view = Pathname.new File.absolute_path "projects/#{ PROJECT }/group_viewer.eco"
 style = Pathname.new File.absolute_path "projects/#{ PROJECT }/project.styl"
@@ -78,6 +79,7 @@ paths = {
   config => Pathname.new('app/lib/config.coffee'),
   subject_viewer => Pathname.new('app/controllers/subject_viewer.coffee'),
   subject_view => Pathname.new('app/views/subjects/viewer.eco'),
+  subject_preview => Pathname.new('app/views/subjects/preview.eco'),
   group_viewer => Pathname.new('app/controllers/group_viewer.coffee'),
   group_view => Pathname.new('app/views/groups/viewer.eco'),
   style => Pathname.new('css/project.styl')

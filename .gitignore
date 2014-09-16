@@ -1,6 +1,7 @@
 node_modules
 .DS_Store
 app/lib/config.coffee
+app/views/subjects/preview.eco
 app/views/subjects/viewer.eco
 app/views/groups/viewer.eco
 app/controllers/subject_viewer.coffee
