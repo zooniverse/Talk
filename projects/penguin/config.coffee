@@ -1,9 +1,9 @@
 socialDefaults =
   href: 'http://talk.penguinwatch.org/'
   title: 'Penguin Watch'
-  summary: 'Some summary line'
-  image: 'http://example.com/image.jpg'
-  twitterTags: 'via @penguin'
+  summary: 'Monitor Penguins in Remote Regions'
+  image: 'http://static.zooniverse.org/www.penguinwatch.org/penguins-fpo.jpg'
+  twitterTags: 'via @penguin_watch'
 
 app =
   categories: ['help', 'science', 'chat']
