@@ -43,9 +43,6 @@ class PlanetHunterSubjectViewer extends Controller
     setTimeout =>
       $("[data-quarter=\"#{ @selectedQuarter }\"]").click()
 
-  destroy:=>
-    console.log "DETH AND DESTRUCTION"
-
   onClickQuarter: (e) =>
     spinner = new Spinner({width: 3, color: '#fff'}).spin @canvasContainer.get(0)
 
