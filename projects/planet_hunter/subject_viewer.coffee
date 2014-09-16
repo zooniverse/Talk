@@ -51,7 +51,12 @@ class PlanetHunterSubjectViewer extends Controller
     @selectedQuarter = $(e.currentTarget).data 'quarter'
 
     $("[data-quarter=\"#{ @selectedQuarter }\"]").addClass 'active'
-    $.getJSON "#{ @subject.location[@selectedQuarter] }", (data) =>
+    dataFileLocation = @subject.location[@selectedQuarter]
+
+    if window.location.origin != "http://talk.planethunters.org"
+      dataFileLocation = dataFileLocation.replace("http://www.planethunters.org/", "https://s3.amazonaws.com/zooniverse-static/planethunters.org/")
+
+    $.getJSON "#{dataFileLocation}", (data) =>
       spinner.stop()
       @graph = new CanvasGraph @el, @canvas.get(0), data
 
