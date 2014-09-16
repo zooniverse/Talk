@@ -43,6 +43,9 @@ class PlanetHunterSubjectViewer extends Controller
     setTimeout =>
       $("[data-quarter=\"#{ @selectedQuarter }\"]").click()
 
+  destroy:=>
+    console.log "destroying "
+
   onClickQuarter: (e) =>
     spinner = new Spinner({width: 3, color: '#fff'}).spin @canvasContainer.get(0)
 
@@ -70,19 +73,22 @@ class PlanetHunterSubjectViewer extends Controller
     $(".meta_mag").html(meta.magnitudes.kepler || "unknown")
     $(".meta_radius").html(meta.radius || "unknown")
 
+    ra = @subject.coords[0]
+    dec = @subject.coords[1]
+
+    kepler_id = meta.kepler_id
 
     $(".old_ph_link").hide()
-
+    $(".ukirt_link").attr("href", "http://surveys.roe.ac.uk:8080/wsa/GetImage?ra=#{ra}&dec=#{dec}&database=wserv4v20101019&frameType=stack&obsType=object&programmeID=10209&mode=show&archive=%20wsa&project=wserv4")
+    $(".mast_link").attr("href", "https://archive.stsci.edu/kepler/data_search/search.php?target=#{kepler_id}&action=Search&resolver=SIMBAD&radius=3.0&outputformat=HTML_Table&max_records=100&ordercolumn1=ang_sep&ordercolumn2=RA+%28J2000%29")
     if meta.old_zooniverse_ids?
       for quarter_id, q_data of meta.light_curves
         if q_data.quarter == @selectedQuarter
           $(".old_ph_link").show()
-          $(".old_ph_link").attr("href", "http://talk.planethunters.org/objects/#{meta.old_zooniverse_ids[quarter_id]}")
+          $(".old_ph_link").attr("href", "http://oldtalk.planethunters.org/objects/#{meta.old_zooniverse_ids[quarter_id]}")
 
-  render: ->
-    @html @template @
 
-  destroy: ->
-    @el.off()
+
+
 
 module.exports = PlanetHunterSubjectViewer
