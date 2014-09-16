@@ -58,7 +58,6 @@ else if window.location.port is '9295'
 else if window.location.port > 1024 
   'developmentRemote'
 else
-  'developmentRemote'
-  # 'production'
+  'production'
 
 module.exports = Config[env]
