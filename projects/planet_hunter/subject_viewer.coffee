@@ -56,8 +56,30 @@ class PlanetHunterSubjectViewer extends Controller
     if window.location.origin != "http://talk.planethunters.org"
       dataFileLocation = dataFileLocation.replace("http://www.planethunters.org/", "https://s3.amazonaws.com/zooniverse-static/planethunters.org/")
 
+
     $.getJSON "#{dataFileLocation}", (data) =>
       spinner.stop()
+      @setMetadata()
       @graph = new CanvasGraph @el, @canvas.get(0), data
+
+  setMetadata:=>
+    meta = @subject.metadata
+    $(".meta_type").html(meta.type || "Dwarf")
+    $(".meta_kid").html(meta.kepler_id || "unknown")
+    $(".meta_temp").html(meta.teff || "unknown")
+    $(".meta_mag").html(meta.magnitudes.kepler || "unknown")
+    $(".meta_radius").html(meta.radius || "unknown")
+
+
+    $(".old_ph_link").hide()
+
+    if meta.old_zooniverse_ids?
+      for quarter_id, q_data of meta.light_curves
+        if q_data.quarter == @selectedQuarter
+          $(".old_ph_link").show()
+          $(".old_ph_link").attr("href", "http://talk.planethunters.org/objects/#{meta.old_zooniverse_ids[quarter_id]}")
+
+
+
 
 module.exports = PlanetHunterSubjectViewer

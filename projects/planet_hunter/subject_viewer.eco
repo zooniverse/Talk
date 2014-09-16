@@ -13,7 +13,11 @@
 
     <div class="metadata">
       <div><b>Metadata</b></div>
-      <p>metadata would go here</p>
-    </div>
+        <p><span class='meta_key'>Type:</span> <span class='meta_val meta_type'></span></p>
+        <p><span class='meta_key'>Mag:</span> <span class='meta_val meta_mag'></span></p>
+        <p><span class='meta_key'>Radius:</span> <span class='meta_val meta_radius'></span></p>
+        <p><span class='meta_key'>Kepler Id:</span> <span class='meta_val meta_kid'></span></p>
+      </div>
+    <a class='old_ph_link' href=''>View on old talk</a></div>
   </div>
 </div>
