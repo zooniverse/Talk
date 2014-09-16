@@ -82,7 +82,10 @@ class PlanetHunterSubjectViewer extends Controller
           $(".old_ph_link").show()
           $(".old_ph_link").attr("href", "http://talk.planethunters.org/objects/#{meta.old_zooniverse_ids[quarter_id]}")
 
+  render: ->
+    @html @template @
 
-
+  destroy: ->
+    @el.off()
 
 module.exports = PlanetHunterSubjectViewer
