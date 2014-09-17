@@ -18,9 +18,11 @@
         <p><span class='meta_key'>Radius:</span> <span class='meta_val meta_radius'></span></p>
         <p><span class='meta_key'>Kepler Id:</span> <span class='meta_val meta_kid'></span></p>
 
-        <p><a class='old_ph_link' target="_blank" href=''>View on old talk</a></p>
-        <p><a class='ukirt_link'  target="_blank" href=''>View UKIRT image</a></p>
-        <p><a class='mast_link'   target="_blank" href=''>View on MAST</a></p>
+        <p><a class='old_ph_link'     target="_blank" href=''>View on old talk</a></p>
+        <p><a class='ukirt_link'      target="_blank" href=''>View UKIRT image</a></p>
+        <p><a class='keptps_link'     target="_blank" href=''>Kepler TPS</a></p>
+        <p><a class='mast_link'       target="_blank" href=''>View on MAST</a></p>
+        <p><a class='star_prop_link'  target="_blank" href=''>Sellar Properties</a></p>
       </div>
     </div>
   </div>
