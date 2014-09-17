@@ -55,6 +55,14 @@ class PlanetHunterSubjectViewer extends Controller
 
     @selectedQuarter = $(e.currentTarget).data 'quarter'
 
+    if @subject.metadata.synthetic_id?
+      $("simulation_tag").show()
+      $("planet_tag").hide()
+
+    else if @subject.metadata.known_planet?
+      $("simulation_tag").hide()
+      $("planet_tag").show()
+
     $("[data-quarter=\"#{ @selectedQuarter }\"]").addClass 'active'
     dataFileLocation = @subject.location[@selectedQuarter]
 
@@ -64,11 +72,14 @@ class PlanetHunterSubjectViewer extends Controller
 
     $.getJSON "#{dataFileLocation}", (data) =>
       spinner.stop()
-      @setMetadata()
+      @setMetadata(data)
+
       @graph = new CanvasGraph @el, @canvas.get(0), data
 
-  setMetadata:=>
+  setMetadata:(data)=>
     meta = @subject.metadata
+    console.log "data is ", @data
+    data_meta = data.metadata
     $(".meta_type").html(meta.type || "Dwarf")
     $(".meta_kid").html(meta.kepler_id || "unknown")
     $(".meta_temp").html(meta.teff || "unknown")
@@ -85,6 +96,19 @@ class PlanetHunterSubjectViewer extends Controller
     $(".keptps_link").attr("href", "http://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?&table=tce&format=ipac_ascii&select=kepid,tce_plnt_num,tce_full_conv,tce_fwm_stat,tce_period,tce_time0bk,tce_ror,tce_dor,tce_num_transits,tce_duration,tce_incl,tce_depth,tce_model_snr,tce_prad,tce_sma,tce_bin_oedp_stat&where=kepid=#{kepler_id}")
     $(".mast_link").attr("href", "http://archive.stsci.edu/kepler/kepler_fov/search.php?kic_kepler_id=#{kepler_id}&selectedColumnsCsv=kic_kepler_id,twomass_2mass_id,twomass_tmid,kic_degree_ra,kic_dec,kct_avail_flag,kic_pmra,kic_pmdec,g,r,i,z,gred,d51mag,j,h,k,kepmag,kic_scpid,kic_altid,kic_teff,kic_logg,kic_feh,kic_ebminusv,kic_av,kic_radius,gr,jk,gk&action=Sea")
     $(".star_prop_link").attr("href", "http://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=q1_q16_stellar&format=bar-delimited&where=kepid=#{kepler_id}")
+
+    if data_meta.synth_no?
+      $(".synth_details").show()
+      $(".synth_radius").html(data_meta.planet_rad)
+      $(".synth_radius").html(data_meta.planet_period)
+    else
+      $(".synth_details").hide()
+
+    if data_meta.known_planet?
+      $(".planet_mass").html()
+    else
+      $(".planet_details").hide()
+
     if meta.old_zooniverse_ids?
       for quarter_id, q_data of meta.light_curves
         if q_data.quarter == @selectedQuarter
