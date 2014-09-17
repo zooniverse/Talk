@@ -30,12 +30,14 @@ class PlanetHunterSubjectViewer extends Controller
 
       aQuarter[0] - bQuarter[0]
 
-    params = location.search.slice(1).split('&')
-    for param in params
-      if param.indexOf('quarter') > 0
-        @selectedQuarter = location.search.match /quarter=([\S]+)/
+    params = location.hash.slice(1).split('?')
 
-    @selectedQuarter ?= @quarterList[0]
+    for param in params
+      if param.match('quarter')
+        console.log "parm ", param
+        @selectedQuarter = param.split("=")[1]
+
+    @selectedQuarter ||= @quarterList[0]
 
     @html @template @
     @el.appendTo $('.page.focus.subject > header')
