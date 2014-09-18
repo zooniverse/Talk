@@ -5,7 +5,7 @@
   <div class="group">
     <h1><a href="/"><img src="images/logo-white.png" class="logo" /><strong>Talk</strong> <%= projectName %></a></h1>
   </div>
-  
+
   <div class="group">
     <nav>
       <ul>
@@ -15,6 +15,9 @@
         <li><a href="#/search">Search</a></li>
         <li class="hide-without-user"><a href="#/profile">Profile</a></li>
         <li class="show-for-privileged-user"><a href="#/moderation">Moderation</a></li>
+        <% for name, link of require('lib/config').app.extra_nav: %>
+          <li> <a href="<%=link%>"><%=name%></a></li>
+        <% end %>
       </ul>
     </nav>
   </div>
