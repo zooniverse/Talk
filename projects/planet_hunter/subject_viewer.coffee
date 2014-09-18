@@ -66,8 +66,7 @@ class PlanetHunterSubjectViewer extends Controller
     $("[data-quarter=\"#{ @selectedQuarter }\"]").addClass 'active'
     dataFileLocation = @subject.location[@selectedQuarter]
 
-    if window.location.origin != "http://talk.planethunters.org"
-      dataFileLocation = dataFileLocation.replace("http://www.planethunters.org/", "https://s3.amazonaws.com/zooniverse-static/planethunters.org/")
+    dataFileLocation = dataFileLocation.replace("http://www.planethunters.org/", "https://s3.amazonaws.com/zooniverse-static/planethunters.org/")
 
 
     $.getJSON "#{dataFileLocation}", (data) =>
