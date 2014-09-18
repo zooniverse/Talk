@@ -109,6 +109,7 @@ class PlanetHunterSubjectViewer extends Controller
     $(".mast_link").attr("href", "http://archive.stsci.edu/kepler/kepler_fov/search.php?kic_kepler_id=#{kepler_id}&selectedColumnsCsv=kic_kepler_id,twomass_2mass_id,twomass_tmid,kic_degree_ra,kic_dec,kct_avail_flag,kic_pmra,kic_pmdec,g,r,i,z,gred,d51mag,j,h,k,kepmag,kic_scpid,kic_altid,kic_teff,kic_logg,kic_feh,kic_ebminusv,kic_av,kic_radius,gr,jk,gk&action=Sea")
     $(".star_prop_link").attr("href", "http://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=q1_q16_stellar&format=bar-delimited&where=kepid=#{kepler_id}")
 
+    console.log("Synth Data", data_meta.synth_no?, @subject.metadata.synthetic_id? )
     if data_meta.synth_no?
       $(".synth_details").show()
       $(".synth_radius").html(data_meta.planet_rad)
