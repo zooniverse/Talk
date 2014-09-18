@@ -56,15 +56,15 @@ class PlanetHunterSubjectViewer extends Controller
     @selectedQuarter = $(e.currentTarget).data 'quarter'
 
     if @subject.metadata.synthetic_id?
-      $("simulation_tag").show()
-      $("planet_tag").hide()
+      $(".simulation_tag").show()
+      $(".planet_tag").hide()
 
     else if @subject.metadata.known_planet?
-      $("simulation_tag").hide()
-      $("planet_tag").show()
+      $(".simulation_tag").hide()
+      $(".planet_tag").show()
     else
-      $("simulation_tag").hide()
-      $("planet_tag").hide()
+      $(".simulation_tag").hide()
+      $(".planet_tag").hide()
     $("[data-quarter=\"#{ @selectedQuarter }\"]").addClass 'active'
     dataFileLocation = @subject.location[@selectedQuarter]
 
