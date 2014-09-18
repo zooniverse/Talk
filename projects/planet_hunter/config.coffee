@@ -7,6 +7,8 @@ socialDefaults =
 
 app =
   categories: ['help', 'science', 'chat']
+  extra_nav:
+    "Old Talk" : "http://oldtalk.planethunters.org"
 
 Config =
   test:
@@ -18,7 +20,7 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   developmentLocal:
     project: 'planet_hunter'
     projectName: 'Planet Hunters'
@@ -28,7 +30,7 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   developmentRemote:
     project: 'planet_hunter'
     projectName: 'Planet Hunters'
@@ -38,7 +40,7 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   production:
     project: 'planet_hunter'
     projectName: 'Planet Hunters'
@@ -55,9 +57,8 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'
-
 module.exports = Config[env]
