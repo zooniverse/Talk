@@ -3,7 +3,7 @@ $ = require 'jqueryify'
 CanvasGraph = require 'lib/canvas-graph'
 
 class PlanetHunterSubjectViewer extends Controller
-  @imageIn: (location) -> location?.standard
+  @imageIn: (location) -> "https://raw.githubusercontent.com/zooniverse/Brand/master/projects/planethunters.org/avatar.jpg"
   @subjectTitle: (subject) -> "Image #{ subject.zooniverse_id }"
 
   className: "subject-viewer planet-hunter-subject-viewer"
@@ -130,9 +130,6 @@ class PlanetHunterSubjectViewer extends Controller
         if q_data.quarter == @selectedQuarter
           $(".old_ph_link").show()
           $(".old_ph_link").attr("href", "http://oldtalk.planethunters.org/objects/#{meta.old_zooniverse_ids[quarter_id]}")
-
-
-
 
 
 module.exports = PlanetHunterSubjectViewer
