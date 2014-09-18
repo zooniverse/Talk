@@ -113,14 +113,16 @@ class PlanetHunterSubjectViewer extends Controller
       $(".synth_details").show()
       $(".synth_radius").html(data_meta.planet_rad)
       $(".synth_period").html(data_meta.planet_period)
-    else
-      $(".synth_details").hide()
+      $(".planet_details").hide()
+    else if @subject.metadata.known_planet?
 
-    if @subject.metadata.known_planet?
       $(".planet_radius").html(@subject.metadata.planet_rad)
       $(".planet_period").html(@subject.metadata.planet_period)
+      $(".synth_details").hide()
+      $(".planet_details").show()
     else
       $(".planet_details").hide()
+      $(".synth_details").hide()
 
     if meta.old_zooniverse_ids?
       for quarter_id, q_data of meta.light_curves
