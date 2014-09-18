@@ -29,13 +29,15 @@
       <p><a class='star_prop_link'  target="_blank" href=''>Sellar Properties</a></p>
     </div>
     <div class='synth_details'>
-      <p><span class='synth_radius'></span></p>
-      <p><span class='synth_period'></span></p>
+      <div><b>Simulation details</b></div>
+      <p>Simulated planet radius: <span class='synth_radius'></span></p>
+      <p>Simulated planet period: <span class='synth_period'></span></p>
     </div>
 
     <div class='planet_details'>
-      <p><span class='synth_radius'></span></p>
-      <p><span class='synth_period'></span></p>
+      <div><b>Known planet details</b></div>
+      <p>Planet radius: <span class='synth_radius'></span></p>
+      <p>Planet period: <span class='synth_period'></span></p>
     </div>
   </div>
 </div>
