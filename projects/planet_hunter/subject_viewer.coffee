@@ -62,7 +62,9 @@ class PlanetHunterSubjectViewer extends Controller
     else if @subject.metadata.known_planet?
       $("simulation_tag").hide()
       $("planet_tag").show()
-
+    else
+      $("simulation_tag").hide()
+      $("planet_tag").hide()
     $("[data-quarter=\"#{ @selectedQuarter }\"]").addClass 'active'
     dataFileLocation = @subject.location[@selectedQuarter]
 
