@@ -34,7 +34,6 @@ class PlanetHunterSubjectViewer extends Controller
 
     for param in params
       if param.match('quarter')
-        console.log "parm ", param
         @selectedQuarter = param.split("=")[1]
 
     @selectedQuarter ||= @quarterList[0]
@@ -45,8 +44,8 @@ class PlanetHunterSubjectViewer extends Controller
     setTimeout =>
       $("[data-quarter=\"#{ @selectedQuarter }\"]").click()
 
-  destroy:=>
-    console.log "destroying "
+  destroy: ->
+    @el.off()
 
   onClickQuarter: (e) =>
     spinner = new Spinner({width: 3, color: '#fff'}).spin @canvasContainer.get(0)
@@ -88,7 +87,7 @@ class PlanetHunterSubjectViewer extends Controller
 
       @graph = new CanvasGraph @el, @canvas.get(0), data
 
-  setMetadata:(data)=>
+  setMetadata: (data) =>
     meta = @subject.metadata
 
     data_meta = data.metadata
@@ -109,7 +108,6 @@ class PlanetHunterSubjectViewer extends Controller
     $(".mast_link").attr("href", "http://archive.stsci.edu/kepler/kepler_fov/search.php?kic_kepler_id=#{kepler_id}&selectedColumnsCsv=kic_kepler_id,twomass_2mass_id,twomass_tmid,kic_degree_ra,kic_dec,kct_avail_flag,kic_pmra,kic_pmdec,g,r,i,z,gred,d51mag,j,h,k,kepmag,kic_scpid,kic_altid,kic_teff,kic_logg,kic_feh,kic_ebminusv,kic_av,kic_radius,gr,jk,gk&action=Search")
     $(".star_prop_link").attr("href", "http://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=q1_q16_stellar&format=bar-delimited&where=kepid=#{kepler_id}")
 
-    console.log("Synth Data", data_meta.syth_no?, @subject.metadata.synthetic_id? )
     if data_meta.syth_no?
       $(".synth_details").show()
       $(".synth_radius").html(data_meta.planet_rad)
@@ -130,6 +128,5 @@ class PlanetHunterSubjectViewer extends Controller
         if q_data.quarter == @selectedQuarter
           $(".old_ph_link").show()
           $(".old_ph_link").attr("href", "http://oldtalk.planethunters.org/objects/#{meta.old_zooniverse_ids[quarter_id]}")
-
 
 module.exports = PlanetHunterSubjectViewer
