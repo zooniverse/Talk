@@ -1,4 +1,5 @@
 <% user = require('zooniverse/lib/models/user').current %>
+<% extraNav = require('lib/config').app?.extraNav %>
 <% { projectName, classifyUrl } = require 'lib/config' %>
 
 <div class="main">
@@ -15,8 +16,11 @@
         <li><a href="#/search">Search</a></li>
         <li class="hide-without-user"><a href="#/profile">Profile</a></li>
         <li class="show-for-privileged-user"><a href="#/moderation">Moderation</a></li>
-        <% for name, link of require('lib/config').app.extra_nav: %>
-          <li> <a href="<%=link%>"><%=name%></a></li>
+
+        <% if extraNav?: %>
+          <% for name, link of extraNav: %>
+            <li> <a href="<%= link %>"><%= name %></a></li>
+          <% end %>
         <% end %>
       </ul>
     </nav>

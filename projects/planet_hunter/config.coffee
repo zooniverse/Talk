@@ -7,7 +7,7 @@ socialDefaults =
 
 app =
   categories: ['help', 'science', 'chat']
-  extra_nav:
+  extraNav:
     "Old Talk" : "http://oldtalk.planethunters.org"
 
 Config =
