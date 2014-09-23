@@ -117,8 +117,8 @@ class PlanetHunterSubjectViewer extends Controller
       $(".planet_details").hide()
     else if @subject.metadata.known_planet?
 
-      $(".planet_radius").html(@subject.metadata.planet_rad)
-      $(".planet_period").html(@subject.metadata.planet_period)
+      $(".synth_radius").html(@subject.metadata.planet_rad)
+      $(".synth_period").html(@subject.metadata.planet_period)
       $(".synth_details").hide()
       $(".planet_details").show()
     else
