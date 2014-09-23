@@ -1,5 +1,4 @@
 <img src="<%= @subject.location.standard %>" class="main" />
-<div class="large-mouseover"></div>
 
 <ul>
   <% if @subject.group?.name?: %>

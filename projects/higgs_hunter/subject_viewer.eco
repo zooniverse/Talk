@@ -1,5 +1,3 @@
-<div class="large-mouseover"></div>
-
 <div class="subject-images">
   <% for image, i in @subject.location.standard: %>
     <img src="<%- image %>" data-target="<%- i %>">
