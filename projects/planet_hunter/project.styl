@@ -7,7 +7,132 @@
 
   .canvas-container
     min-width: 1024px
+    #tools
+      float right
+      width 54px
+      height 432px
+      padding 5px
+      background-color rgb(50,50,50)
+      h3
+        font-style italic
+        font-size 0.9em
+      .tool-button
+        display inline-block
+        padding 5px
+        margin 5px 0px 5px 0px
+        text-align center
+        font-size 0.75em
+        opacity 0.5
+        border none
+        color white
+        background-color rgb(50,50,50)
+        height 60px
+        width 100%
+        border-radius 0.3em
+        transition 0.3s
+        &:disabled
+          opacity 0.15
+        &:hover
+          background-color #4C4C4C
+          border-radius 0.3em
+          opacity 1.0
+        &.toggled
+          background-color #151A1B
+          transition 0.3s
+        span
+          top 20px
+          position relative
+          display inline-block
+          margin-bottom 10px
+        &:active
+          transform translateY(1px)
+          box-shadow none
+        &:hover
+          opacity 1.0
+        &#zoom-button
+          background url("http://www.planethunters.org/images/icons/zoom-in.svg") no-repeat 50% 35%
+          &.allowZoomOut
+            background #151a1b url("http://www.planethunters.org/images/icons/zoom-out.svg") no-repeat 50% 35%
+          &.zoomed
+            background-color #151a1b
+        &.toggle-fav
+          background url("http://www.planethunters.org/images/icons/favorite-nofill.svg") no-repeat 50% 35%
+          &.toggled
+            background #151a1b url("http://www.planethunters.org/images/icons/favorite-filled.svg") no-repeat 50% 35%
+        &#help
+          background url("http://www.planethunters.org/images/icons/guide-icon.svg") no-repeat 50% 35%
+        &#tutorial
+          background url("http://www.planethunters.org/images/icons/tut-icon.svg") no-repeat 50% 35%
 
+  #slider-container
+    display inline-block
+    float left
+    height 22px
+    background rgba(13,21,24,0.75)
+    #ui-slider
+      width 1026px
+      height 20px
+      position relative
+      float left
+      display inline-block
+      background none
+      &.noUi-background
+        border 1px solid #323232
+      &.noUi-target
+        border none
+        box-shadow none
+      .noUi-base
+        width 790px
+        margin-left 118px
+      .noUi-handle
+        border 1px solid #9a9ea2
+        background rgba(137, 137, 137, .6)
+        height 22px
+        top 0px
+        width 236px
+        left -118px
+        box-shadow none
+        &:before
+          text-align center
+          color #9a9ea2
+          background none
+          content "III"
+          line-height 20px
+          height 20px
+          left 0px
+          top 0px
+          position relative
+          font-size 12px
+          width 100%
+          z-index 5
+        &:after
+          display none
+        &:hover
+          cursor -webkit-grab
+          cursor grab
+    #axis-label
+      width 60px
+      float left
+      height 100%
+      text-align center
+      font-weight 700
+      font-style italic
+      font 12px
+      background rgb(50,50,50)
+    #numbers-container
+      display inline
+      position absolute
+      background rgba(13,21,24,0.75)
+      // width 954px
+      width 1024px
+      height 20px
+      text-align justify
+      display inline-table
+      color #525c5b
+      border 1px solid #323232
+      span
+        display table-cell
+        
   .quarters-and-metadata
     box-sizing: border-box
     padding: 0 10px

@@ -1,6 +1,29 @@
 <div class="graph-and-quarters">
   <div class="canvas-container">
     <canvas id="graph" width="1024" height="418"></canvas>
+    <!-- BEGIN GRAPH CONTROLS -->
+    <div id="zoom-notification"></div>
+    <div id="tools">
+      <h3>TOOLS</h3>
+      <button class="tool-button" id="zoom-button">
+        <span>Zoom</span>
+      </button>
+      <button class="tool-button hide-unless-user toggle-fav" disabled>
+        <span>+Fav</span>
+      </button>
+      <button class="tool-button" id="help" disabled>
+        <span>Help</span>
+      </button>
+      <button class="tool-button" id="tutorial" disabled>
+        <span>Tutorial</span>
+      </button>
+    </div>
+    <div id="slider-container">
+      <div id="numbers-container"></div>
+      <div id="ui-slider"></div>
+    </div>
+    <!-- END GRAPH CONTROLS -->
+
   </div>
 
   <div class="quarters-and-metadata">

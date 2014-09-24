@@ -1,6 +1,7 @@
-{ Controller } = require 'spine'
 $ = require 'jqueryify'
-CanvasGraph = require 'lib/canvas-graph'
+{ Controller } = require 'spine'
+NoUiSlider     = require 'lib/jquery.nouislider.min'
+CanvasGraph    = require 'lib/canvas-graph'
 
 class PlanetHunterSubjectViewer extends Controller
   @imageIn: (location) -> "https://raw.githubusercontent.com/zooniverse/Brand/master/projects/planethunters.org/avatar.jpg"
@@ -16,7 +17,11 @@ class PlanetHunterSubjectViewer extends Controller
     '.canvas-container': 'canvasContainer'
 
   events:
-    'click .quarter': 'onClickQuarter'
+    'click .quarter'                 : 'onClickQuarter'
+    'click button[id="zoom-button"]' : 'onClickZoom'
+    'slide #ui-slider'               : 'onChangeScaleSlider'
+
+
 
   constructor: ->
     super
@@ -84,8 +89,72 @@ class PlanetHunterSubjectViewer extends Controller
     $.getJSON "#{dataFileLocation}", (data) =>
       spinner.stop()
       @setMetadata(data)
-
       @graph = new CanvasGraph @el, @canvas.get(0), data
+
+      # reset slider
+      $("#ui-slider").noUiSlider
+        start: 0
+        range:
+          min: @graph.smallestX
+          max: @graph.largestX #- @zoomRange
+
+
+  onClickZoom: ->
+    console.log 'onClickZoom()'
+    # increment zoom level
+    @graph.zoomLevel = @graph.zoomLevel + 1
+
+    @graph.sliderValue = +$('#ui-slider').val()
+    offset = @graph.sliderValue
+
+    # reset zoom
+    if @graph.zoomLevel > 2
+      @graph.zoomLevel = 0
+
+    if @graph.zoomLevel is 0
+      @graph.zoomOut()
+      #@zoomReset()
+    else
+      if offset is 0
+        @graph.zoomToCenter( @graph.zoomRanges[@graph.zoomLevel]/2 )
+      else
+        @graph.zoomToCenter(@graph.graphCenter)
+
+      # rebuild slider
+      $('#ui-slider').noUiSlider
+        start: 0
+        range:
+          'min': @graph.smallestX,
+          'max': @graph.largestX - @graph.zoomRanges[@graph.zoomLevel]
+      , true
+
+    @updateZoomButton(@graph.zoomLevel)
+    # @showZoomMessage(@magnification[@graph.zoomLevel])
+
+  onChangeScaleSlider: ->
+    console.log 'onChangeScaleSlider()'
+    @graph.sliderValue = +@el.find("#ui-slider").val()
+    @graph.plotPoints( @graph.sliderValue, @graph.sliderValue + @graph.zoomRanges[@graph.zoomLevel] )
+
+    # update center point
+    @graph.graphCenter = (@graph.zoomRanges[@graph.zoomLevel]/2)+@graph.sliderValue
+
+  updateZoomButton: (zoomLevel) ->
+    if zoomLevel is 2
+      $('#ui-slider').removeAttr('disabled')
+      $("#zoom-button").addClass("zoomed")
+      $("#zoom-button").addClass("allowZoomOut")
+    else if zoomLevel is 1
+      $('#ui-slider').removeAttr('disabled')
+      $("#zoom-button").addClass("zoomed")
+      $("#zoom-button").removeClass("allowZoomOut")
+    else
+      $('#ui-slider').attr('disabled', true)
+      $("#zoom-button").removeClass("zoomed")
+
+  showZoomMessage: (message) =>
+    $('#zoom-notification').html(message).fadeIn(100).delay(1000).fadeOut()
+
 
   setMetadata: (data) =>
     meta = @subject.metadata
