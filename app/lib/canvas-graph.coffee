@@ -1,6 +1,7 @@
 AXIS_COLOR = "#686868"
+
 class CanvasGraph
-  constructor: ( @el, @canvas, @data) ->
+  constructor: (@el, @canvas, @data) ->
     @leftPadding = 60
     @showAxes    = true
     @ctx = @canvas.getContext('2d')
@@ -39,26 +40,28 @@ class CanvasGraph
 
   onMouseDown: (e) =>
     # debugger
-    # console.log 'onMouseDown()'
-    xClick = e.pageX - e.target.getBoundingClientRect().left - window.scrollX
+    xClick = e.pageX - e.target.getBoundingClientRect().left - window.pageXOffset
+    # console.log "onMouseDown(), 1xClick = #{xClick}"
+
     return if xClick < @leftPadding # display line instead
     @addMarkToGraph(e)
 
   onMouseMove: (e) =>
+    return # DEBUG ONLY: KEEP UNTIL THIS IS FIXED
+
     return if @markingDisabled
     return if @el.find('#graph').hasClass('is-zooming')
     @sliderValue = +@el.find("#ui-slider").val()
-    xClick = e.pageX - e.target.getBoundingClientRect().left - window.scrollX
-    yClick = e.pageY - e.target.getBoundingClientRect().top - window.scrollY
+    xClick = e.pageX - e.target.getBoundingClientRect().left - window.pageXOffset
+    yClick = e.pageY - e.target.getBoundingClientRect().top - window.pageYOffset
     offset = @sliderValue
+
     if @zoomLevel is 0
       @plotPoints(0, @zoomRanges[@zoomLevel])
     else if @zoomLevel is 1
       @plotPoints(offset, offset+@zoomRanges[@zoomLevel])
     else
       @plotPoints(@graphCenter-1,@graphCenter+1)
-
-    # @zoomToCenter(@graphCeter+offset)
 
     if xClick < @leftPadding
       # draw triangle
@@ -477,7 +480,7 @@ class CanvasGraph
     tickMinorLength = 5
     tickMajorLength = 10
     tickWidth = 1
-    tickColor = AXIS_COLOR #'rgba(200,20,20,1)'
+    tickColor = AXIS_COLOR
     textColor = AXIS_COLOR
     textSpacing = 15
     majorTickInterval = 2
@@ -583,7 +586,7 @@ class Marks
 
   closestXBelow: (xCoord) -> (@sortedXCoords().filter (i) -> i < xCoord).pop()
   closestXAbove: (xCoord) -> (@sortedXCoords().filter (i) -> i > xCoord).shift()
-  toCanvasXPoint: (e) -> e.pageX - e.target.getBoundingClientRect().left - window.scrollX 
+  toCanvasXPoint: (e) -> e.pageX - e.target.getBoundingClientRect().left - window.pageXOffset
 
   markTooCloseToAnother: (e, scale) ->
     mouseLocation = @toCanvasXPoint(e)

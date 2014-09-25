@@ -99,7 +99,6 @@ class PlanetHunterSubjectViewer extends Controller
       @graph.zoomOut()
       @graph.enableMarking()
 
-
   onClickZoom: ->
     # increment zoom level
     @graph.zoomLevel = @graph.zoomLevel + 1
