@@ -83,7 +83,6 @@ class PlanetHunterSubjectViewer extends Controller
     dataFileLocation = @subject.location[@selectedQuarter]
 
     dataFileLocation = dataFileLocation.replace("http://www.planethunters.org/", "https://s3.amazonaws.com/zooniverse-static/planethunters.org/")
-    console.log 'dataFileLocation: ', dataFileLocation
 
     $.getJSON "#{dataFileLocation}", (data) =>
       spinner.stop()
