@@ -1,5 +1,5 @@
 <div class="graph-and-quarters">
-  <div class="canvas-container">
+  <div class="lightcurve-viewer">
     <canvas id="graph" width="1024" height="418"></canvas>
     <!-- BEGIN GRAPH CONTROLS -->
     <div id="zoom-notification"></div>
@@ -19,11 +19,9 @@
       </button>
     </div>
     <div id="slider-container">
-      <div id="numbers-container"></div>
       <div id="ui-slider"></div>
     </div>
     <!-- END GRAPH CONTROLS -->
-
   </div>
 
   <div class="quarters-and-metadata">

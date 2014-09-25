@@ -44,48 +44,49 @@ class CanvasGraph
     @addMarkToGraph(e)
 
   onMouseMove: (e) =>
+    console.log 'onMouseMove()'
     # return # DEBUG ONLY: KEEP UNTIL THIS IS FIXED
 
-    return if @markingDisabled
+    # return if @markingDisabled
     return if @el.find('#graph').hasClass('is-zooming')
     @sliderValue = +@el.find("#ui-slider").val()
     xClick = e.pageX - e.target.getBoundingClientRect().left - window.scrollX
     yClick = e.pageY - e.target.getBoundingClientRect().top - window.scrollY
-    # offset = @sliderValue
-    # if @zoomLevel is 0
-    #   @plotPoints(0, @zoomRanges[@zoomLevel])
-    # else if @zoomLevel is 1
-    #   @plotPoints(offset, offset+@zoomRanges[@zoomLevel])
-    # else
-    #   @plotPoints(@graphCenter-1,@graphCenter+1)
+    offset = @sliderValue
+    if @zoomLevel is 0
+      @plotPoints(0, @zoomRanges[@zoomLevel])
+    else if @zoomLevel is 1
+      @plotPoints(offset, offset+@zoomRanges[@zoomLevel])
+    else
+      @plotPoints(@graphCenter-1,@graphCenter+1)
 
-    # # @zoomToCenter(@graphCeter+offset)
+    # @zoomToCenter(@graphCeter+offset)
 
-    # if xClick < @leftPadding
-    #   # draw triangle
-    #   w = 10
-    #   s = 2*w*Math.tan(@leftPadding)
+    if xClick < @leftPadding
+      # draw triangle
+      w = 10
+      s = 2*w*Math.tan(@leftPadding)
 
-    #   @ctx.beginPath()
-    #   @ctx.moveTo(w,yClick)
-    #   @ctx.lineTo(0,yClick+s)
-    #   @ctx.lineTo(0,yClick-s)
-    #   @ctx.fillStyle = '#FC4542'
-    #   @ctx.fill()
+      @ctx.beginPath()
+      @ctx.moveTo(w,yClick)
+      @ctx.lineTo(0,yClick+s)
+      @ctx.lineTo(0,yClick-s)
+      @ctx.fillStyle = '#FC4542'
+      @ctx.fill()
 
-    #   @ctx.beginPath()
-    #   @ctx.moveTo(w,yClick)
-    #   @ctx.lineWidth = 1
-    #   @ctx.strokeStyle = 'rgba(252,69,66,0.9)'
-    #   @ctx.moveTo( 60, yClick )
-    #   @ctx.lineTo( @canvas.width, yClick )
-    #   @ctx.moveTo( 0, yClick )
-    #   @ctx.lineTo( 10, yClick )
-    #   @ctx.stroke()
+      @ctx.beginPath()
+      @ctx.moveTo(w,yClick)
+      @ctx.lineWidth = 1
+      @ctx.strokeStyle = 'rgba(252,69,66,0.9)'
+      @ctx.moveTo( 60, yClick )
+      @ctx.lineTo( @canvas.width, yClick )
+      @ctx.moveTo( 0, yClick )
+      @ctx.lineTo( 10, yClick )
+      @ctx.stroke()
 
-    #   @ctx.font = '10pt Arial'
-    #   @ctx.textAlign = 'left'
-    #   @ctx.fillText( @toDataYCoord((-yClick+@canvas.height)).toFixed(4), 15, yClick+5 ) # don't forget to flip y-axis values
+      @ctx.font = '10pt Arial'
+      @ctx.textAlign = 'left'
+      @ctx.fillText( @toDataYCoord((-yClick+@canvas.height)).toFixed(4), 15, yClick+5 ) # don't forget to flip y-axis values
 
   processLightcurve: (removeOutliers=true) ->
 

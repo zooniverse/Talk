@@ -22,7 +22,6 @@ class PlanetHunterSubjectViewer extends Controller
     'slide #ui-slider'               : 'onChangeScaleSlider'
 
 
-
   constructor: ->
     super
 
@@ -98,9 +97,12 @@ class PlanetHunterSubjectViewer extends Controller
           min: @graph.smallestX
           max: @graph.largestX #- @zoomRange
 
+      @graph.zoomOut()
+      @graph.enableMarking()
+
+
 
   onClickZoom: ->
-    console.log 'onClickZoom()'
     # increment zoom level
     @graph.zoomLevel = @graph.zoomLevel + 1
 
@@ -132,7 +134,6 @@ class PlanetHunterSubjectViewer extends Controller
     # @showZoomMessage(@magnification[@graph.zoomLevel])
 
   onChangeScaleSlider: ->
-    console.log 'onChangeScaleSlider()'
     @graph.sliderValue = +@el.find("#ui-slider").val()
     @graph.plotPoints( @graph.sliderValue, @graph.sliderValue + @graph.zoomRanges[@graph.zoomLevel] )
 
