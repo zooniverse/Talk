@@ -171,7 +171,7 @@ class PlanetHunterSubjectViewer extends Controller
     kepler_id = meta.kepler_id
 
     $(".old_ph_link").hide()
-    $(".ukirt_link").attr("href", "http://surveys.roe.ac.uk:8080/wsa/GetImage?ra=#{ra}&dec=#{dec}&database=wserv4v20101019&frameType=stack&obsType=object&programmeID=10209&mode=show&archive=%20wsa&project=wserv4")
+    $(".ukirt_link").attr("href", "http://surveys.roe.ac.uk:8080/wsa/GetImage?ra=#{ra*15}&dec=#{dec}&database=wserv4v20101019&frameType=stack&obsType=object&programmeID=10209&mode=show&archive=%20wsa&project=wserv4")
     $(".keptps_link").attr("href", "http://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?&table=tce&format=ipac_ascii&select=kepid,tce_plnt_num,tce_full_conv,tce_fwm_stat,tce_period,tce_time0bk,tce_ror,tce_dor,tce_num_transits,tce_duration,tce_incl,tce_depth,tce_model_snr,tce_prad,tce_sma,tce_bin_oedp_stat&where=kepid=#{kepler_id}")
     $(".mast_link").attr("href", "http://archive.stsci.edu/kepler/kepler_fov/search.php?kic_kepler_id=#{kepler_id}&selectedColumnsCsv=kic_kepler_id,twomass_2mass_id,twomass_tmid,kic_degree_ra,kic_dec,kct_avail_flag,kic_pmra,kic_pmdec,g,r,i,z,gred,d51mag,j,h,k,kepmag,kic_scpid,kic_altid,kic_teff,kic_logg,kic_feh,kic_ebminusv,kic_av,kic_radius,gr,jk,gk&action=Search")
     $(".star_prop_link").attr("href", "http://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=q1_q16_stellar&format=bar-delimited&where=kepid=#{kepler_id}")
