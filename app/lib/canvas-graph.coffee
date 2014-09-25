@@ -1,3 +1,4 @@
+AXIS_COLOR = "#686868"
 class CanvasGraph
   constructor: ( @el, @canvas, @data) ->
     @leftPadding = 60
@@ -373,8 +374,8 @@ class CanvasGraph
     tickMinorLength = 5
     tickMajorLength = 10
     tickWidth = 1
-    tickColor = '#585858'
-    textColor = '#585858'
+    tickColor = AXIS_COLOR
+    textColor = AXIS_COLOR
     textSpacing = 15
 
     # determine intervals
@@ -476,8 +477,8 @@ class CanvasGraph
     tickMinorLength = 5
     tickMajorLength = 10
     tickWidth = 1
-    tickColor = '#585858' #'rgba(200,20,20,1)'
-    textColor = '#585858'
+    tickColor = AXIS_COLOR #'rgba(200,20,20,1)'
+    textColor = AXIS_COLOR
     textSpacing = 15
     majorTickInterval = 2
     minorTickInterval = 1
