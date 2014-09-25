@@ -1,4 +1,5 @@
 .planet-hunter-subject-viewer
+  display inline
   canvas
     background black
   .graph-and-quarters
@@ -6,13 +7,15 @@
   .lightcurve-viewer
     min-width 1088px
     max-height 500px
-    display inline
+    height 445px
+    margin-bottom 10px
+    // display inline
     #tools
       text-align center
       color gray
       position relative
       top -421px
-      float right
+      left 1024px
       width 54px
       height 432px
       padding 5px
@@ -72,8 +75,9 @@
     #slider-container
       display -webkit-box
       height 24px
+      width 1024px
       border 1px #585858 solid
-      top -3px
+      top -445px
       position relative
       // background rgba(13,21,24,0.75)
       background-color #000
@@ -83,7 +87,7 @@
         width 1026px
         height 24px
         position relative
-        float left
+        // float left
         display inline-block
         background none
         box-sizing border-box
