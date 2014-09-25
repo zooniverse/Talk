@@ -95,9 +95,10 @@ class PlanetHunterSubjectViewer extends Controller
         range:
           min: @graph.smallestX
           max: @graph.largestX #- @zoomRange
+      , true
 
       @graph.zoomOut()
-      @graph.enableMarking()
+      @graph.disableMarking()
 
   onClickZoom: ->
     # increment zoom level
