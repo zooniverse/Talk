@@ -17,16 +17,17 @@
       height 432px
       padding 5px
       background-color rgb(50,50,50)
-      h3
-        border none
+      .tools-heading
+        text-align center
         font-style italic
         font-size 14px
+        font-weight light
       .tool-button
         display inline-block
         padding 5px
         margin 5px 0px 5px 0px
         text-align center
-        font-size 0.75em
+        font-size 11px
         opacity 0.5
         border none
         color white
@@ -35,9 +36,10 @@
         width 100%
         border-radius 0.3em
         transition 0.3s
-        &disabled
+        outline none
+        &:disabled
           opacity 0.15
-        &hover
+        &:hover
           background-color #4C4C4C
           border-radius 0.3em
           opacity 1.0
@@ -49,39 +51,42 @@
           position relative
           display inline-block
           margin-bottom 10px
-        &active
+        &.active
           transform translateY(1px)
           box-shadow none
-        &hover
-          opacity 1.0
         &#zoom-button
-          background url("http//www.planethunters.org/images/icons/zoom-in.svg") no-repeat 50% 35%
+          background url("http://www.planethunters.org/images/icons/zoom-in.svg") no-repeat 50% 35%
           &.allowZoomOut
-            background #151a1b url("http//www.planethunters.org/images/icons/zoom-out.svg") no-repeat 50% 35%
+            background #151a1b url("http://www.planethunters.org/images/icons/zoom-out.svg") no-repeat 50% 35%
           &.zoomed
             background-color #151a1b
         &.toggle-fav
-          background url("http//www.planethunters.org/images/icons/favorite-nofill.svg") no-repeat 50% 35%
+          background url("http://www.planethunters.org/images/icons/favorite-nofill.svg") no-repeat 50% 35%
           &.toggled
-            background #151a1b url("http//www.planethunters.org/images/icons/favorite-filled.svg") no-repeat 50% 35%
+            background #151a1b url("http://www.planethunters.org/images/icons/favorite-filled.svg") no-repeat 50% 35%
         &#help
-          background url("http//www.planethunters.org/images/icons/guide-icon.svg") no-repeat 50% 35%
+          background url("http://www.planethunters.org/images/icons/guide-icon.svg") no-repeat 50% 35%
         &#tutorial
-          background url("http//www.planethunters.org/images/icons/tut-icon.svg") no-repeat 50% 35%
+          background url("http://www.planethunters.org/images/icons/tut-icon.svg") no-repeat 50% 35%
 
     #slider-container
       display -webkit-box
       height 24px
+      border 1px #585858 solid
       top -3px
       position relative
-      background rgba(13,21,24,0.75)
+      // background rgba(13,21,24,0.75)
+      background-color #000
+      box-sizing border-box
+
       #ui-slider
         width 1026px
-        height 20px
+        height 24px
         position relative
         float left
         display inline-block
         background none
+        box-sizing border-box
         &.noUi-background
           border 1px solid #323232
         &.noUi-target
@@ -91,19 +96,20 @@
           width 790px
           margin-left 118px
         .noUi-handle
+          text-align center
           border 1px solid #9a9ea2
           background rgba(137, 137, 137, .6)
-          height 22px
-          top 0px
-          width 236px
-          left -118px
+          height 24px
+          top -1px
+          width 235px
+          left -120px
           box-shadow none
-          &before
-            text-align center
+          box-sizing border-box
+          &:before
             color #9a9ea2
             background none
             content "III"
-            line-height 20px
+            line-height 24px
             height 20px
             left 0px
             top 0px
@@ -111,9 +117,9 @@
             font-size 12px
             width 100%
             z-index 5
-          &after
+          &:after
             display none
-          &hover
+          &:hover
             cursor -webkit-grab
             cursor grab
       #axis-label
@@ -152,7 +158,7 @@
       float left
       margin 0 2px 0 0
       padding 3px 6px
-      &hover
+      &:hover
         background #fff
         cursor pointer
       &.active
@@ -198,7 +204,6 @@
   border-radius 2px
   padding 2px 5px
 
-
 // BEGIN NOUISLIDER STYLING >>>
   
 /* Functional styling
@@ -213,7 +218,7 @@
   -ms-user-select none
   -moz-user-select none
   -moz-box-sizing border-box
-    box-sizing border-box
+  box-sizing border-box
 
 .noUi-target 
   position relative
@@ -245,7 +250,7 @@
   *z-index -1
 
 .noUi-state-tap .noUi-origin 
--webkit-transition left 0.3s, top 0.3s
+  -webkit-transition left 0.3s, top 0.3s
   transition left 0.3s, top 0.3s
 
 .noUi-state-drag * 

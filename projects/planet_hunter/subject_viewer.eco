@@ -4,7 +4,7 @@
     <!-- BEGIN GRAPH CONTROLS -->
     <div id="zoom-notification"></div>
     <div id="tools">
-      <h3>TOOLS</h3>
+      <div class="tools-heading">TOOLS</div>
       <button class="tool-button" id="zoom-button">
         <span>Zoom</span>
       </button>

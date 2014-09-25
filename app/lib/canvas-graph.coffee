@@ -44,10 +44,7 @@ class CanvasGraph
     @addMarkToGraph(e)
 
   onMouseMove: (e) =>
-    console.log 'onMouseMove()'
-    # return # DEBUG ONLY: KEEP UNTIL THIS IS FIXED
-
-    # return if @markingDisabled
+    return if @markingDisabled
     return if @el.find('#graph').hasClass('is-zooming')
     @sliderValue = +@el.find("#ui-slider").val()
     xClick = e.pageX - e.target.getBoundingClientRect().left - window.scrollX
