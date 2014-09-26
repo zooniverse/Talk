@@ -1,11 +1,19 @@
-class CanvasGraph
-  DEBUG = false
+AXIS_COLOR = "#686868"
 
+class CanvasGraph
   constructor: (@el, @canvas, @data) ->
+
+    # set up event listeners
+    @canvas.addEventListener 'mousedown', (e) => @onMouseDown(e)
+    @canvas.addEventListener 'touchstart', (e) => @addMarkToGraph(e)
+    @canvas.addEventListener 'mousemove', (e) => @onMouseMove(e) # TODO: FIX (disabled for now)
+
+
     @leftPadding = 60
     @showAxes    = true
     @ctx = @canvas.getContext('2d')
     @highlights = []
+    @pointSize = 4
 
     @dataLength = Math.min @data.x.length, @data.y.length
 
@@ -14,46 +22,74 @@ class CanvasGraph
     @data_raw.x = @data.x.slice(0)
     @data_raw.y = @data.y.slice(0)
 
+    # apply normalization, outlier removal, etc.
+    @processLightcurve()
+
     # initialize zoom parameters
     @zoomRanges = [@largestX, 10, 2]
     @zoomLevel = 0
     @graphCenter = 5
 
-    # apply normalization, outlier removal, etc.
-    @processLightcurve()
-
   disableMarking: ->
-    # console.log 'CANVAS GRAPH: disableMarking()'
     @markingDisabled = true
 
   enableMarking: ->
-    # console.log 'CANVAS GRAPH: enableMarking()'
     @markingDisabled = false
-    
-    # TODO: should this be in the constructor?
     @marks = new Marks
     window.marks = @marks
-    @canvas.addEventListener 'mousedown', (e) => @onMouseDown(e)
-    @canvas.addEventListener 'touchstart', (e) => @addMarkToGraph(e)
-    @canvas.addEventListener 'mousemove', (e) => @onMouseMove(e) # TODO: FIX (disabled for now)
 
   onMouseDown: (e) =>
-    # debugger
-    # console.log 'onMouseDown()'
-    xClick = e.pageX - e.target.getBoundingClientRect().left - window.scrollX
-    return if xClick < 80 # display line instead 
+    return if @markingDisabled
+    xClick = e.pageX - e.target.getBoundingClientRect().left - window.pageXOffset
+    return if xClick < @leftPadding # display line instead
     @addMarkToGraph(e)
 
   onMouseMove: (e) =>
-    # return # just for now
-    return if @markingDisabled
-    return if classifier.el.find('#graph').hasClass('is-zooming')
-    @sliderValue = +classifier.el.find("#ui-slider").val()
-    xClick = e.pageX - e.target.getBoundingClientRect().left - window.scrollX
-    yClick = e.pageY - e.target.getBoundingClientRect().top - window.scrollY
-    
-  processLightcurve: (removeOutliers = false) ->
+    return if @el.find('#graph').hasClass('is-zooming')
+    @sliderValue = +@el.find("#ui-slider").val()
+    xClick = e.pageX - e.target.getBoundingClientRect().left - window.pageXOffset
+    yClick = e.pageY - e.target.getBoundingClientRect().top - window.pageYOffset
+    offset = @sliderValue
+
+    if @zoomLevel is 0
+      @plotPoints(0, @zoomRanges[@zoomLevel])
+    else if @zoomLevel is 1
+      @plotPoints(offset, offset+@zoomRanges[@zoomLevel])
+    else
+      @plotPoints(@graphCenter-1,@graphCenter+1)
+
+    if xClick < @leftPadding
+      # draw triangle
+      w = 10
+      s = 2*w*Math.tan(@leftPadding)
+
+      @ctx.beginPath()
+      @ctx.moveTo(w,yClick)
+      @ctx.lineTo(0,yClick+s)
+      @ctx.lineTo(0,yClick-s)
+      @ctx.fillStyle = '#FC4542'
+      @ctx.fill()
+
+      @ctx.beginPath()
+      @ctx.moveTo(w,yClick)
+      @ctx.lineWidth = 1
+      @ctx.strokeStyle = 'rgba(252,69,66,0.9)'
+      @ctx.moveTo( 60, yClick )
+      @ctx.lineTo( @canvas.width, yClick )
+      @ctx.moveTo( 0, yClick )
+      @ctx.lineTo( 10, yClick )
+      @ctx.stroke()
+
+      @ctx.font = '10pt Arial'
+      @ctx.textAlign = 'left'
+      @ctx.fillText( @toDataYCoord((-yClick+@canvas.height)).toFixed(4), 15, yClick+5 ) # don't forget to flip y-axis values
+
+  processLightcurve: (removeOutliers=true) ->
+
     @removeOutliers = removeOutliers
+
+    # @el.find("#ui-slider").val(0) # reset slider value
+    # @zoomOut()
 
     # restore original values
     @data.x = @data_raw.x
@@ -61,13 +97,15 @@ class CanvasGraph
 
     # this step is necessary or (top) x-axis breaks
     @smallestX = Math.min @data_raw.x...
+    @smallestX = Math.min(@smallestX, @data.metadata.start_time)
+
     @originalMin = @smallestX
     for x, i in [@data.x...]
       @data.x[i] = x - @smallestX
 
     if removeOutliers
-      @data = @processOutliers(@data_raw, nsigma=3) # NOTE: nsigma < 8 removes tutorial subject transits
-    
+      @data = @processOutliers(@data_raw, nsigma=4)
+
     @data.y = @normalize(@data.y)
 
     # update min/max values
@@ -76,8 +114,12 @@ class CanvasGraph
     @largestX = Math.max  @data.x...
     @largestY = Math.max  @data.y...
 
+    # add padding
+    if @largestX < 29
+      @largestX = 29
+
     @plotPoints()
-    
+
     return
 
   toggleOutliers: ->
@@ -93,16 +135,16 @@ class CanvasGraph
     for y, i in [ data... ]
       y_new[i] = (y-1)/(std)
       y_new[i] = y/(mean)
-     
+
     return y_new
 
-  processOutliers: (data, nsigma) -> 
+  processOutliers: (data, nsigma) ->
     data_new = {}
     data_new.x = []
     data_new.y = []
     mean = @mean(data.y)
     std = @std(data.y)
-    
+
     for y, i in [data.y...]
       continue if (y - mean) > (nsigma * std) # skip outlier
       data_new.x.push data.x[i]
@@ -123,14 +165,12 @@ class CanvasGraph
       sum = sum + value
     return sum / data.length
 
-  showFakePrevMarks: ->
+  showFakePrevMarks: () ->
     @zoomOut()
     maxMarks = 5
-    minMarks = 1 
+    minMarks = 1
     howMany = Math.floor( Math.random() * (maxMarks-minMarks) + minMarks )
-
-    @generateFakePrevMarks howMany
-
+    @generateFakePrevMarks( howMany )
     for entry in [@prevMarks...]
       @highlightCurve(entry.xL,entry.xR)
 
@@ -151,22 +191,27 @@ class CanvasGraph
       @highlightCurve(entry.xL,entry.xR)
 
   highlightCurve: (xLeft,xRight) ->
+    return unless xLeft >= @xMin and xRight <= @xMax
     @highlights.push {'xLeft': xLeft, 'xRight': xRight}
     @plotPoints()
 
   drawHighlights: ->
     sliderOffset = ( (@xMin) / (@xMax - @xMin) ) * ( @canvas.width-@leftPadding )
-
     for highlight in [ @highlights... ]
       for i in [0...@dataLength]
         if @data.x[i] >= highlight.xLeft and @data.x[i] <= highlight.xRight
           x = ((+@data.x[i]+@toDays(@leftPadding)-@xMin)/(@xMax-@xMin)) * (@canvas.width-@leftPadding)
           y = ((+@data.y[i]-@yMin)/(@yMax-@yMin)) * @canvas.height
           y = -y + @canvas.height # flip y-values
-          # @ctx.beginPath()
+          @ctx.beginPath()
           @ctx.fillStyle = "rgba(255, 0, 0, 1.0)" #"#fc4541"
+          @ctx.strokeStyle = "rgba(255, 0, 0, 1.0)" #"#fc4541"
+
           continue if x-sliderOffset < 60 # skip if overlap with y-axis
-          @ctx.fillRect(x - sliderOffset, y, 4, 4)
+          @ctx.arc(x-sliderOffset, y, @pointSize, 0, 2*Math.PI, false)
+          # @ctx.fill()
+          @ctx.stroke()
+          # @ctx.fillRect(x - sliderOffset, y, 4, 4)
 
   plotPoints: (xMin = @smallestX, xMax = @largestX, yMin = @smallestY, yMax = @largestY) ->
     @xMin = xMin
@@ -176,8 +221,11 @@ class CanvasGraph
     @clearCanvas()
 
     # get necessary values from classifier
-    @sliderValue = @el.find('#ui-slider').val()
-    
+    @sliderValue = +@el.find('#ui-slider').val()
+
+    @drawHighlights()
+
+
     # draw points
     for i in [0...@dataLength]
       x = ((+@data.x[i]-xMin)/(xMax-xMin)) * (@canvas.width-@leftPadding)
@@ -185,9 +233,7 @@ class CanvasGraph
       y = ((+@data.y[i]-yMin)/(yMax-yMin)) * @canvas.height
       y = -y + @canvas.height # flip y-values
       @ctx.fillStyle = "#fff" #fc4541"
-      @ctx.fillRect(x+@leftPadding,y,2,2)
-
-    @drawHighlights()
+      @ctx.fillRect( x-@pointSize/2+@leftPadding+1, y-@pointSize/2+1, 2, 2 )
 
     if $('#graph-container').hasClass('showing-prev-data')
       @showPrevMarks()
@@ -203,18 +249,16 @@ class CanvasGraph
     return
 
   rescaleMarks: (xMin, xMax) ->
-    # console.log 'RESCALING MARKS.....'
     if @zoomLevel is 0
       @sliderValue = 0
     else
-      @sliderValue = +classifier.el.find('#ui-slider').val()
-    
+      @sliderValue = +@el.find('#ui-slider').val()
+
     # draw marks
     if @marks
       for mark in @marks.all
-        scaledMin = ((parseFloat(mark.dataXMinRel) + parseFloat(@toDays(@leftPadding)) - parseFloat(xMin) - parseFloat(@sliderValue) ) / (parseFloat(xMax) - parseFloat(xMin)) ) * parseFloat(@canvas.width-@leftPadding)
-        scaledMax = ((parseFloat(mark.dataXMaxRel) + parseFloat(@toDays(@leftPadding)) - parseFloat(xMin) - parseFloat(@sliderValue) ) / (parseFloat(xMax) - parseFloat(xMin)) ) * parseFloat(@canvas.width-@leftPadding)
-        #                                ^ prevents from moving towards left                          ^ prevents marks from moving towards right
+        scaledMin = ( mark.dataXMinRel - xMin ) / (xMax - xMin) * (@canvas.width-@leftPadding) + @leftPadding
+        scaledMax = ( mark.dataXMaxRel - xMin ) / (xMax - xMin) * (@canvas.width-@leftPadding) + @leftPadding
         mark.element.style.width = (parseFloat(scaledMax)-parseFloat(scaledMin)) + "px"
         mark.element.style.left = parseFloat(scaledMin) + "px"
         mark.save(scaledMin, scaledMax)
@@ -223,69 +267,105 @@ class CanvasGraph
     return
 
   zoomOut: (callback) ->
+    @el.find('#graph').addClass('is-zooming')
+
     @zoomLevel = 0
 
     # update slider position
-    classifier.el.find('#ui-slider').val(@graphCenter-@zoomRanges[@zoomLevel]/2)
-    
-    @plotPoints(@smallestX, @largestX)
+    # @el.find('#ui-slider').val(@graphCenter-@zoomRanges[@zoomLevel]/2)
+
+    # @plotPoints(@smallestX, @largestX)
 
     [cMin, cMax] = [@xMin, @xMax]
     [wMin, wMax] = [@smallestX, @largestX]
 
-    classifier.el.find("#zoom-button").removeClass("zoomed")
-    classifier.el.find("#zoom-button").removeClass("allowZoomOut") # for last zoom level
-    classifier.el.find('#ui-slider').attr('disabled',true)
-    classifier.el.find('.noUi-handle').fadeOut(150)
+    @el.find("#zoom-button").removeClass("zoomed")
+    @el.find("#zoom-button").removeClass("allowZoomOut") # for last zoom level
+    @el.find('#ui-slider').attr('disabled',true)
+    @el.find('.noUi-handle').fadeOut(150)
+
+    # TODO: broken (a major pain in my ass)
+    step = 1.5
+    zoom = setInterval (=>
+
+      # gradually expand zooming bounds
+      cMin -= step
+      if cMin < @smallestX then cMin = @smallestX
+      cMax += step
+      if cMax > @largestX then cMax = @largestX
+
+      @plotPoints(cMin,cMax)
+
+      if cMin <= @smallestX and cMax >= @largestX  # finished zooming
+        clearInterval zoom
+        @el.find('#graph').removeClass('is-zooming')
+        @plotPoints(@smallestX, @largestX)
+        unless callback is undefined
+          callback.apply()
+          @el.find("#zoom-button").removeClass("zoomed")
+          @el.find("#zoom-button").removeClass("allowZoomOut") # for last zoom level
+          @el.find('#graph').removeClass('is-zooming')
+          @el.find('#ui-slider').attr('disabled',true)
+          @el.find('.noUi-handle').fadeOut(150)
+    ), 30
+    return
 
   zoomToCenter: (center) ->
-    console.log 'zoomToCenter, CENTER = ', center
-    # classifier.el.find('#graph').addClass('is-zooming')
+    @el.find('#graph').addClass('is-zooming')
+    @graphCenter = center
     boundL = center - @zoomRanges[@zoomLevel]/2
     boundR = center + @zoomRanges[@zoomLevel]/2
 
     # ensure zooming within bounds
     if boundL < @smallestX
       boundL = @smallestX
-      boundR = @smallestX + @zoomRanges[@zoomLevel]/2
-      console.log "ENFORCING BOUNDS: [#{boundL},#{boundR}] (exceeded left bound)"
+      boundR = @smallestX + @zoomRanges[@zoomLevel]
 
     if boundR > @largestX
       boundR = @largestX
-      boundL = @largestX - @zoomRanges[@zoomLevel]/2
-      console.log "ENFORCING BOUNDS: [#{boundL},#{boundR}] (exceeded right bound)"
+      boundL = @largestX - @zoomRanges[@zoomLevel]
 
     # update slider position
-    classifier.el.find('#ui-slider').val(boundL)
-    console.log "ZOOMING TO: [#{boundL},#{boundR}] (exceeded right bound)"
+    @el.find('#ui-slider').val(boundL)
 
-    console.log 
-
-    @plotPoints(boundL,boundR)
-
-  zoomInTo: (wMin, wMax) ->
-    classifier.el.find('#graph').addClass('is-zooming')
     [cMin, cMax] = [@xMin, @xMax]
-
     zoom = setInterval (=>
       @plotPoints(cMin,cMax)
       @rescaleMarks(cMin,cMax)
-      cMin += 1.5 unless cMin >= wMin
-      cMax -= 1.5 unless cMax <= wMax
-      if cMin >= wMin and cMax <= wMax # when 'animation' is done...
+      cMin += 1.5 unless cMin >= boundL
+      cMax -= 1.5 unless cMax <= boundR
+      if cMin >= boundL and cMax <= boundR # when 'animation' is done...
         clearInterval zoom
-        classifier.el.find('#graph').removeClass('is-zooming')
-        @plotPoints(wMin,wMax)
-        @rescaleMarks(wMin,wMax)
+        @el.find('#graph').removeClass('is-zooming')
+        @plotPoints(boundL,boundR)
     ), 30
+
+  # NOT REALLY USED ANYMORE
+  zoomInTo: (wMin, wMax) ->
+    @el.find('#graph').addClass('is-zooming')
+    [cMin, cMax] = [@xMin, @xMax]
+
+    @plotPoints(wMin,wMax)
+
+    # zoom = setInterval (=>
+    #   @plotPoints(cMin,cMax)
+    #   @rescaleMarks(cMin,cMax)
+    #   cMin += 1.5 unless cMin >= wMin
+    #   cMax -= 1.5 unless cMax <= wMax
+    #   if cMin >= wMin and cMax <= wMax # when 'animation' is done...
+    #     clearInterval zoom
+    #     @el.find('#graph').removeClass('is-zooming')
+    #     @plotPoints(wMin,wMax)
+    #     # @rescaleMarks(wMin,wMax)
+    # ), 30
 
   drawXTickMarks: (xMin, xMax) ->
     # tick/text properties
     tickMinorLength = 5
     tickMajorLength = 10
     tickWidth = 1
-    tickColor = '#ccc'
-    textColor = '#ccc'
+    tickColor = AXIS_COLOR
+    textColor = AXIS_COLOR
     textSpacing = 15
 
     # determine intervals
@@ -320,7 +400,7 @@ class CanvasGraph
       continue if i is 0 # skip first value
 
       # draw ticks (bottom)
-      @ctx.beginPath() 
+      @ctx.beginPath()
       @ctx.moveTo( @toPixels(tick)+@leftPadding, @canvas.height )
       if i % majorTickInterval is 0
         @ctx.lineTo( @toPixels(tick)+@leftPadding, @canvas.height - tickMajorLength ) # major tick
@@ -346,7 +426,7 @@ class CanvasGraph
       @ctx.fillText( 'DAYS', textSpacing+10+@leftPadding, @canvas.height - textSpacing )
 
       # draw ticks (top)
-      @ctx.beginPath() 
+      @ctx.beginPath()
       @ctx.moveTo( @toPixels(tick)+@leftPadding, 0 )
       if i % majorTickInterval is 0
         @ctx.lineTo( @toPixels(tick)+@leftPadding, 0 + tickMajorLength ) # major tick
@@ -359,7 +439,7 @@ class CanvasGraph
       # top numbers
       if (i % 4) is 0 # zoomed out
         @ctx.fillText( (tick + @originalMin).toFixed(2), @toPixels(tick)+@leftPadding, 0 + textSpacing+10 )
-      
+
   drawYTickMarks: (yMin, yMax) ->
     # generate intervals
     yTicks = []
@@ -373,7 +453,7 @@ class CanvasGraph
     for stepFactor in [-numStepsDown..numStepsUp]
       tickValue = 1+stepFactor*yStep
       unless tickValue >= yMax or tickValue <=yMin
-        if tickValue is 1.0 
+        if tickValue is 1.0
           if (tickIdx%2 is 0)
             meanTickIndexIsEven = true
         yTicks.push tickValue
@@ -387,8 +467,8 @@ class CanvasGraph
     tickMinorLength = 5
     tickMajorLength = 10
     tickWidth = 1
-    tickColor = '#ccc' #'rgba(200,20,20,1)' 
-    textColor = '#ccc'
+    tickColor = AXIS_COLOR
+    textColor = AXIS_COLOR
     textSpacing = 15
     majorTickInterval = 2
     minorTickInterval = 1
@@ -408,7 +488,7 @@ class CanvasGraph
       @ctx.font = '10pt Arial'
       @ctx.textAlign = 'left'
       @ctx.fillStyle = textColor
-      @ctx.beginPath() 
+      @ctx.beginPath()
       @ctx.moveTo( 0, tickPos )
 
       # make sure 1.00 (mean) tickmark is labeled
@@ -433,7 +513,7 @@ class CanvasGraph
 
   clearCanvas: -> @ctx.clearRect(0,0,@canvas.width, @canvas.height)
 
-  toPixels: (dataPoint, printValue) -> 
+  toPixels: (dataPoint, printValue) ->
     pixel = ( (parseFloat(dataPoint) - parseFloat(@xMin)) / (parseFloat(@xMax) - parseFloat(@xMin)) ) * \
       ( parseFloat(@canvas.width) - parseFloat(@leftPadding) )
     if printValue
@@ -448,12 +528,58 @@ class CanvasGraph
   toDays: (canvasPoint) -> ((parseFloat(canvasPoint) / (parseFloat(@canvas.width)-parseFloat(@leftPadding))) * (parseFloat(@xMax) - parseFloat(@xMin))) + parseFloat(@xMin)
   toDataYCoord: (canvasPoint) -> ((parseFloat(canvasPoint) / parseFloat(@canvas.height)) * (parseFloat(@yMax) - parseFloat(@yMin))) + parseFloat(@yMin)
 
+  addMarkToGraph: (e) =>
+    return if @markingDisabled
+    e.preventDefault()
+    if @marks.markTooCloseToAnother(e, @scale, @originalMin)
+      @notify 'Marks may not overlap!'
+      @shakeGraph()
+      return
+
+    # create new mark
+    @mark = new Mark(e, @, @originalMin)
+    # return unless @mark.containsPoints()
+    @marks.appendElement(@mark)
+    @mark.draw(e)
+    @mark.onMouseDown(e)
+
   shakeGraph: ->
     graph = $('#graph-container')
     return if graph.hasClass('shaking')
-    graph.addClass('shaking') 
+    graph.addClass('shaking')
     graph.effect( "shake", {times:4, distance: 2}, 700, =>
         graph.removeClass('shaking')
       ) # eventually remove jquery ui dependency?
 
-module.exports = CanvasGraph
+class Marks
+  constructor: -> @all = []
+  appendElement: (mark) -> document.getElementById('marks-container').appendChild(mark.element)
+  add: (mark) -> @all.push(mark)
+
+  remove: (mark) ->
+    @all.splice(@all.indexOf(mark), 1)
+    document.getElementById('marks-container').removeChild(mark.element)
+
+  destroyAll: ->
+    mark.element.outerHTML = "" for mark in @all
+    @all = []
+    document.getElementById('marks-container')
+
+  sortedXCoords: ->
+    allXPoints = ([mark.canvasXMin, mark.canvasXMax] for mark in @all)
+    [].concat.apply([], allXPoints).sort (a, b) -> a - b
+    # or
+    # (allXPoints.reduce (a, b) -> a.concat b).sort (a, b) -> a - b
+
+  closestXBelow: (xCoord) -> (@sortedXCoords().filter (i) -> i < xCoord).pop()
+  closestXAbove: (xCoord) -> (@sortedXCoords().filter (i) -> i > xCoord).shift()
+  toCanvasXPoint: (e) -> e.pageX - e.target.getBoundingClientRect().left - window.pageXOffset
+
+  markTooCloseToAnother: (e, scale) ->
+    mouseLocation = @toCanvasXPoint(e)
+    markBelow = Math.abs mouseLocation - @closestXBelow(mouseLocation)
+    markAbove = Math.abs mouseLocation - @closestXAbove(mouseLocation)
+    # 22 is width of mark plus some room on each side
+    markBelow < (scale) or markAbove < (scale) or mouseLocation in @sortedXCoords()
+
+module?.exports = CanvasGraph
