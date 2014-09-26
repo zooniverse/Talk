@@ -2,6 +2,13 @@ AXIS_COLOR = "#686868"
 
 class CanvasGraph
   constructor: (@el, @canvas, @data) ->
+
+    # set up event listeners
+    @canvas.addEventListener 'mousedown', (e) => @onMouseDown(e)
+    @canvas.addEventListener 'touchstart', (e) => @addMarkToGraph(e)
+    @canvas.addEventListener 'mousemove', (e) => @onMouseMove(e) # TODO: FIX (disabled for now)
+
+
     @leftPadding = 60
     @showAxes    = true
     @ctx = @canvas.getContext('2d')
@@ -24,32 +31,20 @@ class CanvasGraph
     @graphCenter = 5
 
   disableMarking: ->
-    # console.log 'CANVAS GRAPH: disableMarking()'
     @markingDisabled = true
 
   enableMarking: ->
-    # console.log 'CANVAS GRAPH: enableMarking()'
     @markingDisabled = false
-
-    # TODO: should this be in the constructor?
     @marks = new Marks
     window.marks = @marks
-    @canvas.addEventListener 'mousedown', (e) => @onMouseDown(e)
-    @canvas.addEventListener 'touchstart', (e) => @addMarkToGraph(e)
-    @canvas.addEventListener 'mousemove', (e) => @onMouseMove(e) # TODO: FIX (disabled for now)
 
   onMouseDown: (e) =>
-    # debugger
+    return if @markingDisabled
     xClick = e.pageX - e.target.getBoundingClientRect().left - window.pageXOffset
-    # console.log "onMouseDown(), 1xClick = #{xClick}"
-
     return if xClick < @leftPadding # display line instead
     @addMarkToGraph(e)
 
   onMouseMove: (e) =>
-    return # DEBUG ONLY: KEEP UNTIL THIS IS FIXED
-
-    return if @markingDisabled
     return if @el.find('#graph').hasClass('is-zooming')
     @sliderValue = +@el.find("#ui-slider").val()
     xClick = e.pageX - e.target.getBoundingClientRect().left - window.pageXOffset
@@ -171,15 +166,12 @@ class CanvasGraph
     return sum / data.length
 
   showFakePrevMarks: () ->
-    # console.log 'showFakePrevMarks()'
     @zoomOut()
     maxMarks = 5
     minMarks = 1
     howMany = Math.floor( Math.random() * (maxMarks-minMarks) + minMarks )
-    # console.log 'randomly generating ', howMany, ' (fake) marks' # DEBUG
     @generateFakePrevMarks( howMany )
     for entry in [@prevMarks...]
-      # console.log '[',entry.xL,',',entry.xR,']' # DEBUG
       @highlightCurve(entry.xL,entry.xR)
 
   generateFakePrevMarks: (n) ->
@@ -196,7 +188,6 @@ class CanvasGraph
   showPrevMarks: ->
     $('#graph-container').addClass('showing-prev-data')
     for entry in [@prevMarks...]
-      # console.log '[',entry.xL,',',entry.xR,']' # DEBUG
       @highlightCurve(entry.xL,entry.xR)
 
   highlightCurve: (xLeft,xRight) ->
@@ -258,7 +249,6 @@ class CanvasGraph
     return
 
   rescaleMarks: (xMin, xMax) ->
-    # console.log 'RESCALING MARKS.....'
     if @zoomLevel is 0
       @sliderValue = 0
     else
@@ -304,7 +294,6 @@ class CanvasGraph
       cMax += step
       if cMax > @largestX then cMax = @largestX
 
-      # console.log "[cMin,cMax] = [#{cMin},#{cMax}]"
       @plotPoints(cMin,cMax)
 
       if cMin <= @smallestX and cMax >= @largestX  # finished zooming
@@ -331,12 +320,10 @@ class CanvasGraph
     if boundL < @smallestX
       boundL = @smallestX
       boundR = @smallestX + @zoomRanges[@zoomLevel]
-      # console.log "ENFORCING BOUNDS: [#{boundL},#{boundR}] (exceeded left bound)"
 
     if boundR > @largestX
       boundR = @largestX
       boundL = @largestX - @zoomRanges[@zoomLevel]
-      # console.log "ENFORCING BOUNDS: [#{boundL},#{boundR}] (exceeded right bound)"
 
     # update slider position
     @el.find('#ui-slider').val(boundL)
