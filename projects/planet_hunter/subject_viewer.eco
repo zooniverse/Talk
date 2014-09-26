@@ -1,58 +1,44 @@
-<div class="lightcurve-viewer">
-  <canvas id="graph" width="1024" height="418"></canvas>
-  <div id="zoom-notification"></div>
-  <div id="tools">
-    <div class="tools-heading">TOOLS</div>
-    <button class="tool-button" id="zoom-button">
-      <span>Zoom</span>
-    </button>
-    <button class="tool-button hide-unless-user toggle-fav" disabled>
-      <span>+Fav</span>
-    </button>
-    <button class="tool-button" id="help" disabled>
-      <span>Help</span>
-    </button>
-    <button class="tool-button" id="tutorial" disabled>
-      <span>Tutorial</span>
-    </button>
+<div class="graph-and-quarters">
+  <div class="canvas-container">
+    <canvas id="graph" width="1024" height="418"></canvas>
   </div>
-  <div id="slider-container">
-    <div id="ui-slider"></div>
-  </div>
-</div>
 
-<div class="quarters-and-metadata">
-  <div class="quarters">
-    <div><b>Quarters</b></div>
-    <% for quarter in @quarterList: %>
-      <div class="quarter" data-quarter="<%- quarter %>"><%- quarter %></div>
-    <% end %>
-  </div>
-  <div class="metadata">
-    <div><b>Metadata</b></div>
-    <p><span class='meta_key'>Type:</span> <span class='meta_val meta_type'></span></p>
-    <p><span class='meta_key'>Mag:</span> <span class='meta_val meta_mag'></span></p>
-    <p><span class='meta_key'>Radius:</span> <span class='meta_val meta_radius'></span></p>
-    <p><span class='meta_key'>Kepler Id:</span> <span class='meta_val meta_kid'></span></p>
-    <p><a class='sim-planet-period'></a></p>
-  </div>
-  <div class='links'>
-    <div><b>External Resources</b></div>
-    <p><a class='old_ph_link'     target="_blank" href=''>View on old talk</a></p>
-    <p><a class='ukirt_link'      target="_blank" href=''>View UKIRT image</a></p>
-    <p><a class='keptps_link'     target="_blank" href=''>Kepler TPS</a></p>
-    <p><a class='mast_link'       target="_blank" href=''>View on MAST</a></p>
-    <p><a class='star_prop_link'  target="_blank" href=''>Stellar Properties</a></p>
-  </div>
-  <div class='synth_details'>
-    <div><b>Simulation details</b></div>
-    <p>Simulated planet radius: <span class='synth_radius'></span> Earth radii</p>
-    <p>Simulated planet period: <span class='synth_period'></span> Days</p>
-  </div>
-  <div class='planet_details'>
-    <div><b>Known planet details</b></div>
-    <p>Planet radius: <span class='synth_radius'> </span> Earth radii</p>
-    <p>Planet period: <span class='synth_period'> </span> Days</p>
+  <div class="quarters-and-metadata">
+    <div class="quarters">
+      <div><b>Quarters</b></div>
+      <% for quarter in @quarterList: %>
+        <div class="quarter" data-quarter="<%- quarter %>"><%- quarter %></div>
+      <% end %>
+    </div>
+
+    <div class="metadata">
+      <div><b>Metadata</b></div>
+      <p><span class='meta_key'>Type:</span> <span class='meta_val meta_type'></span></p>
+      <p><span class='meta_key'>Mag:</span> <span class='meta_val meta_mag'></span></p>
+      <p><span class='meta_key'>Radius:</span> <span class='meta_val meta_radius'></span></p>
+      <p><span class='meta_key'>Kepler Id:</span> <span class='meta_val meta_kid'></span></p>
+      <p><a class='sim-planet-period'></a></p>
+    </div>
+    <div class='links'>
+      <div><b>External Resources</b></div>
+
+      <p><a class='old_ph_link'     target="_blank" href=''>View on old talk</a></p>
+      <p><a class='ukirt_link'      target="_blank" href=''>View UKIRT image</a></p>
+      <p><a class='keptps_link'     target="_blank" href=''>Kepler TPS</a></p>
+      <p><a class='mast_link'       target="_blank" href=''>View on MAST</a></p>
+      <p><a class='star_prop_link'  target="_blank" href=''>Stellar Properties</a></p>
+    </div>
+    <div class='synth_details'>
+      <div><b>Simulation details</b></div>
+      <p>Simulated planet radius: <span class='synth_radius'></span> Earth radii</p>
+      <p>Simulated planet period: <span class='synth_period'></span> Days</p>
+    </div>
+
+    <div class='planet_details'>
+      <div><b>Known planet details</b></div>
+      <p>Planet radius: <span class='synth_radius'> </span> Earth radii</p>
+      <p>Planet period: <span class='synth_period'> </span> Days</p>
+    </div>
   </div>
 </div>
 
