@@ -1,4 +1,5 @@
-bucket: 'talk.projectstardate.org'
+bucket: 'zooniverse-static'
+bucket_path: 'talk.projectstardate.org'
 external_scripts: []
 external_styles: []
 internal_scripts: []
