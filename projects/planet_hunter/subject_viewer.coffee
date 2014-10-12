@@ -17,10 +17,9 @@ class PlanetHunterSubjectViewer extends Controller
     '.canvas-container': 'canvasContainer'
 
   events:
-    'click .quarter'                 : 'onClickQuarter'
-    'click button[id="zoom-button"]' : 'onClickZoom'
-    'slide #ui-slider'               : 'onChangeScaleSlider'
-
+    'click .quarter': 'onClickQuarter'
+    'click button[id="zoom-button"]': 'onClickZoom'
+    'slide #ui-slider': 'onChangeScaleSlider'
 
   constructor: ->
     super
@@ -58,27 +57,6 @@ class PlanetHunterSubjectViewer extends Controller
 
     @selectedQuarter = $(e.currentTarget).data 'quarter'
 
-    if @subject.metadata.synthetic_id?
-      $(".simulation_tag").show()
-      $(".planet_tag").hide()
-
-      $(".synth_details").show()
-      $(".planet_details").hide()
-
-    else if @subject.metadata.known_planet?
-      $(".simulation_tag").hide()
-      $(".planet_tag").show()
-
-      $(".synth_details").hide()
-      $(".planet_details").show()
-
-    else
-      $(".simulation_tag").hide()
-      $(".planet_tag").hide()
-
-      $(".synth_details").hide()
-      $(".planet_details").hide()
-
     $("[data-quarter=\"#{ @selectedQuarter }\"]").addClass 'active'
     dataFileLocation = @subject.location[@selectedQuarter]
 
@@ -102,7 +80,7 @@ class PlanetHunterSubjectViewer extends Controller
 
   onClickZoom: ->
     # increment zoom level
-    @graph.zoomLevel = @graph.zoomLevel + 1
+    @graph.zoomLevel += 1
 
     @graph.sliderValue = +$('#ui-slider').val()
     offset = @graph.sliderValue
@@ -113,10 +91,9 @@ class PlanetHunterSubjectViewer extends Controller
 
     if @graph.zoomLevel is 0
       @graph.zoomOut()
-      #@zoomReset()
     else
       if offset is 0
-        @graph.zoomToCenter( @graph.zoomRanges[@graph.zoomLevel]/2 )
+        @graph.zoomToCenter(@graph.zoomRanges[@graph.zoomLevel] / 2)
       else
         @graph.zoomToCenter(@graph.graphCenter)
 
@@ -129,7 +106,6 @@ class PlanetHunterSubjectViewer extends Controller
       , true
 
     @updateZoomButton(@graph.zoomLevel)
-    # @showZoomMessage(@magnification[@graph.zoomLevel])
 
   onChangeScaleSlider: ->
     @graph.sliderValue = +@el.find("#ui-slider").val()
@@ -151,22 +127,18 @@ class PlanetHunterSubjectViewer extends Controller
       $('#ui-slider').attr('disabled', true)
       $("#zoom-button").removeClass("zoomed")
 
-  showZoomMessage: (message) =>
-    $('#zoom-notification').html(message).fadeIn(100).delay(1000).fadeOut()
-
-
   setMetadata: (data) =>
     meta = @subject.metadata
 
     data_meta = data.metadata
+
     $(".meta_type").html(meta.type || "Dwarf")
     $(".meta_kid").html(meta.kepler_id || "unknown")
     $(".meta_temp").html(meta.teff || "unknown")
     $(".meta_mag").html(meta.magnitudes.kepler || "unknown")
     $(".meta_radius").html(meta.radius || "unknown")
 
-    ra = @subject.coords[0]
-    dec = @subject.coords[1]
+    [ra, dec] = @subject.coords
 
     kepler_id = meta.kepler_id
 
@@ -177,19 +149,14 @@ class PlanetHunterSubjectViewer extends Controller
     $(".star_prop_link").attr("href", "http://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=q1_q16_stellar&format=bar-delimited&where=kepid=#{kepler_id}")
 
     if data_meta.syth_no?
-      $(".synth_details").show()
-      $(".synth_radius").html(data_meta.planet_rad)
-      $(".synth_period").html(data_meta.planet_period)
-      $(".planet_details").hide()
+      $('.synth-radius').html(data_meta.planet_rad)
+      $('.synth-period').html(data_meta.planet_period)
     else if @subject.metadata.known_planet?
-
-      $(".synth_radius").html(@subject.metadata.planet_rad)
-      $(".synth_period").html(@subject.metadata.planet_period)
-      $(".synth_details").hide()
-      $(".planet_details").show()
+      $('.synth-radius').html(@subject.metadata.planet_rad)
+      $('.synth-period').html(@subject.metadata.planet_period)
     else
-      $(".planet_details").hide()
-      $(".synth_details").hide()
+      $('.planet-details').hide()
+      $(".synth-details").hide()
 
     if meta.old_zooniverse_ids?
       for quarter_id, q_data of meta.light_curves
