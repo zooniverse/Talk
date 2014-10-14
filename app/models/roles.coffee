@@ -15,7 +15,7 @@ class Roles
         @roles[user.name] = (role for role in @roles[user.name] when role isnt 'translator')
 
       if @roles["DZM"]
-        @roles["DZM"].append("Zooniverse_Team")
+        @roles["DZM"].push("Zooniverse_Team")
 
       callback?()
 
