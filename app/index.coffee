@@ -5,7 +5,7 @@ spinner = new Spinner({width: 3}).spin document.querySelector('#app')
 {Stack} = require 'spine/lib/manager'
 $ = require 'jqueryify'
 
-{ project, apiHost, analytics } = require 'lib/config'
+{ project, projectName, apiHost, analytics } = require 'lib/config'
 Api = require 'zooniverse/lib/api'
 Api.init host: apiHost
 
@@ -31,6 +31,8 @@ require 'lib/message_counter'
 
 app = {}
 googleAnalytics.init analytics
+
+document.title = "#{projectName} Talk"
 
 activateMatchingHashLinks = ->
   $('a.active').removeClass 'active'
@@ -107,6 +109,5 @@ $(window).on 'hashchange', activateMatchingHashLinks
 window.defaultAvatar = (el) ->
   $(el).removeAttr 'onerror'
   $(el).replaceWith require('views/users/default_avatar')()
-
 
 module.exports = app

@@ -1,7 +1,6 @@
-$ = require 'jqueryify'
 { Controller } = require 'spine'
-NoUiSlider     = require 'lib/jquery.nouislider.min'
-CanvasGraph    = require 'lib/canvas-graph'
+$ = require 'jqueryify'
+CanvasGraph = require 'lib/canvas-graph'
 
 class PlanetHunterSubjectViewer extends Controller
   @imageIn: (location) -> "https://raw.githubusercontent.com/zooniverse/Brand/master/projects/planethunters.org/avatar.jpg"
@@ -18,8 +17,6 @@ class PlanetHunterSubjectViewer extends Controller
 
   events:
     'click .quarter': 'onClickQuarter'
-    'click button[id="zoom-button"]': 'onClickZoom'
-    'slide #ui-slider': 'onChangeScaleSlider'
 
   constructor: ->
     super
@@ -57,106 +54,74 @@ class PlanetHunterSubjectViewer extends Controller
 
     @selectedQuarter = $(e.currentTarget).data 'quarter'
 
+    if @subject.metadata.synthetic_id?
+      $(".simulation_tag").show()
+      $(".planet_tag").hide()
+
+      $(".synth_details").show()
+      $(".planet_details").hide()
+
+    else if @subject.metadata.known_planet?
+      $(".simulation_tag").hide()
+      $(".planet_tag").show()
+
+      $(".synth_details").hide()
+      $(".planet_details").show()
+
+    else
+      $(".simulation_tag").hide()
+      $(".planet_tag").hide()
+
+      $(".synth_details").hide()
+      $(".planet_details").hide()
+
     $("[data-quarter=\"#{ @selectedQuarter }\"]").addClass 'active'
     dataFileLocation = @subject.location[@selectedQuarter]
 
     dataFileLocation = dataFileLocation.replace("http://www.planethunters.org/", "https://s3.amazonaws.com/zooniverse-static/planethunters.org/")
 
+
     $.getJSON "#{dataFileLocation}", (data) =>
       spinner.stop()
       @setMetadata(data)
+
       @graph = new CanvasGraph @el, @canvas.get(0), data
-
-      # reset slider
-      $("#ui-slider").noUiSlider
-        start: 0
-        range:
-          min: @graph.smallestX
-          max: @graph.largestX #- @zoomRange
-      , true
-
-      @graph.zoomOut()
-      @graph.disableMarking()
-
-  onClickZoom: ->
-    # increment zoom level
-    @graph.zoomLevel += 1
-
-    @graph.sliderValue = +$('#ui-slider').val()
-    offset = @graph.sliderValue
-
-    # reset zoom
-    if @graph.zoomLevel > 2
-      @graph.zoomLevel = 0
-
-    if @graph.zoomLevel is 0
-      @graph.zoomOut()
-    else
-      if offset is 0
-        @graph.zoomToCenter(@graph.zoomRanges[@graph.zoomLevel] / 2)
-      else
-        @graph.zoomToCenter(@graph.graphCenter)
-
-      # rebuild slider
-      $('#ui-slider').noUiSlider
-        start: 0
-        range:
-          'min': @graph.smallestX,
-          'max': @graph.largestX - @graph.zoomRanges[@graph.zoomLevel]
-      , true
-
-    @updateZoomButton(@graph.zoomLevel)
-
-  onChangeScaleSlider: ->
-    @graph.sliderValue = +@el.find("#ui-slider").val()
-    @graph.plotPoints( @graph.sliderValue, @graph.sliderValue + @graph.zoomRanges[@graph.zoomLevel] )
-
-    # update center point
-    @graph.graphCenter = (@graph.zoomRanges[@graph.zoomLevel]/2)+@graph.sliderValue
-
-  updateZoomButton: (zoomLevel) ->
-    if zoomLevel is 2
-      $('#ui-slider').removeAttr('disabled')
-      $("#zoom-button").addClass("zoomed")
-      $("#zoom-button").addClass("allowZoomOut")
-    else if zoomLevel is 1
-      $('#ui-slider').removeAttr('disabled')
-      $("#zoom-button").addClass("zoomed")
-      $("#zoom-button").removeClass("allowZoomOut")
-    else
-      $('#ui-slider').attr('disabled', true)
-      $("#zoom-button").removeClass("zoomed")
 
   setMetadata: (data) =>
     meta = @subject.metadata
 
     data_meta = data.metadata
-
     $(".meta_type").html(meta.type || "Dwarf")
     $(".meta_kid").html(meta.kepler_id || "unknown")
     $(".meta_temp").html(meta.teff || "unknown")
     $(".meta_mag").html(meta.magnitudes.kepler || "unknown")
     $(".meta_radius").html(meta.radius || "unknown")
 
-    [ra, dec] = @subject.coords
+    ra = @subject.coords[0]
+    dec = @subject.coords[1]
 
     kepler_id = meta.kepler_id
 
     $(".old_ph_link").hide()
-    $(".ukirt_link").attr("href", "http://surveys.roe.ac.uk:8080/wsa/GetImage?ra=#{ra*15}&dec=#{dec}&database=wserv4v20101019&frameType=stack&obsType=object&programmeID=10209&mode=show&archive=%20wsa&project=wserv4")
+    $(".ukirt_link").attr("href", "http://surveys.roe.ac.uk:8080/wsa/GetImage?ra=#{ra}&dec=#{dec}&database=wserv4v20101019&frameType=stack&obsType=object&programmeID=10209&mode=show&archive=%20wsa&project=wserv4")
     $(".keptps_link").attr("href", "http://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?&table=tce&format=ipac_ascii&select=kepid,tce_plnt_num,tce_full_conv,tce_fwm_stat,tce_period,tce_time0bk,tce_ror,tce_dor,tce_num_transits,tce_duration,tce_incl,tce_depth,tce_model_snr,tce_prad,tce_sma,tce_bin_oedp_stat&where=kepid=#{kepler_id}")
     $(".mast_link").attr("href", "http://archive.stsci.edu/kepler/kepler_fov/search.php?kic_kepler_id=#{kepler_id}&selectedColumnsCsv=kic_kepler_id,twomass_2mass_id,twomass_tmid,kic_degree_ra,kic_dec,kct_avail_flag,kic_pmra,kic_pmdec,g,r,i,z,gred,d51mag,j,h,k,kepmag,kic_scpid,kic_altid,kic_teff,kic_logg,kic_feh,kic_ebminusv,kic_av,kic_radius,gr,jk,gk&action=Search")
     $(".star_prop_link").attr("href", "http://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=q1_q16_stellar&format=bar-delimited&where=kepid=#{kepler_id}")
 
     if data_meta.syth_no?
-      $('.synth-radius').html(data_meta.planet_rad)
-      $('.synth-period').html(data_meta.planet_period)
+      $(".synth_details").show()
+      $(".synth_radius").html(data_meta.planet_rad)
+      $(".synth_period").html(data_meta.planet_period)
+      $(".planet_details").hide()
     else if @subject.metadata.known_planet?
-      $('.synth-radius').html(@subject.metadata.planet_rad)
-      $('.synth-period').html(@subject.metadata.planet_period)
+
+      $(".synth_radius").html(@subject.metadata.planet_rad)
+      $(".synth_period").html(@subject.metadata.planet_period)
+      $(".synth_details").hide()
+      $(".planet_details").show()
     else
-      $('.planet-details').hide()
-      $(".synth-details").hide()
+      $(".planet_details").hide()
+      $(".synth_details").hide()
 
     if meta.old_zooniverse_ids?
       for quarter_id, q_data of meta.light_curves
