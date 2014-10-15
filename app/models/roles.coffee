@@ -17,10 +17,7 @@ class Roles
         @roles[user.name] = ((if role of roleLabels then roleLabels[role] else role) for role in user.roles)
         @roles[user.name] = (role for role in @roles[user.name] when role isnt 'translator')
 
-      for teamMember in zooTeam
-        @roles[teamMember] ?= []
-        @roles[teamMember].push 'zooniverse-team'
-
+      @roles[teamMember] = ['zooniverse-team'] for teamMember in zooTeam
       callback?()
 
   @hasRole: (name, role) =>
