@@ -1,5 +1,4 @@
 <% roles = require('models/roles').roles[@link.user_name] %>
-<% roles = ["Zooniverse Team"] if @link.user_name == "DZM" %>
 
 <% if @avatar: %>
   <a href="#/users/<%= @link.user_name %>" class="user">
@@ -17,7 +16,6 @@ by
   <%= @link.user_name %>
 
   <% if roles: %>
-
     <span class="<%= roles.sort().join(' ') %> role"><%= roles.sort().join(', ') %></span>
   <% end %>
 </a>
