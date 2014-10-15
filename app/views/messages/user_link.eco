@@ -11,6 +11,6 @@
   <%= @message.user.name %>
 
   <% if roles: %>
-    <span class="<%= userRoles.sort().join(' ') %> role"><%= roles.sort().join(', ') %></span>
+    <span class="<%= roles.sort().join(' ') %> role"><%= roles.sort().join(', ') %></span>
   <% end %>
 </a>
