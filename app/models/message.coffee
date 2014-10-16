@@ -62,7 +62,7 @@ class Message
     @user_to.id is user.id
 
   isTitleBlank: =>
-    (typeof @title != 'string') or (/^\s+$/.test @title)
+    (typeof @title != 'string') or (/^\s?$/.test @title)
   
   _copy_keys_from: (hash) =>
     for own key, val of hash
