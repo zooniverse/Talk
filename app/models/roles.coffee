@@ -5,7 +5,10 @@ Api = require 'zooniverse/lib/api'
 roleLabels = config?.app?.roleLabels || {}
 
 # Hard-coded role for Darren. Remove when team role exists on API
-zooTeam = ['DZM']
+zooTeam = ['DZM', 'bumishness']
+
+customLabels =
+  'team': 'Zooniverse Team'
 
 class Roles
   @roles = { }
@@ -17,10 +20,13 @@ class Roles
         @roles[user.name] = ((if role of roleLabels then roleLabels[role] else role) for role in user.roles)
         @roles[user.name] = (role for role in @roles[user.name] when role isnt 'translator')
 
-      @roles[teamMember] = ['zooniverse-team'] for teamMember in zooTeam
+      @roles[teamMember] = ['team'] for teamMember in zooTeam
       callback?()
 
   @hasRole: (name, role) =>
     @roles[name]? and role in @roles[name]
+
+  @label: (role) =>
+    if customLabels[role] then customLabels[role] else role
 
 module.exports = Roles
