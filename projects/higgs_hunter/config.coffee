@@ -1,8 +1,8 @@
 socialDefaults =
   href: 'http://talk.higgshunters.org/'
   title: 'Higgs Hunters'
-  summary: 'Some summary line'
-  image: 'http://example.com/image.jpg'
+  summary: 'Uncover the building blocks of the universe'
+  image: 'http://static.zooniverse.org/www.higgshunters.org/atlas.jpg'
   twitterTags: 'via @higgs_hunter'
 
 app =
@@ -47,7 +47,7 @@ Config =
     classifyUrl: 'http://www.higgshunters.org/#/classify'
     socialDefaults: socialDefaults
     analytics:
-      account: 'UA-1234567-89'
+      account: 'UA-1224199-60'
       domain: 'http://talk.higgshunters.org'
     app: app
 
