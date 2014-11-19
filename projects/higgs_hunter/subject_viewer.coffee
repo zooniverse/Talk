@@ -5,6 +5,8 @@ $ = require 'jqueryify'
 names = ['first', 'second', 'third']
 
 class HiggsHunterSubjectViewer extends DefaultSubjectViewer
+  @imageIn: (location) -> location?.standard?[1]
+
   className: "#{ DefaultSubjectViewer::className } higgs-hunter-subject-viewer"
   template: require 'views/subjects/viewer'
 
@@ -20,7 +22,7 @@ class HiggsHunterSubjectViewer extends DefaultSubjectViewer
   constructor: ->
     super
 
-    @subjectImages.first().show()
+    @subjectImages.eq(1).show()
 
     @subjectImages.each (i) ->
       new ImageInspect @, {
