@@ -55,7 +55,7 @@ User.bind 'sign-in', ->
     roles = Roles.roles[User.current.name] or []
     User.current.roles = roles
     User.current[role] = true for role in roles
-    if User.current.moderator or User.current.admin
+    if User.current.moderator or User.current.admin or User.current.team
       $('html').addClass('privileged-user')
       User.current.isPrivileged = true
 

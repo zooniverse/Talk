@@ -5,7 +5,7 @@
 </div>
 
 <div class="controls">
-  <button class="action" data-target="0">First</button>
-  <button class="action" data-target="1">Second</button>
-  <button class="action" data-target="2">Third</button>
+  <button class="action" data-target="0">Slice</button>
+  <button class="action" data-target="1">Normal</button>
+  <button class="action" data-target="2">Zoom</button>
 </div>

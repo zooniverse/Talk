@@ -8,7 +8,10 @@ app/controllers/subject_viewer.coffee
 app/controllers/group_viewer.coffee
 css/project.styl
 public/index.html
+public/application.css
+public/application.js
 build/
 .ruby-version
 .env
 .bundle/
+.ruby-*

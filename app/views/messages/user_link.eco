@@ -1,5 +1,5 @@
 <% user = require('zooniverse/lib/models/user').current %>
-<% roles = require('models/roles').roles %>
+<% roles = require('models/roles').roles[@message.user.name] %>
 
 <a href="#/users/<%= @message.user.name %>" class="user">
   <% if @message.user.zooniverse_id: %>
@@ -9,8 +9,8 @@
   <% end %>
   
   <%= @message.user.name %>
-  <% userRoles = roles[@message.user.name] %>
-  <% if userRoles: %>
-    <span class="<%= userRoles.sort().join(' ') %> role"><%= userRoles.sort().join(', ') %></span>
+
+  <% if roles: %>
+    <span class="<%= roles.sort().join(' ') %> role"><%= roles.sort().join(', ') %></span>
   <% end %>
 </a>
