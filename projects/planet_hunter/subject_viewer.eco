@@ -22,7 +22,8 @@
     <p><b>Metadata</b></p>
     <p><span class='meta_key'>Type:</span> <span class='meta_val meta_type'></span></p>
     <p><span class='meta_key'>Mag:</span> <span class='meta_val meta_mag'></span></p>
-    <p><span class='meta_key'>Radius:</span> <span class='meta_val meta_radius'></span></p>
+    <p><span class='meta_key'>Temperature:</span> <span class='meta_val meta_temp'></span>K</p>
+    <p><span class='meta_key'>Radius:</span> <span class='meta_val meta_radius'></span>xSol</p>
     <p><span class='meta_key'>Kepler Id:</span> <span class='meta_val meta_kid'></span></p>
     <p><a class='sim-planet-period'></a></p>
   </div>
