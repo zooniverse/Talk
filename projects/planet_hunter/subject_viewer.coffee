@@ -23,7 +23,6 @@ class PlanetHunterSubjectViewer extends Controller
 
   constructor: ->
     super
-
     @quarterList = Object.keys(@subject.location).sort (a, b) ->
       aQuarter = a.split '-'
       bQuarter = b.split '-'
@@ -34,6 +33,9 @@ class PlanetHunterSubjectViewer extends Controller
       aQuarter[0] - bQuarter[0]
 
     params = location.hash.slice(1).split('?')
+
+    @isK2Subject = (@subject.group_id  == "547d05ce415ac13139000001")
+
 
     for param in params
       if param.match('quarter')
@@ -132,11 +134,30 @@ class PlanetHunterSubjectViewer extends Controller
 
     data_meta = data.metadata
 
-    $(".meta_type").html(meta.type || "Dwarf")
-    $(".meta_kid").html(meta.kepler_id || "unknown")
-    $(".meta_temp").html(meta.teff || "unknown")
-    $(".meta_mag").html(meta.magnitudes.kepler || "unknown")
-    $(".meta_radius").html(meta.radius || "unknown")
+    console.log "group id is #{@subject.group_id}"
+
+    if @isK2Subject
+      $(".meta_2mass_id").html(meta["sdss_id"] || "unknonw")
+      $(".meta_sdss_id").html(meta["2mass_id"] || "unknown")
+      $(".meta_mag").html(meta.magnitudes.kepler || "unknown")
+      $(".meta_hmag").html(meta.magnitudes.Hmag || "unknown")
+      $(".meta_jmag").html(meta.magnitudes.Jmag || "unknown")
+      $(".meta_kmag").html(meta.magnitudes.Kmag || "unknown")
+
+      $(".k1Metadata").hide()
+      $(".k2Metadata").show()
+      $(".links").hide()
+
+    else
+
+      $(".meta_type").html(meta.type || "Dwarf")
+      $(".meta_kid").html(meta.kepler_id || "unknown")
+      $(".meta_temp").html(meta.teff || "unknown")
+      $(".meta_mag").html(meta.magnitudes.kepler || "unknown")
+      $(".meta_radius").html(meta.radius || "unknown")
+      $(".k1Metadata").show()
+      $(".k2Metadata").hide()
+      $(".links").show()
 
     [ra, dec] = @subject.coords
 

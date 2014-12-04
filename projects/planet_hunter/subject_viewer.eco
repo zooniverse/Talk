@@ -1,3 +1,7 @@
+<% if @isK2Subject: %>
+  <h3 class='k2_label'>K2 Star</h3>
+<%end%>
+
 <div class="lightcurve-viewer">
   <canvas id="graph" width="1024" height="418"></canvas>
   <div id="zoom-notification"></div>
@@ -20,11 +24,21 @@
   </div>
   <div class="metadata">
     <p><b>Metadata</b></p>
-    <p><span class='meta_key'>Type:</span> <span class='meta_val meta_type'></span></p>
-    <p><span class='meta_key'>Mag:</span> <span class='meta_val meta_mag'></span></p>
-    <p><span class='meta_key'>Radius:</span> <span class='meta_val meta_radius'></span></p>
-    <p><span class='meta_key'>Kepler Id:</span> <span class='meta_val meta_kid'></span></p>
-    <p><a class='sim-planet-period'></a></p>
+    <div class='k1Metadata'>
+      <p><span class='meta_key'>Type:</span> <span class='meta_val meta_type'></span></p>
+      <p><span class='meta_key'>Mag:</span> <span class='meta_val meta_mag'></span></p>
+      <p><span class='meta_key'>Radius:</span> <span class='meta_val meta_radius'></span></p>
+      <p><span class='meta_key'>Kepler Id:</span> <span class='meta_val meta_kid'></span></p>
+      <p><a class='sim-planet-period'></a></p>
+    </div>
+    <div class='k2Metadata'>
+      <p><span class='meta_key'>2mass id:</span> <span class='meta_val meta_2mass_id'></span></p>
+      <p><span class='meta_key'>sdss  id:</span> <span class='meta_val meta_sdss_id'></span></p>
+      <p><span class='meta_key'>Mag:</span> <span class='meta_val meta_mag'></span></p>
+      <p><span class='meta_key'>Jmag:</span> <span class='meta_val meta_jmag'></span></p>
+      <p><span class='meta_key'>Hmag:</span> <span class='meta_val meta_hmag'></span></p>
+      <p><span class='meta_key'>Kmag:</span> <span class='meta_val meta_kmag'></span></p>
+    </div>
   </div>
   <div class='links'>
     <p><b>External Resources</b></p>
