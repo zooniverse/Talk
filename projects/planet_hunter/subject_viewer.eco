@@ -32,6 +32,8 @@
       <p><a class='sim-planet-period'></a></p>
     </div>
     <div class='k2Metadata'>
+
+      <p><span class='meta_key'>EPIC no:</span> <span class='meta_val epic'></span></p>
       <p><span class='meta_key'>2mass id:</span> <span class='meta_val meta_2mass_id'></span></p>
       <p><span class='meta_key'>sdss  id:</span> <span class='meta_val meta_sdss_id'></span></p>
       <p><span class='meta_key'>Mag:</span> <span class='meta_val meta_mag'></span></p>
