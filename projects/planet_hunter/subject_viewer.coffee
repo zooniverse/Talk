@@ -137,7 +137,9 @@ class PlanetHunterSubjectViewer extends Controller
     console.log "group id is #{@subject.group_id}"
 
     if @isK2Subject
-      $(".epic").html(@subject.location.split("/")[-1].split("-")[0] || "unknonw")
+      window.sub = @subject.location
+
+      $(".epic").html(@subject.location["0-1"].match(/[0-9]+/)[0] || "unknonw")
       $(".meta_2mass_id").html(meta["sdss_id"] || "unknonw")
       $(".meta_sdss_id").html(meta["2mass_id"] || "unknown")
       $(".meta_mag").html(meta.magnitudes.kepler || "unknown")
