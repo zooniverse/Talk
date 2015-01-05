@@ -3,6 +3,8 @@ $ = require 'jqueryify'
 NoUiSlider     = require 'lib/jquery.nouislider.min'
 CanvasGraph    = require 'lib/canvas-graph'
 
+K2_GROUP_ID = '547d05ce415ac13139000001'
+
 class PlanetHunterSubjectViewer extends Controller
   @imageIn: (location) -> "https://raw.githubusercontent.com/zooniverse/Brand/master/projects/planethunters.org/avatar.jpg"
   @subjectTitle: (subject) -> "Image #{ subject.zooniverse_id }"
@@ -34,8 +36,7 @@ class PlanetHunterSubjectViewer extends Controller
 
     params = location.hash.slice(1).split('?')
 
-    @isK2Subject = (@subject.group_id  == "547d05ce415ac13139000001")
-
+    @isK2Subject = (@subject.group_id is K2_GROUP_ID)
 
     for param in params
       if param.match('quarter')
@@ -131,10 +132,7 @@ class PlanetHunterSubjectViewer extends Controller
 
   setMetadata: (data) =>
     meta = @subject.metadata
-
     data_meta = data.metadata
-
-    console.log "group id is #{@subject.group_id}"
 
     if @isK2Subject
       window.sub = @subject.location
