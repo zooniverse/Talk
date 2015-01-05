@@ -38,15 +38,14 @@ class SunspotSubjectViewer extends DefaultSubjectViewer
     loadImage @subject.location.context, (@contextImage) =>
       @contextImage.className = 'context-image targets hoverable'
       @contextImage.style.display = 'none'
+      @contextImage = $(@contextImage)
+      @subjectImages.append @contextImage
 
-      new ImageInspect @contextImage, {
-        attachPoint: 'left top img.main 1.05 0'
+      new ImageInspect @contextImage.get(0), {
+        attachPoint: 'left top img.context-image 1.05 0'
         width: 450
         height: 450 
       }
-
-      @contextImage = $(@contextImage)
-      @subjectImages.append @contextImage
 
   onClickAction: (e) =>
     view = @el.get 0
