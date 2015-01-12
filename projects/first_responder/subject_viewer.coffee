@@ -6,9 +6,6 @@ class FirstResponderSubjectViewer extends DefaultSubjectViewer
   className: "#{ DefaultSubjectViewer::className } first-responder-subject-viewer"
   template: require 'views/subjects/viewer'
 
-  viewing: false
-  images: []
-
   elements:
     '.subject-images img': 'subjectImages'
 
