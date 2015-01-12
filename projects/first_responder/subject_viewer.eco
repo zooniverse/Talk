@@ -1,1 +1,9 @@
-<img src="<%= @subject.location.standard %>" class="main" />
+<div class="subject-images">
+  <img src="<%- @subject.location.standard %>" data-target="0">
+  <img src="<%- @subject.location.before %>" data-target="1">
+</div>
+
+<div class="controls">
+  <button class="action" data-target="0">After</button>
+  <button class="action" data-target="1">Before</button>
+</div>

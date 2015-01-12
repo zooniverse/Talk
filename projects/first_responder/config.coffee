@@ -51,13 +51,13 @@ Config =
       domain: 'http://talk.planetaryresponsenetwork.com'
     app: app
 
-env = if window.jasmine
-  'test'
-else if window.location.port is '9295'
-  'developmentLocal'
-else if window.location.port > 1024 
-  'developmentRemote'
-else
-  'production'
+# env = if window.jasmine
+#   'test'
+# else if window.location.port is '9295'
+#   'developmentLocal'
+# else if window.location.port > 1024 
+#   'developmentRemote'
+# else
+#   'production'
 
-module.exports = Config[env]
+module.exports = Config['developmentRemote']
