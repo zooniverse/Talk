@@ -13,11 +13,25 @@
       <li><strong>RA:</strong> <%= @subject.coords[0].toFixed(3) %></li>
       <li><strong>Dec:</strong> <%= @subject.coords[1].toFixed(3) %></li>
     </ul>
+    <ul class="other-metadata">
+      <% if @subject.metadata.bmaj: %>
+        <li><strong>Bmaj:</strong> <%= @subject.metadata.bmaj %></li>
+      <% end %>
+
+      <% if @subject.metadata.bmin: %>
+        <li><strong>Bmin:</strong> <%= @subject.metadata.bmin %></li>
+      <% end %>
+
+      <% if @subject.metadata.bpa: %>
+        <li><strong>BPA:</strong> <%= @subject.metadata.bpa %></li>
+      <% end %>
+    </ul>
     <ul class="ext-links">
       <li><a href="<%= @linkToFIRST() %>" target="_blank">FIRST</a></li>
       <li><a href="<%= @linkToNVSS() %>" target="_blank">NVSS</a></li>
       <li><a href="<%= @linkToSDSS() %>" target="_blank">SDSS</a></li>
       <li><a href="<%= @linkToWISE() %>" target="_blank">WISE</a></li>
     </ul>
+
   </div>
 </div>
