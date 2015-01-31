@@ -1,8 +1,29 @@
 <img src="<%= @subject.location.standard %>" class="main" />
 
-<% if @subject.metadata: %>
   <div class="subject-metadata">
-    <% link = @subject.metadata.link.match(/(\w+)_RGB\.NOMAP\.JP2/i)[1] %>
-    <a href="http://hirise.lpl.arizona.edu/<%= link %>" target="_blank">View HIRISE image</a>
+    <% if @subject.metadata?.link?: %>
+      <% link = @subject.metadata.link.match(/(\w+)_RGB\.NOMAP\.JP2/i)[1] %>
+      <div class="metadatum"><a href="http://hirise.lpl.arizona.edu/<%= link %>" target="_blank">View HIRISE image</a></div>
+    <% end %>
+
+    <% if @subject.metadata?.north_azimuth?: %>
+      <div class="metadatum">
+        <label>North Azimuth</label> <%= @subject.metadata.north_azimuth %>
+      </div>
+    <% end %>
+    <% if @subject.metadata?.sub_solar_azimuth?: %>
+      <div class="metadatum">
+        <label>Sub Solar Azimuth</label> <%= @subject.metadata.sub_solar_azimuth %>
+      </div>
+    <% end %>
+    <% if @subject.metadata?.phase_angle?: %>
+      <div class="metadatum">
+        <label>Phase Angle</label> <%= @subject.metadata.phase_angle %>
+      </div>
+    <% end %>
+    <% if @subject.metadata?.emission_angle?: %>
+      <div class="metadatum">
+        <label>Emission Angle</label> <%= @subject.metadata.emission_angle %>
+      </div>
+    <% end %>
   </div>
-<% end %>

@@ -2,8 +2,15 @@
   
   .subject-metadata
     text-align: right
-    padding-bottom: 5px
-    
-    a
-      color: $gray
-      font-size: 11px
+
+    label
+      float: left
+      font-weight: 700
+
+    .metadatum
+      box-sizing: border-box
+      clearfix()
+      padding: 3px 10px
+
+      &:nth-child(2n)
+        background: #fafafa
