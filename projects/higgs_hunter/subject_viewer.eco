@@ -8,4 +8,9 @@
   <button class="action" data-target="0">Slice</button>
   <button class="action" data-target="1">Normal</button>
   <button class="action" data-target="2">Zoom</button>
+  <label>
+    <% if @subject.metadata?.data_type is 'sim': %>
+      Simulation
+    <% end %>
+  </label>
 </div>
