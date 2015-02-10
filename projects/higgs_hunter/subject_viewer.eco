@@ -8,7 +8,7 @@
   <button class="action" data-target="0">Slice</button>
   <button class="action" data-target="1">Normal</button>
   <button class="action" data-target="2">Zoom</button>
-  <% if @subject.metadata?.data_type is 'sim': %>
+  <% if @subject.metadata?.image_metadata?[0]?.group in @simulationGroups: %>
     <label>Simulation</label>
   <% end %>
 </div>

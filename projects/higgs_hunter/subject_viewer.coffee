@@ -13,6 +13,19 @@ class HiggsHunterSubjectViewer extends DefaultSubjectViewer
   viewing: false
   images: []
 
+  simulationGroups: [
+    'hZ_dvdv_8GeV_tautau_1mm'
+    'hZ_dvdv_8GeV_tautau_10mm'
+    'hZ_dvdv_8GeV_tautau_100mm'
+    'hZ_dvdv_20GeV_bb_1mm'
+    'hZ_dvdv_20GeV_bb_10mm'
+    'hZ_dvdv_20GeV_bb_100mm'
+    'hZ_dvdv_50GeV_bb_1mm'
+    'hZ_dvdv_50GeV_bb_10mm'
+    'hZ_dvdv_50GeV_bb_100mm'
+    'simulated_data'
+  ]
+
   elements:
     '.subject-images img': 'subjectImages'
 
