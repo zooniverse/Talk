@@ -5,7 +5,7 @@ Api = require 'zooniverse/lib/api'
 roleLabels = config?.app?.roleLabels || {}
 
 # Hard-coded role for Darren. Remove when team role exists on API
-zooTeam = ['DZM', 'bumishness', 'ttfnrob', 'mrniaboc']
+zooTeam = ['DZM', 'bumishness', 'ttfnrob', 'mrniaboc', 'VVH']
 
 customLabels =
   'team': 'Zooniverse Team'
