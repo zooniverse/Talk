@@ -1,1 +1,2 @@
 <img src="<%= @subject.location.standard %>" class="main" />
+<p><a href="http://biodiversitylibrary.org/page/#{@subject.metadata.page_id}">Read this journal in the Biodiversity Heritage Library</a></p>

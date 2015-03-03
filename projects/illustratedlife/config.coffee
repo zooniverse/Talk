@@ -1,9 +1,9 @@
 socialDefaults =
   href: 'http://talk.sciencegossip.org/'
   title: 'Science Gossip'
-  summary: 'Some summary line'
-  image: 'http://example.com/image.jpg'
-  twitterTags: 'via @sciencegossip'
+  summary: 'Uncover the history of citizen science in Victorian scientific journals'
+  image: 'https://pbs.twimg.com/profile_images/1542638971/BHL_Small_Logo_400x400.jpg'
+  twitterTags: 'via @BioDivLibrary'
 
 app =
   categoryLabels:
@@ -52,7 +52,7 @@ Config =
     classifyUrl: 'http://www.sciencegossip.org/#/classify'
     socialDefaults: socialDefaults
     analytics:
-      account: 'UA-'
+      account: 'UA-1224199-17'
       domain: 'http://talk.sciencegossip.org'
     app: app
 
