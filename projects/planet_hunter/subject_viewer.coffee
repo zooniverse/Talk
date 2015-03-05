@@ -62,8 +62,8 @@ class PlanetHunterSubjectViewer extends Controller
 
     $("[data-quarter=\"#{ @selectedQuarter }\"]").addClass 'active'
     dataFileLocation = @subject.location[@selectedQuarter]
-
-    dataFileLocation = dataFileLocation.replace("http://www.planethunters.org/", "https://s3.amazonaws.com/zooniverse-static/planethunters.org/")
+    unless @subject.metadata["kepler_2_campaign_no"] = "C01"
+      dataFileLocation = dataFileLocation.replace("http://www.planethunters.org/", "https://s3.amazonaws.com/zooniverse-static/planethunters.org/")
 
     $.getJSON "#{dataFileLocation}", (data) =>
       spinner.stop()
