@@ -3,7 +3,7 @@ $ = require 'jqueryify'
 NoUiSlider     = require 'lib/jquery.nouislider.min'
 CanvasGraph    = require 'lib/canvas-graph'
 
-K2_GROUP_ID = '547d05ce415ac13139000001'
+K2_GROUP_IDS = ['547d05ce415ac13139000001', "54f4c5ab8f165b6e85000001"]
 
 class PlanetHunterSubjectViewer extends Controller
   @imageIn: (location) -> "https://raw.githubusercontent.com/zooniverse/Brand/master/projects/planethunters.org/avatar.jpg"
@@ -36,7 +36,7 @@ class PlanetHunterSubjectViewer extends Controller
 
     params = location.hash.slice(1).split('?')
 
-    @isK2Subject = (@subject.group_id is K2_GROUP_ID)
+    @isK2Subject = (K2_GROUP_IDS.indexOf(@subject.group_id ) != -1)
 
     for param in params
       if param.match('quarter')
