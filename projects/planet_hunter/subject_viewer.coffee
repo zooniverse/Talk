@@ -137,7 +137,11 @@ class PlanetHunterSubjectViewer extends Controller
     if @isK2Subject
       window.sub = @subject.location
 
-      $(".epic").html(@subject.location["0-1"].match(/[0-9]+/)[0] || "unknonw")
+      if @subject.location["0-1"]
+        $(".epic").html(@subject.location["0-1"].match(/[0-9]+/)[0] || "unknonw")
+      else
+        $(".epic").html(@subject.location["1-1"].match(/[0-9]+/)[0] || "unknonw")
+        
       $(".meta_2mass_id").html(meta["sdss_id"] || "unknonw")
       $(".meta_sdss_id").html(meta["2mass_id"] || "unknown")
       $(".meta_mag").html(meta.magnitudes.kepler || "unknown")
