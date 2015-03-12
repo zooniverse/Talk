@@ -3,7 +3,7 @@ $ = require 'jqueryify'
 NoUiSlider     = require 'lib/jquery.nouislider.min'
 CanvasGraph    = require 'lib/canvas-graph'
 
-K2_GROUP_IDS = ['547d05ce415ac13139000001', "54f4c5ab8f165b6e85000001"]
+K2_GROUP_IDS = ['547d05ce415ac13139000001','54f4c5ab8f165b6e85000001']
 
 class PlanetHunterSubjectViewer extends Controller
   @imageIn: (location) -> "https://raw.githubusercontent.com/zooniverse/Brand/master/projects/planethunters.org/avatar.jpg"
@@ -36,7 +36,7 @@ class PlanetHunterSubjectViewer extends Controller
 
     params = location.hash.slice(1).split('?')
 
-    @isK2Subject = (K2_GROUP_IDS.indexOf(@subject.group_id ) != -1)
+    @isK2Subject = (K2_GROUP_IDS.indexOf(@subject.group_id) > -1)
 
     for param in params
       if param.match('quarter')
@@ -62,7 +62,9 @@ class PlanetHunterSubjectViewer extends Controller
 
     $("[data-quarter=\"#{ @selectedQuarter }\"]").addClass 'active'
     dataFileLocation = @subject.location[@selectedQuarter]
-    unless @subject.metadata["kepler_2_campaign_no"] = "C01"
+
+
+    if @subject.metadata.kepler_2_campaign_no != 'C01'
       dataFileLocation = dataFileLocation.replace("http://www.planethunters.org/", "https://s3.amazonaws.com/zooniverse-static/planethunters.org/")
 
     $.getJSON "#{dataFileLocation}", (data) =>
@@ -137,13 +139,9 @@ class PlanetHunterSubjectViewer extends Controller
     if @isK2Subject
       window.sub = @subject.location
 
-      if @subject.location["0-1"]
-        $(".epic").html(@subject.location["0-1"].match(/[0-9]+/)[0] || "unknonw")
-      else
-        $(".epic").html(@subject.location["1-1"].match(/[0-9]+/)[0] || "unknonw")
-        
-      $(".meta_2mass_id").html(meta["sdss_id"] || "unknonw")
-      $(".meta_sdss_id").html(meta["2mass_id"] || "unknown")
+      $(".epic").html(meta["kepler_id"] || "unknonw")
+      $(".meta_2mass_id").html(meta["2mass_id"] || "unknonw")
+      $(".meta_sdss_id").html(meta["sdss_id"] || "unknown")
       $(".meta_mag").html(meta.magnitudes.kepler || "unknown")
       $(".meta_hmag").html(meta.magnitudes.Hmag || "unknown")
       $(".meta_jmag").html(meta.magnitudes.Jmag || "unknown")
