@@ -1,0 +1,3 @@
+<div class="preview">
+  <a><img src="<%= @discussion.focus.location.thumb %>" class="thin-frame preview"></a>
+</div>
