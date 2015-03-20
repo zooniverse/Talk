@@ -1,3 +1,8 @@
+<% SubjectViewer = require('controllers/subject_viewer') %>
+<% uniqueId = SubjectViewer.uniqueId() %>
+
 <div class="preview">
-  <a><img src="<%= @discussion.focus.location.thumb %>" class="thin-frame preview"></a>
+  <a><img data-refresh-key="<%= uniqueId %>" class="thin-frame preview"></a>
 </div>
+
+<% SubjectViewer.imageIn(@discussion.focus.location, @discussion.focus).then(SubjectViewer.afterSubjectFetch.bind(SubjectViewer, uniqueId)) %>

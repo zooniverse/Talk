@@ -2,6 +2,8 @@
 
 class DefaultSubjectViewer extends Controller
   @imageIn: (location) -> location?.standard
+  @afterSubjectFetch: ->
+  @uniqueId: ->
   @subjectTitle: (subject) -> "Image #{ subject.zooniverse_id }"
   
   subject: null
