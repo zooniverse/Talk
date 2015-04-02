@@ -1,0 +1,8 @@
+<% poster = @subject.location.previews?[0]?[0] || '' %>
+
+<video id="chimp-video" class="video-js vjs-default-skin"
+  controls preload="auto" width="100%" height="393"
+  poster="<%= poster %>">
+ <source src="<%= @subject.location.standard.mp4 %>" type='video/mp4' />
+  <source src="<%= @subject.location.standard.webm %>" type='video/webm' />
+</video>
