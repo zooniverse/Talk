@@ -647,11 +647,18 @@ else
                         \6          // matching quote
                         [ \t]*
                     )?              // title is optional
+                    (               // $8
+                        \s*         // optional spaces
+                        =
+                        (\d+)       // width = $9
+                        x
+                        (\d+)?      // height = $10 (optional)
+                    )?              // size is optional
                     \)
                 )
             /g, writeImageTag);
             */
-            text = text.replace(/(!\[(.*?)\]\s?\([ \t]*()<?(\S+?)>?[ \t]*((['"])(.*?)\6[ \t]*)?\))/g, writeImageTag);
+            text = text.replace(/(!\[(.*?)\]\s?\([ \t]*()<?(\S+?)>?[ \t]*((['"])(.*?)\6[ \t]*)?(\s*=(\d+)x(\d+)?)?\))/g, writeImageTag);
 
             return text;
         }
@@ -662,12 +669,14 @@ else
             return text.replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
         }
 
-        function writeImageTag(wholeMatch, m1, m2, m3, m4, m5, m6, m7) {
+        function writeImageTag(wholeMatch, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10) {
             var whole_match = m1;
             var alt_text = m2;
             var link_id = m3.toLowerCase();
             var url = m4;
             var title = m7;
+            var width = m9;
+            var height = m10;
 
             if (!title) title = "";
 
@@ -701,6 +710,14 @@ else
             title = escapeCharacters(title, "*_");
             result += " title=\"" + title + "\"";
             //}
+
+            if (width) {
+              result += " width=\"" + width + "\"";
+            }
+
+            if (height) {
+              result += " height=\"" + height + "\"";
+            }
 
             result += " />";
 
