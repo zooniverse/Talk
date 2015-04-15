@@ -2,6 +2,8 @@ DefaultSubjectViewer = require 'controllers/default_subject_viewer'
 $ = require 'jqueryify'
 
 class ChimpSubjectViewer extends DefaultSubjectViewer
+  @imageIn: (location) -> location?.previews?[0]?[0] || 'http://placehold.it/300&text=video'
+
   className: "#{ DefaultSubjectViewer::className } chimp-subject-viewer"
   template: require 'views/subjects/viewer'
 
@@ -9,6 +11,6 @@ class ChimpSubjectViewer extends DefaultSubjectViewer
     super
     
     videoObj.dispose() for id, videoObj of videojs.players
-    videojs "worms-video"
+    videojs "chimp-video"
 
 module.exports = ChimpSubjectViewer

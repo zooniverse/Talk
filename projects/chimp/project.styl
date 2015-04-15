@@ -6,3 +6,35 @@
 
     .vjs-mute-control, .vjs-volume-control
       display: none
+
+  .metadata
+    margin: 10px 0 0 0
+
+    .header
+      border-bottom: 1px solid #bbb
+      font-size: 18px
+
+    ul
+      list-style: none
+      margin: 0
+      padding: 0
+
+      li
+        padding: 5px
+        text-align: right
+
+        label
+          float: left
+          font-weight: 700
+          min-width: 75px
+          text-align: left
+
+        &:nth-child(2n)
+          background-color: #eee
+
+        &:nth-child(2n + 1)
+          background-color: #f6f6f6
+
+        .fine-print
+          color: #888
+

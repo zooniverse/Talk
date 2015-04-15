@@ -6,3 +6,12 @@
  <source src="<%= @subject.location.standard.mp4 %>" type='video/mp4' />
   <source src="<%= @subject.location.standard.webm %>" type='video/webm' />
 </video>
+
+<div class="metadata">
+  <div class="header">Video Info</div>
+  <ul>
+    <% if @subject.group.name?: %>
+      <li><label>Group:</label> <%- @subject.group.name %></li>
+    <% end %>
+  </ul>
+</div>
