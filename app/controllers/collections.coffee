@@ -91,7 +91,7 @@ class New extends Page
 
     if params.subjectId
       @type = 'SubjectSet'
-    else if params.keywords
+    else if params.hasOwnProperty('keywords')
       @type = 'KeywordSet'
 
     super

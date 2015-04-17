@@ -1,4 +1,8 @@
-<form class="new-collection">
+<form class="hide-with-user">
+  <h3>Please log in first</h3>
+</form>
+
+<form class="new-collection hide-without-user">
   <% if @type is 'SubjectSet': %>
     <input type="hidden" name="subject_id" value="<%= @subjectId %>">
   <% end %>
