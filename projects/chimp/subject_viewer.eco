@@ -13,5 +13,13 @@
     <% if @subject.group.name?: %>
       <li><label>Group:</label> <%- @subject.group.name %></li>
     <% end %>
+
+    <li>
+      <label>Preview <%- i %>: </label>
+
+      <% for i in [0..15]: %>
+        <a href="http://www.chimpandsee.org/subjects/<%- @subject.id %>/previews/<%- @subject.id %>_<%- i %>.jpg" target="_blank"><%- i %></a>
+      <% end %>
+    </li>
   </ul>
 </div>
