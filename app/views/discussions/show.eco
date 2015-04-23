@@ -54,7 +54,9 @@
           <%- require('views/discussions/comments') @ %>
           
           <div class="new-post<%= ' locked' if @locked %>">
-            <%- require('views/discussions/comment_form') @ %>
+            <div class="<%- 'hide-without-user' if @locked %>">
+              <%- require('views/discussions/comment_form') @ %>
+            </div>
             <div class="lock">
               <p>This discussion has been locked by a moderator.</p>
               <p>Comments may not be added, updated, or removed.</p>
