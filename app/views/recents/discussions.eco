@@ -14,29 +14,33 @@
       
       <% discussionUrl = "#{ discussionUrl }?page=#{ Math.ceil(discussion.comments / 10.0) }&comment_id=#{ discussion.comment._id }" %>
       
-      <div class="discussion-summary" data-link="<%= discussionUrl %>">
-        <div class="category">
-          <%= capitalize discussion.board.category %>
-        </div>
+      <div class="discussion-summary">
+        <a href="<%= discussionUrl %>">
+          <div class="category">
+            <%= capitalize discussion.board.category %>
+          </div>
+        </a>
         
         <div class="info">
-          <div class="title">
-            <% if discussion.board: %>
-              <a><%= truncate(discussion.title or 'Untitled discussion', 100) %></a>
-            <% else if discussion.focus: %>
-              <a><%= truncate(discussion.title or "Discussion for #{ discussion.focus._id }", 100) %></a>
-            <% end %>
-          </div>
-          
-          <div class="board-info">
-            <% if typeof(discussion.board) is 'object': %>
-              Posted in <%= discussion.board.name %>
-            <% else if typeof(discussion.board) is 'string': %>
-              Posted in <%= discussion.board %>
-            <% else if discussion.focus: %>
-              <%= singularize capitalize focusCollectionFor discussion.focus.type %>
-            <% end %>
-          </div>
+          <a href="<%= discussionUrl %>">
+            <div class="title">
+              <% if discussion.board: %>
+                <%= truncate(discussion.title or 'Untitled discussion', 100) %>
+              <% else if discussion.focus: %>
+                <%= truncate(discussion.title or "Discussion for #{ discussion.focus._id }", 100) %>
+              <% end %>
+            </div>
+            
+            <div class="board-info">
+              <% if typeof(discussion.board) is 'object': %>
+                Posted in <%= discussion.board.name %>
+              <% else if typeof(discussion.board) is 'string': %>
+                Posted in <%= discussion.board %>
+              <% else if discussion.focus: %>
+                <%= singularize capitalize focusCollectionFor discussion.focus.type %>
+              <% end %>
+            </div>
+          </a>
           
           <div class="comment">
             <div class="content">

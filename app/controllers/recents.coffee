@@ -17,7 +17,6 @@ class Index extends Page
   
   events: $.extend
     'click button[name="load-more"]': 'loadMore'
-    'click [data-link]': 'navTo'
     Page::events
   
   constructor: ->
@@ -62,11 +61,6 @@ class Index extends Page
         
         @render()
         callback @data
-  
-  navTo: (ev) =>
-    ev.preventDefault()
-    discussion = $(ev.target).closest '[data-link]'
-    @navigate discussion.data('link')
   
   # TO-DO: refactor this
   loadMore: (ev) =>

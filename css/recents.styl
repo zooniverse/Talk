@@ -1,12 +1,4 @@
 .recents.page
-  hovered()
-    cursor: pointer
-    vendor('transition-property', 'background-color')
-    vendor('transition-duration', 200ms)
-    
-    &:hover
-      background-color: #E0E0E0
-  
   .column > section + hr
     margin-bottom: 40px
   
@@ -34,7 +26,6 @@
     letter-spacing: -1
     
     .subject-summary
-      hovered()
       padding: 10px 20px
       letter-spacing: normal
       vertical-align: top
@@ -51,7 +42,6 @@
         max-width: 200px
   
   .board.discussions .discussion-summary
-    hovered()
     padding: 0 0 10px 10px
     
     .comment, .title
@@ -59,17 +49,19 @@
       overflow: hidden
       white-space: nowrap
       text-overflow: ellipsis
+    
+    .title
+      font-weight: bold
   
   .collections .list, .groups .list
     .collection, .group
-      hovered()
       box-sizing: border-box
       display: inline-block
       padding: 10px 20px
       width: 49%
       vertical-align: top
       
-      .title a
+      .title
         font-weight: bold
         color: inherit
       

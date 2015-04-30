@@ -5,7 +5,7 @@
 <div class="subject-summaries">
   <% for page, discussions of @subjects: %>
     <% for discussion in discussions: %>
-      <div class="subject-summary" data-link="#/subjects/<%= discussion.focus._id %>">
+      <div class="subject-summary">
         <%- require('views/subjects/preview')(discussion: discussion) %>
         <div class="summary">
           <div class="title">

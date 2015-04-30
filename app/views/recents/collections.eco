@@ -3,19 +3,21 @@
 
 <% for page, discussions of @collections: %>
   <% for discussion in discussions: %>
-    <div class="collection" data-link="#/collections/<%= discussion.focus._id %>">
-      <div class="title">
-        <a><%= discussion.focus.name or 'Untitled Collection' %></a>
-      </div>
-      
-      <div class="subjects">
-        <% subjects = discussion.focus.subjects or [] %>
-        <% for subject in subjects: %>
-          <div class="subject">
-            <img src="<%= require('controllers/subject_viewer').imageIn(subject?.location) %>" class="thin-frame" />
-          </div>
-        <% end %>
-      </div>
+    <div class="collection">
+      <a href="#/collections/<%= discussion.focus._id %>">
+        <div class="title">
+          <%= discussion.focus.name or 'Untitled Collection' %>
+        </div>
+        
+        <div class="subjects">
+          <% subjects = discussion.focus.subjects or [] %>
+          <% for subject in subjects: %>
+            <div class="subject">
+              <img src="<%= require('controllers/subject_viewer').imageIn(subject?.location) %>" class="thin-frame" />
+            </div>
+          <% end %>
+        </div>
+      </a>
       
       <div class="comment">
         <div class="content">

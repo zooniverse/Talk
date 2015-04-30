@@ -4,19 +4,21 @@
 
 <% for page, discussions of @groups: %>
   <% for discussion in discussions: %>
-    <div class="group" data-link="#/groups/<%= discussion.focus._id %>">
-      <div class="title">
-        <a><%= discussion.focus.search_name or discussion.focus.name %></a>
-      </div>
-      
-      <div class="subjects">
-        <% subjects = discussion.focus.subjects or [] %>
-        <% for subject in subjects: %>
-          <div class="subject">
-            <img src="<%= subjectViewer.imageIn(subject?.location) %>" class="thin-frame" />
-          </div>
-        <% end %>
-      </div>
+    <div class="group">
+      <a href="#/groups/<%= discussion.focus._id %>">
+        <div class="title">
+          <%= discussion.focus.search_name or discussion.focus.name %>
+        </div>
+        
+        <div class="subjects">
+          <% subjects = discussion.focus.subjects or [] %>
+          <% for subject in subjects: %>
+            <div class="subject">
+              <img src="<%= subjectViewer.imageIn(subject?.location) %>" class="thin-frame" />
+            </div>
+          <% end %>
+        </div>
+      </a>
       
       <div class="comment">
         <div class="content">
