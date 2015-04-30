@@ -1,1 +1,7 @@
-<img src="<%= @subject.location.standard %>" class="main" />
+<% if Array.isArray @subject.location.standard: %>
+  <% for image in @subject.location.standard: %>
+    <img src="<%= image %>" class="main">
+  <% end %>
+<% else: %>
+  <img src="<%= @subject.location.standard %>" class="main" />
+<% end %>

@@ -3,6 +3,12 @@ template = require 'views/subjects/viewer'
 $ = require 'jqueryify'
 
 class OrchidSubjectViewer extends DefaultSubjectViewer
+  @imageIn: (location) -> 
+    if Array.isArray location.standard
+      return location.standard[0]
+    else
+      return location.standard
+  
   className: "#{ DefaultSubjectViewer::className } orchid-subject-viewer"
   template: template
 
