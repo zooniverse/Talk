@@ -12,7 +12,7 @@
         <% discussionUrl = "/#{ focusCollectionFor(discussion.focus.type) }/#{ discussion.focus._id }" %>
       <% end %>
       
-      <% discussionUrl = "#{ discussionUrl }?page=#{ Math.ceil(discussion.comments / 10.0) }&comment_id=#{ discussion.comment._id }" %>
+      <% discussionUrl = "#/#{ discussionUrl }?page=#{ Math.ceil(discussion.comments / 10.0) }&comment_id=#{ discussion.comment._id }" %>
       
       <div class="discussion-summary">
         <a href="<%= discussionUrl %>">
