@@ -1,3 +1,5 @@
 <div class="preview">
-  <%- @discussion.focus.name %>
+  <a href="#/subjects/<%= @discussion.focus._id %>">
+    <%- @discussion.focus.name %>
+  </a>
 </div>

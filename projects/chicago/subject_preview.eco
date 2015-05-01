@@ -2,7 +2,9 @@
 <% uniqueId = SubjectViewer.uniqueId() %>
 
 <div class="preview">
-  <a><img data-refresh-key="<%= uniqueId %>" class="thin-frame preview"></a>
+  <a href="#/subjects/<%= @discussion.focus._id %>">
+    <img data-refresh-key="<%= uniqueId %>" class="thin-frame preview">
+  </a>
 </div>
 
 <% SubjectViewer.imageIn(@discussion.focus.location, @discussion.focus).then(SubjectViewer.afterSubjectFetch.bind(SubjectViewer, uniqueId)) %>
