@@ -16,6 +16,7 @@ Config =
     apiHost: null
     classifyUrl: null
     socialDefaults: socialDefaults
+    subjectViewerDiscuss: true
     analytics: { }
     app: app
   
@@ -26,6 +27,7 @@ Config =
     apiHost: 'http://localhost:3000'
     classifyUrl: 'http://localhost:9294/#/classify'
     socialDefaults: socialDefaults
+    subjectViewerDiscuss: true
     analytics: { }
     app: app
   
@@ -36,6 +38,7 @@ Config =
     apiHost: 'https://dev.zooniverse.org'
     classifyUrl: 'http://www.penguinwatch.org/beta/#/classify'
     socialDefaults: socialDefaults
+    subjectViewerDiscuss: true
     analytics: { }
     app: app
   
@@ -46,6 +49,7 @@ Config =
     apiHost: 'https://api.zooniverse.org'
     classifyUrl: 'http://www.penguinwatch.org/#/classify'
     socialDefaults: socialDefaults
+    subjectViewerDiscuss: true
     analytics:
       account: 'UA-1224199-57'
       domain: 'http://talk.penguinwatch.org'
