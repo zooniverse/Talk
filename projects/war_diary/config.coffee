@@ -21,6 +21,7 @@ Config =
     apiHost: null
     classifyUrl: null
     socialDefaults: socialDefaults
+    subjectViewerDiscuss: true
     analytics: { }
     app: app
   
@@ -31,6 +32,7 @@ Config =
     apiHost: 'http://localhost:3000'
     classifyUrl: 'http://localhost:9294/#/classify'
     socialDefaults: socialDefaults
+    subjectViewerDiscuss: true
     analytics: { }
     app: app
   
@@ -41,6 +43,7 @@ Config =
     apiHost: 'https://dev.zooniverse.org'
     classifyUrl: 'http://zooniverse-demo.s3-website-us-east-1.amazonaws.com/war_diary/#/classify'
     socialDefaults: socialDefaults
+    subjectViewerDiscuss: true
     analytics: { }
     app: app
   
@@ -51,6 +54,7 @@ Config =
     apiHost: 'https://api.zooniverse.org'
     classifyUrl: 'http://www.operationwardiary.org/#/classify'
     socialDefaults: socialDefaults
+    subjectViewerDiscuss: true
     analytics:
       account: 'UA-1224199-51'
       domain: 'http://talk.operationwardiary.org'
