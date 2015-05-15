@@ -1,1 +1,26 @@
 <img src="<%= @subject.location.standard %>" class="main" />
+
+<div class="metadata">
+  <div class="header">Image Info</div>
+  <ul>
+    <% if @subject.group.name?: %>
+      <li><label>Group:</label> <%- @subject.group.name %></li>
+    <% end %>
+
+    <% if @subject.metadata.depth?: %>
+      <li><label>Depth (m):</label> <%- @subject.metadata.depth %></li>
+    <% end %>
+
+    <% if @subject.metadata.temp?: %>
+      <li><label>Temperature (C):</label> <%- @subject.metadata.temp %></li>
+    <% end %>
+
+    <% if @subject.metadata.salinity?: %>
+      <li><label>Salinity (PPT):</label> <%- @subject.metadata.salinity %></li>
+    <% end %>
+
+    <% if @subject.metadata.oxygen?: %>
+      <li><label>Oxygen (ml):</label> <%- @subject.metadata.oxygen %></li>
+    <% end %>
+  </ul>
+</div>
