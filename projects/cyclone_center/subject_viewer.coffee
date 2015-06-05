@@ -13,6 +13,16 @@ class CycloneCenterSubjectViewer extends DefaultSubjectViewer
     """
   
   @imageIn: (location) ->
+    params = window.location.search.slice 1, window.location.search.length
+    paramPairs = params.split('&').map((pair) -> pair.split '=')
+
+    selectedSatellite = null
+
+    for pair in paramPairs
+      if pair[0] == 'satellite'
+        selectedSatellite = pair[1]
+        return location[selectedSatellite] if selectedSatellite of location
+
     for key, url of location
       return url unless key.match(/yesterday$/)
 
