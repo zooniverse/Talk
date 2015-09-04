@@ -64,7 +64,7 @@ class PlanetHunterSubjectViewer extends Controller
     dataFileLocation = @subject.location[@selectedQuarter]
 
 
-    if @subject.metadata.kepler_2_campaign_no != 'C01'
+    if @subject.metadata.kepler_2_campaign_no == null
       dataFileLocation = dataFileLocation.replace("http://www.planethunters.org/", "https://s3.amazonaws.com/zooniverse-static/planethunters.org/")
 
     $.getJSON "#{dataFileLocation}", (data) =>
