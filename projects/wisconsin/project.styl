@@ -1,0 +1,65 @@
+.wisconsin-subject-viewer {
+  .subject-images img {
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+
+    &.active {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  .subject-controls {
+    display: inline-block;
+
+    .series {
+      button {
+        width: 60px;
+
+        &[name="pause"] {
+          display: none;
+        }
+      }
+    }
+
+    button {
+      @extends #standard-button;
+
+      &.active {
+        @extends #standard-button:active;
+      }
+    }
+  }
+
+  .subject-metadata {
+    float: right;
+    position: relative;
+    top: 8px;
+    color: $gray;
+    font-size: 11px;
+  }
+
+  &.playing .subject-controls button{
+    &[name="play"] {
+      display: none;
+    }
+
+    &[name="pause"] {
+      display: inline-block;
+    }
+  }
+}
+
+.collection-summaries .collection-summary {
+  .subjects .subject img {
+    height: 39px;
+  }
+}
+
+.my_collections .collection-summaries .collection-summary {
+  .subjects .subject img {
+    height: 109px;
+  }
+}
