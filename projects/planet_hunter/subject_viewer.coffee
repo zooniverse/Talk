@@ -3,7 +3,7 @@ $ = require 'jqueryify'
 NoUiSlider     = require 'lib/jquery.nouislider.min'
 CanvasGraph    = require 'lib/canvas-graph'
 
-K2_GROUP_IDS = ['547d05ce415ac13139000001','54f4c5ab8f165b6e85000001']
+K2_GROUP_IDS = ['547d05ce415ac13139000001','54f4c5ab8f165b6e85000001','55db0eca05cd210084000001']
 
 class PlanetHunterSubjectViewer extends Controller
   @imageIn: (location) -> "https://raw.githubusercontent.com/zooniverse/Brand/master/projects/planethunters.org/avatar.jpg"
@@ -64,7 +64,7 @@ class PlanetHunterSubjectViewer extends Controller
     dataFileLocation = @subject.location[@selectedQuarter]
 
 
-    if @subject.metadata.kepler_2_campaign_no == null
+    if not @isK2Subject
       dataFileLocation = dataFileLocation.replace("http://www.planethunters.org/", "https://s3.amazonaws.com/zooniverse-static/planethunters.org/")
 
     $.getJSON "#{dataFileLocation}", (data) =>
@@ -139,8 +139,8 @@ class PlanetHunterSubjectViewer extends Controller
     if @isK2Subject
       window.sub = @subject.location
 
-      $(".epic").html(meta["kepler_id"] || "unknonw")
-      $(".meta_2mass_id").html(meta["2mass_id"] || "unknonw")
+      $(".epic").html(meta["kepler_id"] || "unknown")
+      $(".meta_2mass_id").html(meta["2mass_id"] || "unknown")
       $(".meta_sdss_id").html(meta["sdss_id"] || "unknown")
       $(".meta_mag").html(meta.magnitudes.kepler || "unknown")
       $(".meta_hmag").html(meta.magnitudes.Hmag || "unknown")
