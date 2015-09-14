@@ -5,7 +5,22 @@
   <%- if survey is 'sloan' then 'SDSS<br />' %>
   <%- if survey is 'candels' then 'Hubble<br />' %>
   <%- if survey is 'ukidss' then 'UKIDSS<br />' %>
+  <%- if survey is 'decals' then 'DECaLS<br />' %>
   <%- if survey is 'ferengi' then 'Artifically redshifted SDSS<br />' %>
-  RA: <%= @subject.coords[0] %>, DEC: <%= @subject.coords[1] %><br />
+  <%- if survey is 'illustris' then 'Simulated galaxy from Illustris<br />' %>
+
+  <% RA = +@subject.coords[0] || false %>
+  <% DEC = +@subject.coords[1] || false %>
+
+  <div>
+    <% if RA: %>
+      RA: <%= RA.toFixed(5) %>
+    <% end %>
+
+    <% if DEC: %>
+      DEC: <%= DEC.toFixed(5) %>
+    <% end %>
+  </div>
+
   View in <a href="http://www.galaxyzoo.org/#/examine/<%= @subject.zooniverse_id %>">Galaxy Zoo examine</a>
 </div>
