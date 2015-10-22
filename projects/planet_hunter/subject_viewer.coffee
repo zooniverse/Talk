@@ -3,7 +3,7 @@ $ = require 'jqueryify'
 NoUiSlider     = require 'lib/jquery.nouislider.min'
 CanvasGraph    = require 'lib/canvas-graph'
 
-K2_GROUP_IDS = ['547d05ce415ac13139000001','54f4c5ab8f165b6e85000001','55db0eca05cd210084000001']
+K2_GROUP_IDS = ['547d05ce415ac13139000001','54f4c5ab8f165b6e85000001','55db0eca05cd210084000001', '5628a593eaad4a0122000001']
 
 class PlanetHunterSubjectViewer extends Controller
   @imageIn: (location) -> "https://raw.githubusercontent.com/zooniverse/Brand/master/projects/planethunters.org/avatar.jpg"
