@@ -1,3 +1,13 @@
+## Talk 2.0
+
+Talk codebase for projects launched on our old platform generally between Sept. 2012 and June 2015. Examples include http://talk.chimpandsee.org/, http://talk.galaxyzoo.org/, and http://talk.planethunters.org/.
+
+### Requirements
+
+Uses the 1.x.x version of the Ruby AWS SDK gem, which is unfortunately not specified in the gemfile. Be sure you are using the corret version.
+
+Also uses hem as a front-end builder, which only works with node version ~0.10.x. 
+
 ### Setup
 
 Install the dependencies:  `npm install .`
