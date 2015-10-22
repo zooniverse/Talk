@@ -1,5 +1,11 @@
 ## Talk 2.0
 
+### Deprecated
+
+This repo is no longer maintanined. Issues opened in it will likely be closed and not fixed.
+
+### About
+
 Talk codebase for projects launched on our old platform generally between Sept. 2012 and June 2015. Examples include http://talk.chimpandsee.org/, http://talk.galaxyzoo.org/, and http://talk.planethunters.org/.
 
 ### Requirements
