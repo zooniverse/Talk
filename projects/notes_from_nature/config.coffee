@@ -37,7 +37,8 @@ Config =
     project: 'notes_from_nature'
     projectName: 'Notes From Nature'
     prefix: 'NN'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.notesfromnature.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.notesfromnature.org/#/archives'
     socialDefaults: socialDefaults
     analytics:

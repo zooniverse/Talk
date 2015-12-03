@@ -40,7 +40,8 @@ Config =
     project: 'worms'
     projectName: 'Worm Watch Lab'
     prefix: 'WS'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.wormwatchlab.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.wormwatchlab.org/#/classify'
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true

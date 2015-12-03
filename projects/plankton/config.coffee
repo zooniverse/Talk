@@ -40,7 +40,8 @@ Config =
     project: 'plankton'
     projectName: 'Plankton Portal'
     prefix: 'PK'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.planktonportal.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.planktonportal.org/#/classify'
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true

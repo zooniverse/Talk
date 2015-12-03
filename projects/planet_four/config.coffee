@@ -40,7 +40,8 @@ Config =
     project: 'planet_four'
     projectName: 'Planet Four'
     prefix: 'PF'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.planetfour.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.planetfour.org/#/classify'
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true

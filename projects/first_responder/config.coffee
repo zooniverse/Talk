@@ -43,7 +43,8 @@ Config =
     project: 'first_responder'
     projectName: 'First Responders'
     prefix: 'FR'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.planetaryresponsenetwork.com'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.planetaryresponsenetwork.com/#/classify'
     socialDefaults: socialDefaults
     analytics:

@@ -43,7 +43,8 @@ Config =
     project: 'wisconsin'
     projectName: 'USA Wildlife Watch'
     prefix: 'WZ'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.usawildlifewatch.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.usawildlifewatch.org/#/classify'
     socialDefaults: socialDefaults
     analytics:

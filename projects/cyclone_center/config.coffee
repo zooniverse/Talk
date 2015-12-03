@@ -41,7 +41,8 @@ Config =
     projectName: 'Cyclone Center'
     prefix: 'CC'
     grouped: true
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.cyclonecenter.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.cyclonecenter.org/#/classify'
     socialDefaults: socialDefaults
     analytics:

@@ -46,7 +46,8 @@ Config =
     project: 'higgs_hunter'
     projectName: 'Higgs Hunters'
     prefix: 'HH'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.higgshunters.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.higgshunters.org/#/classify'
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true

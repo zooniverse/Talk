@@ -48,7 +48,8 @@ Config =
     project: 'illustratedlife'
     projectName: 'Science Gossip'
     prefix: 'SC'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.sciencegossip.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.sciencegossip.org/#/classify'
     socialDefaults: socialDefaults
     analytics:

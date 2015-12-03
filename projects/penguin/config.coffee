@@ -46,7 +46,8 @@ Config =
     project: 'penguin'
     projectName: 'Penguin Watch'
     prefix: 'PZ'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.penguinwatch.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.penguinwatch.org/#/classify'
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true

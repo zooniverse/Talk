@@ -5,9 +5,9 @@ spinner = new Spinner({width: 3}).spin document.querySelector('#app')
 {Stack} = require 'spine/lib/manager'
 $ = require 'jqueryify'
 
-{ project, projectName, apiHost, analytics } = require 'lib/config'
+{ project, projectName, apiHost, apiPath, analytics } = require 'lib/config'
 Api = require 'zooniverse/lib/api'
-Api.init host: apiHost
+Api.init host: apiHost, proxyPath: apiPath
 
 AppHeader = require 'controllers/app_header'
 Following = require 'controllers/following'

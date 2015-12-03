@@ -51,7 +51,8 @@ Config =
     project: 'war_diary'
     projectName: 'Operation War Diary'
     prefix: 'WD'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.operationwardiary.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.operationwardiary.org/#/classify'
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true

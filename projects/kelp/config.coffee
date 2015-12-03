@@ -43,7 +43,8 @@ Config =
     project: 'kelp'
     projectName: 'Floating Forests'
     prefix: 'KP'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.floatingforests.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.floatingforests.org/#/classify'
     socialDefaults: socialDefaults
     analytics:

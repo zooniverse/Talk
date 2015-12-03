@@ -43,7 +43,8 @@ Config =
     project: 'sunspot'
     projectName: 'Sunspotter'
     prefix: 'SZ'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.sunspotter.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.sunspotter.org/#/classify'
     socialDefaults: socialDefaults
     analytics:

@@ -37,7 +37,8 @@ Config =
     project: 'm83'
     projectName: 'Project Star Date'
     prefix: 'M8'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.projectstardate.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.projectstardate.org/#/classify'
     socialDefaults: socialDefaults
     analytics: {}

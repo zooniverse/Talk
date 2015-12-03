@@ -40,7 +40,8 @@ Config =
     project: 'galaxy_zoo_starburst'
     projectName: 'Galaxy Zoo Quench'
     prefix: 'GS'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://quench.galaxyzoo.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://quench.galaxyzoo.org/'
     socialDefaults: socialDefaults
     dashboard: true

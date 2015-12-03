@@ -37,7 +37,8 @@ Config =
     project: 'serengeti'
     projectName: 'Snapshot Serengeti'
     prefix: 'SG'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.snapshotserengeti.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.snapshotserengeti.org/#/classify'
     socialDefaults: socialDefaults
     analytics:

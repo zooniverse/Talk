@@ -43,7 +43,8 @@ Config =
     project: 'condor'
     projectName: 'Condor Watch'
     prefix: 'CW'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.condorwatch.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.condorwatch.org/#/classify'
     socialDefaults: socialDefaults
     analytics:

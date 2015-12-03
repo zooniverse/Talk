@@ -46,7 +46,8 @@ Config =
     project: 'chimp'
     projectName: 'Chimp & See'
     prefix: 'CP'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.chimpandsee.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.chimpandsee.org/#/classify'
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true

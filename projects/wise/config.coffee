@@ -40,7 +40,8 @@ Config =
     project: 'wise'
     projectName: 'Disk Detective'
     prefix: 'WI'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.diskdetective.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.diskdetective.org/#/classify'
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true

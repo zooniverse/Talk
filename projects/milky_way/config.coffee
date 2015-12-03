@@ -37,7 +37,8 @@ Config =
     project: 'milky_way'
     projectName: 'The Milky Way Project'
     prefix: 'MW'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.milkywayproject.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.milkywayproject.org/#/classify'
     socialDefaults: socialDefaults
     analytics:

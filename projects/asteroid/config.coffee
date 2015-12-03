@@ -43,7 +43,8 @@ Config =
     project: 'asteroid'
     projectName: 'Asteroid Zoo'
     prefix: 'AZ'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.asteroidzoo.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.asteroidzoo.org/#/classify'
     socialDefaults: socialDefaults
     analytics:

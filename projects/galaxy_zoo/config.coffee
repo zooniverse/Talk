@@ -43,7 +43,8 @@ Config =
     project: 'galaxy_zoo'
     projectName: 'Galaxy Zoo'
     prefix: 'GZ'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.galaxyzoo.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.galaxyzoo.org/#/classify'
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true

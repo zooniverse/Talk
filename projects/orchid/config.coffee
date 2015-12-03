@@ -43,7 +43,8 @@ Config =
     project: 'orchid'
     projectName: 'Orchid Observers'
     prefix: 'ZO'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.orchidobservers.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.orchidobservers.org/#/classify'
     socialDefaults: socialDefaults
     analytics:

@@ -43,7 +43,8 @@ Config =
     project: 'leaf'
     projectName: 'Microplants'
     prefix: 'LF'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://microplants.fieldmuseum.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://microplants.fieldmuseum.org/#/classify'
     socialDefaults: socialDefaults
     analytics:

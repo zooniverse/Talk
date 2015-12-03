@@ -45,7 +45,8 @@ Config =
     project: 'planet_hunter'
     projectName: 'Planet Hunters'
     prefix: 'PH'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://www.planethunters.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.planethunters.org/#/classify'
     socialDefaults: socialDefaults
     analytics:

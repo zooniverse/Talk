@@ -40,7 +40,8 @@ Config =
     project: 'radio'
     projectName: 'Galaxy Zoo: Radio'
     prefix: 'RZ'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://radio.galaxyzoo.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://radio.galaxyzoo.org/#/classify'
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true

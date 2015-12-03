@@ -40,7 +40,8 @@ Config =
     project: 'spacewarp'
     projectName: 'Spacewarps'
     prefix: 'SW'
-    apiHost: 'https://api.zooniverse.org'
+    apiHost: 'http://spacewarps.org'
+    apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://spacewarps.org/#/classify'
     socialDefaults: socialDefaults
     dashboard: true
