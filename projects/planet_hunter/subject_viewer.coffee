@@ -4,6 +4,7 @@ NoUiSlider     = require 'lib/jquery.nouislider.min'
 CanvasGraph    = require 'lib/canvas-graph'
 
 K2_GROUP_IDS = ['547d05ce415ac13139000001','54f4c5ab8f165b6e85000001','55db0eca05cd210084000001', '5628a593eaad4a0122000001']
+KDWARF_GROUP_IDS = ['566e95bc7af859004e000001', '566ecd4edeb24f0539000001']
 
 class PlanetHunterSubjectViewer extends Controller
   @imageIn: (location) -> "https://raw.githubusercontent.com/zooniverse/Brand/master/projects/planethunters.org/avatar.jpg"
@@ -37,6 +38,7 @@ class PlanetHunterSubjectViewer extends Controller
     params = location.hash.slice(1).split('?')
 
     @isK2Subject = (K2_GROUP_IDS.indexOf(@subject.group_id) > -1)
+    @isKDwarfSubject = (KDWARF_GROUP_IDS.indexOf(@subject.group_id) > -1)
 
     for param in params
       if param.match('quarter')
@@ -64,7 +66,7 @@ class PlanetHunterSubjectViewer extends Controller
     dataFileLocation = @subject.location[@selectedQuarter]
 
 
-    if not @isK2Subject
+    if not (@isK2Subject or @isKDwarfSubject)
       dataFileLocation = dataFileLocation.replace("http://www.planethunters.org/", "https://s3.amazonaws.com/zooniverse-static/planethunters.org/")
 
     $.getJSON "#{dataFileLocation}", (data) =>
@@ -150,9 +152,16 @@ class PlanetHunterSubjectViewer extends Controller
       $(".k1Metadata").hide()
       $(".k2Metadata").show()
       $(".links").hide()
-
+    else if @isKDwarfSubject
+      $(".meta_type").html(meta.type || "K-Dwarf")
+      $(".meta_kid").html(meta.kepid || "unknown")
+      $(".meta_temp").html(meta.teff || "unknown")
+      $(".meta_mag").html(meta.kepmag || "unknown")
+      $(".meta_radius").html(meta.radius || "unknown")
+      $(".k1Metadata").show()
+      $(".k2Metadata").hide()
+      $(".links").show()
     else
-
       $(".meta_type").html(meta.type || "Dwarf")
       $(".meta_kid").html(meta.kepler_id || "unknown")
       $(".meta_temp").html(meta.teff || "unknown")
