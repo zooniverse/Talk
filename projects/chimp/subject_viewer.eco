@@ -40,7 +40,7 @@
             <% end %>
         <% end %>
         <% for preview, i in previews: %>
-          <a href="<%- preview %>" target="_blank"><%- i+1 %></a>
+          <a href="<%- preview %>" target="_blank"><%- i %></a>
         <% end %>
       </li>
     <% end %>
