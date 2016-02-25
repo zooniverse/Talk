@@ -68,6 +68,8 @@ class PlanetHunterSubjectViewer extends Controller
 
     if not (@isK2Subject or @isKDwarfSubject)
       dataFileLocation = dataFileLocation.replace("http://www.planethunters.org/", "https://s3.amazonaws.com/zooniverse-static/planethunters.org/")
+    else
+      dataFileLocation = dataFileLocation.replace("http://www.planethunters.org/", "https://www.planethunters.org/")
 
     $.getJSON "#{dataFileLocation}", (data) =>
       spinner.stop()

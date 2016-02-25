@@ -45,9 +45,9 @@ Config =
     project: 'planet_hunter'
     projectName: 'Planet Hunters'
     prefix: 'PH'
-    apiHost: 'http://www.planethunters.org'
+    apiHost: 'https://www.planethunters.org'
     apiPath: '/_ouroboros_api/proxy'
-    classifyUrl: 'http://www.planethunters.org/#/classify'
+    classifyUrl: 'https://www.planethunters.org/#/classify'
     socialDefaults: socialDefaults
     analytics:
       account: 'UA-1224199-25'
