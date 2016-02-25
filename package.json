@@ -21,7 +21,7 @@
     "start": "hem server"
   },
   "engines": {
-    "node": "0.10 - 0.12.7"
+    "node": "0.10"
   },
   "engineStrict": true
 }
