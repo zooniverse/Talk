@@ -15,7 +15,7 @@ Config =
     socialDefaults: socialDefaults
     dashboard: true
     analytics: { }
-  
+
   developmentLocal:
     project: 'galaxy_zoo_starburst'
     projectName: 'Galaxy Zoo Quench'
@@ -25,7 +25,7 @@ Config =
     socialDefaults: socialDefaults
     dashboard: true
     analytics: { }
-  
+
   developmentRemote:
     project: 'galaxy_zoo_starburst'
     projectName: 'Galaxy Zoo Quench'
@@ -35,12 +35,12 @@ Config =
     socialDefaults: socialDefaults
     dashboard: true
     analytics: { }
-  
+
   production:
     project: 'galaxy_zoo_starburst'
     projectName: 'Galaxy Zoo Quench'
     prefix: 'GS'
-    apiHost: 'http://quench.galaxyzoo.org'
+    apiHost: 'https://quench.galaxyzoo.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://quench.galaxyzoo.org/'
     socialDefaults: socialDefaults
@@ -53,9 +53,9 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'
-  
+
 module.exports = Config[env]

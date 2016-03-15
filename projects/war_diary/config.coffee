@@ -5,7 +5,7 @@ socialDefaults =
   image: 'https://pbs.twimg.com/profile_images/420931133795078144/38PaC6gV.jpeg'
   twitterTags: 'via @OpWarDiary'
 
-app = 
+app =
   categoryLabels:
     science: 'welcome_to_operation_war_diary'
     chat: 'the_mess_hall'
@@ -24,7 +24,7 @@ Config =
     subjectViewerDiscuss: true
     analytics: { }
     app: app
-  
+
   developmentLocal:
     project: 'war_diary'
     projectName: 'Operation War Diary'
@@ -35,7 +35,7 @@ Config =
     subjectViewerDiscuss: true
     analytics: { }
     app: app
-  
+
   developmentRemote:
     project: 'war_diary'
     projectName: 'Operation War Diary'
@@ -46,12 +46,12 @@ Config =
     subjectViewerDiscuss: true
     analytics: { }
     app: app
-  
+
   production:
     project: 'war_diary'
     projectName: 'Operation War Diary'
     prefix: 'WD'
-    apiHost: 'http://www.operationwardiary.org'
+    apiHost: 'https://www.operationwardiary.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.operationwardiary.org/#/classify'
     socialDefaults: socialDefaults
@@ -65,7 +65,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'

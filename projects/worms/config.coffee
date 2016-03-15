@@ -15,7 +15,7 @@ Config =
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true
     analytics: { }
-  
+
   developmentLocal:
     project: 'worms'
     projectName: 'Worm Watch Lab'
@@ -25,7 +25,7 @@ Config =
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true
     analytics: { }
-  
+
   developmentRemote:
     project: 'worms'
     projectName: 'Worm Watch Lab'
@@ -35,12 +35,12 @@ Config =
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true
     analytics: { }
-  
+
   production:
     project: 'worms'
     projectName: 'Worm Watch Lab'
     prefix: 'WS'
-    apiHost: 'http://www.wormwatchlab.org'
+    apiHost: 'https://www.wormwatchlab.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.wormwatchlab.org/#/classify'
     socialDefaults: socialDefaults
@@ -53,7 +53,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'

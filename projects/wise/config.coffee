@@ -15,7 +15,7 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     subjectViewerDiscuss: true
-  
+
   developmentLocal:
     project: 'wise'
     projectName: 'Disk Detective'
@@ -25,7 +25,7 @@ Config =
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true
     analytics: { }
-  
+
   developmentRemote:
     project: 'wise'
     projectName: 'Disk Detective'
@@ -35,12 +35,12 @@ Config =
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true
     analytics: { }
-  
+
   production:
     project: 'wise'
     projectName: 'Disk Detective'
     prefix: 'WI'
-    apiHost: 'http://www.diskdetective.org'
+    apiHost: 'https://www.diskdetective.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.diskdetective.org/#/classify'
     socialDefaults: socialDefaults
@@ -53,7 +53,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'

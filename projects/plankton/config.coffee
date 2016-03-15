@@ -15,7 +15,7 @@ Config =
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true
     analytics: { }
-  
+
   developmentLocal:
     project: 'plankton'
     projectName: 'Plankton Portal'
@@ -25,7 +25,7 @@ Config =
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true
     analytics: { }
-  
+
   developmentRemote:
     project: 'plankton'
     projectName: 'Plankton Portal'
@@ -35,12 +35,12 @@ Config =
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true
     analytics: { }
-  
+
   production:
     project: 'plankton'
     projectName: 'Plankton Portal'
     prefix: 'PK'
-    apiHost: 'http://www.planktonportal.org'
+    apiHost: 'https://www.planktonportal.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.planktonportal.org/#/classify'
     socialDefaults: socialDefaults
@@ -53,7 +53,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'

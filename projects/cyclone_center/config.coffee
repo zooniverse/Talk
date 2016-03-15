@@ -15,7 +15,7 @@ Config =
     classifyUrl: null
     socialDefaults: socialDefaults
     analytics: { }
-  
+
   developmentLocal:
     project: 'cyclone_center'
     projectName: 'Cyclone Center'
@@ -25,7 +25,7 @@ Config =
     classifyUrl: 'http://localhost:9294/#/classify'
     socialDefaults: socialDefaults
     analytics: { }
-  
+
   developmentRemote:
     project: 'cyclone_center'
     projectName: 'Cyclone Center'
@@ -35,13 +35,13 @@ Config =
     classifyUrl: 'http://zooniverse-demo.s3-website-us-east-1.amazonaws.com/cyclone-center-redux/#/classify'
     socialDefaults: socialDefaults
     analytics: { }
-  
+
   production:
     project: 'cyclone_center'
     projectName: 'Cyclone Center'
     prefix: 'CC'
     grouped: true
-    apiHost: 'http://www.cyclonecenter.org'
+    apiHost: 'https://www.cyclonecenter.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.cyclonecenter.org/#/classify'
     socialDefaults: socialDefaults
@@ -53,7 +53,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'

@@ -46,7 +46,7 @@ Config =
     project: 'chimp'
     projectName: 'Chimp & See'
     prefix: 'CP'
-    apiHost: 'http://www.chimpandsee.org'
+    apiHost: 'https://www.chimpandsee.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.chimpandsee.org/#/classify'
     socialDefaults: socialDefaults

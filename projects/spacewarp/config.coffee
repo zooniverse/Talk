@@ -15,7 +15,7 @@ Config =
     socialDefaults: socialDefaults
     dashboard: true
     analytics: { }
-  
+
   developmentLocal:
     project: 'spacewarp'
     projectName: 'Spacewarps'
@@ -25,7 +25,7 @@ Config =
     socialDefaults: socialDefaults
     dashboard: true
     analytics: { }
-  
+
   developmentRemote:
     project: 'spacewarp'
     projectName: 'Spacewarps'
@@ -35,12 +35,12 @@ Config =
     socialDefaults: socialDefaults
     dashboard: true
     analytics: { }
-  
+
   production:
     project: 'spacewarp'
     projectName: 'Spacewarps'
     prefix: 'SW'
-    apiHost: 'http://spacewarps.org'
+    apiHost: 'https://spacewarps.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://spacewarps.org/#/classify'
     socialDefaults: socialDefaults
@@ -53,7 +53,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'

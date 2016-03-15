@@ -15,7 +15,7 @@ Config =
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true
     analytics: { }
-  
+
   developmentLocal:
     project: 'planet_four'
     projectName: 'Planet Four'
@@ -40,7 +40,7 @@ Config =
     project: 'planet_four'
     projectName: 'Planet Four'
     prefix: 'PF'
-    apiHost: 'http://www.planetfour.org'
+    apiHost: 'https://www.planetfour.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.planetfour.org/#/classify'
     socialDefaults: socialDefaults
@@ -53,7 +53,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'

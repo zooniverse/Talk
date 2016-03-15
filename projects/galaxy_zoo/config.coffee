@@ -16,7 +16,7 @@ Config =
     subjectViewerDiscuss: true
     dashboard: true
     analytics: { }
-  
+
   developmentLocal:
     project: 'galaxy_zoo'
     projectName: 'Galaxy Zoo'
@@ -27,7 +27,7 @@ Config =
     socialDefaults: socialDefaults
     dashboard: true
     analytics: { }
-  
+
   developmentRemote:
     project: 'galaxy_zoo'
     projectName: 'Galaxy Zoo'
@@ -38,12 +38,12 @@ Config =
     dashboard: true
     subjectViewerDiscuss: true
     analytics: { }
-  
+
   production:
     project: 'galaxy_zoo'
     projectName: 'Galaxy Zoo'
     prefix: 'GZ'
-    apiHost: 'http://www.galaxyzoo.org'
+    apiHost: 'https://www.galaxyzoo.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.galaxyzoo.org/#/classify'
     socialDefaults: socialDefaults
@@ -57,7 +57,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'

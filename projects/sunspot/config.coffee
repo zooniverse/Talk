@@ -18,7 +18,7 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   developmentLocal:
     project: 'sunspot'
     projectName: 'Sunspotter'
@@ -28,7 +28,7 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   developmentRemote:
     project: 'sunspot'
     projectName: 'Sunspotter'
@@ -38,12 +38,12 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   production:
     project: 'sunspot'
     projectName: 'Sunspotter'
     prefix: 'SZ'
-    apiHost: 'http://www.sunspotter.org'
+    apiHost: 'https://www.sunspotter.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.sunspotter.org/#/classify'
     socialDefaults: socialDefaults
@@ -56,7 +56,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'
