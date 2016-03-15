@@ -18,7 +18,7 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   developmentLocal:
     project: 'chicago'
     projectName: 'Chicago Wildlife Watch'
@@ -29,7 +29,7 @@ Config =
     subjectViewerDiscuss: true
     analytics: { }
     app: app
-  
+
   developmentRemote:
     project: 'chicago'
     projectName: 'Chicago Wildlife Watch'
@@ -40,12 +40,12 @@ Config =
     subjectViewerDiscuss: true
     analytics: { }
     app: app
-  
+
   production:
     project: 'chicago'
     projectName: 'Chicago Wildlife Watch'
     prefix: 'CH'
-    apiHost: 'http://www.chicagowildlifewatch.org'
+    apiHost: 'https://www.chicagowildlifewatch.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.chicagowildlifewatch.org/#/classify'
     socialDefaults: socialDefaults
@@ -59,7 +59,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'

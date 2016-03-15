@@ -18,7 +18,7 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   developmentLocal:
     project: 'asteroid'
     projectName: 'Asteroid Zoo'
@@ -28,7 +28,7 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   developmentRemote:
     project: 'asteroid'
     projectName: 'Asteroid Zoo'
@@ -38,12 +38,12 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   production:
     project: 'asteroid'
     projectName: 'Asteroid Zoo'
     prefix: 'AZ'
-    apiHost: 'http://www.asteroidzoo.org'
+    apiHost: 'https://www.asteroidzoo.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.asteroidzoo.org/#/classify'
     socialDefaults: socialDefaults
@@ -56,7 +56,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'

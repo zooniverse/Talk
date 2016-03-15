@@ -18,7 +18,7 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   developmentLocal:
     project: 'kelp'
     projectName: 'Floating Forests'
@@ -28,7 +28,7 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   developmentRemote:
     project: 'kelp'
     projectName: 'Floating Forests'
@@ -38,12 +38,12 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   production:
     project: 'kelp'
     projectName: 'Floating Forests'
     prefix: 'KP'
-    apiHost: 'http://www.floatingforests.org'
+    apiHost: 'https://www.floatingforests.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.floatingforests.org/#/classify'
     socialDefaults: socialDefaults
@@ -56,7 +56,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'

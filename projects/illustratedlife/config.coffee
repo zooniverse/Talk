@@ -23,7 +23,7 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   developmentLocal:
     project: 'illustratedlife'
     projectName: 'Science Gossip'
@@ -33,7 +33,7 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   developmentRemote:
     project: 'illustratedlife'
     projectName: 'Science Gossip'
@@ -43,12 +43,12 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   production:
     project: 'illustratedlife'
     projectName: 'Science Gossip'
     prefix: 'SC'
-    apiHost: 'http://www.sciencegossip.org'
+    apiHost: 'https://www.sciencegossip.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.sciencegossip.org/#/classify'
     socialDefaults: socialDefaults
@@ -61,7 +61,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'

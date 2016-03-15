@@ -14,7 +14,7 @@ Config =
     classifyUrl: null
     socialDefaults: socialDefaults
     analytics: { }
-  
+
   developmentLocal:
     project: 'notes_from_nature'
     projectName: 'Notes From Nature'
@@ -23,7 +23,7 @@ Config =
     classifyUrl: 'http://localhost:9294/#/archives'
     socialDefaults: socialDefaults
     analytics: { }
-  
+
   developmentRemote:
     project: 'notes_from_nature'
     projectName: 'Notes From Nature'
@@ -32,12 +32,12 @@ Config =
     classifyUrl: 'http://www.notesfromnature.org/beta/#/archives'
     socialDefaults: socialDefaults
     analytics: { }
-  
+
   production:
     project: 'notes_from_nature'
     projectName: 'Notes From Nature'
     prefix: 'NN'
-    apiHost: 'http://www.notesfromnature.org'
+    apiHost: 'https://www.notesfromnature.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.notesfromnature.org/#/archives'
     socialDefaults: socialDefaults
@@ -49,7 +49,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'

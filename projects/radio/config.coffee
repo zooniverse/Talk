@@ -15,7 +15,7 @@ Config =
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true
     analytics: { }
-  
+
   developmentLocal:
     project: 'radio'
     projectName: 'Galaxy Zoo: Radio'
@@ -25,7 +25,7 @@ Config =
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true
     analytics: { }
-  
+
   developmentRemote:
     project: 'radio'
     projectName: 'Galaxy Zoo: Radio'
@@ -35,12 +35,12 @@ Config =
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true
     analytics: { }
-  
+
   production:
     project: 'radio'
     projectName: 'Galaxy Zoo: Radio'
     prefix: 'RZ'
-    apiHost: 'http://radio.galaxyzoo.org'
+    apiHost: 'https://radio.galaxyzoo.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://radio.galaxyzoo.org/#/classify'
     socialDefaults: socialDefaults
@@ -53,7 +53,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'

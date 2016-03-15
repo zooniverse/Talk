@@ -14,7 +14,7 @@ Config =
     classifyUrl: null
     socialDefaults: socialDefaults
     analytics: { }
-  
+
   developmentLocal:
     project: 'serengeti'
     projectName: 'Snapshot Serengeti'
@@ -37,7 +37,7 @@ Config =
     project: 'serengeti'
     projectName: 'Snapshot Serengeti'
     prefix: 'SG'
-    apiHost: 'http://www.snapshotserengeti.org'
+    apiHost: 'https://www.snapshotserengeti.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.snapshotserengeti.org/#/classify'
     socialDefaults: socialDefaults
@@ -49,7 +49,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'

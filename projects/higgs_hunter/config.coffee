@@ -19,7 +19,7 @@ Config =
     subjectViewerDiscuss: true
     analytics: { }
     app: app
-  
+
   developmentLocal:
     project: 'higgs_hunter'
     projectName: 'Higgs Hunters'
@@ -30,7 +30,7 @@ Config =
     subjectViewerDiscuss: true
     analytics: { }
     app: app
-  
+
   developmentRemote:
     project: 'higgs_hunter'
     projectName: 'Higgs Hunters'
@@ -41,12 +41,12 @@ Config =
     subjectViewerDiscuss: true
     analytics: { }
     app: app
-  
+
   production:
     project: 'higgs_hunter'
     projectName: 'Higgs Hunters'
     prefix: 'HH'
-    apiHost: 'http://www.higgshunters.org'
+    apiHost: 'https://www.higgshunters.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.higgshunters.org/#/classify'
     socialDefaults: socialDefaults
@@ -60,7 +60,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'

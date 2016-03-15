@@ -18,7 +18,7 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   developmentLocal:
     project: 'orchid'
     projectName: 'Orchid Observers'
@@ -28,7 +28,7 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   developmentRemote:
     project: 'orchid'
     projectName: 'Orchid Observers'
@@ -38,12 +38,12 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   production:
     project: 'orchid'
     projectName: 'Orchid Observers'
     prefix: 'ZO'
-    apiHost: 'http://www.orchidobservers.org'
+    apiHost: 'https://www.orchidobservers.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.orchidobservers.org/#/classify'
     socialDefaults: socialDefaults
@@ -56,7 +56,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'

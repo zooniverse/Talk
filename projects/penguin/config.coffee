@@ -19,7 +19,7 @@ Config =
     subjectViewerDiscuss: true
     analytics: { }
     app: app
-  
+
   developmentLocal:
     project: 'penguin'
     projectName: 'Penguin Watch'
@@ -30,7 +30,7 @@ Config =
     subjectViewerDiscuss: true
     analytics: { }
     app: app
-  
+
   developmentRemote:
     project: 'penguin'
     projectName: 'Penguin Watch'
@@ -41,12 +41,12 @@ Config =
     subjectViewerDiscuss: true
     analytics: { }
     app: app
-  
+
   production:
     project: 'penguin'
     projectName: 'Penguin Watch'
     prefix: 'PZ'
-    apiHost: 'http://www.penguinwatch.org'
+    apiHost: 'https://www.penguinwatch.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.penguinwatch.org/#/classify'
     socialDefaults: socialDefaults
@@ -60,7 +60,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'

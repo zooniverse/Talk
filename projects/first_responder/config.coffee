@@ -18,7 +18,7 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   developmentLocal:
     project: 'first_responder'
     projectName: 'First Responders'
@@ -28,7 +28,7 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   developmentRemote:
     project: 'first_responder'
     projectName: 'First Responders'
@@ -38,12 +38,12 @@ Config =
     socialDefaults: socialDefaults
     analytics: { }
     app: app
-  
+
   production:
     project: 'first_responder'
     projectName: 'First Responders'
     prefix: 'FR'
-    apiHost: 'http://www.planetaryresponsenetwork.com'
+    apiHost: 'https://www.planetaryresponsenetwork.com'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.planetaryresponsenetwork.com/#/classify'
     socialDefaults: socialDefaults
@@ -56,7 +56,7 @@ Config =
 #   'test'
 # else if window.location.port is '9295'
 #   'developmentLocal'
-# else if window.location.port > 1024 
+# else if window.location.port > 1024
 #   'developmentRemote'
 # else
 #   'production'

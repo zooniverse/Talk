@@ -14,7 +14,7 @@ Config =
     classifyUrl: null
     socialDefaults: socialDefaults
     analytics: { }
-  
+
   developmentLocal:
     project: 'milky_way'
     projectName: 'The Milky Way Project'
@@ -23,7 +23,7 @@ Config =
     classifyUrl: 'http://localhost:9294/#/classify'
     socialDefaults: socialDefaults
     analytics: { }
-  
+
   developmentRemote:
     project: 'milky_way'
     projectName: 'The Milky Way Project'
@@ -32,12 +32,12 @@ Config =
     classifyUrl: 'http://demo.zooniverse.org/milky-way-project/#/classify'
     socialDefaults: socialDefaults
     analytics: { }
-  
+
   production:
     project: 'milky_way'
     projectName: 'The Milky Way Project'
     prefix: 'MW'
-    apiHost: 'http://www.milkywayproject.org'
+    apiHost: 'https://www.milkywayproject.org'
     apiPath: '/_ouroboros_api/proxy'
     classifyUrl: 'http://www.milkywayproject.org/#/classify'
     socialDefaults: socialDefaults
@@ -49,7 +49,7 @@ env = if window.jasmine
   'test'
 else if window.location.port is '9295'
   'developmentLocal'
-else if window.location.port > 1024 
+else if window.location.port > 1024
   'developmentRemote'
 else
   'production'
