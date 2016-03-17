@@ -20,7 +20,8 @@ class RadioSubjectViewer extends DefaultSubjectViewer
   constructor: ->
     super
 
-    contours = @subject.location.contours || @subject.location.contour
+    contours = (@subject.location.contours || @subject.location.contour)
+    contours = contours.replace /^http:/, 'https:'
     $.getJSON contours, @drawContours if d3?
 
     $(window).on("resize", => @drawContours())
