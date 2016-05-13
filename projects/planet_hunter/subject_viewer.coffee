@@ -175,7 +175,7 @@ class PlanetHunterSubjectViewer extends Controller
 
     [ra, dec] = @subject.coords
 
-    kepler_id = meta.kepler_id
+    kepler_id = meta.kepler_id || meta.kepid
 
     $(".old_ph_link").hide()
     $(".ukirt_link").attr("href", "http://surveys.roe.ac.uk:8080/wsa/GetImage?ra=#{ra*15}&dec=#{dec}&database=wserv4v20101019&frameType=stack&obsType=object&programmeID=10209&mode=show&archive=%20wsa&project=wserv4")
