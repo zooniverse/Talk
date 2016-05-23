@@ -82,7 +82,7 @@ class New extends Page
   
   autocomplete: =>
     @userSearch.autocomplete
-      serviceUrl: "#{ Api.host }/#{ Message.url() }/search",
+      serviceUrl: "#{ Message.url() }/search",
       width: 300
       minChars: 2,
       format: (value, data, currentValue) =>
