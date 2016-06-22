@@ -4,10 +4,10 @@
   <div class="clearfix">
     <% if currentUser?.name is @user.name: %>
       <a class="change-avatar" href="https://www.zooniverse.org/account/avatar" target="_blank" title="Change your avatar">
-        <img src="//zooniverse-avatars.s3.amazonaws.com/ouroboros/<%= @user.zooniverse_id %>" class="avatar" onerror="window.defaultAvatar(this)" />
+        <img src="<%= @user.avatar_url %>" class="avatar" onerror="window.defaultAvatar(this)" />
       </a>
     <% else: %>
-      <img src="//zooniverse-avatars.s3.amazonaws.com/ouroboros/<%= @user.zooniverse_id %>" class="avatar" onerror="window.defaultAvatar(this)" />
+      <img src="<%= @user.avatar_url %>" class="avatar" onerror="window.defaultAvatar(this)" />
     <% end %>
     <div class="info">
       <div class="name"><%= @user.name %></div>
