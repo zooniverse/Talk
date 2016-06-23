@@ -98,7 +98,7 @@ class Show extends Profile
     super
   
   render: =>
-    @data.user = { name: @id, zooniverse_id: @data.zooniverse_id, avatar_url: @data.avatar_url, state: @data.talk?.state }
+    @data.user = { name: @id, zooniverse_id: @data.zooniverse_id, avatar: @data.avatar, state: @data.talk?.state }
     super
 
 
