@@ -4,7 +4,7 @@
 <% if @avatar: %>
   <a href="#/users/<%= @link.user_name %>" class="user">
     <% if @link.user_zooniverse_id: %>
-      <img src="//zooniverse-avatars.s3.amazonaws.com/ouroboros/<%= @link.user_zooniverse_id %>" class="avatar" onerror="window.defaultAvatar(this)" />
+      <img src="https://api.zooniverse.org/talk/avatars/<%= @link.user_zooniverse_id %>" class="avatar" onerror="window.defaultAvatar(this)" />
     <% else: %>
       <%- require('views/users/default_avatar')() %>
     <% end %>

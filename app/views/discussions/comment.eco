@@ -9,7 +9,7 @@
     <%- userLink link: @comment, avatar: true %>
     <% if @comment.response_to: %>
       <a class="response-to user">in response to
-        <img src="//zooniverse-avatars.s3.amazonaws.com/ouroboros/<%= @comment.response_to.user_zooniverse_id %>" class="avatar" onerror="window.defaultAvatar(this)" />
+        <img src="https://api.zooniverse.org/talk/avatars/<%= @comment.response_to.user_zooniverse_id %>" class="avatar" onerror="window.defaultAvatar(this)" />
         <%= @comment.response_to.user_name %>'s comment
       </a>
     <% end %>
