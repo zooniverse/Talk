@@ -1,7 +1,7 @@
 <% for user in @users: %>
   <div class="active-user">
     <a href="#/users/<%= user.name %>" class="user">
-      <img src="//zooniverse-avatars.s3.amazonaws.com/ouroboros/<%= user.zooniverse_id %>" class="avatar" onerror="window.defaultAvatar(this)" />
+      <img src="https://api.zooniverse.org/talk/avatars/<%= user.zooniverse_id %>" class="avatar" onerror="window.defaultAvatar(this)" />
       <%= user.name %>
     </a>
   </div>

@@ -87,7 +87,7 @@ class New extends Page
       minChars: 2,
       format: (value, data, currentValue) =>
         """
-          <img src="//zooniverse-avatars.s3.amazonaws.com/ouroboros/#{ data.zooniverse_id }" class="avatar" onerror="window.defaultAvatar(this)" />
+          <img src="https://api.zooniverse.org/talk/avatars/#{ data.zooniverse_id }" class="avatar" onerror="window.defaultAvatar(this)" />
           #{ @escape(value, currentValue) }
         """
   
