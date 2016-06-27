@@ -4,7 +4,7 @@ NoUiSlider     = require 'lib/jquery.nouislider.min'
 CanvasGraph    = require 'lib/canvas-graph'
 
 K2_GROUP_IDS = ['547d05ce415ac13139000001','54f4c5ab8f165b6e85000001','55db0eca05cd210084000001', '5628a593eaad4a0122000001']
-KDWARF_GROUP_IDS = ['566e95bc7af859004e000001', '566ecd4edeb24f0539000001']
+KDWARF_GROUP_IDS = ['566e95bc7af859004e000001', '566ecd4edeb24f0539000001', '5756cc44c832d90038000001']
 
 class PlanetHunterSubjectViewer extends Controller
   @imageIn: (location) -> "https://raw.githubusercontent.com/zooniverse/Brand/master/projects/planethunters.org/avatar.jpg"
