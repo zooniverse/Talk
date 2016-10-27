@@ -45,8 +45,7 @@ Config =
     project: 'chicago'
     projectName: 'Chicago Wildlife Watch'
     prefix: 'CH'
-    apiHost: 'https://www.chicagowildlifewatch.org'
-    apiPath: '/_ouroboros_api/proxy'
+    apiHost: 'https://api.zooniverse.org'
     classifyUrl: 'http://www.chicagowildlifewatch.org/#/classify'
     socialDefaults: socialDefaults
     subjectViewerDiscuss: true
