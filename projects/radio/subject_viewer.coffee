@@ -45,12 +45,12 @@ class RadioSubjectViewer extends DefaultSubjectViewer
       @contours = contours
     xFactor = @elwidth / (@width || @fitsImageDimension)
     yFactor = @elwidth / (@height || @fitsImageDimension)
- 
+
     path = d3.svg.line()
       .x( (d) -> xFactor * d.x)
       .y( (d) -> yFactor * d.y)
       .interpolate('linear')
-    
+
     cGroups = svg.selectAll('g.contour-group')
       .data(@contours)
 
@@ -69,7 +69,7 @@ class RadioSubjectViewer extends DefaultSubjectViewer
     cGroups.exit().remove()
 
   linkToFIRST: ->
-    "http://third.ucllnl.org/cgi-bin/firstimage?RA=#{encodeURIComponent(@subject.metadata.ra_hms)}&Dec=#{encodeURIComponent("+" + @subject.metadata.dec_dms)}&Equinox=J2000&ImageSize=9&MaxInt=10"
+    "http://third.ucllnl.org/cgi-bin/firstimage?RA=#{encodeURIComponent(@subject.metadata.ra_hms)}&Dec=#{encodeURIComponent(@subject.metadata.dec_dms)}&Equinox=J2000&ImageSize=9&MaxInt=10"
 
   linkToSDSS: ->
     "http://skyserver.sdss3.org/public/en/tools/chart/navi.aspx?ra=#{@subject.coords[0]}&dec=#{@subject.coords[1]}&scale=0.2"
