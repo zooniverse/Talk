@@ -1,4 +1,3 @@
-jQuery = require('jqueryify');
 /**
 * simplePagination.js v1.2
 * A simple jQuery pagination plugin.
@@ -159,4 +158,4 @@ jQuery = require('jqueryify');
 
   };
 
-})(jQuery);
+})(window.jQuery);
