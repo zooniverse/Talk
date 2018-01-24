@@ -1,6 +1,6 @@
 DefaultSubjectViewer = require 'controllers/default_subject_viewer'
 template = require 'views/subjects/viewer'
-$ = require 'jqueryify'
+$ = window.jQuery
 
 class M83SubjectViewer extends DefaultSubjectViewer
   @subjectTitle: (subject) ->

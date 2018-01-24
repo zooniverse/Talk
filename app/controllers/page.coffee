@@ -1,7 +1,7 @@
 {Controller} = require 'spine'
 { project, apiHost } = require 'lib/config'
 Api = require 'zooniverse/lib/api'
-$ = require 'jqueryify'
+$ = window.jQuery
 ActiveUsers = require 'controllers/active_users'
 
 class Page extends Controller

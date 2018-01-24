@@ -3,7 +3,7 @@ require 'lib/setup'
 spinner = new Spinner({width: 3}).spin document.querySelector('#app')
 
 {Stack} = require 'spine/lib/manager'
-$ = require 'jqueryify'
+$ = window.jQuery
 
 { project, projectName, apiHost, apiPath, analytics } = require 'lib/config'
 Api = require 'zooniverse/lib/api'

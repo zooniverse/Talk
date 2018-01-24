@@ -1,5 +1,5 @@
 DefaultSubjectViewer = require 'controllers/default_subject_viewer'
-$ = require 'jqueryify'
+$ = window.jQuery
 
 class MilkyWaySubjectViewer extends DefaultSubjectViewer
   className: "#{ DefaultSubjectViewer::className } milky-way-subject-viewer"

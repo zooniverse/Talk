@@ -1,5 +1,5 @@
 DefaultSubjectViewer = require 'controllers/default_subject_viewer'
-$ = require 'jqueryify'
+$ = window.jQuery
 
 class ChimpSubjectViewer extends DefaultSubjectViewer
   @imageIn: (location) -> location?.previews?[0]?[0] || 'http://placehold.it/300&text=video'

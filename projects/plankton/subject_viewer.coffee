@@ -1,6 +1,6 @@
 DefaultSubjectViewer = require 'controllers/default_subject_viewer'
 ImageInspect = require 'cs-utils-imageinspect'
-$ = require 'jqueryify'
+$ = window.jQuery
 
 class PlanktonSubjectViewer extends DefaultSubjectViewer
   className: "#{ DefaultSubjectViewer::className } plankton-subject-viewer"

@@ -1,6 +1,6 @@
 DefaultSubjectViewer = require 'controllers/default_subject_viewer'
 template = require 'views/subjects/viewer'
-$ = require 'jqueryify'
+$ = window.jQuery
 
 class KelpSubjectViewer extends DefaultSubjectViewer
   className: "#{ DefaultSubjectViewer::className } kelp-subject-viewer"

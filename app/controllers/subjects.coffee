@@ -3,7 +3,7 @@ SubStack = require 'lib/sub_stack'
 Focus = require 'models/focus'
 FocusPage = require 'controllers/focus_page'
 template = require 'views/subjects/show'
-$ = require 'jqueryify'
+$ = window.jQuery
 SubjectViewer = require 'controllers/subject_viewer'
 
 class Show extends FocusPage

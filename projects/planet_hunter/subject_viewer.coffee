@@ -1,4 +1,4 @@
-$ = require 'jqueryify'
+$ = window.jQuery
 { Controller } = require 'spine'
 NoUiSlider     = require 'lib/jquery.nouislider.min'
 CanvasGraph    = require 'lib/canvas-graph'

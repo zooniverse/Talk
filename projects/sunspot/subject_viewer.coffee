@@ -1,6 +1,6 @@
 DefaultSubjectViewer = require 'controllers/default_subject_viewer'
 ImageInspect = require 'cs-utils-imageinspect'
-$ = require 'jqueryify'
+$ = window.jQuery
 
 loadImage = (src, cb) ->
   image = new Image

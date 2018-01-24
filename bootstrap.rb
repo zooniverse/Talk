@@ -112,7 +112,7 @@ File.open('subject_viewer.coffee', 'w') do |out|
   out.puts <<-COFFEESCRIPT
 DefaultSubjectViewer = require 'controllers/default_subject_viewer'
 template = require 'views/subjects/viewer'
-$ = require 'jqueryify'
+$ = window.jQuery
 
 class #{ project.classify }SubjectViewer extends DefaultSubjectViewer
   className: "#\{ DefaultSubjectViewer::className \} #{ project.dasherize }-subject-viewer"
