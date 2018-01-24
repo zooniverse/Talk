@@ -1,5 +1,5 @@
 DefaultSubjectViewer = require 'controllers/default_subject_viewer'
-$ = require 'jqueryify'
+$ = window.jQuery
 
 class AsteroidSubjectViewer extends DefaultSubjectViewer
   @imageIn: (location) -> location?.standard?[0]

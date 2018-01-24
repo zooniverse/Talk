@@ -1,6 +1,6 @@
 DefaultSubjectViewer = require 'controllers/default_subject_viewer'
 template = require 'views/subjects/viewer'
-$ = require 'jqueryify'
+$ = window.jQuery
 
 modulus = (a, b) ->
   ((a % b) + b) % b

@@ -1,6 +1,6 @@
 DefaultSubjectViewer = require 'controllers/default_subject_viewer'
 template = require 'views/subjects/viewer'
-$ = require 'jqueryify'
+$ = window.jQuery
 
 class CondorSubjectViewer extends DefaultSubjectViewer
   className: "#{ DefaultSubjectViewer::className } condor-subject-viewer"
