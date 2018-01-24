@@ -7,7 +7,6 @@
     "cs-utils-imageinspect": "0.0.3",
     "es5-shimify": "~0.0.1",
     "hem": "git://github.com/chrissnyder/hem#b7595d3",
-    "jqueryify": "~0.0.1",
     "json2ify": "~0.0.1",
     "moment": "~1.7.2",
     "nib": "~0.8.2",
@@ -15,7 +14,7 @@
     "serveup": "~0.0.5",
     "spine": "1.0.8",
     "uglify-js": "1.3.4",
-    "zooniverse": "git://github.com/zooniverse/Zooniverse.git#core"
+    "zooniverse": "git://github.com/zooniverse/Zooniverse.git#core-no-jqueryify"
   },
   "scripts": {
     "start": "hem server"
