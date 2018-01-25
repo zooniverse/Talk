@@ -1,7 +1,7 @@
 { project } = require 'lib/config'
 Api = require 'zooniverse/lib/api'
 
-$(window).on 'click', '.follow-link button', (event) ->
+$(document).on 'click', '.follow-link button', (event) ->
   event.preventDefault()
   link = $(event.target)
   action = link.attr 'name'
