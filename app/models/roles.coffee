@@ -1,4 +1,4 @@
-config = require 'lib/config'
+config = require '../lib/config'
 Api = require 'zooniverse/lib/api'
 
 { project } = config

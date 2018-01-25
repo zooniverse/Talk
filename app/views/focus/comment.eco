@@ -1,15 +1,15 @@
-<% userLink = require 'views/user_link' %>
+<% userLink = require ../user_link' %>
 <% moment = require 'moment/moment' %>
-<% mentions = require 'lib/mentions' %>
-<% markdown = require 'lib/markdown' %>
+<% mentions = require '../../lib/mentions' %>
+<% markdown = require '../../lib/markdown' %>
 
 <div class="comment">
   <div class="content"><%- mentions markdown.convert @comment.body %></div>
   <footer>
     <%- userLink link: @comment %>
     <span class="right">
-      <%- require('views/timestamp') timestamp: @comment.created_at %>
+      <%- require(../timestamp') timestamp: @comment.created_at %>
     </span>
-    <%- require('views/moderation/comment')(discussionId: @discussionId, comment: @comment) unless @fromBoard %>
+    <%- require(../moderation/comment')(discussionId: @discussionId, comment: @comment) unless @fromBoard %>
   </footer>
 </div>

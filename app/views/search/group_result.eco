@@ -1,4 +1,4 @@
-<% { imageIn } = require('controllers/subject_viewer') %>
+<% { imageIn } = require('../../controllers/subject_viewer') %>
 <% moment = require 'moment/moment' %>
 
 <div class="collection-result">
@@ -16,7 +16,7 @@
     </div>
     <div class="metadata">
       Last updated
-      <%- require('views/timestamp') timestamp: @updated_at %>
+      <%- require(../timestamp') timestamp: @updated_at %>
     </div>
   </div>
 </div>

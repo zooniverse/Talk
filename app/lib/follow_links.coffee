@@ -1,4 +1,4 @@
-{ project } = require 'lib/config'
+{ project } = require './config'
 Api = require 'zooniverse/lib/api'
 
 $(document).on 'click', '.follow-link button', (event) ->
@@ -16,4 +16,4 @@ $(document).on 'click', '.follow-link button', (event) ->
   
   Api.post url, hash, =>
     followed = action is 'follow'
-    link.closest('.follow').replaceWith require('views/follow_button')(id: id, type: type, followed: followed)
+    link.closest('.follow').replaceWith require('../views/follow_button')(id: id, type: type, followed: followed)

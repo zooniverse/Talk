@@ -8,7 +8,7 @@ class DefaultGroupViewer extends Controller
   
   group: null
   className: 'group-viewer'
-  template: require('views/groups/viewer')
+  template: require('../views/groups/show')
   
   constructor: ->
     super
@@ -48,13 +48,13 @@ class DefaultGroupViewer extends Controller
   
   paginateSubjects: (page, ev) =>
     ev.preventDefault()
-    @el.find('.list').html require('views/collections/subject_list')(subjects: @group.subjects[page])
+    @el.find('.list').html require('../views/collections/subject_list')(subjects: @group.subjects[page])
     @preloadPage number for number in [page - 2 .. page + 2]
   
   preloadPage: (number) =>
     return unless @group.subjects[number]
     for subject in @group.subjects[number]
       img = new Image
-      img.src = require('controllers/subject_viewer').imageIn(subject?.location)
+      img.src = require('./subject_viewer').imageIn(subject?.location)
 
 module.exports = DefaultGroupViewer

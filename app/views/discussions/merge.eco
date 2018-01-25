@@ -1,4 +1,4 @@
-<% { capitalize, getCategoryLabel } = require 'lib/util' %>
+<% { capitalize, getCategoryLabel } = require '../../lib/util' %>
 
 <form class="merge-discussion boxed">
   <label>Merge this discussion into: </label>
@@ -23,7 +23,7 @@
   </div>
   
   <div class="field">
-    <%- require('views/discussions/mergable_list') @ %>
+    <%- require(../discussions/mergable_list') @ %>
   </div>
   
   <button type="submit" name="submit" style="display: none;">Update</button>

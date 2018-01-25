@@ -31,11 +31,11 @@
         <div class="keywords">
           <% if @keywords instanceof Array: %>
             <% for keyword in @keywords: %>
-              <%- require('views/collections/keyword_field') keyword: keyword %>
+              <%- require(../collections/keyword_field') keyword: keyword %>
             <% end %>
           <% else: %>
             <% for keyword, include of @keywords: %>
-              <%- require('views/collections/keyword_field') {keyword, include: include is 'true'} %>
+              <%- require(../collections/keyword_field') {keyword, include: include is 'true'} %>
             <% end %>
           <% end %>
         </div>
@@ -46,7 +46,7 @@
           <% for subject in @subjects: %>
             <li class="subject">
               <a href="#/subjects/<%= subject.zooniverse_id %>">
-                <img src="<%= require('controllers/subject_viewer').imageIn(subject?.location) %>" />
+                <img src="<%= require('../../controllers/subject_viewer').imageIn(subject?.location) %>" />
               </a>
               <button type="button" name="remove" value="<%= subject.zooniverse_id %>">&times;</button>
             </li>

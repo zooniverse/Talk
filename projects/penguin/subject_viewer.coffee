@@ -3,7 +3,7 @@ ImageInspect = require 'cs-utils-imageinspect'
 
 class PenguinSubjectViewer extends DefaultSubjectViewer
   className: "#{ DefaultSubjectViewer::className } penguin-subject-viewer"
-  template: require 'views/subjects/viewer'
+  template: require '../../views/subjects/viewer'
 
   constructor: ->
     super

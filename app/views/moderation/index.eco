@@ -3,7 +3,7 @@
     <section class="reported_users">
       <h2>Reported Users</h2>
       <div class="list">
-        <%- require('views/moderation/users') pastTenses: @pastTenses, moderations: @reported_users, actions: ['ignore', 'watch', 'ban'] %>
+        <%- require(../moderation/users') pastTenses: @pastTenses, moderations: @reported_users, actions: ['ignore', 'watch', 'ban'] %>
       </div>
       <div class="load-more">
         <button <%= 'disabled' if @reported_users.length < 10 %> data-type="reported_users" data-kind="users" name="load-more">Load more</button>
@@ -13,7 +13,7 @@
     <section class="watched_users">
       <h2>Watched Users</h2>
       <div class="list">
-        <%- require('views/moderation/users') pastTenses: @pastTenses, moderations: @watched_users, actions: ['unwatch', 'ban'] %>
+        <%- require(../moderation/users') pastTenses: @pastTenses, moderations: @watched_users, actions: ['unwatch', 'ban'] %>
       </div>
       <div class="load-more">
         <button <%= 'disabled' if @watched_users.length < 10 %> data-type="watched_users" data-kind="users" name="load-more">Load more</button>
@@ -23,7 +23,7 @@
     <section class="banned_users">
       <h2>Banned Users</h2>
       <div class="list">
-        <%- require('views/moderation/users') pastTenses: @pastTenses, moderations: @banned_users, actions: ['redeem'] %>
+        <%- require(../moderation/users') pastTenses: @pastTenses, moderations: @banned_users, actions: ['redeem'] %>
       </div>
       <div class="load-more">
         <button <%= 'disabled' if @banned_users.length < 10 %> data-type="banned_users" data-kind="users" name="load-more">Load more</button>
@@ -35,7 +35,7 @@
     <section class="reported_comments">
       <h3>Reported Comments</h3>
       <div class="list">
-        <%- require('views/moderation/comments') pastTenses: @pastTenses, moderations: @reported_comments, actions: ['ignore', 'delete'] %>
+        <%- require(../moderation/comments') pastTenses: @pastTenses, moderations: @reported_comments, actions: ['ignore', 'delete'] %>
       </div>
       <div class="load-more">
         <button <%= 'disabled' if @reported_comments.length < 10 %> data-type="reported_comments" data-kind="comments" name="load-more">Load more</button>
@@ -45,7 +45,7 @@
     <section class="log">
       <h3>Moderation Log</h3>
       <div class="list">
-        <%- require('views/moderation/log') pastTenses: @pastTenses, moderations: @log %>
+        <%- require(../moderation/log') pastTenses: @pastTenses, moderations: @log %>
       </div>
       <div class="load-more">
         <button <%= 'disabled' if @log.length < 10 %> data-type="log" data-kind="log" name="load-more">Load more</button>

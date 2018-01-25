@@ -1,4 +1,4 @@
-<% { titleize, getCategoryLabel } = require 'lib/util' %>
+<% { titleize, getCategoryLabel } = require '../../lib/util' %>
 
 <div class="boards">
   <% categories = ['help', 'science', 'chat'] %>
@@ -19,7 +19,7 @@
     <% else: %>
       <div class="board-summaries">
         <% for board in @[category]: %>
-          <%- require('views/boards/summary') board %>
+          <%- require(../boards/summary') board %>
         <% end %>
       </div>
     <% end %>

@@ -1,4 +1,4 @@
-<% { titleize } = require 'lib/util' %>
+<% { titleize } = require '../../lib/util' %>
 
 <div class="facet" data-facet-type="<%= @term %>">
   <input id="<%= @term %>-facet" type="checkbox" name="<%= @term %>" value="<%= @term %>" <%= 'checked' if @checked %>>

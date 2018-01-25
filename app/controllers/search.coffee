@@ -1,13 +1,13 @@
 Api = require 'zooniverse/lib/api'
 { Controller } = require 'spine'
-{ project } = require 'lib/config'
-{ equalObjects } = require 'lib/util'
-SubStack = require 'lib/sub_stack'
-Params = require 'lib/params'
+{ project } = require '../lib/config'
+{ equalObjects } = require '../lib/util'
+SubStack = require '../lib/sub_stack'
+Params = require '../lib/params'
 
 class Index extends Controller
   className: 'page'
-  template: require('views/search/index')
+  template: require('../views/search/index')
   
   elements:
     'form.search': 'searchForm'
@@ -80,7 +80,7 @@ class Index extends Controller
     
     Api.get "/projects/#{ project }/talk/search", query, (results) =>
       @searchResults = results
-      @results.html require('views/search/results')(results)
+      @results.html require('../views/search/results')(results)
       @paginationLinks()
       @setFacetCounts results
       @searching = false
@@ -152,7 +152,7 @@ class Index extends Controller
     
     for facet in facets
       continue if @queryTags[facet.term]
-      @availableTagFacets.append require('views/search/facet') term: facet.term, label: facet.term, count: facet.count
+      @availableTagFacets.append require('../views/search/facet') term: facet.term, label: facet.term, count: facet.count
   
   hasChanged: (query) =>
     return false unless query

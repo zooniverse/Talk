@@ -1,10 +1,10 @@
-<% { titleize, getCategoryLabel } = require 'lib/util' %>
+<% { titleize, getCategoryLabel } = require '../../lib/util' %>
 
 <div class="columns">
   <div class="one-third column">
-    <%- require('views/discussions/featured') featured: @featured, category: @category %>
+    <%- require(../discussions/featured') featured: @featured, category: @category %>
     <hr />
-    <%- require('views/hashtags/list') tags: @tags %>
+    <%- require(../hashtags/list') tags: @tags %>
     <hr />
     <div class="active-users"></div>
   </div>
@@ -23,7 +23,7 @@
         <% else: %>
           <div class="discussion-summaries">
             <div class="list">
-              <%- require('views/boards/discussion_list') discussions: @discussions[@currentPage], boardFeatured: @boardFeatured, page: @currentPage %>
+              <%- require(../boards/discussion_list') discussions: @discussions[@currentPage], boardFeatured: @boardFeatured, page: @currentPage %>
             </div>
             <div class="pages"></div>
           </div>
@@ -31,7 +31,7 @@
       </div>
       
       <hr />
-      <%- require('views/discussions/new_form') @ %>
+      <%- require(../discussions/new_form') @ %>
     </div>
   </div>
 </div>

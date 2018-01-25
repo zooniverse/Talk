@@ -1,4 +1,4 @@
-<% { capitalize } = require('lib/util') %>
+<% { capitalize } = require('../../lib/util') %>
 
 <div class="feature feature-link show-for-privileged-user">
   <% for scope in ['global', @board.category]: %>

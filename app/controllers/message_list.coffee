@@ -1,4 +1,4 @@
-Message = require 'models/message'
+Message = require '../models/message'
 
 class MessageList
   constructor: (@selector, @viewedUser) ->
@@ -6,6 +6,6 @@ class MessageList
   
   render: (conversations) =>
     @conversations = conversations if conversations
-    $(@selector).html require('views/messages/list') conversations: @conversations, viewedUser: @viewedUser
+    $(@selector).html require('../views/messages/list') conversations: @conversations, viewedUser: @viewedUser
 
 module.exports = MessageList

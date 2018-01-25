@@ -1,11 +1,11 @@
 {Controller} = require 'spine'
 User = require 'zooniverse/lib/models/user'
-{ pluralize } = require 'lib/util'
-template = require 'views/app_header'
+{ pluralize } = require '../lib/util'
 
 class AppHeader extends Controller
   tagName: 'header'
   className: 'app-header'
+  template: require '../views/app_header'
 
   events:
     'submit form[name="sign-in"]': 'onSignInSubmit'

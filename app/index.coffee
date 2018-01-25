@@ -1,33 +1,33 @@
-require 'lib/setup'
+require './lib/setup'
 
 spinner = new Spinner({width: 3}).spin document.querySelector('#app')
 
 {Stack} = require 'spine/lib/manager'
 $ = window.jQuery
 
-{ project, projectName, apiHost, apiPath, analytics } = require 'lib/config'
+{ project, projectName, apiHost, apiPath, analytics } = require './lib/config'
 Api = require 'zooniverse/lib/api'
 Api.init host: apiHost, proxyPath: apiPath
 
-AppHeader = require 'controllers/app_header'
-Following = require 'controllers/following'
-Recents = require 'controllers/recents'
-Subjects = require 'controllers/subjects'
-Groups = require 'controllers/groups'
-Collections = require 'controllers/collections'
-Boards = require 'controllers/boards'
-Discussions = require 'controllers/discussions'
-Moderation = require 'controllers/moderation'
-Messages = require 'controllers/messages'
-Search = require 'controllers/search'
-Users = require 'controllers/users'
-Roles = require 'models/roles'
+AppHeader = require './controllers/app_header'
+Following = require './controllers/following'
+Recents = require './controllers/recents'
+Subjects = require './controllers/subjects'
+Groups = require './controllers/groups'
+Collections = require './controllers/collections'
+Boards = require './controllers/boards'
+Discussions = require './controllers/discussions'
+Moderation = require './controllers/moderation'
+Messages = require './controllers/messages'
+Search = require './controllers/search'
+Users = require './controllers/users'
+Roles = require './models/roles'
 User = require 'zooniverse/lib/models/user'
 User.project = project
 googleAnalytics = require 'zooniverse/lib/google_analytics'
-require 'lib/moderation_links'
-require 'lib/follow_links'
-require 'lib/message_counter'
+require './lib/moderation_links'
+require './lib/follow_links'
+require './lib/message_counter'
 
 app = {}
 googleAnalytics.init analytics
@@ -43,7 +43,7 @@ activateMatchingHashLinks = ->
 
 User.bind 'sign-in', ->
   if User.current?.talk?.state is 'banned'
-    $('body').html require('views/users/banned')()
+    $('body').html require('./views/users/banned')()
 
 User.bind 'sign-in', ->
   signedIn = User.current?
@@ -108,6 +108,6 @@ $(window).on 'hashchange', activateMatchingHashLinks
 
 window.defaultAvatar = (el) ->
   $(el).removeAttr 'onerror'
-  $(el).replaceWith require('views/users/default_avatar')()
+  $(el).replaceWith require('./views/users/default_avatar')()
 
 module.exports = app

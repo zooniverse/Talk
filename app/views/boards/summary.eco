@@ -1,5 +1,5 @@
-<% userLink = require 'views/user_link' %>
-<% { pluralize, formatNumber } = require 'lib/util' %>
+<% userLink = require ../user_link' %>
+<% { pluralize, formatNumber } = require '../../lib/util' %>
 <% moment = require 'moment/moment' %>
 
 <div class="board-summary">
@@ -23,7 +23,7 @@
         <% if @last_updated and @last_comment: %>
           Last post
           <span class="last-modified">
-            <%- require('views/timestamp') timestamp: @last_comment.created_at %>
+            <%- require(../timestamp') timestamp: @last_comment.created_at %>
             <%- userLink link: @last_comment %>
           </span>
         <% else: %>

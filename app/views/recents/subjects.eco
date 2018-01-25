@@ -1,12 +1,12 @@
-<% { truncate } = require 'lib/util' %>
-<% userLink = require 'views/user_link' %>
+<% { truncate } = require '../../lib/util' %>
+<% userLink = require ../user_link' %>
 <% moment = require 'moment/moment' %>
 
 <div class="subject-summaries">
   <% for page, discussions of @subjects: %>
     <% for discussion in discussions: %>
       <div class="subject-summary">
-        <%- require('views/subjects/preview')(discussion: discussion) %>
+        <%- require(../subjects/preview')(discussion: discussion) %>
         <div class="summary">
           <div class="title">
             <a href="#/subjects/<%= discussion.focus._id %>"><%= discussion.focus._id %></a>
@@ -17,7 +17,7 @@
             
             <div class="author">
               <%- userLink link: discussion.comment, avatar: true %>
-              <%- require('views/timestamp') timestamp: discussion.comment.created_at %>
+              <%- require(../timestamp') timestamp: discussion.comment.created_at %>
             </div>
           </div>
         </div>

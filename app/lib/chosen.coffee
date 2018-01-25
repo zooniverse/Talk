@@ -3,8 +3,8 @@ Chosen source: generate output using 'cake build'
 Copyright (c) 2011 by Harvest
 ###
 
-require 'lib/chosen/abstract_chosen'
-require 'lib/chosen/select_parser'
+require './chosen/abstract_chosen'
+require './chosen/select_parser'
 
 root = this
 $ = jQuery

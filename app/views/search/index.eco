@@ -1,4 +1,4 @@
-<% { getCategoryLabel } = require 'lib/util' %>
+<% { getCategoryLabel } = require '../../lib/util' %>
 
 <div class="columns">
   <div class="one-third column">
@@ -11,22 +11,22 @@
       
       <section class="type">
         <h2>Type</h2>
-        <%- require('views/search/facet') term: 'subject', label: 'Objects', count: 0, checked: @params.kind is 'subject' %>
-        <%- require('views/search/facet') term: 'collection', label: 'Collections', count: 0, checked: @params.kind is 'collection' %>
-        <%- require('views/search/facet') term: 'discussion', label: 'Discussions', count: 0, checked: @params.kind is 'discussion' %>
+        <%- require(../search/facet') term: 'subject', label: 'Objects', count: 0, checked: @params.kind is 'subject' %>
+        <%- require(../search/facet') term: 'collection', label: 'Collections', count: 0, checked: @params.kind is 'collection' %>
+        <%- require(../search/facet') term: 'discussion', label: 'Discussions', count: 0, checked: @params.kind is 'discussion' %>
       </section>
       
       <section class="category">
         <h2>Category</h2>
-        <%- require('views/search/facet') term: 'help', label: getCategoryLabel('help'), count: 0, checked: @params.category is 'help' %>
-        <%- require('views/search/facet') term: 'science', label: getCategoryLabel('science'), count: 0, checked: @params.category is 'science' %>
-        <%- require('views/search/facet') term: 'chat', label: getCategoryLabel('chat'), count: 0, checked: @params.category is 'chat' %>
+        <%- require(../search/facet') term: 'help', label: getCategoryLabel('help'), count: 0, checked: @params.category is 'help' %>
+        <%- require(../search/facet') term: 'science', label: getCategoryLabel('science'), count: 0, checked: @params.category is 'science' %>
+        <%- require(../search/facet') term: 'chat', label: getCategoryLabel('chat'), count: 0, checked: @params.category is 'chat' %>
       </section>
       
       <section class="tags">
         <h2>Tags</h2>
         <div class="facets">
-          <div class="selected"><% if @queryTags: %><% for name, bool of @queryTags when bool: %><%- require('views/search/facet') term: name, label: name, count: 0, checked: true %><% end %><% end %></div>
+          <div class="selected"><% if @queryTags: %><% for name, bool of @queryTags when bool: %><%- require(../search/facet') term: name, label: name, count: 0, checked: true %><% end %><% end %></div>
           <div class="available"></div>
         </div>
       </section>

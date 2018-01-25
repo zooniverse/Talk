@@ -1,7 +1,7 @@
-<% userLink = require 'views/user_link' %>
+<% userLink = require ../user_link' %>
 <% moment = require 'moment/moment' %>
-<% groupViewer = require 'controllers/group_viewer' %>
-<% subjectViewer = require 'controllers/subject_viewer' %>
+<% groupViewer = require '../../controllers/group_viewer' %>
+<% subjectViewer = require '../../controllers/subject_viewer' %>
 
 <% for group in @groups: %>
   <div class="group">
@@ -27,7 +27,7 @@
       
       <div class="author">
         <%- userLink link: group.comment %>
-        <%- require('views/timestamp') timestamp: group.comment.created_at %>
+        <%- require(../timestamp') timestamp: group.comment.created_at %>
       </div>
     </div>
   </div>

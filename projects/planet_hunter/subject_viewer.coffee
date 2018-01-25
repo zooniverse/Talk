@@ -11,7 +11,7 @@ class PlanetHunterSubjectViewer extends Controller
   @subjectTitle: (subject) -> "Image #{ subject.zooniverse_id }"
 
   className: "subject-viewer planet-hunter-subject-viewer"
-  template: require 'views/subjects/viewer'
+  template: require '../../views/subjects/viewer'
 
   subject: null
 

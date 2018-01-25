@@ -1,6 +1,6 @@
 Api = require 'zooniverse/lib/api'
 DefaultSubjectViewer = require 'controllers/default_subject_viewer'
-template = require 'views/subjects/viewer'
+template = require '../../views/subjects/viewer'
 $ = window.jQuery
 
 uniqueId = 0

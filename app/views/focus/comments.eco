@@ -1,6 +1,6 @@
 <div class="focus-comments">
   <% for comment in @comments: %>
-    <%- require('views/focus/comment') discussionId: @discussionId, comment: comment, fromBoard: @fromBoard %>
+    <%- require(../focus/comment') discussionId: @discussionId, comment: comment, fromBoard: @fromBoard %>
   <% end %>
 </div>
 

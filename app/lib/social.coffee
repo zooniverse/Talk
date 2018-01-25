@@ -1,4 +1,4 @@
-{socialDefaults} = require 'lib/config'
+{socialDefaults} = require './config'
 
 inline = (string) -> string.replace '\n', '', 'g'
 

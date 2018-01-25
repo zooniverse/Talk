@@ -1,4 +1,4 @@
-<% { titleize } = require 'lib/util' %>
+<% { titleize } = require '../../lib/util' %>
 <% moment = require 'moment/moment' %>
 
 <% for moderation in @moderations: %>
@@ -31,6 +31,6 @@
     <a href="#/users/<%= moderation.action.user.name %>" class="user"><%= moderation.action.user.name %></a>
     (<em><%= moderation.action.comment or 'no comment' %></em>)
     
-    <%- require('views/timestamp') timestamp: moderation.actioned_at %>
+    <%- require(../timestamp') timestamp: moderation.actioned_at %>
   </div>
 <% end %>

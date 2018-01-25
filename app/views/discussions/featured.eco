@@ -1,4 +1,4 @@
-<% { getCategoryLabel } = require 'lib/util' %>
+<% { getCategoryLabel } = require '../../lib/util' %>
 
 <h2>Featured <%= "#{ getCategoryLabel @category } " if @category %>discussions</h2>
 <div class="featured">
@@ -6,7 +6,7 @@
     <div class="none">No featured discussions</div>
   <% else: %>
     <% for discussion in @featured: %>
-      <%- require('views/discussions/summary') discussion: discussion, followable: false %>
+      <%- require(../discussions/summary') discussion: discussion, followable: false %>
     <% end %>
   <% end %>
 </div>

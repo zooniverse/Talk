@@ -1,10 +1,10 @@
 <% user = require('zooniverse/lib/models/user').current %>
-<% roles = require('models/roles').roles[user.name] %>
+<% roles = require('../../models/roles').roles[user.name] %>
 <% moment = require 'moment/moment' %>
 
 <div class="columns">
   <div class="one-third column">
-    <%- require('views/users/mini_profile') user: user %>
+    <%- require(../users/mini_profile') user: user %>
     <div class="message-list"></div>
   </div>
   
@@ -14,16 +14,16 @@
         <li>
           <div class="post<%= " #{ roles.sort().join(' ') }" if roles %>" data-project-name="<%= message.project_name %>">
             <header>
-              <%- require('views/messages/user_link') message: message %>
+              <%- require(../messages/user_link') message: message %>
             </header>
             
             <div class="content">
-              <%- require('lib/markdown').convert message.body %>
+              <%- require('../../lib/markdown').convert message.body %>
             </div>
             
             <footer>
               <span class="float-left"><a class="delete-message">Delete this message</a></span>
-              <%- require('views/timestamp') timestamp: message.created_at %>
+              <%- require(../timestamp') timestamp: message.created_at %>
             </footer>
           </div>
         </li>
@@ -33,7 +33,7 @@
     <h4>Create a new message</h4>
     <form class="new-message boxed">
       <div class="field">
-        <%- require('views/markdown') class: 'reply-message', name: 'message[body]', placeholder: 'Write your message here' %>
+        <%- require(../markdown') class: 'reply-message', name: 'message[body]', placeholder: 'Write your message here' %>
       </div>
       
       <div class="action">

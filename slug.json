@@ -13,5 +13,10 @@
   ],
   "libs": [
     "node_modules/zooniverse/vendor/base64.js"
-  ]
+  ],
+  "generate": {
+    "/index.html": "public/index.{html,eco}",
+    "/application.js": "app/index.coffee",
+    "/application.css": "css/index.styl"
+  }
 }

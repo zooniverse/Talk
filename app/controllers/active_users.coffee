@@ -1,6 +1,6 @@
 Api = require 'zooniverse/lib/api'
 User = require 'zooniverse/lib/models/user'
-{ project } = require 'lib/config'
+{ project } = require '../lib/config'
 
 class ActiveUsers
   constructor: (@selector) ->
@@ -14,7 +14,7 @@ class ActiveUsers
   render: (@data) =>
     return unless @data.users?.length > 0
     @paginateData()
-    $(@selector).html require('views/users/active') @data
+    $(@selector).html require('../views/users/active') @data
     @pagination()
   
   paginateData: =>
@@ -42,7 +42,7 @@ class ActiveUsers
   
   paginate: (page, ev) =>
     ev.preventDefault()
-    $('.list', @selector).html require('views/users/active_list')(users: @data.users[page])
+    $('.list', @selector).html require('../views/users/active_list')(users: @data.users[page])
 
 
 module.exports = ActiveUsers

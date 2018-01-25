@@ -1,5 +1,5 @@
 Api = require 'zooniverse/lib/api'
-projectName = require('lib/config').projectName
+projectName = require('../lib/config').projectName
 
 class Message
   @records = { }

@@ -1,4 +1,4 @@
-<% {facebook, twitter, pinterest} = require 'lib/social' %>
+<% {facebook, twitter, pinterest} = require '../lib/social' %>
 
 <div class="share share-link">
   <% unless @facebook is false: %>

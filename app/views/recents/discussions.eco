@@ -1,5 +1,5 @@
-<% userLink = require 'views/user_link' %>
-<% { focusCollectionFor, capitalize, singularize, pluralize, formatNumber, truncate } = require('lib/util') %>
+<% userLink = require ../user_link' %>
+<% { focusCollectionFor, capitalize, singularize, pluralize, formatNumber, truncate } = require('../../lib/util') %>
 <% moment = require 'moment/moment' %>
 
 <div class="discussion-summaries">
@@ -49,7 +49,7 @@
             
             <div class="author">
               <%- userLink link: discussion.comment, avatar: true %>
-              <%- require('views/timestamp') timestamp: discussion.comment.created_at %>
+              <%- require(../timestamp') timestamp: discussion.comment.created_at %>
             </div>
           </div>
         </div>

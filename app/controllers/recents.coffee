@@ -1,10 +1,10 @@
 Api = require 'zooniverse/lib/api'
-SubStack = require 'lib/sub_stack'
-Page = require 'controllers/page'
+SubStack = require '../lib/sub_stack'
+Page = require './page'
 
 class Index extends Page
   className: "#{Page::className} recents"
-  template: require('views/recents/index')
+  template: require('../views/recents/index')
   
   elements: $.extend
     '.subjects .list': 'subjectList'
@@ -76,7 +76,7 @@ class Index extends Page
             subjectPage = { subjects: { } }
             subjectPage.subjects[@subjectPage] = results
             @data.subjects[@subjectsPage] = results
-            @subjectList.append require('views/recents/subjects')(subjectPage)
+            @subjectList.append require('../views/recents/subjects')(subjectPage)
           
           if results.length < 12
             target.attr disabled: true
@@ -87,7 +87,7 @@ class Index extends Page
             groupPage = { groups: { } }
             groupPage.groups[@groupPage] = results
             @data.groups[@groupsPage] = results
-            @groupList.append require('views/recents/groups')(groupPage)
+            @groupList.append require('../views/recents/groups')(groupPage)
           
           if results.length < 10
             target.attr disabled: true
@@ -99,7 +99,7 @@ class Index extends Page
             discussionPage = { discussions: { } }
             discussionPage.discussions[page] = results
             @data.discussions[category][page] = results
-            @["#{ category }List"].append require('views/recents/discussions')(discussionPage)
+            @["#{ category }List"].append require('../views/recents/discussions')(discussionPage)
           
           if results.length < 10
             target.attr disabled: true
@@ -109,7 +109,7 @@ class Index extends Page
           if results.length > 0
             collectionPage = { collections: { } }
             collectionPage.collections[@collectionsPage] = results
-            @collectionList.append require('views/recents/collections')(collectionPage)
+            @collectionList.append require('../views/recents/collections')(collectionPage)
           
           if results.length < 10
             target.attr disabled: true

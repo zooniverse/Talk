@@ -1,4 +1,4 @@
-prefix = require('lib/config').prefix
+prefix = require('./config').prefix
 
 tagMatcher = ///
   (\s|^)#([-\w\d]{3,40})

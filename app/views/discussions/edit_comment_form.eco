@@ -3,7 +3,7 @@
   
   <form class="edit-comment boxed">
     <div class="field">
-      <%- require('views/markdown') class: "comment#{ @comment._id }", name: 'comment', placeholder: 'Leave a comment' %>
+      <%- require(../markdown') class: "comment#{ @comment._id }", name: 'comment', placeholder: 'Leave a comment' %>
     </div>
     
     <div class="action">

@@ -1,11 +1,11 @@
 <% user = require('zooniverse/lib/models/user').current %>
-<% roles = require('models/roles').roles[@message.user.name] %>
+<% roles = require('../../models/roles').roles[@message.user.name] %>
 
 <a href="#/users/<%= @message.user.name %>" class="user">
   <% if @message.user.zooniverse_id: %>
     <img src="https://api.zooniverse.org/talk/avatars/<%= @message.user.zooniverse_id %>" class="avatar" onerror="window.defaultAvatar(this)" />
   <% else: %>
-    <%- require('views/users/default_avatar')() %>
+    <%- require(../users/default_avatar')() %>
   <% end %>
   
   <%= @message.user.name %>

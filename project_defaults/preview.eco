@@ -1,5 +1,5 @@
 <div class="preview">
   <a href="#/subjects/<%= @discussion.focus._id %>">
-    <img src="<%= require('controllers/subject_viewer').imageIn(@discussion.focus.location) %>" class="thin-frame preview">
+    <img src="<%= require('../../controllers/subject_viewer').imageIn(@discussion.focus.location) %>" class="thin-frame preview">
   </a>
 </div>

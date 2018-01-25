@@ -5,5 +5,5 @@
   <%- '<div class="pages"></div>' if @group.subjectPages > 1 %>
 </h3>
 <ul class="list">
-  <%- require('views/collections/subject_list') subjects: @group.subjects[1] %>
+  <%- require('../../views/collections/subject_list') subjects: @group.subjects[1] %>
 </ul>

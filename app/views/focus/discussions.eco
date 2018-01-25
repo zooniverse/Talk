@@ -1,11 +1,11 @@
-<% { titleize, getCategoryLabel } = require 'lib/util' %>
+<% { titleize, getCategoryLabel } = require '../../lib/util' %>
 
 <% for category, discussions of @boards: %>
   <h3><%= titleize getCategoryLabel category %></h3>
 
   <div class="discussion-summaries">
     <% for discussion in discussions: %>
-      <%- require('views/discussions/summary') discussion: discussion, followable: true %>
+      <%- require(../discussions/summary') discussion: discussion, followable: true %>
     <% end %>
     
     <div class="new-discussion">
@@ -19,6 +19,6 @@
   <h3>Discussions Mentioning This</h3>
 
   <% for discussion in @mentions: %>
-    <%- require('views/discussions/summary') discussion: discussion, followable: true %>
+    <%- require(../discussions/summary') discussion: discussion, followable: true %>
   <% end %>
 <% end %>

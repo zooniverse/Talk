@@ -1,15 +1,15 @@
 Api = require 'zooniverse/lib/api'
-SubStack = require 'lib/sub_stack'
-{ grouped } = require 'lib/config'
+SubStack = require '../lib/sub_stack'
+{ grouped } = require '../lib/config'
 
 if grouped
-  Page = require 'controllers/page'
-  Focus = require 'models/focus'
-  FocusPage = require 'controllers/focus_page'
-  GroupViewer = require 'controllers/group_viewer'
+  Page = require './page'
+  Focus = require '../models/focus'
+  FocusPage = require './focus_page'
+  GroupViewer = require './default_group_viewer'
   
   class Show extends FocusPage
-    template: require 'views/groups/show'
+    template: require '../views/groups/show'
     className: "#{ FocusPage::className } group page"
     focusType: 'groups'
     

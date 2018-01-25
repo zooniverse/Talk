@@ -1,6 +1,6 @@
-mentions = require 'lib/mentions'
-Markdown = require 'lib/markdown/converter'
-require 'lib/markdown/sanitizer'
+mentions = require './mentions'
+Markdown = require './markdown/converter'
+require './markdown/sanitizer'
 converter = new Markdown.Converter()
 
 module.exports =

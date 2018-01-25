@@ -1,13 +1,13 @@
 Api = require 'zooniverse/lib/api'
 User = require 'zooniverse/lib/models/user'
-Message = require 'models/message'
-MessageList = require 'controllers/message_list'
-SubStack = require 'lib/sub_stack'
-Page = require 'controllers/page'
-projectName = require('lib/config').projectName
+Message = require '../models/message'
+MessageList = require './message_list'
+SubStack = require '../lib/sub_stack'
+Page = require './page'
+projectName = require('../lib/config').projectName
 
 class Show extends Page
-  template: require('views/messages/show')
+  template: require('../views/messages/show')
   
   elements: $.extend
     '.posts': 'messages'
@@ -55,7 +55,7 @@ class Show extends Page
 
 
 class New extends Page
-  template: require('views/messages/new')
+  template: require('../views/messages/new')
   fetchOnLoad: false
   
   elements: $.extend

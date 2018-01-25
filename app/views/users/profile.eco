@@ -2,11 +2,11 @@
 
 <div class="columns">
   <div class="one-third column">
-    <%- require('views/users/mini_profile') user: currentUser %>
+    <%- require(../users/mini_profile') user: currentUser %>
     <div class="message-list"></div>
   </div>
   
   <div class="two-thirds column">
-    <%- require('views/users/content') label: 'My', user: @ %>
+    <%- require(../users/content') label: 'My', user: @ %>
   </div>
 </div>

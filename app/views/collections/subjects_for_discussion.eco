@@ -1,6 +1,6 @@
 <% for subject in @subjects: %>
   <a href="#/subjects/<%= subject.zooniverse_id %>" class="subject">
-    <img src="<%= require('controllers/subject_viewer').imageIn(subject?.location) %>" class="thin-frame" />
+    <img src="<%= require('../../controllers/subject_viewer').imageIn(subject?.location) %>" class="thin-frame" />
     <span class="title"><%= subject.zooniverse_id %></span>
   </a>
 <% end %>
