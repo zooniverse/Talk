@@ -6,21 +6,21 @@
     "clean-css": "0.6.0",
     "cs-utils-imageinspect": "0.0.3",
     "es5-shimify": "~0.0.1",
-    "hem": "git://github.com/chrissnyder/hem#b7595d3",
+    "haw": "~0.6",
     "json2ify": "~0.0.1",
     "moment": "~2.11",
     "nib": "~0.8.2",
     "semver": "^5.1.0",
     "serveup": "~0.0.5",
-    "spine": "1.0.8",
+    "spine": "~1.1",
     "uglify-js": "~2.6",
     "zooniverse": "git://github.com/zooniverse/Zooniverse.git#core-no-jqueryify"
   },
   "scripts": {
-    "start": "hem server"
+    "start": "haw serve --port 9294"
   },
   "engines": {
-    "node": "0.10"
+    "node": "6.10"
   },
   "engineStrict": true
 }
