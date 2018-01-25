@@ -4,7 +4,7 @@ $ = window.jQuery
 class AsteroidSubjectViewer extends DefaultSubjectViewer
   @imageIn: (location) -> location?.standard?[0]
   className: "#{ DefaultSubjectViewer::className } asteroid-subject-viewer"
-  template: require 'views/subjects/viewer'
+  template: require '../../views/subjects/viewer'
 
   activeFrame: 0
   playing: false

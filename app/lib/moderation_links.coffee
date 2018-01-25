@@ -1,4 +1,4 @@
-{ project } = require 'lib/config'
+{ project } = require './config'
 Api = require 'zooniverse/lib/api'
 
 $(document).on 'click', '.report-comment', (event) ->
@@ -38,11 +38,11 @@ $(document).on 'click', '.user.page .ban-user', (event) ->
     el = $(event.target)
     userName = el.data('user-name')
     Api.post "/projects/#{ project }/talk/moderation/ban_user", user_name: userName, comment: message, (results) =>
-      el.closest('.user-moderation').replaceWith require('views/moderation/user')(user: { name: userName, state: 'banned' })
+      el.closest('.user-moderation').replaceWith require('../views/moderation/user')(user: { name: userName, state: 'banned' })
 
 $(document).on 'click', '.user.page .redeem-user', (event) ->
   if message = prompt('Please enter a brief message describing the reason for redeeming this user:')
     el = $(event.target)
     userName = el.data('user-name')
     Api.post "/projects/#{ project }/talk/moderation/redeem_user", user_name: userName, comment: message, (results) =>
-      el.closest('.user-moderation').replaceWith require('views/moderation/user')(user: { name: userName })
+      el.closest('.user-moderation').replaceWith require('../views/moderation/user')(user: { name: userName })

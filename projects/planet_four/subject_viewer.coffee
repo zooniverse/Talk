@@ -4,7 +4,7 @@ $ = window.jQuery
 
 class PlanetFourSubjectViewer extends DefaultSubjectViewer
   className: "#{ DefaultSubjectViewer::className } planet-four-subject-viewer"
-  template: require 'views/subjects/viewer'
+  template: require '../../views/subjects/viewer'
 
   constructor: ->
     super

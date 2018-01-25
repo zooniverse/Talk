@@ -1,11 +1,11 @@
 <header>
   <h2>
-    <%- require('controllers/subject_viewer').subjectTitle(@) %>
+    <%- require('../../controllers/subject_viewer').subjectTitle(@) %>
 
     <div class="aux">
-      <%- require('views/follow_button') id: @zooniverse_id, type: 'subjects', follower_ids: @follower_ids %>
-      <%- require('views/dashboard_button') zooId: @zooniverse_id, type: 'objects', name: @zooniverse_id %> 
-      <%- require('views/share_button') image: require('controllers/subject_viewer').imageIn(@location) %>
+      <%- require(../follow_button') id: @zooniverse_id, type: 'subjects', follower_ids: @follower_ids %>
+      <%- require(../dashboard_button') zooId: @zooniverse_id, type: 'objects', name: @zooniverse_id %> 
+      <%- require(../share_button') image: require('../../controllers/subject_viewer').imageIn(@location) %>
     </div>
   </h2>
 </header>
@@ -20,16 +20,16 @@
     <div class="collection-list"></div>
   </div>
   
-  <%- require('views/focus/comment_form')() %>
+  <%- require(../focus/comment_form')() %>
 
-  <%- require('views/focus/comments') discussionId: @discussion.zooniverse_id, comments: @discussion.comments, count: @discussion.comments_count %>
+  <%- require(../focus/comments') discussionId: @discussion.zooniverse_id, comments: @discussion.comments, count: @discussion.comments_count %>
 </div>
 
 <div class="collections">
   <h3>Collections<%- '<div class="pages"></div>' if @collectionPages > 1 %></h3>
   <% if @collectionPages > 0: %>
     <div class="list">
-      <%- require('views/collections/list') collections: @collections[1] %>
+      <%- require(../collections/list') collections: @collections[1] %>
     </div>
   <% else: %>
     No collections
@@ -38,7 +38,7 @@
 
 <div class="hashtags">
   <h3>Tags</h3>
-  <%- require('views/hashtags/list') tags: @tags %>
+  <%- require(../hashtags/list') tags: @tags %>
   <% tagList = @tags.map((o) -> o._id) %>
   <% if tagList.length > 0: %>
     <div class="collect">
@@ -48,5 +48,5 @@
 </div>
 
 <div class="discussions">
-  <%- require('views/focus/discussions') boards: @board_discussions, mentions: @mentions %>
+  <%- require(../focus/discussions') boards: @board_discussions, mentions: @mentions %>
 </div>

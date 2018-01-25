@@ -2,7 +2,7 @@
 
 <div class="columns">
   <div class="one-third column">
-    <%- require('views/users/mini_profile') user: user %>
+    <%- require(../users/mini_profile') user: user %>
     <div class="message-list"></div>
   </div>
   
@@ -17,7 +17,7 @@
       <div class="field"><input type="text" required="required" name="message[title]" placeholder="Title" /></div>
       
       <div class="field">
-        <%- require('views/markdown') class: 'new-message', name: 'message[body]', placeholder: 'Write your message here' %>
+        <%- require(../markdown') class: 'new-message', name: 'message[body]', placeholder: 'Write your message here' %>
       </div>
       
       <div class="action">

@@ -1,5 +1,5 @@
-<% userLink = require 'views/user_link' %>
-<% { focusCollectionFor, capitalize, singularize, pluralize, formatNumber } = require('lib/util') %>
+<% userLink = require ../user_link' %>
+<% { focusCollectionFor, capitalize, singularize, pluralize, formatNumber } = require('../../lib/util') %>
 <% moment = require 'moment/moment' %>
 
 <div class="<%- 'pinned' if @discussion.featured %> discussion-summary">
@@ -51,7 +51,7 @@
       <% if @discussion.last_comment: %>
         <a href="<%= "#{ discussionUrl }?page=#{ Math.ceil(@discussion.comments / 10.0) }&comment_id=#{ @discussion.last_comment._id }" %>">Last post</a>
         <span class="last-modified">
-          <%- require('views/timestamp') timestamp: @discussion.last_updated %>
+          <%- require(../timestamp') timestamp: @discussion.last_updated %>
           <%- userLink link: @discussion.last_comment %>
         </span>
       <% else: %>
@@ -60,5 +60,5 @@
     </div>
   </div>
   
-  <%- require('views/follow_button')(id: @discussion.zooniverse_id, type: 'discussions', follower_ids: @discussion.follower_ids) if @followable %>
+  <%- require(../follow_button')(id: @discussion.zooniverse_id, type: 'discussions', follower_ids: @discussion.follower_ids) if @followable %>
 </div>

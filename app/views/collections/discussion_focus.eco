@@ -1,4 +1,4 @@
-<% userLink = require 'views/user_link' %>
+<% userLink = require ../user_link' %>
 
 <div class="collection discussion-focus">
   <h3>
@@ -11,10 +11,10 @@
   
   <div class="subjects">
     <div class="list">
-      <%- require('views/collections/subjects_for_discussion') subjects: @subjects[1] %>
+      <%- require(../collections/subjects_for_discussion') subjects: @subjects[1] %>
     </div>
     <%- '<div class="page-wrapper"><div class="pages"></div></div>' if @subjectPages > 1 %>
   </div>
   
-  <%- require('views/focus/comments') discussionId: @discussion.zooniverse_id, comments: @discussion.comments, fromBoard: true %>
+  <%- require(../focus/comments') discussionId: @discussion.zooniverse_id, comments: @discussion.comments, fromBoard: true %>
 </div>

@@ -1,6 +1,6 @@
 <% user = require('zooniverse/lib/models/user').current %>
-<% extraNav = require('lib/config').app?.extraNav %>
-<% { projectName, classifyUrl } = require 'lib/config' %>
+<% extraNav = require('../lib/config').app?.extraNav %>
+<% { projectName, classifyUrl } = require '../lib/config' %>
 
 <div class="main">
   <div class="group">

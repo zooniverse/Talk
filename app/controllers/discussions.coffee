@@ -1,11 +1,11 @@
-{ focusCollectionFor } = require('lib/util')
+{ focusCollectionFor } = require('../lib/util')
 Api = require 'zooniverse/lib/api'
 User = require 'zooniverse/lib/models/user'
-Focus = require 'models/focus'
-SubStack = require 'lib/sub_stack'
-Page = require 'controllers/page'
-Params = require 'lib/params'
-SubjectViewer = require 'controllers/subject_viewer'
+Focus = require '../models/focus'
+SubStack = require '../lib/sub_stack'
+Page = require './page'
+Params = require '../lib/params'
+SubjectViewer = require './subject_viewer'
 
 class DiscussionPage extends Page
   elements: $.extend
@@ -95,15 +95,15 @@ class DiscussionPage extends Page
   
   paginateSubjects: (page, ev) =>
     ev.preventDefault()
-    @subjectsList.html require('views/collections/subjects_for_discussion')(subjects: @data.focus.subjects[page])
+    @subjectsList.html require('../views/collections/subjects_for_discussion')(subjects: @data.focus.subjects[page])
     
     return unless @data.focus.subjects[page + 1]
     for subject in @data.focus.subjects[page + 1]
       img = new Image
-      img.src = require('controllers/subject_viewer').imageIn(subject?.location)
+      img.src = require('./subject_viewer').imageIn(subject?.location)
   
 class Show extends DiscussionPage
-  template: require('views/discussions/show')
+  template: require('../views/discussions/show')
   
   elements: $.extend
     'form.new-comment': 'commentForm'
@@ -179,7 +179,7 @@ class Show extends DiscussionPage
       @callback? comments
       @data.comments[page] = comments
       list = comments.map (comment) =>
-        "<li>#{ require('views/discussions/comment') discussionId: @data.zooniverse_id, comment: comment }</li>"
+        "<li>#{ require('../views/discussions/comment') discussionId: @data.zooniverse_id, comment: comment }</li>"
       
       @commentList.html list.join("\n")
   
@@ -208,7 +208,7 @@ class Show extends DiscussionPage
       if responseEl[0]
         responseEl.remove()
       else
-        el.before require('views/discussions/response')(comment: comment)
+        el.before require('../views/discussions/response')(comment: comment)
     
     if comment
       toggle comment
@@ -248,7 +248,7 @@ class Show extends DiscussionPage
       if lastPage > 1
         @paginateLinks.pagination 'selectPage', lastPage
       else
-        comment = require('views/discussions/comment') discussionId: @data.zooniverse_id, comment: response
+        comment = require('../views/discussions/comment') discussionId: @data.zooniverse_id, comment: response
         comment = $("<li>#{ comment }</li>")
         @commentList.append comment
   
@@ -258,7 +258,7 @@ class Show extends DiscussionPage
     id = target.data 'comment-id'
     comment = @findComment id
     commentEl = target.closest '.post'
-    commentEl.html require('views/discussions/edit_comment_form')(discussionId: @data.zooniverse_id, comment: comment)
+    commentEl.html require('../views/discussions/edit_comment_form')(discussionId: @data.zooniverse_id, comment: comment)
     commentEl.find('textarea').val comment.body
   
   removeComment: (ev) =>
@@ -293,7 +293,7 @@ class Show extends DiscussionPage
     Api.put "#{ Page::url() }/discussions/#{ discussionId }/comments/#{ commentId }", body: body, =>
       comment = @findComment commentId
       comment.body = body
-      formEl.closest('.post').replaceWith require('views/discussions/comment')(discussionId: discussionId, comment: comment)
+      formEl.closest('.post').replaceWith require('../views/discussions/comment')(discussionId: discussionId, comment: comment)
   
   findComment: (id) =>
     for page, comments of @data.comments
@@ -322,7 +322,7 @@ class Show extends DiscussionPage
       else
         @data.featured_status.scopes = @data.featured_status.scopes.filter (oldScope) -> oldScope isnt scope
       
-      @el.find('.feature-link').replaceWith require('views/discussions/feature_buttons') id: id, featured: @data.featured_status, board: @data.board
+      @el.find('.feature-link').replaceWith require('../views/discussions/feature_buttons') id: id, featured: @data.featured_status, board: @data.board
   
   destroyDiscussion: (ev) =>
     ev.preventDefault()
@@ -333,13 +333,13 @@ class Show extends DiscussionPage
   editDiscussion: (ev) =>
     ev.preventDefault()
     @actions.addClass 'editing'
-    @title.html require('views/discussions/edit_title')(@data)
+    @title.html require('../views/discussions/edit_title')(@data)
     
     if User.current.isPrivileged
       Api.get @boardsUrl(), (boards) =>
         @actions.addClass 'editing'
         @data.boardCategories = boards
-        @boardCategories.html require('views/discussions/edit_categories')(@data)
+        @boardCategories.html require('../views/discussions/edit_categories')(@data)
   
   showSubBoards: (ev) =>
     ev.preventDefault()
@@ -374,7 +374,7 @@ class Show extends DiscussionPage
     ev?.preventDefault()
     @actions.removeClass 'editing'
     @title.html @data.title
-    @boardCategories.html require('views/discussions/board_categories')(@data)
+    @boardCategories.html require('../views/discussions/board_categories')(@data)
   
   mergeDiscussion: (ev) =>
     ev.preventDefault()
@@ -384,7 +384,7 @@ class Show extends DiscussionPage
         @actions.addClass 'merging'
         @data.boardCategories = boards
         @data.boardDiscussions = board.discussions
-        @boardCategories.html require('views/discussions/merge')(@data)
+        @boardCategories.html require('../views/discussions/merge')(@data)
         $('.merge-discussion select.discussion').chosen no_results_text: 'No discussions matched'
   
   completeMerge: (ev) =>
@@ -413,7 +413,7 @@ class Show extends DiscussionPage
   cancelMerge: (ev) =>
     ev?.preventDefault()
     @actions.removeClass 'merging'
-    @boardCategories.html require('views/discussions/board_categories')(@data)
+    @boardCategories.html require('../views/discussions/board_categories')(@data)
   
   showBoards: (ev) =>
     @showSubBoards ev
@@ -428,7 +428,7 @@ class Show extends DiscussionPage
       form = target.closest 'form'
       @data.boardDiscussions = board.discussions
       selectId = form.find('select.discussion').attr 'id'
-      $("##{ selectId }").replaceWith require('views/discussions/mergable_list')(@data)
+      $("##{ selectId }").replaceWith require('../views/discussions/mergable_list')(@data)
       $("##{ selectId }_chzn").remove()
       form.find('select.discussion').prop('selectedIndex', -1).chosen no_results_text: 'No discussions matched'
   
@@ -445,7 +445,7 @@ class Show extends DiscussionPage
     Api.put "#{ @url() }/unlock", -> $('.new-post').removeClass 'locked'
 
 class New extends DiscussionPage
-  template: require('views/discussions/new')
+  template: require('../views/discussions/new')
   fetchOnLoad: false
   
   elements: $.extend

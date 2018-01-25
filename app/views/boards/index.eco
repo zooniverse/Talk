@@ -1,15 +1,15 @@
 <div class="columns">
   <div class="one-third column">
-    <%- require('views/discussions/featured') featured: @featured %>
+    <%- require(../discussions/featured') featured: @featured %>
     <% if @tags: %>
       <hr />
-      <%- require('views/hashtags/list') tags: @tags %>
+      <%- require(../hashtags/list') tags: @tags %>
       <hr />
       <div class="active-users"></div>
     <% end %>
   </div>
   
   <div class="two-thirds column">
-    <%- require('views/boards/list') @ %>
+    <%- require(../boards/list') @ %>
   </div>
 </div>

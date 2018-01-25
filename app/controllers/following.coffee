@@ -1,10 +1,10 @@
 Api = require 'zooniverse/lib/api'
-SubStack = require 'lib/sub_stack'
-Page = require 'controllers/page'
+SubStack = require '../lib/sub_stack'
+Page = require './page'
 
 class Index extends Page
   className: "#{Page::className} following"
-  template: require('views/following/index')
+  template: require('../views/following/index')
   
   elements: $.extend
     '.subjects .list': 'subjectList'
@@ -38,7 +38,7 @@ class Index extends Page
       when 'subjects'
         Api.get "#{ @url() }/subjects?page=#{ @subjectsPage += 1 }&per_page=6", (results) =>
           if results.length > 0
-            @subjectList.append require('views/subjects/list')(subjects: results)
+            @subjectList.append require('../views/subjects/list')(subjects: results)
           
           if results.length < 6
             target.attr disabled: true
@@ -46,7 +46,7 @@ class Index extends Page
       when 'groups'
         Api.get "#{ @url() }/groups?page=#{ @groupsPage += 1 }&per_page=6", (results) =>
           if results.length > 0
-            @groupList.append require('views/groups/list')(groups: results)
+            @groupList.append require('../views/groups/list')(groups: results)
           
           if results.length < 6
             target.attr disabled: true
@@ -54,7 +54,7 @@ class Index extends Page
       when 'discussions'
         Api.get "#{ @url() }/discussions?page=#{ @discussionPage += 1 }&per_page=10", (results) =>
           if results.length > 0
-            @discussionList.append require('views/discussions/list')(discussions: results)
+            @discussionList.append require('../views/discussions/list')(discussions: results)
           
           if results.length < 10
             target.attr disabled: true
@@ -62,7 +62,7 @@ class Index extends Page
       when 'collections'
         Api.get "#{ @url() }/collections?page=#{ @collectionsPage += 1 }&per_page=8", (results) =>
           if results.length > 0
-            @collectionList.append require('views/collections/list')(collections: results, updatedStats: true)
+            @collectionList.append require('../views/collections/list')(collections: results, updatedStats: true)
           
           if results.length < 8
             target.attr disabled: true

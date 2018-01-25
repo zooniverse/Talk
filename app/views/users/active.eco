@@ -1,6 +1,6 @@
-<% { formatNumber, pluralize } = require 'lib/util' %>
+<% { formatNumber, pluralize } = require '../../lib/util' %>
 <h2>Currently Online<span class="aux"><%= formatNumber @count %> <%= pluralize @count, 'user', 'users' %></span></h2>
 <div class="list">
-  <%- require('views/users/active_list') users: @users[1] %>
+  <%- require(../users/active_list') users: @users[1] %>
 </div>
 <div class="pages"></div>

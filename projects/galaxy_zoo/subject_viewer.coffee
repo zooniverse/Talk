@@ -1,5 +1,5 @@
-DefaultSubjectViewer = require 'controllers/default_subject_viewer'
-template = require 'views/subjects/viewer'
+DefaultSubjectViewer = require './default_subject_viewer'
+template = require '../views/subjects/viewer'
 $ = window.jQuery
 
 class GalaxyZooSubjectViewer extends DefaultSubjectViewer

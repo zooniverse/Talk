@@ -1,4 +1,4 @@
-<% { getCategoryLabel } = require 'lib/util' %>
+<% { getCategoryLabel } = require '../../lib/util' %>
 
 <h4 class="hide-without-user">Begin a new discussion:</h4>
 
@@ -30,7 +30,7 @@
   </div>
 
   <div class="field">
-    <%- require('views/markdown') name: 'comment', placeholder: 'Comment', class: 'discussion-comment' %>
+    <%- require(../markdown') name: 'comment', placeholder: 'Comment', class: 'discussion-comment' %>
   </div>
 
   <div class="action">

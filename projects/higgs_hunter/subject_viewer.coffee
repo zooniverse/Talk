@@ -8,7 +8,7 @@ class HiggsHunterSubjectViewer extends DefaultSubjectViewer
   @imageIn: (location) -> location?.standard?[1]
 
   className: "#{ DefaultSubjectViewer::className } higgs-hunter-subject-viewer"
-  template: require 'views/subjects/viewer'
+  template: require '../../views/subjects/viewer'
 
   viewing: false
   images: []

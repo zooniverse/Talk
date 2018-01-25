@@ -1,4 +1,4 @@
-<% { titleize } = require 'lib/util' %>
+<% { titleize } = require '../../lib/util' %>
 
 <% for moderation in @moderations: %>
   <div class="moderation-item moderated-user unlined">

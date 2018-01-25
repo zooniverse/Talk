@@ -10,7 +10,7 @@ loadImage = (src, cb) ->
 
 class SunspotSubjectViewer extends DefaultSubjectViewer
   className: "#{ DefaultSubjectViewer::className } sunspot-subject-viewer"
-  template: require 'views/subjects/viewer'
+  template: require '../../views/subjects/viewer'
 
   viewing: false
 

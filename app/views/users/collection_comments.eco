@@ -1,4 +1,4 @@
-<% userLink = require 'views/user_link' %>
+<% userLink = require ../user_link' %>
 <% moment = require 'moment/moment' %>
 
 <% for collection in @collections: %>
@@ -12,7 +12,7 @@
       <% subjects = collection?.focus?.subjects or [] %>
       <% for subject in subjects[0...5]: %>
         <div class="subject">
-          <img src="<%= require('controllers/subject_viewer').imageIn(subject?.location) %>" class="thin-frame" />
+          <img src="<%= require('../../controllers/subject_viewer').imageIn(subject?.location) %>" class="thin-frame" />
         </div>
       <% end %>
     </div>
@@ -24,7 +24,7 @@
       
       <div class="author">
         <%- userLink link: collection.comment %>
-        <%- require('views/timestamp') timestamp: collection.comment.created_at %>
+        <%- require(../timestamp') timestamp: collection.comment.created_at %>
       </div>
     </div>
   </div>

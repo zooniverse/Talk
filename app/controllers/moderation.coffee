@@ -1,12 +1,12 @@
 Api = require 'zooniverse/lib/api'
 User = require 'zooniverse/lib/models/user'
-Message = require 'models/message'
-MessageList = require 'controllers/message_list'
-SubStack = require 'lib/sub_stack'
-Page = require 'controllers/page'
+Message = require '../models/message'
+MessageList = require './message_list'
+SubStack = require '../lib/sub_stack'
+Page = require './page'
 
 class Index extends Page
-  template: require('views/moderation/index')
+  template: require('../views/moderation/index')
   
   events: $.extend
     'click .load-more button': 'loadMore'

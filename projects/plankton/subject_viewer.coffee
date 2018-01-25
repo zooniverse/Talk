@@ -4,7 +4,7 @@ $ = window.jQuery
 
 class PlanktonSubjectViewer extends DefaultSubjectViewer
   className: "#{ DefaultSubjectViewer::className } plankton-subject-viewer"
-  template: require 'views/subjects/viewer'
+  template: require '../../views/subjects/viewer'
 
   constructor: ->
     super

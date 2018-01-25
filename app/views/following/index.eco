@@ -1,11 +1,11 @@
-<% { capitalize } = require 'lib/util' %>
-<% { grouped } = require 'lib/config' %>
+<% { capitalize } = require '../../lib/util' %>
+<% { grouped } = require '../../lib/config' %>
 
 <div class="columns">
   <div class="one-third column">
-    <%- require('views/discussions/featured') featured: @featured %>
+    <%- require(../discussions/featured') featured: @featured %>
     <hr />
-    <%- require('views/hashtags/list') tags: @tags %>
+    <%- require(../hashtags/list') tags: @tags %>
     <hr />
     <div class="active-users"></div>
   </div>
@@ -13,10 +13,10 @@
   <div class="two-thirds column">
     <% if grouped: %>
       <section>
-        <h2>Followed <%= require('controllers/group_viewer').groupName() %>s</h2>
+        <h2>Followed <%= require('../../controllers/group_viewer').groupName() %>s</h2>
         <div class="groups">
           <div class="list">
-            <%- require('views/groups/list') groups: @groups %>
+            <%- require(../groups/list') groups: @groups %>
           </div>
         </div>
         
@@ -31,7 +31,7 @@
       <h3>Followed Objects</h3>
       <div class="subjects">
         <div class="list">
-          <%- require('views/subjects/list') subjects: @subjects %>
+          <%- require(../subjects/list') subjects: @subjects %>
         </div>
         
         <div class="load-more">
@@ -46,7 +46,7 @@
       <h3>Followed Discussions</h3>
       <div class="discussions">
         <div class="list">
-          <%- require('views/discussions/list') discussions: @discussions %>
+          <%- require(../discussions/list') discussions: @discussions %>
         </div>
         
         <div class="load-more">
@@ -61,7 +61,7 @@
       <h3>Followed Collections</h3>
       <div class="collections">
         <div class="list">
-          <%- require('views/collections/list') collections: @collections, updatedStats: true %>
+          <%- require(../collections/list') collections: @collections, updatedStats: true %>
         </div>
         
         <div class="load-more">

@@ -1,8 +1,8 @@
-<% userLink = require 'views/user_link' %>
+<% userLink = require ../user_link' %>
 <% moment = require 'moment/moment' %>
-<% markdown = require 'lib/markdown' %>
-<% mentions = require 'lib/mentions' %>
-<% roles = require('models/roles').roles[@comment.user_name] %>
+<% markdown = require '../../lib/markdown' %>
+<% mentions = require '../../lib/mentions' %>
+<% roles = require('../../models/roles').roles[@comment.user_name] %>
 
 <div id="<%= @comment._id %>" class="post<%= " #{ roles.sort().join(' ') }" if roles %>">
   <header>
@@ -13,7 +13,7 @@
         <%= @comment.response_to.user_name %>'s comment
       </a>
     <% end %>
-    <%- require('views/moderation/comment') discussionId: @discussionId, comment: @comment %>
+    <%- require(../moderation/comment') discussionId: @discussionId, comment: @comment %>
   </header>
   
   <div class="content">
@@ -26,6 +26,6 @@
     </div>
     
     Posted
-    <%- require('views/timestamp') timestamp: @comment.created_at %>
+    <%- require(../timestamp') timestamp: @comment.created_at %>
   </footer>
 </div>

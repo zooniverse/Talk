@@ -1,8 +1,8 @@
 {Controller} = require 'spine'
-{ project, apiHost } = require 'lib/config'
+{ project, apiHost } = require '../lib/config'
 Api = require 'zooniverse/lib/api'
 $ = window.jQuery
-ActiveUsers = require 'controllers/active_users'
+ActiveUsers = require './active_users'
 
 class Page extends Controller
   tagName: 'section'
@@ -58,7 +58,7 @@ class Page extends Controller
     Api.get "/projects/#{ project }/talk/users/collection_list", (results) =>
       list.removeClass 'loading'
       list.show()
-      list.html require('views/users/collection_list') subject: { zooniverse_id: subjectId }, collections: results
+      list.html require('../views/users/collection_list') subject: { zooniverse_id: subjectId }, collections: results
 
   collectSubject: (ev) =>
     ev.preventDefault()

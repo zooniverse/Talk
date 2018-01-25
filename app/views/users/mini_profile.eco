@@ -16,5 +16,5 @@
       <% end %>
     </div>
   </div>
-  <%- require('views/moderation/user') user: @user %>
+  <%- require(../moderation/user') user: @user %>
 </div>

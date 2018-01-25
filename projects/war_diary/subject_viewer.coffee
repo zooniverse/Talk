@@ -4,7 +4,7 @@ $ = window.jQuery
 
 class WarDiarySubjectViewer extends DefaultSubjectViewer
   className: "#{ DefaultSubjectViewer::className } war-diary-subject-viewer"
-  template: require 'views/subjects/viewer'
+  template: require '../../views/subjects/viewer'
 
   constructor: ->
     super

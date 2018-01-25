@@ -1,6 +1,6 @@
 Api = require 'zooniverse/lib/api'
-Focus = require 'models/focus'
-Page = require 'controllers/page'
+Focus = require '../models/focus'
+Page = require './page'
 
 class FocusPage extends Page
   className: "#{Page::className} focus"
@@ -62,14 +62,14 @@ class FocusPage extends Page
       @commentForm[0].reset()
       @characterCounter.html 0
       @data.discussion.comments.unshift response
-      @commentList.prepend require('views/focus/comment')(discussionId: response.discussion_id, comment: response)
+      @commentList.prepend require('../views/focus/comment')(discussionId: response.discussion_id, comment: response)
 
   editComment: (ev) =>
     target = $(ev.target)
     id = target.data 'comment-id'
     comment = @data.discussion.comments.filter((c) -> c._id is id)[0]
     commentEl = target.closest '.comment'
-    commentEl.replaceWith require('views/focus/edit_comment_form')(discussionId: @data.discussion.zooniverse_id, comment: comment)
+    commentEl.replaceWith require('../views/focus/edit_comment_form')(discussionId: @data.discussion.zooniverse_id, comment: comment)
 
   updateComment: (ev) ->
     ev.preventDefault()
@@ -80,14 +80,14 @@ class FocusPage extends Page
     Api.put "#{ Page::url() }/discussions/#{ discussionId }/comments/#{ commentId }", body: body, =>
       comment = @data.discussion.comments.filter((c) -> c._id is commentId)[0]
       comment.body = body
-      formEl.replaceWith require('views/focus/comment')(discussionId: discussionId, comment: comment)
+      formEl.replaceWith require('../views/focus/comment')(discussionId: discussionId, comment: comment)
 
   paginateComments: =>
     @commentPage += 1
     Api.get "#{ @url() }/comments?page=#{ @commentPage }", (results) =>
       @loadMoreComments.hide() if @data.discussion.comments_count < @commentPage * 10
       for comment in results
-        @commentList.append require('views/focus/comment') comment: comment
+        @commentList.append require('../views/focus/comment') comment: comment
 
   startDiscussion: (ev) =>
     ev.preventDefault()

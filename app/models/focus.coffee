@@ -1,4 +1,4 @@
-{ project } = require 'lib/config'
+{ project } = require '../lib/config'
 Api = require 'zooniverse/lib/api'
 
 class Focus

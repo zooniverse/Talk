@@ -1,4 +1,4 @@
-<% { pluralize, formatNumber } = require 'lib/util' %>
+<% { pluralize, formatNumber } = require '../../lib/util' %>
 <h2>
   <% if @total > 10: %>
     <%= formatNumber ((@page - 1) * @per_page) + 1 %> -

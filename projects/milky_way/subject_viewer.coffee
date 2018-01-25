@@ -3,7 +3,7 @@ $ = window.jQuery
 
 class MilkyWaySubjectViewer extends DefaultSubjectViewer
   className: "#{ DefaultSubjectViewer::className } milky-way-subject-viewer"
-  template: require 'views/subjects/viewer'
+  template: require '../../views/subjects/viewer'
 
   constructor: ->
     super

@@ -3,7 +3,7 @@
 
 <div class="columns">
   <div class="one-third column">
-    <%- require('views/users/mini_profile') user: currentUser %>
+    <%- require(../users/mini_profile') user: currentUser %>
     <div class="message-list"></div>
   </div>
   

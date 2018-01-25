@@ -1,13 +1,13 @@
 Api = require 'zooniverse/lib/api'
 User = require 'zooniverse/lib/models/user'
-SubStack = require 'lib/sub_stack'
-Page = require 'controllers/page'
-Message = require 'models/message'
-MessageList = require 'controllers/message_list'
+SubStack = require '../lib/sub_stack'
+Page = require './page'
+Message = require '../models/message'
+MessageList = require './message_list'
 
 class Profile extends Page
   className: "#{Page::className} user"
-  template: require('views/users/profile')
+  template: require('../views/users/profile')
   
   events: $.extend
     'click .subjects .load-more button': 'loadMore'
@@ -22,31 +22,31 @@ class Profile extends Page
       groups:
         page: 1
         perPage: 6
-        template: 'views/users/group_comments'
+        template: '../views/users/group_comments'
         argument: 'groups'
       
       subjects:
         page: 1
         perPage: 6
-        template: 'views/users/subject_comments'
+        template: '../views/users/subject_comments'
         argument: 'subjects'
       
       collections:
         page: 1
         perPage: 6
-        template: 'views/users/collection_comments'
+        template: '../views/users/collection_comments'
         argument: 'collections'
       
       boards:
         page: 1
         perPage: 15
-        template: 'views/discussions/list'
+        template: '../views/discussions/list'
         argument: 'discussions'
       
       my_collections:
         page: 1
         perPage: 8
-        template: 'views/collections/list'
+        template: '../views/collections/list'
         argument: 'collections'
     
     super
@@ -87,7 +87,7 @@ class Profile extends Page
 
 
 class Show extends Profile
-  template: require('views/users/show')
+  template: require('../views/users/show')
   
   url: =>
     "#{ Page::url() }/users/#{ @id }"
@@ -103,7 +103,7 @@ class Show extends Profile
 
 
 class Preferences extends Profile
-  template: require('views/users/preferences')
+  template: require('../views/users/preferences')
   fetchOnLoad: false
   
   events: $.extend

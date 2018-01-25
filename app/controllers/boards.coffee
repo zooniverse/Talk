@@ -1,9 +1,9 @@
 Api = require 'zooniverse/lib/api'
-SubStack = require 'lib/sub_stack'
-Page = require 'controllers/page'
+SubStack = require '../lib/sub_stack'
+Page = require './page'
 
 class Show extends Page
-  template: require('views/boards/show')
+  template: require('../views/boards/show')
   
   elements: $.extend
     'form.new-discussion': 'discussionForm'
@@ -56,7 +56,7 @@ class Show extends Page
       @data.currentPage = page
       boardFeaturedIds = @data.boardFeatured.map (d) -> d.zooniverse_id
       @data.discussions[page] = (discussion for discussion in discussions when discussion.zooniverse_id not in boardFeaturedIds)
-      @discussionsList.html require('views/boards/discussion_list')(discussions: @data.discussions[page], boardFeatured: @data.boardFeatured, page: page)
+      @discussionsList.html require('../views/boards/discussion_list')(discussions: @data.discussions[page], boardFeatured: @data.boardFeatured, page: page)
   
   createDiscussion: (ev) =>
     ev.preventDefault()
@@ -69,7 +69,7 @@ class Show extends Page
 
 
 class Index extends Page
-  template: require('views/boards/index')
+  template: require('../views/boards/index')
   
   events: $.extend
     'click button[name="new-board"]': 'newBoard'
@@ -84,7 +84,7 @@ class Index extends Page
 
 
 class New extends Page
-  template: require('views/boards/new')
+  template: require('../views/boards/new')
   fetchOnLoad: false
   
   elements: $.extend

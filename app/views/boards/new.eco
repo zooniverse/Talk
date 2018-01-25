@@ -1,4 +1,4 @@
-<% { getCategoryLabel } = require 'lib/util' %>
+<% { getCategoryLabel } = require '../../lib/util' %>
 
 <h4>Create a new <%= getCategoryLabel @category %> board</h4>
 <form class="new-board boxed">

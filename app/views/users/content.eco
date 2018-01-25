@@ -1,11 +1,11 @@
-<% { capitalize } = require 'lib/util' %>
-<% { grouped } = require 'lib/config' %>
+<% { capitalize } = require '../../lib/util' %>
+<% { grouped } = require '../../lib/config' %>
 
 <% if grouped: %>
   <section class="groups">
-    <h2><%= @label %> Recent <%= require('controllers/group_viewer').groupName() %> Comments</h2>
+    <h2><%= @label %> Recent <%= require('../../controllers/group_viewer').groupName() %> Comments</h2>
     <div class="list">
-      <%- require('views/users/group_comments') groups: @user.groups %>
+      <%- require(../users/group_comments') groups: @user.groups %>
     </div>
     
     <div class="load-more">
@@ -21,7 +21,7 @@
 <section class="subjects">
   <h2><%= @label %> Recent Object Comments</h2>
   <div class="list">
-    <%- require('views/users/subject_comments') subjects: @user.subjects %>
+    <%- require(../users/subject_comments') subjects: @user.subjects %>
   </div>
   
   <div class="load-more">
@@ -36,7 +36,7 @@
 <section class="collections">
   <h2><%= @label %> Recent Collection Comments</h2>
   <div class="list">
-    <%- require('views/users/collection_comments') collections: @user.collections %>
+    <%- require(../users/collection_comments') collections: @user.collections %>
   </div>
   
   <div class="load-more">
@@ -51,7 +51,7 @@
 <section class="boards">
   <h3><%= @label %> Recent Discussions</h3>
   <div class="list">
-    <%- require('views/discussions/list') discussions: @user.boards %>
+    <%- require(../discussions/list') discussions: @user.boards %>
   </div>
   
   <div class="load-more">
@@ -66,7 +66,7 @@
 <section class="my_collections">
   <h2><%= @label %> Collections</h2>
   <div class="list">
-    <%- require('views/collections/list') collections: @user.my_collections %>
+    <%- require(../collections/list') collections: @user.my_collections %>
   </div>
   
   <div class="load-more">

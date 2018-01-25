@@ -1,4 +1,4 @@
-<% { capitalize, titleize } = require('lib/util') %>
+<% { capitalize, titleize } = require('../../lib/util') %>
 <% moment = require 'moment/moment' %>
 
 <div class="discussion-result">
@@ -12,7 +12,7 @@
     </div>
     <div class="metadata">
       Last updated
-      <%- require('views/timestamp') timestamp: @updated_at %>
+      <%- require(../timestamp') timestamp: @updated_at %>
     </div>
   </div>
 </div>

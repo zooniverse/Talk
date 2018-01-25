@@ -3,7 +3,7 @@
 
   <form class="new-comment boxed">
     <div class="field">
-      <%- require('views/markdown') class: 'comment', name: 'comment', placeholder: 'Leave a comment' %>
+      <%- require(../markdown') class: 'comment', name: 'comment', placeholder: 'Leave a comment' %>
     </div>
     
     <input type="hidden" name="response_to_id" value="">

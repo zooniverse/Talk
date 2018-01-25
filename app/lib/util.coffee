@@ -1,4 +1,4 @@
-config = require 'lib/config'
+config = require './config'
 
 SHORT_WORDS = ['and', 'to', 'the']
 

@@ -1,9 +1,9 @@
 Api = require 'zooniverse/lib/api'
-SubStack = require 'lib/sub_stack'
-Page = require 'controllers/page'
-Focus = require 'models/focus'
-FocusPage = require 'controllers/focus_page'
-template = require 'views/collections/show'
+SubStack = require '../lib/sub_stack'
+Page = require './page'
+Focus = require '../models/focus'
+FocusPage = require './focus_page'
+template = require '../views/collections/show'
 
 class Show extends FocusPage
   template: template
@@ -52,18 +52,18 @@ class Show extends FocusPage
   
   paginateSubjects: (page, ev) =>
     ev.preventDefault()
-    @subjectsList.html require('views/collections/subject_list')(subjects: @data.subjects[page])
+    @subjectsList.html require('../views/collections/subject_list')(subjects: @data.subjects[page])
     
     return unless @data.subjects[page + 1]
     for subject in @data.subjects[page + 1]
       img = new Image
-      img.src = require('controllers/subject_viewer').imageIn(subject?.location)
+      img.src = require('./subject_viewer').imageIn(subject?.location)
 
 
 class New extends Page
   action: 'new'
   className: "#{Page::className} new collection"
-  template: require('views/collections/new')
+  template: require('../views/collections/new')
   fetchOnLoad: false
   
   elements: $.extend
@@ -127,7 +127,7 @@ class New extends Page
   
   addKeyword: (ev) =>
     ev.preventDefault()
-    @keywordList.append require('views/collections/keyword_field')({ })
+    @keywordList.append require('../views/collections/keyword_field')({ })
 
 
 class Edit extends New

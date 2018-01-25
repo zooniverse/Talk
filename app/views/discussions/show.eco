@@ -1,13 +1,13 @@
 <% currentUser = require('zooniverse/lib/models/user').current %>
-<% userLink = require 'views/user_link' %>
+<% userLink = require ../user_link' %>
 <% moment = require 'moment/moment' %>
 
 <div class="columns">
   <div class="one-third column">
     <% if @focusType is 'boards': %>
-      <%- require('views/discussions/featured') featured: @featured %>
+      <%- require(../discussions/featured') featured: @featured %>
       <hr />
-      <%- require('views/hashtags/list') tags: @tags %>
+      <%- require(../hashtags/list') tags: @tags %>
       <hr />
       <div class="active-users"></div>
     <% else: %>
@@ -36,26 +36,26 @@
           <a class="destroy action show-for-privileged-user">Remove</a>
         </div>
         
-        <h3 class="board-categories"><%- require('views/discussions/board_categories') @ %></h3>
+        <h3 class="board-categories"><%- require(../discussions/board_categories') @ %></h3>
 
         <div class="discussion-topic">
-          <%- require('views/follow_button') id: @zooniverse_id, type: 'discussions', follower_ids: @follower_ids %>
-          <%- require('views/discussions/feature_buttons') id: @zooniverse_id, featured: @featured_status or @featured, board: @board %>
+          <%- require(../follow_button') id: @zooniverse_id, type: 'discussions', follower_ids: @follower_ids %>
+          <%- require(../discussions/feature_buttons') id: @zooniverse_id, featured: @featured_status or @featured, board: @board %>
           
           <div class="post">
             <header>
               <div class="title"><%= @title %></div>
               Started
-              <%- require('views/timestamp') timestamp: @created_at %>
+              <%- require(../timestamp') timestamp: @created_at %>
               <%- userLink link: @ %>
             </header>
           </div>
           
-          <%- require('views/discussions/comments') @ %>
+          <%- require(../discussions/comments') @ %>
           
           <div class="new-post<%= ' locked' if @locked %>">
             <div class="<%- 'hide-without-user' if @locked %>">
-              <%- require('views/discussions/comment_form') @ %>
+              <%- require(../discussions/comment_form') @ %>
             </div>
             <div class="lock">
               <p>This discussion has been locked by a moderator.</p>

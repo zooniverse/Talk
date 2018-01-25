@@ -1,5 +1,5 @@
 <% user = require('zooniverse/lib/models/user').current %>
-<% roles = require('models/roles').roles[user.name] %>
+<% roles = require('../../models/roles').roles[user.name] %>
 <% moment = require 'moment/moment' %>
 
 <h2>
@@ -30,9 +30,9 @@
       <footer>
         <div class="last-message">
           Last message
-          <%- require('views/timestamp') timestamp: lastMessage.created_at %>
+          <%- require(../timestamp') timestamp: lastMessage.created_at %>
           <%= direction %>
-          <%- require('views/messages/user_link') message: { user: otherPerson } %>
+          <%- require(../messages/user_link') message: { user: otherPerson } %>
         </div>
       </footer>
     </div>

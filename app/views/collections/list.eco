@@ -1,4 +1,4 @@
-<% { pluralize } = require 'lib/util' %>
+<% { pluralize } = require '../../lib/util' %>
 <% moment = require 'moment/moment' %>
 
 <div class="collection-summaries">
@@ -11,7 +11,7 @@
           by <%= collection.user_name %>
           <% if @updatedStats: %>
             last updated
-            <%- require('views/timestamp') timestamp: collection.updated_at %>
+            <%- require(../timestamp') timestamp: collection.updated_at %>
           <% end %>
           <%= "#{ collection.subjects_count } #{ pluralize collection.subjects_count, 'image', 'images' }" %>
         </span>
@@ -19,7 +19,7 @@
         <span class="subjects">
           <% for subject in subjects[0...5]: %>
             <span class="subject">
-              <img src="<%= require('controllers/subject_viewer').imageIn(subject?.location) %>" class="thin-frame" />
+              <img src="<%= require('../../controllers/subject_viewer').imageIn(subject?.location) %>" class="thin-frame" />
             </span>
           <% end %>
         </span>

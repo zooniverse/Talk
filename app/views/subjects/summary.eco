@@ -1,7 +1,7 @@
-<% { truncate } = require 'lib/util' %>
-<% userLink = require 'views/user_link' %>
+<% { truncate } = require '../../lib/util' %>
+<% userLink = require ../user_link' %>
 <% moment = require 'moment/moment' %>
-<% {subjectViewerDiscuss} = require 'lib/config' %>
+<% {subjectViewerDiscuss} = require '../../lib/config' %>
 
 <div class="subject-summary" data-id="<%= @zooniverse_id %>">
   <div class="preview">
@@ -10,7 +10,7 @@
       <div class="subject-viewer"></div>
     <% else: %>
       <a href="#/subjects/<%= @zooniverse_id %>">
-        <img src="<%= require('controllers/subject_viewer').imageIn(@location) %>" class="thin-frame preview" />
+        <img src="<%= require('../../controllers/subject_viewer').imageIn(@location) %>" class="thin-frame preview" />
       </a>
     <% end %>
     <div class="add-to-collection hide-without-user <% if subjectViewerDiscuss: %>with-subject-viewer<% end %>">
@@ -25,7 +25,7 @@
     </div>
 
     <div class="metadata">
-      <!--<%- require('views/follow_button') id: @zooniverse_id, type: 'subjects', follower_ids: @follower_ids %>-->
+      <!--<%- require(../follow_button') id: @zooniverse_id, type: 'subjects', follower_ids: @follower_ids %>-->
 
       <% if @comments? and @discussions?: %>
         <div class="stats">
@@ -46,7 +46,7 @@
     <% end %>
 
     <% if @discussion?.comments: %>
-      <%- require('views/focus/comments') discussionId: @discussion.zooniverse_id, comments: @discussion.comments, count: @discussion.comments_count, fromBoard: true %>
+      <%- require(../focus/comments') discussionId: @discussion.zooniverse_id, comments: @discussion.comments, count: @discussion.comments_count, fromBoard: true %>
     <% end %>
   </div>
 </div>

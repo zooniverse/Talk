@@ -1,6 +1,6 @@
 Api = require 'zooniverse/lib/api'
 User = require 'zooniverse/lib/models/user'
-Message = require 'models/message'
+Message = require '../models/message'
 
 updateCounter = ->
   clearTimeout(Message.timer) if Message.timer

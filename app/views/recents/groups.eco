@@ -1,6 +1,6 @@
-<% userLink = require 'views/user_link' %>
+<% userLink = require ../user_link' %>
 <% moment = require 'moment/moment' %>
-<% subjectViewer = require 'controllers/subject_viewer' %>
+<% subjectViewer = require '../../controllers/subject_viewer' %>
 
 <% for page, discussions of @groups: %>
   <% for discussion in discussions: %>
@@ -27,7 +27,7 @@
         
         <div class="author">
           <%- userLink link: discussion.comment, avatar: true %>
-          <%- require('views/timestamp') timestamp: discussion.comment.created_at %>
+          <%- require(../timestamp') timestamp: discussion.comment.created_at %>
         </div>
       </div>
     </div>

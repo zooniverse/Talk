@@ -1,10 +1,10 @@
 Api = require 'zooniverse/lib/api'
-SubStack = require 'lib/sub_stack'
-Focus = require 'models/focus'
-FocusPage = require 'controllers/focus_page'
-template = require 'views/subjects/show'
+SubStack = require '../lib/sub_stack'
+Focus = require '../models/focus'
+FocusPage = require './focus_page'
+template = require '../views/subjects/show'
 $ = window.jQuery
-SubjectViewer = require 'controllers/subject_viewer'
+SubjectViewer = require './subject_viewer'
 
 class Show extends FocusPage
   template: template
@@ -55,7 +55,7 @@ class Show extends FocusPage
   
   paginateCollections: (page, ev) =>
     ev.preventDefault()
-    @collectionsList.html require('views/collections/list')(collections: @data.collections[page])
+    @collectionsList.html require('../views/collections/list')(collections: @data.collections[page])
 
 
 class Subjects extends SubStack

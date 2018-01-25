@@ -1,11 +1,11 @@
-<% { titleize, getCategoryLabel } = require 'lib/util' %>
-<% { grouped } = require 'lib/config' %>
+<% { titleize, getCategoryLabel } = require '../../lib/util' %>
+<% { grouped } = require '../../lib/config' %>
 
 <div class="columns">
   <div class="one-third column">
-    <%- require('views/discussions/featured') featured: @featured %>
+    <%- require(../discussions/featured') featured: @featured %>
     <hr />
-    <%- require('views/hashtags/list') tags: @tags %>
+    <%- require(../hashtags/list') tags: @tags %>
     <hr />
     <div class="active-users"></div>
   </div>
@@ -13,10 +13,10 @@
   <div class="two-thirds column">
     <% if grouped: %>
       <section>
-        <h2>Recent <%= require('controllers/group_viewer').groupName() %> Comments...</h2>
+        <h2>Recent <%= require('../../controllers/group_viewer').groupName() %> Comments...</h2>
         <div class="groups">
           <div class="list">
-            <%- require('views/recents/groups') groups: @groups %>
+            <%- require(../recents/groups') groups: @groups %>
           </div>
         </div>
         
@@ -32,7 +32,7 @@
       <h2>Recent Object Comments...</h2>
       <div class="subjects">
         <div class="list">
-          <%- require('views/recents/subjects') subjects: @subjects %>
+          <%- require(../recents/subjects') subjects: @subjects %>
         </div>
       </div>
       
@@ -50,7 +50,7 @@
           <h3><%= titleize getCategoryLabel category %></h3>
           
           <div class="<%= category %> list">
-            <%- require('views/recents/discussions') category: category, discussions: @discussions[category] %>
+            <%- require(../recents/discussions') category: category, discussions: @discussions[category] %>
           </div>
           
           <div class="load-more">
@@ -67,7 +67,7 @@
       <h2>Recent Collection Comments...</h2>
       <div class="collections">
         <div class="list">
-          <%- require('views/recents/collections') @ %>
+          <%- require(../recents/collections') @ %>
         </div>
       </div>
       

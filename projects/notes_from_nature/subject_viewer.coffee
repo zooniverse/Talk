@@ -8,7 +8,7 @@ class NotesFromNatureSubjectViewer extends DefaultSubjectViewer
     if number? and species? then "#{ number } #{ species }" else super
 
   className: "#{ DefaultSubjectViewer::className } notes-from-nature-subject-viewer"
-  template: require 'views/subjects/viewer'
+  template: require '../../views/subjects/viewer'
 
   constructor: ->
     super

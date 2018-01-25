@@ -22,7 +22,7 @@ cp -RL public build_public
 rm -rf public
 mv build_public public
 echo 'Building application...'
-hem build
+haw build
 mv public build
 mv pre_build_public public
 BASH
