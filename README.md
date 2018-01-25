@@ -12,11 +12,17 @@ Talk codebase for projects launched on our old platform generally between Sept. 
 
 Uses the 1.x.x version of the Ruby AWS SDK gem, which is unfortunately not specified in the gemfile. Be sure you are using the corret version.
 
-Also uses hem as a front-end builder, which only works with node version ~0.10.x. 
+Also uses hem as a front-end builder, which only works with node version ~0.10.x.
+
+You will need:
++ Ruby 2.1.x installed to run the configure / deploy scripts
++ Node 0.10.x see package.json for more details
 
 ### Setup
 
-Install the dependencies:  `npm install .`
+Install the dependencies:
+ + `npm install .`
+ + `bundle install`
 
 Fix hem's dependencies: *a recently introduced regression; maybe we should just fork the repository?*
   - `cd ./node_modules/hem`
