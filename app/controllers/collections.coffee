@@ -3,10 +3,9 @@ SubStack = require '../lib/sub_stack'
 Page = require './page'
 Focus = require '../models/focus'
 FocusPage = require './focus_page'
-template = require '../views/collections/show'
 
 class Show extends FocusPage
-  template: template
+  template: require '../views/collections/show'
   className: "#{FocusPage::className} collection page"
   focusType: 'collections'
   

@@ -2,12 +2,11 @@ Api = require 'zooniverse/lib/api'
 SubStack = require '../lib/sub_stack'
 Focus = require '../models/focus'
 FocusPage = require './focus_page'
-template = require '../views/subjects/show'
 $ = window.jQuery
 SubjectViewer = require './subject_viewer'
 
 class Show extends FocusPage
-  template: template
+  template: require '../views/subjects/show'
   className: "#{FocusPage::className} subject page"
   focusType: 'subjects'
   
