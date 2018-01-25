@@ -17,6 +17,7 @@
     "zooniverse": "git://github.com/zooniverse/Zooniverse.git#core-no-jqueryify"
   },
   "scripts": {
+    "build": "haw build",
     "start": "haw serve --port 9294"
   },
   "engines": {
